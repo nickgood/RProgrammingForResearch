@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R Programming for Research</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
+  <meta name="generator" content="bookdown 0.0.72 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R Programming for Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R Programming for Research" />
+  
+  <meta name="twitter:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  
+
+<meta name="author" content="Brooke Anderson and Rachel Severson">
+
+<meta name="date" content="2016-08-16">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="course-information.html">
+<link rel="next" href="entering-and-cleaning-data.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming for Research</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="course-information.html"><a href="course-information.html"><i class="fa fa-check"></i><b>1</b> Course information</a><ul>
+<li class="chapter" data-level="1.1" data-path="course-information.html"><a href="course-information.html#course-plan"><i class="fa fa-check"></i><b>1.1</b> Course plan</a></li>
+<li class="chapter" data-level="1.2" data-path="course-information.html"><a href="course-information.html#detailed-overview"><i class="fa fa-check"></i><b>1.2</b> Detailed overview</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="course-information.html"><a href="course-information.html#preliminaries"><i class="fa fa-check"></i><b>1.2.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="1.2.2" data-path="course-information.html"><a href="course-information.html#basic"><i class="fa fa-check"></i><b>1.2.2</b> Basic</a></li>
+<li class="chapter" data-level="1.2.3" data-path="course-information.html"><a href="course-information.html#intermediate"><i class="fa fa-check"></i><b>1.2.3</b> Intermediate</a></li>
+<li class="chapter" data-level="1.2.4" data-path="course-information.html"><a href="course-information.html#advanced"><i class="fa fa-check"></i><b>1.2.4</b> Advanced</a></li>
+<li class="chapter" data-level="1.2.5" data-path="course-information.html"><a href="course-information.html#final-week"><i class="fa fa-check"></i><b>1.2.5</b> Final week</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="course-information.html"><a href="course-information.html#graded-materials"><i class="fa fa-check"></i><b>1.3</b> Graded materials</a></li>
+</ul></li>
+<li class="part"><span><b>Part I: Preliminaries</b></span></li>
+<li class="chapter" data-level="2" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>2</b> R Preliminaries</a><ul>
+<li class="chapter" data-level="2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> R and R Studio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-r"><i class="fa fa-check"></i><b>2.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#gratis-vs.libre"><i class="fa fa-check"></i><b>2.1.2</b> Gratis vs. libre</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.1.3</b> What is RStudio?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#setting-up"><i class="fa fa-check"></i><b>2.1.4</b> Setting up</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#the-package-system"><i class="fa fa-check"></i><b>2.2</b> The “package” system</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-packages"><i class="fa fa-check"></i><b>2.2.1</b> R packages</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#installing-from-cran"><i class="fa fa-check"></i><b>2.2.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.2.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#some-basics-of-r-code"><i class="fa fa-check"></i><b>2.3</b> Some basics of R code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp--"><i class="fa fa-check"></i><b>2.3.1</b> R’s MVP: &lt;-</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vs."><i class="fa fa-check"></i><b>2.3.2</b> &lt;- vs. =</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>2.3.3</b> Naming objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.4</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vectors"><i class="fa fa-check"></i><b>2.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#dataframes"><i class="fa fa-check"></i><b>2.4.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#functions"><i class="fa fa-check"></i><b>2.5</b> Functions</a></li>
+<li class="chapter" data-level="2.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#in-course-exercise"><i class="fa fa-check"></i><b>2.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#about-the-dataset"><i class="fa fa-check"></i><b>2.6.1</b> About the dataset</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>2.6.2</b> Getting the data onto your computer</a></li>
+<li class="chapter" data-level="2.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>2.6.3</b> Getting the data into R</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>2.6.4</b> Checking out the data</a></li>
+<li class="chapter" data-level="2.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>2.6.5</b> Using the data to answer questions</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part II: Basics</b></span></li>
+<li class="chapter" data-level="3" data-path="entering-and-cleaning-data.html"><a href="entering-and-cleaning-data.html"><i class="fa fa-check"></i><b>3</b> Entering and cleaning data</a></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1"><i class="fa fa-check"></i><b>A.1</b> Week 1</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html"><i class="fa fa-check"></i><b>B</b> Appendix B: Homework</a><ul>
+<li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-preliminaries" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> R Preliminaries</h1>
+<div id="r-and-r-studio" class="section level2">
+<h2><span class="header-section-number">2.1</span> R and R Studio</h2>
+<div id="what-is-r" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> What is R?</h3>
+<ul>
+<li>A statistical programming language</li>
+<li>Open-source</li>
+<li>A core package with many available user-created add-ons (packages)</li>
+</ul>
+<p>R is currently popular in a number of fields, including:</p>
+<ul>
+<li>Statistics</li>
+<li>Machine learning</li>
+<li>Data journalism / Data analysis</li>
+</ul>
+<blockquote>
+<p>“The best thing about R is that it was developed by statisticians. The worst thing about R is that… it was developed by statisticians.”</p>
+</blockquote>
+<blockquote>
+<p>-Bo Cowgill, Google, at the Bay Area R Users Group</p>
+</blockquote>
+</div>
+<div id="gratis-vs.libre" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Gratis vs. libre</h3>
+<ul>
+<li>Gratis: Free as in beer</li>
+<li>Libre: Free as in speech</li>
+</ul>
+<p>With open-source software (free as in speech), you can:</p>
+<ul>
+<li>Check out the code to figure out how the software works</li>
+<li>Share the code (and software) with other people</li>
+<li>Make any changes you want to the code</li>
+</ul>
+</div>
+<div id="what-is-rstudio" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> What is RStudio?</h3>
+<p>RStudio is a user interface for R. You download it separately, but it’s a “nicer” way to work in R.</p>
+<p>RStudio (the company) currently:</p>
+<ul>
+<li>Develops and freely provides the RStudio IDE</li>
+<li>Provides excellent resources for learning and using R (cheatsheets, )</li>
+<li>Is producing some of the most-used R packages</li>
+<li>Employees some of the top people in R development</li>
+</ul>
+</div>
+<div id="setting-up" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Setting up</h3>
+<p>If do not already have them, you will need to download and install both R and RStudio.</p>
+<ul>
+<li>Go to <a href="https://cran.r-project.org">CRAN</a> and download the latest version of R for your system. Install.</li>
+<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio download page</a> and download the latest version of RStudio for your system. Install.</li>
+<li>Defaults should be fine for everything.</li>
+</ul>
+</div>
+</div>
+<div id="the-package-system" class="section level2">
+<h2><span class="header-section-number">2.2</span> The “package” system</h2>
+<div id="r-packages" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> R packages</h3>
+<p>Your original download of R is only a starting point:</p>
+<p><img src="figures/BrioBasicSet.jpg" width="400pt" /></p>
+<p>To take full advantage of R, you’ll want to add on packages:</p>
+<p><img src="figures/BrioFancySet.jpg" width="800pt" /></p>
+<p>You can get packages to add-on to your version of R from:</p>
+<ul>
+<li>CRAN (currently 7050 available packages)</li>
+<li>GitHub</li>
+<li>Your friends and collaborators</li>
+<li>Make them yourself</li>
+</ul>
+</div>
+<div id="installing-from-cran" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Installing from CRAN</h3>
+<p>The most popular place from which to get packages is currently CRAN. You can install packages from CRAN using R code.</p>
+<p><img src="figures/telephone_keypad.png" width="150pt" /></p>
+<p>For example, to get the package <code>phonenumber</code>, you could use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;phonenumber&quot;</span>)</code></pre></div>
+</div>
+<div id="loading-an-installed-package" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Loading an installed package</h3>
+<p>Once you have a package, you can load it to an R session using the <code>library()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(phonenumber)</code></pre></div>
+<p>Once it’s loaded, you can use all its functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fedex_number &lt;-<span class="st"> &quot;GoFedEx&quot;</span>
+<span class="kw">letterToNumber</span>(fedex_number)</code></pre></div>
+<pre><code>## [1] &quot;4633339&quot;</code></pre>
+</div>
+</div>
+<div id="some-basics-of-r-code" class="section level2">
+<h2><span class="header-section-number">2.3</span> Some basics of R code</h2>
+<div id="rs-mvp--" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> R’s MVP: &lt;-</h3>
+<p><code>&lt;-</code> is R’s assignment operator. It takes whatever you’ve created on the right hand side of the <code>&lt;-</code> and saves it as an object with the name you put on the left hand side of the <code>&lt;-</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code-- this will not work
+[name of object] &lt;-<span class="st"> </span>[thing I want to save]</code></pre></div>
+<p>For example, if I just type <code>&quot;GoFedEx&quot;</code>, R will print it back to me, but won’t save it anywhere for me to use later:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;GoFedEx&quot;</span></code></pre></div>
+<pre><code>## [1] &quot;GoFedEx&quot;</code></pre>
+<p>However, if I assign it to an object, I can print it out or use it later by referencing that object name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fedex_number &lt;-<span class="st"> &quot;GoFedEx&quot;</span>
+fedex_number</code></pre></div>
+<pre><code>## [1] &quot;GoFedEx&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">letterToNumber</span>(fedex_number)</code></pre></div>
+<pre><code>## [1] &quot;4633339&quot;</code></pre>
+</div>
+<div id="vs." class="section level3">
+<h3><span class="header-section-number">2.3.2</span> &lt;- vs. =</h3>
+<p>You can make assignments using either <code>&lt;-</code> or <code>=</code>, and you’ll see both when you’re reading other people’s code.</p>
+<p>However, R gurus advise using <code>&lt;-</code> in your own code, and as you move to doing more complex things, problems might crop up if you use <code>=</code>.</p>
+<p>For now, though, it will be helpful for you to know that these two calls do the same thing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_to_ten &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+one_to_ten</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_to_ten =<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+one_to_ten</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div id="naming-objects" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Naming objects</h3>
+<blockquote>
+<p>“There are only two hard things in Computer Science: cache invalidation and naming things.”</p>
+</blockquote>
+<blockquote>
+<p>— Phil Karlton</p>
+</blockquote>
+<ul>
+<li>Use only letters, numbers, and underscores</li>
+<li>Don’t start with anything but a letter</li>
+</ul>
+<p><em>From <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s R style guide</a></em></p>
+<ul>
+<li>Use lower case for variable names (<code>fedex_number</code>, not <code>FedExNumber</code>)</li>
+<li>Use an underscore as a separator (<code>fedex_number</code>, not <code>fedex.number</code> or <code>fedexNumber</code>)</li>
+<li>Avoid using names that are already defined in R (e.g., don’t name an object <code>mean</code>, because as <code>mean</code> function exists)</li>
+</ul>
+</div>
+</div>
+<div id="rs-most-basic-object-types" class="section level2">
+<h2><span class="header-section-number">2.4</span> R’s most basic object types</h2>
+<p>The two most basic types of objects for data in R are <strong>vectors</strong> (1D) and <strong>dataframes</strong> (2D).</p>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Vectors</h3>
+<ul>
+<li>A vector is a string of values.</li>
+<li>All values must be of the same class (i.e., all numbers, all characters, all dates)</li>
+<li>You can use <code>c()</code> to join values together to create a vector</li>
+<li>The <em>length</em> of the vector is how many values it has in it</li>
+</ul>
+<p>For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)
+fibonacci</code></pre></div>
+<pre><code>## [1] 1 1 2 3 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(fibonacci)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>An example using characters instead of numbers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_to_five &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>, <span class="st">&quot;four&quot;</span>, <span class="st">&quot;five&quot;</span>)
+one_to_five</code></pre></div>
+<pre><code>## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot; &quot;four&quot;  &quot;five&quot;</code></pre>
+<p>If you mix classes, it will default to most generic:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mixed_classes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="st">&quot;five&quot;</span>)
+mixed_classes</code></pre></div>
+<pre><code>## [1] &quot;1&quot;    &quot;3&quot;    &quot;five&quot;</code></pre>
+<p>You can pull out certain values by using indexing (<code>[...]</code>) to identify the locations you want to get</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci[<span class="dv">2</span>] <span class="co"># Get the second value</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)] <span class="co"># Get first and fifth values</span></code></pre></div>
+<pre><code>## [1] 1 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci[<span class="dv">1</span>:<span class="dv">3</span>] <span class="co"># Get the first three values</span></code></pre></div>
+<pre><code>## [1] 1 1 2</code></pre>
+</div>
+<div id="dataframes" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Dataframes</h3>
+<p>A dataframe is one or more vectors of the same length stuck together side-by-side. It is the closest R has to what you’d get with an Excel spreadsheet.</p>
+<p>You can create dataframes using the <code>data.frame()</code> function. However, most often you will create a dataframe by reading in data from a file using something like <code>read.csv()</code>.</p>
+<p>For example, to create a dataframe from vectors you already have saved as R objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">num_in_seq =</span> one_to_five,
+                            <span class="dt">fibonacci_num =</span> fibonacci)
+fibonacci_seq</code></pre></div>
+<pre><code>##   num_in_seq fibonacci_num
+## 1        one             1
+## 2        two             1
+## 3      three             2
+## 4       four             3
+## 5       five             5</code></pre>
+<p>The format for using <code>data.frame()</code> is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code-- this will not work
+[name of object] &lt;-<span class="st"> </span><span class="kw">data.frame</span>([1st column name] =<span class="st"> </span>[1st column content],
+                               [2nd column name] =<span class="st"> </span>[2nd column content])</code></pre></div>
+<p>You can use indexing (<code>[..., ...]</code>) for dataframes, too, but now they’ll have two dimensions (rows, then columns). Put the rows you want before the comma, the columns after. If you want all of something, leave the designated spot blank. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq[<span class="dv">1</span>:<span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># First two rows, second column</span></code></pre></div>
+<pre><code>## [1] 1 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq[<span class="dv">5</span>, ] <span class="co"># Last row, all columns</span></code></pre></div>
+<pre><code>##   num_in_seq fibonacci_num
+## 5       five             5</code></pre>
+<p>Usually, instead of creating a dataframe from vectors, you’ll read one in from data on an outside file. For example, to read in a dataset from a CSV file called <code>daily_show_guests.csv</code> in a subdirectory called <code>data/</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>,
+                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">skip =</span> <span class="dv">4</span>)
+daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
+<pre><code>##   YEAR GoogleKnowlege_Occupation    Show  Group  Raw_Guest_List
+## 1 1999                     actor 1/11/99 Acting  Michael J. Fox
+## 2 1999                  Comedian 1/12/99 Comedy Sandra Bernhard</code></pre>
+<p>You can use the functions <code>dim()</code>, <code>nrow()</code>, and <code>ncol</code> to figure out the dimensions (number of rows and columns) of a dataframe:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(daily_show)</code></pre></div>
+<pre><code>## [1] 2693    5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(daily_show)</code></pre></div>
+<pre><code>## [1] 2693</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(daily_show)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+</div>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">2.5</span> Functions</h2>
+<p>In general, functions in R take the following structure:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">function.name</span>(required information, options)  ## Generic code</code></pre></div>
+<p>The result of the function will be output to your R session, unless you choose to save the output in an object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new.object &lt;-<span class="st"> </span><span class="kw">function.name</span>(required information, options)  ## Generic code</code></pre></div>
+<p>Examples of this structure:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show)</code></pre></div>
+<pre><code>##   YEAR GoogleKnowlege_Occupation    Show  Group   Raw_Guest_List
+## 1 1999                     actor 1/11/99 Acting   Michael J. Fox
+## 2 1999                  Comedian 1/12/99 Comedy  Sandra Bernhard
+## 3 1999        television actress 1/13/99 Acting    Tracey Ullman
+## 4 1999              film actress 1/14/99 Acting Gillian Anderson
+## 5 1999                     actor 1/18/99 Acting David Alan Grier
+## 6 1999                     actor 1/19/99 Acting  William Baldwin</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   YEAR GoogleKnowlege_Occupation    Show  Group  Raw_Guest_List
+## 1 1999                     actor 1/11/99 Acting  Michael J. Fox
+## 2 1999                  Comedian 1/12/99 Comedy Sandra Bernhard
+## 3 1999        television actress 1/13/99 Acting   Tracey Ullman</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>,
+                    <span class="dt">skip =</span> <span class="dv">4</span>,
+                    <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Find out more about a function by using <code>?</code> (e.g., ,<code>?head</code>, <code>?read.csv</code>). This will take you to the help page for the function, where you can find out all the possible arguments for the function, required and optional.</p>
+</div>
+<div id="in-course-exercise" class="section level2">
+<h2><span class="header-section-number">2.6</span> In-course Exercise</h2>
+<div id="about-the-dataset" class="section level3">
+<h3><span class="header-section-number">2.6.1</span> About the dataset</h3>
+<p>For today’s class, you’ll be using a dataset of all the guests on Jon Stewart’s <em>The Daily Show</em>. This data was originally collected by Nate Silver’s website, <a href="http://fivethirtyeight.com">FiveThirtyEight</a> and is available on <a href="https://github.com/fivethirtyeight/data/tree/master/daily-show-guests">FiveThirtyEight’s GitHub page</a> under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. The only change made to the original file was to add (commented) attribution information at the start of the file.</p>
+<p><strong>First, check out a bit more about this data and its source:</strong></p>
+<ul>
+<li>Check out <a href="http://creativecommons.org/licenses/by/4.0/">the Creative Commons license</a>. What are we allowed to do with this data? What restrictions are there on using the data?</li>
+<li>It’s often helpful to use prior knowledge to help check out or validate your dataset. One thing we might want to know about this data is if it covers the whole time that Jon Stewart hosted <em>The Daily Show</em>. Find out the dates he started and finished as host.</li>
+<li>Briefly browse around <a href="https://github.com/fivethirtyeight/data">FiveThirtyEight’s GitHub data page</a>. What are some other datasets available that you find interesting? You can scroll to the bottom of the page to get to the compiled README.md content, which gives the full titles and links to relevant datasets. You can also click on any dataset to get more information.</li>
+<li>Look at <a href="https://github.com/fivethirtyeight/data/tree/master/daily-show-guests">the GitHub page for this <em>Daily Show</em> data</a>. How many columns will be in this dataset? What kind of information does the data include?</li>
+</ul>
+<p>If you have extra time:</p>
+<ul>
+<li>Check out <a href="http://fivethirtyeight.com/datalab/every-guest-jon-stewart-ever-had-on-the-daily-show/">the related article</a> on FiveThirtyEight. What are some specific questions they used this data to answer for this article?</li>
+<li>Who is Nate Silver?</li>
+</ul>
+</div>
+<div id="getting-the-data-onto-your-computer" class="section level3">
+<h3><span class="header-section-number">2.6.2</span> Getting the data onto your computer</h3>
+<p>First, download the data from GitHub onto your computer. Put it in your directory (folder) for this course.</p>
+<p><strong>Take the following steps to get the data onto your computer</strong></p>
+<ul>
+<li>If you do not yet have a directory (folder) just for this course, make one someplace straightforward like in your home directory.</li>
+<li>Download the file <a href="https://github.com/geanders/RCourseFall2015/blob/master/Week1_Aug24/daily_show_guests.csv">from GitHub</a>. Right click on <code>Raw</code> and then choose “Download linked file”. Put the file into the directory you created for this course.</li>
+<li>Find out what your home directory is in R. To do this, make sure R is set to your home directory using <code>setwd(&quot;~&quot;)</code>, and then get R to print that home directory path using <code>getwd()</code>.</li>
+<li>Outside of R, open Finder (or your system’s equivalent). Go to your home directory (mine, for example, is <code>/Users/brookeanderson</code>). Figure out home to get from this to the directory you created for this course. For example, from my home directory, I would go <code>Desktop</code> to <code>RCourseFall2015</code> to <code>Week1_Aug24</code>.</li>
+<li>Go back into R. Set R’s working directory to your directory for this class using the <code>setwd()</code> command, now that you know the pathname for the directory. For example, I would use <code>setwd(&quot;Desktop/RCourseFall2015/Week1_Aug24&quot;)</code>.</li>
+<li>Use the <code>list.files()</code> command to make sure that the <code>daily_show_guests.csv</code> file is in your current working directory.</li>
+</ul>
+<p>The full R code for this task might look something like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~&quot;</span>)
+<span class="kw">getwd</span>()
+
+<span class="kw">setwd</span>(<span class="st">&quot;Desktop/RCourseFall2015/Week1_Aug24&quot;</span>)
+<span class="kw">getwd</span>()
+
+<span class="kw">list.files</span>()
+
+<span class="st">&quot;daily_show_guests.csv&quot;</span> %in%<span class="st"> </span><span class="kw">list.files</span>()</code></pre></div>
+<p>If you have extra time:</p>
+<ul>
+<li>See if you can figure out the last line of code in the example R code.</li>
+</ul>
+</div>
+<div id="getting-the-data-into-r" class="section level3">
+<h3><span class="header-section-number">2.6.3</span> Getting the data into R</h3>
+<p>Now that you have the dataset in your working directory, you can read it into R. This dataset is in the CSV (comma separated values) format. (We will talk more about different file formats next week.) You can read csv files into R using the <code>read.csv()</code> function.</p>
+<p><strong>Read the data into your R session</strong></p>
+<ul>
+<li>Use the <code>read.csv()</code> function to read the data into R and save it as the object <code>daily_show</code>.</li>
+<li>Use the help file for the <code>read.csv()</code> function to figure out how this function works. To pull that up, use <code>?read.csv</code>. Why are we using the option <code>header = TRUE</code>? Can you figure out why we’re using the <code>skip</code> option, and why it’s set to 4?</li>
+<li>Note that you need to put the file name in quotation marks.</li>
+<li>What would have happened if you’d used <code>read.csv</code> but hadn’t saved the result as the object <code>daily_show</code>? (For example, you’d run the code <code>read.csv(&quot;daily_show_guests.csv&quot;)</code> rather than <code>daily_show &lt;- read.csv(&quot;daily_show_guests.csv&quot;)</code>.)</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
+                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">skip =</span> <span class="dv">4</span>)</code></pre></div>
+<p>If you have extra time:</p>
+<ul>
+<li>Say this was a really big dataset. You want to check out just the first 10 rows to make sure that you’ve got your code right before you take the time to pull in the whole dataset. Use the help file for <code>read.csv()</code> to figure out how to only read in a few rows.</li>
+<li>Look through the help file for other options available for <code>read.csv()</code>. Can you think of examples when some of these options would be useful?</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show_first10 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
+                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">skip =</span> <span class="dv">4</span>,
+                       <span class="dt">nrows =</span> <span class="dv">10</span>)
+daily_show_first10</code></pre></div>
+</div>
+<div id="checking-out-the-data" class="section level3">
+<h3><span class="header-section-number">2.6.4</span> Checking out the data</h3>
+<p>You now have the data available in the <code>daily_show</code> option. You’ll want to check it out to make sure it read in correctly, and also to get a feel for the data. Throughout, you can use the help pages to figure out more about any of the functions being used (for example, <code>?dim</code>).</p>
+<p><strong>Take the following steps to check out the dataset</strong></p>
+<ul>
+<li>Use indexing to look at the first two rows of the dataset. Based on this, what does each row “measure”? What information do you get for each “measurement”? Indexing uses square brackets immediately after the object name. If the object has two dimensions, like a dataframe (rows and columns), you put the rows you want, then a comma, then the columns you want. If you want all rows (or columns), you leave that space blank. For example, if you wanted to get the first two rows and the first three columns, you’d use <code>daily_show[1:2, 1:3]</code>. If you wanted to get the first five rows and all the columns, you’d use <code>daily_show[1:5, ]</code>.</li>
+<li>Use the <code>dim()</code> function to find out how many rows and columns this dataframe has. Based on what you found out about the data from the GitHub page, does it have the number of columns you expected? Based on what you know about the data (all the guests who came on The Daily Show with Jon Stewart), do you think it has about the right number of rows?</li>
+<li>Use the <code>head()</code> function to look at the first few rows of the dataframe. Does it look like the rows go in order by date? What was the date of Jon Stewart’s first show? Does it look like this dataset covers that first show?</li>
+<li>Use the <code>tail()</code> function to look at the last few rows of the dataframe. What is the last show date covered by the dataframe? Who was the last guest?</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]
+<span class="kw">dim</span>(daily_show)
+<span class="kw">head</span>(daily_show)
+<span class="kw">tail</span>(daily_show)</code></pre></div>
+<p>If you have extra time:</p>
+<ul>
+<li>Say you wanted to look at the first ten rows of the dataframe, rather than the first six. How could you use an option with <code>head()</code> to do this?</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
+</div>
+<div id="using-the-data-to-answer-questions" class="section level3">
+<h3><span class="header-section-number">2.6.5</span> Using the data to answer questions</h3>
+<p>Nate Silver was a guest on <em>The Daily Show</em>. Let’s use this data to figure out how many times he was a guest and when he was on the show.</p>
+<p><strong>Find out more about Nate Silver on The Daily Show</strong></p>
+<ul>
+<li>Use the <code>subset()</code> function to create a new dataframe that only has the rows of <code>daily_show</code> when Nate Silve was a guest. Put it in the object <code>nate_silver</code>.</li>
+<li>Print out the full <code>nate_silver</code> dataframe by typing <code>nate_silver</code>. (You could just use this to answer both questions, but still try the next steps. They would be important with a bigger dataset.)</li>
+<li>To count the number of times Nate Silver was a guest, you’ll need to count the number of rows in the new dataset. You can either use the <code>dim()</code> function or the <code>nrow()</code> function to do this. What additional information does the <code>dim()</code> function give you?</li>
+<li>To get the dates when Nate Silver was a guest, you can print out just the <code>Show</code> column of the dataframe. There are a few ways you can do this using indexing: <code>nate_silver[ , 3]</code> (since <code>Show</code> is the third column), <code>nate_silver[ , &quot;Show&quot;]</code>, or <code>nate_silver$Show</code>. Try these.</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nate_silver &lt;-<span class="st"> </span><span class="kw">subset</span>(daily_show, 
+                      Raw_Guest_List ==<span class="st"> &quot;Nate Silver&quot;</span>)
+nate_silver
+<span class="kw">dim</span>(nate_silver)
+<span class="kw">nrow</span>(nate_silver)
+nate_silver[ , <span class="dv">3</span>]
+nate_silver[ , <span class="st">&quot;Show&quot;</span>]</code></pre></div>
+<p>If you have extra time:</p>
+<ul>
+<li>When you print out the <code>Show</code> column, why does it also print out something underneath about Levels? Hint: This has to do with the class that R has saved this column as. What class is it currently? What other classes might we want to consider converting it to as we continue working with the dataset? Check out the example code below to get some ideas.</li>
+<li>Was Nate Silver the only statistician to be a guest on the show?</li>
+<li>What were the occupations that were only represented by one guest visit? Since <code>GoogleKnowlege_Occupation</code> is a factor, you can use the <code>table()</code> function to create a new vector with the number of times each value of <code>GoogleKnowlege_Occupation</code> shows up. You can put this information into a new vector and then pull out only the values that equal 1 (so, only had one guest). (Note that “Statistician” doesn’t show up– there was only one person who was a guest, but he had three visits.) Pick your favorite “one-off” example and find out who the guest was for that occupation.</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(nate_silver$Show)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(nate_silver$Show)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nate_silver$Show &lt;-<span class="st"> </span><span class="kw">as.Date</span>(nate_silver$Show,
+                            <span class="dt">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)
+<span class="kw">range</span>(nate_silver$Show)
+<span class="kw">diff</span>(<span class="kw">range</span>(nate_silver$Show)) <span class="co"># Time between Nate&#39;s first and last shows</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">statisticians &lt;-<span class="st"> </span><span class="kw">subset</span>(daily_show,
+                        GoogleKnowlege_Occupation ==<span class="st"> &quot;Statistician&quot;</span>)
+statisticians</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_visits &lt;-<span class="st"> </span><span class="kw">table</span>(daily_show[ , <span class="dv">2</span>])
+<span class="kw">head</span>(num_visits) <span class="co"># Note: This is a vector rather than a dataframe</span>
+<span class="kw">names</span>(num_visits[num_visits ==<span class="st"> </span><span class="dv">1</span>])
+<span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation ==<span class="st"> &quot;chess player&quot;</span>)
+<span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation ==<span class="st"> &quot;mathematician&quot;</span>)
+<span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation ==<span class="st"> &quot;orca trainer&quot;</span>)
+<span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation ==<span class="st"> &quot;Puzzle Creator&quot;</span>)
+<span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation ==<span class="st"> &quot;Scholar&quot;</span>)</code></pre></div>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="course-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="entering-and-cleaning-data.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/02-prelim.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
