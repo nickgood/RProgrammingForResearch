@@ -380,13 +380,13 @@ fibonacci_seq</code></pre></div>
 <pre><code>##   num_in_seq fibonacci_num
 ## 5       five             5</code></pre>
 <p>Usually, instead of creating a dataframe from vectors, you’ll read one in from data on an outside file. For example, to read in a dataset from a CSV file called <code>daily_show_guests.csv</code> in a subdirectory called <code>data/</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>,
-                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
-                       <span class="dt">skip =</span> <span class="dv">4</span>)
-daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
 <pre><code>##   YEAR GoogleKnowlege_Occupation    Show  Group  Raw_Guest_List
 ## 1 1999                     actor 1/11/99 Acting  Michael J. Fox
 ## 2 1999                  Comedian 1/12/99 Comedy Sandra Bernhard</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
+                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">skip =</span> <span class="dv">4</span>)
+daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
 <p>You can use the functions <code>dim()</code>, <code>nrow()</code>, and <code>ncol</code> to figure out the dimensions (number of rows and columns) of a dataframe:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(daily_show)</code></pre></div>
 <pre><code>## [1] 2693    5</code></pre>
@@ -416,7 +416,7 @@ daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></
 ## 1 1999                     actor 1/11/99 Acting  Michael J. Fox
 ## 2 1999                  Comedian 1/12/99 Comedy Sandra Bernhard
 ## 3 1999        television actress 1/13/99 Acting   Tracey Ullman</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
                     <span class="dt">skip =</span> <span class="dv">4</span>,
                     <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Find out more about a function by using <code>?</code> (e.g., ,<code>?head</code>, <code>?read.csv</code>). This will take you to the help page for the function, where you can find out all the possible arguments for the function, required and optional.</p>
