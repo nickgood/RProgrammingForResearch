@@ -123,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>2</b> R Preliminaries</a><ul>
 <li class="chapter" data-level="2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-and-r-studio"><i class="fa fa-check"></i><b>2.1</b> R and R Studio</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-r"><i class="fa fa-check"></i><b>2.1.1</b> What is R?</a></li>
-<li class="chapter" data-level="2.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#gratis-vs.libre"><i class="fa fa-check"></i><b>2.1.2</b> Gratis vs. libre</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#open-source-software"><i class="fa fa-check"></i><b>2.1.2</b> Open-source software</a></li>
 <li class="chapter" data-level="2.1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.1.3</b> What is RStudio?</a></li>
 <li class="chapter" data-level="2.1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#setting-up"><i class="fa fa-check"></i><b>2.1.4</b> Setting up</a></li>
 </ul></li>
@@ -213,29 +213,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <p>R has some of the same strengths (quick and easy to code, interfaces well with other languages, easy to work interactively) and weaknesses (slower than compiled languages) as Python. For data-related tasks, R and Python are fairly neck-and-neck. However, R is still the first choice of statisticians in most fields, so I would argue that R has a an advantage if you want to have access to cutting-edge statistical methods.</p>
 </div>
-<div id="gratis-vs.libre" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Gratis vs. libre</h3>
+<div id="open-source-software" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Open-source software</h3>
+<p>R is open-source software. Many other popular statistical programming languages, conversely, are proprietary. It’s useful to know what it means for software to be “open-source”, both conceptually and in terms of how you will be able to use and add to R in your own work.</p>
+<p>R is free, and it’s tempting to think of open-source software just as “free software”. Things, however, are a little more subtle than that. It helps to consider some different meanings of the word “free”. “Free” can mean:</p>
 <ul>
-<li>Gratis: Free as in beer</li>
-<li>Libre: Free as in speech</li>
+<li><em>Gratis</em>: Free as in beer</li>
+<li><em>Libre</em>: Free as in speech</li>
 </ul>
-<p>With open-source software (free as in speech), you can:</p>
+<p>Open-source software software is the <em>libre</em> type of free. This means that, with software that is open-source, you can:</p>
 <ul>
-<li>Check out the code to figure out how the software works</li>
-<li>Share the code (and software) with other people</li>
-<li>Make any changes you want to the code</li>
+<li>Access all of the code that makes up the software</li>
+<li>Change the code as you’d like for your own applications</li>
+<li>Build on the code with your own extensions</li>
+<li>Share the software and its code, as well as your extensions, with others</li>
 </ul>
+<p>In practice, this means that, once you are familiar with the software, you can dig deeply into the code to figure out exactly how it’s performing certain tasks. This can be useful for finding bugs and eliminating bugs, and also can help researchers figure out if there are any limitations in how the code works for their specific research.</p>
+<p>It also means that you can build your own software on top of existing R software and its extensions. I explain a bit more about R packages a bit later, but this open-source nature of R (and other languages, including Python) has created a large community of people worldwide who develop and share extensions to R. As a result, you can pull in packages that let you do all kinds of things in R, like visualizing Tweets, cleaning up accelerometer data, analyzing complex surveys, fitting maching learning models, and a wealth of other cool things.</p>
 </div>
 <div id="what-is-rstudio" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> What is RStudio?</h3>
-<p>RStudio is a user interface for R. You download it separately, but it’s a “nicer” way to work in R.</p>
-<p>RStudio (the company) currently:</p>
+<p>To get the R software, you’ll <a href="https://www.r-project.org">download R</a> from the R Project for Statistical Computing. This is enough for you to use R on your own computer. However, I would suggest one additional, free piece of software to improve your experience while working with R, RStudio.</p>
+<p>RStudio is an integrated development environment (IDE) for R. This basically means that it provides you an interface for running R and coding in R, with a lot of nice extras that will make your life easier.</p>
+<p>You download RStudio separately from R– you’ll want to download and install R itself first, and then you can <a href="https://www.rstudio.com/products/rstudio/download2/">download RStudio</a>. You want the Desktop version with the free license.</p>
+<p>The company that develops this IDE is a fantastic contributer to the global R community. RStudio currently:</p>
 <ul>
 <li>Develops and freely provides the RStudio IDE</li>
 <li>Provides excellent resources for learning and using R (cheatsheets, )</li>
 <li>Is producing some of the most-used R packages</li>
-<li>Employees some of the top people in R development</li>
+<li>Employs some of the top people in R development</li>
 </ul>
+<p>R has been advancing by leaps in bounds in terms of what it can do and the elegance with which it does it, in large part because of the enormous contributions of people involved with RStudio.</p>
 </div>
 <div id="setting-up" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Setting up</h3>
@@ -243,18 +251,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Go to <a href="https://cran.r-project.org">CRAN</a> and download the latest version of R for your system. Install.</li>
 <li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio download page</a> and download the latest version of RStudio for your system. Install.</li>
-<li>Defaults should be fine for everything.</li>
 </ul>
+<p>Defaults should be fine for everything when you install both R and RStudio. You will want the latest stable version, rather than the development version, for this course.</p>
 </div>
 </div>
 <div id="the-package-system" class="section level2">
 <h2><span class="header-section-number">2.2</span> The “package” system</h2>
 <div id="r-packages" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> R packages</h3>
-<p>Your original download of R is only a starting point:</p>
-<p><img src="figures/BrioBasicSet.jpg" width="400pt" /></p>
-<p>To take full advantage of R, you’ll want to add on packages:</p>
-<p><img src="figures/BrioFancySet.jpg" width="800pt" /></p>
+<p>Your original download of R is only a starting point. To me, this is a bit like the toy train set that my son was obsessed with for a while. You first buy a very basic set that looks something like Figure <a href="r-preliminaries.html#fig:toy-train-basic">2.1</a>.</p>
+<div class="figure"><span id="fig:toy-train-basic"></span>
+<img src="figures/BrioBasicSet.jpg" alt="The toy version of base R." width="400pt" />
+<p class="caption">
+Figure 2.1: The toy version of base R.
+</p>
+</div>
+<p>To take full advantage of R, you’ll want to add on packages. In the case of the train set, at this point, a doting grandparent adds on extensively through birthday presents, so you end up with something that looks like Figure <a href="r-preliminaries.html#fig:toy-train-fancy">2.2</a>.</p>
+<div class="figure"><span id="fig:toy-train-fancy"></span>
+<img src="figures/BrioFancySet.jpg" alt="The toy version of what your R set-up will look like once you find cool packages to use for your research." width="800pt" />
+<p class="caption">
+Figure 2.2: The toy version of what your R set-up will look like once you find cool packages to use for your research.
+</p>
+</div>
 <p>You can get packages to add-on to your version of R from:</p>
 <ul>
 <li>CRAN (currently 7050 available packages)</li>
