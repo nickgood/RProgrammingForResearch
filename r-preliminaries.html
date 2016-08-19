@@ -133,8 +133,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>2.2.3</b> Loading an installed package</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#some-basics-of-r-code"><i class="fa fa-check"></i><b>2.3</b> Some basics of R code</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp--"><i class="fa fa-check"></i><b>2.3.1</b> R’s MVP: &lt;-</a></li>
-<li class="chapter" data-level="2.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vs."><i class="fa fa-check"></i><b>2.3.2</b> &lt;- vs. =</a></li>
+<li class="chapter" data-level="2.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>2.3.1</b> R’s MVP: The gets arrow</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>2.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
 <li class="chapter" data-level="2.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>2.3.3</b> Naming objects</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.4</b> R’s most basic object types</a><ul>
@@ -290,36 +290,40 @@ Figure 2.3: Telephone keypad with letters corresponding to each number.
 </div>
 <div id="loading-an-installed-package" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> Loading an installed package</h3>
-<p>Once you have a package, you can load it to an R session using the <code>library()</code> function.</p>
+<p>Once you have installed a package, it will be saved to your computer, but you won’t be able to access it’s functions until you load it in your R session. You can load a package in an R session using the <code>library()</code> function, with the package name inside the parentheses.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(phonenumber)</code></pre></div>
-<p>Once it’s loaded, you can use all its functions.</p>
+<p>[Add note about quotation marks with <code>library</code> call.]</p>
+<p>Once a package is loaded, you can use all its exported (i.e., public) functions by calling them directly. For example, the <code>phonenumber</code> has a function called <code>letterToNumber</code> that converts a character string to a number. Once you’ve loaded <code>phonenumber</code> using <code>library</code>, you can use this function in your R session:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fedex_number &lt;-<span class="st"> &quot;GoFedEx&quot;</span>
 <span class="kw">letterToNumber</span>(fedex_number)</code></pre></div>
 <pre><code>## [1] &quot;4633339&quot;</code></pre>
+<p>[Add note about character strings]</p>
 </div>
 </div>
 <div id="some-basics-of-r-code" class="section level2">
 <h2><span class="header-section-number">2.3</span> Some basics of R code</h2>
-<div id="rs-mvp--" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> R’s MVP: &lt;-</h3>
-<p><code>&lt;-</code> is R’s assignment operator. It takes whatever you’ve created on the right hand side of the <code>&lt;-</code> and saves it as an object with the name you put on the left hand side of the <code>&lt;-</code> :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code-- this will not work
+<p>This section covers some of the basic conventions of R code, to get you started writing very basic code.</p>
+<div id="rs-mvp-the-gets-arrow" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> R’s MVP: The gets arrow</h3>
+<p>The <em>gets arrow</em>, <code>&lt;-</code>, is R’s assignment operator. It takes whatever you’ve created on the right hand side of the <code>&lt;-</code> and saves it as an object with the name you put on the left hand side of the <code>&lt;-</code>. The basic structure of a call with a gets arrow looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code
 [name of object] &lt;-<span class="st"> </span>[thing I want to save]</code></pre></div>
-<p>For example, if I just type <code>&quot;GoFedEx&quot;</code>, R will print it back to me, but won’t save it anywhere for me to use later:</p>
+<p>[Add a note on generic code]</p>
+<p>[Add a note on <code>-&gt;</code>, the history of the gets arrow, and the keyboard shortcut for the gets arrow.]</p>
+<p>For example, if I just type <code>&quot;GoFedEx&quot;</code> at the R prompt, R will print that string back to me, but won’t save it anywhere for me to use later:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;GoFedEx&quot;</span></code></pre></div>
 <pre><code>## [1] &quot;GoFedEx&quot;</code></pre>
-<p>However, if I assign it to an object, I can print it out or use it later by referencing that object name:</p>
+<p>However, if I assign <code>&quot;GoFedEx&quot;</code> to an object using a gets arrow, I can print it out or use it later by typing (“referencing”) that object name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fedex_number &lt;-<span class="st"> &quot;GoFedEx&quot;</span>
 fedex_number</code></pre></div>
 <pre><code>## [1] &quot;GoFedEx&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">letterToNumber</span>(fedex_number)</code></pre></div>
 <pre><code>## [1] &quot;4633339&quot;</code></pre>
 </div>
-<div id="vs." class="section level3">
-<h3><span class="header-section-number">2.3.2</span> &lt;- vs. =</h3>
-<p>You can make assignments using either <code>&lt;-</code> or <code>=</code>, and you’ll see both when you’re reading other people’s code.</p>
-<p>However, R gurus advise using <code>&lt;-</code> in your own code, and as you move to doing more complex things, problems might crop up if you use <code>=</code>.</p>
-<p>For now, though, it will be helpful for you to know that these two calls do the same thing:</p>
+<div id="assignment-operator-wars---vs." class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></h3>
+<p>You can make assignments in R using either the gets arrow (<code>&lt;-</code>) or <code>=</code>. When you read other people’s code, you’ll see both. R gurus advise using <code>&lt;-</code> rather than <code>=</code> when coding in R, and as you move to doing more complex things, some subtle problems might crop up if you use <code>=</code>. I have heard from someone in the know that you can tell the age of a programmer by whether he or she uses the gets arrow or <code>=</code>, with <code>=</code> more common among the young and hip. For this course, however, I am asking you to code according to <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s R style guide</a>, which specifies using the gets arrow for assignment.</p>
+<p>While you will be coding with the gets arrow exclusively in this course, it will be helpful for you to know that the two assignment arrows do pretty much the same thing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_to_ten &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
 one_to_ten</code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -329,22 +333,22 @@ one_to_ten</code></pre></div>
 </div>
 <div id="naming-objects" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Naming objects</h3>
-<blockquote>
-<p>“There are only two hard things in Computer Science: cache invalidation and naming things.”</p>
-</blockquote>
-<blockquote>
-<p>— Phil Karlton</p>
-</blockquote>
+<p>When you assign objects, you will need to choose names for them. This object name is what you will type later in your code to reference the object and use it in functions, figures, etc. For example, with the following code, I am assigning the character string “GoFedEx” to an object that I am naming <code>fedex_number</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fedex_number &lt;-<span class="st"> &quot;GoFedEx&quot;</span></code></pre></div>
+<p>There are only two fixed rules for naming objects in R:</p>
 <ul>
 <li>Use only letters, numbers, and underscores</li>
 <li>Don’t start with anything but a letter</li>
 </ul>
-<p><em>From <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s R style guide</a></em></p>
+<p>In addition to these fixed rules, there are also some guidelines for naming objects that you should adopt now, since they will make your life easier as you advance to writing more complex code in R. The following three guidelines for naming objects are from <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s R style guide</a>:</p>
 <ul>
 <li>Use lower case for variable names (<code>fedex_number</code>, not <code>FedExNumber</code>)</li>
 <li>Use an underscore as a separator (<code>fedex_number</code>, not <code>fedex.number</code> or <code>fedexNumber</code>)</li>
 <li>Avoid using names that are already defined in R (e.g., don’t name an object <code>mean</code>, because as <code>mean</code> function exists)</li>
 </ul>
+<p>Another good practice is to name objects after nouns (e.g., <code>fedex_number</code>) and later, when you start writing functions, name those after verbs (e.g., <code>call_fedex</code>). You’ll want your object names to be short enough that they don’t take forever to type as you’re coding, but not so short that you can’t remember what they stand for.</p>
+<p>[Make this a note?] Sometimes, you’ll want to create an object that you won’t want to keep for very long. For example, you might want to create a small object to test some code, but you plan to not need the object again once you’ve done that. You may want to come up with some short, generic object names that you use for these kinds of objects, so that you’ll know that you can delete them without problems when you want to clean up your R session.</p>
+<p>[Note about these object names in different languages]</p>
 </div>
 </div>
 <div id="rs-most-basic-object-types" class="section level2">
