@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R Programming for Research</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
+  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R Programming for Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R Programming for Research" />
+  
+  <meta name="twitter:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  
+
+<meta name="author" content="Brooke Anderson and Rachel Severson">
+
+<meta name="date" content="2016-08-19">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="r-preliminaries.html">
+<link rel="next" href="appendix-a-vocabulary.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming for Research</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Online course book, ERHS 535</a></li>
+<li class="chapter" data-level="" data-path="course-information.html"><a href="course-information.html"><i class="fa fa-check"></i>Course information</a><ul>
+<li class="chapter" data-level="0.1" data-path="course-information.html"><a href="course-information.html#course-overview"><i class="fa fa-check"></i><b>0.1</b> Course overview</a></li>
+<li class="chapter" data-level="0.2" data-path="course-information.html"><a href="course-information.html#time-and-place"><i class="fa fa-check"></i><b>0.2</b> Time and place</a></li>
+<li class="chapter" data-level="0.3" data-path="course-information.html"><a href="course-information.html#detailed-schedule"><i class="fa fa-check"></i><b>0.3</b> Detailed schedule</a></li>
+<li class="chapter" data-level="0.4" data-path="course-information.html"><a href="course-information.html#grading"><i class="fa fa-check"></i><b>0.4</b> Grading</a><ul>
+<li class="chapter" data-level="0.4.1" data-path="course-information.html"><a href="course-information.html#attendance-and-class-participation"><i class="fa fa-check"></i><b>0.4.1</b> Attendance and class participation</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="course-information.html"><a href="course-information.html#weekly-in-course-group-exercises"><i class="fa fa-check"></i><b>0.5</b> Weekly in-course group exercises</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="course-information.html"><a href="course-information.html#in-class-quizzes"><i class="fa fa-check"></i><b>0.5.1</b> In-class quizzes</a></li>
+<li class="chapter" data-level="0.5.2" data-path="course-information.html"><a href="course-information.html#homework"><i class="fa fa-check"></i><b>0.5.2</b> Homework</a></li>
+<li class="chapter" data-level="0.5.3" data-path="course-information.html"><a href="course-information.html#final-group-project"><i class="fa fa-check"></i><b>0.5.3</b> Final group project</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#helpful-books-for-learning-r"><i class="fa fa-check"></i><b>0.6</b> Helpful books for learning R</a></li>
+</ul></li>
+<li class="part"><span><b>Part I: Preliminaries</b></span></li>
+<li class="chapter" data-level="1" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>1</b> R Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-r"><i class="fa fa-check"></i><b>1.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#open-source-software"><i class="fa fa-check"></i><b>1.1.2</b> Open-source software</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> What is RStudio?</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#setting-up"><i class="fa fa-check"></i><b>1.1.4</b> Setting up</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#the-package-system"><i class="fa fa-check"></i><b>1.2</b> The “package” system</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#installing-from-cran"><i class="fa fa-check"></i><b>1.2.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>1.2.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#basic-code-conventions-of-r"><i class="fa fa-check"></i><b>1.3</b> Basic code conventions of R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>1.3.1</b> R’s MVP: The gets arrow</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>1.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>1.3.3</b> Naming objects</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#commenting-code"><i class="fa fa-check"></i><b>1.3.4</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>1.4</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#dataframes"><i class="fa fa-check"></i><b>1.4.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#functions"><i class="fa fa-check"></i><b>1.5</b> Functions</a></li>
+<li class="chapter" data-level="1.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#in-course-exercise"><i class="fa fa-check"></i><b>1.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#about-the-dataset"><i class="fa fa-check"></i><b>1.6.1</b> About the dataset</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>1.6.2</b> Getting the data onto your computer</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.3</b> Getting the data into R</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.4</b> Checking out the data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.5</b> Using the data to answer questions</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part II: Basics</b></span></li>
+<li class="chapter" data-level="2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html"><i class="fa fa-check"></i><b>2</b> Entering and cleaning data 1</a><ul>
+<li class="chapter" data-level="2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#r-scripts"><i class="fa fa-check"></i><b>2.1</b> R scripts</a></li>
+<li class="chapter" data-level="2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#getting-data-into-r"><i class="fa fa-check"></i><b>2.2</b> Getting data into R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#basics-of-getting-data-into-r"><i class="fa fa-check"></i><b>2.2.1</b> Basics of getting data into R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories"><i class="fa fa-check"></i><b>2.2.2</b> Directories</a></li>
+<li class="chapter" data-level="2.2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#getting-around-directories"><i class="fa fa-check"></i><b>2.2.3</b> Getting around directories</a></li>
+<li class="chapter" data-level="2.2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#taking-advantage-of-paste0"><i class="fa fa-check"></i><b>2.2.4</b> Taking advantage of <code>paste0</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#pathnames-relative-versus-absolute"><i class="fa fa-check"></i><b>2.2.5</b> Pathnames: Relative versus absolute</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.3</b> Reading data into R</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#what-kind-of-data-can-you-get-into-r"><i class="fa fa-check"></i><b>2.3.1</b> What kind of data can you get into R?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#types-of-flat-files"><i class="fa fa-check"></i><b>2.3.2</b> Types of flat files</a></li>
+<li class="chapter" data-level="2.3.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-flat-files"><i class="fa fa-check"></i><b>2.3.3</b> Reading in flat files</a></li>
+<li class="chapter" data-level="2.3.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#read.table-family-of-functions"><i class="fa fa-check"></i><b>2.3.4</b> <code>read.table</code> family of functions</a></li>
+<li class="chapter" data-level="2.3.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-online-flat-files"><i class="fa fa-check"></i><b>2.3.5</b> Reading in online flat files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-data-as-r-objects"><i class="fa fa-check"></i><b>2.4</b> Saving data as R objects</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects"><i class="fa fa-check"></i><b>2.4.1</b> Saving R objects</a></li>
+<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#loading-r-objects"><i class="fa fa-check"></i><b>2.4.2</b> Loading R objects</a></li>
+<li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects-1"><i class="fa fa-check"></i><b>2.4.3</b> Saving R objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Cleaning up data in R</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-subset"><i class="fa fa-check"></i><b>2.5.2</b> Using <code>subset()</code></a></li>
+<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#common-logical-operators-in-r"><i class="fa fa-check"></i><b>2.5.3</b> Common logical operators in R</a></li>
+<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#adding-columns"><i class="fa fa-check"></i><b>2.5.4</b> Adding columns</a></li>
+<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#date-class"><i class="fa fa-check"></i><b>2.5.5</b> <code>Date</code> class</a></li>
+<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#vector-classes"><i class="fa fa-check"></i><b>2.5.6</b> Vector classes</a></li>
+<li class="chapter" data-level="2.5.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#converting-to-date-class"><i class="fa fa-check"></i><b>2.5.7</b> Converting to <code>Date</code> class</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1"><i class="fa fa-check"></i><b>A.1</b> Week 1</a></li>
+<li class="chapter" data-level="A.2" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-2"><i class="fa fa-check"></i><b>A.2</b> Week 2</a></li>
+<li class="chapter" data-level="A.3" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-3"><i class="fa fa-check"></i><b>A.3</b> Week 3</a></li>
+<li class="chapter" data-level="A.4" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-4"><i class="fa fa-check"></i><b>A.4</b> Week 4</a></li>
+<li class="chapter" data-level="A.5" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-5"><i class="fa fa-check"></i><b>A.5</b> Week 5</a></li>
+<li class="chapter" data-level="A.6" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-6"><i class="fa fa-check"></i><b>A.6</b> Week 6</a></li>
+<li class="chapter" data-level="A.7" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-7"><i class="fa fa-check"></i><b>A.7</b> Week 7</a></li>
+<li class="chapter" data-level="A.8" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-8"><i class="fa fa-check"></i><b>A.8</b> Week 8</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html"><i class="fa fa-check"></i><b>B</b> Appendix B: Homework</a><ul>
+<li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a></li>
+<li class="chapter" data-level="B.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-2"><i class="fa fa-check"></i><b>B.2</b> Homework #2</a></li>
+<li class="chapter" data-level="B.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-3"><i class="fa fa-check"></i><b>B.3</b> Homework #3</a></li>
+<li class="chapter" data-level="B.4" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-4"><i class="fa fa-check"></i><b>B.4</b> Homework #4</a></li>
+<li class="chapter" data-level="B.5" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-5"><i class="fa fa-check"></i><b>B.5</b> Homework #5</a></li>
+<li class="chapter" data-level="B.6" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-6"><i class="fa fa-check"></i><b>B.6</b> Homework #6</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="entering-and-cleaning-data-1" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Entering and cleaning data 1</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week2.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="r-scripts" class="section level2">
+<h2><span class="header-section-number">2.1</span> R scripts</h2>
+<p>If you are writing code you think you will use later, write it in an R script file rather than using the console.</p>
+<ul>
+<li>Open a new script file in RStudio: <code>File</code> -&gt; <code>New File</code> -&gt; <code>R Script</code>.</li>
+<li>To run code from an R script file in RStudio, you can use the <code>Run</code> button (or <code>Command-R</code>). It will run whatever’s on your cursor line or whatever’s highlighted.</li>
+<li>To run the whole script, use <code>source</code>.</li>
+<li>Save scripts using the extension <code>.R</code></li>
+</ul>
+</div>
+<div id="getting-data-into-r" class="section level2">
+<h2><span class="header-section-number">2.2</span> Getting data into R</h2>
+<div id="basics-of-getting-data-into-r" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Basics of getting data into R</h3>
+<p>Basic approach:</p>
+<ul>
+<li>Download data to your computer</li>
+<li>Make sure R is working in the directory with your data (<code>getwd</code>, <code>setwd</code>)</li>
+<li>Read data into R (<code>read.csv</code>, <code>read.table</code>)</li>
+<li>Check to make sure the data came in correctly (<code>dim</code>, <code>head</code>, <code>tail</code>, <code>str</code>)</li>
+</ul>
+</div>
+<div id="directories" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Directories</h3>
+<p>Anytime you work in R, R will run from within a directory somewhere on your computer.</p>
+<p>Let’s review directories:</p>
+<p><img src="figures/korn0102.gif" style="display: block; margin: auto;" /></p>
+<p>You can check your working directory anytime using <code>getwd()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<pre><code>## [1] &quot;/Users/brookeanderson/RProgrammingForResearch&quot;</code></pre>
+<p>You can use <code>setwd()</code> to change your directory.</p>
+<p>To get to your home directory (for example, mine is “/Users/brookeanderson”), you can use the abbreviation <code>~</code>.</p>
+<p>For example, if you want to change into your home directory and print its name, you could run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~&quot;</span>)
+<span class="kw">getwd</span>()</code></pre></div>
+<pre><code>## [1] &quot;/Users/brookeanderson&quot;</code></pre>
+<p>The most straightforward way to read in data is often to put it in your working directory and then read it in using the file name. If you’re working in the directory with the file you want, you should see the file if you list files in the working directory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
+<pre><code>##  [1] &quot;_book&quot;                         &quot;_bookdown.yml&quot;                
+##  [3] &quot;_build.sh&quot;                     &quot;_deploy.sh&quot;                   
+##  [5] &quot;_output.yml&quot;                   &quot;01-course_info.Rmd&quot;           
+##  [7] &quot;02-prelim.Rmd&quot;                 &quot;03-databasics.Rmd&quot;            
+##  [9] &quot;book.bib&quot;                      &quot;data&quot;                         
+## [11] &quot;DESCRIPTION&quot;                   &quot;figures&quot;                      
+## [13] &quot;homework.Rmd&quot;                  &quot;index.Rmd&quot;                    
+## [15] &quot;LICENSE&quot;                       &quot;packages.bib&quot;                 
+## [17] &quot;preamble.tex&quot;                  &quot;README.md&quot;                    
+## [19] &quot;references.Rmd&quot;                &quot;RProgrammingForResearch.Rmd&quot;  
+## [21] &quot;RProgrammingForResearch.Rproj&quot; &quot;slides&quot;                       
+## [23] &quot;style.css&quot;                     &quot;toc.css&quot;                      
+## [25] &quot;vocabulary.Rmd&quot;</code></pre>
+</div>
+<div id="getting-around-directories" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Getting around directories</h3>
+<p>There are a few abbreviations you can use to represent certain relative or absolute locations when you’re using <code>setwd()</code>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Directory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>setwd(&quot;~&quot;)</code></td>
+<td align="left">Your home directory</td>
+</tr>
+<tr class="even">
+<td align="left"><code>setwd(&quot;..&quot;)</code></td>
+<td align="left">One directory up from your current directory</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>setwd(&quot;../..&quot;)</code></td>
+<td align="left">Two directories up from your current directory</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="taking-advantage-of-paste0" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Taking advantage of <code>paste0</code></h3>
+<p>You can create an object with your directory name using <code>paste0</code>, and then use that to set your directory. We’ll take a lot of advantage of this for reading in files.</p>
+<p>The convention for <code>paste0</code> is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">[object name] &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;[first thing you want to paste]&quot;</span>,
+                        <span class="st">&quot;[what you want to add to that]&quot;</span>,
+                        <span class="st">&quot;[more you want to add]&quot;</span>)</code></pre></div>
+<p>Here’s an example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dir &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;~/Desktop/RCourseFall2015/&quot;</span>,
+                 <span class="st">&quot;Week2_Aug31&quot;</span>)
+my_dir</code></pre></div>
+<pre><code>## [1] &quot;~/Desktop/RCourseFall2015/Week2_Aug31&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(my_dir)</code></pre></div>
+</div>
+<div id="pathnames-relative-versus-absolute" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> Pathnames: Relative versus absolute</h3>
+<p>When you want to reference a directory or file, you can use one of two types of pathnames:</p>
+<ul>
+<li><em>Relative</em>: How to get there from your current working directory</li>
+<li><em>Absolute</em>: The full pathname</li>
+</ul>
+<p>Say your current working directory was <code>/Users/brookeanderson/Desktop/RCourseFall2015</code> and you wanted to get into the subdirectory <code>Week2_Aug31</code>. Here are examples using the two types of pathnames:</p>
+<p>Absolute:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Users/brookeanderson/Desktop/RCourseFall2015/Week2_Aug31&quot;</span>)</code></pre></div>
+<p>Relative:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Week2_Aug31&quot;</span>)</code></pre></div>
+<p>Here are some other examples of relative pathnames:</p>
+<p>If <code>Week2_Aug31</code> is a subdirectory of your current parent directory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;../Week2_Aug31&quot;</span>)</code></pre></div>
+<p>If <code>Week2_Aug31</code> is a subdirectory of your home (root) directory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/Week2_Aug31&quot;</span>)</code></pre></div>
+<p>If <code>Week2_Aug31</code> is a subdirectory of the subdirectory <code>Ex</code> of your current working directory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Ex/Week2_Aug31&quot;</span>)</code></pre></div>
+</div>
+</div>
+<div id="reading-data-into-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Reading data into R</h2>
+<div id="what-kind-of-data-can-you-get-into-r" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> What kind of data can you get into R?</h3>
+<p>The sky is the limit…</p>
+<ul>
+<li>Flat files</li>
+<li>Files from other statistical packages (SAS, Excel, Stata, SPSS)</li>
+<li><a href="http://yihui.name/en/2010/10/grabbing-tables-in-webpages-using-the-xml-package/">Tables on webpages</a> (e.g., the table near the end of <a href="http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa">this page</a>)</li>
+<li>Data in a database (e.g., SQL)</li>
+<li>Really crazy data formats used in other disciplines (e.g., <a href="https://www.image.ucar.edu/GSP/Software/Netcdf/">netCDF files from climate folks</a>, <a href="http://www.tractor-mri.org.uk">MRI data stored in Analyze, NIfTI, and DICOM formats</a>)</li>
+<li>Data through APIs (e.g., <a href="http://www.r-bloggers.com/heatmap-of-toronto-traffic-signals-using-rgooglemaps/">GoogleMaps</a>, <a href="http://davetang.org/muse/2013/04/06/using-the-r_twitter-package/">Twitter</a>)</li>
+<li>Incrediably messy data using <code>scan</code> and <code>readLines</code></li>
+</ul>
+</div>
+<div id="types-of-flat-files" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Types of flat files</h3>
+<p>R can read in data from <em>a lot</em> of different formats. The only catch: you need to tell R how to do it.</p>
+<p>To start, we’ll look at flat files:</p>
+<ol style="list-style-type: decimal">
+<li><p>Fixed width files</p></li>
+<li><p>Delimited files</p></li>
+</ol>
+<ul>
+<li>“.csv”: Comma-separated values</li>
+<li>“.tab”, “.tsv”: Tab-separated values</li>
+<li>Other possible delimiters: colon, semicolon, pipe (“|”)</li>
+</ul>
+</div>
+<div id="reading-in-flat-files" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Reading in flat files</h3>
+<p>R can read any of these types of files using one of the <code>read.table</code> and <code>read.fwf</code> functions. Find out more about those functions with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?read.table
+?read.fwf</code></pre></div>
+</div>
+<div id="read.table-family-of-functions" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> <code>read.table</code> family of functions</h3>
+<p>Some of the interesting options with the <code>read.table</code> family of functions are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Option</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>sep</code></td>
+<td align="left">What is the delimiter in the data?</td>
+</tr>
+<tr class="even">
+<td align="left"><code>skip</code></td>
+<td align="left">How many lines of the start of the file should you skip?</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>header</code></td>
+<td align="left">Does the first line you read give column names?</td>
+</tr>
+<tr class="even">
+<td align="left"><code>as.is</code></td>
+<td align="left">Should you bring in strings as characters, not factors?</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>nrows</code></td>
+<td align="left">How many rows do you want to read in?</td>
+</tr>
+<tr class="even">
+<td align="left"><code>na.strings</code></td>
+<td align="left">How are missing values coded?</td>
+</tr>
+</tbody>
+</table>
+<p>All members of the <code>read.table</code> family are doing the same basic thing. The only difference is what defaults they have for the separator (<code>sep</code>) and the decimal point (<code>dec</code>).</p>
+<p>Members of the <code>read.table</code> family:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Separator</th>
+<th align="left">Decimal point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>read.csv</code></td>
+<td align="left">comma</td>
+<td align="left">period</td>
+</tr>
+<tr class="even">
+<td align="left"><code>read.csv2</code></td>
+<td align="left">semi-colon</td>
+<td align="left">comma</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>read.delim</code></td>
+<td align="left">tab</td>
+<td align="left">period</td>
+</tr>
+<tr class="even">
+<td align="left"><code>read.delim2</code></td>
+<td align="left">tab</td>
+<td align="left">comma</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="reading-in-online-flat-files" class="section level3">
+<h3><span class="header-section-number">2.3.5</span> Reading in online flat files</h3>
+<p>If you’re reading in data from a non-secure webpage (i.e., one that starts with <code>http</code>), if the data is in a “flat-file” format, you can just read it in using the <a href="http://www2.unil.ch/comparativegenometrics/docs/NC_006368.txt">web address</a> as the file name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www2.unil.ch/comparativegenometrics&quot;</span>,
+              <span class="st">&quot;/docs/NC_006368.txt&quot;</span>)
+ld_genetics &lt;-<span class="st"> </span><span class="kw">read.delim</span>(url, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+ld_genetics[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">1</span>:<span class="dv">4</span>]</code></pre></div>
+<pre><code>##    pos  nA  nC  nG
+## 1  500 307 153 192
+## 2 1500 310 169 207
+## 3 2500 319 167 177
+## 4 3500 373 164 168
+## 5 4500 330 175 224</code></pre>
+<p>If you want to read in data from a secure webpage (e.g., one that starts with <code>https</code>), then you’ll need to do something different.</p>
+<p>First, you’ll need to install then load the package <code>repmis</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;repmis&quot;)</span>
+<span class="kw">library</span>(repmis)</code></pre></div>
+<p>Now you can use the <code>source.data</code> function to read in data from places like <a href="https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv">GitHub</a> and Dropbox public folders:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/cmrivers/&quot;</span>,
+              <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)
+ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</code></pre></div>
+<pre><code>## Downloading data from: https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv</code></pre>
+<pre><code>## SHA-1 hash of the downloaded data file is:
+## 6da83b3d2017245217d35989960184234a6c4e7f</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola[<span class="dv">1</span>, <span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
+<pre><code>##       Date Day Cases_Guinea
+## 1 1/5/2015 289         2776</code></pre>
+</div>
+</div>
+<div id="saving-data-as-r-objects" class="section level2">
+<h2><span class="header-section-number">2.4</span> Saving data as R objects</h2>
+<div id="saving-r-objects" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Saving R objects</h3>
+<p>You can save an R object you’ve created as an <code>.RData</code> file using <code>save()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(ebola, <span class="dt">file =</span> <span class="st">&quot;Ebola.RData&quot;</span>)
+<span class="kw">list.files</span>()</code></pre></div>
+<pre><code>##  [1] &quot;_book&quot;                         &quot;_bookdown.yml&quot;                
+##  [3] &quot;_build.sh&quot;                     &quot;_deploy.sh&quot;                   
+##  [5] &quot;_output.yml&quot;                   &quot;01-course_info.Rmd&quot;           
+##  [7] &quot;02-prelim.Rmd&quot;                 &quot;03-databasics.Rmd&quot;            
+##  [9] &quot;book.bib&quot;                      &quot;data&quot;                         
+## [11] &quot;DESCRIPTION&quot;                   &quot;Ebola.RData&quot;                  
+## [13] &quot;figures&quot;                       &quot;homework.Rmd&quot;                 
+## [15] &quot;index.Rmd&quot;                     &quot;LICENSE&quot;                      
+## [17] &quot;packages.bib&quot;                  &quot;preamble.tex&quot;                 
+## [19] &quot;README.md&quot;                     &quot;references.Rmd&quot;               
+## [21] &quot;RProgrammingForResearch.Rmd&quot;   &quot;RProgrammingForResearch.Rproj&quot;
+## [23] &quot;slides&quot;                        &quot;style.css&quot;                    
+## [25] &quot;toc.css&quot;                       &quot;vocabulary.Rmd&quot;</code></pre>
+<p>This saves to your current working directory (unless you specify a different location).</p>
+</div>
+<div id="loading-r-objects" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Loading R objects</h3>
+<p>Then you can re-load the object later using <code>load()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(ebola)
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code>## [1] &quot;ld_genetics&quot; &quot;my_dir&quot;      &quot;url&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;Ebola.RData&quot;</span>)
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code>## [1] &quot;ebola&quot;       &quot;ld_genetics&quot; &quot;my_dir&quot;      &quot;url&quot;</code></pre>
+</div>
+<div id="saving-r-objects-1" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Saving R objects</h3>
+<p>One caveat for saving R objects: some people suggest you avoid this if possible, to make your research more reproducible.</p>
+<p>Imagine someone wants to look at your data and code in 30 years. R might not work the same, so you might not be able to read an <code>.RData</code> file. However, you can open flat files (e.g., <code>.csv</code>, <code>.txt</code>) and R scripts (<code>.R</code>) in text editors– you should still be able to do this regardless of what happens to R.</p>
+<p>Potential exceptions:</p>
+<ul>
+<li>You have an object that you need to save that has a structure that won’t work well in a flat file</li>
+<li>Your starting dataset is really, really large, and it would take a long time for you to read in your data fresh every time</li>
+</ul>
+</div>
+</div>
+<div id="cleaning-up-data-in-r" class="section level2">
+<h2><span class="header-section-number">2.5</span> Cleaning up data in R</h2>
+<div id="renaming-columns" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Renaming columns</h3>
+<p>Often, you’ll want to change the column names of a dataframe as soon as you bring in the data, especially if the original ones have things like spaces. We’ll look at this in the <code>icd10</code> data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)</code></pre></div>
+<pre><code>## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00 
+## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00 
+## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00 
+## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;icd-10.xls&quot;</span>)</code></pre></div>
+<p>Take a look at the <code>icd10</code> data we loaded in the exercise:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icd10[<span class="dv">1</span>:<span class="dv">4</span>, ]</code></pre></div>
+<pre><code>##      Code                                          ICD Title
+## 1 A00-B99       I. Certain infectious and parasitic diseases
+## 2 A00-A09                     Intestinal infectious diseases
+## 3     A00                                            Cholera
+## 4   A00.0 Cholera due to Vibrio cholerae 01, biovar cholerae</code></pre>
+<p>You can use the <code>colnames()</code> function to find out what the current column names are:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(icd10)</code></pre></div>
+<pre><code>## [1] &quot;Code&quot;      &quot;ICD Title&quot;</code></pre>
+<p>You can also <strong>rename</strong> column names using <code>colnames()</code>. You just put this call on the left of the assignment, and what you want to assign them on the left. The new names will need to be in a vector the same length as the number of columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(icd10) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;code&quot;</span>, <span class="st">&quot;title&quot;</span>)
+icd10[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
+<pre><code>##      code                                        title
+## 1 A00-B99 I. Certain infectious and parasitic diseases
+## 2 A00-A09               Intestinal infectious diseases</code></pre>
+</div>
+<div id="using-subset" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Using <code>subset()</code></h3>
+<p>You will often want to use only a portion of your data. You can use <code>subset()</code> to create a subset, using logical operators. For example, if you wanted to just pull out the rows of the <code>icd10</code> dataframe that start with the letter “A”, you could run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icd10_a &lt;-<span class="st"> </span><span class="kw">subset</span>(icd10, <span class="kw">substr</span>(code, <span class="dv">1</span>, <span class="dv">1</span>) ==<span class="st"> &quot;A&quot;</span>)</code></pre></div>
+<p>Here are the ends of the original and the subsetted dataframes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(icd10, <span class="dv">2</span>)</code></pre></div>
+<pre><code>##        code                                  title
+## 11089 Y89.9 Sequelae of unspecified external cause
+## 11090  &lt;NA&gt;                                   &lt;NA&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(icd10_a, <span class="dv">2</span>)</code></pre></div>
+<pre><code>##      code                                    title
+## 458 A98.8 Other specified viral hemorrhagic fevers
+## 459   A99      Unspecified viral hemorrhagic fever</code></pre>
+<p>The convention for <code>subset()</code> is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset</span>([name of dataframe],
+       [logical statement describing which rows to keep],
+       <span class="dt">select =</span> [vector with the names of columns to keep])</code></pre></div>
+</div>
+<div id="common-logical-operators-in-r" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Common logical operators in R</h3>
+<table style="width:46%;">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Operator</th>
+<th align="left">Meaning</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>==</code></td>
+<td align="left">equals</td>
+<td align="left"><code>subset(df, city == &quot;Los Angeles&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>!=</code></td>
+<td align="left">does not equal</td>
+<td align="left"><code>subset(df, city != &quot;Los Angeles&quot;)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>%in%</code></td>
+<td align="left">is in</td>
+<td align="left"><code>subset(df, city %in% c(&quot;Los Angeles&quot;, &quot;San Diego&quot;))</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>is.na()</code></td>
+<td align="left">is NA</td>
+<td align="left"><code>subset(df, is.na(cases))</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>!is.na()</code></td>
+<td align="left">is not NA</td>
+<td align="left"><code>subset(df, !is.na(cases))</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&amp;</code></td>
+<td align="left">and</td>
+<td align="left"><code>subset(df, city == &quot;Los Angeles&quot; &amp; !is.na(cases))</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>|</code></td>
+<td align="left">or</td>
+<td align="left"><code>subset(df, city == &quot;Los Angeles&quot; | !is.na(cases))</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="adding-columns" class="section level3">
+<h3><span class="header-section-number">2.5.4</span> Adding columns</h3>
+<p>In R, you can use the <code>$</code> operator after a dataframe to pull out one of it’s columns. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;measles_data/02-09-2015.txt&quot;</span>,
+                         <span class="dt">header =</span> <span class="ot">FALSE</span>,
+                         <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ca_measles$count)</code></pre></div>
+<pre><code>## [1]  6 20  2  4  2 34</code></pre>
+<p>You can take advantage of this to add new columns to an existing dataframe. For example, this data is from Feb. 9, 2015. We can add a column with the date to <code>ca_measles</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles$date &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;02-09-2015&quot;</span>, <span class="dt">length =</span> <span class="kw">nrow</span>(ca_measles))
+<span class="kw">head</span>(ca_measles, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##                 city count       date
+## 1            ALAMEDA     6 02-09-2015
+## 2        LOS ANGELES    20 02-09-2015
+## 3 City of Long Beach     2 02-09-2015</code></pre>
+<p>Two notes:</p>
+<ul>
+<li>The previous example uses the <code>rep()</code> function, which will repeat a value <code>length</code> number of times</li>
+<li>If the value you assign to the new column is not the right length (remember, all columns in a dataframe must be vectors of equal length), R will try to “recycle” it to fill up the dataframe. So, the following call would have been a simpler alternative:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles$date &lt;-<span class="st"> &quot;02-09-2015&quot;</span>
+ca_measles[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
+<pre><code>##          city count       date
+## 1     ALAMEDA     6 02-09-2015
+## 2 LOS ANGELES    20 02-09-2015</code></pre>
+</div>
+<div id="date-class" class="section level3">
+<h3><span class="header-section-number">2.5.5</span> <code>Date</code> class</h3>
+<p>One final common task in cleaning data is to change the class of some of the columns. This is especially common for dates, which will usually be read in as characters or factors.</p>
+</div>
+<div id="vector-classes" class="section level3">
+<h3><span class="header-section-number">2.5.6</span> Vector classes</h3>
+<p>Here are a few common vector classes in R:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Class</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>character</code></td>
+<td align="left">“Chemistry”, “Physics”, “Mathematics”</td>
+</tr>
+<tr class="even">
+<td align="left"><code>numeric</code></td>
+<td align="left">10, 20, 30, 40</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>factor</code></td>
+<td align="left">Male [underlying number: 1], Female [2]</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Date</code></td>
+<td align="left">“2010-01-01” [underlying number: 14,610]</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>logical</code></td>
+<td align="left">TRUE, FALSE</td>
+</tr>
+</tbody>
+</table>
+<p>To find out the class of a vector, you can use <code>class()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(ca_measles$date)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>To find out the classes of all columns in a dataframe, you can use <code>str()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(ca_measles)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    13 obs. of  3 variables:
+##  $ city : Factor w/ 13 levels &quot;ALAMEDA&quot;,&quot;City of Long Beach&quot;,..: 1 4 2 3 5 6 7 8 9 10 ...
+##  $ count: int  6 20 2 4 2 34 5 6 13 3 ...
+##  $ date : chr  &quot;02-09-2015&quot; &quot;02-09-2015&quot; &quot;02-09-2015&quot; &quot;02-09-2015&quot; ...</code></pre>
+</div>
+<div id="converting-to-date-class" class="section level3">
+<h3><span class="header-section-number">2.5.7</span> Converting to <code>Date</code> class</h3>
+<p>To convert a vector to the <code>Date</code> class, you can use <code>as.Date()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles$date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(ca_measles$date,
+                           <span class="dt">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)
+<span class="kw">head</span>(ca_measles$date, <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] &quot;2015-02-09&quot; &quot;2015-02-09&quot; &quot;2015-02-09&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(ca_measles$date)</code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<p>Once you have an object in the <code>Date</code> class, you can do things like plot by date, calculate the range of dates, and calculate the total number of days the dataset covers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(ca_measles$date)</code></pre></div>
+<pre><code>## [1] &quot;2015-02-09&quot; &quot;2015-02-09&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(<span class="kw">range</span>(ca_measles$date))</code></pre></div>
+<pre><code>## Time difference of 0 days</code></pre>
+<p>The only tricky thing is learning the abbreviations for the <code>format</code> option. Here are some common ones:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Abbreviation</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>%m</code></td>
+<td align="left">Month as a number (e.g., 1, 05)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>%B</code></td>
+<td align="left">Full month name (e.g., August)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>%b</code></td>
+<td align="left">Abbreviated month name (e.g., Aug)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>%y</code></td>
+<td align="left">Two-digit year (e.g., 99)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>%Y</code></td>
+<td align="left">Four-digit year (e.g., 1999)</td>
+</tr>
+</tbody>
+</table>
+<p>Here are some examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Your date</th>
+<th align="left"><code>format =</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">10/23/2008</td>
+<td align="left">“%m/%d%Y”</td>
+</tr>
+<tr class="even">
+<td align="left">08-10-23</td>
+<td align="left">“%y-%m-%d”</td>
+</tr>
+<tr class="odd">
+<td align="left">Oct. 23 2008</td>
+<td align="left">“%b. %d %Y”</td>
+</tr>
+<tr class="even">
+<td align="left">October 23, 2008</td>
+<td align="left">“%B %d, %Y”</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-preliminaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/03-databasics.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
