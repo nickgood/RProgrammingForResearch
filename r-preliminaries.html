@@ -136,6 +136,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>2.3.1</b> R’s MVP: The gets arrow</a></li>
 <li class="chapter" data-level="2.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>2.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
 <li class="chapter" data-level="2.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>2.3.3</b> Naming objects</a></li>
+<li class="chapter" data-level="2.3.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#commenting-code"><i class="fa fa-check"></i><b>2.3.4</b> Commenting code</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>2.4</b> R’s most basic object types</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vectors"><i class="fa fa-check"></i><b>2.4.1</b> Vectors</a></li>
@@ -207,7 +208,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Machine learning</li>
 <li>Data journalism / data analysis</li>
 </ul>
-<p>A telling quote about R comes from someone at Google:</p>
 <blockquote>
 <p>“The best thing about R is that it was developed by statisticians. The worst thing about R is that… it was developed by statisticians.” -Bo Cowgill, Google, at the Bay Area R Users Group</p>
 </blockquote>
@@ -350,45 +350,46 @@ one_to_ten</code></pre></div>
 <p>[Make this a note?] Sometimes, you’ll want to create an object that you won’t want to keep for very long. For example, you might want to create a small object to test some code, but you plan to not need the object again once you’ve done that. You may want to come up with some short, generic object names that you use for these kinds of objects, so that you’ll know that you can delete them without problems when you want to clean up your R session.</p>
 <p>[Note about these object names in different languages]</p>
 </div>
+<div id="commenting-code" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Commenting code</h3>
+<p>[Add section about commenting code here]</p>
+</div>
 </div>
 <div id="rs-most-basic-object-types" class="section level2">
 <h2><span class="header-section-number">2.4</span> R’s most basic object types</h2>
-<p>The two most basic types of objects for data in R are <strong>vectors</strong> (1D) and <strong>dataframes</strong> (2D).</p>
+<p>An R <em>object</em> stores some type of data that you want to use later in your R code, without fully recreating it. The content of R objects can vary from very simple (the <code>&quot;GoFedEx&quot;</code> string in the example code above) to very complex objects with lots of elements (for example, a machine learning model).</p>
+<p>There are a variety of different object types in R, shaped to fit different types of objects ranging from the simple to complex. In this section, we’ll start by describing two object types that you will use most often in basic data analysis, <strong>vectors</strong> (1-dimensional objects) and <strong>dataframes</strong> (2-dimensional objects).</p>
 <div id="vectors" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Vectors</h3>
-<ul>
-<li>A vector is a string of values.</li>
-<li>All values must be of the same class (i.e., all numbers, all characters, all dates)</li>
-<li>You can use <code>c()</code> to join values together to create a vector</li>
-<li>The <em>length</em> of the vector is how many values it has in it</li>
-</ul>
-<p>For example:</p>
+<p>To get an initial grasp of the <em>vector</em> object type in R, think of it as a 1-dimensional object, or a string of values. All values in a vector must be of the same class (i.e., all numbers, all characters, all dates). If you try to create a vector with elements from different classes (like “FedEx”, which is a character, and 3, a number), R will coerce all of the elements to the most generic class of any of the elements (i.e., “FedEx” and “3”, now both characters, since “3” can be changed to a character, but “FedEx” can’t be changed to a number).</p>
+<p>To create a vector from different elements, you’ll use the concatenation function, <code>c</code> to join them together, with commas between the elements. For example, to create a vector with the first five elements of the Fibonacci sequence, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)
 fibonacci</code></pre></div>
 <pre><code>## [1] 1 1 2 3 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(fibonacci)</code></pre></div>
-<pre><code>## [1] 5</code></pre>
-<p>An example using characters instead of numbers:</p>
+<p>Here is an example of creating a vector using elements with the character class instead of numbers (note the quotation marks used around each element for character strings):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_to_five &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>, <span class="st">&quot;four&quot;</span>, <span class="st">&quot;five&quot;</span>)
 one_to_five</code></pre></div>
 <pre><code>## [1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot; &quot;four&quot;  &quot;five&quot;</code></pre>
-<p>If you mix classes, it will default to most generic:</p>
+<p>If you mix classes when you create the vector, R will coerce all the elements to most generic of the elements’ classes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mixed_classes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="st">&quot;five&quot;</span>)
 mixed_classes</code></pre></div>
 <pre><code>## [1] &quot;1&quot;    &quot;3&quot;    &quot;five&quot;</code></pre>
-<p>You can pull out certain values by using indexing (<code>[...]</code>) to identify the locations you want to get</p>
+<p>A vector’s <em>length</em> is the number of elements in the vector. You can use the <code>length</code> function to determine a vector’s length:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(mixed_classes)</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Once you create an object, you will often want to reference the whole object in future code. However, there will be some times when you’ll want to reference just certain elements of the object (for example, the first three values). You can pull out certain values from a vector by using indexing with square brackets (<code>[...]</code>) to identify the locations of the elements you want to pull, with a numeric vector inside the brackets that lists the numbered positions of the elements you want to get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci[<span class="dv">2</span>] <span class="co"># Get the second value</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)] <span class="co"># Get first and fifth values</span></code></pre></div>
 <pre><code>## [1] 1 5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci[<span class="dv">1</span>:<span class="dv">3</span>] <span class="co"># Get the first three values</span></code></pre></div>
 <pre><code>## [1] 1 1 2</code></pre>
+<p>You can also use logic to pull out some values of a vector. For example, you might only want to pull out even values from the <code>fibonacci</code> vector. We’ll cover using logical statements to index vectors later in the book.</p>
 </div>
 <div id="dataframes" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Dataframes</h3>
-<p>A dataframe is one or more vectors of the same length stuck together side-by-side. It is the closest R has to what you’d get with an Excel spreadsheet.</p>
-<p>You can create dataframes using the <code>data.frame()</code> function. However, most often you will create a dataframe by reading in data from a file using something like <code>read.csv()</code>.</p>
-<p>For example, to create a dataframe from vectors you already have saved as R objects:</p>
+<p>A dataframe is a 2-dimensional object, and is made of one or more vectors of the same length stuck together side-by-side. It is the closest R has to an Excel spreadsheet-type structure. You can create dataframes using the <code>data.frame()</code> function. However, most often you will create a dataframe by reading in data from a file, using something like <code>read.csv()</code>.</p>
+<p>To create a dataframe using <code>data.frame</code>, in this case by sticking together vectors you already have saved as R objects, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">num_in_seq =</span> one_to_five,
                             <span class="dt">fibonacci_num =</span> fibonacci)
 fibonacci_seq</code></pre></div>
@@ -398,24 +399,40 @@ fibonacci_seq</code></pre></div>
 ## 3      three             2
 ## 4       four             3
 ## 5       five             5</code></pre>
-<p>The format for using <code>data.frame()</code> is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code-- this will not work
+<p>Note that this call requires that the <code>one_to_five</code> and <code>fibonacci</code> vectors are the same length, although they don’t have to be (and in this case aren’t) the same class of objects (<code>one_to_five</code> is a character class, <code>fibonacci</code> is numeric).</p>
+<p>You can also create a dataframe using <code>data.frame</code> even if you don’t have the vectors for the columns saved as objects. Instead, in this case, you can put the vector assignment directly within the <code>data.frame</code> call:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">num_in_seq =</span> <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>,
+                                           <span class="st">&quot;four&quot;</span>, <span class="st">&quot;five&quot;</span>),
+                            <span class="dt">fibonacci_num =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>))
+fibonacci_seq</code></pre></div>
+<pre><code>##   num_in_seq fibonacci_num
+## 1        one             1
+## 2        two             1
+## 3      three             2
+## 4       four             3
+## 5       five             5</code></pre>
+<p>[A note about how R will evaluate calls from the inside out when you write a call like this with different functions included.]</p>
+<p>The general format for using <code>data.frame()</code> is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code
 [name of object] &lt;-<span class="st"> </span><span class="kw">data.frame</span>([1st column name] =<span class="st"> </span>[1st column content],
                                [2nd column name] =<span class="st"> </span>[2nd column content])</code></pre></div>
-<p>You can use indexing (<code>[..., ...]</code>) for dataframes, too, but now they’ll have two dimensions (rows, then columns). Put the rows you want before the comma, the columns after. If you want all of something, leave the designated spot blank. For example:</p>
+<p>with an equals sign between the column name and column content for each column, and commas between each of the columns.</p>
+<p>You can use square-bracket indexing (<code>[..., ...]</code>) for dataframes, too, but now they’ll have two dimensions (rows, then columns). Put the rows you want before the comma, the columns after. If you want all of something (e.g., all rows in the dataframe), leave the designated spot blank. Here are two examples of using square-bracket indexing to pull a subset of the <code>fibonacci_seq</code> dataframe we created above:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq[<span class="dv">1</span>:<span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># First two rows, second column</span></code></pre></div>
 <pre><code>## [1] 1 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq[<span class="dv">5</span>, ] <span class="co"># Last row, all columns</span></code></pre></div>
 <pre><code>##   num_in_seq fibonacci_num
 ## 5       five             5</code></pre>
-<p>Usually, instead of creating a dataframe from vectors, you’ll read one in from data on an outside file. For example, to read in a dataset from a CSV file called <code>daily_show_guests.csv</code> in a subdirectory called <code>data/</code>:</p>
+<p>So far, we’ve only shown how to create dataframes from scratch within an R session. Usually, however, you’ll create R dataframes instead by reading in data from an outside file using <code>read.csv</code> and related functions. For example, you might want to analyze data on all the guests that came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you have this data in a comma-separated (csv) file on your computer called <code>daily_show_guests.csv</code>, you can read it into your R session with the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
+                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">skip =</span> <span class="dv">4</span>)</code></pre></div>
+<p>In this code, the <code>read.csv</code> function is reading in the data from “daily_show_guests”, while the gets arrow (<code>&lt;-</code>) assigns that data to the object <code>daily_show</code>, which you can then reference in later code to explore and plot the data.</p>
+<p>Once you’ve read in the data and saved the resulting dataframe as an object, you can use square-bracket indexing to look at the first two rows in the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
 <pre><code>##   YEAR GoogleKnowlege_Occupation    Show  Group  Raw_Guest_List
 ## 1 1999                     actor 1/11/99 Acting  Michael J. Fox
 ## 2 1999                  Comedian 1/12/99 Comedy Sandra Bernhard</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
-                       <span class="dt">header =</span> <span class="ot">TRUE</span>,
-                       <span class="dt">skip =</span> <span class="dv">4</span>)
-daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
 <p>You can use the functions <code>dim()</code>, <code>nrow()</code>, and <code>ncol</code> to figure out the dimensions (number of rows and columns) of a dataframe:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(daily_show)</code></pre></div>
 <pre><code>## [1] 2693    5</code></pre>
