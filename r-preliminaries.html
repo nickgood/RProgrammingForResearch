@@ -324,7 +324,7 @@ Figure 1.3: Telephone keypad with letters corresponding to each number.
 </div>
 <div id="loading-an-installed-package" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> Loading an installed package</h3>
-<p>Once you have installed a package, it will be saved to your computer, but you won’t be able to access it’s functions until you load it in your R session. You can load a package in an R session using the <code>library()</code> function, with the package name inside the parentheses.</p>
+<p>Once you have installed a package, it will be saved to your computer, but you won’t be able to access it’s functions until you load it in your R session. You can load a package in an R session using the <code>library</code> function, with the package name inside the parentheses.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(phonenumber)</code></pre></div>
 <p>[Add note about quotation marks with <code>library</code> call.]</p>
 <p>Once a package is loaded, you can use all its exported (i.e., public) functions by calling them directly. For example, the <code>phonenumber</code> has a function called <code>letterToNumber</code> that converts a character string to a number. Once you’ve loaded <code>phonenumber</code> using <code>library</code>, you can use this function in your R session:</p>
@@ -377,7 +377,7 @@ one_to_ten</code></pre></div>
 <ul>
 <li>Use lower case for variable names (<code>fedex_number</code>, not <code>FedExNumber</code>)</li>
 <li>Use an underscore as a separator (<code>fedex_number</code>, not <code>fedex.number</code> or <code>fedexNumber</code>)</li>
-<li>Avoid using names that are already defined in R (e.g., don’t name an object <code>mean</code>, because as <code>mean</code> function exists)</li>
+<li>Avoid using names that are already defined in R (e.g., don’t name an object <code>mean</code>, because a function named <code>mean</code> already exists)</li>
 </ul>
 <p>Another good practice is to name objects after nouns (e.g., <code>fedex_number</code>) and later, when you start writing functions, name those after verbs (e.g., <code>call_fedex</code>). You’ll want your object names to be short enough that they don’t take forever to type as you’re coding, but not so short that you can’t remember what they stand for.</p>
 <p>[Make this a note?] Sometimes, you’ll want to create an object that you won’t want to keep for very long. For example, you might want to create a small object to test some code, but you plan to not need the object again once you’ve done that. You may want to come up with some short, generic object names that you use for these kinds of objects, so that you’ll know that you can delete them without problems when you want to clean up your R session.</p>
@@ -421,7 +421,7 @@ mixed_classes</code></pre></div>
 </div>
 <div id="dataframes" class="section level3">
 <h3><span class="header-section-number">1.4.2</span> Dataframes</h3>
-<p>A dataframe is a 2-dimensional object, and is made of one or more vectors of the same length stuck together side-by-side. It is the closest R has to an Excel spreadsheet-type structure. You can create dataframes using the <code>data.frame()</code> function. However, most often you will create a dataframe by reading in data from a file, using something like <code>read.csv()</code>.</p>
+<p>A dataframe is a 2-dimensional object, and is made of one or more vectors of the same length stuck together side-by-side. It is the closest R has to an Excel spreadsheet-type structure. You can create dataframes using the <code>data.frame</code> function. However, most often you will create a dataframe by reading in data from a file, using something like <code>read.csv</code>.</p>
 <p>To create a dataframe using <code>data.frame</code>, in this case by sticking together vectors you already have saved as R objects, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">num_in_seq =</span> one_to_five,
                             <span class="dt">fibonacci_num =</span> fibonacci)
@@ -445,7 +445,7 @@ fibonacci_seq</code></pre></div>
 ## 4       four             3
 ## 5       five             5</code></pre>
 <p>[A note about how R will evaluate calls from the inside out when you write a call like this with different functions included.]</p>
-<p>The general format for using <code>data.frame()</code> is:</p>
+<p>The general format for using <code>data.frame</code> is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code
 [name of object] &lt;-<span class="st"> </span><span class="kw">data.frame</span>([1st column name] =<span class="st"> </span>[1st column content],
                                [2nd column name] =<span class="st"> </span>[2nd column content])</code></pre></div>
@@ -456,7 +456,7 @@ fibonacci_seq</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq[<span class="dv">5</span>, ] <span class="co"># Last row, all columns</span></code></pre></div>
 <pre><code>##   num_in_seq fibonacci_num
 ## 5       five             5</code></pre>
-<p>So far, we’ve only shown how to create dataframes from scratch within an R session. Usually, however, you’ll create R dataframes instead by reading in data from an outside file using <code>read.csv</code> and related functions. For example, you might want to analyze data on all the guests that came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you have this data in a comma-separated (csv) file on your computer called <code>daily_show_guests.csv</code>, you can read it into your R session with the following code:</p>
+<p>So far, we’ve only shown how to create dataframes from scratch within an R session. Usually, however, you’ll create R dataframes instead by reading in data from an outside file using <code>read.csv</code> and related functions. For example, you might want to analyze data on all the guests that came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you have this data in a comma-separated (csv) file on your computer called “daily_show_guests.csv”, you can read it into your R session with the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
                        <span class="dt">header =</span> <span class="ot">TRUE</span>,
                        <span class="dt">skip =</span> <span class="dv">4</span>)</code></pre></div>
@@ -466,7 +466,7 @@ fibonacci_seq</code></pre></div>
 <pre><code>##   YEAR GoogleKnowlege_Occupation    Show  Group  Raw_Guest_List
 ## 1 1999                     actor 1/11/99 Acting  Michael J. Fox
 ## 2 1999                  Comedian 1/12/99 Comedy Sandra Bernhard</code></pre>
-<p>You can use the functions <code>dim()</code>, <code>nrow()</code>, and <code>ncol</code> to figure out the dimensions (number of rows and columns) of a dataframe:</p>
+<p>You can use the functions <code>dim</code>, <code>nrow</code>, and <code>ncol</code> to figure out the dimensions (number of rows and columns) of a dataframe:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(daily_show)</code></pre></div>
 <pre><code>## [1] 2693    5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(daily_show)</code></pre></div>
@@ -563,8 +563,8 @@ new_object &lt;-<span class="st"> </span><span class="kw">function.name</span>(p
 <li>Download the file <a href="https://github.com/geanders/RProgrammingForResearch/blob/master/data/daily_show_guests.csv">from GitHub</a>. Right click on <code>Raw</code> and then choose “Download linked file”. Put the file into the directory you created for this course.</li>
 <li>Find out what your home directory is in R. To do this, make sure R is set to your home directory using <code>setwd(&quot;~&quot;)</code>, and then get R to print that home directory path using <code>getwd()</code>.</li>
 <li>Outside of R, open Finder (or your system’s equivalent). Go to your home directory (mine, for example, is <code>/Users/brookeanderson</code>). Figure out how to get from your home directory to the directory you created for this course. For example, from my home directory, I would go <code>RProgrammingForResearch</code> to <code>data</code>.</li>
-<li>Go back into R. Set R’s working directory to your directory for this class using the <code>setwd()</code> command, now that you know the pathname for the directory. For example, I would use <code>setwd(&quot;~/RProgrammingForResearch/data&quot;)</code>.</li>
-<li>Use the <code>list.files()</code> command to make sure that the <code>daily_show_guests.csv</code> file is in your current working directory.</li>
+<li>Go back into R. Set R’s working directory to your directory for this class using the <code>setwd</code> command, now that you know the pathname for the directory. For example, I would use <code>setwd(&quot;~/RProgrammingForResearch/data&quot;)</code>.</li>
+<li>Use the <code>list.files</code> command to make sure that the “daily_show_guests.csv” file is in your current working directory.</li>
 </ul>
 <p>The full R code for this task might look something like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~&quot;</span>)
@@ -583,11 +583,11 @@ new_object &lt;-<span class="st"> </span><span class="kw">function.name</span>(p
 </div>
 <div id="getting-the-data-into-r" class="section level3">
 <h3><span class="header-section-number">1.6.3</span> Getting the data into R</h3>
-<p>Now that you have the dataset in your working directory, you can read it into R. This dataset is in a <code>.csv</code> (comma separated values) format. (We will talk more about different file formats next week.) You can read csv files into R using the <code>read.csv()</code> function.</p>
+<p>Now that you have the dataset in your working directory, you can read it into R. This dataset is in a <em>.csv</em> (comma separated values) format. (We will talk more about different file formats next week.) You can read csv files into R using the <code>read.csv</code> function.</p>
 <p><strong>Read the data into your R session</strong></p>
 <ul>
-<li>Use the <code>read.csv()</code> function to read the data into R and save it as the object <code>daily_show</code>.</li>
-<li>Use the help file for the <code>read.csv()</code> function to figure out how this function works. To pull that up, use <code>?read.csv</code>. Why are we using the option <code>header = TRUE</code>? Can you figure out why we’re using the <code>skip</code> option, and why it’s set to 4?</li>
+<li>Use the <code>read.csv</code> function to read the data into R and save it as the object <code>daily_show</code>.</li>
+<li>Use the help file for the <code>read.csv</code> function to figure out how this function works. To pull that up, use <code>?read.csv</code>. Why are we using the option <code>header = TRUE</code>? Can you figure out why we’re using the <code>skip</code> option, and why it’s set to 4?</li>
 <li>Note that you need to put the file name in quotation marks.</li>
 <li>What would have happened if you’d used <code>read.csv</code> but hadn’t saved the result as the object <code>daily_show</code>? (For example, you’d run the code <code>read.csv(&quot;daily_show_guests.csv&quot;)</code> rather than <code>daily_show &lt;- read.csv(&quot;daily_show_guests.csv&quot;)</code>.)</li>
 </ul>
@@ -595,8 +595,8 @@ new_object &lt;-<span class="st"> </span><span class="kw">function.name</span>(p
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">skip =</span> <span class="dv">4</span>)</code></pre></div>
 <p>If you have extra time:</p>
 <ul>
-<li>Say this was a really big dataset. You want to check out just the first 10 rows to make sure that you’ve got your code right before you take the time to pull in the whole dataset. Use the help file for <code>read.csv()</code> to figure out how to only read in a few rows.</li>
-<li>Look through the help file for other options available for <code>read.csv()</code>. Can you think of examples when some of these options would be useful?</li>
+<li>Say this was a really big dataset. You want to check out just the first 10 rows to make sure that you’ve got your code right before you take the time to pull in the whole dataset. Use the help file for <code>read.csv</code> to figure out how to only read in a few rows.</li>
+<li>Look through the help file for other options available for <code>read.csv</code>. Can you think of examples when some of these options would be useful?</li>
 </ul>
 <p>Example R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show_first10 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>,
@@ -609,9 +609,9 @@ daily_show_first10</code></pre></div>
 <p><strong>Take the following steps to check out the dataset</strong></p>
 <ul>
 <li>Use indexing to look at the first two rows of the dataset. Based on this, what does each row “measure”? What information do you get for each “measurement”? As a reminder, indexing uses square brackets immediately after the object name. If the object has two dimensions, like a dataframe (rows and columns), you put the rows you want, then a comma, then the columns you want. If you want all rows (or columns), you leave that space blank. For example, if you wanted to get the first two rows and the first three columns, you’d use <code>daily_show[1:2, 1:3]</code>. If you wanted to get the first five rows and all the columns, you’d use <code>daily_show[1:5, ]</code>.</li>
-<li>Use the <code>dim()</code> function to find out how many rows and columns this dataframe has. Based on what you found out about the data from the GitHub page, does it have the number of columns you expected? Based on what you know about the data (all the guests who came on The Daily Show with Jon Stewart), do you think it has about the right number of rows?</li>
-<li>Use the <code>head()</code> function to look at the first few rows of the dataframe. Does it look like the rows go in order by date? What was the date of Jon Stewart’s first show? Does it look like this dataset covers that first show?</li>
-<li>Use the <code>tail()</code> function to look at the last few rows of the dataframe. What is the last show date covered by the dataframe? Who was the last guest?</li>
+<li>Use the <code>dim</code> function to find out how many rows and columns this dataframe has. Based on what you found out about the data from the GitHub page, does it have the number of columns you expected? Based on what you know about the data (all the guests who came on The Daily Show with Jon Stewart), do you think it has about the right number of rows?</li>
+<li>Use the <code>head</code> function to look at the first few rows of the dataframe. Does it look like the rows go in order by date? What was the date of Jon Stewart’s first show? Does it look like this dataset covers that first show?</li>
+<li>Use the <code>tail</code> function to look at the last few rows of the dataframe. What is the last show date covered by the dataframe? Who was the last guest?</li>
 </ul>
 <p>Example R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show[<span class="dv">1</span>:<span class="dv">2</span>, ]
@@ -620,7 +620,7 @@ daily_show_first10</code></pre></div>
 <span class="kw">tail</span>(daily_show)</code></pre></div>
 <p>If you have extra time:</p>
 <ul>
-<li>Say you wanted to look at the first ten rows of the dataframe, rather than the first six. How could you use an option with <code>head()</code> to do this?</li>
+<li>Say you wanted to look at the first ten rows of the dataframe, rather than the first six. How could you use an option with <code>head</code> to do this?</li>
 </ul>
 <p>Example R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
@@ -630,9 +630,9 @@ daily_show_first10</code></pre></div>
 <p>Nate Silver was a guest on <em>The Daily Show</em>. Let’s use this data to figure out how many times he was a guest and when he was on the show.</p>
 <p><strong>Find out more about Nate Silver on The Daily Show</strong></p>
 <ul>
-<li>Use the <code>subset()</code> function to create a new dataframe that only has the rows of <code>daily_show</code> when Nate Silve was a guest. Put it in the object <code>nate_silver</code>.</li>
+<li>Use the <code>subset</code> function to create a new dataframe that only has the rows of <code>daily_show</code> when Nate Silve was a guest. Put it in the object <code>nate_silver</code>.</li>
 <li>Print out the full <code>nate_silver</code> dataframe by typing <code>nate_silver</code>. (You could just use this to answer both questions, but still try the next steps. They would be important with a bigger dataset.)</li>
-<li>To count the number of times Nate Silver was a guest, you’ll need to count the number of rows in the new dataset. You can either use the <code>dim()</code> function or the <code>nrow()</code> function to do this. What additional information does the <code>dim()</code> function give you?</li>
+<li>To count the number of times Nate Silver was a guest, you’ll need to count the number of rows in the new dataset. You can either use the <code>dim</code> function or the <code>nrow</code> function to do this. What additional information does the <code>dim</code> function give you?</li>
 <li>To get the dates when Nate Silver was a guest, you can print out just the <code>Show</code> column of the dataframe. There are a few ways you can do this using indexing: <code>nate_silver[ , 3]</code> (since <code>Show</code> is the third column), <code>nate_silver[ , &quot;Show&quot;]</code>, or <code>nate_silver$Show</code>. Try these.</li>
 </ul>
 <p>Example R code:</p>
@@ -647,7 +647,7 @@ nate_silver[ , <span class="st">&quot;Show&quot;</span>]</code></pre></div>
 <ul>
 <li>When you print out the <code>Show</code> column, why does it also print out something underneath about Levels? Hint: This has to do with the class that R has saved this column as. What class is it currently? What other classes might we want to consider converting it to as we continue working with the dataset? Check out the example code below to get some ideas.</li>
 <li>Was Nate Silver the only statistician to be a guest on the show?</li>
-<li>What were the occupations that were only represented by one guest visit? Since <code>GoogleKnowlege_Occupation</code> is a factor, you can use the <code>table()</code> function to create a new vector with the number of times each value of <code>GoogleKnowlege_Occupation</code> shows up. You can put this information into a new vector and then pull out only the values that equal 1 (so, only had one guest). (Note that “Statistician” doesn’t show up– there was only one person who was a guest, but he had three visits.) Pick your favorite “one-off” example and find out who the guest was for that occupation.</li>
+<li>What were the occupations that were only represented by one guest visit? Since <code>GoogleKnowlege_Occupation</code> is a factor, you can use the <code>table</code> function to create a new vector with the number of times each value of <code>GoogleKnowlege_Occupation</code> shows up. You can put this information into a new vector and then pull out only the values that equal 1 (so, only had one guest). (Note that “Statistician” doesn’t show up– there was only one person who was a guest, but he had three visits.) Pick your favorite “one-off” example and find out who the guest was for that occupation.</li>
 </ul>
 <p>Example R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(nate_silver$Show)</code></pre></div>
