@@ -532,7 +532,11 @@ new_object &lt;-<span class="st"> </span><span class="kw">function.name</span>(p
 <span class="kw">head</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">x =</span> daily_show)</code></pre></div>
 <p>Because code tends to be more robust to errors when you use parameter names to set arguments, we recommend against using position, rather than name, to give arguments when calling functions, at least while you’re learning R. It’s too easy to forget the exact order and get errors in your code. However, there is one exception– the first argument to a function is almost always required (i.e., there’s not a default value), and you very quickly learn what the first parameter of most functions are as soon as you start using the function regularly. Therefore, it’s fine to use position alone to specify the first argument in a function, but for now always use the parameter name to set any later arguments:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<p>[Add a note about tab completion]</p>
+<div class="rmdtip">
+<p>
+[Add a note about tab completion]
+</p>
+</div>
 </div>
 </div>
 <div id="in-course-exercise" class="section level2">
