@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-08-21">
+<meta name="date" content="2016-08-22">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,7 +133,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>1.2.3</b> Loading an installed package</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#basic-code-conventions-of-r"><i class="fa fa-check"></i><b>1.3</b> Basic code conventions of R</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>1.3.1</b> R’s MVP: The gets arrow</a></li>
+<li class="chapter" data-level="1.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>1.3.1</b> R’s MVP: The <em>gets arrow</em></a></li>
 <li class="chapter" data-level="1.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>1.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
 <li class="chapter" data-level="1.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>1.3.3</b> Naming objects</a></li>
 <li class="chapter" data-level="1.3.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#commenting-code"><i class="fa fa-check"></i><b>1.3.4</b> Commenting code</a></li>
@@ -326,23 +326,37 @@ Figure 1.3: Telephone keypad with letters corresponding to each number.
 <h3><span class="header-section-number">1.2.3</span> Loading an installed package</h3>
 <p>Once you have installed a package, it will be saved to your computer, but you won’t be able to access it’s functions until you load it in your R session. You can load a package in an R session using the <code>library</code> function, with the package name inside the parentheses.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(phonenumber)</code></pre></div>
-<p>[Add note about quotation marks with <code>library</code> call.]</p>
+<div class="rmdtip">
+<p>
+One thing that people often find confusing when they start using R is knowing when to use and not use quotation marks. The general rule is that you use quotation marks when you want to refer to a character string literally, but no quotation marks when you want to refer to the value in a previously-defined object. For example, if you saved the string <code>“Anderson”</code> as the object <code>my_name</code> (<code>my_name &lt;- “Anderson”</code>), then in later code, if you type <code>my_name</code> (no quotation marks), you’ll get <code>“Anderson”</code>, while if you type out <code>“my_name”</code> (with quotation marks), you’ll get <code>“my_name”</code> (what you typed, literally).
+</p>
+<p>
+One thing that makes this rule confusing is that there are a few cases in R where you really should (by this rule) use quotation marks, but the function is coded to let you be lazy and get away without them. One example is the <code>library</code> function. In the above code, you want to literally load the package “phonenumber”, rather than load whatever character string is saved in the object named <code>phonenumber</code>. However, <code>library</code> is one of the functions where you can be lazy and skip the quotation marks, and it will still load “phonenumber” for you (although, if you want, this function also works if you follow the rule and call <code>library(“phonenumber”)</code> instead).
+</p>
+</div>
 <p>Once a package is loaded, you can use all its exported (i.e., public) functions by calling them directly. For example, the <code>phonenumber</code> has a function called <code>letterToNumber</code> that converts a character string to a number. Once you’ve loaded <code>phonenumber</code> using <code>library</code>, you can use this function in your R session:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fedex_number &lt;-<span class="st"> &quot;GoFedEx&quot;</span>
 <span class="kw">letterToNumber</span>(fedex_number)</code></pre></div>
 <pre><code>## [1] &quot;4633339&quot;</code></pre>
-<p>[Add note about character strings]</p>
+<div class="rmdnote">
+<p>
+R vectors can have several different <em>classes</em>. One common class is the character class, which is the class of the character string we’re using here (“GoFedEx”). You’ll always put character strings in quotation marks. Another key class is numeric (numbers). Later in the course, we’ll introduce other classes that vectors can have, including factors and dates.
+</p>
+</div>
 </div>
 </div>
 <div id="basic-code-conventions-of-r" class="section level2">
 <h2><span class="header-section-number">1.3</span> Basic code conventions of R</h2>
 <div id="rs-mvp-the-gets-arrow" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> R’s MVP: The gets arrow</h3>
+<h3><span class="header-section-number">1.3.1</span> R’s MVP: The <em>gets arrow</em></h3>
 <p>The <em>gets arrow</em>, <code>&lt;-</code>, is R’s assignment operator. It takes whatever you’ve created on the right hand side of the <code>&lt;-</code> and saves it as an object with the name you put on the left hand side of the <code>&lt;-</code>. The basic structure of a call with a gets arrow looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code
 [name of object] &lt;-<span class="st"> </span>[thing I want to save]</code></pre></div>
-<p>[Add a note on generic code]</p>
-<p>[Add a note on <code>-&gt;</code>, the history of the gets arrow, and the keyboard shortcut for the gets arrow.]</p>
+<div class="rmdwarning">
+<p>
+Sometimes, we’ll show “generic” code in a code block, that doesn’t actually work if you put it in R, but instead shows the generic structure of an R call. We’ll try to always include a comment with any generic code, so you’ll know not to try to run it in R.
+</p>
+</div>
 <p>For example, if I just type <code>&quot;GoFedEx&quot;</code> at the R prompt, R will print that string back to me, but won’t save it anywhere for me to use later:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;GoFedEx&quot;</span></code></pre></div>
 <pre><code>## [1] &quot;GoFedEx&quot;</code></pre>
@@ -380,12 +394,25 @@ one_to_ten</code></pre></div>
 <li>Avoid using names that are already defined in R (e.g., don’t name an object <code>mean</code>, because a function named <code>mean</code> already exists)</li>
 </ul>
 <p>Another good practice is to name objects after nouns (e.g., <code>fedex_number</code>) and later, when you start writing functions, name those after verbs (e.g., <code>call_fedex</code>). You’ll want your object names to be short enough that they don’t take forever to type as you’re coding, but not so short that you can’t remember what they stand for.</p>
-<p>[Make this a note?] Sometimes, you’ll want to create an object that you won’t want to keep for very long. For example, you might want to create a small object to test some code, but you plan to not need the object again once you’ve done that. You may want to come up with some short, generic object names that you use for these kinds of objects, so that you’ll know that you can delete them without problems when you want to clean up your R session.</p>
-<p>[Note about these object names in different languages]</p>
+<div class="rmdtip">
+<p>
+Sometimes, you’ll want to create an object that you won’t want to keep for very long. For example, you might want to create a small object to test some code, but you plan to not need the object again once you’ve done that. You may want to come up with some short, generic object names that you use for these kinds of objects, so that you’ll know that you can delete them without problems when you want to clean up your R session.
+</p>
+<p>
+There are all kinds of traditions for these placeholder variable names in computer science. <code>foo</code> and <code>bar</code> are two popular choices, as are, evidently, <code>xyzzy</code>, <code>spam</code>, <code>ham</code>, and <code>norf</code>. There are different placeholder names in different languages: for example, <code>toto</code>, <code>truc</code>, and <code>azerty</code> (French); and <code>pippo</code>, <code>pluto</code>, <code>paperino</code> (Disney character names; Italian). See the Wikipedia page on <a href="https://en.wikipedia.org/wiki/Metasyntactic_variable">metasyntactic variables</a> to find out more.
+</p>
+</div>
 </div>
 <div id="commenting-code" class="section level3">
 <h3><span class="header-section-number">1.3.4</span> Commenting code</h3>
-<p>[Add section about commenting code here]</p>
+<p>Sometimes, you’ll want to include notes in your code. You can do this in all programming languages by using a <em>comment character</em> to start the line with your comment. In R, the comment character is the hash symbol, <code>#</code>. R will skip any line that starts with <code>#</code> in a script. For example, if you run the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Don&#39;t print this.</span>
+<span class="st">&quot;But print this&quot;</span></code></pre></div>
+<pre><code>## [1] &quot;But print this&quot;</code></pre>
+<p>R will only print the second, uncommented line.</p>
+<p>You can also use a comment in the middle of a line, to add a note on what you’re doing in that line of the code. R will skip any part of the code from the hash symbol on. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Print this&quot;</span> ## But not this, it&#39;s a comment.</code></pre></div>
+<pre><code>## [1] &quot;Print this&quot;</code></pre>
 </div>
 </div>
 <div id="rs-most-basic-object-types" class="section level2">
@@ -444,7 +471,11 @@ fibonacci_seq</code></pre></div>
 ## 3      three             2
 ## 4       four             3
 ## 5       five             5</code></pre>
-<p>[A note about how R will evaluate calls from the inside out when you write a call like this with different functions included.]</p>
+<div class="rmdnote">
+<p>
+You can put more than one function call in a single line of R code, as in this example (the <code>c</code> creates a vector, while the <code>data.frame</code> creates a dataframe, using the vectors created by the calls to <code>c</code>). When you use multiple functions within a single R call, R will evaluate starting from the inner-most parentheses out, much like the order of operations in a math equation with parentheses.
+</p>
+</div>
 <p>The general format for using <code>data.frame</code> is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: Generic code
 [name of object] &lt;-<span class="st"> </span><span class="kw">data.frame</span>([1st column name] =<span class="st"> </span>[1st column content],
@@ -534,7 +565,7 @@ new_object &lt;-<span class="st"> </span><span class="kw">function.name</span>(p
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
 <div class="rmdtip">
 <p>
-[Add a note about tab completion]
+Using the full parameter names for arguments can take a bit more time, since it requires more typing. However, RStudio helps you out with that by offering <em>code completion</em>. Once you start typing the first few letters of a parameter name within a function call, try pressing the tab key. All possible arguments that start with those letters should show up, and you can scroll through to pick the right one, or keep typing until the argument you want is atnthe top of the list of choices, and then press the tab key again.
 </p>
 </div>
 </div>
@@ -551,7 +582,11 @@ new_object &lt;-<span class="st"> </span><span class="kw">function.name</span>(p
 <li>Briefly browse around <a href="https://github.com/fivethirtyeight/data">FiveThirtyEight’s GitHub data page</a>. What are some other datasets available that you find interesting? You can scroll to the bottom of the page to get to the compiled README.md content, which gives the full titles and links to relevant datasets. You can also click on any dataset to get more information.</li>
 <li>Look at <a href="https://github.com/fivethirtyeight/data/tree/master/daily-show-guests">the GitHub page for this <em>Daily Show</em> data</a>. How many columns will be in this dataset? What kind of information does the data include?</li>
 </ul>
-<p>[Add a note about GitHub]</p>
+<div class="rmdnote">
+<p>
+In this exercise, you’re using data posted by <a href="http://fivethirtyeight.com">FiveThirtyEight</a> on <a href="https://github.com">GitHub</a>. We’ll be using a lot of data that’s on GitHub this semester, and GitHub is being used behind-the-scenes for both this book and the course note slides. We’ll talk more about GitHub later, but you might find it interesting to explore a bit now. It’s a place where people can post, work on, and share code in a number of programming languages– it’s been referred to as “Facebook for Nerds”. You can search GitHub repositories and code specifically by programming language, so it can be a good way to find example R code from which to learn.
+</p>
+</div>
 <p>If you have extra time:</p>
 <ul>
 <li>Check out <a href="http://fivethirtyeight.com/datalab/every-guest-jon-stewart-ever-had-on-the-daily-show/">the related article</a> on FiveThirtyEight. What are some specific questions they used this data to answer for this article?</li>
