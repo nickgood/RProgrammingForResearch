@@ -202,7 +202,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a><ul>
 <li class="chapter" data-level="B.1.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#getting-started"><i class="fa fa-check"></i><b>B.1.1</b> Getting started</a></li>
 <li class="chapter" data-level="B.1.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#swirl-lessons"><i class="fa fa-check"></i><b>B.1.2</b> Swirl lessons</a></li>
-<li class="chapter" data-level="B.1.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#special-swirl-commands"><i class="fa fa-check"></i><b>B.1.3</b> Special swirl commands</a></li>
 </ul></li>
 <li class="chapter" data-level="B.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-2"><i class="fa fa-check"></i><b>B.2</b> Homework #2</a></li>
 <li class="chapter" data-level="B.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-3"><i class="fa fa-check"></i><b>B.3</b> Homework #3</a></li>
@@ -237,7 +236,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="homework-1" class="section level2">
 <h2><span class="header-section-number">B.1</span> Homework #1</h2>
 <p><strong>Due date: Sept. 14</strong></p>
-<p>For your first homework assignment, you’ll be working through a few <a href="http://swirlstats.com/">swirl</a> lessons that are relevant to the material we’ve covered so far. Swirl is a platform that helps you lean R <strong>in</strong> R–you can complete the lessons right in your R console.</p>
+<p>For your first homework assignment, you’ll be working through a few <a href="http://swirlstats.com/">swirl</a> lessons that are relevant to the material we’ve covered so far. Swirl is a platform that helps you lean R <strong>in</strong> R– you can complete the lessons right in your R console.</p>
 <div id="getting-started" class="section level3">
 <h3><span class="header-section-number">B.1.1</span> Getting started</h3>
 <p>First, you’ll need to install the swirl package:</p>
@@ -246,7 +245,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(swirl)
 <span class="kw">install_from_swirl</span>(<span class="st">&quot;R Programming Alt&quot;</span>)
 <span class="kw">swirl</span>()</code></pre></div>
-<p><strong>Note:</strong> after calling <code>swirl()</code>, you may be promted to clear your workspace variables by running <code>rm=(list=ls())</code>–running this code will clear any variables you already have saved in your global environment. While swirl recommends that you do this, it’s not necessary.</p>
+<p><strong>Note:</strong> after calling <code>swirl()</code>, you may be promted to clear your workspace variables by running <code>rm=(list=ls())</code>. Running this code will clear any variables you already have saved in your global environment. While swirl recommends that you do this, it’s not necessary.</p>
 </div>
 <div id="swirl-lessons" class="section level3">
 <h3><span class="header-section-number">B.1.2</span> Swirl lessons</h3>
@@ -260,18 +259,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Looking at Data</li>
 <li>Dates and Times</li>
 </ul>
-<p>Each lesson should take about 5-10 minutes at most–many lessons are much shorter.</p>
-<p>You’ll be able to get started on some of these lessons after your first day in class (Basic Building Blocks, for example), but others cover topics that we’ll get to in weeks 2 and 3. At the end of each lesson, you’ll be prompted to “<code>inform somewone about your successful completion of this lesson</code>.” after answering <code>1</code> for ‘Yes,’ enter your full name, and enter <a href="mailto:rachel.severson@colostate.edu">rachel.severson@colostate.edu</a> as the email address of the person you’d like to notify. You should be sending 7 emails in total.</p>
-</div>
-<div id="special-swirl-commands" class="section level3">
-<h3><span class="header-section-number">B.1.3</span> Special swirl commands</h3>
+<p>Each lesson should take about 5-10 minutes at most. Many lessons are much shorter.</p>
+<p>You’ll be able to get started on some of these lessons after your first day in class (Basic Building Blocks, for example), but others cover topics that we’ll get to in weeks 2 and 3. Whether or not we’ve covered a swirl topic in class, you should be able to succesfully work through the lesson. At the end of each lesson, you’ll be prompted to “<code>inform somewone about your successful completion of this lesson</code>.” after answering <code>1</code> for ‘Yes,’ enter your full name, and enter <a href="mailto:rachel.severson@colostate.edu">rachel.severson@colostate.edu</a> as the email address of the person you’d like to notify. You should be sending 7 emails in total. ### Special swirl commands</p>
 <p>In the swirl environment, knowing about the following commands will be helpful:</p>
 <ul>
 <li><code>bye()</code>: exit swirl. Swirl will save your progress if you exit in the middle of a lesson. (To re-enter swirl, run <code>swirl()</code>. In a new session you will have to first load the swirl library: <code>library(swirl)</code>.)</li>
 <li><code>play()</code>: temporarily exit swirl. It can be useful during a swirl lesson to play around in the R console to try things out.</li>
 <li><code>nxt()</code>: regain swirl’s attention after <code>play()</code>ing around in the console. ### For fun</li>
 </ul>
-<p>While these aren’t required for class, you should consider trying out some other swirl lessons later in the course. The <code>Functions</code> lesson, as well as <code>lapply and sapply</code> and <code>vapply and tapply</code> could be particularly useful. You could also look through the <a href="https://github.com/swirldev/swirl_courses">course directory</a> to see what other courses and lessons are available.</p>
+<p>While these aren’t required for class, you should consider trying out some other swirl lessons later in the course. The <code>Functions</code> lesson, as well as <code>lapply and sapply</code> and <code>vapply and tapply</code> could be particularly useful. You cans also look through the <a href="https://github.com/swirldev/swirl_courses">course directory</a> to see what other courses and lessons are available.</p>
 </div>
 </div>
 <div id="homework-2" class="section level2">
