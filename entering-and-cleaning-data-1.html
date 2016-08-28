@@ -1396,6 +1396,7 @@ ebola_liberia[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre
 <p>If you have extra time:</p>
 <ul>
 <li>Limit the <code>ebola_liberia</code> dataset just to the days with non-missing case data. How many observations do you have now?</li>
+<li>Write a pipe chain for the full data cleaning process for creating <code>ebola_liberia</code> up to this point. <em>Hint: Try using the <code>arrange</code> function from <code>dplyr</code> to re-order the data by dates in this pipe.</em></li>
 <li>Try using the basic plotting function, <code>plot()</code>, to plot the number of cases over time. Do you think that the <code>cases</code> variable is measuring the count of cases for that day, or the cumulative number of cases up to that day? See if you can figure out more on Caitlin Rivers’ GitHub documentation. Do you notice any potential data quality issues in this data? <em>Hint: The <code>plot()</code> function takes, as required arguments, the vector you want to plot on the x-axis and then the vector you want to plot on the y-axis, like <code>plot([x vector], [y vector])</code>. If you are pulling the vectors from a dataset, you will need to use indexing to pull out the column you want as a vector, like <code>plot([dataframe name]$[column name for x], [dataframe]$[column name for y])</code>.</em></li>
 </ul>
 <p>Example R code:</p>
@@ -1403,7 +1404,15 @@ ebola_liberia[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre
 ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(ebola_liberia, !<span class="kw">is.na</span>(cases))
 <span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
 <pre><code>## [1] 83</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plot the data
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Rewrite the data cleaning for `ebola_liberia` using a pipe chain
+ebola_liberia &lt;-<span class="st"> </span>ebola %&gt;%
+<span class="st">  </span><span class="kw">select</span>(Date, Cases_Liberia, Deaths_Liberia) %&gt;%
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> Date, <span class="dt">cases =</span> Cases_Liberia, <span class="dt">deaths =</span> Deaths_Liberia) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(date) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(cases))
+
+## Plot the data
 <span class="kw">plot</span>(ebola_liberia$date, ebola_liberia$cases)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 </div>
