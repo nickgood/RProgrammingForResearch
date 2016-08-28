@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-08-27">
+<meta name="date" content="2016-08-28">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -164,38 +164,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>2.2.3</b> File and directory pathnames</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#diversion-paste"><i class="fa fa-check"></i><b>2.3</b> Diversion: <code>paste</code></a></li>
-<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#getting-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Getting data into R</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories"><i class="fa fa-check"></i><b>2.4.1</b> Directories</a></li>
-<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#taking-advantage-of-paste0"><i class="fa fa-check"></i><b>2.4.2</b> Taking advantage of <code>paste0</code></a></li>
+<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Reading data into R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>2.4.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#the-read_-functions"><i class="fa fa-check"></i><b>2.4.2</b> The <code>read_*</code> functions</a></li>
+<li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>2.4.3</b> Reading online flat files</a></li>
+<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving / loading R objects</a></li>
+<li class="chapter" data-level="2.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#loading-r-objects"><i class="fa fa-check"></i><b>2.4.5</b> Loading R objects</a></li>
+<li class="chapter" data-level="2.4.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects"><i class="fa fa-check"></i><b>2.4.6</b> Saving R objects</a></li>
+<li class="chapter" data-level="2.4.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-other-file-types"><i class="fa fa-check"></i><b>2.4.7</b> Reading other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.5</b> Reading data into R</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#basics-of-getting-data-into-r"><i class="fa fa-check"></i><b>2.5.1</b> Basics of getting data into R</a></li>
-<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#what-kind-of-data-can-you-get-into-r"><i class="fa fa-check"></i><b>2.5.2</b> What kind of data can you get into R?</a></li>
-<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#types-of-flat-files"><i class="fa fa-check"></i><b>2.5.3</b> Types of flat files</a></li>
-<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-flat-files"><i class="fa fa-check"></i><b>2.5.4</b> Reading in flat files</a></li>
-<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#read.table-family-of-functions"><i class="fa fa-check"></i><b>2.5.5</b> <code>read.table</code> family of functions</a></li>
-<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-online-flat-files"><i class="fa fa-check"></i><b>2.5.6</b> Reading in online flat files</a></li>
+<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Cleaning up data in R</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-subset"><i class="fa fa-check"></i><b>2.5.2</b> Using <code>subset()</code></a></li>
+<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#common-logical-operators-in-r"><i class="fa fa-check"></i><b>2.5.3</b> Common logical operators in R</a></li>
+<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#adding-columns"><i class="fa fa-check"></i><b>2.5.4</b> Adding columns</a></li>
+<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#date-class"><i class="fa fa-check"></i><b>2.5.5</b> <code>Date</code> class</a></li>
+<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#vector-classes"><i class="fa fa-check"></i><b>2.5.6</b> Vector classes</a></li>
+<li class="chapter" data-level="2.5.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#converting-to-date-class"><i class="fa fa-check"></i><b>2.5.7</b> Converting to <code>Date</code> class</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-data-as-r-objects"><i class="fa fa-check"></i><b>2.6</b> Saving data as R objects</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects"><i class="fa fa-check"></i><b>2.6.1</b> Saving R objects</a></li>
-<li class="chapter" data-level="2.6.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#loading-r-objects"><i class="fa fa-check"></i><b>2.6.2</b> Loading R objects</a></li>
-<li class="chapter" data-level="2.6.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects-1"><i class="fa fa-check"></i><b>2.6.3</b> Saving R objects</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-in-r"><i class="fa fa-check"></i><b>2.7</b> Cleaning up data in R</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.7.1</b> Renaming columns</a></li>
-<li class="chapter" data-level="2.7.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-subset"><i class="fa fa-check"></i><b>2.7.2</b> Using <code>subset()</code></a></li>
-<li class="chapter" data-level="2.7.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#common-logical-operators-in-r"><i class="fa fa-check"></i><b>2.7.3</b> Common logical operators in R</a></li>
-<li class="chapter" data-level="2.7.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#adding-columns"><i class="fa fa-check"></i><b>2.7.4</b> Adding columns</a></li>
-<li class="chapter" data-level="2.7.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#date-class"><i class="fa fa-check"></i><b>2.7.5</b> <code>Date</code> class</a></li>
-<li class="chapter" data-level="2.7.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#vector-classes"><i class="fa fa-check"></i><b>2.7.6</b> Vector classes</a></li>
-<li class="chapter" data-level="2.7.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#converting-to-date-class"><i class="fa fa-check"></i><b>2.7.7</b> Converting to <code>Date</code> class</a></li>
-</ul></li>
-<li class="chapter" data-level="2.8" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.8</b> In-course Exercise</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.8.1</b> Checking out directory structures</a></li>
-<li class="chapter" data-level="2.8.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.8.2</b> Using relative and absolute file pathnames</a></li>
-<li class="chapter" data-level="2.8.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.8.3</b> Reading in different types of files</a></li>
-<li class="chapter" data-level="2.8.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.8.4</b> Cleaning up data</a></li>
-<li class="chapter" data-level="2.8.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.8.5</b> A taste of what’s to come…</a></li>
+<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.6.1</b> Checking out directory structures</a></li>
+<li class="chapter" data-level="2.6.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.6.2</b> Using relative and absolute file pathnames</a></li>
+<li class="chapter" data-level="2.6.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.6.3</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="2.6.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.6.4</b> Cleaning up data</a></li>
+<li class="chapter" data-level="2.6.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.6.5</b> A taste of what’s to come…</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
@@ -253,6 +245,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="entering-and-cleaning-data-1" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Entering and cleaning data #1</h1>
 <p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week2.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<p>There are four basic steps you will often repeat as you prepare to analyze data in R:</p>
+<ol style="list-style-type: decimal">
+<li>Identify where the data is (If it’s on your computer, which directory? If it’s online, what’s the url?)</li>
+<li>Read data into R (<code>read.csv</code>, <code>read.table</code>) using the file path you figured out in step 1</li>
+<li>Check to make sure the data came in correctly (<code>dim</code>, <code>head</code>, <code>tail</code>, <code>str</code>)</li>
+<li>Clean the data up</li>
+</ol>
+<p>In this chapter, I’ll go basics for each of these steps, as well as dive a bit deeper into some related topics you should learn now to make your life easier as you get started using R for research.</p>
 <div id="r-scripts" class="section level2">
 <h2><span class="header-section-number">2.1</span> R scripts</h2>
 <p>This is a good point in learning R for you to start putting your work in R scripts, rather than entering commands at the console.</p>
@@ -393,78 +393,24 @@ heat_mort &lt;- read.csv(my_file)</code></pre>
                   &quot;RCourseFall2015/CourseText/heat_mort.csv&quot;)
 heat_mort &lt;- read.csv(my_file)</code></pre>
 <p>You will end up using <code>paste()</code> and <code>paste0()</code> for a lot of other applications, but this is a good example of how you can start using these functions, to start to get a feel for them.</p>
-<hr />
-</div>
-<div id="getting-data-into-r" class="section level2">
-<h2><span class="header-section-number">2.4</span> Getting data into R</h2>
-<div id="directories" class="section level3">
-<h3><span class="header-section-number">2.4.1</span> Directories</h3>
-<p>You can use <code>setwd()</code> to change your directory.</p>
-<p>To get to your home directory (for example, mine is “/Users/brookeanderson”), you can use the abbreviation <code>~</code>.</p>
-<p>For example, if you want to change into your home directory and print its name, you could run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~&quot;</span>)
-<span class="kw">getwd</span>()</code></pre></div>
-<pre><code>## [1] &quot;/Users/brookeanderson&quot;</code></pre>
-<p>The most straightforward way to read in data is often to put it in your working directory and then read it in using the file name. If you’re working in the directory with the file you want, you should see the file if you list files in the working directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
-<pre><code>##  [1] &quot;_book&quot;                         &quot;_bookdown.yml&quot;                
-##  [3] &quot;_build.sh&quot;                     &quot;_deploy.sh&quot;                   
-##  [5] &quot;_output.yml&quot;                   &quot;01-course_info.Rmd&quot;           
-##  [7] &quot;02-prelim.Rmd&quot;                 &quot;03-databasics.Rmd&quot;            
-##  [9] &quot;book.bib&quot;                      &quot;data&quot;                         
-## [11] &quot;DESCRIPTION&quot;                   &quot;figures&quot;                      
-## [13] &quot;homework.Rmd&quot;                  &quot;index.Rmd&quot;                    
-## [15] &quot;LICENSE&quot;                       &quot;packages.bib&quot;                 
-## [17] &quot;preamble.tex&quot;                  &quot;README.md&quot;                    
-## [19] &quot;references.Rmd&quot;                &quot;RProgrammingForResearch.Rmd&quot;  
-## [21] &quot;RProgrammingForResearch.Rproj&quot; &quot;slides&quot;                       
-## [23] &quot;style.css&quot;                     &quot;toc.css&quot;                      
-## [25] &quot;vocabulary.Rmd&quot;</code></pre>
-</div>
-<div id="taking-advantage-of-paste0" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> Taking advantage of <code>paste0</code></h3>
-<p>You can create an object with your directory name using <code>paste0</code>, and then use that to set your directory. We’ll take a lot of advantage of this for reading in files.</p>
-<p>The convention for <code>paste0</code> is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">[object name] &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;[first thing you want to paste]&quot;</span>,
-                        <span class="st">&quot;[what you want to add to that]&quot;</span>,
-                        <span class="st">&quot;[more you want to add]&quot;</span>)</code></pre></div>
-<p>Here’s an example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dir &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;~/Desktop/RCourseFall2015/&quot;</span>,
-                 <span class="st">&quot;Week2_Aug31&quot;</span>)
-my_dir</code></pre></div>
-<pre><code>## [1] &quot;~/Desktop/RCourseFall2015/Week2_Aug31&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(my_dir)</code></pre></div>
-</div>
 </div>
 <div id="reading-data-into-r" class="section level2">
-<h2><span class="header-section-number">2.5</span> Reading data into R</h2>
-<div id="basics-of-getting-data-into-r" class="section level3">
-<h3><span class="header-section-number">2.5.1</span> Basics of getting data into R</h3>
-<p>Basic approach:</p>
+<h2><span class="header-section-number">2.4</span> Reading data into R</h2>
+<p>Data comes in files of all shapes and sizes. R has the capability to read data in from many of these, even priorietary files for other software (e.g., Excel and SAS files). As a small survey, here are some of the types of data files that R can read and work with:</p>
 <ul>
-<li>Download data to your computer</li>
-<li>Make sure R is working in the directory with your data (<code>getwd</code>, <code>setwd</code>)</li>
-<li>Read data into R (<code>read.csv</code>, <code>read.table</code>)</li>
-<li>Check to make sure the data came in correctly (<code>dim</code>, <code>head</code>, <code>tail</code>, <code>str</code>)</li>
-</ul>
-</div>
-<div id="what-kind-of-data-can-you-get-into-r" class="section level3">
-<h3><span class="header-section-number">2.5.2</span> What kind of data can you get into R?</h3>
-<p>The sky is the limit…</p>
-<ul>
-<li>Flat files</li>
+<li>Flat files (much more about these in just a minute)</li>
 <li>Files from other statistical packages (SAS, Excel, Stata, SPSS)</li>
-<li><a href="http://yihui.name/en/2010/10/grabbing-tables-in-webpages-using-the-xml-package/">Tables on webpages</a> (e.g., the table near the end of <a href="http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa">this page</a>)</li>
-<li>Data in a database (e.g., SQL)</li>
-<li>Really crazy data formats used in other disciplines (e.g., <a href="https://www.image.ucar.edu/GSP/Software/Netcdf/">netCDF files from climate folks</a>, <a href="http://www.tractor-mri.org.uk">MRI data stored in Analyze, NIfTI, and DICOM formats</a>)</li>
-<li>Data through APIs (e.g., <a href="http://www.r-bloggers.com/heatmap-of-toronto-traffic-signals-using-rgooglemaps/">GoogleMaps</a>, <a href="http://davetang.org/muse/2013/04/06/using-the-r_twitter-package/">Twitter</a>)</li>
-<li>Incredibly messy data using <code>scan</code> and <code>readLines</code></li>
+<li>Tables on webpages (e.g., the table on ebola outbreaks near the end of <a href="http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa">this Wikipedia page</a>)</li>
+<li>Data in a database (e.g., MySQL, Oracle)</li>
+<li>Data in JSON and XML formats</li>
+<li>Really crazy data formats used in other disciplines (e.g., netCDF files from climate research, MRI data stored in Analyze, NIfTI, and DICOM formats)</li>
+<li>Geographic shapefiles</li>
+<li>Data through APIs</li>
 </ul>
-</div>
-<div id="types-of-flat-files" class="section level3">
-<h3><span class="header-section-number">2.5.3</span> Types of flat files</h3>
-<p>R can read in data from <em>a lot</em> of different formats. The only catch: you need to tell R how to do it.</p>
-<p>To start, we’ll look at flat files:</p>
+<p>Often, it is possible to read in and clean up even incredibly messy data, by using functions like <code>scan</code> and <code>readLines</code> to read the data in a line at a time, and then using regular expressions (which I’ll cover in the “Intermediate” section of the course) to clean up each line as it comes in. In over a decade of coding in R, I think the only time I’ve come across a data file I couldn’t get into R was for proprietary precision agriculture data collected at harvest by a combine.</p>
+<div id="reading-local-flat-files" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Reading local flat files</h3>
+<p>Much of the data that you will want to read in will be in flat files. Basically, these are files that you can open using a text editor; the most common type you’ll work with are probably comma-separated files (often with a <code>.csv</code> or <code>.txt</code> file extension). Most flat files come in two general categories:</p>
 <ol style="list-style-type: decimal">
 <li><p>Fixed width files</p></li>
 <li><p>Delimited files</p></li>
@@ -474,16 +420,60 @@ my_dir</code></pre></div>
 <li>“.tab”, “.tsv”: Tab-separated values</li>
 <li>Other possible delimiters: colon, semicolon, pipe (“|”)</li>
 </ul>
-</div>
-<div id="reading-in-flat-files" class="section level3">
-<h3><span class="header-section-number">2.5.4</span> Reading in flat files</h3>
-<p>R can read any of these types of files using one of the <code>read.table</code> and <code>read.fwf</code> functions. Find out more about those functions with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?read.table
-?read.fwf</code></pre></div>
-</div>
-<div id="read.table-family-of-functions" class="section level3">
-<h3><span class="header-section-number">2.5.5</span> <code>read.table</code> family of functions</h3>
-<p>Some of the interesting options with the <code>read.table</code> family of functions are:</p>
+<p><em>Fixed width files</em> are files where a column always has the same width, for all the rows in the column. These tend to look very neat and easy-to-read when you open them in a text editor. For example, the first few rows of a fixed-width file might look like this:</p>
+<pre><code>Course            Number          Day          Time
+Intro to Epi      501             M/W/F        9:00-9:50
+Advanced Epi      521             T/Th         1:00-2:15</code></pre>
+<p><em>Delimited files</em> use some <em>delimiter</em> (for example, a column or a tab) to separate each column value within a row. The first few rows of a delimited file might look like this:</p>
+<pre><code>Course, Number, Day, Time
+&quot;Intro to Epi&quot;, 501, &quot;M/W/F&quot;, &quot;9:00-9:50&quot;
+&quot;Advanced Epi&quot;, 521, &quot;T/Th&quot;, &quot;1:00-2:15&quot;</code></pre>
+<p>These flat files can have a number of different file extensions. The most generic is <code>.txt</code>, but they will also have ones more specific to their format, like <code>.csv</code> for a comma-delimited file or <code>.fwf</code> for a fixed with file.</p>
+<p>R can read in data from both fixed with and delimited flat files. The only catch is that you need to tell R a bit more about the format of the flat file, including whether it is fixed width or delimited. If the file is fixed width, you will usually have to tell R the width of each column. If the file is delimited, you’ll need to tell R which delimiter is being used.</p>
+<p>If the file is delimited, you can use the <code>read.table</code> family of functions to read it in. This family of functions includes several specialized functions. All members of the <code>read.table</code> family are doing the same basic thing. The only difference is what defaults each function has for the separator (<code>sep</code>) and the decimal point (<code>dec</code>). Members of the <code>read.table</code> family include:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Separator</th>
+<th align="left">Decimial point</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>read.table</code></td>
+<td align="left">comma</td>
+<td align="left">period</td>
+</tr>
+<tr class="even">
+<td align="left"><code>read.csv</code></td>
+<td align="left">comma</td>
+<td align="left">period</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>read.csv2</code></td>
+<td align="left">semi-colon</td>
+<td align="left">comma</td>
+</tr>
+<tr class="even">
+<td align="left"><code>read.delim</code></td>
+<td align="left">tab</td>
+<td align="left">period</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>read.delim2</code></td>
+<td align="left">tab</td>
+<td align="left">period</td>
+</tr>
+</tbody>
+</table>
+<p>You can use <code>read.table</code> to read in any delimited file, regardless of the separator and the value used for the decimal point. However, you will need to specify these values using the <code>sep</code> and <code>dec</code> parameters if they differ from the defaults for <code>read.table</code> (a space for the delimiter and period for the decimal). If you remember the more specialized function call, therefore, you can save yourself some typing. There are a few other default values besides <code>sep</code> and <code>dec</code> that differ between different functions in this family, as well (<code>header</code>, for example, which specifies whether the first row should be used as column names).</p>
+<p>For example, to read in the Ebola data, which is comma-delimited, you could either use <code>read.table</code> with a <code>sep</code> argument specified or use <code>read.csv</code>, in which case you don’t have to specify <code>sep</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># These two calls do the same thing</span>
+ebola &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>,
+                    <span class="dt">header =</span> <span class="ot">TRUE</span>)
+ebola &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/country_timeseries.csv&quot;</span>)</code></pre></div>
+<p>These functions have a number of different parameters to help you tell R how to read in data. For example, if the first few lines of the file aren’t part of the tabular data, you can tell R how many rows of the file to skip before it starts reading in the data. If the data uses an unusual value for missing data (e.g., -999), you can specify that, as well. Some of the interesting parameters with the <code>read.table</code> family of functions are:</p>
 <table>
 <thead>
 <tr class="header">
@@ -518,73 +508,76 @@ my_dir</code></pre></div>
 </tr>
 </tbody>
 </table>
-<p>All members of the <code>read.table</code> family are doing the same basic thing. The only difference is what defaults they have for the separator (<code>sep</code>) and the decimal point (<code>dec</code>).</p>
-<p>Members of the <code>read.table</code> family:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Function</th>
-<th align="left">Separator</th>
-<th align="left">Decimal point</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>read.csv</code></td>
-<td align="left">comma</td>
-<td align="left">period</td>
-</tr>
-<tr class="even">
-<td align="left"><code>read.csv2</code></td>
-<td align="left">semi-colon</td>
-<td align="left">comma</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>read.delim</code></td>
-<td align="left">tab</td>
-<td align="left">period</td>
-</tr>
-<tr class="even">
-<td align="left"><code>read.delim2</code></td>
-<td align="left">tab</td>
-<td align="left">comma</td>
-</tr>
-</tbody>
-</table>
+<div class="rmdnote">
+<p>
+Remember that you can always find out more about a function by looking at its help file. For example, check out <code>?read.table</code> and <code>?read.fwf</code>. You can also use the help files to determine the default values of arguments for each function.
+</p>
 </div>
-<div id="reading-in-online-flat-files" class="section level3">
-<h3><span class="header-section-number">2.5.6</span> Reading in online flat files</h3>
-<p>If you’re reading in data from a non-secure webpage (i.e., one that starts with <code>http</code>), if the data is in a “flat-file” format, you can just read it in using the <a href="http://www2.unil.ch/comparativegenometrics/docs/NC_006368.txt">web address</a> as the file name:</p>
+</div>
+<div id="the-read_-functions" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> The <code>read_*</code> functions</h3>
+<p>The <code>read.table</code> family of functions are part of base R. There is a newer package called <code>reader</code> that has a family of <code>read_*</code> functions. These functions are very similar, but have some more sensible defaults. Compared to the <code>read.table</code> family of functions, the <code>read_*</code> functions:</p>
+<ul>
+<li>Work better with large datasets: faster, includes progress bar</li>
+<li>Have more sensible defaults (e.g., characters default to characters, not factors)</li>
+</ul>
+<p>Functions in the <code>read_*</code> family include:</p>
+<ul>
+<li><code>read_csv</code>, <code>read_tsv</code> (specific delimiters)</li>
+<li><code>read_delim</code>, <code>read_table</code> (generic)</li>
+<li><code>read_fwf</code></li>
+<li><code>read_log</code></li>
+<li><code>read_lines</code></li>
+</ul>
+<p>These functions work very similarly to functions from the <code>read.table</code> family. For example, to read in the Daily Show guest data, you can call:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/daily_show_guests.csv&quot;</span>, <span class="dt">skip =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   YEAR = col_integer(),
+##   GoogleKnowlege_Occupation = col_character(),
+##   Show = col_character(),
+##   Group = col_character(),
+##   Raw_Guest_List = col_character()
+## )</code></pre>
+<p>The message that R prints after this call (“Parsed with column specification:..”) lets you know what classes R used for each column (this function tries to guess the appropriate function and, unlike the <code>readr</code> functions, will assign characters to a character rather than factor class, which is usually what you want).</p>
+<div class="rmdnote">
+<p>
+The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Most were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are only a few years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points, to help you be able to interpret older code.
+</p>
+</div>
+</div>
+<div id="reading-online-flat-files" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Reading online flat files</h3>
+<p>So far, I’ve only shown you how to read in data from files that are saved to your computer. R can also read in data directly from the web. If a flat file is posted online, you can read it into R in almost exactly the same way that you read in a local file. The only difference is that you will use the file’s url instead of a local file path for the <code>file</code> argument.</p>
+<p>With the <code>read_*</code> family of functions, you can do this both for flat files from a non-secure webpage (i.e., one that starts with <code>http</code>) and for files from a secure webpage (i.e., one that starts with <code>https</code>), including GitHub and Dropbox. With the <code>read.table</code> family of functions, you can read in online flat files from non-secure webpages, but not from secure ones.</p>
+<p>For example, to read in the tab-separated file saved at this <a href="http://www2.unil.ch/comparativegenometrics/docs/NC_006368.txt">web address</a>, which is non-secure, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www2.unil.ch/comparativegenometrics&quot;</span>,
               <span class="st">&quot;/docs/NC_006368.txt&quot;</span>)
-ld_genetics &lt;-<span class="st"> </span><span class="kw">read.delim</span>(url, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+ld_genetics &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(url)
 ld_genetics[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">1</span>:<span class="dv">4</span>]</code></pre></div>
-<pre><code>##    pos  nA  nC  nG
-## 1  500 307 153 192
-## 2 1500 310 169 207
-## 3 2500 319 167 177
-## 4 3500 373 164 168
-## 5 4500 330 175 224</code></pre>
-<p>If you want to read in data from a secure webpage (e.g., one that starts with <code>https</code>), then you’ll need to do something different.</p>
-<p>First, you’ll need to install then load the package <code>repmis</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;repmis&quot;)</span>
-<span class="kw">library</span>(repmis)</code></pre></div>
-<p>Now you can use the <code>source.data</code> function to read in data from places like <a href="https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv">GitHub</a> and Dropbox public folders:</p>
+<pre><code>## # A tibble: 5 × 4
+##     pos    nA    nC    nG
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1   500   307   153   192
+## 2  1500   310   169   207
+## 3  2500   319   167   177
+## 4  3500   373   164   168
+## 5  4500   330   175   224</code></pre>
+<p>Similarly , to read in data from this <a href="https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv">GitHub repository of Ebola data</a>, which is a secure website, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://raw.githubusercontent.com/cmrivers/&quot;</span>,
               <span class="st">&quot;ebola/master/country_timeseries.csv&quot;</span>)
-ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</code></pre></div>
-<pre><code>## Downloading data from: https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv</code></pre>
-<pre><code>## SHA-1 hash of the downloaded data file is:
-## 6da83b3d2017245217d35989960184234a6c4e7f</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola[<span class="dv">1</span>, <span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
-<pre><code>##       Date Day Cases_Guinea
-## 1 1/5/2015 289         2776</code></pre>
+ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(url)
+ebola[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##       Date   Day Cases_Guinea
+##      &lt;chr&gt; &lt;int&gt;        &lt;int&gt;
+## 1 1/5/2015   289         2776
+## 2 1/4/2015   288         2775
+## 3 1/3/2015   287         2769</code></pre>
 </div>
-</div>
-<div id="saving-data-as-r-objects" class="section level2">
-<h2><span class="header-section-number">2.6</span> Saving data as R objects</h2>
-<div id="saving-r-objects" class="section level3">
-<h3><span class="header-section-number">2.6.1</span> Saving R objects</h3>
+<div id="saving-loading-r-objects" class="section level3">
+<h3><span class="header-section-number">2.4.4</span> Saving / loading R objects</h3>
 <p>You can save an R object you’ve created as an <code>.RData</code> file using <code>save()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(ebola, <span class="dt">file =</span> <span class="st">&quot;Ebola.RData&quot;</span>)
 <span class="kw">list.files</span>()</code></pre></div>
@@ -604,7 +597,7 @@ ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</co
 <p>This saves to your current working directory (unless you specify a different location).</p>
 </div>
 <div id="loading-r-objects" class="section level3">
-<h3><span class="header-section-number">2.6.2</span> Loading R objects</h3>
+<h3><span class="header-section-number">2.4.5</span> Loading R objects</h3>
 <p>Then you can re-load the object later using <code>load()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(ebola)
 <span class="kw">ls</span>()</code></pre></div>
@@ -613,8 +606,8 @@ ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</co
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code>## [1] &quot;ebola&quot;       &quot;ld_genetics&quot; &quot;my_dir&quot;      &quot;url&quot;</code></pre>
 </div>
-<div id="saving-r-objects-1" class="section level3">
-<h3><span class="header-section-number">2.6.3</span> Saving R objects</h3>
+<div id="saving-r-objects" class="section level3">
+<h3><span class="header-section-number">2.4.6</span> Saving R objects</h3>
 <p>One caveat for saving R objects: some people suggest you avoid this if possible, to make your research more reproducible.</p>
 <p>Imagine someone wants to look at your data and code in 30 years. R might not work the same, so you might not be able to read an <code>.RData</code> file. However, you can open flat files (e.g., <code>.csv</code>, <code>.txt</code>) and R scripts (<code>.R</code>) in text editors– you should still be able to do this regardless of what happens to R.</p>
 <p>Potential exceptions:</p>
@@ -623,11 +616,47 @@ ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</co
 <li>Your starting dataset is really, really large, and it would take a long time for you to read in your data fresh every time</li>
 </ul>
 </div>
+<div id="reading-other-file-types" class="section level3">
+<h3><span class="header-section-number">2.4.7</span> Reading other file types</h3>
+<p>Later in the course, we’ll talk about how to open a variety of other file types in R. However, you might find it immediately useful to be able to read in files from other statistical programs.</p>
+<p>There are two “tidyverse” packages– <code>readxl</code> and <code>haven</code>– that help with this. They allow you to read in files from the following formats:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File type</th>
+<th align="left">Function</th>
+<th align="left">Package</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Excel</td>
+<td align="left"><code>read_excel</code></td>
+<td align="left"><code>readxl</code></td>
+</tr>
+<tr class="even">
+<td align="left">SAS</td>
+<td align="left"><code>read_sas</code></td>
+<td align="left"><code>haven</code></td>
+</tr>
+<tr class="odd">
+<td align="left">SPSS</td>
+<td align="left"><code>read_spss</code></td>
+<td align="left"><code>haven</code></td>
+</tr>
+<tr class="even">
+<td align="left">Stata</td>
+<td align="left">`read_stata</td>
+<td align="left"><code>haven</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="cleaning-up-data-in-r" class="section level2">
-<h2><span class="header-section-number">2.7</span> Cleaning up data in R</h2>
+<h2><span class="header-section-number">2.5</span> Cleaning up data in R</h2>
 <div id="renaming-columns" class="section level3">
-<h3><span class="header-section-number">2.7.1</span> Renaming columns</h3>
+<h3><span class="header-section-number">2.5.1</span> Renaming columns</h3>
 <p>Often, you’ll want to change the column names of a dataframe as soon as you bring in the data, especially if the original ones have things like spaces. We’ll look at this in the <code>icd10</code> data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)</code></pre></div>
 <pre><code>## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00 
@@ -637,7 +666,9 @@ ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</co
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;icd-10.xls&quot;</span>)</code></pre></div>
 <p>Take a look at the <code>icd10</code> data we loaded in the exercise:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icd10[<span class="dv">1</span>:<span class="dv">4</span>, ]</code></pre></div>
-<pre><code>##      Code                                          ICD Title
+<pre><code>## # A tibble: 4 × 2
+##      Code                                        `ICD Title`
+##     &lt;chr&gt;                                              &lt;chr&gt;
 ## 1 A00-B99       I. Certain infectious and parasitic diseases
 ## 2 A00-A09                     Intestinal infectious diseases
 ## 3     A00                                            Cholera
@@ -648,30 +679,36 @@ ebola &lt;-<span class="st"> </span><span class="kw">source_data</span>(url)</co
 <p>You can also <strong>rename</strong> column names using <code>colnames()</code>. You just put this call on the left of the assignment, and what you want to assign them on the left. The new names will need to be in a vector the same length as the number of columns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(icd10) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;code&quot;</span>, <span class="st">&quot;title&quot;</span>)
 icd10[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
-<pre><code>##      code                                        title
+<pre><code>## # A tibble: 2 × 2
+##      code                                        title
+##     &lt;chr&gt;                                        &lt;chr&gt;
 ## 1 A00-B99 I. Certain infectious and parasitic diseases
 ## 2 A00-A09               Intestinal infectious diseases</code></pre>
 </div>
 <div id="using-subset" class="section level3">
-<h3><span class="header-section-number">2.7.2</span> Using <code>subset()</code></h3>
+<h3><span class="header-section-number">2.5.2</span> Using <code>subset()</code></h3>
 <p>You will often want to use only a portion of your data. You can use <code>subset()</code> to create a subset, using logical operators. For example, if you wanted to just pull out the rows of the <code>icd10</code> dataframe that start with the letter “A”, you could run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icd10_a &lt;-<span class="st"> </span><span class="kw">subset</span>(icd10, <span class="kw">substr</span>(code, <span class="dv">1</span>, <span class="dv">1</span>) ==<span class="st"> &quot;A&quot;</span>)</code></pre></div>
 <p>Here are the ends of the original and the subsetted dataframes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(icd10, <span class="dv">2</span>)</code></pre></div>
-<pre><code>##        code                                  title
-## 11089 Y89.9 Sequelae of unspecified external cause
-## 11090  &lt;NA&gt;                                   &lt;NA&gt;</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##    code                                  title
+##   &lt;chr&gt;                                  &lt;chr&gt;
+## 1 Y89.9 Sequelae of unspecified external cause
+## 2  &lt;NA&gt;                                   &lt;NA&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(icd10_a, <span class="dv">2</span>)</code></pre></div>
-<pre><code>##      code                                    title
-## 458 A98.8 Other specified viral hemorrhagic fevers
-## 459   A99      Unspecified viral hemorrhagic fever</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##    code                                    title
+##   &lt;chr&gt;                                    &lt;chr&gt;
+## 1 A98.8 Other specified viral hemorrhagic fevers
+## 2   A99      Unspecified viral hemorrhagic fever</code></pre>
 <p>The convention for <code>subset()</code> is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset</span>([name of dataframe],
        [logical statement describing which rows to keep],
        <span class="dt">select =</span> [vector with the names of columns to keep])</code></pre></div>
 </div>
 <div id="common-logical-operators-in-r" class="section level3">
-<h3><span class="header-section-number">2.7.3</span> Common logical operators in R</h3>
+<h3><span class="header-section-number">2.5.3</span> Common logical operators in R</h3>
 <table style="width:46%;">
 <colgroup>
 <col width="13%" />
@@ -725,7 +762,7 @@ icd10[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
 </table>
 </div>
 <div id="adding-columns" class="section level3">
-<h3><span class="header-section-number">2.7.4</span> Adding columns</h3>
+<h3><span class="header-section-number">2.5.4</span> Adding columns</h3>
 <p>In R, you can use the <code>$</code> operator after a dataframe to pull out one of its columns. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;measles_data/02-09-2015.txt&quot;</span>,
                          <span class="dt">header =</span> <span class="ot">FALSE</span>,
@@ -751,11 +788,11 @@ ca_measles[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></
 ## 2 LOS ANGELES    20 02-09-2015</code></pre>
 </div>
 <div id="date-class" class="section level3">
-<h3><span class="header-section-number">2.7.5</span> <code>Date</code> class</h3>
+<h3><span class="header-section-number">2.5.5</span> <code>Date</code> class</h3>
 <p>One final common task in cleaning data is to change the class of some of the columns. This is especially common for dates, which will usually be read in as characters or factors.</p>
 </div>
 <div id="vector-classes" class="section level3">
-<h3><span class="header-section-number">2.7.6</span> Vector classes</h3>
+<h3><span class="header-section-number">2.5.6</span> Vector classes</h3>
 <p>Here are a few common vector classes in R:</p>
 <table>
 <thead>
@@ -798,7 +835,7 @@ ca_measles[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></
 ##  $ date : chr  &quot;02-09-2015&quot; &quot;02-09-2015&quot; &quot;02-09-2015&quot; &quot;02-09-2015&quot; ...</code></pre>
 </div>
 <div id="converting-to-date-class" class="section level3">
-<h3><span class="header-section-number">2.7.7</span> Converting to <code>Date</code> class</h3>
+<h3><span class="header-section-number">2.5.7</span> Converting to <code>Date</code> class</h3>
 <p>To convert a vector to the <code>Date</code> class, you can use <code>as.Date()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles$date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(ca_measles$date,
                            <span class="dt">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)
@@ -884,9 +921,9 @@ ca_measles[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></
 </div>
 </div>
 <div id="in-course-exercise-1" class="section level2">
-<h2><span class="header-section-number">2.8</span> In-course Exercise</h2>
+<h2><span class="header-section-number">2.6</span> In-course Exercise</h2>
 <div id="checking-out-directory-structures" class="section level3">
-<h3><span class="header-section-number">2.8.1</span> Checking out directory structures</h3>
+<h3><span class="header-section-number">2.6.1</span> Checking out directory structures</h3>
 <p>Download the whole directory for this week from Github. Put the “data” directory as a subdirectory in your directory for this class. To do that, go the the <a href="https://github.com/geanders/RProgrammingForResearch">GitHub page for the course</a> and, in the top right, choose “Clone or Download” and then choose “Download ZIP”. Then move the “data” subdirectory into your course directory and throw away rest of what you downloaded.</p>
 <div class="rmdnote">
 <p>
@@ -899,7 +936,7 @@ Unfortunately, while GitHub will let you download data files one at a time, it d
 </ul>
 </div>
 <div id="using-relative-and-absolute-file-pathnames" class="section level3">
-<h3><span class="header-section-number">2.8.2</span> Using relative and absolute file pathnames</h3>
+<h3><span class="header-section-number">2.6.2</span> Using relative and absolute file pathnames</h3>
 <p>Once you have the data, I’d like you to try using <code>setwd()</code> to move around the directories on your computer. For this section of the exercise, you’ll try to open the same file from different working directories, to get practice using absolute and relative file pathnames.</p>
 <p>Start by changing your working directory to the “data” subdirectory you just downloaded. For me, the absolute path to that is <code>/Users/brookeanderson/RProgrammingForResearch/data</code>, so to change my working directory to this one using an absolute file pathname, I would run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Users/brookeanderson/RProgrammingForResearch/data&quot;</span>)
@@ -1014,7 +1051,7 @@ ebola &lt;-<span class="st"> </span><span class="kw">read.csv</span>(abs_path, <
 </ul>
 </div>
 <div id="reading-in-different-types-of-files" class="section level3">
-<h3><span class="header-section-number">2.8.3</span> Reading in different types of files</h3>
+<h3><span class="header-section-number">2.6.3</span> Reading in different types of files</h3>
 <p>First, make sure your reset your working directory to your course directory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/RProgrammingForResearch/&quot;</span>)</code></pre></div>
 <p>Now you’ll try reading in data from a variety of types of file formats. All of these files are stored in the “data” subdirectory of your current working directory, so you’ll use filenames throughout that start with “data/”.</p>
@@ -1066,7 +1103,9 @@ icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span cla
 ## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00 
 ## DEFINEDNAME: 20 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 06 3b 00 00 00 00 51 2b 00 00 0a 00</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(icd10)</code></pre></div>
-<pre><code>##      Code                                          ICD Title
+<pre><code>## # A tibble: 6 × 2
+##      Code                                        `ICD Title`
+##     &lt;chr&gt;                                              &lt;chr&gt;
 ## 1 A00-B99       I. Certain infectious and parasitic diseases
 ## 2 A00-A09                     Intestinal infectious diseases
 ## 3     A00                                            Cholera
@@ -1076,12 +1115,14 @@ icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span cla
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
 icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/icu.sas7bdat&quot;</span>)
 icu[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
-<pre><code>##   ID STA AGE GENDER RACE
-## 1  4   1  87      1    1
-## 2  8   0  27      1    1
-## 3 12   0  59      0    1
-## 4 14   0  77      0    1
-## 5 27   1  76      1    1</code></pre>
+<pre><code>## # A tibble: 5 × 5
+##      ID   STA   AGE GENDER  RACE
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1     4     1    87      1     1
+## 2     8     0    27      1     1
+## 3    12     0    59      0     1
+## 4    14     0    77      0     1
+## 5    27     1    76      1     1</code></pre>
 <p>If you have extra time:</p>
 <ul>
 <li>Is there a way to read the “ld_genetics.txt” file in using <code>read.table()</code> and specific options? If so, try to read the data in using that function. Why can you use both <code>read.delim</code> and <code>read.table</code> to read in this file?</li>
@@ -1099,7 +1140,7 @@ ld_genetics[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv
 ## 5 4500 330 175 224 271</code></pre>
 </div>
 <div id="cleaning-up-data" class="section level3">
-<h3><span class="header-section-number">2.8.4</span> Cleaning up data</h3>
+<h3><span class="header-section-number">2.6.4</span> Cleaning up data</h3>
 <p>Try out the following tasks:</p>
 <ul>
 <li>You now have an R object called <code>ebola</code>. Create an object called <code>ebola_liberia</code> that only has the columns with the Date and cases and deaths in Liberia. How many observations do you have?</li>
@@ -1164,7 +1205,7 @@ ebola_liberia &lt;-<span class="st"> </span><span class="kw">subset</span>(ebola
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 </div>
 <div id="a-taste-of-whats-to-come" class="section level3">
-<h3><span class="header-section-number">2.8.5</span> A taste of what’s to come…</h3>
+<h3><span class="header-section-number">2.6.5</span> A taste of what’s to come…</h3>
 <p>Here’s an example to give you a feel for why it’s worth learning all these different things about directories, <code>list.files</code>, and pathnames.</p>
 <p>The <code>measles_data</code> subdirectory includes counts of measles made at different times in different cities in California. Say that we wanted to read them all in and make put them into one long dataframe with the variables <code>city</code>, <code>count</code>, and <code>date</code>. You can put together the things you’ve learned so far, along with a few new ideas (including doing a loop), to do this very easily.</p>
 <p>We’ll talk more later about using loops and functions to make your programming more efficient, but for right now just look through this code and see if you can get a feel for how it’s working (make sure your directory for this course is your working directory):</p>

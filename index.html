@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-08-27">
+<meta name="date" content="2016-08-28">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -164,38 +164,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>2.2.3</b> File and directory pathnames</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#diversion-paste"><i class="fa fa-check"></i><b>2.3</b> Diversion: <code>paste</code></a></li>
-<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#getting-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Getting data into R</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories"><i class="fa fa-check"></i><b>2.4.1</b> Directories</a></li>
-<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#taking-advantage-of-paste0"><i class="fa fa-check"></i><b>2.4.2</b> Taking advantage of <code>paste0</code></a></li>
+<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Reading data into R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>2.4.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#the-read_-functions"><i class="fa fa-check"></i><b>2.4.2</b> The <code>read_*</code> functions</a></li>
+<li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>2.4.3</b> Reading online flat files</a></li>
+<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving / loading R objects</a></li>
+<li class="chapter" data-level="2.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#loading-r-objects"><i class="fa fa-check"></i><b>2.4.5</b> Loading R objects</a></li>
+<li class="chapter" data-level="2.4.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects"><i class="fa fa-check"></i><b>2.4.6</b> Saving R objects</a></li>
+<li class="chapter" data-level="2.4.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-other-file-types"><i class="fa fa-check"></i><b>2.4.7</b> Reading other file types</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.5</b> Reading data into R</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#basics-of-getting-data-into-r"><i class="fa fa-check"></i><b>2.5.1</b> Basics of getting data into R</a></li>
-<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#what-kind-of-data-can-you-get-into-r"><i class="fa fa-check"></i><b>2.5.2</b> What kind of data can you get into R?</a></li>
-<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#types-of-flat-files"><i class="fa fa-check"></i><b>2.5.3</b> Types of flat files</a></li>
-<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-flat-files"><i class="fa fa-check"></i><b>2.5.4</b> Reading in flat files</a></li>
-<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#read.table-family-of-functions"><i class="fa fa-check"></i><b>2.5.5</b> <code>read.table</code> family of functions</a></li>
-<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-online-flat-files"><i class="fa fa-check"></i><b>2.5.6</b> Reading in online flat files</a></li>
+<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-in-r"><i class="fa fa-check"></i><b>2.5</b> Cleaning up data in R</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-subset"><i class="fa fa-check"></i><b>2.5.2</b> Using <code>subset()</code></a></li>
+<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#common-logical-operators-in-r"><i class="fa fa-check"></i><b>2.5.3</b> Common logical operators in R</a></li>
+<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#adding-columns"><i class="fa fa-check"></i><b>2.5.4</b> Adding columns</a></li>
+<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#date-class"><i class="fa fa-check"></i><b>2.5.5</b> <code>Date</code> class</a></li>
+<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#vector-classes"><i class="fa fa-check"></i><b>2.5.6</b> Vector classes</a></li>
+<li class="chapter" data-level="2.5.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#converting-to-date-class"><i class="fa fa-check"></i><b>2.5.7</b> Converting to <code>Date</code> class</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-data-as-r-objects"><i class="fa fa-check"></i><b>2.6</b> Saving data as R objects</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects"><i class="fa fa-check"></i><b>2.6.1</b> Saving R objects</a></li>
-<li class="chapter" data-level="2.6.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#loading-r-objects"><i class="fa fa-check"></i><b>2.6.2</b> Loading R objects</a></li>
-<li class="chapter" data-level="2.6.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-r-objects-1"><i class="fa fa-check"></i><b>2.6.3</b> Saving R objects</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-in-r"><i class="fa fa-check"></i><b>2.7</b> Cleaning up data in R</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.7.1</b> Renaming columns</a></li>
-<li class="chapter" data-level="2.7.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-subset"><i class="fa fa-check"></i><b>2.7.2</b> Using <code>subset()</code></a></li>
-<li class="chapter" data-level="2.7.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#common-logical-operators-in-r"><i class="fa fa-check"></i><b>2.7.3</b> Common logical operators in R</a></li>
-<li class="chapter" data-level="2.7.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#adding-columns"><i class="fa fa-check"></i><b>2.7.4</b> Adding columns</a></li>
-<li class="chapter" data-level="2.7.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#date-class"><i class="fa fa-check"></i><b>2.7.5</b> <code>Date</code> class</a></li>
-<li class="chapter" data-level="2.7.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#vector-classes"><i class="fa fa-check"></i><b>2.7.6</b> Vector classes</a></li>
-<li class="chapter" data-level="2.7.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#converting-to-date-class"><i class="fa fa-check"></i><b>2.7.7</b> Converting to <code>Date</code> class</a></li>
-</ul></li>
-<li class="chapter" data-level="2.8" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.8</b> In-course Exercise</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.8.1</b> Checking out directory structures</a></li>
-<li class="chapter" data-level="2.8.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.8.2</b> Using relative and absolute file pathnames</a></li>
-<li class="chapter" data-level="2.8.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.8.3</b> Reading in different types of files</a></li>
-<li class="chapter" data-level="2.8.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.8.4</b> Cleaning up data</a></li>
-<li class="chapter" data-level="2.8.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.8.5</b> A taste of what’s to come…</a></li>
+<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.6.1</b> Checking out directory structures</a></li>
+<li class="chapter" data-level="2.6.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.6.2</b> Using relative and absolute file pathnames</a></li>
+<li class="chapter" data-level="2.6.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.6.3</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="2.6.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.6.4</b> Cleaning up data</a></li>
+<li class="chapter" data-level="2.6.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.6.5</b> A taste of what’s to come…</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
@@ -254,7 +246,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">R Programming for Research</h1>
 <h3 class="subtitle"><em>Colorado State University, ERHS 535</em></h3>
 <h4 class="author"><em>Brooke Anderson and Rachel Severson</em></h4>
-<h4 class="date"><em>2016-08-27</em></h4>
+<h4 class="date"><em>2016-08-28</em></h4>
 </div>
 <div id="online-course-book-erhs-535" class="section level1 unnumbered">
 <h1>Online course book, ERHS 535</h1>
