@@ -1346,13 +1346,12 @@ ld_genetics[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv
 <li>You now have an R object called <code>ebola</code>. Create an object called <code>ebola_liberia</code> that only has the columns with the Date and cases and deaths in Liberia. How many observations do you have?</li>
 <li>Change the column names to <code>date</code>, <code>cases</code>, and <code>deaths</code>.</li>
 <li>What class is the <code>date</code> column currently in? Convert it to a Date object. If it’s currently a factor, you will need to first convert it to a character (do you know why)? What are the starting and ending dates of this data?</li>
-<li>This data has earliest dates last and latest dates first. Often, we want our data in chronological order. Change the dataset so it’s in chronological order. <em>Hint: You can use row indices to do this, if you use row indices to list the data from last row to first. For example, what do you get if you do <code>3:1</code>? What about if you do <code>ebola[3:1, ]</code>? Think of how you can extend this, along with <code>nrow()</code> do this task.</em></li>
+<li>This data has earliest dates last and latest dates first. Often, we want our data in chronological order. Change the dataset so it’s in chronological order. <em>Hint: You can use row indices to do this, if you use row indices to list the data from last row to first. For example, what do you get if you do <code>3:1</code>? What about if you do <code>ebola[3:1, ]</code>? Think of how you can extend this, along with <code>nrow()</code> do this task. There are a number of different ways to do this step, and we’ll talk about more ways later in the course.</em></li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create a subset with just the Liberia columns and Date
-ebola_liberia &lt;-<span class="st"> </span><span class="kw">subset</span>(ebola,  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Date&quot;</span>,
-                                           <span class="st">&quot;Cases_Liberia&quot;</span>, 
-                                           <span class="st">&quot;Deaths_Liberia&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+## Create a subset with just the Liberia columns and Date
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">select</span>(ebola, Date, Cases_Liberia, Deaths_Liberia)
 <span class="kw">head</span>(ebola_liberia)</code></pre></div>
 <pre><code>##         Date Cases_Liberia Deaths_Liberia
 ## 1   1/5/2015            NA             NA
@@ -1365,7 +1364,10 @@ ebola_liberia &lt;-<span class="st"> </span><span class="kw">subset</span>(ebola
 <span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
 <pre><code>## [1] 122</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Rename the columns
-<span class="kw">colnames</span>(ebola_liberia) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;cases&quot;</span>, <span class="st">&quot;deaths&quot;</span>)
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">rename</span>(ebola_liberia,
+                        <span class="dt">date =</span> Date,
+                        <span class="dt">cases =</span> Cases_Liberia,
+                        <span class="dt">deaths =</span> Deaths_Liberia)
 ebola_liberia[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre></div>
 <pre><code>##       date cases deaths
 ## 1 1/5/2015    NA     NA
@@ -1374,11 +1376,10 @@ ebola_liberia[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## What class is the `date` column?
 <span class="kw">class</span>(ebola_liberia$date)</code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Change the class to a character and then to a Date
-## Use the `format` option to tell R what format the date
-## currently is in
-ebola_liberia$date &lt;-<span class="st"> </span><span class="kw">as.character</span>(ebola_liberia$date)
-ebola_liberia$date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(ebola_liberia$date, <span class="dt">format =</span> <span class="kw">c</span>(<span class="st">&quot;%m/%d/%Y&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Use the `mdy` from `lubridate` to convert to Date class
+<span class="kw">library</span>(lubridate)
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">mutate</span>(ebola_liberia, 
+                        <span class="dt">date =</span> <span class="kw">mdy</span>(date))
 <span class="kw">head</span>(ebola_liberia$date)</code></pre></div>
 <pre><code>## [1] &quot;2015-01-05&quot; &quot;2015-01-04&quot; &quot;2015-01-03&quot; &quot;2015-01-02&quot; &quot;2014-12-31&quot;
 ## [6] &quot;2014-12-28&quot;</code></pre>
@@ -1387,9 +1388,11 @@ ebola_liberia$date &lt;-<span class="st"> </span><span class="kw">as.Date</span>
 <pre><code>## [1] &quot;2014-03-22&quot; &quot;2015-01-05&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Re-order the dataset from last to first
 ebola_liberia &lt;-<span class="st"> </span>ebola_liberia[<span class="kw">nrow</span>(ebola_liberia):<span class="dv">1</span>, ]
-ebola_liberia[<span class="dv">1</span>, ]</code></pre></div>
+ebola_liberia[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre></div>
 <pre><code>##           date cases deaths
-## 122 2014-03-22    NA     NA</code></pre>
+## 122 2014-03-22    NA     NA
+## 121 2014-03-24    NA     NA
+## 120 2014-03-25    NA     NA</code></pre>
 <p>If you have extra time:</p>
 <ul>
 <li>Limit the <code>ebola_liberia</code> dataset just to the days with non-missing case data. How many observations do you have now?</li>
@@ -1397,7 +1400,7 @@ ebola_liberia[<span class="dv">1</span>, ]</code></pre></div>
 </ul>
 <p>Example R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Remove observations with missing cases
-ebola_liberia &lt;-<span class="st"> </span><span class="kw">subset</span>(ebola_liberia, !<span class="kw">is.na</span>(cases))
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(ebola_liberia, !<span class="kw">is.na</span>(cases))
 <span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
 <pre><code>## [1] 83</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plot the data
@@ -1427,7 +1430,7 @@ measles_dates</code></pre></div>
 ## [16] &quot;04-17-2015&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(measles_dates)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">measles_dates &lt;-<span class="st"> </span><span class="kw">as.Date</span>(measles_dates, <span class="dt">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">measles_dates &lt;-<span class="st"> </span><span class="kw">mdy</span>(measles_dates)
 measles_dates</code></pre></div>
 <pre><code>##  [1] &quot;2015-02-09&quot; &quot;2015-02-11&quot; &quot;2015-02-13&quot; &quot;2015-02-18&quot; &quot;2015-02-20&quot;
 ##  [6] &quot;2015-02-23&quot; &quot;2015-02-25&quot; &quot;2015-02-27&quot; &quot;2015-03-02&quot; &quot;2015-03-06&quot;
@@ -1442,10 +1445,12 @@ i &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># I&#
 file_name &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;data/measles_data/&quot;</span>, measles_files[i])
 file_name</code></pre></div>
 <pre><code>## [1] &quot;data/measles_data/02-09-2015.txt&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Now I&#39;ll read in that file
-df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(file_name, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Now I&#39;ll read in that tab-delimited file
+df &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(file_name, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
 <span class="kw">head</span>(df)</code></pre></div>
-<pre><code>##                 city count
+<pre><code>## # A tibble: 6 × 2
+##                 city count
+##                &lt;chr&gt; &lt;int&gt;
 ## 1            ALAMEDA     6
 ## 2        LOS ANGELES    20
 ## 3 City of Long Beach     2
@@ -1456,9 +1461,11 @@ df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(file_name, <
 ## values from that file. Notice that I&#39;m using `i` to 
 ## index this, as well
 
-df$date &lt;-<span class="st"> </span>measles_dates[i]
+df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">date =</span> measles_dates[i])
 <span class="kw">head</span>(df)</code></pre></div>
-<pre><code>##                 city count       date
+<pre><code>## # A tibble: 6 × 3
+##                 city count       date
+##                &lt;chr&gt; &lt;int&gt;     &lt;date&gt;
 ## 1            ALAMEDA     6 2015-02-09
 ## 2        LOS ANGELES    20 2015-02-09
 ## 3 City of Long Beach     2 2015-02-09
@@ -1474,7 +1481,7 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(measles_files)
         file_name &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;data/measles_data/&quot;</span>, measles_files[i])
         df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(file_name, <span class="dt">header =</span> <span class="ot">FALSE</span>, 
                          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
-        df$date &lt;-<span class="st"> </span>measles_dates[i]
+        df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">date =</span> measles_dates[i])
         if(i ==<span class="st"> </span><span class="dv">1</span>){
                 ca_measles &lt;-<span class="st"> </span>df
         } else { 
