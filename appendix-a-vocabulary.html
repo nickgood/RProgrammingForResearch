@@ -291,6 +291,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>setwd()</code>, including <code>setwd(&quot;~&quot;)</code>, <code>setwd(&quot;..&quot;)</code>, <code>setwd(&quot;..\..&quot;)</code></li>
 <li><code>list.files()</code>, option <code>path =</code></li>
 <li>functions in the <code>read.table()</code> family, including <code>read.csv()</code> and <code>read.delim()</code>. What are defaults of the <code>sep =</code> and <code>dec =</code> options for each? For all, the options <code>header =</code>, <code>sep =</code>, <code>as.is =</code>, <code>na.strings =</code>, <code>nrows =</code>, <code>skip =</code>, and <code>col.names =</code>.</li>
+<li>The tidyverse</li>
+<li>functions in the <code>read_*</code> family (e.g., <code>read_csv</code>)</li>
 <li><code>paste()</code>, option <code>sep =</code></li>
 <li><code>paste0()</code></li>
 <li><code>readxl</code> package and its <code>read_excel()</code> function</li>
@@ -298,19 +300,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>colnames()</code>, and how to use it to assign new column names to a dataframe</li>
 <li><code>$</code></li>
 <li><code>class()</code></li>
+<li><code>str()</code></li>
 <li><code>as.Date()</code>, option <code>format =</code></li>
 <li><code>range()</code></li>
-<li><code>subset()</code>, option <code>select =</code></li>
-<li><code>str()</code></li>
-<li><code>repmis()</code> package and its <code>source_data()</code> function</li>
+<li><code>rename()</code></li>
+<li><code>mutate()</code></li>
+<li><code>arrange()</code></li>
+<li><code>%&gt;%</code>, advantages of piping</li>
+<li><code>filter()</code></li>
+<li>Reading in data from either a local or online flat file</li>
 <li><code>save()</code>, option <code>file =</code></li>
 <li><code>load()</code></li>
 <li><code>rm()</code></li>
 <li><code>ls()</code></li>
+<li><code>lubridate</code> and its functions</li>
 <li>Main types of vector classes in R: character, numeric, factor, date, logical</li>
 <li>Which classes of vectors don’t always look like numbers, but R assigns an underlying numeric value to? (Hint: We did not talk about this in class, but R saves the logical class with an underlying number, with TRUE = 1 and FALSE = 0. We did talk about other examples in class.)</li>
 <li>Common abbreviations for telling R date formats (e.g., “%m”, “%y”)</li>
-<li>Common logical expressions to use in <code>subset()</code></li>
+<li>Common logical expressions to use in <code>filter()</code></li>
 <li>relative pathnames</li>
 <li>absolute pathnames</li>
 <li>delimited files</li>
