@@ -254,9 +254,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">B.1.1</span> Getting started</h3>
 <p>First, you’ll need to install the swirl package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;swirl&quot;</span>)</code></pre></div>
-<p>Next, load the swirl package. We’re going to download a course from swirl’s <a href="https://github.com/swirldev/swirl_courses">course repository</a> called R Programming Alt using the function <code>install_from_swirl()</code>. Then call the <code>swirl()</code> function to enter the interactive platform:</p>
+<p>Next, load the swirl package. We’re going to download a course from swirl’s <a href="https://github.com/swirldev/swirl_courses">course repository</a> called R Programming Alt using the function <code>install_course_github</code>. Then call the <code>swirl()</code> function to enter the interactive platform:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(swirl)
-<span class="kw">install_from_swirl</span>(<span class="st">&quot;R Programming Alt&quot;</span>)
+<span class="kw">install_course_github</span>(<span class="st">&quot;swirldev&quot;</span>, <span class="st">&quot;R_Programming_E&quot;</span>)
 <span class="kw">swirl</span>()</code></pre></div>
 <div class="rmdnote">
 <p>
@@ -266,21 +266,21 @@ After calling <code>swirl()</code>, you may be prompted to clear your workspace 
 </div>
 <div id="swirl-lessons" class="section level3">
 <h3><span class="header-section-number">B.1.2</span> Swirl lessons</h3>
-<p>Sign in with your name, and choose <em>R Programming Alt</em> when swirl asks you to choose a course. For this homework, you will need to work through the following lessons in that course (the lesson number is in parentheses):</p>
+<p>Sign in with your name, and choose <em>R Programming E</em> when swirl asks you to choose a course. For this homework, you will need to work through the following lessons in that course (the lesson number is in parentheses):</p>
 <ul>
 <li>Basic Building Blocks (1)</li>
-<li>Vectors (3)</li>
-<li>Missing Values (4)</li>
-<li>Subsetting Vectors (5)</li>
-<li>Logic (7)</li>
-<li>Looking at Data (11)</li>
-<li>Dates and Times (13)</li>
+<li>Vectors (4)</li>
+<li>Missing Values (5)</li>
+<li>Subsetting Vectors (6)</li>
+<li>Logic (8)</li>
+<li>Looking at Data (12)</li>
+<li>Dates and Times (14)</li>
 </ul>
 <p>Each lesson should take about 10-15 minutes, but some are much shorter. You can complete the lessons in any order you want, but you may find it easiest to start with the lowest-numbered lessons and work your way up, in the order we’ve listed the lessons here.</p>
-<p>You’ll be able to get started on some of these lessons after your first day in class (Basic Building Blocks, for example), but others cover topics that we’ll get to in weeks 2 and 3. Whether or not we’ve covered a swirl topic in class, you should be able to successfully work through the lesson. At the end of each lesson, you’ll be prompted to “<code>inform someone about your successful completion of this lesson</code>.” after answering <code>1</code> for ‘Yes,’ enter your full name, and enter <a href="mailto:rachel.severson@colostate.edu">rachel.severson@colostate.edu</a> as the email address of the person you’d like to notify. You should be sending 7 emails in total.</p>
+<p>You’ll be able to get started on some of these lessons after your first day in class (Basic Building Blocks, for example), but others cover topics that we’ll get to in weeks 2 and 3. Whether or not we’ve covered a swirl topic in class, you should be able to successfully work through the lesson. At the end of each lesson, you’ll be prompted to “<code>inform someone about your successful completion of this lesson via email</code>.” after answering <code>2</code> for ‘Yes,’ enter your full name, and enter <a href="mailto:rachel.severson@colostate.edu">rachel.severson@colostate.edu</a> as the email address of the person you’d like to notify. You should be sending 7 emails in total.</p>
 <div class="rmdnote">
 <p>
-After telling swirl that you would like to send a notification email, an already-populated email should pop up with the lesson you just completed in the subject line - you just need to push send. This might not happen if you always access your email through a web browser instead of an app. In this case, just send an email manually with a screenshot of the end of the lesson, and the name of the lesson you just completed.
+After telling swirl that you would like to send a notification email, an already-populated email should pop up with the lesson you just completed in the subject line - you just need to push send. This might not happen if you access your email through a web browser instead of an app. In this case, just send an email manually with a screenshot of the end of the lesson, and the name of the lesson you just completed.
 </p>
 </div>
 </div>
