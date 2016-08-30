@@ -169,7 +169,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>2.4.1</b> Reading local flat files</a></li>
 <li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#the-read_-functions"><i class="fa fa-check"></i><b>2.4.2</b> The <code>read_*</code> functions</a></li>
 <li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>2.4.3</b> Reading online flat files</a></li>
-<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving / loading R objects</a></li>
+<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-and-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving and loading R objects</a></li>
 <li class="chapter" data-level="2.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-other-file-types"><i class="fa fa-check"></i><b>2.4.5</b> Reading other file types</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#data-cleaning"><i class="fa fa-check"></i><b>2.5</b> Data cleaning</a><ul>
@@ -468,7 +468,7 @@ Advanced Epi      521             T/Th         1:00-2:15</code></pre>
 </tr>
 </tbody>
 </table>
-<p>You can use <code>read.table</code> to read in any delimited file, regardless of the separator and the value used for the decimal point. However, you will need to specify these values using the <code>sep</code> and <code>dec</code> parameters if they differ from the defaults for <code>read.table</code> (a space for the delimiter and period for the decimal). If you remember the more specialized function call, therefore, you can save yourself some typing. There are a few other default values besides <code>sep</code> and <code>dec</code> that differ between different functions in this family, as well (<code>header</code>, for example, which specifies whether the first row should be used as column names).</p>
+<p>You can use <code>read.table</code> to read in any delimited file, regardless of the separator and the value used for the decimal point. However, you will need to specify these values using the <code>sep</code> and <code>dec</code> parameters if they differ from the defaults for <code>read.table</code> (a space for the delimiter and period for the decimal). If you remember the more specialized function call, therefore, you can save yourself some typing. There are a few other default values besides <code>sep</code> and <code>dec</code> that differ between different functions in this family: <code>header</code>, for example, specifies whether the first row should be used as column names.</p>
 <p>For example, to read in the Ebola data, which is comma-delimited, you could either use <code>read.table</code> with a <code>sep</code> argument specified or use <code>read.csv</code>, in which case you don’t have to specify <code>sep</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># These two calls do the same thing</span>
 ebola &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/country_timeseries.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>,
@@ -541,16 +541,16 @@ daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span 
 ##   Group = col_character(),
 ##   Raw_Guest_List = col_character()
 ## )</code></pre>
-<p>The message that R prints after this call (“Parsed with column specification:..”) lets you know what classes R used for each column (this function tries to guess the appropriate function and, unlike the <code>readr</code> functions, will assign characters to a character rather than factor class, which is usually what you want).</p>
+<p>The message that R prints after this call (“Parsed with column specification:..”) lets you know what classes R used for each column (this function tries to guess the appropriate function and, unlike the <code>readr</code> functions, will assign characters to a character rather than factor class – this is usually what you want).</p>
 <div class="rmdnote">
 <p>
-The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Most were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are only a few years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points, to help you be able to interpret older code.
+The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Most were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are only a few years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points – this will help you interpret older code.
 </p>
 </div>
 </div>
 <div id="reading-online-flat-files" class="section level3">
 <h3><span class="header-section-number">2.4.3</span> Reading online flat files</h3>
-<p>So far, I’ve only shown you how to read in data from files that are saved to your computer. R can also read in data directly from the web. If a flat file is posted online, you can read it into R in almost exactly the same way that you read in a local file. The only difference is that you will use the file’s url instead of a local file path for the <code>file</code> argument.</p>
+<p>So far, I’ve only shown you how to read in data from files that are saved to your computer. R can also read in data directly from the web. If a flat file is posted online, you can read it into R in almost exactly the same way that you would read in a local file. The only difference is that you will use the file’s url instead of a local file path for the <code>file</code> argument.</p>
 <p>With the <code>read_*</code> family of functions, you can do this both for flat files from a non-secure webpage (i.e., one that starts with <code>http</code>) and for files from a secure webpage (i.e., one that starts with <code>https</code>), including GitHub and Dropbox. With the <code>read.table</code> family of functions, you can read in online flat files from non-secure webpages, but not from secure ones.</p>
 <p>For example, to read in the tab-separated file saved at this <a href="http://www2.unil.ch/comparativegenometrics/docs/NC_006368.txt">web address</a>, which is non-secure, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www2.unil.ch/comparativegenometrics&quot;</span>,
@@ -577,8 +577,8 @@ ebola[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</s
 ## 2 1/4/2015   288         2775
 ## 3 1/3/2015   287         2769</code></pre>
 </div>
-<div id="saving-loading-r-objects" class="section level3">
-<h3><span class="header-section-number">2.4.4</span> Saving / loading R objects</h3>
+<div id="saving-and-loading-r-objects" class="section level3">
+<h3><span class="header-section-number">2.4.4</span> Saving and loading R objects</h3>
 <p>You can save an R object you’ve created as an <code>.RData</code> file.</p>
 <p>To save an R object in a <code>.RData</code> file, use the <code>save</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(ebola, <span class="dt">file =</span> <span class="st">&quot;Ebola.RData&quot;</span>)
@@ -596,7 +596,7 @@ ebola[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</s
 ## [21] &quot;RProgrammingForResearch.Rmd&quot;   &quot;RProgrammingForResearch.Rproj&quot;
 ## [23] &quot;slides&quot;                        &quot;style.css&quot;                    
 ## [25] &quot;toc.css&quot;                       &quot;vocabulary.Rmd&quot;</code></pre>
-<p>You can notice that, once you save the object, a new file named “Ebola.RData” is listed in the files in your current working directory. The default is for R to save the R object in your current working directory; to save it elsewhere, use a full relative or absolute pathname for the <code>file</code> argument.</p>
+<p>Notice that, once you save the object, a new file named “Ebola.RData” is listed in the files in your current working directory. The default is for R to save the R object in your current working directory; to save it elsewhere, use a full relative or absolute pathname for the <code>file</code> argument.</p>
 <p>Once you’ve saved an R object, you can re-load it later using the <code>load</code> function with the object’s file path. For example, since I’ve saved this R object, I can remove it from my current R workspace using the <code>rm</code> function, after which it will not show up when I run <code>ls</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(ebola)
 <span class="kw">ls</span>()</code></pre></div>
@@ -605,16 +605,16 @@ ebola[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;Ebola.RData&quot;</span>)
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code>## [1] &quot;ebola&quot;       &quot;ld_genetics&quot; &quot;my_dir&quot;      &quot;url&quot;</code></pre>
-<p>There is one caveat for saving R objects: some people suggest you avoid this if possible, to make your research more reproducible. Imagine someone wants to look at your data and code in 30 years. R might not work the same, so you might not be able to read an <code>.RData</code> file. Notice that, if you try to open an <code>.RData</code> file in a text edit, it won’t make any sense. However, you can open flat files (e.g., <code>.csv</code>, <code>.txt</code>) and R scripts (<code>.R</code>) in text editors– you should still be able to do this regardless of what happens to R. Some potential exceptions, when it might be useful to save an R object, include when:</p>
+<p>There is one caveat for saving R objects: some people suggest you avoid this if possible, to make your research more reproducible. Imagine someone wants to look at your data and code in 30 years. R might not work the same way, so you might not be able to read an <code>.RData</code> file. Notice that, if you try to open an <code>.RData</code> file in a text edit, it won’t make any sense. However, you can open flat files (e.g., <code>.csv</code>, <code>.txt</code>) and R scripts (<code>.R</code>) in text editors – you should still be able to do this regardless of what happens to R. Some potential exceptions, when it might be useful to save an R object, include when:</p>
 <ul>
 <li>You have an object that you need to save that has a structure that won’t work well in a flat file (a list rather than a dataframe, for example); or</li>
-<li>Your starting dataset is really, really large, and it would take a long time for you to read in your data fresh every time. In this case it may make sense to do some data cleaning and then save the cleaned R object as a <code>.RData</code> file, but be sure to also save the script you used to clean the raw data.</li>
+<li>Your starting dataset is very large, and it would take a long time for you to read in your data fresh every time. In this case it may make sense to do some data cleaning and then save the cleaned R object as a <code>.RData</code> file, but be sure to also save the script you used to clean the raw data.</li>
 </ul>
 </div>
 <div id="reading-other-file-types" class="section level3">
 <h3><span class="header-section-number">2.4.5</span> Reading other file types</h3>
 <p>Later in the course, we’ll talk about how to open a variety of other file types in R. However, you might find it immediately useful to be able to read in files from other statistical programs.</p>
-<p>There are two “tidyverse” packages– <code>readxl</code> and <code>haven</code>– that help with this. They allow you to read in files from the following formats:</p>
+<p>There are two “tidyverse” packages – <code>readxl</code> and <code>haven</code> – that help with this. They allow you to read in files from the following formats:</p>
 <table>
 <thead>
 <tr class="header">
@@ -650,7 +650,7 @@ ebola[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">1</s
 </div>
 <div id="data-cleaning" class="section level2">
 <h2><span class="header-section-number">2.5</span> Data cleaning</h2>
-<p>Once you have loaded data into R, you’ll likely need to clean it up some before you’re ready to analyze it. Here, I’ll go over the first steps of how to do that with functions from <code>dplyr</code>, another package in the tidyverse. Here are some of the most common data-cleaning tasks, along with the corresponding <code>dplyr</code> function for each:</p>
+<p>Once you have loaded data into R, you’ll likely need to clean it up a little before you’re ready to analyze it. Here, I’ll go over the first steps of how to do that with functions from <code>dplyr</code>, another package in the tidyverse. Here are some of the most common data-cleaning tasks, along with the corresponding <code>dplyr</code> function for each:</p>
 <table>
 <thead>
 <tr class="header">
@@ -753,7 +753,7 @@ Many of the functions in tidyverse packages, including those in <code>dplyr</cod
 ## # ... with 2,683 more rows</code></pre>
 <div class="rmdwarning">
 <p>
-Don’t forget that, if you want to change column names in the saved object, you must reassign the object to be the output of <code>rename</code>. If you run one of these cleaning functions without reassigning the object, R will print out the result, but the object itself won’t change. You can take advantage of this, as I’ve done in this example, to look at the result of applying a function to a dataframe without changing the original dataframe, which can be helpful as you’re figuring out how to write your code.
+Don’t forget that, if you want to change column names in the saved object, you must reassign the object to be the output of <code>rename</code>. If you run one of these cleaning functions without reassigning the object, R will print out the result, but the object itself won’t change. You can take advantage of this, as I’ve done in this example, to look at the result of applying a function to a dataframe without changing the original dataframe. This can be helpful as you’re figuring out how to write your code.
 </p>
 </div>
 <p>The <code>select</code> function also provides some time-saving tools. For example, in the last example, we wanted all the columns except one. Instead of writing out all the columns we want, we can use <code>-</code> with the columns we don’t want to save time:</p>
@@ -970,10 +970,10 @@ daily_show &lt;-<span class="st"> </span><span class="kw">filter</span>(daily_sh
 </tr>
 </tbody>
 </table>
-<p>To find out the class of a vector (including a column in a dataframe– remember each column can be thought of as a vector), you can use <code>class()</code>:</p>
+<p>To find out the class of a vector (including a column in a dataframe – remember each column can be thought of as a vector), you can use <code>class()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(daily_show$date)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<p>It is especially common to need to convert dates during the data cleaning process, since date columns will usually be read into R as characters or factors, and you can do some interesting things with vectors that are in a Date class that you cannot do with a vector in a character class. To convert a vector to the <code>Date</code> class, you can use the <code>as.Date</code> function. For example, to convert the <code>date</code> column in the <code>daily_show</code> data into a Date class, you can run:</p>
+<p>It is especially common to need to convert dates during the data cleaning process, since date columns will usually be read into R as characters or factors – you can do some interesting things with vectors that are in a Date class that you cannot do with a vector in a character class. To convert a vector to the <code>Date</code> class, you can use the <code>as.Date</code> function. For example, to convert the <code>date</code> column in the <code>daily_show</code> data into a Date class, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">mutate</span>(daily_show,
                      <span class="dt">date =</span> <span class="kw">as.Date</span>(date, <span class="dt">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>))
 <span class="kw">head</span>(daily_show, <span class="dv">3</span>)</code></pre></div>
