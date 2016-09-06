@@ -8,7 +8,7 @@
   <title>R Programming for Research</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.1.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-08-30">
+<meta name="date" content="2016-09-06">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week3.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
 <div id="data-from-a-package" class="section level2">
 <h2><span class="header-section-number">3.1</span> Data from a package</h2>
-<p>So far you have gotten data to use in R three ways:</p>
+<p>So far we’ve covered three ways to get data into R:</p>
 <ol style="list-style-type: decimal">
 <li>From flat files (either on your computer or online)</li>
 <li>From files like SAS and Excel</li>
@@ -343,14 +343,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.3.1</span> Loading data from an R package</h3>
 <p>The data we’ll be using today is from a dataset called <code>worldcup</code> in the package <code>faraway</code>. Load that data so you can use it on your computer (note: you will need to load and install the <code>faraway</code> package to do this). Use the help file for the data to find out more about the dataset. Use some basic functions, like <code>head</code>, <code>tail</code>, <code>colnames</code>, <code>str</code>, and <code>summary</code> to check out the data a bit. See if you can figure out:</p>
 <ul>
-<li>What variables are included in this dataset (check the column names)?</li>
+<li>What variables are included in this dataset? (Check the column names.)</li>
 <li>What class is each column currently? In particular, which are numbers and which are factors?</li>
 </ul>
 <div id="example-r-code" class="section level4">
 <h4><span class="header-section-number">3.3.1.1</span> Example R code:</h4>
 <p>Load the <code>faraway</code> package using <code>load()</code> and then load the data using <code>data()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Uncomment the next line if you need to install the package
-<span class="co"># install.packages(&quot;faraway&quot;&quot;)</span>
+<span class="co"># install.packages(&quot;faraway&quot;)</span>
 <span class="kw">library</span>(faraway)
 <span class="kw">data</span>(<span class="st">&quot;worldcup&quot;</span>)</code></pre></div>
 <p>Check out the help file for the <code>worldcup</code> dataset to find out more about the data. (Note: Only datasets that are parts of packages will have help files.)</p>
@@ -435,16 +435,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-2.png" width="288" /></p>
 <p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;GGally&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:faraway&#39;:
-## 
-##     happy</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     nasa</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+<span class="kw">library</span>(dplyr)
 <span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
@@ -467,9 +459,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="if-you-have-extra-time" class="section level4">
 <h4><span class="header-section-number">3.3.2.2</span> If you have extra time:</h4>
-<ul>
-<li>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, to create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</li>
-</ul>
+<p>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, you could create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with the column names for all of the numeric variables
 my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span>:<span class="dv">7</span>]
 
@@ -505,7 +495,7 @@ for(var in my_vars){
 ## 1 Uruguay Midfielder  570     5    195      21     0
 ## 2 Uruguay Midfielder  570     5    182      15     0
 ## 3 Uruguay Goalkeeper  570     0     75       0    16</code></pre>
-<p>Here are some extra lines of code that do things you might want to do related to this. First, if you wanted to create a vector that had the team names of the teams of the players that played the max time, you could again use the square bracket indexing to pull the right rows, and then specify in the indexing that you just wanted the values of the column <code>Team</code> for those rows.</p>
+<p>Here are some extra lines of code for tasks related to these questions. First, if you wanted to create a vector that had the team names of the teams of the players that played the max time, you could again use the square bracket indexing to pull the right rows, and then specify in the indexing that you just wanted the values of the column <code>Team</code> for those rows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(Time ==<span class="st"> </span><span class="kw">max</span>(Time)) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(Team) </code></pre></div>
@@ -585,7 +575,7 @@ for(var in my_vars){
 <li>Plot temperature (x-axis) versus dewpoint temperature (y-axis) for Chicago. Add in the regression line from the model you fit.</li>
 <li>Use <code>plot()</code> on the model object to check if some of the assumptions for the regression model seem appropriate.</li>
 <li>Try fitting the regression as a GLM, using <code>glm()</code>. Are your coefficients different?</li>
-<li>Does PM10 vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable, and then run <code>anova()</code> on that model, and R will compare it to an intercept-only model.) What day of the week is PM10 generally highest (check the model coefficients to figure this out)? Try to write out (on paper) the regression equation for the model you’re fitting.</li>
+<li>Does PM10 vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable, and then run <code>anova()</code> on that model, and R will compare it to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you’re fitting.</li>
 <li>Try using <code>glm()</code> to run a Poisson regression of respiratory deaths (<code>resp</code>) on temperature during summer days. Start by creating a subset with just summer days called <code>summer</code>. (Hint: Use the <code>month</code> variable to do this– just pull out the subset where the month is 6, 7, or 8, for June, July, and August.) Try to write out the regression equation for the model you’re fitting.</li>
 <li>The coefficient for the temperature variable in this model is our best estimate (based on this model) of the <strong>log relative risk</strong> for a one degree Celcius increase in temperature. What is the <strong>relative risk</strong> associated with a one degree Celsius increase?</li>
 </ul>
@@ -638,7 +628,7 @@ mod_1</code></pre></div>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-158-2.png" width="672" /></p>
 <p>Plot some various plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel-- 2 rows, 2 columns</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
 <span class="kw">plot</span>(mod_1)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-159-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
