@@ -269,6 +269,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;swirl&quot;</span>)</code></pre></div>
 <p>Next, load the swirl package. We’re going to download a course from swirl’s <a href="https://github.com/swirldev/swirl_courses">course repository</a> called R Programming E using the function <code>install_course_github</code>. Then call the <code>swirl()</code> function to enter the interactive platform:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(swirl)
+<span class="kw">uninstall_course</span>(<span class="st">&quot;R_Programming_E&quot;</span>) <span class="co"># Only run if you have an old version of</span>
+                                    <span class="co"># R_Programming_E installed</span>
 <span class="kw">install_course_github</span>(<span class="st">&quot;swirldev&quot;</span>, <span class="st">&quot;R_Programming_E&quot;</span>)
 <span class="kw">swirl</span>()</code></pre></div>
 <div class="rmdnote">
