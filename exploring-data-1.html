@@ -408,32 +408,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Use some basic plots to check out this data. Try the following:</p>
 <ul>
 <li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>)</li>
-<li>Plot scatterplots of different combinations of numeric variables (e.g., <code>Time</code> vs. <code>Shots</code>). Try doing this using the <code>plot()</code> function. Also try doing it using the <code>pairs()</code> function, to plot several of these at the same time.</li>
+<li>Plot scatterplots of different combinations of numeric variables (e.g., <code>Time</code> vs. <code>Shots</code>). Try doing this using the <code>geom_point()</code> geom from <code>ggplot2</code>. Also try doing it using the <code>ggpairs()</code> function from the <code>GGally</code> package, to plot several of these at the same time. Try using different constant or mapped values with the <code>color</code> aesthetic.</li>
 <li>Create boxplots of <code>Time</code>, <code>Shots</code>, <code>Passes</code> and <code>Saves</code> by position.</li>
 <li>Go online and find out which teams were the top four teams in this World Cup (i.e., first through fourth places). Create a <code>top_teams</code> subset with just these teams. Plot boxplots of <code>Shots</code> and <code>Saves</code> by team for just these teams.</li>
 <li>Did you notice any interesting features of the data when you did any of the graphs in this section?</li>
 </ul>
 <div id="example-r-code-1" class="section level4">
 <h4><span class="header-section-number">3.3.2.1</span> Example R code:</h4>
-<p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins=</code> option. You can use this to either say how many bins you want (e.g., <code>breaks = 50</code>) or to say where you want breaks in the bins to be (e.g., <code>breaks = c(1, 2, 3)</code> if you wanted breaks at the variables values of 1, 2, and 3).</p>
+<p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-1.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-2.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-3.png" width="288" /></p>
-<p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>cex =</code> option (use a number lower than 1 for smaller points, higher than 1 for larger points). If you want to save time typing out the name of the dataframe, you can try using the <code>with()</code> function, so you only have to type the dataframe name once.</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-3.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-1.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-2.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-2.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-3.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">library</span>(dplyr)
@@ -442,7 +450,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-141-1.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-141-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) %&gt;%<span class="st"> </span>
