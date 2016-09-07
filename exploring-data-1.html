@@ -191,7 +191,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
 <li class="chapter" data-level="3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#data-from-a-package"><i class="fa fa-check"></i><b>3.1</b> Data from a package</a></li>
-<li class="chapter" data-level="3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plots-to-explore-data"><i class="fa fa-check"></i><b>3.2</b> Plots to explore data</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plots-to-explore-data"><i class="fa fa-check"></i><b>3.2</b> Plots to explore data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>3.2.1</b> Initializing a ggplot object</a></li>
+<li class="chapter" data-level="3.2.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plot-aesthetics"><i class="fa fa-check"></i><b>3.2.2</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="3.2.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#adding-geoms"><i class="fa fa-check"></i><b>3.2.3</b> Adding geoms</a></li>
+<li class="chapter" data-level="3.2.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#constant-aesthetics"><i class="fa fa-check"></i><b>3.2.4</b> Constant aesthetics</a></li>
+<li class="chapter" data-level="3.2.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#useful-plot-additions"><i class="fa fa-check"></i><b>3.2.5</b> Useful plot additions</a></li>
+<li class="chapter" data-level="3.2.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#example-dataset"><i class="fa fa-check"></i><b>3.2.6</b> Example dataset</a></li>
+<li class="chapter" data-level="3.2.7" data-path="exploring-data-1.html"><a href="exploring-data-1.html#histograms"><i class="fa fa-check"></i><b>3.2.7</b> Histograms</a></li>
+<li class="chapter" data-level="3.2.8" data-path="exploring-data-1.html"><a href="exploring-data-1.html#scatterplots"><i class="fa fa-check"></i><b>3.2.8</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.2.9" data-path="exploring-data-1.html"><a href="exploring-data-1.html#boxplots"><i class="fa fa-check"></i><b>3.2.9</b> Boxplots</a></li>
+<li class="chapter" data-level="3.2.10" data-path="exploring-data-1.html"><a href="exploring-data-1.html#extensions-of-ggplot2"><i class="fa fa-check"></i><b>3.2.10</b> Extensions of <code>ggplot2</code></a></li>
+</ul></li>
 <li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.3</b> In-course exercise</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.3.1</b> Loading data from an R package</a></li>
 <li class="chapter" data-level="3.3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.3.2</b> Basic plots of the data</a></li>
@@ -269,73 +280,232 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">3.2</span> Plots to explore data</h2>
 <p>Plots can be invaluable in exploring your data. In this section, I will focus on teaching you the basics of <code>ggplot2</code> plotting. This section will focus on making <strong>useful</strong>, rather than <strong>attractive</strong> graphs, since we are focusing on exploring rather than presenting data at this stage. In a later section, I will discuss customization of <code>ggplot2</code> plots, to help you make more attractive plots that would go into final reports.</p>
 <p>This chapter covers how to make the following types of basic plots using functions from the <code>ggplot2</code> package (another member of the tidyverse!):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
+<p>The basic steps behind creating a plot with <code>ggplot2</code> are:</p>
+<ol style="list-style-type: decimal">
+<li>You’ll create an object of the <code>ggplot</code> class, typically specifying the <strong>aesthetics</strong>;</li>
+<li>You’ll add on <strong>geoms</strong> and other elements to create and customize the plot, using <code>+</code>.</li>
+</ol>
+<p><em>Note</em>: To avoid errors, end lines with <code>+</code>, don’t start lines with it.</p>
+<div id="initializing-a-ggplot-object" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Initializing a ggplot object</h3>
+<p>Use the following conventions to initialize a ggplot object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
+object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> column_1, <span class="dt">y =</span> column_2))</code></pre></div>
+<p>Notice that you first specify the dataframe with the data you want to plot and then you might specify either <strong>mappings</strong> or constant values for some or all of the aesthetics (<code>aes</code>).</p>
+</div>
+<div id="plot-aesthetics" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Plot aesthetics</h3>
+<p><strong>Aesthetics</strong> are elements that can show certain elements of the data. </p>
+<p>For example, color might show gender, x-position might show height, and y-position might show weight. </p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-133-1.png" width="0.6\textwidth" style="display: block; margin: auto;" /></p>
+<p>In this graph, the mapped aesthetics are color, x, and y. </p>
+<p><em>Note</em>: Any of these aesthetics could also be given a constant value, instead of being mapped to an element of the data. For example, all the points could be red, instead of showing gender.</p>
+<p>Here are some common plot aesthetics you might want to specify:</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Plot type</th>
-<th align="left">Aesthetics</th>
-<th align="left">ggplot2 function</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Histogram</td>
-<td align="left">one numeric variable</td>
-<td align="left"><code>geom_histogram</code></td>
-</tr>
-<tr class="even">
-<td align="left">Scatterplot</td>
-<td align="left">two numeric variables</td>
-<td align="left"><code>geom_point</code></td>
-</tr>
-<tr class="odd">
-<td align="left">Boxplot</td>
-<td align="left">one numeric variable, possibly stratified by a factor variable</td>
-<td align="left"><code>geom_boxplot</code></td>
-</tr>
-</tbody>
-</table>
-<p>The following options will work in many of the <code>ggplot2</code> geoms plotting functions:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Option</th>
+<th align="left">Code</th>
 <th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>color</code></td>
-<td align="left">Color of a plotting element</td>
+<td align="left"><code>x</code></td>
+<td align="left">Position on x-axis</td>
 </tr>
 <tr class="even">
-<td align="left"><code>fill</code></td>
-<td align="left">Color used to fill the plotting element</td>
+<td align="left"><code>y</code></td>
+<td align="left">Position on y-axis</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>size</code></td>
-<td align="left">Size of points on plot (&gt; 1 for larger, &lt; 1 for smaller)</td>
-</tr>
-<tr class="even">
 <td align="left"><code>shape</code></td>
-<td align="left">Shape to use for the point</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>linetype</code></td>
-<td align="left">Type of line to use (e.g., solid, dashed)</td>
+<td align="left">Shape</td>
 </tr>
 <tr class="even">
+<td align="left"><code>color</code></td>
+<td align="left">Color of border of elements</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fill</code></td>
+<td align="left">Color of inside of elements</td>
+</tr>
+<tr class="even">
+<td align="left"><code>size</code></td>
+<td align="left">Size</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>alpha</code></td>
-<td align="left">Transparency (closer to 1 for more opaque, closer to 0 for more transparent)</td>
+<td align="left">Transparency (1: opaque; 0: transparent)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>linetype</code></td>
+<td align="left">Type of line (e.g., solid, dashed)</td>
 </tr>
 </tbody>
 </table>
+<p>Which aesthetics you must specify depend on which geoms (more on those in a second) you’re adding to the plot. </p>
+<p>You can find out the aesthetics you can use for a geom in the “Aesthetics” section of the geom’s help file (e.g., <code>?geom_point</code>). </p>
+<p>Required aesthetics are in bold in this section of the help file and optional ones are not.</p>
+</div>
+<div id="adding-geoms" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Adding geoms</h3>
+<p>Next, you’ll want to add one or more <code>geoms</code> to create the plot. You can add these with <code>+</code> after the <code>ggplot</code> statement to initialize the ggplot object. </p>
+<p>Some of the most common geoms are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Plot type</th>
+<th align="left">ggplot2 function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Histogram (1 numeric variable)</td>
+<td align="left"><code>geom_histogram</code></td>
+</tr>
+<tr class="even">
+<td align="left">Scatterplot (2 numeric variables)</td>
+<td align="left"><code>geom_point</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Boxplot (1 numeric variable, possibly 1 factor variable)</td>
+<td align="left"><code>geom_boxplot</code></td>
+</tr>
+<tr class="even">
+<td align="left">Line graph (2 numeric variables)</td>
+<td align="left"><code>geom_line</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="constant-aesthetics" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Constant aesthetics</h3>
+<p>Instead of mapping an aesthetic to an element of your data, you can use a constant value for it. For example, you may want to make all the points green, rather than having color map to gender:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-136-1.png" width="0.6\textwidth" style="display: block; margin: auto;" /></p>
+<p>In this case, you’ll define that aesthetic when you add the geom, outside of an <code>aes</code> statement.</p>
+<p>If you’re using a constant shape, you specify the shape with a number. </p>
+<p>Here are the shapes that correspond to the numbers 1 to 25:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-137-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>If you are using a constant color, R has character names for different colors. For example:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Google “R colors” and search the images to find links to listings of different R colors.</p>
+</div>
+<div id="useful-plot-additions" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Useful plot additions</h3>
+<p>There are also a number of elements that you can add onto a <code>ggplot</code> object using <code>+</code>. A few very frequently used ones are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Element</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>ggtitle</code></td>
+<td align="left">Plot title</td>
+</tr>
+<tr class="even">
+<td align="left"><code>xlab</code>, <code>ylab</code></td>
+<td align="left">x- and y-axis labels</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>xlim</code>, <code>ylim</code></td>
+<td align="left">Limits of x- and y-axis</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-dataset" class="section level3">
+<h3><span class="header-section-number">3.2.6</span> Example dataset</h3>
 <p>For the example plots, I’ll use a dataset in the <code>faraway</code> package called <code>nepali</code>. This gives data from a study of the health of a group of Nepalese children.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(faraway)
 <span class="kw">data</span>(nepali)</code></pre></div>
-<p>I’ll be using functions from <code>dplyr</code> and <code>ggplot2</code>:</p>
+<p>I’ll be using functions from <code>dplyr</code> and <code>ggplot2</code>, so those need to be loaded:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)</code></pre></div>
+<p>Each observation is a single measurement for a child; there can be multiple observations per child. </p>
+<p>I’ll subset out child id, sex, weight, height, and age, and I’ll limit to each child’s first measurement.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%
+<span class="st">  </span><span class="co"># Subset to certain columns</span>
+<span class="st">  </span><span class="kw">select</span>(id, sex, wt, ht, age) %&gt;%
+<span class="st">  </span><span class="co"># Convert id and sex to factors</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">factor</span>(id),
+         <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
+                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))) %&gt;%
+<span class="st">  </span><span class="co"># Limit to first obs. per child</span>
+<span class="st">  </span><span class="kw">distinct</span>(id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>The data now looks like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali)</code></pre></div>
+<pre><code>##       id    sex   wt    ht age
+## 1 120011   Male 12.8  91.2  41
+## 2 120012 Female 14.9 103.9  57
+## 3 120021 Female  7.7  70.1   8
+## 4 120022 Female 12.1  86.4  35
+## 5 120023   Male 14.2  99.4  49
+## 6 120031   Male 13.9  96.4  46</code></pre>
+</div>
+<div id="histograms" class="section level3">
+<h3><span class="header-section-number">3.2.7</span> Histograms</h3>
+<p>For <code>geom_histogram()</code>, the main aesthetic is <code>x</code>, the (numeric) vector for which you want to create a histogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-144-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>You can add some elements to the histogram, like <code>ggtitle</code>, <code>xlab</code>, and <code>xlim</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Height of children&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>))</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-145-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p><code>geom_histogram</code> also has its own special argument, <code>bins</code>. You can use this to change the number of bins that are used to make the histogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,
+                 <span class="dt">bins =</span> <span class="dv">40</span>) </code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-146-1.png" width="240" style="display: block; margin: auto;" /></p>
+</div>
+<div id="scatterplots" class="section level3">
+<h3><span class="header-section-number">3.2.8</span> Scatterplots</h3>
+<p>You can use the <code>geom_point</code> geom to create a scatterplot. For example, to create a scatterplot of height versus age for the Nepali data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>Again, you can use some of the options and additions to change the plot appearance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-148-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>You can also try mapping another variable, <code>sex</code>, to the <code>color</code> aesthetic:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt, <span class="dt">color =</span> sex)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-149-1.png" width="336" style="display: block; margin: auto;" /></p>
+</div>
+<div id="boxplots" class="section level3">
+<h3><span class="header-section-number">3.2.9</span> Boxplots</h3>
+<p>To create a boxplot, use <code>geom_boxplot</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> ht)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-150-1.png" width="192" style="display: block; margin: auto;" /></p>
+<p>You can also create separate boxplots, one for each level of a factor. In this case, you’ll need to include two aesthetics (<code>x</code> and <code>y</code>) when you initialize the ggplot object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> ht, <span class="dt">group =</span> sex)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sex&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>) </code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-151-1.png" width="240" style="display: block; margin: auto;" /></p>
+</div>
+<div id="extensions-of-ggplot2" class="section level3">
+<h3><span class="header-section-number">3.2.10</span> Extensions of <code>ggplot2</code></h3>
+<p>There are lots of R extensions for creating other interesting plots. </p>
+<p>For example, you can use the <code>ggpairs</code> function from the <code>GGally</code> package to plot all pairs of scatterplots for several variables. </p>
+<p>Notice how this output shows continuous and binary variables differently. </p>
+<p>The next slide shows the output for:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+<span class="kw">ggpairs</span>(nepali[, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;age&quot;</span>)])</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-152-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 <div id="in-course-exercise-2" class="section level2">
 <h2><span class="header-section-number">3.3</span> In-course exercise</h2>
@@ -419,38 +589,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-139-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">library</span>(dplyr)
 <span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-158-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-141-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-159-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) %&gt;%<span class="st"> </span>
@@ -460,11 +630,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-143-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-161-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-143-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-161-2.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="if-you-have-extra-time" class="section level4">
 <h4><span class="header-section-number">3.3.2.2</span> If you have extra time:</h4>
@@ -483,7 +653,7 @@ for(var in my_vars){
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Histogram of&quot;</span>, var))
   <span class="kw">plot</span>(a)
 }</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-144-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-144-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-144-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-144-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-144-5.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-5.png" width="288" /></p>
 <p>A few things to note in this example:</p>
 <ul>
 <li>To map an element of the data to an aesthetic, it’s easiest if that element is saved in a column in the dataframe. Within this loop, I’m making an extra column called <code>to_plot</code>, where I’m copying the column of the variable I want to plot each time the loop runs. That way, I can always use <code>x = to_plot</code> in the aesthetic mapping for the ggplot object.</li>
@@ -646,16 +816,16 @@ mod_1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_1)
 <span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-159-2.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-177-2.png" width="672" /></p>
 <p>Plot some various plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
 <span class="kw">plot</span>(mod_1)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-160-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-178-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
 <p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp ~<span class="st"> </span>temp, <span class="dt">data =</span> chic)
@@ -709,13 +879,13 @@ mod_1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <pre><code>## Warning: Removed 251 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-164-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-182-1.png" width="576" /></p>
 <p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
 <pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-165-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-183-1.png" width="576" /></p>
 <p>Create a subset called <code>summer</code> with just the summer days:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(month %in%<span class="st"> </span><span class="dv">6</span>:<span class="dv">8</span>)</code></pre></div>
