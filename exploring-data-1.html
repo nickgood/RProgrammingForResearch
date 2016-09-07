@@ -446,7 +446,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">library</span>(dplyr)
 <span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-140-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
@@ -460,11 +460,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-143-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-143-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-143-2.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-143-2.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="if-you-have-extra-time" class="section level4">
 <h4><span class="header-section-number">3.3.2.2</span> If you have extra time:</h4>
@@ -497,7 +497,7 @@ for(var in my_vars){
 <p>Next, try checking out the data using some basic commands for simple statistics, like <code>mean()</code>, <code>range()</code>, <code>max()</code>, and <code>min()</code>. Use these, along with some logical statements, to help you answer the following questions:</p>
 <ul>
 <li>What is the range of time that players spent in the game? Who played the most World Cup time in this World Cup? For the minimum of the range of <code>Time</code>, how many players played this amount of time?</li>
-<li>What is the mean number of saves that players made? How many of the players are goalkeepers? What is the mean number of saves just among the goalkeepers? Did any non-goalkeeper make a save?</li>
+<li>What is the mean number of saves that players made? What is the mean number of saves just among the goalkeepers? How many of the players are goalkeepers? Did any non-goalkeeper make a save?</li>
 </ul>
 <div id="example-r-code-2" class="section level4">
 <h4><span class="header-section-number">3.3.3.1</span> Example R code:</h4>
@@ -528,24 +528,9 @@ for(var in my_vars){
 ## 1 Uruguay Midfielder  570     5    195      21     0       0 Arevalo Rios
 ## 2 Uruguay Midfielder  570     5    182      15     0       0 Maxi Pereira
 ## 3 Uruguay Goalkeeper  570     0     75       0    16      16      Muslera</code></pre>
-<p>Here are some extra lines of code for tasks related to these questions. First, if you wanted to create a vector that had the team names of the teams of the players that played the max time, you could again use the square bracket indexing to pull the right rows, and then specify in the indexing that you just wanted the values of the column <code>Team</code> for those rows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Time ==<span class="st"> </span><span class="kw">max</span>(Time)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Team) </code></pre></div>
-<pre><code>##      Team
-## 1 Uruguay
-## 2 Uruguay
-## 3 Uruguay</code></pre>
-<p>If you wanted just the players’ names, those are saved as row names rather than as a separate column, so you could use <code>rownames()</code> to pull those out of the subsetted data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">name =</span> <span class="kw">row.names</span>(worldcup)) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Time ==<span class="st"> </span><span class="kw">max</span>(Time)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(name)</code></pre></div>
-<pre><code>##           name
-## 1 Arevalo Rios
-## 2 Maxi Pereira
-## 3      Muslera</code></pre>
-<p>To calculate the mean number of saves among all the players, use <code>mean()</code>:</p>
+<p>To calculate the mean number of saves among all the players, use the <code>mean</code> function, either by itself or within a <code>summarize</code> call:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(worldcup$Saves)</code></pre></div>
+<pre><code>## [1] 0.6672269</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_saves =</span> <span class="kw">mean</span>(Saves))</code></pre></div>
 <pre><code>##   mean_saves
@@ -559,23 +544,25 @@ for(var in my_vars){
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(goalie)</code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
 ## logical     559      36       0</code></pre>
-<p>There are a few ways to use this vector to figure out how many players were goalkeepers. First, you could use <code>summary()</code> (which I just showed) or <code>table()</code>, and just read how many times this vector has the value <code>TRUE</code>. Second, since R saves logical vectors with <code>TRUE</code> as 1 and <code>FALSE</code> as 0, you could just <code>sum()</code> the vector to find out how often it’s <code>TRUE</code>.</p>
+<p>There are a few ways to use this vector to figure out how many players were goalkeepers. First, you could use <code>summary</code> (which I just showed) or <code>table</code>, and just read how many times this vector has the value <code>TRUE</code>. Second, since R saves logical vectors with <code>TRUE</code> as 1 and <code>FALSE</code> as 0, you could just the <code>sum</code> function to add up the vector to find out how often it’s <code>TRUE</code> (<code>sum</code> adds up every value in the vector).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(goalie)</code></pre></div>
 <pre><code>## goalie
 ## FALSE  TRUE 
 ##   559    36</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(goalie)</code></pre></div>
 <pre><code>## [1] 36</code></pre>
+<p>You could also answer this question by using <code>summarize</code> from <code>dplyr</code>. You need to <code>group_by</code> player position and then you can use the <code>n</code> function in <code>summarize</code> to count up the total number of observations in each group:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">goalie =</span> Position ==<span class="st"> &quot;Goalkeeper&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(goalie) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Position) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_players =</span> <span class="kw">n</span>())</code></pre></div>
-<pre><code>## # A tibble: 2 × 2
-##   goalie n_players
-##    &lt;lgl&gt;     &lt;int&gt;
-## 1  FALSE       559
-## 2   TRUE        36</code></pre>
-<p>Now, you can answer the questions about mean saves for goalies and max saves for non-goalies. If you put <code>goalie</code> in the square bracket indexing as the rows value, R will just subset out the rows where <code>goalie</code> is equal to TRUE. If you put <code>!goalie</code> in the square bracket indexing as the rows value, R will just subset out the rows where <code>goalie</code> is equal to FALSE.</p>
+<pre><code>## # A tibble: 4 × 2
+##     Position n_players
+##       &lt;fctr&gt;     &lt;int&gt;
+## 1   Defender       188
+## 2    Forward       143
+## 3 Goalkeeper        36
+## 4 Midfielder       228</code></pre>
+<p>Now, you can answer the questions about mean saves for goalies and max saves for non-goalies. First, try doing that using the <code>goalie</code> logical vector you created. If you put <code>goalie</code> in the square bracket indexing for the dataframe as the rows value (i.e., the index before the comma), R will subset out just the rows where <code>goalie</code> is equal to TRUE. If you put <code>!goalie</code> in the square bracket indexing as the rows value, R will just subset out the rows where <code>goalie</code> is equal to FALSE. You can use this index subsetting to figure out the mean number of saves per goalie and also whether any non-goalie made a save (by checking the maximum value or range of saves for non-goalies).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(worldcup[goalie, ])</code></pre></div>
 <pre><code>##                 Team   Position Time Shots Passes Tackles Saves to_plot
 ## Barry    Ivory Coast Goalkeeper  270     0     23       0     8       8
@@ -584,18 +571,23 @@ for(var in my_vars){
 ## Buffon         Italy Goalkeeper   45     0      4       0     0       0
 ## Casillas       Spain Goalkeeper  540     0     67       0    11      11
 ## Chaouchi     Algeria Goalkeeper   90     0     17       0     2       2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(worldcup %&gt;%<span class="st"> </span><span class="kw">filter</span>(Position ==<span class="st"> &quot;Goalkeeper&quot;</span>))</code></pre></div>
-<pre><code>##          Team   Position Time Shots Passes Tackles Saves to_plot
-## 1 Ivory Coast Goalkeeper  270     0     23       0     8       8
-## 2 Switzerland Goalkeeper  270     0     75       0    11      11
-## 3       Chile Goalkeeper  360     0     58       0     4       4
-## 4       Italy Goalkeeper   45     0      4       0     0       0
-## 5       Spain Goalkeeper  540     0     67       0    11      11
-## 6     Algeria Goalkeeper   90     0     17       0     2       2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(worldcup[goalie, <span class="st">&quot;Saves&quot;</span>])</code></pre></div>
 <pre><code>## [1] 11.02778</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup[!goalie, <span class="st">&quot;Saves&quot;</span>])</code></pre></div>
 <pre><code>## [1] 0 0</code></pre>
+<p>You could also answer this quesiton using a <code>dplyr</code> pipe chain to summarize the data after grouping it by position:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Position) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">number_players =</span> <span class="kw">n</span>(), 
+            <span class="dt">mean_saves =</span> <span class="kw">mean</span>(Saves),
+            <span class="dt">max_saves =</span> <span class="kw">max</span>(Saves))</code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##     Position number_players mean_saves max_saves
+##       &lt;fctr&gt;          &lt;int&gt;      &lt;dbl&gt;     &lt;int&gt;
+## 1   Defender            188    0.00000         0
+## 2    Forward            143    0.00000         0
+## 3 Goalkeeper             36   11.02778        20
+## 4 Midfielder            228    0.00000         0</code></pre>
 </div>
 </div>
 <div id="using-regression-models-to-explore-data" class="section level3">
