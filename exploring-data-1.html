@@ -203,11 +203,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.9" data-path="exploring-data-1.html"><a href="exploring-data-1.html#boxplots"><i class="fa fa-check"></i><b>3.2.9</b> Boxplots</a></li>
 <li class="chapter" data-level="3.2.10" data-path="exploring-data-1.html"><a href="exploring-data-1.html#extensions-of-ggplot2"><i class="fa fa-check"></i><b>3.2.10</b> Extensions of <code>ggplot2</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.3</b> In-course exercise</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.3.1</b> Loading data from an R package</a></li>
-<li class="chapter" data-level="3.3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.3.2</b> Basic plots of the data</a></li>
-<li class="chapter" data-level="3.3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.3.3</b> Exploring the data using simple statistics and logical statements</a></li>
-<li class="chapter" data-level="3.3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.3.4</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a></li>
+<li class="chapter" data-level="3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#logical-vectors"><i class="fa fa-check"></i><b>3.4</b> Logical vectors</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.5</b> In-course exercise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.5.1</b> Loading data from an R package</a></li>
+<li class="chapter" data-level="3.5.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.5.2</b> Basic plots of the data</a></li>
+<li class="chapter" data-level="3.5.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.5.3</b> Exploring the data using simple statistics and logical statements</a></li>
+<li class="chapter" data-level="3.5.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.5.4</b> Using regression models to explore data</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -296,10 +298,9 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 </div>
 <div id="plot-aesthetics" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Plot aesthetics</h3>
-<p><strong>Aesthetics</strong> are elements that can show certain elements of the data. </p>
-<p>For example, color might show gender, x-position might show height, and y-position might show weight. </p>
+<p><strong>Aesthetics</strong> are elements that can show certain elements of the data. For example, color might show gender, x-position might show height, and y-position might show weight.</p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-133-1.png" width="0.6\textwidth" style="display: block; margin: auto;" /></p>
-<p>In this graph, the mapped aesthetics are color, x, and y. </p>
+<p>In this graph, the mapped aesthetics are color, x, and y.</p>
 <p><em>Note</em>: Any of these aesthetics could also be given a constant value, instead of being mapped to an element of the data. For example, all the points could be red, instead of showing gender.</p>
 <p>Here are some common plot aesthetics you might want to specify:</p>
 <table>
@@ -344,14 +345,11 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 </tr>
 </tbody>
 </table>
-<p>Which aesthetics you must specify depend on which geoms (more on those in a second) you’re adding to the plot. </p>
-<p>You can find out the aesthetics you can use for a geom in the “Aesthetics” section of the geom’s help file (e.g., <code>?geom_point</code>). </p>
-<p>Required aesthetics are in bold in this section of the help file and optional ones are not.</p>
+<p>Which aesthetics you must specify depend on which geoms (more on those in a second) you’re adding to the plot. You can find out the aesthetics you can use for a geom in the “Aesthetics” section of the geom’s help file (e.g., <code>?geom_point</code>). Required aesthetics are in bold in this section of the help file and optional ones are not.</p>
 </div>
 <div id="adding-geoms" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Adding geoms</h3>
-<p>Next, you’ll want to add one or more <code>geoms</code> to create the plot. You can add these with <code>+</code> after the <code>ggplot</code> statement to initialize the ggplot object. </p>
-<p>Some of the most common geoms are:</p>
+<p>Next, you’ll want to add one or more <code>geoms</code> to create the plot. You can add these with <code>+</code> after the <code>ggplot</code> statement to initialize the ggplot object. Some of the most common geoms are:</p>
 <table>
 <thead>
 <tr class="header">
@@ -384,8 +382,7 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <p>Instead of mapping an aesthetic to an element of your data, you can use a constant value for it. For example, you may want to make all the points green, rather than having color map to gender:</p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-136-1.png" width="0.6\textwidth" style="display: block; margin: auto;" /></p>
 <p>In this case, you’ll define that aesthetic when you add the geom, outside of an <code>aes</code> statement.</p>
-<p>If you’re using a constant shape, you specify the shape with a number. </p>
-<p>Here are the shapes that correspond to the numbers 1 to 25:</p>
+<p>If you’re using a constant shape, you specify the shape with a number. Here are the shapes that correspond to the numbers 1 to 25:</p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-137-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>If you are using a constant color, R has character names for different colors. For example:</p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-138-1.png" width="480" style="display: block; margin: auto;" /></p>
@@ -425,8 +422,7 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <p>I’ll be using functions from <code>dplyr</code> and <code>ggplot2</code>, so those need to be loaded:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)</code></pre></div>
-<p>Each observation is a single measurement for a child; there can be multiple observations per child. </p>
-<p>I’ll subset out child id, sex, weight, height, and age, and I’ll limit to each child’s first measurement.</p>
+<p>Each observation is a single measurement for a child; there can be multiple observations per child. I’ll subset out child id, sex, weight, height, and age, and I’ll limit to each child’s first measurement.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%
 <span class="st">  </span><span class="co"># Subset to certain columns</span>
 <span class="st">  </span><span class="kw">select</span>(id, sex, wt, ht, age) %&gt;%
@@ -498,26 +494,147 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 </div>
 <div id="extensions-of-ggplot2" class="section level3">
 <h3><span class="header-section-number">3.2.10</span> Extensions of <code>ggplot2</code></h3>
-<p>There are lots of R extensions for creating other interesting plots. </p>
-<p>For example, you can use the <code>ggpairs</code> function from the <code>GGally</code> package to plot all pairs of scatterplots for several variables. </p>
-<p>Notice how this output shows continuous and binary variables differently. </p>
-<p>The next slide shows the output for:</p>
+<p>There are lots of R extensions for creating other interesting plots. For example, you can use the <code>ggpairs</code> function from the <code>GGally</code> package to plot all pairs of scatterplots for several variables. Notice how this output shows continuous and binary variables differently.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">ggpairs</span>(nepali[, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;age&quot;</span>)])</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-152-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 </div>
 </div>
+<div id="simple-statistics-functions" class="section level2">
+<h2><span class="header-section-number">3.3</span> Simple statistics functions</h2>
+<p>Here are some simple statistics functions you will likely use often:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>range()</code></td>
+<td align="left">Range (minimum and maximum) of vector</td>
+</tr>
+<tr class="even">
+<td align="left"><code>min()</code>, <code>max()</code></td>
+<td align="left">Minimum or maximum of vector</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>mean()</code>, <code>median()</code></td>
+<td align="left">Mean or median of vector</td>
+</tr>
+<tr class="even">
+<td align="left"><code>table()</code></td>
+<td align="left">Number of observations per level for a factor vector</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>cor()</code></td>
+<td align="left">Determine correlation(s) between two or more vectors</td>
+</tr>
+<tr class="even">
+<td align="left"><code>summary()</code></td>
+<td align="left">Summary statistics, depends on class</td>
+</tr>
+</tbody>
+</table>
+<p>All of these take, as the main argument, the vector(s) for which you want the statistic. If there are missing values in the vector, you’ll need to add an option to say what to do when them (e.g., <code>na.rm</code> or <code>use=&quot;complete.obs&quot;</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(nepali$wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 10.18432</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(nepali$ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1]  52.4 104.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(nepali$sex)</code></pre></div>
+<pre><code>## 
+##   Male Female 
+##    107     93</code></pre>
+<p>The <code>cor</code> function can take two or more vectors. If you give it multiple values, it will give the correlation matrix for all the vectors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(nepali$wt, nepali$ht, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<pre><code>## [1] 0.9571535</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(nepali[ , <span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;age&quot;</span>)], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<pre><code>##            wt        ht       age
+## wt  1.0000000 0.9571535 0.8931195
+## ht  0.9571535 1.0000000 0.9287129
+## age 0.8931195 0.9287129 1.0000000</code></pre>
+<p>R supports object-oriented programming. This shows up with <code>summary()</code>. R looks to see what type of object it’s dealing with, and then uses a method specific to that object type.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali$wt)</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    3.80    7.90   10.10   10.18   12.40   16.70      15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali$sex)</code></pre></div>
+<pre><code>##   Male Female 
+##    107     93</code></pre>
+<p>We’ll see more of this when we do regression models.</p>
+<p>You can also perform many of these tasks using <code>dplyr</code>. For example, to get the mean weight, you can use the <code>summarize</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>##    mean_wt
+## 1 10.18432</code></pre>
+<p>If you want to get summaries by group using <code>dplyr</code> (e.g., mean weight by sex), use <code>group_by</code> before running <code>summarize</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##      sex   mean_wt
+##   &lt;fctr&gt;     &lt;dbl&gt;
+## 1   Male 10.497980
+## 2 Female  9.823256</code></pre>
+</div>
+<div id="logical-vectors" class="section level2">
+<h2><span class="header-section-number">3.4</span> Logical vectors</h2>
+<p>Last week, you learned a lot about logical statements and how to use them with the <code>subset()</code> function. You can also use logical vectors, created with these statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>).</p>
+<p>A logical statement run on a vector will create a logical vector the same length as the original vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is_male &lt;-<span class="st"> </span>nepali$sex ==<span class="st"> &quot;Male&quot;</span>
+<span class="kw">length</span>(nepali$sex)</code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(is_male)</code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<p>The logical vector will have the value <code>TRUE</code> at any position where the original vector met the logical condition you tested, and <code>FALSE</code> anywhere else:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali$sex)</code></pre></div>
+<pre><code>## [1] Male   Female Female Female Male   Male  
+## Levels: Male Female</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(is_male)</code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+<p>You can “flip” this logical vector (i.e., change every <code>TRUE</code> to <code>FALSE</code> and vice-versa) using <code>!</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(is_male)</code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(!is_male)</code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+<p>You can do a few cool things now with this vector. For example, you can use it with indexing to pull out just the rows where <code>is_male</code> is <code>TRUE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali[is_male, ])</code></pre></div>
+<pre><code>##        id  sex   wt   ht age
+## 1  120011 Male 12.8 91.2  41
+## 5  120023 Male 14.2 99.4  49
+## 6  120031 Male 13.9 96.4  46
+## 7  120051 Male  8.3 69.5   8
+## 9  120053 Male 15.8 96.0  54
+## 11 120062 Male 12.1 89.9  57</code></pre>
+<p>Or, with <code>!</code>, just the rows where <code>is_male</code> is <code>FALSE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali[!is_male, ])</code></pre></div>
+<pre><code>##        id    sex   wt    ht age
+## 2  120012 Female 14.9 103.9  57
+## 3  120021 Female  7.7  70.1   8
+## 4  120022 Female 12.1  86.4  35
+## 8  120052 Female 11.8  83.6  32
+## 10 120061 Female  8.7  78.5  26
+## 15 120082 Female 11.2  79.8  36</code></pre>
+<p>You can also use <code>sum()</code> and <code>table()</code> to find out how many males and females are in the dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(is_male); <span class="kw">sum</span>(!is_male)</code></pre></div>
+<pre><code>## [1] 107</code></pre>
+<pre><code>## [1] 93</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(is_male)</code></pre></div>
+<pre><code>## is_male
+## FALSE  TRUE 
+##    93   107</code></pre>
+</div>
 <div id="in-course-exercise-2" class="section level2">
-<h2><span class="header-section-number">3.3</span> In-course exercise</h2>
+<h2><span class="header-section-number">3.5</span> In-course exercise</h2>
 <div id="loading-data-from-an-r-package" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Loading data from an R package</h3>
+<h3><span class="header-section-number">3.5.1</span> Loading data from an R package</h3>
 <p>The data we’ll be using today is from a dataset called <code>worldcup</code> in the package <code>faraway</code>. Load that data so you can use it on your computer (note: you will need to load and install the <code>faraway</code> package to do this). Use the help file for the data to find out more about the dataset. Use some basic functions, like <code>head</code>, <code>tail</code>, <code>colnames</code>, <code>str</code>, and <code>summary</code> to check out the data a bit. See if you can figure out:</p>
 <ul>
 <li>What variables are included in this dataset? (Check the column names.)</li>
 <li>What class is each column currently? In particular, which are numbers and which are factors?</li>
 </ul>
 <div id="example-r-code" class="section level4">
-<h4><span class="header-section-number">3.3.1.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.5.1.1</span> Example R code:</h4>
 <p>Load the <code>faraway</code> package using <code>load()</code> and then load the data using <code>data()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Uncomment the next line if you need to install the package
 <span class="co"># install.packages(&quot;faraway&quot;)</span>
@@ -574,7 +691,7 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 </div>
 </div>
 <div id="basic-plots-of-the-data" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Basic plots of the data</h3>
+<h3><span class="header-section-number">3.5.2</span> Basic plots of the data</h3>
 <p>Use some basic plots to check out this data. Try the following:</p>
 <ul>
 <li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>)</li>
@@ -584,43 +701,43 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <li>Did you notice any interesting features of the data when you did any of the graphs in this section?</li>
 </ul>
 <div id="example-r-code-1" class="section level4">
-<h4><span class="header-section-number">3.3.2.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.5.2.1</span> Example R code:</h4>
 <p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-167-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-167-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-167-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-156-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-167-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-157-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">library</span>(dplyr)
 <span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-158-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-169-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-159-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-170-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) %&gt;%<span class="st"> </span>
@@ -630,14 +747,14 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-161-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-172-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-161-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-172-2.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="if-you-have-extra-time" class="section level4">
-<h4><span class="header-section-number">3.3.2.2</span> If you have extra time:</h4>
+<h4><span class="header-section-number">3.5.2.2</span> If you have extra time:</h4>
 <p>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, you could create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with the column names for all of the numeric variables
 my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span>:<span class="dv">7</span>]
@@ -653,7 +770,7 @@ for(var in my_vars){
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Histogram of&quot;</span>, var))
   <span class="kw">plot</span>(a)
 }</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-162-5.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-5.png" width="288" /></p>
 <p>A few things to note in this example:</p>
 <ul>
 <li>To map an element of the data to an aesthetic, it’s easiest if that element is saved in a column in the dataframe. Within this loop, I’m making an extra column called <code>to_plot</code>, where I’m copying the column of the variable I want to plot each time the loop runs. That way, I can always use <code>x = to_plot</code> in the aesthetic mapping for the ggplot object.</li>
@@ -663,14 +780,14 @@ for(var in my_vars){
 </div>
 </div>
 <div id="exploring-the-data-using-simple-statistics-and-logical-statements" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Exploring the data using simple statistics and logical statements</h3>
+<h3><span class="header-section-number">3.5.3</span> Exploring the data using simple statistics and logical statements</h3>
 <p>Next, try checking out the data using some basic commands for simple statistics, like <code>mean()</code>, <code>range()</code>, <code>max()</code>, and <code>min()</code>. Use these, along with some logical statements, to help you answer the following questions:</p>
 <ul>
 <li>What is the range of time that players spent in the game? Who played the most World Cup time in this World Cup? For the minimum of the range of <code>Time</code>, how many players played this amount of time?</li>
 <li>What is the mean number of saves that players made? What is the mean number of saves just among the goalkeepers? How many of the players are goalkeepers? Did any non-goalkeeper make a save?</li>
 </ul>
 <div id="example-r-code-2" class="section level4">
-<h4><span class="header-section-number">3.3.3.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.5.3.1</span> Example R code:</h4>
 <p>Use <code>range()</code> to find out the range of time these players played in the World Cup.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup$Time)</code></pre></div>
 <pre><code>## [1]   1 570</code></pre>
@@ -761,7 +878,7 @@ for(var in my_vars){
 </div>
 </div>
 <div id="using-regression-models-to-explore-data" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Using regression models to explore data</h3>
+<h3><span class="header-section-number">3.5.4</span> Using regression models to explore data</h3>
 <p>For this part of the exercise, you’ll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called <code>chicagoNMMAPS</code> and is part of the <code>dlnm</code> package. Change the name of the dataframe to something shorter, like <code>chic</code>. Check out the data a bit to see what variables you have, and then perform the following tasks:</p>
 <ul>
 <li>Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature.</li>
@@ -775,7 +892,7 @@ for(var in my_vars){
 <li>The coefficient for the temperature variable in this model is our best estimate (based on this model) of the <strong>log relative risk</strong> for a one degree Celcius increase in temperature. What is the <strong>relative risk</strong> associated with a one degree Celsius increase?</li>
 </ul>
 <div id="example-r-code-3" class="section level4">
-<h4><span class="header-section-number">3.3.4.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.5.4.1</span> Example R code:</h4>
 <p>Install and load the <code>dlnm</code> package and then load the <code>chicagoNMMAPS</code> data. Change the name of the dataframe to <code>chic</code>, so it will be shorter to call for the rest of your work.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;dlnm&quot;)</span>
 <span class="kw">library</span>(dlnm)
@@ -816,16 +933,16 @@ mod_1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_1)
 <span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-177-2.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-188-2.png" width="672" /></p>
 <p>Plot some various plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
 <span class="kw">plot</span>(mod_1)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-178-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-189-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
 <p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp ~<span class="st"> </span>temp, <span class="dt">data =</span> chic)
@@ -879,13 +996,13 @@ mod_1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <pre><code>## Warning: Removed 251 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-182-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-1.png" width="576" /></p>
 <p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
 <pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-183-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-194-1.png" width="576" /></p>
 <p>Create a subset called <code>summer</code> with just the summer days:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(month %in%<span class="st"> </span><span class="dv">6</span>:<span class="dv">8</span>)</code></pre></div>
