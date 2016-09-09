@@ -27,6 +27,11 @@
 
 <meta name="date" content="2016-09-09">
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -205,11 +210,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a></li>
 <li class="chapter" data-level="3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#logical-vectors"><i class="fa fa-check"></i><b>3.4</b> Logical vectors</a></li>
-<li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.5</b> In-course exercise</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.5.1</b> Loading data from an R package</a></li>
-<li class="chapter" data-level="3.5.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.5.2</b> Basic plots of the data</a></li>
-<li class="chapter" data-level="3.5.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.5.3</b> Exploring the data using simple statistics and logical statements</a></li>
-<li class="chapter" data-level="3.5.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.5.4</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#regression-models"><i class="fa fa-check"></i><b>3.5</b> Regression models</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#formula-structure"><i class="fa fa-check"></i><b>3.5.1</b> Formula structure</a></li>
+<li class="chapter" data-level="3.5.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#linear-models"><i class="fa fa-check"></i><b>3.5.2</b> Linear models</a></li>
+<li class="chapter" data-level="3.5.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#generalized-linear-models-glms"><i class="fa fa-check"></i><b>3.5.3</b> Generalized linear models (GLMs)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#references-statistics-in-r"><i class="fa fa-check"></i><b>3.5.4</b> References– statistics in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.6</b> In-course exercise</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.6.2</b> Basic plots of the data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and logical statements</a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -567,15 +578,23 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>##    mean_wt
 ## 1 10.18432</code></pre>
+<p>There are some special functions that you can use with <code>summarize</code>. For example, <code>n</code> and <code>first</code> (see the Data Wrangling cheatsheet for more):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_children =</span><span class="kw">n</span>(), 
+            <span class="dt">first_id =</span> <span class="kw">first</span>(id))</code></pre></div>
+<pre><code>##   n_children first_id
+## 1        200   120011</code></pre>
 <p>If you want to get summaries by group using <code>dplyr</code> (e.g., mean weight by sex), use <code>group_by</code> before running <code>summarize</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>## # A tibble: 2 × 2
-##      sex   mean_wt
-##   &lt;fctr&gt;     &lt;dbl&gt;
-## 1   Male 10.497980
-## 2 Female  9.823256</code></pre>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+            <span class="dt">n_children =</span><span class="kw">n</span>(), 
+            <span class="dt">first_id =</span> <span class="kw">first</span>(id))</code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##      sex   mean_wt n_children first_id
+##   &lt;fctr&gt;     &lt;dbl&gt;      &lt;int&gt;   &lt;fctr&gt;
+## 1   Male 10.497980        107   120011
+## 2 Female  9.823256         93   120012</code></pre>
 </div>
 <div id="logical-vectors" class="section level2">
 <h2><span class="header-section-number">3.4</span> Logical vectors</h2>
@@ -623,18 +642,260 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <pre><code>## is_male
 ## FALSE  TRUE 
 ##    93   107</code></pre>
+<p>As a note, you could achieve the same thing with <code>dplyr</code> functions. One way to do this is to use <code>mutate</code> with a logical statement to create an <code>is_male</code> column, then group by that new column and summarize:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_male =</span> sex ==<span class="st"> &quot;Male&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(is_male) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_children =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   is_male n_children
+##     &lt;lgl&gt;      &lt;int&gt;
+## 1   FALSE         93
+## 2    TRUE        107</code></pre>
+</div>
+<div id="regression-models" class="section level2">
+<h2><span class="header-section-number">3.5</span> Regression models</h2>
+<div id="formula-structure" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Formula structure</h3>
+<p><em>Regression models</em> can be used to estimate how the expected value of a <em>dependent variable</em> changes as <em>independent variables</em> change. </p>
+<p>In R, regression formulas take this structure:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
+[response variable] ~<span class="st"> </span>[indep. var. <span class="dv">1</span>] +<span class="st">  </span>[indep. var. <span class="dv">2</span>] +<span class="st"> </span>...</code></pre></div>
+<p>Notice that <code>~</code> used to separate the independent and dependent variables and the <code>+</code> used to join independent variables. This format mimics the statistical notation:</p>
+<p><span class="math display">\[
+Y_i \sim X_1 + X_2 + X_3
+\]</span></p>
+<p>You will use this type of structure in R fo a lot of different function calls, including those for linear models (<code>lm</code>) and generalized linear models (<code>glm</code>).</p>
+</div>
+<div id="linear-models" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Linear models</h3>
+<p>To fit a linear model, you can use the function <code>lm()</code>. Use the <code>data</code> option to specify the dataframe from which to get the vectors. You can save the model as an object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_a &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
+<p>This call fits the model:</p>
+<p><span class="math display">\[ Y_{i} = \beta_{0} + \beta_{1}X_{1,i} + \epsilon_{i} \]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(Y_{i}\)</span> : weight of child <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(X_{1,i}\)</span> : height of child <span class="math inline">\(i\)</span></li>
+</ul>
+<p>Some functions you can use on model objects:</p>
+<table style="width:97%;">
+<colgroup>
+<col width="16%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>summary</code></td>
+<td align="left">Get a variety of information on the model, including coefficients and p-values for the coefficients</td>
+</tr>
+<tr class="even">
+<td align="center"><code>coef</code></td>
+<td align="left">Pull out just the coefficients for a model</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>fitted</code></td>
+<td align="left">Get the fitted values from the model (for the data used to fit the model)</td>
+</tr>
+<tr class="even">
+<td align="center"><code>plot</code></td>
+<td align="left">Create plots to help assess model assumptions</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>residuals</code></td>
+<td align="left">Get the model residuals</td>
+</tr>
+</tbody>
+</table>
+<p>For example, you can get the coefficients from the model we just fit:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_a)</code></pre></div>
+<pre><code>## (Intercept)          ht 
+##   -8.694768    0.235050</code></pre>
+<p>The estimated coefficient for the intercept is always given under the name “(Intercept)”. </p>
+<p>Estimated coefficients for independent variables are given based on their column names in the original data (“ht” here, for <span class="math inline">\(\beta_1\)</span>, or the estimated increase in expected weight for a one unit increase in height).</p>
+<p>You can also pull out the residuals from the model fit:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">residuals</span>(mod_a))</code></pre></div>
+<pre><code>##           1           2           3           4           5           6 
+##  0.05820415 -0.82693141 -0.08223993  0.48644436 -0.46920621 -0.06405608</code></pre>
+<p>This is a vector the same length as the number of observations (rows) in the dataframe you used to fit the model. The residuals are in the same order as the observations in the original dataframe.</p>
+<p>You can use the <code>coef</code> results to plot a regression line based on the model fit on top of points showing the original data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coef &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_a)
+<span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coef[<span class="dv">1</span>],
+                  <span class="dt">slope =</span> mod_coef[<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-172-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>The <code>summary()</code> function gives you a lot of information about the model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_a)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = wt ~ ht, data = nepali)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.44736 -0.55708  0.01925  0.49941  2.73594 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -8.694768   0.427398  -20.34   &lt;2e-16 ***
+## ht           0.235050   0.005257   44.71   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9017 on 183 degrees of freedom
+##   (15 observations deleted due to missingness)
+## Multiple R-squared:  0.9161, Adjusted R-squared:  0.9157 
+## F-statistic:  1999 on 1 and 183 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The object created when you use the <code>summary()</code> function on an <code>lm</code> object has several different parts you can pull out using the <code>$</code> operator:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(<span class="kw">summary</span>(mod_a))</code></pre></div>
+<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
+##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
+##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;  &quot;na.action&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_a)$coefficients</code></pre></div>
+<pre><code>##              Estimate  Std. Error   t value      Pr(&gt;|t|)
+## (Intercept) -8.694768 0.427397843 -20.34350  7.424640e-49
+## ht           0.235050 0.005256822  44.71334 1.962647e-100</code></pre>
+<p>You can use <code>plot</code> with an <code>lm</code> object to get a number of useful diagnostic plots to check regression assumptions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mod_a)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-177-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>You can also use binary variables or factors as independent variables in regression models:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_b &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span class="st"> </span>sex, <span class="dt">data =</span> nepali)
+<span class="kw">summary</span>(mod_b)$coefficients</code></pre></div>
+<pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 10.497980  0.3110957 33.745177 1.704550e-80
+## sexFemale   -0.674724  0.4562792 -1.478752 1.409257e-01</code></pre>
+<p>This call fits the model:</p>
+<p><span class="math display">\[ Y_{i} = \beta_{0} + \beta_{1}X_{1,i} + \epsilon_{i} \]</span></p>
+<p>where <span class="math inline">\(X_{1,i}\)</span> : sex of child <span class="math inline">\(i\)</span>, where 0 = male; 1 = female</p>
+</div>
+<div id="generalized-linear-models-glms" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Generalized linear models (GLMs)</h3>
+<p>You can fit a variety of models, including linear models, logistic models, and Poisson models, using generalized linear models (GLMs). </p>
+<p>For linear models, the only difference between <code>lm</code> and <code>glm</code> is how they’re fitting the model (least squares versus maximum likelihood). You should get the same results regardless of which you pick.</p>
+<p>For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_c &lt;-<span class="st"> </span><span class="kw">glm</span>(wt ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali)
+<span class="kw">summary</span>(mod_c)$coef</code></pre></div>
+<pre><code>##              Estimate  Std. Error   t value      Pr(&gt;|t|)
+## (Intercept) -8.694768 0.427397843 -20.34350  7.424640e-49
+## ht           0.235050 0.005256822  44.71334 1.962647e-100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_a)$coef</code></pre></div>
+<pre><code>##              Estimate  Std. Error   t value      Pr(&gt;|t|)
+## (Intercept) -8.694768 0.427397843 -20.34350  7.424640e-49
+## ht           0.235050 0.005256822  44.71334 1.962647e-100</code></pre>
+<p>You can fit other model types with <code>glm()</code> using the <code>family</code> option:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Model type</th>
+<th align="left"><code>family</code> option</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Linear</td>
+<td align="left"><code>family = gaussian(link = 'identity')</code></td>
+</tr>
+<tr class="even">
+<td align="left">Logistic</td>
+<td align="left"><code>family = binomial(link = 'logit')</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Poisson</td>
+<td align="left"><code>family = poisson(link = 'log')</code></td>
+</tr>
+</tbody>
+</table>
+<p>For example, say we wanted to fit a logistic regression for the <code>nepali</code> data of whether the probability that a child weighs more than 13 kg is associated with the child’s height. </p>
+<p>First, create a binary variable for <code>wt_over_13</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wt_over_13 =</span> wt &gt;<span class="st"> </span><span class="dv">13</span>)
+<span class="kw">head</span>(nepali)</code></pre></div>
+<pre><code>##       id    sex   wt    ht age wt_over_13
+## 1 120011   Male 12.8  91.2  41      FALSE
+## 2 120012 Female 14.9 103.9  57       TRUE
+## 3 120021 Female  7.7  70.1   8      FALSE
+## 4 120022 Female 12.1  86.4  35      FALSE
+## 5 120023   Male 14.2  99.4  49       TRUE
+## 6 120031   Male 13.9  96.4  46       TRUE</code></pre>
+<p>Now you can fit a logistic regression:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_d &lt;-<span class="st"> </span><span class="kw">glm</span>(wt_over_13 ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali,
+             <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>))
+<span class="kw">summary</span>(mod_d)$coef</code></pre></div>
+<pre><code>##                Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept) -32.7016520 5.85196755 -5.588147 2.295060e-08
+## ht            0.3495227 0.06331892  5.520036 3.389307e-08</code></pre>
+<p>Here, the model coefficient gives the <strong>log odds</strong> of having a weight higher than 13 kg associated with a unit increase in height.</p>
+<p>There are some conventions that can be used in R formulas. Common ones include:</p>
+<table style="width:97%;">
+<colgroup>
+<col width="18%" />
+<col width="79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Convention</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>I()</code></td>
+<td align="left">calculate the value inside before fitting (e.g., <code>I(x1 + x2)</code>)</td>
+</tr>
+<tr class="even">
+<td align="center"><code>:</code></td>
+<td align="left">fit the interaction between two variables (e.g., <code>x1:x2</code>)</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>*</code></td>
+<td align="left">fit the main effects and interaction for both variables (e.g., <code>x1*x2</code> equals <code>x1 + x2 + x1:x2</code>)</td>
+</tr>
+<tr class="even">
+<td align="center"><code>.</code></td>
+<td align="left">fit all variables other than the response (e.g., <code>y ~ .</code>)</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-</code></td>
+<td align="left">do not include a variable (e.g., <code>y ~ . - x1</code>)</td>
+</tr>
+<tr class="even">
+<td align="center"><code>1</code></td>
+<td align="left">intercept (e.g., <code>y ~ 1</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="references-statistics-in-r" class="section level3">
+<h3><span class="header-section-number">3.5.4</span> References– statistics in R</h3>
+<p>A great (and free for CSU students) resource to find out more about using R for basic statistics:</p>
+<ul>
+<li><a href="http://discovery.library.colostate.edu/Record/.b44705323">Introductory Statistics with R</a></li>
+</ul>
+<p>If you want all the details about fitting linear models and GLMs in R, Faraway’s books are fantastic:</p>
+<ul>
+<li><a href="http://discovery.library.colostate.edu/Record/.b41119691">Linear Models with R</a> (also freely available through our library)</li>
+<li><a href="http://www.amazon.com/Extending-Linear-Model-Generalized-Nonparametric/dp/158488424X/ref=sr_1_1?ie=UTF8&amp;qid=1442252668&amp;sr=8-1&amp;keywords=extending+linear+model+r">Extending the Linear Model with R</a></li>
+</ul>
+</div>
 </div>
 <div id="in-course-exercise-2" class="section level2">
-<h2><span class="header-section-number">3.5</span> In-course exercise</h2>
+<h2><span class="header-section-number">3.6</span> In-course exercise</h2>
 <div id="loading-data-from-an-r-package" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Loading data from an R package</h3>
+<h3><span class="header-section-number">3.6.1</span> Loading data from an R package</h3>
 <p>The data we’ll be using today is from a dataset called <code>worldcup</code> in the package <code>faraway</code>. Load that data so you can use it on your computer (note: you will need to load and install the <code>faraway</code> package to do this). Use the help file for the data to find out more about the dataset. Use some basic functions, like <code>head</code>, <code>tail</code>, <code>colnames</code>, <code>str</code>, and <code>summary</code> to check out the data a bit. See if you can figure out:</p>
 <ul>
 <li>What variables are included in this dataset? (Check the column names.)</li>
 <li>What class is each column currently? In particular, which are numbers and which are factors?</li>
 </ul>
 <div id="example-r-code" class="section level4">
-<h4><span class="header-section-number">3.5.1.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.6.1.1</span> Example R code:</h4>
 <p>Load the <code>faraway</code> package using <code>load()</code> and then load the data using <code>data()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Uncomment the next line if you need to install the package
 <span class="co"># install.packages(&quot;faraway&quot;)</span>
@@ -691,7 +952,7 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 </div>
 </div>
 <div id="basic-plots-of-the-data" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Basic plots of the data</h3>
+<h3><span class="header-section-number">3.6.2</span> Basic plots of the data</h3>
 <p>Use some basic plots to check out this data. Try the following:</p>
 <ul>
 <li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>)</li>
@@ -701,43 +962,43 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <li>Did you notice any interesting features of the data when you did any of the graphs in this section?</li>
 </ul>
 <div id="example-r-code-1" class="section level4">
-<h4><span class="header-section-number">3.5.2.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.6.2.1</span> Example R code:</h4>
 <p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-187-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-187-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-187-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-168-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-187-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-169-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-188-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-169-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-188-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-169-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-188-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-169-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-188-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">library</span>(dplyr)
 <span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-170-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-189-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-171-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-190-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) %&gt;%<span class="st"> </span>
@@ -747,14 +1008,14 @@ object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-192-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-173-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-192-2.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="if-you-have-extra-time" class="section level4">
-<h4><span class="header-section-number">3.5.2.2</span> If you have extra time:</h4>
+<h4><span class="header-section-number">3.6.2.2</span> If you have extra time:</h4>
 <p>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, you could create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with the column names for all of the numeric variables
 my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span>:<span class="dv">7</span>]
@@ -770,7 +1031,7 @@ for(var in my_vars){
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Histogram of&quot;</span>, var))
   <span class="kw">plot</span>(a)
 }</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-174-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-174-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-174-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-174-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-174-5.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-5.png" width="288" /></p>
 <p>A few things to note in this example:</p>
 <ul>
 <li>To map an element of the data to an aesthetic, it’s easiest if that element is saved in a column in the dataframe. Within this loop, I’m making an extra column called <code>to_plot</code>, where I’m copying the column of the variable I want to plot each time the loop runs. That way, I can always use <code>x = to_plot</code> in the aesthetic mapping for the ggplot object.</li>
@@ -780,14 +1041,14 @@ for(var in my_vars){
 </div>
 </div>
 <div id="exploring-the-data-using-simple-statistics-and-logical-statements" class="section level3">
-<h3><span class="header-section-number">3.5.3</span> Exploring the data using simple statistics and logical statements</h3>
+<h3><span class="header-section-number">3.6.3</span> Exploring the data using simple statistics and logical statements</h3>
 <p>Next, try checking out the data using some basic commands for simple statistics, like <code>mean()</code>, <code>range()</code>, <code>max()</code>, and <code>min()</code>. Use these, along with some logical statements, to help you answer the following questions:</p>
 <ul>
 <li>What is the range of time that players spent in the game? Who played the most World Cup time in this World Cup? For the minimum of the range of <code>Time</code>, how many players played this amount of time?</li>
 <li>What is the mean number of saves that players made? What is the mean number of saves just among the goalkeepers? How many of the players are goalkeepers? Did any non-goalkeeper make a save?</li>
 </ul>
 <div id="example-r-code-2" class="section level4">
-<h4><span class="header-section-number">3.5.3.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.6.3.1</span> Example R code:</h4>
 <p>Use <code>range()</code> to find out the range of time these players played in the World Cup.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup$Time)</code></pre></div>
 <pre><code>## [1]   1 570</code></pre>
@@ -878,7 +1139,7 @@ for(var in my_vars){
 </div>
 </div>
 <div id="using-regression-models-to-explore-data" class="section level3">
-<h3><span class="header-section-number">3.5.4</span> Using regression models to explore data</h3>
+<h3><span class="header-section-number">3.6.4</span> Using regression models to explore data</h3>
 <p>For this part of the exercise, you’ll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called <code>chicagoNMMAPS</code> and is part of the <code>dlnm</code> package. Change the name of the dataframe to something shorter, like <code>chic</code>. Check out the data a bit to see what variables you have, and then perform the following tasks:</p>
 <ul>
 <li>Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature.</li>
@@ -887,12 +1148,12 @@ for(var in my_vars){
 <li>Plot temperature (x-axis) versus dewpoint temperature (y-axis) for Chicago. Add in the regression line from the model you fit.</li>
 <li>Use <code>plot()</code> on the model object to check if some of the assumptions for the regression model seem appropriate.</li>
 <li>Try fitting the regression as a GLM, using <code>glm()</code>. Are your coefficients different?</li>
-<li>Does PM10 vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable, and then run <code>anova()</code> on that model, and R will compare it to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you’re fitting.</li>
+<li>Does <span class="math inline">\(PM_{10}\)</span> vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable, and then run <code>anova()</code> on that model, and R will compare it to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you’re fitting.</li>
 <li>Try using <code>glm()</code> to run a Poisson regression of respiratory deaths (<code>resp</code>) on temperature during summer days. Start by creating a subset with just summer days called <code>summer</code>. (Hint: Use the <code>month</code> variable to do this– just pull out the subset where the month is 6, 7, or 8, for June, July, and August.) Try to write out the regression equation for the model you’re fitting.</li>
 <li>The coefficient for the temperature variable in this model is our best estimate (based on this model) of the <strong>log relative risk</strong> for a one degree Celcius increase in temperature. What is the <strong>relative risk</strong> associated with a one degree Celsius increase?</li>
 </ul>
 <div id="example-r-code-3" class="section level4">
-<h4><span class="header-section-number">3.5.4.1</span> Example R code:</h4>
+<h4><span class="header-section-number">3.6.4.1</span> Example R code:</h4>
 <p>Install and load the <code>dlnm</code> package and then load the <code>chicagoNMMAPS</code> data. Change the name of the dataframe to <code>chic</code>, so it will be shorter to call for the rest of your work.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;dlnm&quot;)</span>
 <span class="kw">library</span>(dlnm)
@@ -929,20 +1190,16 @@ mod_1</code></pre></div>
 ## Multiple R-squared:  0.8982, Adjusted R-squared:  0.8982 
 ## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a 1.6 unit increase in dewpoint temperature. The p-value for the temperature coefficient is &lt;2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.</p>
-<p>Plot these two variables and add in the regression line from the model (note: I’ve used the <code>col =</code> option to make the color of the points gray). Use <code>abline()</code> to add the regression line for the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p>Plot these two variables and add in the regression line from the model (note: I’ve used the <code>color</code> option to make the color of the points gray). Use the values from <code>coef</code> with a <code>geom_abline</code> to add the regression line for the model you fit.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_1)
 <span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-189-2.png" width="672" /></p>
-<p>Plot some various plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<p>Plot some plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
 <span class="kw">plot</span>(mod_1)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-190-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-209-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
 <p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp ~<span class="st"> </span>temp, <span class="dt">data =</span> chic)
@@ -954,7 +1211,7 @@ mod_1</code></pre></div>
 <pre><code>## (Intercept)        temp 
 ##    24.02487     1.62065</code></pre>
 <p>The results from the two models are identical.</p>
-<p>Fit a model of PM10 regressed on day of week, where day of week is a factor.</p>
+<p>Fit a model of <span class="math inline">\(PM_{10}\)</span> regressed on day of week, where day of week is a factor.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_2 &lt;-<span class="st"> </span><span class="kw">lm</span>(pm10 ~<span class="st"> </span>dow, <span class="dt">data =</span> chic)
 <span class="kw">summary</span>(mod_2)</code></pre></div>
 <pre><code>## 
@@ -995,14 +1252,13 @@ mod_1</code></pre></div>
 <p>Use a boxplot to visually compare PM10 by day of week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<pre><code>## Warning: Removed 251 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-194-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-213-1.png" width="576" /></p>
 <p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
 <pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-195-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-214-1.png" width="576" /></p>
 <p>Create a subset called <code>summer</code> with just the summer days:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(month %in%<span class="st"> </span><span class="dv">6</span>:<span class="dv">8</span>)</code></pre></div>
@@ -1094,6 +1350,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
