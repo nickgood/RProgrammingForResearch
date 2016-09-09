@@ -307,16 +307,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>functions in the <code>read.table()</code> family, including <code>read.csv()</code> and <code>read.delim()</code>. What are defaults of the <code>sep =</code> and <code>dec =</code> options for each? For all, the options <code>header =</code>, <code>sep =</code>, <code>as.is =</code>, <code>na.strings =</code>, <code>nrows =</code>, <code>skip =</code>, and <code>col.names =</code>.</li>
 <li>The tidyverse</li>
 <li>functions in the <code>read_*</code> family (e.g., <code>read_csv</code>)</li>
+<li>Advantages of the <code>read_*</code> family of functions compared to their base R analogues (the <code>read.table</code> functions)</li>
 <li><code>paste()</code>, option <code>sep =</code></li>
 <li><code>paste0()</code></li>
 <li><code>readxl</code> package and its <code>read_excel()</code> function</li>
 <li><code>haven</code> package and its <code>read_sas()</code> function</li>
-<li><code>colnames()</code>, and how to use it to assign new column names to a dataframe</li>
 <li><code>$</code></li>
 <li><code>class()</code></li>
 <li><code>str()</code></li>
 <li><code>as.Date()</code>, option <code>format =</code></li>
+<li><code>lubridate</code> functions, include <code>ymd</code>, <code>ymd_hm</code>, and <code>mdy</code></li>
 <li><code>range()</code></li>
+<li><code>dplyr</code> package</li>
 <li><code>rename()</code></li>
 <li><code>mutate()</code></li>
 <li><code>arrange()</code></li>
@@ -327,9 +329,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>load()</code></li>
 <li><code>rm()</code></li>
 <li><code>ls()</code></li>
-<li><code>lubridate</code> and its functions</li>
 <li>Main types of vector classes in R: character, numeric, factor, date, logical</li>
-<li>Which classes of vectors don’t always look like numbers, but R assigns an underlying numeric value to? (Hint: We did not talk about this in class, but R saves the logical class with an underlying number, with TRUE = 1 and FALSE = 0. We did talk about other examples in class.)</li>
+<li>Which classes of vectors don’t always look like numbers, but R assigns an underlying numeric value to? (Hint: This include the logical class, which R saves with an underlying number, with TRUE = 1 and FALSE = 0.)</li>
 <li>Common abbreviations for telling R date formats (e.g., “%m”, “%y”)</li>
 <li>Common logical expressions to use in <code>filter()</code></li>
 <li>relative pathnames</li>
