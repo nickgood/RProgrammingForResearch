@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-09-07">
+<meta name="date" content="2016-09-09">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -557,7 +557,7 @@ daily_show &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span 
 <p>The message that R prints after this call (“Parsed with column specification:..”) lets you know what classes R used for each column (this function tries to guess the appropriate function and, unlike the <code>readr</code> functions, will assign characters to a character rather than factor class – this is usually what you want).</p>
 <div class="rmdnote">
 <p>
-The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Most were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are only a few years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points – this will help you interpret older code.
+The <code>readr</code> package is a member of the tidyverse of packages. The <em>tidyverse</em> describes an evolving collection of R packages with a common philosophy, and they are unquestionably changing the way people code in R. Most were developed in part or full by Hadley Wickham and others at RStudio. Many of these packages are only a few years old, but have been rapidly adapted by the R community. As a result, newer examples of R code will often look very different from the code in older R scripts, including examples in books that are more than a few years old. In this course, I’ll focus on “tidyverse” functions when possible, but I do put in details about base R equivalent functions or processes at some points – this will help you interpret older code. You can use the <code>tidyverse</code> package to download all tidyverse packages at one.
 </p>
 </div>
 </div>
@@ -1430,7 +1430,7 @@ ebola_liberia &lt;-<span class="st"> </span>ebola %&gt;%
 
 ## Plot the data
 <span class="kw">plot</span>(ebola_liberia$date, ebola_liberia$cases)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 </div>
 <div id="a-taste-of-whats-to-come" class="section level3">
 <h3><span class="header-section-number">2.7.5</span> A taste of what’s to come…</h3>
@@ -1530,7 +1530,7 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(measles_files)
        <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> count)) +<span class="st"> </span>
 <span class="st">        </span><span class="kw">geom_line</span>()  +<span class="st"> </span>
 <span class="st">        </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>city)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-126-1.png" width="960" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-127-1.png" width="960" /></p>
 
 </div>
 </div>

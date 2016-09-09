@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-09-07">
+<meta name="date" content="2016-09-09">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -516,6 +516,11 @@ You can put more than one function call in a single line of R code, as in this e
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fibonacci_seq[<span class="dv">5</span>, ] <span class="co"># Last row, all columns</span></code></pre></div>
 <pre><code>##   num_in_seq fibonacci_num
 ## 5       five             5</code></pre>
+<div class="rmdnote">
+<p>
+If you forget to put the comma in the indexing for a dataframe (e.g., <code>fibonacci_seq[1:2]</code>), you will index out the <em>columns</em> that fall at that position or positions. To avoid confusion, I suggest that you always use indexing with a comma when working with dataframes.
+</p>
+</div>
 <p>So far, we’ve only shown how to create dataframes from scratch within an R session. Usually, however, you’ll create R dataframes instead by reading in data from an outside file using <code>read.csv</code> and related functions. For example, you might want to analyze data on all the guests that came on the <em>Daily Show</em>, <em>circa</em> Jon Stewart. If you have this data in a comma-separated (csv) file on your computer called “daily_show_guests.csv”, you can read it into your R session with the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_show &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;daily_show_guests.csv&quot;</span>,
                        <span class="dt">header =</span> <span class="ot">TRUE</span>,
