@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="r-preliminaries.html">
+<link rel="prev" href="exploring-data-1.html">
+<link rel="next" href="appendix-a-vocabulary.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,251 +274,225 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="course-information" class="section level1 unnumbered">
-<h1>Course information</h1>
-<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseOverview.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
-<div id="course-overview" class="section level2">
-<h2><span class="header-section-number">0.1</span> Course overview</h2>
-<p>This document provides the course notes for Colorado State University’s ERHS 535 course for Fall 2016. The course offers in-depth instruction on data collection, data management, programming, and visualization, using data examples relevant to academic research.</p>
+<div id="reporting-data-results-1" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Reporting data results #1</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week4.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="in-course-exercise-3" class="section level2">
+<h2><span class="header-section-number">4.1</span> In-course exercise</h2>
+<div id="designing-a-plot" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Designing a plot</h3>
+<p>For today’s exercise, you’ll be building a plot using the <code>worldcup</code> data from the <code>faraway</code> package. First, load in that data.</p>
+<p>Next, say you want to look at the relationship between the number of minutes that a player played in the 2010 World Cup (<code>Time</code>) and the number of shots the player took on goal (<code>Shots</code>). On a sheet of paper, and talking with your partner, decide how the two of you would design a plot to explore and present this relationship. How would you incorporate some of the principles of creating good graphs?</p>
+<div id="example-r-code-4" class="section level4">
+<h4><span class="header-section-number">4.1.1.1</span> Example R code</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(faraway)
+<span class="kw">data</span>(worldcup)
+<span class="kw">head</span>(worldcup, <span class="dv">2</span>)</code></pre></div>
+<pre><code>##           Team   Position Time Shots Passes Tackles Saves
+## Abdoun Algeria Midfielder   16     0      6       0     0
+## Abe      Japan Midfielder  351     0    101      14     0</code></pre>
+<p>This dataset has the players’ names as rownames, rather than in a column. Once we start using <code>dplyr</code> functions, we’ll lose these rownames. Therefore, start by converting the rownames to a column called <code>Player</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+worldcup &lt;-<span class="st"> </span>worldcup %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Player =</span> <span class="kw">rownames</span>(worldcup))
+<span class="kw">head</span>(worldcup, <span class="dv">2</span>)</code></pre></div>
+<pre><code>##      Team   Position Time Shots Passes Tackles Saves Player
+## 1 Algeria Midfielder   16     0      6       0     0 Abdoun
+## 2   Japan Midfielder  351     0    101      14     0    Abe</code></pre>
 </div>
-<div id="time-and-place" class="section level2">
-<h2><span class="header-section-number">0.2</span> Time and place</h2>
-<p>This course meets in Room 120 of the Environmental Health Building on Mondays and Wednesdays, 10:00 am–12:00 pm. Exceptions to these meeting times are:</p>
+</div>
+<div id="basic-scatterplots-with-r-base-graphics-and-ggplot" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Basic scatterplots with R base graphics and ggplot</h3>
+<p>Perform the following tasks:</p>
 <ul>
-<li>There will be no meeting on Wednesday, Aug. 31.</li>
-<li>There will be no meeting on Labor Day (Monday, Sept. 5).</li>
-<li>To make up for missing class on Aug. 31, we will have a supplemental class on Friday, Sept. 9, 10:00 am–12:00 pm. You <strong>will not</strong> lose attendance points if you cannot attend this class, but <strong>will</strong> be responsible for the material covered.</li>
-<li>There are no course meetings the week of Thanksgiving.</li>
+<li>Install and load the <code>ggplot2</code> and <code>ggthemes</code> packages.</li>
+<li>For the <code>worldcup</code> data, plot a scatterplot of Time (on the x-axis) versus Shots.</li>
+<li>Add some ggplot elements to make this plot a bit more attractive. (For example, change the x- and y-axis labels and add a title.)</li>
 </ul>
+<div id="example-r-code-5" class="section level4">
+<h4><span class="header-section-number">4.1.2.1</span> Example R code</h4>
+<p>Install and load the <code>ggplot2</code> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;ggplot2&quot;)</span>
+<span class="kw">library</span>(ggplot2)
+<span class="co"># install.packages(&quot;ggthemes&quot;)</span>
+<span class="kw">library</span>(ggthemes)</code></pre></div>
+<p>Use the R base graphics to create a scatterplot of Time versus Shots:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-223-1.png" width="480" /></p>
+<p>Use some of the plotting options to improve the graph’s appearance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Minutes played&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Shots on goal&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Time played vs. shots taken</span><span class="ch">\n</span><span class="st"> World Cup 2010&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-224-1.png" width="480" /></p>
 </div>
-<div id="detailed-schedule" class="section level2">
-<h2><span class="header-section-number">0.3</span> Detailed schedule</h2>
-<p>Here is a more detailed view of the schedule for this course for Fall 2016:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Dates</th>
-<th align="left">Level</th>
-<th align="left">Lecture content</th>
-<th align="left">Graded items</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Aug. 22, 24</td>
-<td align="left">Preliminary</td>
-<td align="left">R Preliminaries</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Aug. 29</td>
-<td align="left">Basic</td>
-<td align="left">Entering and cleaning data</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Sept. 7, Sept. 9*</td>
-<td align="left">Basic</td>
-<td align="left">Exploring data</td>
-<td align="left">Quiz (W)</td>
-</tr>
-<tr class="even">
-<td align="left">Sept. 12, 14</td>
-<td align="left">Basic</td>
-<td align="left">Reporting data results</td>
-<td align="left">Quiz (M), HW #1 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Sept. 19, 21</td>
-<td align="left">Basic</td>
-<td align="left">Reproducible Research</td>
-<td align="left">Quiz (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Sept. 26, 28</td>
-<td align="left">Intermediate</td>
-<td align="left">Entering and cleaning data</td>
-<td align="left">Quiz (M), HW #2 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Oct. 3, 5</td>
-<td align="left">Intermediate</td>
-<td align="left">Exploring data</td>
-<td align="left">Quiz (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Oct. 10, 12</td>
-<td align="left">Intermediate</td>
-<td align="left">Reporting data results</td>
-<td align="left">Quiz (M), HW #3 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Oct. 17, 19</td>
-<td align="left">Intermediate</td>
-<td align="left">Reproducible Research</td>
-<td align="left">Quiz (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Oct. 24, 26</td>
-<td align="left">Advanced</td>
-<td align="left">Entering and cleaning data</td>
-<td align="left">Quiz (M), HW #4 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Oct. 31, Nov. 2</td>
-<td align="left">Advanced</td>
-<td align="left">Exploring data</td>
-<td align="left">Project proposal (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Nov. 7, 9</td>
-<td align="left">Advanced</td>
-<td align="left">Reporting data results</td>
-<td align="left">HW #5 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Nov. 14, 16</td>
-<td align="left">Advanced</td>
-<td align="left">Mapping in R</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Nov. 28, 30</td>
-<td align="left">Advanced</td>
-<td align="left">Package development 1</td>
-<td align="left">HW #6 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Dec. 5, 7</td>
-<td align="left">Advanced</td>
-<td align="left">Package development 2</td>
-<td align="left">Project draft (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Week of Dec. 12</td>
-<td align="left"></td>
-<td align="left">Group presentations</td>
-<td align="left">Final project (M)</td>
-</tr>
-</tbody>
-</table>
 </div>
-<div id="grading" class="section level2">
-<h2><span class="header-section-number">0.4</span> Grading</h2>
-<p>Course grades will be determined by the following five components:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Assessment component</th>
-<th align="right">Percent of grade</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Final group project</td>
-<td align="right">30</td>
-</tr>
-<tr class="even">
-<td align="left">Weekly in-class quizzes, weeks 3-10</td>
-<td align="right">25</td>
-</tr>
-<tr class="odd">
-<td align="left">Homework</td>
-<td align="right">25</td>
-</tr>
-<tr class="even">
-<td align="left">Attendance and class participation</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="left">Weekly in-course group exercises</td>
-<td align="right">10</td>
-</tr>
-</tbody>
-</table>
-<div id="attendance-and-class-participation" class="section level3">
-<h3><span class="header-section-number">0.4.1</span> Attendance and class participation</h3>
-<p>Because so much of the learning for this class is through interactive work in class, it is critical that you come to class. Out of a possible 10 points for class attendance, you will get:</p>
+<div id="fancier-graphs" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Fancier graphs</h3>
+<p>In this section, we’ll work on creating a plot like this:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-1.png" width="768" /></p>
+<p>Try the following tasks:</p>
 <ul>
-<li><strong>10 points</strong> if you attend all classes</li>
-<li><strong>8 points</strong> if you miss one class</li>
-<li><strong>6 points</strong> if you miss two classes</li>
-<li><strong>4 points</strong> if you miss three classes</li>
-<li><strong>2 points</strong> if you miss four classes</li>
-<li><strong>0 points</strong> if you miss five or more classes</li>
+<li>First, before you start coding, talk with your group members about how this graph is different from the simple one you created with <code>ggplot</code> in the last section. Also discuss what you can figure out from this new graph that was less clear from the simpler one you created before.</li>
+<li>Use the <code>xlab()</code> function to make a clearer title for the x-axis. (You may have already written this code in the last section of this exercise.)</li>
+<li>Often, in graphs with a lot of points, it’s hard to see some of the points, because they overlap other points. Three strategies to address this are: (a) make the points smaller; (b) make the points somewhat transparent; and (c) jitter the points. Try doing the first two with the simple ggplot scatterplot you created in the previous section of Shots by Time.</li>
+<li>Create a new column in the <code>worldcup</code> data called <code>top_four</code> that specifies whether or not the <code>Team</code> for that observation was one of the top four teams in the tournament (Netherlands, Uruguay, Spain, and Germany). Make the colors of the points correspond to whether the team was a top-four team.</li>
+<li>Create small multiples. The relationship between time played and shots taken is probably different by the players’ positions. Use faceting to create different graphs for each position.</li>
+<li>Make order count: What order are the faceted graphs currently in? Offensive players have more chances to take shots than defensive players, so that might be a useful ordering for the facets. Re-order the <code>Position</code> factor column to go from nearest your own goal to nearest the opponents goal, and then re-plot the graph from the previous step.</li>
+<li>Highlighting interesting data: Who had the most shots in the 2010 World Cup? Was he on a top-four team? Use <code>geom_text()</code> to label his point on the graph with his name.</li>
+<li>Increase data density: Try changing the theme, to come up with a graph with a bit less non-data ink. From the <code>ggthemes</code> package (you’ll need to install it if you don’t already have it), try some of the following themes: <code>theme_few()</code>, <code>theme_tufte()</code>, <code>theme_stata()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_economist_white()</code>, <code>theme_wsj()</code>.</li>
 </ul>
-<p>You can get two extra credit attendance points (i.e., make up for a missed class) by attending the seminar that Yihui Xie will give on Sept. 23 at 4:00 pm for the Statistics Department in Weber 237.</p>
+<div id="example-r-code-6" class="section level4">
+<h4><span class="header-section-number">4.1.3.1</span> Example R code</h4>
+<p>As a reminder, here’s the code to do a simple scatterplot ot Shots by Time for the <code>worldcup</code> data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +
+<span class="st">        </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-1.png" width="288" /></p>
+<p>To add a clearer x-axis label that the current one, use <code>xlab()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +
+<span class="st">        </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-227-1.png" width="288" /></p>
+<p>To make the points smaller, use the <code>size</code> option in <code>geom_point()</code> (smaller than about 2 = smaller than default, larger than about 2 = larger than default):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-228-1.png" width="288" /></p>
+<p>To make the points semi-transparent, use the <code>alpha</code> option in <code>geom_point()</code> (closer to 0 = more tranparent, closer to 1 = more opaque):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-229-1.png" width="288" /></p>
+<p>To jitter the points some, use the <code>position = &quot;jitter&quot;</code> option in <code>geom_point()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-1.png" width="288" /></p>
+<p>As an alternative, you could also jitter the points by using <code>geom_jitter</code> rather than <code>geom_point</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) +
+<span class="st">        </span><span class="kw">geom_jitter</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">width =</span> <span class="fl">0.25</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-1.png" width="288" /></p>
+<div class="rmdnote">
+<p>
+“Jittering” the points means adding some extra random noise in either the x- or y-direction, or in both directions. This technique can be particularly useful when you are trying to plot points for which one dimension is categorical, rather than continuous. You can specify which direction (x and / or y) is jittered, as well as the amount of noise to add. To find out more, check out the helpfile for the <code>geom_jitter</code> function.
+</p>
 </div>
+<p>To create a new column called <code>top_four</code>, first create vector that lists those top four teams, then create a logical vector in the dataframe for whether the team for that observation is in one of the top four teams:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup &lt;-<span class="st"> </span>worldcup %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">top_four =</span> Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Germany&quot;</span>,  
+                                <span class="st">&quot;Uruguay&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>))
+<span class="kw">summary</span>(worldcup$top_four)</code></pre></div>
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     517      78       0</code></pre>
+<p>To color points by this variable, use <code>color =</code> in the <code>aes()</code> part of the <code>ggplot()</code> call:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-234-1.png" width="480" /></p>
+<p>To create nicer labels for the legend for color, convert the <code>top_four</code> column into the factor class, with the labels you want to use in the figure legend:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup &lt;-<span class="st"> </span>worldcup %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">top_four =</span> <span class="kw">factor</span>(top_four, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>),
+                            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Top 4&quot;</span>, <span class="st">&quot;Other&quot;</span>)))
+<span class="kw">summary</span>(worldcup$top_four)</code></pre></div>
+<pre><code>## Top 4 Other 
+##    78   517</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-236-1.png" width="480" /></p>
+<p>As a note, you can use the <code>scale_color_discrete()</code> function to put in a nicer legend title:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Team&#39;s final</span><span class="ch">\n</span><span class="st"> ranking&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-237-1.png" width="480" /></p>
+<p>To create small multiples, use the <code>facet_grid()</code> command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Team&#39;s final</span><span class="ch">\n</span><span class="st"> ranking&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>Position)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-238-1.png" width="960" /></p>
+<p>To re-order the <code>Position</code> column of the dataframe, use the <code>levels</code> option of the <code>factor()</code> function. This re-sets how R saves the order of the levels of this factor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup &lt;-<span class="st"> </span>worldcup %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Position =</span> <span class="kw">factor</span>(Position, 
+                           <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Goalkeeper&quot;</span>, <span class="st">&quot;Defender&quot;</span>,
+                                      <span class="st">&quot;Midfielder&quot;</span>, <span class="st">&quot;Forward&quot;</span>)))
+<span class="kw">levels</span>(worldcup$Position)</code></pre></div>
+<pre><code>## [1] &quot;Goalkeeper&quot; &quot;Defender&quot;   &quot;Midfielder&quot; &quot;Forward&quot;</code></pre>
+<div class="rmdnote">
+<p>
+Note from this code example that you can use the <code>levels</code> function to find out the levels and their order for a factor-class vector.
+</p>
 </div>
-<div id="weekly-in-course-group-exercises" class="section level2">
-<h2><span class="header-section-number">0.5</span> Weekly in-course group exercises</h2>
-<p>Part of each class will be spent doing in-course group exercises. Ten points of your final grade will be based on your participation in these exercises. As long as you are in class and participate in these exercises, you will get full credit for this component. If you miss a class, to get credit towards this component of your grade, you will need to turn in a one-page document describing what you learned from doing the in-course exercise on your own time. All in-class exercises are included in the online course book at the end of the chapter on the associated material.</p>
-<div id="in-class-quizzes" class="section level3">
-<h3><span class="header-section-number">0.5.1</span> In-class quizzes</h3>
-<p>You will have eight total in-class quizzes. You will have one for each of the Week 2–10 class meetings. There will be <em>at least</em> 10 questions per quiz. You will get 1/3 point for each correct answer. If you do the math, you can get full credit for this if you get at least 75% of your answers right. You can not get more than the maximum of 25 points for this component– once you reach 25 points on quizzes, you will have achieved full credit for the quiz component of the course grade.</p>
-<p>All quiz questions will be multiple choice, matching, or some other form of “close-answered” question (i.e., no open-response-style questions). You can not make up a quiz for a class period you missed. You can still get full credit on your total possible quiz points if you miss a class, but it means you will have to work harder and get more questions right for days you are in class.</p>
-<p>Because grading format for these quizzes allows for you to miss some questions and still get the full quiz credit for the course, I will not ever re-consider the score you got on a previous quiz, give points back for a wrong answer on a poorly-worded question, etc. However, if a lot of people got a particular question wrong, I will be sure to cover it in the next class period. Also, especially if a question was poorly worded and caused confusion, I will work a similar question into a future quiz– in addition to the 10 guaranteed questions for that quiz– so every student will have the chance to get an extra 1/3 point of credit for the question.</p>
-<p>The “Vocabulary” appendix of our online book has the list of material for which you will be responsible for this quiz. Most of the functions and concepts will have been covered in class, but some may not. You are responsible for going through the list and, if there are things you don’t know or remember from class, learning them. To do this, you can use help functions in R, Google, StackOverflow, books on R, ask a friend, and any other resource you can find.</p>
-<p>In general, using R frequently in your research or other coursework will help you to prepare and do well on these quizzes.</p>
-</div>
-<div id="homework" class="section level3">
-<h3><span class="header-section-number">0.5.2</span> Homework</h3>
-<p>There will be six homework assignments, starting a few weeks into the course and then due approximately every two weeks (see the detailed schedule in the online course book for exact due dates).</p>
-<p>Homeworks should be done individually. You will get many chances to work with others during in-course exercises and your final group project, but these homeworks should be a chance to assess how well you understand and can use the course material on your own.</p>
-<p>Homeworks will be graded for correctness, but some partial credit will be given for questions you try but fail to answer correctly. If you can’t completely do a required task, be sure to show and explain what you tried to do to complete it.</p>
-<p>Homework is due by the start of class on the due date. Your grade will be reduced by 10 points for each day it is late, and will receive no credit if it is late by over a week.</p>
-</div>
-<div id="final-group-project" class="section level3">
-<h3><span class="header-section-number">0.5.3</span> Final group project</h3>
-<p>You will do the final group project in groups of 2–3. The final product will be a statistical blog post-style article of 1,500 words or less and an accompanying Shiny web application. Come up with an interesting question you’d love to get the answer to that you think you can find data to help you answer. You will need to use the data you find, and R, to write your article. The final product will be a Word document created from an RMarkdown file and an accompanying Shiny web application.</p>
-<p>Here are some articles to give you an idea of the style and content for this project:</p>
-<ul>
-<li><a href="http://www.statslife.org.uk/culture/1892-does-christmas-really-come-earlier-every-year">Does Christmas come earlier each year?</a></li>
-<li><a href="http://hilaryparker.com/2013/01/30/hilary-the-most-poisoned-baby-name-in-us-history/">Hilary: the most poisoned baby name in US history</a></li>
-<li><a href="http://fivethirtyeight.com/datalab/every-guest-jon-stewart-ever-had-on-the-daily-show/">Every Guest Jon Stewart Ever Had On “The Daily Show”</a></li>
-<li><a href="http://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/">Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?</a></li>
-<li><a href="http://fivethirtyeight.com/features/billion-dollar-billy-beane/">Billion-Dollar Billy Beane</a></li>
-</ul>
-<p>You will have in-class group work time during weeks 10–15 to work on this. This project will also require some work with your group outside of class. You will be able to get feedback from me through weekly informal written reports in these weeks. I will also provide feedback and help during the in-class group work time.</p>
-<p>The final group project will be graded with A through F, with the following point values (out of 30 possible):</p>
-<ul>
-<li><strong>30 points</strong> for an A</li>
-<li><strong>25 points</strong> for a B</li>
-<li><strong>20 points</strong> for a C</li>
-<li><strong>15 points</strong> for a D</li>
-<li><strong>10 points</strong> for an F</li>
-</ul>
-<p>If you turn nothing in, you will get <strong>0 points</strong>.</p>
-<p>We will discuss expectations for this project, create groups, etc. around the middle of the semester. The focus for this will be on finding, cleaning, and using good data to answer an interesting question, and on presenting, summarizing, and explaining the data well.</p>
-</div>
-</div>
-<div id="course-set-up" class="section level2">
-<h2><span class="header-section-number">0.6</span> Course set-up</h2>
-<p>Please be sure you have the latest version of R and RStudio installed. Also, be sure to sign up for a free GitHub account.</p>
-</div>
-<div id="helpful-books-for-learning-r" class="section level2">
-<h2><span class="header-section-number">0.7</span> Helpful books for learning R</h2>
-<p>There are three publishers that are leaders in good books for learning R:</p>
-<ul>
-<li><a href="http://shop.oreilly.com/category/browse-subjects/programming/r.do?sortby=publicationDate&amp;page=all">O’Reilly</a></li>
-<li><a href="https://www.nostarch.com">No Starch Press</a></li>
-<li><a href="http://www.springer.com/generic/search/results?SGWID=4-40109-24-653415-0&amp;sortOrder=relevance&amp;searchType=ADVANCED_CDA&amp;language=en&amp;searchScope=editions&amp;resultStart=1&amp;queryText=%22+R+%22">Springer</a></li>
-</ul>
-<p>Some particular books you might want to check out:</p>
-<ul>
-<li><a href="http://r4ds.had.co.nz">R for Data Science</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b40129810">R for Dummies</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b40438880">R in a Nutshell</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b36840282">R Cookbook</a></li>
-<li><a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&amp;qid=1440997472&amp;sr=8-1&amp;keywords=r+graphics+cookbook">R Graphics Cookbook</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b44709365">A Beginner’s Guide to R</a></li>
-<li><a href="https://leanpub.com/u/rdpeng">Roger Peng’s Leanpub books</a></li>
-</ul>
-<p>Books that other students have found useful include:</p>
-<ul>
-<li>Introductory R by Robert J. Knell</li>
-</ul>
+<p>Then use the same code from before for your plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Team&#39;s final</span><span class="ch">\n</span><span class="st"> ranking&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>Position)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-1.png" width="960" /></p>
+<p>You can use the <code>filter</code> function with a logical statement comparing <code>Shots</code> to the maximum value of <code>Shots</code> (<code>max(Shots)</code>) to filter down to the row or rows of the player or players with the most shots:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">most_shots &lt;-<span class="st"> </span>worldcup %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(Shots ==<span class="st"> </span><span class="kw">max</span>(Shots))
+most_shots</code></pre></div>
+<pre><code>##    Team Position Time Shots Passes Tackles Saves Player top_four
+## 1 Ghana  Forward  501    27    151       1     0   Gyan    Other</code></pre>
+<p>Use <code>geom_text()</code> to label his point on the graph with his name. You may need to mess around with some of the options in <code>geom_text()</code>, like <code>size</code>, <code>hjust</code>, and <code>vjust</code> (<code>hjust</code> and <code>vjust</code> say where, in relation to the point location, to put the label), to get something you’re happy with. Also, I pasted on an extra space at the end of the player’s name, to add some padding so the label wouldn’t be right on top of the point.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Team&#39;s final</span><span class="ch">\n</span><span class="st"> ranking&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>Position) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_text</span>(<span class="dt">data =</span> most_shots,
+                  <span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste</span>(Player, <span class="st">&quot; &quot;</span>)),
+                  <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>,
+                  <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust =</span> <span class="fl">0.4</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-243-1.png" width="960" /></p>
+<p>Try out different themes for the plot. First, I’ll save everything we’ve done so far as the object <code>shot_plot</code>, then I’ll try adding different themes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shot_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots,
+                     <span class="dt">color =</span> top_four)) +
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>,
+                   <span class="dt">alpha =</span> <span class="fl">0.5</span>)  +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Time played in World Cup (minutes)&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Team&#39;s final</span><span class="ch">\n</span><span class="st"> ranking&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>Position) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_text</span>(<span class="dt">data =</span> most_shots,
+                  <span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">paste</span>(Player, <span class="st">&quot; &quot;</span>)),
+                  <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>,
+                  <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust =</span> <span class="fl">0.4</span>)
 
+shot_plot +<span class="st"> </span><span class="kw">theme_few</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-244-1.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shot_plot +<span class="st"> </span><span class="kw">theme_tufte</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-244-2.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shot_plot +<span class="st"> </span><span class="kw">theme_wsj</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-244-3.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shot_plot +<span class="st"> </span><span class="kw">theme_fivethirtyeight</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-244-4.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shot_plot +<span class="st"> </span><span class="kw">theme_stata</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-244-5.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shot_plot +<span class="st"> </span><span class="kw">theme_economist_white</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-244-6.png" width="960" /></p>
+
+</div>
+</div>
 </div>
 </div>
 
@@ -529,8 +503,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-preliminaries.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="exploring-data-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -557,7 +531,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/00-course_info.Rmd",
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/04-reportingresults1.Rmd",
 "text": "Edit"
 },
 "download": null,
