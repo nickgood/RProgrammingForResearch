@@ -446,7 +446,7 @@ Figure 3.3: Example of available shades of blue in R.
 </div>
 <div id="useful-plot-additions" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Useful plot additions</h3>
-<p>There are also a number of elements that you can add onto a <code>ggplot</code> object using <code>+</code>. A few very frequently used ones are:</p>
+<p>There are also a number of elements that you can add onto a <code>ggplot</code> object using <code>+</code>. A few that are used very frequently are:</p>
 <table>
 <thead>
 <tr class="header">
@@ -478,17 +478,14 @@ Figure 3.3: Example of available shades of blue in R.
 <p>I’ll be using functions from <code>dplyr</code> and <code>ggplot2</code>, so those need to be loaded:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)</code></pre></div>
-<p>Each observation is a single measurement for a child; there can be multiple observations per child. I’ll subset out child id, sex, weight, height, and age, and I’ll limit to each child’s first measurement.</p>
+<p>Each observation is a single measurement for a child; there can be multiple observations per child. I used the following code to select only the columns for child id, sex, weight, height, and age. I also used <code>distinct</code> to limit the dataset to only include one measurement for each chile, the child’s first measurement in the dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%
-<span class="st">  </span><span class="co"># Subset to certain columns</span>
 <span class="st">  </span><span class="kw">select</span>(id, sex, wt, ht, age) %&gt;%
-<span class="st">  </span><span class="co"># Convert id and sex to factors</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">factor</span>(id),
          <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
                       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))) %&gt;%
-<span class="st">  </span><span class="co"># Limit to first obs. per child</span>
 <span class="st">  </span><span class="kw">distinct</span>(id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>The data now looks like:</p>
+<p>After this cleaning, the data looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali)</code></pre></div>
 <pre><code>##       id    sex   wt    ht age
 ## 1 120011   Male 12.8  91.2  41
