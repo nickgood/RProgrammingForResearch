@@ -497,25 +497,35 @@ Figure 3.3: Example of available shades of blue in R.
 </div>
 <div id="histograms" class="section level3">
 <h3><span class="header-section-number">3.2.7</span> Histograms</h3>
-<p>For <code>geom_histogram()</code>, the main aesthetic is <code>x</code>, the (numeric) vector for which you want to create a histogram:</p>
+<p>Histograms show the distribution of a single variable. Therefore, <code>geom_histogram()</code> requires only one main aesthetic, <code>x</code>, the (numeric) vector for which you want to create a histogram. For example, to create a histogram of children’s heights for the Nepali dataset (Figure <a href="exploring-data-1.html#fig:nepalihist1">3.4</a>), run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-145-1.png" width="240" style="display: block; margin: auto;" /></p>
-<p>You can add some elements to the histogram, like <code>ggtitle</code>, <code>xlab</code>, and <code>xlim</code>:</p>
+<div class="figure" style="text-align: center"><span id="fig:nepalihist1"></span>
+<img src="RProgrammingForResearch_files/figure-html/nepalihist1-1.png" alt="Basic example of plotting a histogram with `ggplot2`. This histogram shows the distribution of heights for the first recorded measurements of each child in the `nepali` dataset." width="384" />
+<p class="caption">
+Figure 3.4: Basic example of plotting a histogram with <code>ggplot2</code>. This histogram shows the distribution of heights for the first recorded measurements of each child in the <code>nepali</code> dataset.
+</p>
+</div>
+<div class="rmdnote">
+<p>
+If you run the code with no arguments for <code>binwidth</code> or <code>bins</code> in <code>geom_histogram</code>, you will get a message saying “<code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.”. This message is just saying that a default number of bins was used to create the histogram. You can use arguments to change the number of bins used, but often this default is fine. You may also get a message that observations with missing values were removed.
+</p>
+</div>
+<p>You can add some elements to the histogram now to customize it a bit. For example, you can add a figure title (<code>ggtitle</code>) and clearer labels for the x-axis (<code>xlab</code>). You can also change the range of values shown by the x-axis (<code>xlim</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Height of children&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-146-1.png" width="240" style="display: block; margin: auto;" /></p>
-<p><code>geom_histogram</code> also has its own special argument, <code>bins</code>. You can use this to change the number of bins that are used to make the histogram:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-146-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>The geom <code>geom_histogram</code> also has its own special argument, <code>bins</code>. You can use this argument to change the number of bins that are used to make the histogram:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,
                  <span class="dt">bins =</span> <span class="dv">40</span>) </code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scatterplots" class="section level3">
 <h3><span class="header-section-number">3.2.8</span> Scatterplots</h3>
-<p>You can use the <code>geom_point</code> geom to create a scatterplot. For example, to create a scatterplot of height versus age for the Nepali data:</p>
+<p>A scatterplot shows how one variable changes as another changes. You can use the <code>geom_point</code> geom to create a scatterplot. For example, to create a scatterplot of height versus age for the Nepali data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-148-1.png" width="240" style="display: block; margin: auto;" /></p>
