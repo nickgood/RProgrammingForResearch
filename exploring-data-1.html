@@ -583,7 +583,7 @@ Figure 3.10: Example of mapping color to an element of the data in a scatterplot
 </div>
 <div id="boxplots" class="section level3">
 <h3><span class="header-section-number">3.2.9</span> Boxplots</h3>
-<p>Boxplots can be used to show the distribution of a continuous variable. To create a boxplot, you can use the <code>geom_boxplot</code> geom. For example, to create a boxplot of the heights of children in the Nepali dataset (Figure <a href="exploring-data-1.html#fig:nepaliboxplot1">3.11</a>), you can run:</p>
+<p>Boxplots can be used to show the distribution of a continuous variable. To create a boxplot, you can use the <code>geom_boxplot</code> geom. To plot a boxplot for a single, continuous variable, you can map that variable to <code>y</code> in the <code>aes</code> call, and map <code>x</code> to the constant <code>1</code>. For example, to create a boxplot of the heights of children in the Nepali dataset (Figure <a href="exploring-data-1.html#fig:nepaliboxplot1">3.11</a>), you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> ht)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>)</code></pre></div>
@@ -593,22 +593,35 @@ Figure 3.10: Example of mapping color to an element of the data in a scatterplot
 Figure 3.11: Example of creating a boxplot with <code>geom_boxplot</code>. The example shows the distribution of height data for children in the <code>nepali</code> dataset.
 </p>
 </div>
-<p>You can also create separate boxplots, one for each level of a factor. In this case, you’ll need to include two aesthetics (<code>x</code> and <code>y</code>) when you initialize the ggplot object.</p>
+<p>You can also create separate boxplots, one for each level of a factor (Figure <a href="exploring-data-1.html#fig:nepaliboxplot2">3.12</a>). In this case, you’ll need to include two aesthetics (<code>x</code> and <code>y</code>) when you initialize the ggplot object The <code>y</code> variable is the variable for which the distribution will be shown, and the <code>x</code> variable should be a discrete (categorical or TRUE/FALSE) variable, and will be used to group the variable. This <code>x</code> variable should also be specified as the grouping variable, using <code>group</code> within the aesthetic call.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> ht, <span class="dt">group =</span> sex)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sex&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>) </code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-146-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:nepaliboxplot2"></span>
+<img src="RProgrammingForResearch_files/figure-html/nepaliboxplot2-1.png" alt="Example of creating separate boxplots, divided by a categorical grouping variable in the data." width="480" />
+<p class="caption">
+Figure 3.12: Example of creating separate boxplots, divided by a categorical grouping variable in the data.
+</p>
+</div>
 </div>
 <div id="extensions-of-ggplot2" class="section level3">
 <h3><span class="header-section-number">3.2.10</span> Extensions of <code>ggplot2</code></h3>
-<p>There are lots of R extensions for creating other interesting plots. For example, you can use the <code>ggpairs</code> function from the <code>GGally</code> package to plot all pairs of scatterplots for several variables. Notice how this output shows continuous and binary variables differently.</p>
+<p>There are lots of R extensions for creating other interesting plots. For example, you can use the <code>ggpairs</code> function from the <code>GGally</code> package to plot all pairs of scatterplots for several variables (Figure <a href="exploring-data-1.html#fig:ggallyexample">3.13</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggpairs</span>(nepali[, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;age&quot;</span>)])</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<span class="kw">ggpairs</span>(nepali %&gt;%<span class="st"> </span><span class="kw">select</span>(sex, wt, ht, age))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:ggallyexample"></span>
+<img src="RProgrammingForResearch_files/figure-html/ggallyexample-1.png" alt="Example of using `ggpairs` from the `GGally` package for exploratory data analysis." width="\textwidth" />
+<p class="caption">
+Figure 3.13: Example of using <code>ggpairs</code> from the <code>GGally</code> package for exploratory data analysis.
+</p>
+</div>
+<p>Notice how this output shows continuous and binary variables differently. For example, the center diagonal shows density plots for continuous variables, but a bar chart for the categorical variable.</p>
+<p>See <a href="https://www.ggplot2-exts.org" class="uri">https://www.ggplot2-exts.org</a> to find more <code>ggplot2</code> extensions.</p>
 </div>
 </div>
 <div id="simple-statistics-functions" class="section level2">
 <h2><span class="header-section-number">3.3</span> Simple statistics functions</h2>
+<p>To explore your data, you’ll need to be able to calculate some simple statistics for vectors, including calculating the mean and range of continuous variables and counting the number of values in each category of a factor or logical vector.</p>
 <p>Here are some simple statistics functions you will likely use often:</p>
 <table>
 <thead>
@@ -631,56 +644,64 @@ Figure 3.11: Example of creating a boxplot with <code>geom_boxplot</code>. The e
 <td align="left">Mean or median of vector</td>
 </tr>
 <tr class="even">
+<td align="left"><code>sd()</code></td>
+<td align="left">Standard deviation of vector</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>table()</code></td>
 <td align="left">Number of observations per level for a factor vector</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>cor()</code></td>
 <td align="left">Determine correlation(s) between two or more vectors</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>summary()</code></td>
 <td align="left">Summary statistics, depends on class</td>
 </tr>
 </tbody>
 </table>
-<p>All of these take, as the main argument, the vector(s) for which you want the statistic. If there are missing values in the vector, you’ll need to add an option to say what to do when them (e.g., <code>na.rm</code> or <code>use=&quot;complete.obs&quot;</code>).</p>
+<p>All of these functions take, as the main argument, the vector or vectors for which you want the statistic. If there are missing values in the vector, you’ll typically need to add an argument to say what to do with the missing values. The parameter name for this varies by function, but for many of these functions it’s <code>na.rm = TRUE</code> or <code>use=&quot;complete.obs&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(nepali$wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 10.18432</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(nepali$ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1]  52.4 104.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(nepali$ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 12.64529</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(nepali$sex)</code></pre></div>
 <pre><code>## 
 ##   Male Female 
 ##    107     93</code></pre>
-<p>The <code>cor</code> function can take two or more vectors. If you give it multiple values, it will give the correlation matrix for all the vectors.</p>
+<p>Most of these functions take a single vector as the input. The <code>cor</code> function, however, calculates the correlation between vectors and so takes two or more vectors. If you give it multiple values, it will give the correlation matrix for all the vectors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(nepali$wt, nepali$ht, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
 <pre><code>## [1] 0.9571535</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(nepali[ , <span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;age&quot;</span>)], <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>((nepali %&gt;%<span class="st"> </span><span class="kw">select</span>(wt, ht, age)), <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
 <pre><code>##            wt        ht       age
 ## wt  1.0000000 0.9571535 0.8931195
 ## ht  0.9571535 1.0000000 0.9287129
 ## age 0.8931195 0.9287129 1.0000000</code></pre>
-<p>R supports object-oriented programming. This shows up with <code>summary()</code>. R looks to see what type of object it’s dealing with, and then uses a method specific to that object type.</p>
+<p>R supports object-oriented programming. Your first taste of this shows up with the <code>summary</code> function. For the <code>summary</code> function, R does not run the same code every time. Instead, R first checks what type of object was input to <code>summary</code>, and then it runs a function (<em>method</em>) specific to that type of object. For example, if you input a continuous vector, like the <code>ht</code> column in <code>nepali</code>, to <code>summary</code>, the function will return the mean, median, range, and 25th and 75th percentile values:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali$wt)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##    3.80    7.90   10.10   10.18   12.40   16.70      15</code></pre>
+<p>However, if you submit a factor vector, like the <code>sex</code> column in <code>nepali</code>, the <code>summary</code> function will return a count of how many elements of the vector are in each factor level (as a note, you could do the same thing with the <code>table</code> function):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali$sex)</code></pre></div>
 <pre><code>##   Male Female 
 ##    107     93</code></pre>
-<p>We’ll see more of this when we do regression models.</p>
-<p>You can also perform many of these tasks using <code>dplyr</code>. For example, to get the mean weight, you can use the <code>summarize</code> function:</p>
+<p>The <code>summary</code> function can also input other data structures, including dataframes, lists, and special object types, like regression model objects. In each case, it performs different actions specific to the object type. Later in this section, we’ll cover regression models, and see what the <code>summary</code> function returns when it is used with regression model objects.</p>
+<p>You will often want to use these functions in conjunction with the <code>summarize</code> function in <code>dplyr</code>. For example, to create a new dataframe with the mean weight of children in the <code>nepali</code> dataset, you can use <code>mean</code> inside a <code>summarize</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>##    mean_wt
 ## 1 10.18432</code></pre>
-<p>There are some special functions that you can use with <code>summarize</code>. For example, <code>n</code> and <code>first</code> (see the Data Wrangling cheatsheet for more):</p>
+<p>There are also some special functions that you can use with <code>summarize</code>. For example, the <code>n</code> function will calculate the number of observations and the <code>first</code> function will return the first value of a column:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_children =</span><span class="kw">n</span>(), 
             <span class="dt">first_id =</span> <span class="kw">first</span>(id))</code></pre></div>
 <pre><code>##   n_children first_id
 ## 1        200   120011</code></pre>
-<p>If you want to get summaries by group using <code>dplyr</code> (e.g., mean weight by sex), use <code>group_by</code> before running <code>summarize</code>:</p>
+<p>See the “summary function” section of the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">the RStudio Data Wrangling cheatsheet</a> for more examples of these special functions.</p>
+<p>Often, you will be more interested in summaries within certain groupings of your data, rather than overall summaries. For example, you may be interested in mean height and weight by sex, rather than across all children, for the <code>nepali</code> data. It is very easy to calculate these grouped summaries using <code>dplyr</code>– you just need to group data using the <code>group_by</code> function (also a <code>dplyr</code> function) before you run the <code>summarize</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
@@ -691,10 +712,15 @@ Figure 3.11: Example of creating a boxplot with <code>geom_boxplot</code>. The e
 ##   &lt;fctr&gt;     &lt;dbl&gt;      &lt;int&gt;   &lt;fctr&gt;
 ## 1   Male 10.497980        107   120011
 ## 2 Female  9.823256         93   120012</code></pre>
+<div class="rmdnote">
+<p>
+Don’t forget that you need to save the output to a new object if you want to use it later. The above code, which creates a dataframe with summaries for Nepali children by sex, will only be printed out to your console if run as-is. If you’d like to save this output as an object to use later (for example, for a plot or table), you need to assign it to an R object.
+</p>
+</div>
 </div>
 <div id="logical-vectors" class="section level2">
 <h2><span class="header-section-number">3.4</span> Logical vectors</h2>
-<p>Last week, you learned a lot about logical statements and how to use them with the <code>subset()</code> function. You can also use logical vectors, created with these statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>).</p>
+<p>Last week, you learned a lot about logical statements and how to use them with the <code>filter</code> function. You can also use logical vectors, created with these statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>).</p>
 <p>A logical statement run on a vector will create a logical vector the same length as the original vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is_male &lt;-<span class="st"> </span>nepali$sex ==<span class="st"> &quot;Male&quot;</span>
 <span class="kw">length</span>(nepali$sex)</code></pre></div>
