@@ -729,14 +729,14 @@ Don’t forget that you need to save the output to a new object if you want to u
 </div>
 <div id="logical-vectors" class="section level2">
 <h2><span class="header-section-number">3.4</span> Logical vectors</h2>
-<p>Last week, you learned a lot about logical statements and how to use them with the <code>filter</code> function. You can also use logical vectors, created with these statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>).</p>
-<p>A logical statement run on a vector will create a logical vector the same length as the original vector:</p>
+<p>Last week, you learned a lot about logical statements and how to use them with the <code>filter</code> function. You can also use logical vectors, created with these logical statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>) to pull out just the rows of a dataframe that meet a certain condition.</p>
+<p>When you run a logical statement on a vector, you create a logical vector the same length as the original vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is_male &lt;-<span class="st"> </span>nepali$sex ==<span class="st"> &quot;Male&quot;</span>
 <span class="kw">length</span>(nepali$sex)</code></pre></div>
 <pre><code>## [1] 200</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(is_male)</code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<p>The logical vector will have the value <code>TRUE</code> at any position where the original vector met the logical condition you tested, and <code>FALSE</code> anywhere else:</p>
+<p>The logical vector (<code>is_male</code> in this example) will have the value <code>TRUE</code> at any position where the original vector (<code>nepali$sex</code> in this example) met the logical condition you tested, and <code>FALSE</code> anywhere else:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali$sex)</code></pre></div>
 <pre><code>## [1] Male   Female Female Female Male   Male  
 ## Levels: Male Female</code></pre>
@@ -747,7 +747,8 @@ Don’t forget that you need to save the output to a new object if you want to u
 <pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(!is_male)</code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
-<p>You can do a few cool things now with a logical vector like this. For example, you can use it with indexing to pull out just the rows where <code>is_male</code> is <code>TRUE</code>:</p>
+<p>The bang operator turns out to be very useful. You will often find cases where it’s difficult to write a logical vector to get what you want, but fairly easy to write the inverse (find everything you don’t want). One example is filtering down to non-missing values– the <code>is.na</code> function will return <code>TRUE</code> for any value that is <code>NA</code>, so you can use <code>!is.na()</code> to identify any non-missing values.</p>
+<p>You can do a few cool things with a logical vector. For example, you can use it with indexing to pull out just the rows of a dataframe where <code>is_male</code> is <code>TRUE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali[is_male, ])</code></pre></div>
 <pre><code>##        id  sex   wt   ht age
 ## 1  120011 Male 12.8 91.2  41
@@ -765,15 +766,17 @@ Don’t forget that you need to save the output to a new object if you want to u
 ## 8  120052 Female 11.8  83.6  32
 ## 10 120061 Female  8.7  78.5  26
 ## 15 120082 Female 11.2  79.8  36</code></pre>
-<p>You can also use <code>sum()</code> and <code>table()</code> to find out how many males and females are in the dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(is_male); <span class="kw">sum</span>(!is_male)</code></pre></div>
+<p>For these cases, the length of the logical vector and the number of rows in the dataframe will match.</p>
+<p>You can also use <code>sum()</code> and <code>table()</code> with a logical vector to find out how many of the values in the vector are <code>TRUE</code> AND <code>FALSE</code>. In the example, you can use these functions to find out how many males and females are in the dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(is_male)</code></pre></div>
 <pre><code>## [1] 107</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(!is_male)</code></pre></div>
 <pre><code>## [1] 93</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(is_male)</code></pre></div>
 <pre><code>## is_male
 ## FALSE  TRUE 
 ##    93   107</code></pre>
-<p>As a note, you could achieve the same thing with <code>dplyr</code> functions. One way to do this is to use <code>mutate</code> with a logical statement to create an <code>is_male</code> column, then group by that new column and summarize:</p>
+<p>Note that you could also achieve the same thing with <code>dplyr</code> functions. For example, you could use <code>mutate</code> with a logical statement to create an <code>is_male</code> column in the <code>nepali</code> dataframe, then group by the new <code>is_male</code> column and summarize, using the <code>n</code> function to count the number of observations in each group:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_male =</span> sex ==<span class="st"> &quot;Male&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(is_male) %&gt;%
