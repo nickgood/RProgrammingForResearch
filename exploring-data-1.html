@@ -208,7 +208,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.9" data-path="exploring-data-1.html"><a href="exploring-data-1.html#boxplots"><i class="fa fa-check"></i><b>3.2.9</b> Boxplots</a></li>
 <li class="chapter" data-level="3.2.10" data-path="exploring-data-1.html"><a href="exploring-data-1.html#extensions-of-ggplot2"><i class="fa fa-check"></i><b>3.2.10</b> Extensions of <code>ggplot2</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a></li>
+<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summary-statistics"><i class="fa fa-check"></i><b>3.3.1</b> Summary statistics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summarize-function"><i class="fa fa-check"></i><b>3.3.2</b> <code>summarize</code> function</a></li>
+</ul></li>
 <li class="chapter" data-level="3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#logical-vectors"><i class="fa fa-check"></i><b>3.4</b> Logical vectors</a></li>
 <li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#regression-models"><i class="fa fa-check"></i><b>3.5</b> Regression models</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#formula-structure"><i class="fa fa-check"></i><b>3.5.1</b> Formula structure</a></li>
@@ -621,6 +624,8 @@ Figure 3.13: Example of using <code>ggpairs</code> from the <code>GGally</code> 
 </div>
 <div id="simple-statistics-functions" class="section level2">
 <h2><span class="header-section-number">3.3</span> Simple statistics functions</h2>
+<div id="summary-statistics" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Summary statistics</h3>
 <p>To explore your data, you’ll need to be able to calculate some simple statistics for vectors, including calculating the mean and range of continuous variables and counting the number of values in each category of a factor or logical vector.</p>
 <p>Here are some simple statistics functions you will likely use often:</p>
 <table>
@@ -689,6 +694,9 @@ Figure 3.13: Example of using <code>ggpairs</code> from the <code>GGally</code> 
 <pre><code>##   Male Female 
 ##    107     93</code></pre>
 <p>The <code>summary</code> function can also input other data structures, including dataframes, lists, and special object types, like regression model objects. In each case, it performs different actions specific to the object type. Later in this section, we’ll cover regression models, and see what the <code>summary</code> function returns when it is used with regression model objects.</p>
+</div>
+<div id="summarize-function" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> <code>summarize</code> function</h3>
 <p>You will often want to use these functions in conjunction with the <code>summarize</code> function in <code>dplyr</code>. For example, to create a new dataframe with the mean weight of children in the <code>nepali</code> dataset, you can use <code>mean</code> inside a <code>summarize</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
@@ -718,6 +726,7 @@ Don’t forget that you need to save the output to a new object if you want to u
 </p>
 </div>
 </div>
+</div>
 <div id="logical-vectors" class="section level2">
 <h2><span class="header-section-number">3.4</span> Logical vectors</h2>
 <p>Last week, you learned a lot about logical statements and how to use them with the <code>filter</code> function. You can also use logical vectors, created with these statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>).</p>
@@ -733,12 +742,12 @@ Don’t forget that you need to save the output to a new object if you want to u
 ## Levels: Male Female</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(is_male)</code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
-<p>You can “flip” this logical vector (i.e., change every <code>TRUE</code> to <code>FALSE</code> and vice-versa) using <code>!</code>:</p>
+<p>You can “flip” this logical vector (i.e., change every <code>TRUE</code> to <code>FALSE</code> and vice-versa) using the <em>bang operator</em>, <code>!</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(is_male)</code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(!is_male)</code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
-<p>You can do a few cool things now with this vector. For example, you can use it with indexing to pull out just the rows where <code>is_male</code> is <code>TRUE</code>:</p>
+<p>You can do a few cool things now with a logical vector like this. For example, you can use it with indexing to pull out just the rows where <code>is_male</code> is <code>TRUE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali[is_male, ])</code></pre></div>
 <pre><code>##        id  sex   wt   ht age
 ## 1  120011 Male 12.8 91.2  41
