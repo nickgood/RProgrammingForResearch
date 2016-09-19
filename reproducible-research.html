@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="reproducible-research.html">
-<link rel="next" href="appendix-b-homework.html">
+<link rel="prev" href="reporting-data-results-1.html">
+<link rel="next" href="appendix-a-vocabulary.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -294,221 +294,134 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-a-vocabulary" class="section level1">
-<h1><span class="header-section-number">A</span> Appendix A: Vocabulary</h1>
-<p>You will be responsible for knowing the following functions and vocabulary for the weekly quizzes.</p>
-<div id="week-1-quiz-1" class="section level2">
-<h2><span class="header-section-number">A.1</span> Week 1 (Quiz 1)</h2>
+<div id="reproducible-research" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Reproducible research</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week5.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="what-is-reproducible-research" class="section level2">
+<h2><span class="header-section-number">5.1</span> What is reproducible research?</h2>
+<p>A data analysis is <strong>reproducible</strong> if all the information (data, files, etc.) is available required for someone else re-do your entire analysis.</p>
+<p>This includes:</p>
 <ul>
-<li><code>c()</code></li>
-<li><code>data.frame()</code></li>
-<li><code>dim()</code></li>
-<li><code>ncol()</code></li>
-<li><code>nrow()</code></li>
-<li><code>head()</code>, option <code>n =</code></li>
-<li><code>read.csv</code>, options <code>head =</code>, <code>skip =</code>, <code>nrow =</code></li>
-<li><code>[...]</code>, <code>[..., ...]</code></li>
-<li><code>getwd()</code></li>
-<li><code>setwd()</code>, including <code>setwd(&quot;~&quot;)</code></li>
-<li><code>list.files()</code></li>
-<li><code>install.packages()</code></li>
-<li><code>library()</code></li>
-<li><code>&lt;-</code></li>
-<li><code>=</code></li>
-<li><code>subset()</code></li>
-<li><code>length()</code></li>
-<li>open source software</li>
-<li>“free as in beer”</li>
-<li>“free as in speech”</li>
-<li>CRAN</li>
-<li>GitHub</li>
-<li>R packages</li>
-<li>R working directory</li>
-<li>How to download a csv file from GitHub</li>
-<li>Nate Silver</li>
-<li>FiveThirtyEight</li>
-<li>Grading policies for the course</li>
-<li>Course requirements / policies for in-class quizzes and weekly journal entries</li>
-<li>Style rules for naming R objects</li>
-<li>Difference between R and RStudio</li>
-<li>Vectors</li>
-<li>Dataframes</li>
-<li>Note: Pay attention in the course notes and exercise to where the code uses quotation marks and where it does not– this will help you in the quiz</li>
+<li>Data available</li>
+<li>All code for cleaning raw data</li>
+<li>All code and software (specific versions, packages) for analysis</li>
 </ul>
+<p>Some advantages of making your research reproducible are:</p>
+<ul>
+<li>You can (easily) figure out what you did six months from now.</li>
+<li>You can (easily) make adjustments to code or data, even early in the process, and re-run all analysis.</li>
+<li>When you’re ready to publish, you can (easily) do a last double-check of your full analysis, from cleaning the raw data through generating figures and tables for the paper.</li>
+<li>You can pass along or share a project with others.</li>
+<li>You can give useful code examples to people who want to extend your research.</li>
+</ul>
+<p>Here is a famous research example of the dangers of writing code that is hard to double-check or confirm:</p>
+<ul>
+<li><a href="http://www.economist.com/node/21528593">The Economist</a></li>
+<li><a href="http://www.nytimes.com/2011/07/08/health/research/08genes.html?_r=0">The New York Times</a></li>
+<li><a href="http://simplystatistics.org/2012/02/27/the-duke-saga-starter-set/">Simply Statistics</a></li>
+</ul>
+<p>Some of the steps required to making research reproducible are:</p>
+<ul>
+<li>All your raw data should be saved in the project directory. You should have clear documentation on the source of all this data.</li>
+<li>Scripts should be included with all the code used to clean this data into the data set(s) used for final analyses and to create any figures and tables.</li>
+<li>You should include details on the versions of any software used in analysis (for R, this includes the version of R as well as versions of all packages used).</li>
+<li>If possible, there so be no “by hand” steps used in the analysis; instead, all steps should be done using code saved in scripts. For example, you should use a script to clean data, rather than cleaning it by hand in Excel. If any “non-scriptable” steps are unavoidable, you should very clearly document those steps.</li>
+</ul>
+<p>There are several software tools that can help you improve the reproducibility of your research:</p>
+<ul>
+<li><strong><code>knitr</code></strong>: Create files that include both your code and text. These can be compiled to create final reports and papers. They keep code within the final file for the report.</li>
+<li><strong><code>knitr</code> complements</strong>: Create fancier tables and figures within RMarkdown documents. Packages include <code>tikzDevice</code>, <code>animate</code>, <code>xtables</code>, and <code>pander</code>.</li>
+<li><strong><code>packrat</code></strong>: Save versions of each package used for the analysis, then load those package versions when code is run again in the future.</li>
+</ul>
+<p>In this section, I will focus on using <code>knitr</code> and RMarkdown files.</p>
 </div>
-<div id="week-2-quiz-2" class="section level2">
-<h2><span class="header-section-number">A.2</span> Week 2 (Quiz 2)</h2>
+<div id="markdown" class="section level2">
+<h2><span class="header-section-number">5.2</span> Markdown</h2>
+<p>R Markdown files are mostly written using Markdown. To write R Markdown files, you need to understand what markup languages like Markdown are and how they work.</p>
+<p>In Word and other word processing programs you have used, you can add formatting using buttons and keyboard shortcuts (e.g., “Ctrl-B” for bold). The file saves the words you type. It also saves the formatting, but you see the final output, rather than the formatting markup, when you edit the file (WYSIWYG– what you see is what you get).</p>
+<p>In markup languages, on the other hand, you markup the document directly to show what formatting the final version should have (e.g., you type <code>**bold**</code> in the file to end up with a document with <strong>bold</strong>).</p>
+<p>Examples of markup languages include:</p>
 <ul>
-<li><code>source()</code></li>
-<li><code>setwd()</code>, including <code>setwd(&quot;~&quot;)</code>, <code>setwd(&quot;..&quot;)</code>, <code>setwd(&quot;..\..&quot;)</code></li>
-<li><code>list.files()</code>, option <code>path =</code></li>
-<li>functions in the <code>read.table()</code> family, including <code>read.csv()</code> and <code>read.delim()</code>. What are defaults of the <code>sep =</code> and <code>dec =</code> options for each? For all, the options <code>header =</code>, <code>sep =</code>, <code>as.is =</code>, <code>na.strings =</code>, <code>nrows =</code>, <code>skip =</code>, and <code>col.names =</code>.</li>
-<li>The tidyverse</li>
-<li>functions in the <code>read_*</code> family (e.g., <code>read_csv</code>)</li>
-<li>Advantages of the <code>read_*</code> family of functions compared to their base R analogues (the <code>read.table</code> functions)</li>
-<li><code>paste()</code>, option <code>sep =</code></li>
-<li><code>paste0()</code></li>
-<li><code>readxl</code> package and its <code>read_excel()</code> function</li>
-<li><code>haven</code> package and its <code>read_sas()</code> function</li>
-<li><code>$</code></li>
-<li><code>class()</code></li>
-<li><code>str()</code></li>
-<li><code>as.Date()</code>, option <code>format =</code></li>
-<li><code>lubridate</code> functions, include <code>ymd</code>, <code>ymd_hm</code>, and <code>mdy</code></li>
-<li><code>range()</code></li>
-<li><code>dplyr</code> package</li>
-<li><code>rename()</code></li>
-<li><code>mutate()</code></li>
-<li><code>arrange()</code></li>
-<li><code>%&gt;%</code>, advantages of piping</li>
-<li><code>filter()</code></li>
-<li>Reading in data from either a local or online flat file</li>
-<li><code>save()</code>, option <code>file =</code></li>
-<li><code>load()</code></li>
-<li><code>rm()</code></li>
-<li><code>ls()</code></li>
-<li>Main types of vector classes in R: character, numeric, factor, date, logical</li>
-<li>Which classes of vectors don’t always look like numbers, but R assigns an underlying numeric value to? (Hint: This include the logical class, which R saves with an underlying number, with TRUE = 1 and FALSE = 0.)</li>
-<li>Common abbreviations for telling R date formats (e.g., “%m”, “%y”)</li>
-<li>Common logical expressions to use in <code>filter()</code></li>
-<li>relative pathnames</li>
-<li>absolute pathnames</li>
-<li>delimited files</li>
-<li>fixed width files</li>
-<li>R script file (How would you make a new one? What file extension would it have? Why is it important to use? How do you run code from a script file in RStudio?)</li>
-<li>What kinds of data can be read into R?</li>
-<li>How to read flat files of data that are online directly into R if they are on:
-<ul>
-<li>A “http:” site</li>
-<li>A “https:” site</li>
-</ul></li>
-<li>When you might want to save an R object as a <code>.RData</code> file and when (and why) you might not want to</li>
+<li>HTML (HyperText Markup Language)</li>
+<li>LaTex</li>
+<li>Markdown (a “lightweight” markup language)</li>
 </ul>
+<p>For example, Figure <a href="reproducible-research.html#fig:htmlexample">5.1</a> some marked-up HTML code from CSU’s website, while Figure <a href="reproducible-research.html#fig:renderedexample">5.2</a> shows how that file looks when it’s rendered by a web browser.</p>
+<div class="figure" style="text-align: center"><span id="fig:htmlexample"></span>
+<img src="figures/example_html.png" alt="Example of the source of an HTLM file." width="\textwidth" />
+<p class="caption">
+Figure 5.1: Example of the source of an HTLM file.
+</p>
 </div>
-<div id="week-3-quiz-3" class="section level2">
-<h2><span class="header-section-number">A.3</span> Week 3 (Quiz 3)</h2>
-<ul>
-<li><code>data()</code> (with and without the name of a dataset as an option)</li>
-<li><code>library()</code> (with and without an argument in the parentheses)</li>
-<li>common addition for all these plotting functions: <code>ggtitle</code>, <code>xlab</code>, <code>ylab</code>, <code>xlim</code>, <code>ylim</code></li>
-<li><code>aes</code> function and common aesthetics, including <code>color</code>, <code>shape</code>, <code>x</code>, <code>y</code>, and <code>fill</code></li>
-<li>Some common geoms: <code>geom_histogram</code>, <code>geom_points</code>, <code>geom_lines</code>, <code>geom_boxplot()</code> (both for a single numeric variable and for a numeric vector stratified by a factor)</li>
-<li><code>ggpairs()</code> from the <code>GGally</code> package</li>
-<li><code>range()</code></li>
-<li><code>min()</code></li>
-<li><code>max()</code></li>
-<li><code>mean()</code></li>
-<li><code>median()</code></li>
-<li><code>table()</code></li>
-<li><code>cor()</code>, both for two variables in a dataframe, and to get the correlation matrix for several variables in a dataframe</li>
-<li><code>summary()</code>, as applied to: different classes of vectors (numeric, factor, logical), dataframes, <code>lm</code> objects, and <code>glm</code> objects</li>
-<li><code>lm()</code>, <code>data=</code> option</li>
-<li><code>glm()</code>, options <code>data=</code>, <code>family=</code></li>
-<li>Functions to apply to a <code>lm</code> or <code>glm</code> object: <code>summary()</code>, <code>coef()</code>, <code>residuals()</code>, <code>fitted()</code>, <code>plot()</code>, <code>abline()</code></li>
-<li>The following elements that you can pull from the <code>summary</code> of a <code>lm</code> call: <code>summary(mod_1)$call</code>, <code>summary(mod_1)$coef</code>, <code>summary(mod_1)$r.squared</code>, <code>summary(mod_1)$cov.unscaled</code></li>
-<li>How to create a logical vector and how to use one to (1) index a data frame and (2) count the number of times a certain condition is true in a vector</li>
-<li>What the bang operator (<code>!</code>) does to a logical operator</li>
-<li>What to do if you want to apply a summary statistic function to a vector with missing values (you do not need to know every option name for all the functions, just know that you would need to include an option like <code>na.rm=</code> or <code>use=</code>, and that you can use the help file for a function to figure out the option call for that function).</li>
-<li>The following about object-oriented programming: In R, it means that some functions, like <code>summary()</code>, will do different things depending on what type of object you call it on.</li>
-<li>The basic structure of regression formulae in R (for example, <code>y ~ x1 + x2</code>)</li>
-<li>Difference between using <code>lm()</code> and <code>glm()</code> to fit a linear regression model</li>
-<li>Difference between the code you would use to fit a linear, Poisson, or logistic model using <code>glm()</code></li>
-</ul>
+<div class="figure" style="text-align: center"><span id="fig:renderedexample"></span>
+<img src="figures/example_output.png" alt="Example of a rendered HTLM file." width="\textwidth" />
+<p class="caption">
+Figure 5.2: Example of a rendered HTLM file.
+</p>
 </div>
-<div id="week-4-quiz-4" class="section level2">
-<h2><span class="header-section-number">A.4</span> Week 4 (Quiz 4)</h2>
+<p>To write a file in Markdown, you’ll need to learn the conventions for creating formatting. This table shows what you would need to write in a flat file for some common formatting choices:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Rendering</th>
+<th align="left">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>**text**</code></td>
+<td align="left"><strong>text</strong></td>
+<td align="left">boldface</td>
+</tr>
+<tr class="even">
+<td align="left"><code>*text*</code></td>
+<td align="left"><em>text</em></td>
+<td align="left">italicized</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[text](www.google.com)</code></td>
+<td align="left"><a href="www.google.com">text</a></td>
+<td align="left">hyperlink</td>
+</tr>
+<tr class="even">
+<td align="left"><code># text</code></td>
+<td align="left"></td>
+<td align="left">first-level header</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>## text</code></td>
+<td align="left"></td>
+<td align="left">second-level header</td>
+</tr>
+</tbody>
+</table>
+<p>Some other simple things you can do in Markdown include:</p>
 <ul>
-<li>Guidelines for good graphics</li>
-<li>Data density / data-to-ink ratio</li>
-<li>Small multiples</li>
-<li>Edward Tufte</li>
-<li>Hadley Wickham</li>
-<li>Where to put the <code>+</code> in ggplot statements to avoid problems (ends of lines instead of starts of new lines)</li>
-<li>Can you save a ggplot object as an R object that you can reference later? If so, how would you add elements on to that object? How would you print it when you were ready to print the graph to your RStudio graphics window?</li>
-<li><code>geom_hline()</code>, <code>geom_vline()</code></li>
-<li><code>geom_text()</code></li>
-<li><code>facet_grid()</code>, <code>facet_wrap()</code></li>
-<li><code>grid.arrange()</code> from the <code>gridExtra</code> package</li>
-<li><code>ggthemes</code> package, including <code>theme_few()</code> and <code>theme_tufte()</code></li>
-<li>Setting point color for <code>geom_point()</code> both as a constant (all points red) and as a way to show the level of a factor for each observation</li>
-<li><code>size</code>, <code>alpha</code>, <code>color</code></li>
-<li>Re-naming and re-ordering factors</li>
-<li><strong>Note:</strong> If you read this and find and bring in an example of a “small multiples” graph (from a newspaper, a website, an academic paper), you can get one extra point on this quiz</li>
+<li>Lists (ordered or bulleted)</li>
+<li>Equations</li>
+<li>Tables</li>
+<li>Figures from file</li>
+<li>Block quotes</li>
+<li>Superscripts</li>
 </ul>
+<p>For more Markdown conventions, see <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">RStudio’s R Markdown Reference Guide</a> (link also available through “Help” in RStudio).</p>
 </div>
-<div id="week-5-quiz-5" class="section level2">
-<h2><span class="header-section-number">A.5</span> Week 5 (Quiz 5)</h2>
-<ul>
-<li><code>as.Date</code>, including <code>format=</code> option</li>
-<li><code>format</code> applied to Date objects (including what class the output of this function will be)</li>
-<li>Reproducible research, including what it is and advantages to aiming to make your research reproducible</li>
-<li>R style guidelines on variable names, <code>attach()</code>, <code>&lt;-</code> vs. <code>=</code>, line length, spacing, semicolons, commenting, indentation, and code grouping</li>
-<li>Markup languages (concept and examples)</li>
-<li>Basic conventions for Markdown (bold, italics, links, headers, lists)</li>
-<li>Literate programming</li>
-<li>What working directory R uses for code in an .Rmd document</li>
-<li>Basic syntax for RMarkdown chunks, including how to name them</li>
-<li>Options for RMarkdown chunks: <code>echo</code>, <code>eval</code>, <code>messages</code>, <code>warnings</code>, <code>include</code>, <code>fig.width</code>, <code>fig.height</code>, <code>results</code></li>
-<li>Difference between global options and chunk options, and which takes precendence</li>
-<li>What inline code is and how to write it in RMarkdown</li>
-<li>How to set global options</li>
-<li>Why style is important in coding</li>
-<li>RPubs</li>
-</ul>
-</div>
-<div id="week-6-quiz-6" class="section level2">
-<h2><span class="header-section-number">A.6</span> Week 6 (Quiz 6)</h2>
-<ul>
-<li><code>with()</code></li>
-<li>Three characteristics of tidy data</li>
-<li>Five common problems with tidy data and how to resolve them (make sure you understand the examples shown, which you can find out more about in the Hadley Wickham paper I reference)</li>
-<li><code>select()</code></li>
-<li><code>filter()</code></li>
-<li><code>mutate()</code></li>
-<li><code>summarize()</code></li>
-<li><code>group_by()</code></li>
-<li><code>arrange()</code></li>
-<li><code>gather()</code></li>
-<li><code>spread()</code></li>
-<li><code>%&gt;%</code></li>
-<li>Go through the examples where I’ve chained together several functions to clean up a dataset and make sure you can follow through these chained examples</li>
-</ul>
-</div>
-<div id="week-7-quiz-7" class="section level2">
-<h2><span class="header-section-number">A.7</span> Week 7 (Quiz 7)</h2>
-<ul>
-<li><code>for</code> loops</li>
-<li>basics of writing a function</li>
-<li>figuring out the output of a loop based on its code</li>
-<li>figuring the the output of a function based on its code</li>
-<li>parentheses around a full assignment statement (e.g., <code>(ex &lt;- 1)</code>)</li>
-<li>in-class exercise and example analysis from Oct. 12 course</li>
-<li><code>kable()</code> from the <code>knitr</code> package</li>
-</ul>
-</div>
-<div id="week-8-quiz-8" class="section level2">
-<h2><span class="header-section-number">A.8</span> Week 8 (Quiz 8)</h2>
-<ul>
-<li><code>apply</code> family of functions</li>
-<li><code>*_join</code> family of functions</li>
-<li><code>matrix</code> objects, including how to subset</li>
-<li><code>list</code> objects, including how to subset</li>
-<li><code>Titanic</code> example analysis from Oct. 19 course</li>
-<li>Using <code>color =</code>, <code>size =</code>, or <code>shape =</code> in the <code>aes()</code> statement of a <code>ggplot()</code> call</li>
-<li><code>geom_bar()</code></li>
-<li><code>geom_smooth()</code>, including the <code>se =</code> and <code>method =</code> options</li>
-<li>jittering, the <code>position = position_jitter()</code> option in ggplot geoms</li>
-</ul>
+<div id="in-course-exercise-4" class="section level2">
+<h2><span class="header-section-number">5.3</span> In-course exercise</h2>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="reproducible-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-b-homework.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="reporting-data-results-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -535,7 +448,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/vocabulary.Rmd",
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/05-reproducibleresearch1.Rmd",
 "text": "Edit"
 },
 "download": null,
