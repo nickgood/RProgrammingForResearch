@@ -249,7 +249,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>5.1</b> What is reproducible research?</a></li>
 <li class="chapter" data-level="5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#markdown"><i class="fa fa-check"></i><b>5.2</b> Markdown</a></li>
 <li class="chapter" data-level="5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#literate-programming-in-r"><i class="fa fa-check"></i><b>5.3</b> Literate programming in R</a></li>
-<li class="chapter" data-level="5.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#in-course-exercise-4"><i class="fa fa-check"></i><b>5.4</b> In-course exercise</a></li>
+<li class="chapter" data-level="5.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#in-course-exercise-4"><i class="fa fa-check"></i><b>5.4</b> In-course exercise</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#creating-a-markdown-document"><i class="fa fa-check"></i><b>5.4.1</b> Creating a Markdown document</a></li>
+<li class="chapter" data-level="5.4.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#adding-in-r-code"><i class="fa fa-check"></i><b>5.4.2</b> Adding in R code</a></li>
+<li class="chapter" data-level="5.4.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#working-with-r-markdown-documents"><i class="fa fa-check"></i><b>5.4.3</b> Working with R Markdown documents</a></li>
+<li class="chapter" data-level="5.4.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#r-style-guidelines"><i class="fa fa-check"></i><b>5.4.4</b> R style guidelines</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
@@ -555,7 +560,52 @@ head(nepali, 1)
 </div>
 <div id="in-course-exercise-4" class="section level2">
 <h2><span class="header-section-number">5.4</span> In-course exercise</h2>
+<p>For all of today’s tasks, you’ll use the code from last week’s in-course exercise to do the exercises. This week we are not focusing on writing new code, but rather on how to take R code and put it in an R Markdown file, so we can create reports from files that include the original code.</p>
+<div id="creating-a-markdown-document" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Creating a Markdown document</h3>
+<p>First, you’ll create a Markdown document, without any R code in it yet.</p>
+<p>In RStudio, go to “File” -&gt; “New File” -&gt; “R Markdown”. From the window that brings up, choose “Document” on the left-hand column and “HTML” as the output format. A new file will open in the script pane of your RStudio session. Save this file (you may pick the name and directory). The file extension should be “.Rmd”.</p>
+<p>First, before you try to write your own Markdown, try compiling the example that the script includes by default. (This code is always included, as a template, when you first open a new RMarkdown file using the RStudio “New file” interface we used in this example.) Try compiling this default R Markdown example by clicking the “Knit” button at the top of the script file.</p>
+<p>For some of you, you may not yet have everything you need on your computer to be able to get this to work. If so, let me know. RStudio usually includes all the necessary tools when you install it, but there may be some exceptions.</p>
+<p>If you could get the document to knit, do the following tasks:</p>
+<ul>
+<li>Look through the HTML document that was created. Compare it to the R Markdown script that created it, and see if you can understand, at least broadly, what’s going on.</li>
+<li>Look in the directory where you saved the R Markdown file. You should now also see a new, .html file in that folder. Try opening it with a web browser like Safari.</li>
+<li>Go back to the R Markdown file. Delete everything after the initial header information (everything after the 6th line). In the header information, make sure the title, author, and date are things you’re happy with. If not, change them.</li>
+<li>Using Markdown syntax, write up a description of the data (<code>worldcup</code>) we used last week to create the fancier figure. Try to include the following elements:
+<ul>
+<li>Bold and italic text</li>
+<li>Hyperlinks</li>
+<li>A list, either ordered or bulleted</li>
+<li>Headers</li>
+</ul></li>
+</ul>
+</div>
+<div id="adding-in-r-code" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> Adding in R code</h3>
+<p>Now incorporate the R code from last week’s exercise into your document. Once you get the document to render with some basic pieces of code in it, try the following:</p>
+<ul>
+<li>Try some different chunk options. For example, try setting <code>echo = FALSE</code> in some of your code chunks. Similarly, try using the options <code>results = &quot;hide&quot;</code> and <code>include = FALSE</code>.</li>
+<li>You should have at least one code chunk that generates figures. Try experimenting with the <code>fig.width</code> and <code>fig.height</code> options for the chunk to change the size of the figure.</li>
+<li>Try using the global commands. See if you can switch the <code>echo</code> default value for this document from TRUE (the usual default) to FALSE.</li>
+</ul>
+</div>
+<div id="working-with-r-markdown-documents" class="section level3">
+<h3><span class="header-section-number">5.4.3</span> Working with R Markdown documents</h3>
+<p>Finally, try the following tasks to get some experience working with R Markdown files in RStudio:</p>
+<ul>
+<li>Go to one of your code chunks. Locate the small gray arrow just to the left of the line where you initiate the code chunk. Click on it and see what happens. Then click on it again.</li>
+<li>Put your cursor inside one of your code chunks. Try using the “Run” button (or Ctrl-Return) to run code in that chunk at your R console. Did it work?</li>
+<li>Pick a code chunk in your document. Put your cursor somewhere in the code in that chunk. Click on the “Run” button and choose “Run All Chunks Above”. What did that do? If it did not work, what do you think might be going on? (Hint: Check <code>getwd()</code> and think about which directory you’ve used to save your R Markdown file.)</li>
+<li>Pick another chunk of code. Put the cursor somewhere in the code for that chunk. Click on the “Run” button and choose “Run Current Chunk”. Then try “Run Next Chunk”. Try to figure out all the options the “Run” button gives you and when each might be useful.</li>
+<li>Click on the small gray arrow to the right of the “Knit HTML” button. If the option is offered, select “Knit Word” and try it. What does this do?</li>
+</ul>
+</div>
+<div id="r-style-guidelines" class="section level3">
+<h3><span class="header-section-number">5.4.4</span> R style guidelines</h3>
+<p>Go through all the R code in your R Markdown file. Are there are places where your code is not following style conventions for R? Clean up your code to correct any of these issues.</p>
 
+</div>
 </div>
 </div>
 
