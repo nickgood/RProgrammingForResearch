@@ -38,8 +38,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="r-preliminaries.html">
+<link rel="prev" href="reporting-data-results-1.html">
+<link rel="next" href="appendix-a-vocabulary.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -295,250 +295,240 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="course-information" class="section level1 unnumbered">
-<h1>Course information</h1>
-<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseOverview.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
-<div id="course-overview" class="section level2">
-<h2><span class="header-section-number">0.1</span> Course overview</h2>
-<p>This document provides the course notes for Colorado State University’s ERHS 535 course for Fall 2016. The course offers in-depth instruction on data collection, data management, programming, and visualization, using data examples relevant to academic research.</p>
-</div>
-<div id="time-and-place" class="section level2">
-<h2><span class="header-section-number">0.2</span> Time and place</h2>
-<p>This course meets in Room 120 of the Environmental Health Building on Mondays and Wednesdays, 10:00 am–12:00 pm. Exceptions to these meeting times are:</p>
+<div id="reproducible-research-1" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Reproducible research #1</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week5.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="what-is-reproducible-research" class="section level2">
+<h2><span class="header-section-number">5.1</span> What is reproducible research?</h2>
+<p>A data analysis is <strong>reproducible</strong> if all the information (data, files, etc.) is available required for someone else re-do your entire analysis.</p>
+<p>This includes:</p>
 <ul>
-<li>There will be no meeting on Wednesday, Aug. 31.</li>
-<li>There will be no meeting on Labor Day (Monday, Sept. 5).</li>
-<li>To make up for missing class on Aug. 31, we will have a supplemental class on Friday, Sept. 9, 10:00 am–12:00 pm. You <strong>will not</strong> lose attendance points if you cannot attend this class, but <strong>will</strong> be responsible for the material covered.</li>
-<li>There are no course meetings the week of Thanksgiving.</li>
+<li>Data available</li>
+<li>All code for cleaning raw data</li>
+<li>All code and software (specific versions, packages) for analysis</li>
 </ul>
+<p>Some advantages of making your research reproducible are:</p>
+<ul>
+<li>You can (easily) figure out what you did six months from now.</li>
+<li>You can (easily) make adjustments to code or data, even early in the process, and re-run all analysis.</li>
+<li>When you’re ready to publish, you can (easily) do a last double-check of your full analysis, from cleaning the raw data through generating figures and tables for the paper.</li>
+<li>You can pass along or share a project with others.</li>
+<li>You can give useful code examples to people who want to extend your research.</li>
+</ul>
+<p>Here is a famous research example of the dangers of writing code that is hard to double-check or confirm:</p>
+<ul>
+<li><a href="http://www.economist.com/node/21528593">The Economist</a></li>
+<li><a href="http://www.nytimes.com/2011/07/08/health/research/08genes.html?_r=0">The New York Times</a></li>
+<li><a href="http://simplystatistics.org/2012/02/27/the-duke-saga-starter-set/">Simply Statistics</a></li>
+</ul>
+<p>Some of the steps required to making research reproducible are:</p>
+<ul>
+<li>All your raw data should be saved in the project directory. You should have clear documentation on the source of all this data.</li>
+<li>Scripts should be included with all the code used to clean this data into the data set(s) used for final analyses and to create any figures and tables.</li>
+<li>You should include details on the versions of any software used in analysis (for R, this includes the version of R as well as versions of all packages used).</li>
+<li>If possible, there so be no “by hand” steps used in the analysis; instead, all steps should be done using code saved in scripts. For example, you should use a script to clean data, rather than cleaning it by hand in Excel. If any “non-scriptable” steps are unavoidable, you should very clearly document those steps.</li>
+</ul>
+<p>There are several software tools that can help you improve the reproducibility of your research:</p>
+<ul>
+<li><strong><code>knitr</code></strong>: Create files that include both your code and text. These can be compiled to create final reports and papers. They keep code within the final file for the report.</li>
+<li><strong><code>knitr</code> complements</strong>: Create fancier tables and figures within RMarkdown documents. Packages include <code>tikzDevice</code>, <code>animate</code>, <code>xtables</code>, and <code>pander</code>.</li>
+<li><strong><code>packrat</code></strong>: Save versions of each package used for the analysis, then load those package versions when code is run again in the future.</li>
+</ul>
+<p>In this section, I will focus on using <code>knitr</code> and RMarkdown files.</p>
 </div>
-<div id="detailed-schedule" class="section level2">
-<h2><span class="header-section-number">0.3</span> Detailed schedule</h2>
-<p>Here is a more detailed view of the schedule for this course for Fall 2016:</p>
+<div id="markdown" class="section level2">
+<h2><span class="header-section-number">5.2</span> Markdown</h2>
+<p>R Markdown files are mostly written using Markdown. To write R Markdown files, you need to understand what markup languages like Markdown are and how they work.</p>
+<p>In Word and other word processing programs you have used, you can add formatting using buttons and keyboard shortcuts (e.g., “Ctrl-B” for bold). The file saves the words you type. It also saves the formatting, but you see the final output, rather than the formatting markup, when you edit the file (WYSIWYG– what you see is what you get).</p>
+<p>In markup languages, on the other hand, you markup the document directly to show what formatting the final version should have (e.g., you type <code>**bold**</code> in the file to end up with a document with <strong>bold</strong>).</p>
+<p>Examples of markup languages include:</p>
+<ul>
+<li>HTML (HyperText Markup Language)</li>
+<li>LaTex</li>
+<li>Markdown (a “lightweight” markup language)</li>
+</ul>
+<p>For example, Figure <a href="reproducible-research-1.html#fig:htmlexample">5.1</a> some marked-up HTML code from CSU’s website, while Figure <a href="reproducible-research-1.html#fig:renderedexample">5.2</a> shows how that file looks when it’s rendered by a web browser.</p>
+<div class="figure" style="text-align: center"><span id="fig:htmlexample"></span>
+<img src="figures/example_html.png" alt="Example of the source of an HTLM file." width="\textwidth" />
+<p class="caption">
+Figure 5.1: Example of the source of an HTLM file.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:renderedexample"></span>
+<img src="figures/example_output.png" alt="Example of a rendered HTLM file." width="\textwidth" />
+<p class="caption">
+Figure 5.2: Example of a rendered HTLM file.
+</p>
+</div>
+<p>To write a file in Markdown, you’ll need to learn the conventions for creating formatting. This table shows what you would need to write in a flat file for some common formatting choices:</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Dates</th>
-<th align="left">Level</th>
-<th align="left">Lecture content</th>
-<th align="left">Graded items</th>
+<th align="left">Code</th>
+<th align="left">Rendering</th>
+<th align="left">Explanation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Aug. 22, 24</td>
-<td align="left">Preliminary</td>
-<td align="left">R Preliminaries</td>
+<td align="left"><code>**text**</code></td>
+<td align="left"><strong>text</strong></td>
+<td align="left">boldface</td>
+</tr>
+<tr class="even">
+<td align="left"><code>*text*</code></td>
+<td align="left"><em>text</em></td>
+<td align="left">italicized</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[text](www.google.com)</code></td>
+<td align="left"><a href="www.google.com">text</a></td>
+<td align="left">hyperlink</td>
+</tr>
+<tr class="even">
+<td align="left"><code># text</code></td>
 <td align="left"></td>
+<td align="left">first-level header</td>
 </tr>
-<tr class="even">
-<td align="left">Aug. 29</td>
-<td align="left">Basic</td>
-<td align="left">Entering and cleaning data</td>
+<tr class="odd">
+<td align="left"><code>## text</code></td>
 <td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Sept. 7, Sept. 9*</td>
-<td align="left">Basic</td>
-<td align="left">Exploring data</td>
-<td align="left">Quiz (W)</td>
-</tr>
-<tr class="even">
-<td align="left">Sept. 12, 14</td>
-<td align="left">Basic</td>
-<td align="left">Reporting data results</td>
-<td align="left">Quiz (M), HW #1 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Sept. 19, 21</td>
-<td align="left">Basic</td>
-<td align="left">Reproducible Research</td>
-<td align="left">Quiz (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Sept. 26, 28</td>
-<td align="left">Intermediate</td>
-<td align="left">Entering and cleaning data</td>
-<td align="left">Quiz (M), HW #2 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Oct. 3, 5</td>
-<td align="left">Intermediate</td>
-<td align="left">Exploring data</td>
-<td align="left">Quiz (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Oct. 10, 12</td>
-<td align="left">Intermediate</td>
-<td align="left">Reporting data results</td>
-<td align="left">Quiz (M), HW #3 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Oct. 17, 19</td>
-<td align="left">Intermediate</td>
-<td align="left">Reproducible Research</td>
-<td align="left">Quiz (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Oct. 24, 26</td>
-<td align="left">Advanced</td>
-<td align="left">Entering and cleaning data</td>
-<td align="left">Quiz (M), HW #4 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Oct. 31, Nov. 2</td>
-<td align="left">Advanced</td>
-<td align="left">Exploring data</td>
-<td align="left">Project proposal (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Nov. 7, 9</td>
-<td align="left">Advanced</td>
-<td align="left">Reporting data results</td>
-<td align="left">HW #5 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Nov. 14, 16</td>
-<td align="left">Advanced</td>
-<td align="left">Mapping in R</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Nov. 28, 30</td>
-<td align="left">Advanced</td>
-<td align="left">Package development 1</td>
-<td align="left">HW #6 (W)</td>
-</tr>
-<tr class="odd">
-<td align="left">Dec. 5, 7</td>
-<td align="left">Advanced</td>
-<td align="left">Package development 2</td>
-<td align="left">Project draft (M)</td>
-</tr>
-<tr class="even">
-<td align="left">Week of Dec. 12</td>
-<td align="left"></td>
-<td align="left">Group presentations</td>
-<td align="left">Final project (M)</td>
+<td align="left">second-level header</td>
 </tr>
 </tbody>
 </table>
+<p>Some other simple things you can do in Markdown include:</p>
+<ul>
+<li>Lists (ordered or bulleted)</li>
+<li>Equations</li>
+<li>Tables</li>
+<li>Figures from file</li>
+<li>Block quotes</li>
+<li>Superscripts</li>
+</ul>
+<p>For more Markdown conventions, see <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">RStudio’s R Markdown Reference Guide</a> (link also available through “Help” in RStudio).</p>
 </div>
-<div id="grading" class="section level2">
-<h2><span class="header-section-number">0.4</span> Grading</h2>
-<p>Course grades will be determined by the following five components:</p>
+<div id="literate-programming-in-r" class="section level2">
+<h2><span class="header-section-number">5.3</span> Literate programming in R</h2>
+<p><strong>Literate programming</strong>, an idea developed by Donald Knuth, mixes code that can be executed with regular text. The files you create can then be rendered, to run any embedded code. The final output will have results from your code and the regular text.</p>
+<p>The <code>knitr</code> package can be used for literate programming in R. In essence, <code>knitr</code> allows you to write an R Markdown file that can be rendered into a pdf, Word, or HTML document.</p>
+<p>Here are the basics of opening and rendering an R Markdown file in RStudio:</p>
+<ul>
+<li>To open a new R Markdown file, go to “File” -&gt; “New File” -&gt; “RMarkdown…” -&gt; for now, chose a “Document” in “HTML” format.</li>
+<li>This will open a new R Markdown file in RStudio. The file extension for R Markdown files is “.Rmd”.</li>
+<li>The new file comes with some example code and text. You can run the file as-is to try out the example. You will ultimately delete this example code and text and replace it with your own.</li>
+<li>Once you “knit” the R Markdown file, R will render an HTML file with the output. This is automatically saved in the same directory where you saved your .Rmd file.</li>
+<li>Write everything besides R code using Markdown syntax.</li>
+</ul>
+<p>To include R code in an RMarkdown document, you need to separate off the code chunk using the following syntax:</p>
+<pre><code>```{r}
+my_vec &lt;- 1:10
+```</code></pre>
+<p>This syntax tells R how to find the start and end of pieces of R code when the file is rendered. R will walk through, find each piece of R code, run it and create output (printed output or figures, for example), and then pass the file along to another program to complete rendering (e.g., Tex for pdf files).</p>
+<p>You can specify a name for each chunk, if you’d like, by including it after “r” when you begin your chunk. For example, to give the name <code>load_nepali</code> to a code chunk that loads the <code>nepali</code> dataset, specify that name in the start of the code chunk: </p>
+<pre><code>```{r load_nepali}
+library(faraway)
+data(nepali)
+```</code></pre>
+<p>Here are a couple of tips for naming code chunks:</p>
+<ul>
+<li>Chunk names must be unique across a document.</li>
+<li>Any chunks you don’t name are given numbers by <code>knitr</code>.</li>
+</ul>
+<p>You do not have to name each chunk. However, there are some advantages:</p>
+<ul>
+<li>It will be easier to find any errors.<br />
+</li>
+<li>You can use the chunk labels in referencing for figure labels.</li>
+<li>You can reference chunks later by name.</li>
+</ul>
+<p>You can add options when you start a chunk. Many of these options can be set as TRUE / FALSE and include:</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Assessment component</th>
-<th align="right">Percent of grade</th>
+<th align="left">Option</th>
+<th align="left">Action</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Final group project</td>
-<td align="right">30</td>
+<td align="left"><code>echo</code></td>
+<td align="left">Print out the R code?</td>
 </tr>
 <tr class="even">
-<td align="left">Weekly in-class quizzes, weeks 3-10</td>
-<td align="right">25</td>
+<td align="left"><code>eval</code></td>
+<td align="left">Run the R code?</td>
 </tr>
 <tr class="odd">
-<td align="left">Homework</td>
-<td align="right">25</td>
+<td align="left"><code>messages</code></td>
+<td align="left">Print out messages?</td>
 </tr>
 <tr class="even">
-<td align="left">Attendance and class participation</td>
-<td align="right">10</td>
+<td align="left"><code>warnings</code></td>
+<td align="left">Print out warnings?</td>
 </tr>
 <tr class="odd">
-<td align="left">Weekly in-course group exercises</td>
-<td align="right">10</td>
+<td align="left"><code>include</code></td>
+<td align="left">If FALSE, run code, but don’t print code or results</td>
 </tr>
 </tbody>
 </table>
-<div id="attendance-and-class-participation" class="section level3">
-<h3><span class="header-section-number">0.4.1</span> Attendance and class participation</h3>
-<p>Because so much of the learning for this class is through interactive work in class, it is critical that you come to class. Out of a possible 10 points for class attendance, you will get:</p>
-<ul>
-<li><strong>10 points</strong> if you attend all classes</li>
-<li><strong>8 points</strong> if you miss one class</li>
-<li><strong>6 points</strong> if you miss two classes</li>
-<li><strong>4 points</strong> if you miss three classes</li>
-<li><strong>2 points</strong> if you miss four classes</li>
-<li><strong>0 points</strong> if you miss five or more classes</li>
-</ul>
-<p>You can get two extra credit attendance points (i.e., make up for a missed class) by attending the seminar that Yihui Xie will give on Sept. 23 at 4:00 pm for the Statistics Department in Weber 237.</p>
+<p>Other chunk options take values other than TRUE / FALSE. Some you might want to include are:</p>
+<table style="width:86%;">
+<colgroup>
+<col width="18%" />
+<col width="68%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Option</th>
+<th align="left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>results</code></td>
+<td align="left">How to print results (e.g., <code>hide</code> runs the code, but doesn’t print the results)</td>
+</tr>
+<tr class="even">
+<td align="center"><code>fig.width</code></td>
+<td align="left">Width to print your figure, in inches (e.g., <code>fig.width = 4</code>)</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>fig.height</code></td>
+<td align="left">Height to print your figure</td>
+</tr>
+</tbody>
+</table>
+<p>Add these options in the opening brackets and separate multiple ones with commas:</p>
+<pre><code>```{r  messages = FALSE, echo = FALSE}
+nepali[1, 1:3]
+```</code></pre>
+<p>I will cover other chunk options later, once you’ve gotten the chance to try writting R Markdown files.</p>
+<p>You can set “global” options at the beginning of the document. This will create new defaults for all of the chunks in the document. For example, if you want <code>echo</code>, <code>warning</code>, and <code>message</code> to be <code>FALSE</code> by default in all code chunks, you can run:</p>
+<pre><code>```{r  global_options}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE,
+  warning = FALSE)
+```</code></pre>
+<p>If you set both global and local chunk options that you set specifically for a chunk will take precedence over global options. For example, running a document with:</p>
+<pre><code>```{r  global_options}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE,
+  warning = FALSE)
+```
+
+
+```{r  check_nepali, echo = TRUE}
+head(nepali, 1)
+```</code></pre>
+<p><strong>would</strong> print the code for the <code>check_nepali</code> chunk, because the option specified for that specific chunk (<code>echo = TRUE</code>) would override the global option (<code>echo = FALSE</code>).</p>
+<p>You can also include R output directly in your text (“inline”) using backticks: </p>
+<p>“There are <code>`r nrow(nepali)`</code> observations in the <code>nepali</code> data set. The average age is <code>`r mean(nepali$age, na.rm = TRUE)`</code> months.”</p>
+<p></p>
+<p>Once the file is rendered, this gives: </p>
+<p>“There are 1000 observations in the <code>nepali</code> data set. The average age is 37.662 months.”</p>
 </div>
-</div>
-<div id="weekly-in-course-group-exercises" class="section level2">
-<h2><span class="header-section-number">0.5</span> Weekly in-course group exercises</h2>
-<p>Part of each class will be spent doing in-course group exercises. Ten points of your final grade will be based on your participation in these exercises. As long as you are in class and participate in these exercises, you will get full credit for this component. If you miss a class, to get credit towards this component of your grade, you will need to turn in a one-page document describing what you learned from doing the in-course exercise on your own time. All in-class exercises are included in the online course book at the end of the chapter on the associated material.</p>
-<div id="in-class-quizzes" class="section level3">
-<h3><span class="header-section-number">0.5.1</span> In-class quizzes</h3>
-<p>You will have eight total in-class quizzes. You will have one for each of the Week 2–10 class meetings. There will be <em>at least</em> 10 questions per quiz. You will get 1/3 point for each correct answer. If you do the math, you can get full credit for this if you get at least 75% of your answers right. You can not get more than the maximum of 25 points for this component– once you reach 25 points on quizzes, you will have achieved full credit for the quiz component of the course grade.</p>
-<p>All quiz questions will be multiple choice, matching, or some other form of “close-answered” question (i.e., no open-response-style questions). You can not make up a quiz for a class period you missed. You can still get full credit on your total possible quiz points if you miss a class, but it means you will have to work harder and get more questions right for days you are in class.</p>
-<p>Because grading format for these quizzes allows for you to miss some questions and still get the full quiz credit for the course, I will not ever re-consider the score you got on a previous quiz, give points back for a wrong answer on a poorly-worded question, etc. However, if a lot of people got a particular question wrong, I will be sure to cover it in the next class period. Also, especially if a question was poorly worded and caused confusion, I will work a similar question into a future quiz– in addition to the 10 guaranteed questions for that quiz– so every student will have the chance to get an extra 1/3 point of credit for the question.</p>
-<p>The “Vocabulary” appendix of our online book has the list of material for which you will be responsible for this quiz. Most of the functions and concepts will have been covered in class, but some may not. You are responsible for going through the list and, if there are things you don’t know or remember from class, learning them. To do this, you can use help functions in R, Google, StackOverflow, books on R, ask a friend, and any other resource you can find.</p>
-<p>In general, using R frequently in your research or other coursework will help you to prepare and do well on these quizzes.</p>
-</div>
-<div id="homework" class="section level3">
-<h3><span class="header-section-number">0.5.2</span> Homework</h3>
-<p>There will be six homework assignments, starting a few weeks into the course and then due approximately every two weeks (see the detailed schedule in the online course book for exact due dates).</p>
-<p>Homeworks should be done individually. You will get many chances to work with others during in-course exercises and your final group project, but these homeworks should be a chance to assess how well you understand and can use the course material on your own.</p>
-<p>Homeworks will be graded for correctness, but some partial credit will be given for questions you try but fail to answer correctly. If you can’t completely do a required task, be sure to show and explain what you tried to do to complete it.</p>
-<p>Homework is due by the start of class on the due date. Your grade will be reduced by 10 points for each day it is late, and will receive no credit if it is late by over a week.</p>
-</div>
-<div id="final-group-project" class="section level3">
-<h3><span class="header-section-number">0.5.3</span> Final group project</h3>
-<p>You will do the final group project in groups of 2–3. The final product will be a statistical blog post-style article of 1,500 words or less and an accompanying Shiny web application. Come up with an interesting question you’d love to get the answer to that you think you can find data to help you answer. You will need to use the data you find, and R, to write your article. The final product will be a Word document created from an RMarkdown file and an accompanying Shiny web application.</p>
-<p>Here are some articles to give you an idea of the style and content for this project:</p>
-<ul>
-<li><a href="http://www.statslife.org.uk/culture/1892-does-christmas-really-come-earlier-every-year">Does Christmas come earlier each year?</a></li>
-<li><a href="http://hilaryparker.com/2013/01/30/hilary-the-most-poisoned-baby-name-in-us-history/">Hilary: the most poisoned baby name in US history</a></li>
-<li><a href="http://fivethirtyeight.com/datalab/every-guest-jon-stewart-ever-had-on-the-daily-show/">Every Guest Jon Stewart Ever Had On “The Daily Show”</a></li>
-<li><a href="http://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/">Should Travelers Avoid Flying Airlines That Have Had Crashes in the Past?</a></li>
-<li><a href="http://fivethirtyeight.com/features/billion-dollar-billy-beane/">Billion-Dollar Billy Beane</a></li>
-</ul>
-<p>You will have in-class group work time during weeks 10–15 to work on this. This project will also require some work with your group outside of class. You will be able to get feedback from me through weekly informal written reports in these weeks. I will also provide feedback and help during the in-class group work time.</p>
-<p>The final group project will be graded with A through F, with the following point values (out of 30 possible):</p>
-<ul>
-<li><strong>30 points</strong> for an A</li>
-<li><strong>25 points</strong> for a B</li>
-<li><strong>20 points</strong> for a C</li>
-<li><strong>15 points</strong> for a D</li>
-<li><strong>10 points</strong> for an F</li>
-</ul>
-<p>If you turn nothing in, you will get <strong>0 points</strong>.</p>
-<p>We will discuss expectations for this project, create groups, etc. around the middle of the semester. The focus for this will be on finding, cleaning, and using good data to answer an interesting question, and on presenting, summarizing, and explaining the data well.</p>
-</div>
-</div>
-<div id="course-set-up" class="section level2">
-<h2><span class="header-section-number">0.6</span> Course set-up</h2>
-<p>Please be sure you have the latest version of R and RStudio installed. Also, be sure to sign up for a free GitHub account.</p>
-</div>
-<div id="helpful-books-for-learning-r" class="section level2">
-<h2><span class="header-section-number">0.7</span> Helpful books for learning R</h2>
-<p>There are three publishers that are leaders in good books for learning R:</p>
-<ul>
-<li><a href="http://shop.oreilly.com/category/browse-subjects/programming/r.do?sortby=publicationDate&amp;page=all">O’Reilly</a></li>
-<li><a href="https://www.nostarch.com">No Starch Press</a></li>
-<li><a href="http://www.springer.com/generic/search/results?SGWID=4-40109-24-653415-0&amp;sortOrder=relevance&amp;searchType=ADVANCED_CDA&amp;language=en&amp;searchScope=editions&amp;resultStart=1&amp;queryText=%22+R+%22">Springer</a></li>
-</ul>
-<p>Some particular books you might want to check out:</p>
-<ul>
-<li><a href="http://r4ds.had.co.nz">R for Data Science</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b40129810">R for Dummies</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b40438880">R in a Nutshell</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b36840282">R Cookbook</a></li>
-<li><a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8&amp;qid=1440997472&amp;sr=8-1&amp;keywords=r+graphics+cookbook">R Graphics Cookbook</a></li>
-<li><a href="http://discovery.library.colostate.edu/Record/.b44709365">A Beginner’s Guide to R</a></li>
-<li><a href="https://leanpub.com/u/rdpeng">Roger Peng’s Leanpub books</a></li>
-</ul>
-<p>Books that other students have found useful include:</p>
-<ul>
-<li>Introductory R by Robert J. Knell</li>
-</ul>
+<div id="in-course-exercise-4" class="section level2">
+<h2><span class="header-section-number">5.4</span> In-course exercise</h2>
 
 </div>
 </div>
@@ -550,8 +540,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-preliminaries.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="reporting-data-results-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -578,7 +568,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/00-course_info.Rmd",
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/05-reproducibleresearch1.Rmd",
 "text": "Edit"
 },
 "download": null,
