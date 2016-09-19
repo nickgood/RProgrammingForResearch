@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-09-18">
+<meta name="date" content="2016-09-19">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -375,7 +375,7 @@ b &lt;-<span class="st"> </span>chic_plot +<span class="st"> </span><span class=
 <div id="meaningful-labels" class="section level2">
 <h2><span class="header-section-number">4.3</span> Meaningful labels</h2>
 <p>Guideline 2: <strong>Use clear, meaningful labels.</strong> </p>
-<p>Graph defaults often use abbreviations for axis labels and other labeling. Further, text labels can sometimes be aligned in a way that makes them hard to read. The plots below give an example of the same information shown without (left) and with (right) clear, meaningful labels. </p>
+<p>Graph defaults often use abbreviations for axis labels and other labeling. Furthermore, text labels can sometimes be aligned in a way that makes them hard to read. The plots below give an example of the same information shown without (left) and with (right) clear, meaningful labels. </p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-1.png" width="768" /></p>
 <p>There are a few strategies you can use to make labels clearer:</p>
 <ul>
@@ -463,7 +463,7 @@ b &lt;-<span class="st"> </span>chic_plot +<span class="st"> </span>
 <h2><span class="header-section-number">4.7</span> Small multiples</h2>
 <p>Guideline 5: <strong>When possible, use small multiples.</strong> </p>
 <p><em>Small multiples</em> are graphs that use many small plots showing the same thing for different facets of the data. For example, instead of using color in a single plot to show data for males and females, you could use two small plots, one each for males and females. </p>
-<p>Typically, in small multiples, all plots with use the same x- and y-axes. This makes it easier to compare across plots, and it also allows you to save room by limiting axis annotation.</p>
+<p>Typically, in small multiples, all plots use the same x- and y-axes. This makes it easier to compare across plots, and it also allows you to save room by limiting axis annotation.</p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-242-1.png" width="768" /></p>
 <p>You can use the <code>facet</code> functions to create small multiples. This separates the graph into several small graphs, one for each level of a factor. </p>
 <p>The <code>facet</code> functions are:</p>
@@ -481,7 +481,7 @@ b &lt;-<span class="st"> </span>chic_plot +<span class="st"> </span>
 <span class="kw">facet_grid</span>([factor for rows] ~<span class="st"> </span>[factor for columns])</code></pre></div>
 <p>The <code>facet_wrap()</code> function can only facet by one variable, but it can “wrap” the small graphs for that variable, so the don’t all have to be in one row or column:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
-<span class="kw">facet_wrap</span>(~<span class="st"> </span>[factor for faceting], <span class="dt">ncol =</span> [<span class="co"># of columns])</span></code></pre></div>
+<span class="kw">facet_wrap</span>(~<span class="st"> </span>[factor for faceting], <span class="dt">ncol =</span> [number of columns])</code></pre></div>
 <p>Often, when you do faceting, you’ll want to re-name your factors levels or re-order them. For this, you’ll need to use the <code>factor()</code> function on the original vector. For example, to rename the <code>sex</code> factor levels from “1” and “2” to “Male” and “Female”, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), 
@@ -677,7 +677,7 @@ worldcup &lt;-<span class="st"> </span>worldcup %&gt;%
 <li>Create small multiples. The relationship between time played and shots taken is probably different by the players’ positions. Use faceting to create different graphs for each position.</li>
 <li>Make order count: What order are the faceted graphs currently in? Offensive players have more chances to take shots than defensive players, so that might be a useful ordering for the facets. Re-order the <code>Position</code> factor column to go from nearest your own goal to nearest the opponents goal, and then re-plot the graph from the previous step.</li>
 <li>Highlighting interesting data: Who had the most shots in the 2010 World Cup? Was he on a top-four team? Use <code>geom_text()</code> to label his point on the graph with his name.</li>
-<li>Increase data density: Try changing the theme, to come up with a graph with a bit less non-data ink. From the <code>ggthemes</code> package (you’ll need to install it if you don’t already have it), try some of the following themes: <code>theme_few()</code>, <code>theme_tufte()</code>, <code>theme_stata()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_economist_white()</code>, <code>theme_wsj()</code>.</li>
+<li>Increase data density: Try changing the theme, to come up with a graph with a bit less non-data ink. From the <code>ggthemes</code> package (you’ll need to install it if you don’t already have it), try some of the following themes: <code>theme_few()</code>, <code>theme_tufte()</code>, <code>theme_stata()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_economist_white()</code>, and <code>theme_wsj()</code>.</li>
 </ul>
 <div id="example-r-code-6" class="section level4">
 <h4><span class="header-section-number">4.10.3.1</span> Example R code</h4>
@@ -848,7 +848,7 @@ shot_plot +<span class="st"> </span><span class="kw">theme_few</span>()</code></
 <p>Note that, for <code>USArrests</code>, only some of the columns are pulled out (e.g., <code>murder = USArrests$murder</code>) to use in the <code>data</code> example dataframe. Further, the “Visualizing error” examples use a dataframe created specifically for these examples, called <code>df</code>.</p>
 <div class="rmdnote">
 <p>
-Some of the base R and ggplot2 example datasets have gotten to be fairly well-known. Some that you’ll see very often in examples are the <code>iris</code>, <code>mpg</code>, and <code>diamonds</code> datasets.
+Some of the base R and ggplot2 example datasets have become fairly well-known. Some that you’ll see very often in examples are the <code>iris</code>, <code>mpg</code>, and <code>diamonds</code> datasets.
 </p>
 </div>
 <p>All of the code to create the datasets <code>a</code> through <code>l</code> and <code>s</code> through <code>t</code> is given somewhere on the cheatsheet. Here it is in full:</p>
