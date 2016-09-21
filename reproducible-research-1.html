@@ -8,7 +8,7 @@
   <title>R Programming for Research</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.1.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-09-19">
+<meta name="date" content="2016-09-21">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -335,7 +335,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>There are several software tools that can help you improve the reproducibility of your research:</p>
 <ul>
-<li><strong><code>knitr</code></strong>: Create files that include both your code and text. These can be compiled to create final reports and papers. They keep code within the final file for the report.</li>
+<li><strong><code>knitr</code></strong>: Create files that include both your code and text. These can be rendered to create final reports and papers. They keep code within the final file for the report.</li>
 <li><strong><code>knitr</code> complements</strong>: Create fancier tables and figures within RMarkdown documents. Packages include <code>tikzDevice</code>, <code>animate</code>, <code>xtables</code>, and <code>pander</code>.</li>
 <li><strong><code>packrat</code></strong>: Save versions of each package used for the analysis, then load those package versions when code is run again in the future.</li>
 </ul>
@@ -544,14 +544,14 @@ head(nepali, 1)
 <li>You can run all the code in a chunk (or all the code in all chunks) using the different options under the “Run” button in RStudio.</li>
 <li>All the “Run” options have keyboard shortcuts, so you can use those.</li>
 </ul>
-<p>You can compile R Markdown documents to other formats:</p>
+<p>You can render R Markdown documents to other formats:</p>
 <ul>
 <li>Word</li>
 <li>Pdf (requires that you’ve installed “Tex” on your computer.)</li>
 <li>Slides (ioslides)</li>
 </ul>
 <p>Click the button to the right of “Knit” to see different options for rendering on your computer.</p>
-<p>You can freely post your RMarkdown documents at <a href="http://rpubs.com">RPubs</a>. If you want to post to RPubs, you need to create an account. Once you do, you can click the “Publish” button on the window that pops up with your compiled file. RPubs can also be a great place to look for interesting example code, although it sometimes can be pretty overwhelmed with MOOC homework.</p>
+<p>You can freely post your RMarkdown documents at <a href="http://rpubs.com">RPubs</a>. If you want to post to RPubs, you need to create an account. Once you do, you can click the “Publish” button on the window that pops up with your rendered file. RPubs can also be a great place to look for interesting example code, although it sometimes can be pretty overwhelmed with MOOC homework.</p>
 <p>If you’d like to find out more, here are two good how-to books on reproducible research in R (the CSU library has both in hard copy):</p>
 <ul>
 <li><em>Reproducible Research with R and RStudio</em>, Christopher Gandrud</li>
@@ -565,7 +565,7 @@ head(nepali, 1)
 <h3><span class="header-section-number">5.4.1</span> Creating a Markdown document</h3>
 <p>First, you’ll create a Markdown document, without any R code in it yet.</p>
 <p>In RStudio, go to “File” -&gt; “New File” -&gt; “R Markdown”. From the window that brings up, choose “Document” on the left-hand column and “HTML” as the output format. A new file will open in the script pane of your RStudio session. Save this file (you may pick the name and directory). The file extension should be “.Rmd”.</p>
-<p>First, before you try to write your own Markdown, try compiling the example that the script includes by default. (This code is always included, as a template, when you first open a new RMarkdown file using the RStudio “New file” interface we used in this example.) Try compiling this default R Markdown example by clicking the “Knit” button at the top of the script file.</p>
+<p>First, before you try to write your own Markdown, try rendering the example that the script includes by default. (This code is always included, as a template, when you first open a new RMarkdown file using the RStudio “New file” interface we used in this example.) Try rendering this default R Markdown example by clicking the “Knit” button at the top of the script file.</p>
 <p>For some of you, you may not yet have everything you need on your computer to be able to get this to work. If so, let me know. RStudio usually includes all the necessary tools when you install it, but there may be some exceptions.</p>
 <p>If you could get the document to knit, do the following tasks:</p>
 <ul>
