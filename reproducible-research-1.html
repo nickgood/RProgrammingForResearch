@@ -254,6 +254,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#adding-in-r-code"><i class="fa fa-check"></i><b>5.4.2</b> Adding in R code</a></li>
 <li class="chapter" data-level="5.4.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#working-with-r-markdown-documents"><i class="fa fa-check"></i><b>5.4.3</b> Working with R Markdown documents</a></li>
 <li class="chapter" data-level="5.4.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#r-style-guidelines"><i class="fa fa-check"></i><b>5.4.4</b> R style guidelines</a></li>
+<li class="chapter" data-level="5.4.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#trying-out-knitr-with-your-own-data"><i class="fa fa-check"></i><b>5.4.5</b> Trying out <code>knitr</code> with your own data</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -604,6 +605,18 @@ head(nepali, 1)
 <div id="r-style-guidelines" class="section level3">
 <h3><span class="header-section-number">5.4.4</span> R style guidelines</h3>
 <p>Go through all the R code in your R Markdown file. Are there are places where your code is not following style conventions for R? Clean up your code to correct any of these issues.</p>
+</div>
+<div id="trying-out-knitr-with-your-own-data" class="section level3">
+<h3><span class="header-section-number">5.4.5</span> Trying out <code>knitr</code> with your own data</h3>
+<p>Pick a dataset either from your own research or something interesting available online (if you’re struggling to find something, check out <a href="https://github.com/fivethirtyeight/data">Five Thirty Eight’s GitHub data repository</a>).</p>
+<ul>
+<li>Create an R Markdown document. Add some text to describe the data you’re using.</li>
+<li>Write some code to read in the data (you can save it to your computer and read it from a file or, if the data’s online, read it in directly).</li>
+<li>Use <code>dplyr</code> functions (especially <code>summarize</code>) to create a dataframe with some summary statistics for the data. Print this out (just as R output, not as a formatted table, for now).</li>
+<li>Try using <code>kable</code> to create a formatted version of the summary table you created.</li>
+<li>Create at least one plot using the data. Try using <code>fig.width</code> and <code>fig.height</code> chunk options to change the size of the figure in the output.</li>
+<li>Find an image online related to your data. Save it to your computer and use <code>include_graphics</code> from the <code>knitr</code> package to include it in your R Markdown document.</li>
+</ul>
 
 </div>
 </div>
