@@ -25,7 +25,7 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-09-23">
+<meta name="date" content="2016-09-24">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -1385,13 +1385,8 @@ icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span cla
 ## 4   A00.0 Cholera due to Vibrio cholerae 01, biovar cholerae
 ## 5   A00.1    Cholera due to Vibrio cholerae 01, biovar eltor
 ## 6   A00.9                               Cholera, unspecified</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;haven&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:lubridate&#39;:
-## 
-##     hms</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/icu.sas7bdat&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
+icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/icu.sas7bdat&quot;</span>)
 icu[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##      ID   STA   AGE GENDER  RACE
