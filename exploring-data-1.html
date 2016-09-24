@@ -585,9 +585,9 @@ Figure 3.7: Example of using the <code>binwidth</code> argument to set the width
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliscatter1"></span>
-<img src="RProgrammingForResearch_files/figure-html/nepaliscatter1-1.png" alt="Example of using 'geom_point' to create a scatterplot. This scatterplot shows the relationship between children's heights and weights within the 'nepali' dataset." width="480" />
+<img src="RProgrammingForResearch_files/figure-html/nepaliscatter1-1.png" alt="Example of creating a scatterplot. This scatterplot shows the relationship between children's heights and weights within the nepali dataset." width="480" />
 <p class="caption">
-Figure 3.8: Example of using ‘geom_point’ to create a scatterplot. This scatterplot shows the relationship between children’s heights and weights within the ‘nepali’ dataset.
+Figure 3.8: Example of creating a scatterplot. This scatterplot shows the relationship between children’s heights and weights within the nepali dataset.
 </p>
 </div>
 <p>Again, you can use some of the options and additions to change the plot appearance. For example, to add a title, change the x- and y-axis labels, and change the color and size of the points on the scatterplot (Figure <a href="exploring-data-1.html#fig:nepaliscatter2">3.9</a>), you can run:</p>
@@ -620,9 +620,9 @@ Figure 3.10: Example of mapping color to an element of the data in a scatterplot
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliboxplot1"></span>
-<img src="RProgrammingForResearch_files/figure-html/nepaliboxplot1-1.png" alt="Example of creating a boxplot with `geom_boxplot`. The example shows the distribution of height data for children in the `nepali` dataset." width="384" />
+<img src="RProgrammingForResearch_files/figure-html/nepaliboxplot1-1.png" alt="Example of creating a boxplot. The example shows the distribution of height data for children in the nepali dataset." width="384" />
 <p class="caption">
-Figure 3.11: Example of creating a boxplot with <code>geom_boxplot</code>. The example shows the distribution of height data for children in the <code>nepali</code> dataset.
+Figure 3.11: Example of creating a boxplot. The example shows the distribution of height data for children in the nepali dataset.
 </p>
 </div>
 <p>You can also create separate boxplots, one for each level of a factor (Figure <a href="exploring-data-1.html#fig:nepaliboxplot2">3.12</a>). In this case, you’ll need to include two aesthetics (<code>x</code> and <code>y</code>) when you initialize the ggplot object The <code>y</code> variable is the variable for which the distribution will be shown, and the <code>x</code> variable should be a discrete (categorical or TRUE/FALSE) variable, and will be used to group the variable. This <code>x</code> variable should also be specified as the grouping variable, using <code>group</code> within the aesthetic call.</p>
@@ -642,9 +642,9 @@ Figure 3.12: Example of creating separate boxplots, divided by a categorical gro
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 <span class="kw">ggpairs</span>(nepali %&gt;%<span class="st"> </span><span class="kw">select</span>(sex, wt, ht, age))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:ggallyexample"></span>
-<img src="RProgrammingForResearch_files/figure-html/ggallyexample-1.png" alt="Example of using `ggpairs` from the `GGally` package for exploratory data analysis." width="\textwidth" />
+<img src="RProgrammingForResearch_files/figure-html/ggallyexample-1.png" alt="Example of using ggpairs from the GGally package for exploratory data analysis." width="\textwidth" />
 <p class="caption">
-Figure 3.13: Example of using <code>ggpairs</code> from the <code>GGally</code> package for exploratory data analysis.
+Figure 3.13: Example of using ggpairs from the GGally package for exploratory data analysis.
 </p>
 </div>
 <p>Notice how this output shows continuous and binary variables differently. For example, the center diagonal shows density plots for continuous variables, but a bar chart for the categorical variable.</p>
@@ -945,9 +945,9 @@ Y_i \sim X_1 + X_2 + X_3
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coef[<span class="dv">1</span>],
                   <span class="dt">slope =</span> mod_coef[<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:modelcoefplot"></span>
-<img src="RProgrammingForResearch_files/figure-html/modelcoefplot-1.png" alt="Example of using the output from a `coefficients` call to add a regression line to a scatterplot." width="480" />
+<img src="RProgrammingForResearch_files/figure-html/modelcoefplot-1.png" alt="Example of using the output from a coefficients call to add a regression line to a scatterplot." width="480" />
 <p class="caption">
-Figure 3.14: Example of using the output from a <code>coefficients</code> call to add a regression line to a scatterplot.
+Figure 3.14: Example of using the output from a coefficients call to add a regression line to a scatterplot.
 </p>
 </div>
 <div class="rmdnote">
@@ -1003,9 +1003,9 @@ You can also use the shorter function <code>coef</code> as an alternative to <co
 <p>The <code>plot</code> function, like the <code>summary</code> function, will give different output depending on the class of the object that you input. For an <code>lm</code> object, you can use the <code>plot</code> function to get a number of useful diagnostic plots that will help you check regression assumptions (Figure <a href="exploring-data-1.html#fig:plotlmexample">3.15</a>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mod_a)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plotlmexample"></span>
-<img src="RProgrammingForResearch_files/figure-html/plotlmexample-1.png" alt="Example output from running the `plot` function with an `lm` object as the input." width="\textwidth" />
+<img src="RProgrammingForResearch_files/figure-html/plotlmexample-1.png" alt="Example output from running the plot function with an lm object as the input." width="\textwidth" />
 <p class="caption">
-Figure 3.15: Example output from running the <code>plot</code> function with an <code>lm</code> object as the input.
+Figure 3.15: Example output from running the plot function with an lm object as the input.
 </p>
 </div>
 <p>You can also use binary variables or factors as independent variables in regression models. For example, in the <code>nepali</code> dataset, <code>sex</code> is a factor variable with the levels “Male” and “Female”. You can fit a linear model of weight regressed on sex for this data with the call:</p>
