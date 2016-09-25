@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-09-24}
+\date{2016-09-25}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -8548,7 +8548,7 @@ a pdf of the lecture slides covering this topic.
 research?}\label{what-is-reproducible-research}
 
 A data analysis is \textbf{reproducible} if all the information (data,
-files, etc.) is available required for someone else re-do your entire
+files, etc.) required is available for someone else to re-do your entire
 analysis.
 
 This includes:
@@ -8614,11 +8614,11 @@ Some of the steps required to making research reproducible are:
   analysis (for R, this includes the version of R as well as versions of
   all packages used).
 \item
-  If possible, there so be no ``by hand'' steps used in the analysis;
-  instead, all steps should be done using code saved in scripts. For
-  example, you should use a script to clean data, rather than cleaning
-  it by hand in Excel. If any ``non-scriptable'' steps are unavoidable,
-  you should very clearly document those steps.
+  If possible, there should be no ``by hand'' steps used in the
+  analysis; instead, all steps should be done using code saved in
+  scripts. For example, you should use a script to clean data, rather
+  than cleaning it by hand in Excel. If any ``non-scriptable'' steps are
+  unavoidable, you should very clearly document those steps.
 \end{itemize}
 
 There are several software tools that can help you improve the
@@ -8653,7 +8653,7 @@ In Word and other word processing programs you have used, you can add
 formatting using buttons and keyboard shortcuts (e.g., ``Ctrl-B'' for
 bold). The file saves the words you type. It also saves the formatting,
 but you see the final output, rather than the formatting markup, when
-you edit the file (WYSIWYG-- what you see is what you get).
+you edit the file (WYSIWYG -- what you see is what you get).
 
 In markup languages, on the other hand, you markup the document directly
 to show what formatting the final version should have (e.g., you type
@@ -9247,7 +9247,7 @@ helpful.
 
 Note: Equations denoted this way will always compile for pdf documents,
 but won't always come through on Markdown files (for example, GitHub
-won't compile these math).
+won't compile math equations).
 
 For example, writing this in your R Markdown file:
 
@@ -9383,9 +9383,9 @@ can do that using \texttt{kable} from the \texttt{knitr} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{my.df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{letters =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{),}
-                \DataTypeTok{numbers =} \DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{)}
-\KeywordTok{kable}\NormalTok{(my.df)}
+\NormalTok{my_df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{letters =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{),}
+                    \DataTypeTok{numbers =} \DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{)}
+\KeywordTok{kable}\NormalTok{(my_df)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9460,11 +9460,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.65\\
+a & 0.27\\
 \hline
-b & -0.50\\
+b & 0.64\\
 \hline
-c & -0.20\\
+c & 1.48\\
 \hline
 \end{tabular}
 \end{table}

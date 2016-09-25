@@ -25,7 +25,8 @@
 
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
-<meta name="date" content="2016-09-24">
+  
+<meta name="date" content="2016-09-25">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -324,7 +325,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week5.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
 <div id="what-is-reproducible-research" class="section level2">
 <h2><span class="header-section-number">5.1</span> What is reproducible research?</h2>
-<p>A data analysis is <strong>reproducible</strong> if all the information (data, files, etc.) is available required for someone else re-do your entire analysis.</p>
+<p>A data analysis is <strong>reproducible</strong> if all the information (data, files, etc.) required is available for someone else to re-do your entire analysis.</p>
 <p>This includes:</p>
 <ul>
 <li>Data available</li>
@@ -350,7 +351,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>All your raw data should be saved in the project directory. You should have clear documentation on the source of all this data.</li>
 <li>Scripts should be included with all the code used to clean this data into the data set(s) used for final analyses and to create any figures and tables.</li>
 <li>You should include details on the versions of any software used in analysis (for R, this includes the version of R as well as versions of all packages used).</li>
-<li>If possible, there so be no “by hand” steps used in the analysis; instead, all steps should be done using code saved in scripts. For example, you should use a script to clean data, rather than cleaning it by hand in Excel. If any “non-scriptable” steps are unavoidable, you should very clearly document those steps.</li>
+<li>If possible, there should be no “by hand” steps used in the analysis; instead, all steps should be done using code saved in scripts. For example, you should use a script to clean data, rather than cleaning it by hand in Excel. If any “non-scriptable” steps are unavoidable, you should very clearly document those steps.</li>
 </ul>
 <p>There are several software tools that can help you improve the reproducibility of your research:</p>
 <ul>
@@ -363,7 +364,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="markdown" class="section level2">
 <h2><span class="header-section-number">5.2</span> Markdown</h2>
 <p>R Markdown files are mostly written using Markdown. To write R Markdown files, you need to understand what markup languages like Markdown are and how they work.</p>
-<p>In Word and other word processing programs you have used, you can add formatting using buttons and keyboard shortcuts (e.g., “Ctrl-B” for bold). The file saves the words you type. It also saves the formatting, but you see the final output, rather than the formatting markup, when you edit the file (WYSIWYG– what you see is what you get).</p>
+<p>In Word and other word processing programs you have used, you can add formatting using buttons and keyboard shortcuts (e.g., “Ctrl-B” for bold). The file saves the words you type. It also saves the formatting, but you see the final output, rather than the formatting markup, when you edit the file (WYSIWYG – what you see is what you get).</p>
 <p>In markup languages, on the other hand, you markup the document directly to show what formatting the final version should have (e.g., you type <code>**bold**</code> in the file to end up with a document with <strong>bold</strong>).</p>
 <p>Examples of markup languages include:</p>
 <ul>
@@ -703,7 +704,7 @@ nepali$sex &lt;-<span class="st"> </span><span class="kw">factor</span>(nepali$s
 <h3><span class="header-section-number">5.5.1</span> Equations in <code>knitr</code></h3>
 <p>You can write equations in RMarkdown documents by setting them apart with dollar signs (<code>$</code>). For an equation on a line by itself (<strong>display equation</strong>), you two <code>$</code>s before and after the equation, on separate lines, then use LaTex syntax for writing the equations.</p>
 <p>To help with this, you may want to use this <a href="http://reu.dimacs.rutgers.edu/Symbols.pdf">LaTex math cheat sheet.</a>. You may also find an online LaTex equation editor like <a href="https://www.codecogs.com/latex/eqneditor.php">Codecogs.com</a> helpful.</p>
-<p>Note: Equations denoted this way will always compile for pdf documents, but won’t always come through on Markdown files (for example, GitHub won’t compile these math).</p>
+<p>Note: Equations denoted this way will always compile for pdf documents, but won’t always come through on Markdown files (for example, GitHub won’t compile math equations).</p>
 <p>For example, writing this in your R Markdown file:</p>
 <pre><code>$$
 E(Y_{t}) \sim \beta_{0} + \beta_{1}X_{1}
@@ -765,9 +766,9 @@ E(Y_{t}) \sim \beta_{0} + \beta_{1}X_{1}
 <div id="tables-in-r-markdown" class="section level3">
 <h3><span class="header-section-number">5.6.1</span> Tables in R Markdown</h3>
 <p>If you want to create a nice, formatted table from an R dataframe, you can do that using <code>kable</code> from the <code>knitr</code> package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">letters =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>),
-                <span class="dt">numbers =</span> <span class="dv">1</span>:<span class="dv">3</span>)
-<span class="kw">kable</span>(my.df)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">letters =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>),
+                    <span class="dt">numbers =</span> <span class="dv">1</span>:<span class="dv">3</span>)
+<span class="kw">kable</span>(my_df)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -838,15 +839,15 @@ E(Y_{t}) \sim \beta_{0} + \beta_{1}X_{1}
 <tbody>
 <tr class="odd">
 <td align="right">a</td>
-<td align="center">1.05</td>
+<td align="center">-0.85</td>
 </tr>
 <tr class="even">
 <td align="right">b</td>
-<td align="center">1.14</td>
+<td align="center">-0.50</td>
 </tr>
 <tr class="odd">
 <td align="right">c</td>
-<td align="center">-1.71</td>
+<td align="center">0.51</td>
 </tr>
 </tbody>
 </table>
