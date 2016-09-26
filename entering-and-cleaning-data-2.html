@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R Programming for Research</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
+  <meta name="generator" content="bookdown 0.1.9 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R Programming for Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R Programming for Research" />
+  
+  <meta name="twitter:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  
+
+<meta name="author" content="Brooke Anderson and Rachel Severson">
+
+  
+<meta name="date" content="2016-09-26">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="reproducible-research-1.html">
+<link rel="next" href="appendix-a-vocabulary.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Authoring Books with R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Online course book, ERHS 535</a></li>
+<li class="chapter" data-level="" data-path="course-information.html"><a href="course-information.html"><i class="fa fa-check"></i>Course information</a><ul>
+<li class="chapter" data-level="0.1" data-path="course-information.html"><a href="course-information.html#course-overview"><i class="fa fa-check"></i><b>0.1</b> Course overview</a></li>
+<li class="chapter" data-level="0.2" data-path="course-information.html"><a href="course-information.html#time-and-place"><i class="fa fa-check"></i><b>0.2</b> Time and place</a></li>
+<li class="chapter" data-level="0.3" data-path="course-information.html"><a href="course-information.html#detailed-schedule"><i class="fa fa-check"></i><b>0.3</b> Detailed schedule</a></li>
+<li class="chapter" data-level="0.4" data-path="course-information.html"><a href="course-information.html#grading"><i class="fa fa-check"></i><b>0.4</b> Grading</a><ul>
+<li class="chapter" data-level="0.4.1" data-path="course-information.html"><a href="course-information.html#attendance-and-class-participation"><i class="fa fa-check"></i><b>0.4.1</b> Attendance and class participation</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="course-information.html"><a href="course-information.html#weekly-in-course-group-exercises"><i class="fa fa-check"></i><b>0.5</b> Weekly in-course group exercises</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="course-information.html"><a href="course-information.html#in-class-quizzes"><i class="fa fa-check"></i><b>0.5.1</b> In-class quizzes</a></li>
+<li class="chapter" data-level="0.5.2" data-path="course-information.html"><a href="course-information.html#homework"><i class="fa fa-check"></i><b>0.5.2</b> Homework</a></li>
+<li class="chapter" data-level="0.5.3" data-path="course-information.html"><a href="course-information.html#final-group-project"><i class="fa fa-check"></i><b>0.5.3</b> Final group project</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#course-set-up"><i class="fa fa-check"></i><b>0.6</b> Course set-up</a></li>
+<li class="chapter" data-level="0.7" data-path="course-information.html"><a href="course-information.html#helpful-books-for-learning-r"><i class="fa fa-check"></i><b>0.7</b> Helpful books for learning R</a></li>
+</ul></li>
+<li class="part"><span><b>Part I: Preliminaries</b></span></li>
+<li class="chapter" data-level="1" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>1</b> R Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-r"><i class="fa fa-check"></i><b>1.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#open-source-software"><i class="fa fa-check"></i><b>1.1.2</b> Open-source software</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> What is RStudio?</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#setting-up"><i class="fa fa-check"></i><b>1.1.4</b> Setting up</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#the-package-system"><i class="fa fa-check"></i><b>1.2</b> The “package” system</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#installing-from-cran"><i class="fa fa-check"></i><b>1.2.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>1.2.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#basic-code-conventions-of-r"><i class="fa fa-check"></i><b>1.3</b> Basic code conventions of R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>1.3.1</b> R’s MVP: The <em>gets arrow</em></a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>1.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>1.3.3</b> Naming objects</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#commenting-code"><i class="fa fa-check"></i><b>1.3.4</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>1.4</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#dataframes"><i class="fa fa-check"></i><b>1.4.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-r-functions"><i class="fa fa-check"></i><b>1.5</b> Using R functions</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-structure"><i class="fa fa-check"></i><b>1.5.1</b> Function structure</a></li>
+<li class="chapter" data-level="1.5.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-help-files"><i class="fa fa-check"></i><b>1.5.2</b> Function help files</a></li>
+<li class="chapter" data-level="1.5.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-parameters"><i class="fa fa-check"></i><b>1.5.3</b> Function parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#in-course-exercise"><i class="fa fa-check"></i><b>1.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#about-the-dataset"><i class="fa fa-check"></i><b>1.6.1</b> About the dataset</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>1.6.2</b> Getting the data onto your computer</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.3</b> Getting the data into R</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.4</b> Checking out the data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.5</b> Using the data to answer questions</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part II: Basics</b></span></li>
+<li class="chapter" data-level="2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html"><i class="fa fa-check"></i><b>2</b> Entering and cleaning data #1</a><ul>
+<li class="chapter" data-level="2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#r-scripts"><i class="fa fa-check"></i><b>2.1</b> R scripts</a></li>
+<li class="chapter" data-level="2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories-and-pathnames"><i class="fa fa-check"></i><b>2.2</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directory-structure"><i class="fa fa-check"></i><b>2.2.1</b> Directory structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#working-directory"><i class="fa fa-check"></i><b>2.2.2</b> Working directory</a></li>
+<li class="chapter" data-level="2.2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>2.2.3</b> File and directory pathnames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#diversion-paste"><i class="fa fa-check"></i><b>2.3</b> Diversion: <code>paste</code></a></li>
+<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Reading data into R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>2.4.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#the-read_-functions"><i class="fa fa-check"></i><b>2.4.2</b> The <code>read_*</code> functions</a></li>
+<li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>2.4.3</b> Reading online flat files</a></li>
+<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-and-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving and loading R objects</a></li>
+<li class="chapter" data-level="2.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-other-file-types"><i class="fa fa-check"></i><b>2.4.5</b> Reading other file types</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#data-cleaning"><i class="fa fa-check"></i><b>2.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#selecting-columns"><i class="fa fa-check"></i><b>2.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>2.5.3</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#add-or-change-columns"><i class="fa fa-check"></i><b>2.5.4</b> Add or change columns</a></li>
+<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#piping"><i class="fa fa-check"></i><b>2.5.5</b> Piping</a></li>
+<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>2.5.6</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#dates-in-r"><i class="fa fa-check"></i><b>2.6</b> Dates in R</a></li>
+<li class="chapter" data-level="2.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.7</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.7.1</b> Checking out directory structures</a></li>
+<li class="chapter" data-level="2.7.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.7.2</b> Using relative and absolute file pathnames</a></li>
+<li class="chapter" data-level="2.7.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.7.3</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="2.7.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.7.4</b> Cleaning up data</a></li>
+<li class="chapter" data-level="2.7.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.7.5</b> A taste of what’s to come…</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#data-from-a-package"><i class="fa fa-check"></i><b>3.1</b> Data from a package</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plots-to-explore-data"><i class="fa fa-check"></i><b>3.2</b> Plots to explore data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>3.2.1</b> Initializing a ggplot object</a></li>
+<li class="chapter" data-level="3.2.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plot-aesthetics"><i class="fa fa-check"></i><b>3.2.2</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="3.2.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#adding-geoms"><i class="fa fa-check"></i><b>3.2.3</b> Adding geoms</a></li>
+<li class="chapter" data-level="3.2.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#constant-aesthetics"><i class="fa fa-check"></i><b>3.2.4</b> Constant aesthetics</a></li>
+<li class="chapter" data-level="3.2.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#useful-plot-additions"><i class="fa fa-check"></i><b>3.2.5</b> Useful plot additions</a></li>
+<li class="chapter" data-level="3.2.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#example-dataset"><i class="fa fa-check"></i><b>3.2.6</b> Example dataset</a></li>
+<li class="chapter" data-level="3.2.7" data-path="exploring-data-1.html"><a href="exploring-data-1.html#histograms"><i class="fa fa-check"></i><b>3.2.7</b> Histograms</a></li>
+<li class="chapter" data-level="3.2.8" data-path="exploring-data-1.html"><a href="exploring-data-1.html#scatterplots"><i class="fa fa-check"></i><b>3.2.8</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.2.9" data-path="exploring-data-1.html"><a href="exploring-data-1.html#boxplots"><i class="fa fa-check"></i><b>3.2.9</b> Boxplots</a></li>
+<li class="chapter" data-level="3.2.10" data-path="exploring-data-1.html"><a href="exploring-data-1.html#extensions-of-ggplot2"><i class="fa fa-check"></i><b>3.2.10</b> Extensions of <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summary-statistics"><i class="fa fa-check"></i><b>3.3.1</b> Summary statistics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summarize-function"><i class="fa fa-check"></i><b>3.3.2</b> <code>summarize</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#logical-vectors"><i class="fa fa-check"></i><b>3.4</b> Logical vectors</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#regression-models"><i class="fa fa-check"></i><b>3.5</b> Regression models</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#formula-structure"><i class="fa fa-check"></i><b>3.5.1</b> Formula structure</a></li>
+<li class="chapter" data-level="3.5.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#linear-models"><i class="fa fa-check"></i><b>3.5.2</b> Linear models</a></li>
+<li class="chapter" data-level="3.5.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#generalized-linear-models-glms"><i class="fa fa-check"></i><b>3.5.3</b> Generalized linear models (GLMs)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#references-statistics-in-r"><i class="fa fa-check"></i><b>3.5.4</b> References– statistics in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.6</b> In-course exercise</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.6.2</b> Basic plots of the data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and logical statements</a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
+<li class="chapter" data-level="4.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#guidelines-for-good-plots"><i class="fa fa-check"></i><b>4.1</b> Guidelines for good plots</a></li>
+<li class="chapter" data-level="4.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#high-data-density"><i class="fa fa-check"></i><b>4.2</b> High data density</a></li>
+<li class="chapter" data-level="4.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#meaningful-labels"><i class="fa fa-check"></i><b>4.3</b> Meaningful labels</a></li>
+<li class="chapter" data-level="4.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#references"><i class="fa fa-check"></i><b>4.4</b> References</a></li>
+<li class="chapter" data-level="4.5" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#highlighting"><i class="fa fa-check"></i><b>4.5</b> Highlighting</a></li>
+<li class="chapter" data-level="4.6" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#order"><i class="fa fa-check"></i><b>4.6</b> Order</a></li>
+<li class="chapter" data-level="4.7" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#small-multiples"><i class="fa fa-check"></i><b>4.7</b> Small multiples</a></li>
+<li class="chapter" data-level="4.8" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#advanced-customization"><i class="fa fa-check"></i><b>4.8</b> Advanced customization</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#scales"><i class="fa fa-check"></i><b>4.8.1</b> Scales</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
+<li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
+<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
+<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
+<li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i><b>5</b> Reproducible research #1</a><ul>
+<li class="chapter" data-level="5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>5.1</b> What is reproducible research?</a></li>
+<li class="chapter" data-level="5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#markdown"><i class="fa fa-check"></i><b>5.2</b> Markdown</a></li>
+<li class="chapter" data-level="5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#literate-programming-in-r"><i class="fa fa-check"></i><b>5.3</b> Literate programming in R</a></li>
+<li class="chapter" data-level="5.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#style-guidelines"><i class="fa fa-check"></i><b>5.4</b> Style guidelines</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#line-length"><i class="fa fa-check"></i><b>5.4.1</b> Line length</a></li>
+<li class="chapter" data-level="5.4.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#spacing"><i class="fa fa-check"></i><b>5.4.2</b> Spacing</a></li>
+<li class="chapter" data-level="5.4.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#semicolons"><i class="fa fa-check"></i><b>5.4.3</b> Semicolons</a></li>
+<li class="chapter" data-level="5.4.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#commenting"><i class="fa fa-check"></i><b>5.4.4</b> Commenting</a></li>
+<li class="chapter" data-level="5.4.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#indentation"><i class="fa fa-check"></i><b>5.4.5</b> Indentation</a></li>
+<li class="chapter" data-level="5.4.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#code-grouping"><i class="fa fa-check"></i><b>5.4.6</b> Code grouping</a></li>
+<li class="chapter" data-level="5.4.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#broader-guidelines"><i class="fa fa-check"></i><b>5.4.7</b> Broader guidelines</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#more-with-knitr"><i class="fa fa-check"></i><b>5.5</b> More with knitr</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#equations-in-knitr"><i class="fa fa-check"></i><b>5.5.1</b> Equations in <code>knitr</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#figures-from-file"><i class="fa fa-check"></i><b>5.5.2</b> Figures from file</a></li>
+<li class="chapter" data-level="5.5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files"><i class="fa fa-check"></i><b>5.5.3</b> Saving graphics files</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files-1"><i class="fa fa-check"></i><b>5.6</b> Saving graphics files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>5.6.1</b> Tables in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#in-course-exercise-4"><i class="fa fa-check"></i><b>5.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#creating-a-markdown-document"><i class="fa fa-check"></i><b>5.7.1</b> Creating a Markdown document</a></li>
+<li class="chapter" data-level="5.7.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#adding-in-r-code"><i class="fa fa-check"></i><b>5.7.2</b> Adding in R code</a></li>
+<li class="chapter" data-level="5.7.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#working-with-r-markdown-documents"><i class="fa fa-check"></i><b>5.7.3</b> Working with R Markdown documents</a></li>
+<li class="chapter" data-level="5.7.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#r-style-guidelines"><i class="fa fa-check"></i><b>5.7.4</b> R style guidelines</a></li>
+<li class="chapter" data-level="5.7.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#trying-out-knitr-with-your-own-data"><i class="fa fa-check"></i><b>5.7.5</b> Trying out <code>knitr</code> with your own data</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part III: Intermediate</b></span></li>
+<li class="chapter" data-level="6" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html"><i class="fa fa-check"></i><b>6</b> Entering and cleaning data #2</a><ul>
+<li class="chapter" data-level="6.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#joining-datasets"><i class="fa fa-check"></i><b>6.1</b> Joining datasets</a></li>
+<li class="chapter" data-level="6.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidy-data"><i class="fa fa-check"></i><b>6.2</b> Tidy data</a></li>
+<li class="chapter" data-level="6.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#gathering"><i class="fa fa-check"></i><b>6.3</b> Gathering</a></li>
+<li class="chapter" data-level="6.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#in-course-exercise-5"><i class="fa fa-check"></i><b>6.4</b> In-course exercise</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#designing-tidy-data"><i class="fa fa-check"></i><b>6.4.1</b> Designing tidy data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#easier-data-wrangling"><i class="fa fa-check"></i><b>6.4.2</b> Easier data wrangling</a></li>
+<li class="chapter" data-level="6.4.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#more-extensive-data-wrangling"><i class="fa fa-check"></i><b>6.4.3</b> More extensive data wrangling</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1-quiz-1"><i class="fa fa-check"></i><b>A.1</b> Week 1 (Quiz 1)</a></li>
+<li class="chapter" data-level="A.2" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-2-quiz-2"><i class="fa fa-check"></i><b>A.2</b> Week 2 (Quiz 2)</a></li>
+<li class="chapter" data-level="A.3" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-3-quiz-3"><i class="fa fa-check"></i><b>A.3</b> Week 3 (Quiz 3)</a></li>
+<li class="chapter" data-level="A.4" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-4-quiz-4"><i class="fa fa-check"></i><b>A.4</b> Week 4 (Quiz 4)</a></li>
+<li class="chapter" data-level="A.5" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-5-quiz-5"><i class="fa fa-check"></i><b>A.5</b> Week 5 (Quiz 5)</a></li>
+<li class="chapter" data-level="A.6" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-6-quiz-6"><i class="fa fa-check"></i><b>A.6</b> Week 6 (Quiz 6)</a></li>
+<li class="chapter" data-level="A.7" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-7-quiz-7"><i class="fa fa-check"></i><b>A.7</b> Week 7 (Quiz 7)</a></li>
+<li class="chapter" data-level="A.8" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-8-quiz-8"><i class="fa fa-check"></i><b>A.8</b> Week 8 (Quiz 8)</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html"><i class="fa fa-check"></i><b>B</b> Appendix B: Homework</a><ul>
+<li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#getting-started"><i class="fa fa-check"></i><b>B.1.1</b> Getting started</a></li>
+<li class="chapter" data-level="B.1.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#swirl-lessons"><i class="fa fa-check"></i><b>B.1.2</b> Swirl lessons</a></li>
+<li class="chapter" data-level="B.1.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#special-swirl-commands"><i class="fa fa-check"></i><b>B.1.3</b> Special swirl commands</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-2"><i class="fa fa-check"></i><b>B.2</b> Homework #2</a></li>
+<li class="chapter" data-level="B.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-3"><i class="fa fa-check"></i><b>B.3</b> Homework #3</a></li>
+<li class="chapter" data-level="B.4" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-4"><i class="fa fa-check"></i><b>B.4</b> Homework #4</a></li>
+<li class="chapter" data-level="B.5" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-5"><i class="fa fa-check"></i><b>B.5</b> Homework #5</a></li>
+<li class="chapter" data-level="B.6" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-6"><i class="fa fa-check"></i><b>B.6</b> Homework #6</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="entering-and-cleaning-data-2" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Entering and cleaning data #2</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week6.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="joining-datasets" class="section level2">
+<h2><span class="header-section-number">6.1</span> Joining datasets</h2>
+<p>So far, you have only worked with a single data source at a time. When you work on your own projects, however, you typically will need to merge together two or more datasets to create the a data frame to answer your research question. For example, for air pollution epidemiology, you will often have to join several datasets:</p>
+<ul>
+<li>Health outcome data (e.g., number of deaths per day)</li>
+<li>Air pollution concentrations</li>
+<li>Weather measurements (since weather can be a confounder)</li>
+<li>Demographic data</li>
+</ul>
+<p>The <code>dplyr</code> package has a family of different functions to join two dataframes together, the <code>*_join</code> family of functions. All combine two dataframes, which I’ll call <code>x</code> and <code>y</code> here. </p>
+<p>The functions include:</p>
+<ul>
+<li><code>inner_join(x, y)</code>: Keep only rows where there are observations in both <code>x</code> and <code>y</code>.</li>
+<li><code>left_join(x, y)</code>: Keep all rows from <code>x</code>, whether they have a match in <code>y</code> or not.</li>
+<li><code>right_join(x, y)</code>: Keep all rows from <code>y</code>, whether they have a match in <code>x</code> or not.</li>
+<li><code>full_join(x, y)</code>: Keep all rows from both <code>x</code> and <code>y</code>, whether they have a match in the other dataset or not.</li>
+</ul>
+<p>In the examples, I’ll use two datasets, <code>x</code> and <code>y</code>. Both datasets include the column <code>course</code>. The other column in <code>x</code> is <code>grade</code>, while the other column in <code>y</code> is <code>day</code>. Observations exist for courses <code>x</code> and <code>y</code> in both datasets, but for <code>w</code> and <code>z</code> in only one dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">course =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>),
+                <span class="dt">grade =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">82</span>, <span class="dv">78</span>))
+y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">course =</span> <span class="kw">c</span>(<span class="st">&quot;w&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>),
+                <span class="dt">day =</span> <span class="kw">c</span>(<span class="st">&quot;Tues&quot;</span>, <span class="st">&quot;Mon / Fri&quot;</span>, <span class="st">&quot;Tue&quot;</span>))</code></pre></div>
+<p>Here is what these two example datasets look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
+<pre><code>##   course grade
+## 1      x    90
+## 2      y    82
+## 3      z    78</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y</code></pre></div>
+<pre><code>##   course       day
+## 1      w      Tues
+## 2      x Mon / Fri
+## 3      y       Tue</code></pre>
+<p>With <code>inner_join</code>, you’ll only get the observations that show up in both datasets. That means you’ll lose data on <code>z</code> (only in the first dataset) and <code>w</code> (only in the second dataset).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(x, y)</code></pre></div>
+<pre><code>## Joining, by = &quot;course&quot;</code></pre>
+<pre><code>##   course grade       day
+## 1      x    90 Mon / Fri
+## 2      y    82       Tue</code></pre>
+<p>With <code>left_join</code>, you’ll keep everything in <code>x</code> (the “left” dataset), but not keep things in <code>y</code> that don’t match something in <code>x</code>. That means that, here, you’ll lose <code>w</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(x, y)</code></pre></div>
+<pre><code>## Joining, by = &quot;course&quot;</code></pre>
+<pre><code>##   course grade       day
+## 1      x    90 Mon / Fri
+## 2      y    82       Tue
+## 3      z    78      &lt;NA&gt;</code></pre>
+<p><code>right_join</code> is the opposite:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">right_join</span>(x, y)</code></pre></div>
+<pre><code>## Joining, by = &quot;course&quot;</code></pre>
+<pre><code>##   course grade       day
+## 1      w    NA      Tues
+## 2      x    90 Mon / Fri
+## 3      y    82       Tue</code></pre>
+<p><code>full_join</code> keeps everything from both datasets:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(x, y)</code></pre></div>
+<pre><code>## Joining, by = &quot;course&quot;</code></pre>
+<pre><code>##   course grade       day
+## 1      x    90 Mon / Fri
+## 2      y    82       Tue
+## 3      z    78      &lt;NA&gt;
+## 4      w    NA      Tues</code></pre>
+</div>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">6.2</span> Tidy data</h2>
+<p>All of the material in this section comes directly from Hadley Wickham’s <a href="http://vita.had.co.nz/papers/tidy-data.pdf">paper on tidy data</a>. You will need to read this paper to prepare for the quiz on this section.</p>
+<p>Getting your data into a “tidy” format makes it easier to model and plot. By taking the time to tidy your data at the start of an analysis, you will save yourself time, and make it easier to plan out, later steps.</p>
+<p>Characteristics of tidy data are:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable forms a column.</li>
+<li>Each observation forms a row.</li>
+<li>Each type of observational unit forms a table.</li>
+</ol>
+<p>Here are five common problems that Hadley Wickham has identified that keep data from being tidy:</p>
+<ol style="list-style-type: decimal">
+<li>Column headers are values, not variable names.</li>
+<li>Multiple variables are stored in one column.</li>
+<li>Variables are stored in both rows and columns.</li>
+<li>Multiple types of observational units are stored in the same table.</li>
+<li>A single observational unit is stored in multiple tables.</li>
+</ol>
+<p>Here are examples (again, from Hadley Wickham’s <a href="http://vita.had.co.nz/papers/tidy-data.pdf">paper on tidy data</a>, which is required reading for this week of the course) of each of these problems.</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Column headers are values, not variable names.</li>
+</ol>
+</blockquote>
+<p><img src="figures/TidyDataProblem1.png" width="\textwidth" /></p>
+<p>Solution:</p>
+<p><img src="figures/TidyDataSolution1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Multiple variables are stored in one column.</li>
+</ol>
+</blockquote>
+<p><img src="figures/TidyDataProblem2.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>Solution:</p>
+<p><img src="figures/TidyDataSolution2.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Variables are stored in both rows and columns.</li>
+</ol>
+</blockquote>
+<p><img src="figures/TidyDataProblem3.png" width="\textwidth" /></p>
+<p>Solution:</p>
+<p><img src="figures/TidyDataSolution3.png" width="\textwidth" /></p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>Multiple types of observational units are stored in the same table.</li>
+</ol>
+</blockquote>
+<p><img src="figures/TidyDataProblem4.png" width="\textwidth" /></p>
+<p>Solution:</p>
+<p><img src="figures/TidyDataSolution4.png" width="\textwidth" /></p>
+<blockquote>
+<ol start="5" style="list-style-type: decimal">
+<li>A single observational unit is stored in multiple tables.</li>
+</ol>
+</blockquote>
+<p>Example: exposure and outcome data stored in different files:</p>
+<ul>
+<li>File 1: Daily mortality counts</li>
+<li>File 2: Daily air pollution measurements</li>
+</ul>
+</div>
+<div id="gathering" class="section level2">
+<h2><span class="header-section-number">6.3</span> Gathering</h2>
+<p>There are two functions from the <code>tidyr</code> package (another member of the tidyverse) that you can use to change between wide and long data: <code>gather</code> and <code>spread</code>. Here is a description of these two functions:</p>
+<ul>
+<li><code>gather</code>: Take several columns and gather them into two columns, one with the former column names, and one with the former cell values</li>
+<li><code>spread</code>: Take two columns and spread them into multiple columns. Column names for the new columns will come from one of the two original columns, while cell values will come from the other of the original columns.</li>
+</ul>
+<p>The following examples are from <code>tidyr</code> help files and show the effects of gathering and spreading a dataset.</p>
+<p>Here is some simulated wide data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wide_stocks[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre></div>
+<pre><code>##         time          X          Y         Z
+## 1 2009-01-01 -0.6459478  2.6796173  3.869452
+## 2 2009-01-02 -0.9920491 -1.7143876 -5.643696
+## 3 2009-01-03 -0.5308556  0.2014165  1.640098</code></pre>
+<p>In the <code>wide_stocks</code> dataset, there are separate columns for three different stocks (<code>X</code>, <code>Y</code>, and <code>Z</code>). Each cell gives the value for a certain stock on a certain day. This data isn’t “tidy”, because the identify of the stock (<code>X</code>, <code>Y</code>, or <code>Z</code>) is a variable, and you’ll probably want to include it as a variable in modeling.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wide_stocks[<span class="dv">1</span>:<span class="dv">3</span>, ]</code></pre></div>
+<pre><code>##         time          X          Y         Z
+## 1 2009-01-01 -0.6459478  2.6796173  3.869452
+## 2 2009-01-02 -0.9920491 -1.7143876 -5.643696
+## 3 2009-01-03 -0.5308556  0.2014165  1.640098</code></pre>
+<p>If you want to convert the dataframe to have all stock values in a single column, you can use <code>gather</code> to convert wide data to long data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">long_stocks &lt;-<span class="st"> </span><span class="kw">gather</span>(wide_stocks, <span class="dt">key =</span> stock,
+                      <span class="dt">value =</span> price, -time)
+long_stocks[<span class="dv">1</span>:<span class="dv">5</span>, ]</code></pre></div>
+<pre><code>##         time stock      price
+## 1 2009-01-01     X -0.6459478
+## 2 2009-01-02     X -0.9920491
+## 3 2009-01-03     X -0.5308556
+## 4 2009-01-04     X  0.5151341
+## 5 2009-01-05     X  0.4754412</code></pre>
+<p>In this “long” dataframe, there is now one column that gives the identify of the stock (<code>stock</code>) and another column that gives the price of that stock that day (<code>price</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">long_stocks[<span class="dv">1</span>:<span class="dv">5</span>, ]</code></pre></div>
+<pre><code>##         time stock      price
+## 1 2009-01-01     X -0.6459478
+## 2 2009-01-02     X -0.9920491
+## 3 2009-01-03     X -0.5308556
+## 4 2009-01-04     X  0.5151341
+## 5 2009-01-05     X  0.4754412</code></pre>
+<p>The format for a <code>gather</code> call is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
+new_df &lt;-<span class="st"> </span><span class="kw">gather</span>(old_df,
+                 <span class="dt">key =</span> [name of column with old column names],
+                 <span class="dt">value =</span> [name of column with cell values],
+                 -<span class="st"> </span>[name of <span class="kw">column</span>(s) you want to 
+                    exclude from gather])</code></pre></div>
+<p>Three important notes:</p>
+<ul>
+<li>Everything is gathered into one of two columns– one column with the old column names, and one column with the old cell values</li>
+<li>With the <code>key</code> and <code>value</code> arguments, you are just providing column names for the two columns that everything’s gathered into.</li>
+<li>If there is a column you don’t want to gather (<code>date</code> in the example), use <code>-</code> to exclude it in the <code>gather</code> call.</li>
+</ul>
+<p>Notice how easy it is, now that the data is gathered, to use <code>stock</code> for aesthetics of faceting in a <code>ggplot2</code> call:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(long_stocks, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> price)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>stock)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
+<p>If you have data in a “long” format and would like to spread it out, you can use <code>spread</code> to do that:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stocks &lt;-<span class="st"> </span><span class="kw">spread</span>(long_stocks, <span class="dt">key =</span> stock, <span class="dt">value =</span> price)
+stocks[<span class="dv">1</span>:<span class="dv">5</span>, ]</code></pre></div>
+<pre><code>##         time          X          Y         Z
+## 1 2009-01-01 -0.6459478  2.6796173  3.869452
+## 2 2009-01-02 -0.9920491 -1.7143876 -5.643696
+## 3 2009-01-03 -0.5308556  0.2014165  1.640098
+## 4 2009-01-04  0.5151341 -1.5529939  8.083460
+## 5 2009-01-05  0.4754412 -2.0036027  3.670505</code></pre>
+<p>Notice that this reverses the action of <code>gather</code>.</p>
+<p>“Spread” data is typically not tidy, so you often won’t want to use <code>spread</code> when you are preparing data for analysis. However, <code>spread</code> can be very helpful in creating clean tables for final reports and presentations.</p>
+<p>For example, if you wanted to create a table with means and standard deviationsfor each of the three stocks, you could use <code>spread</code> to rearrange the final summary to create an attractive table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stock_summary &lt;-<span class="st"> </span>long_stocks %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(stock) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">N =</span> <span class="kw">n</span>(), <span class="dt">mean =</span> <span class="kw">mean</span>(price), <span class="dt">sd =</span> <span class="kw">sd</span>(price))
+stock_summary</code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   stock     N       mean        sd
+##   &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1     X    10 -0.1758077 0.5575621
+## 2     Y    10 -0.1354803 1.6811489
+## 3     Z    10  0.2268267 4.1912829</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stock_summary %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Mean (Std.dev.)&quot;</span> =<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">round</span>(mean, <span class="dv">2</span>), <span class="st">&quot; (&quot;</span>,
+                                    <span class="kw">round</span>(sd, <span class="dv">2</span>), <span class="st">&quot;)&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(-<span class="st"> </span>mean, -<span class="st"> </span>sd) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Statistic&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;Value&quot;</span>, -stock) %&gt;%
+<span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> stock, <span class="dt">value =</span> Value) %&gt;%
+<span class="st">  </span>knitr::<span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Statistic</th>
+<th align="left">X</th>
+<th align="left">Y</th>
+<th align="left">Z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mean (Std.dev.)</td>
+<td align="left">-0.18 (0.56)</td>
+<td align="left">-0.14 (1.68)</td>
+<td align="left">0.23 (4.19)</td>
+</tr>
+<tr class="even">
+<td align="left">N</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="in-course-exercise-5" class="section level2">
+<h2><span class="header-section-number">6.4</span> In-course exercise</h2>
+<p>For today’s exercise, we’ll be using the following three datasets (click on the file name to access the correct file for today’s class for each dataset):</p>
+<table style="width:96%;">
+<colgroup>
+<col width="29%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">File name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/data/country_timeseries.csv"><code>country_timeseries.csv</code></a></td>
+<td align="left">Ebola cases by country for the 2014 outbreak</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/data/mexico_exposure.csv"><code>mexico_exposure.csv</code></a> and <a href="https://github.com/geanders/RProgrammingForResearch/raw/master/data/mexico_deaths.csv"><code>mexico_deaths.csv</code></a></td>
+<td align="left">Daily death counts and environmental measurements for Mexico City, Mexico, for 2008</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://github.com/geanders/RProgrammingForResearch/tree/master/data/measles_data"><code>measles_data/</code></a></td>
+<td align="left">Number of cases of measles in CA since end of Dec. 2014</td>
+</tr>
+</tbody>
+</table>
+<p>Note that you likely have already downloaded all the files in the <code>measles_data</code> folder, since we used them in an earlier in-course exercise. If so, there is no need to re-download those files.</p>
+<p>Here are the sources for this data:</p>
+<ul>
+<li><code>country_timeseries.csv</code> : <a href="https://github.com/cmrivers/ebola">Caitlin Rivers’ Ebola repository</a> (Caitlin originally collected this data from the WHO and WHO Situation reports)</li>
+<li><code>mexico_exposure.csv</code> and <code>mexico_deaths.csv</code> : <a href="https://github.com/hadley/mexico-mortality/tree/master/disease">one of Hadley Wickham’s GitHub repos</a> (Hadley got the data originally from the Secretaria de Salud of Mexico’s website, although it appears the link is now broken. I separated the data into two dataframes so students could practice merging.)</li>
+<li><code>measles_data/</code>: <a href="https://github.com/scarpino/measles-CA-2015">one of scarpino’s GitHub repos</a> (Data originally from pdfs from the <a href="https://www.cdph.ca.gov/HealthInfo/discond/Pages/MeaslesSurveillanceUpdates.aspx">California Department of Public Health</a>)</li>
+</ul>
+<div class="rmdwarning">
+<p>
+If you want to use these data further, you should go back and pull them from their original sources. They are here only for use in R code examples for this course.
+</p>
+</div>
+<p>Here are some of the packages you will need for this exercise:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(gridExtra)
+<span class="kw">library</span>(ggthemes)</code></pre></div>
+<div id="designing-tidy-data" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Designing tidy data</h3>
+<ol style="list-style-type: decimal">
+<li>Check out the <a href="https://github.com/geanders/RProgrammingForResearch/raw/master/data/country_timeseries.csv"><code>country_timeseries.csv</code> file</a> on Ebola for this week’s example data. Talk with your partner and decide what changes you would need to make to this dataset to turn it into a “tidy” dataset, in particular which of the five common “untidy” problems the data currently has and why.</li>
+<li>Do the same for the data on daily mortality and daily weather in Mexico.</li>
+<li>Do the same for the set of files with measles data.</li>
+</ol>
+</div>
+<div id="easier-data-wrangling" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Easier data wrangling</h3>
+<ul>
+<li>Use <code>read_csv</code> to read the mexico data (exposure and mortality) directly from GitHub into your R session. Call the dataframes <code>mex_deaths</code> and <code>mex_exp</code>.</li>
+<li>Merge the two datasets together to create the dataframe <code>mexico</code>. Exclude all columns except the outcome (deaths), date, and mean temperature. Convert the date to a date class.</li>
+<li>Try combining all the steps in the previous task into one “chained” command using the pipe operator, <code>%&gt;%</code>.</li>
+<li>Use this new dataframe to plot deaths by date using <code>ggplot</code>.</li>
+</ul>
+<div id="example-r-code-8" class="section level4">
+<h4><span class="header-section-number">6.4.2.1</span> Example R code</h4>
+<p>Use <code>read_csv</code> to read the mexico data (exposure and mortality) directly from GitHub into your R session. Call the dataframes <code>mex_deaths</code> and <code>mex_exp</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">deaths_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://github.com/geanders/RProgrammingForResearch/&quot;</span>,
+                     <span class="st">&quot;raw/master/data/mexico_deaths.csv&quot;</span>)
+mex_deaths &lt;-<span class="st"> </span><span class="kw">read_csv</span>(deaths_url)
+<span class="kw">head</span>(mex_deaths)</code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##      day deaths
+##    &lt;chr&gt;  &lt;int&gt;
+## 1 1/1/08    296
+## 2 1/2/08    274
+## 3 1/3/08    339
+## 4 1/4/08    300
+## 5 1/5/08    327
+## 6 1/6/08    332</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">exposure_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://github.com/geanders/RProgrammingForResearch/&quot;</span>,
+                       <span class="st">&quot;raw/master/data/mexico_exposure.csv&quot;</span>)
+mex_exp &lt;-<span class="st"> </span><span class="kw">read_csv</span>(exposure_url)
+<span class="kw">head</span>(mex_exp)</code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##      day temp_min temp_max temp_mean humidity      wind          NO
+##    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1 1/1/08      7.8     17.8 11.770833 53.45833 2.6625000 0.009250000
+## 2 1/2/08      2.6      9.8  6.637500 61.70833 3.3458333 0.005416667
+## 3 1/3/08      1.1     15.6  7.041667 59.91667 1.8857143 0.015958333
+## 4 1/4/08      3.1     20.6 10.862500 57.54167 1.1958333 0.040833333
+## 5 1/5/08      6.0     21.3 13.404167 45.70833 0.9875000 0.046916667
+## 6 1/6/08      7.2     22.1 14.341667 40.75000 0.8541667 0.028583333
+## # ... with 7 more variables: NO2 &lt;dbl&gt;, NOX &lt;dbl&gt;, O3 &lt;dbl&gt;, CO &lt;dbl&gt;,
+## #   SO2 &lt;dbl&gt;, PM10 &lt;dbl&gt;, PM25 &lt;dbl&gt;</code></pre>
+<p>Merge the two datasets together to create the dataframe <code>mexico</code>. Exclude all columns except the outcome (deaths), date, and mean temperature. Convert the date to a date class.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mexico &lt;-<span class="st"> </span><span class="kw">full_join</span>(mex_deaths, mex_exp, <span class="dt">by =</span> <span class="st">&quot;day&quot;</span>) 
+mexico &lt;-<span class="st"> </span><span class="kw">select</span>(mexico, day, deaths, temp_mean)
+
+<span class="kw">library</span>(lubridate) ## For parsing dates
+mexico &lt;-<span class="st"> </span><span class="kw">mutate</span>(mexico, <span class="dt">day =</span> <span class="kw">mdy</span>(day))</code></pre></div>
+<p>Try combining all the steps in the previous task into one “chained” command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mexico &lt;-<span class="st"> </span><span class="kw">full_join</span>(mex_deaths, mex_exp, <span class="dt">by =</span> <span class="st">&quot;day&quot;</span>) %&gt;%
+<span class="st">        </span><span class="kw">select</span>(day, deaths, temp_mean) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">day =</span> <span class="kw">mdy</span>(day))
+<span class="kw">head</span>(mexico)</code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##          day deaths temp_mean
+##       &lt;date&gt;  &lt;int&gt;     &lt;dbl&gt;
+## 1 2008-01-01    296 11.770833
+## 2 2008-01-02    274  6.637500
+## 3 2008-01-03    339  7.041667
+## 4 2008-01-04    300 10.862500
+## 5 2008-01-05    327 13.404167
+## 6 2008-01-06    332 14.341667</code></pre>
+<p>Use this new dataframe to plot deaths by date using <code>ggplot</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mexico, <span class="kw">aes</span>(<span class="dt">x =</span> day, <span class="dt">y =</span> deaths)) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Date in 2008&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of deaths&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;Deaths by date&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_few</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-325-1.png" width="384" /></p>
+</div>
+</div>
+<div id="more-extensive-data-wrangling" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> More extensive data wrangling</h3>
+<ul>
+<li>Read the ebola data directly from GitHub into your R session. Call the dataframe <code>ebola</code>.</li>
+<li>Use <code>dplyr</code> functions to create a tidy dataset. First, change it from “wide” data to “long” data. Name the new column with the key <code>variable</code> and the new column with the values <code>count</code>.</li>
+<li>Run the following code to create new columns named <code>type</code> and <code>country</code> that split up the <code>variable</code> column into type (“Cases” or “Deaths”) and country (“Guinea”, “Liberia”, etc.). (This type of code is moving towards using regular expressions to clean up really messy data, which we’ll talk about some in the third section.)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="kw">as.character</span>(ebola$variable), <span class="dt">split =</span> <span class="st">&quot;_&quot;</span>)
+bar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">unlist</span>(foo), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+
+ebola$type &lt;-<span class="st"> </span><span class="kw">factor</span>(bar[ , <span class="dv">1</span>])
+ebola$country &lt;-<span class="st"> </span><span class="kw">factor</span>(bar[ , <span class="dv">2</span>])</code></pre></div>
+<ul>
+<li>Use <code>dplyr</code> functions and piping to remove <code>Day</code> and <code>variable</code> (now that you’ve split it into <code>type</code> and <code>country</code>) and to convert <code>Date</code> to a date class.</li>
+<li>Use the <code>dplyr</code> function <code>spread()</code> to convert the data so you have separate columns for the two variables of numbers of <code>Cases</code> and <code>Deaths</code>.</li>
+<li>Remove any observations where counts of cases or deaths are missing for that country.</li>
+<li>Challenge question (you can do the next step without doing this, but your graphs won’t be in order): Create a dataframe called <code>case_sum</code> that gives the total number of cases recorded for each country. (Hint: Use the <code>dplyr</code> functions <code>group_by()</code> and <code>summarize()</code>.) Use <code>arrange()</code> to re-order this dataset by the order of the number of cases, and then use this arrangement to re-order the levels in <code>country</code> in your main <code>ebola</code> dataset, so that your graphs in the next step will be ordered from the country with the most ebola cases to the one with the least.</li>
+<li>Now that your data is tidy, create one plot showing ebola cases by date, faceted by country, and one showing ebola deaths by date, also faceted by country. Try using the option <code>scales = &quot;free_y&quot;</code> in the <code>facet_wrap()</code> function (in the <code>gridExtra</code> package) and see how that changes these graphs.</li>
+<li>Based on these plots, what would your next questions be about this data before you used it for an analysis?</li>
+<li>Super-challenge question: Can you put all of the steps of this cleaning process into just a few “chaining” calls?</li>
+</ul>
+<div id="example-r-code-9" class="section level4">
+<h4><span class="header-section-number">6.4.3.1</span> Example R code</h4>
+<p>Read the data in using <code>read_csv</code>. (Review question: Why can’t you read it directly using <code>read.csv()</code>?)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://github.com/geanders/RProgrammingForResearch/&quot;</span>,
+              <span class="st">&quot;raw/master/data/country_timeseries.csv&quot;</span>)
+ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(ebola_url)
+
+<span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 18
+##         Date   Day Cases_Guinea Cases_Liberia Cases_SierraLeone
+##        &lt;chr&gt; &lt;int&gt;        &lt;int&gt;         &lt;int&gt;             &lt;int&gt;
+## 1   1/5/2015   289         2776            NA             10030
+## 2   1/4/2015   288         2775            NA              9780
+## 3   1/3/2015   287         2769          8166              9722
+## 4   1/2/2015   286           NA          8157                NA
+## 5 12/31/2014   284         2730          8115              9633
+## 6 12/28/2014   281         2706          8018              9446
+## # ... with 13 more variables: Cases_Nigeria &lt;int&gt;, Cases_Senegal &lt;int&gt;,
+## #   Cases_UnitedStates &lt;int&gt;, Cases_Spain &lt;int&gt;, Cases_Mali &lt;int&gt;,
+## #   Deaths_Guinea &lt;int&gt;, Deaths_Liberia &lt;int&gt;, Deaths_SierraLeone &lt;int&gt;,
+## #   Deaths_Nigeria &lt;int&gt;, Deaths_Senegal &lt;int&gt;, Deaths_UnitedStates &lt;int&gt;,
+## #   Deaths_Spain &lt;int&gt;, Deaths_Mali &lt;int&gt;</code></pre>
+<p>Change the data to long data using the <code>gather()</code> function from <code>dplyr</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola &lt;-<span class="st"> </span><span class="kw">gather</span>(ebola, variable, count, -Date, -Day)
+<span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##         Date   Day     variable count
+##        &lt;chr&gt; &lt;int&gt;        &lt;chr&gt; &lt;int&gt;
+## 1   1/5/2015   289 Cases_Guinea  2776
+## 2   1/4/2015   288 Cases_Guinea  2775
+## 3   1/3/2015   287 Cases_Guinea  2769
+## 4   1/2/2015   286 Cases_Guinea    NA
+## 5 12/31/2014   284 Cases_Guinea  2730
+## 6 12/28/2014   281 Cases_Guinea  2706</code></pre>
+<p>Split <code>variable</code> into <code>type</code> and <code>country</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="kw">as.character</span>(ebola$variable), <span class="dt">split =</span> <span class="st">&quot;_&quot;</span>)
+ebola[ , <span class="kw">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;country&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">unlist</span>(foo), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##         Date   Day     variable count  type country
+##        &lt;chr&gt; &lt;int&gt;        &lt;chr&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;
+## 1   1/5/2015   289 Cases_Guinea  2776 Cases  Guinea
+## 2   1/4/2015   288 Cases_Guinea  2775 Cases  Guinea
+## 3   1/3/2015   287 Cases_Guinea  2769 Cases  Guinea
+## 4   1/2/2015   286 Cases_Guinea    NA Cases  Guinea
+## 5 12/31/2014   284 Cases_Guinea  2730 Cases  Guinea
+## 6 12/28/2014   281 Cases_Guinea  2706 Cases  Guinea</code></pre>
+<p>Use <code>dplyr</code> functions and piping to remove <code>Day</code> and <code>variable</code> and to convert <code>Date</code> to a date class:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola &lt;-<span class="st"> </span><span class="kw">select</span>(ebola, -Day, -variable) %&gt;%
+<span class="st">         </span><span class="kw">mutate</span>(<span class="dt">Date =</span> <span class="kw">mdy</span>(Date))
+<span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##         Date count  type country
+##       &lt;date&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;
+## 1 2015-01-05  2776 Cases  Guinea
+## 2 2015-01-04  2775 Cases  Guinea
+## 3 2015-01-03  2769 Cases  Guinea
+## 4 2015-01-02    NA Cases  Guinea
+## 5 2014-12-31  2730 Cases  Guinea
+## 6 2014-12-28  2706 Cases  Guinea</code></pre>
+<p>Convert the data so you have separate columns for the two variables of numbers of <code>Cases</code> and <code>Deaths</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola &lt;-<span class="st"> </span><span class="kw">spread</span>(ebola, type, count)
+<span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##         Date     country Cases Deaths
+##       &lt;date&gt;       &lt;chr&gt; &lt;int&gt;  &lt;int&gt;
+## 1 2014-03-22      Guinea    49     29
+## 2 2014-03-22     Liberia    NA     NA
+## 3 2014-03-22        Mali    NA     NA
+## 4 2014-03-22     Nigeria    NA     NA
+## 5 2014-03-22     Senegal    NA     NA
+## 6 2014-03-22 SierraLeone    NA     NA</code></pre>
+<p>Remove any observations where counts of cases or deaths are missing for that country:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola &lt;-<span class="st"> </span><span class="kw">filter</span>(ebola, !<span class="kw">is.na</span>(Cases) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(Deaths))
+<span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##         Date country Cases Deaths
+##       &lt;date&gt;   &lt;chr&gt; &lt;int&gt;  &lt;int&gt;
+## 1 2014-03-22  Guinea    49     29
+## 2 2014-03-24  Guinea    86     59
+## 3 2014-03-25  Guinea    86     60
+## 4 2014-03-26  Guinea    86     62
+## 5 2014-03-27  Guinea   103     66
+## 6 2014-03-27 Liberia     8      6</code></pre>
+<p>Create a dataframe called <code>case_sum</code> that gives the total number of cases recorded for each country. Use <code>arrange()</code> to re-order this dataset by the order of the number of cases:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">case_sum &lt;-<span class="st"> </span><span class="kw">group_by</span>(ebola, country) %&gt;%
+<span class="st">            </span><span class="kw">summarize</span>(<span class="dt">Cases =</span> <span class="kw">sum</span>(Cases, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+case_sum</code></pre></div>
+<pre><code>## # A tibble: 8 × 2
+##        country  Cases
+##          &lt;chr&gt;  &lt;int&gt;
+## 1       Guinea  82099
+## 2      Liberia 191351
+## 3         Mali     42
+## 4      Nigeria    636
+## 5      Senegal     24
+## 6  SierraLeone 211169
+## 7        Spain     16
+## 8 UnitedStates     59</code></pre>
+<p>Use this arrangement to re-order the levels in <code>country</code> in your main <code>ebola</code> dataset, so that your graphs in the next step will be ordered from the country with the most ebola cases to the one with the least:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">case_sum &lt;-<span class="st"> </span><span class="kw">arrange</span>(case_sum, <span class="kw">desc</span>(Cases))
+case_sum</code></pre></div>
+<pre><code>## # A tibble: 8 × 2
+##        country  Cases
+##          &lt;chr&gt;  &lt;int&gt;
+## 1  SierraLeone 211169
+## 2      Liberia 191351
+## 3       Guinea  82099
+## 4      Nigeria    636
+## 5 UnitedStates     59
+## 6         Mali     42
+## 7      Senegal     24
+## 8        Spain     16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola &lt;-<span class="st"> </span><span class="kw">mutate</span>(ebola, 
+                <span class="dt">country =</span> <span class="kw">factor</span>(country, <span class="dt">levels =</span> case_sum$country))
+<span class="kw">levels</span>(ebola$country)</code></pre></div>
+<pre><code>## [1] &quot;SierraLeone&quot;  &quot;Liberia&quot;      &quot;Guinea&quot;       &quot;Nigeria&quot;     
+## [5] &quot;UnitedStates&quot; &quot;Mali&quot;         &quot;Senegal&quot;      &quot;Spain&quot;</code></pre>
+<p>Now that your data is tidy, create one plot showing ebola cases by date, faceted by country, and one showing ebola deaths by date, also faceted by country:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ebola, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Cases)) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_line</span>() +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>country, <span class="dt">ncol =</span> <span class="dv">4</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_few</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-335-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ebola, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Deaths)) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_line</span>() +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>country, <span class="dt">ncol =</span> <span class="dv">4</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_few</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-335-2.png" width="768" /></p>
+<p>Try using the option <code>scales = &quot;free_y&quot;</code> in the <code>facet_wrap()</code> function (in the <code>gridExtra</code> package) and see how that changes these graphs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ebola, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Cases)) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_line</span>() +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>country, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_few</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-336-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ebola, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Deaths)) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_line</span>() +<span class="st"> </span>
+<span class="st">        </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>country, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) +<span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_few</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-336-2.png" width="768" /></p>
+<p>Put all of the steps of this cleaning process into just a few “chaining” calls. (Note: I’m using <code>sub</code> here instead of <code>strsplit</code> for the variable-splitting step, just to keep the code a bit cleaner. Again, this is using regular expressions, which we’re cover more later in the course.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola &lt;-<span class="st"> </span><span class="kw">read_csv</span>(ebola_url) %&gt;%
+<span class="st">        </span><span class="kw">gather</span>(variable, count, -Date, -Day) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="kw">sub</span>(<span class="st">&quot;_.*&quot;</span>, <span class="st">&quot;&quot;</span>, variable),
+               <span class="dt">country =</span> <span class="kw">sub</span>(<span class="st">&quot;.*_&quot;</span>, <span class="st">&quot;&quot;</span>, variable)) %&gt;%
+<span class="st">        </span><span class="kw">select</span>(-Day, -variable) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">Date =</span> <span class="kw">mdy</span>(Date)) %&gt;%
+<span class="st">        </span><span class="kw">spread</span>(type, count) %&gt;%
+<span class="st">        </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(Cases) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(Deaths))
+
+case_sum &lt;-<span class="st"> </span><span class="kw">group_by</span>(ebola, country) %&gt;%
+<span class="st">        </span><span class="kw">summarize</span>(<span class="dt">Cases =</span> <span class="kw">sum</span>(Cases, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
+<span class="st">        </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Cases))
+
+ebola &lt;-<span class="st"> </span><span class="kw">mutate</span>(ebola, 
+                <span class="dt">country =</span> <span class="kw">factor</span>(country, <span class="dt">levels =</span> case_sum$country))
+
+case_sum</code></pre></div>
+<pre><code>## # A tibble: 8 × 2
+##        country  Cases
+##          &lt;chr&gt;  &lt;int&gt;
+## 1  SierraLeone 211169
+## 2      Liberia 191351
+## 3       Guinea  82099
+## 4      Nigeria    636
+## 5 UnitedStates     59
+## 6         Mali     42
+## 7      Senegal     24
+## 8        Spain     16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ebola)</code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##         Date country Cases Deaths
+##       &lt;date&gt;  &lt;fctr&gt; &lt;int&gt;  &lt;int&gt;
+## 1 2014-03-22  Guinea    49     29
+## 2 2014-03-24  Guinea    86     59
+## 3 2014-03-25  Guinea    86     60
+## 4 2014-03-26  Guinea    86     62
+## 5 2014-03-27  Guinea   103     66
+## 6 2014-03-27 Liberia     8      6</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reproducible-research-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/06-databasics2.Rmd",
+"text": "Edit"
+},
+"download": ["RProgrammingForResearch.pdf", "RProgrammingForResearch.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
