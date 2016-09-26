@@ -9536,11 +9536,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.31\\
+a & -0.61\\
 \hline
-b & 0.34\\
+b & 0.13\\
 \hline
-c & 1.20\\
+c & -0.97\\
 \hline
 \end{tabular}
 \end{table}
@@ -10057,10 +10057,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.2849361 -2.765654 -2.652420
-## 2 2009-01-02 -0.5125998 -2.878343  7.580083
-## 3 2009-01-03 -1.8704236  2.733697  3.936017
+##         time           X          Y          Z
+## 1 2009-01-01 -1.14593973 -2.2837261  0.7638130
+## 2 2009-01-02 -0.01599826  0.3715677 -0.7242654
+## 3 2009-01-03 -0.56430705 -1.1721319 -5.2897311
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10077,10 +10077,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.2849361 -2.765654 -2.652420
-## 2 2009-01-02 -0.5125998 -2.878343  7.580083
-## 3 2009-01-03 -1.8704236  2.733697  3.936017
+##         time           X          Y          Z
+## 1 2009-01-01 -1.14593973 -2.2837261  0.7638130
+## 2 2009-01-02 -0.01599826  0.3715677 -0.7242654
+## 3 2009-01-03 -0.56430705 -1.1721319 -5.2897311
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10097,11 +10097,11 @@ data:
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X  0.28493605
-## 2 2009-01-02     X -0.51259977
-## 3 2009-01-03     X -1.87042360
-## 4 2009-01-04     X  0.06257249
-## 5 2009-01-05     X -0.23265204
+## 1 2009-01-01     X -1.14593973
+## 2 2009-01-02     X -0.01599826
+## 3 2009-01-03     X -0.56430705
+## 4 2009-01-04     X  0.55269957
+## 5 2009-01-05     X -0.06739250
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10116,11 +10116,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X  0.28493605
-## 2 2009-01-02     X -0.51259977
-## 3 2009-01-03     X -1.87042360
-## 4 2009-01-04     X  0.06257249
-## 5 2009-01-05     X -0.23265204
+## 1 2009-01-01     X -1.14593973
+## 2 2009-01-02     X -0.01599826
+## 3 2009-01-03     X -0.56430705
+## 4 2009-01-04     X  0.55269957
+## 5 2009-01-05     X -0.06739250
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10176,12 +10176,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X         Y          Z
-## 1 2009-01-01  0.28493605 -2.765654 -2.6524199
-## 2 2009-01-02 -0.51259977 -2.878343  7.5800826
-## 3 2009-01-03 -1.87042360  2.733697  3.9360166
-## 4 2009-01-04  0.06257249  1.313745  5.4063377
-## 5 2009-01-05 -0.23265204  1.924962  0.8755589
+##         time           X          Y          Z
+## 1 2009-01-01 -1.14593973 -2.2837261  0.7638130
+## 2 2009-01-02 -0.01599826  0.3715677 -0.7242654
+## 3 2009-01-03 -0.56430705 -1.1721319 -5.2897311
+## 4 2009-01-04  0.55269957 -0.6089068  1.1135372
+## 5 2009-01-05 -0.06739250  0.3068262 -5.6288010
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10206,11 +10206,11 @@ rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N        mean       sd
-##   <chr> <int>       <dbl>    <dbl>
-## 1     X    10  0.20169102 1.012426
-## 2     Y    10 -0.38677057 1.950959
-## 3     Z    10 -0.02466468 5.033324
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10 -0.05966297 0.9467541
+## 2     Y    10  0.60373489 1.6863915
+## 3     Z    10 -0.92460864 2.8152737
 \end{verbatim}
 
 \begin{Shaded}
@@ -10229,7 +10229,7 @@ rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.2 (1.01) & -0.39 (1.95) & -0.02 (5.03)\\
+Mean (Std.dev.) & -0.06 (0.95) & 0.6 (1.69) & -0.92 (2.82)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
