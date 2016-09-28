@@ -3669,11 +3669,12 @@ files that you just pulled in your current working directory:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "country_timeseries.csv"  "daily_show_guests.csv"  
-##  [3] "deaths-weather.csv"      "icd-10.xls"             
-##  [5] "ICU_Data_Code_Sheet.pdf" "icu.sas7bdat"           
-##  [7] "ld_genetics.txt"         "measles_data"           
-##  [9] "mexico_deaths.csv"       "mexico_exposure.csv"
+##  [1] "accident.csv"            "country_timeseries.csv" 
+##  [3] "daily_show_guests.csv"   "deaths-weather.csv"     
+##  [5] "icd-10.xls"              "ICU_Data_Code_Sheet.pdf"
+##  [7] "icu.sas7bdat"            "ld_genetics.txt"        
+##  [9] "measles_data"            "mexico_deaths.csv"      
+## [11] "mexico_exposure.csv"
 \end{verbatim}
 
 Try the following tasks:
@@ -9538,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -2.01\\
+a & 1.20\\
 \hline
-b & 0.10\\
+b & -0.35\\
 \hline
-c & 1.51\\
+c & 0.05\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10060,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y        Z
-## 1 2009-01-01  0.5413014 -3.062892 1.346799
-## 2 2009-01-02 -0.1401847 -1.140491 3.054981
-## 3 2009-01-03 -1.0108544  2.003169 6.358808
+##         time          X           Y          Z
+## 1 2009-01-01  0.4484438 -0.53024161 -0.9569356
+## 2 2009-01-02 -0.2377868  0.01039085 -5.8387744
+## 3 2009-01-03  0.4806800 -0.52580919 -1.5391964
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10080,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y        Z
-## 1 2009-01-01  0.5413014 -3.062892 1.346799
-## 2 2009-01-02 -0.1401847 -1.140491 3.054981
-## 3 2009-01-03 -1.0108544  2.003169 6.358808
+##         time          X           Y          Z
+## 1 2009-01-01  0.4484438 -0.53024161 -0.9569356
+## 2 2009-01-02 -0.2377868  0.01039085 -5.8387744
+## 3 2009-01-03  0.4806800 -0.52580919 -1.5391964
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10099,11 +10100,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5413014
-## 2 2009-01-02     X -0.1401847
-## 3 2009-01-03     X -1.0108544
-## 4 2009-01-04     X -0.5598523
-## 5 2009-01-05     X -1.6736512
+## 1 2009-01-01     X  0.4484438
+## 2 2009-01-02     X -0.2377868
+## 3 2009-01-03     X  0.4806800
+## 4 2009-01-04     X -1.0865382
+## 5 2009-01-05     X  0.8083432
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10118,11 +10119,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5413014
-## 2 2009-01-02     X -0.1401847
-## 3 2009-01-03     X -1.0108544
-## 4 2009-01-04     X -0.5598523
-## 5 2009-01-05     X -1.6736512
+## 1 2009-01-01     X  0.4484438
+## 2 2009-01-02     X -0.2377868
+## 3 2009-01-03     X  0.4806800
+## 4 2009-01-04     X -1.0865382
+## 5 2009-01-05     X  0.8083432
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10179,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.5413014 -3.0628918  1.346799
-## 2 2009-01-02 -0.1401847 -1.1404907  3.054981
-## 3 2009-01-03 -1.0108544  2.0031686  6.358808
-## 4 2009-01-04 -0.5598523 -0.6074450  2.316637
-## 5 2009-01-05 -1.6736512  0.1785413 -8.645672
+##         time          X           Y          Z
+## 1 2009-01-01  0.4484438 -0.53024161 -0.9569356
+## 2 2009-01-02 -0.2377868  0.01039085 -5.8387744
+## 3 2009-01-03  0.4806800 -0.52580919 -1.5391964
+## 4 2009-01-04 -1.0865382 -2.83611527  0.2395006
+## 5 2009-01-05  0.8083432 -1.84511238  4.3357972
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10209,11 @@ rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 -0.2683229 0.6614493
-## 2     Y    10 -0.7771257 1.5609983
-## 3     Z    10  3.0629282 4.8161442
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10  0.03813427 0.9220671
+## 2     Y    10 -0.34717917 1.4890216
+## 3     Z    10 -0.21105920 3.0624193
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10232,7 @@ rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.27 (0.66) & -0.78 (1.56) & 3.06 (4.82)\\
+Mean (Std.dev.) & 0.04 (0.92) & -0.35 (1.49) & -0.21 (3.06)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -10851,6 +10852,78 @@ cover more later in the course.)
 ## 5 2014-03-27  Guinea   103     66
 ## 6 2014-03-27 Liberia     8      6
 \end{verbatim}
+
+\subsection{\texorpdfstring{Tidying \texttt{VADeaths}
+data}{Tidying VADeaths data}}\label{tidying-vadeaths-data}
+
+R comes with a dataset called \texttt{VADeaths} that gives death rates
+per 1,000 people in Virginia in 1940 by age, sex, and rural / urban.
+
+\begin{itemize}
+\tightlist
+\item
+  Use \texttt{data("VADeaths")} to load this data. Make sure you
+  understand what each column and row is showing-- use the helpfile
+  (\texttt{?VADeaths}) if you need.
+\item
+  Go through the three characteristics of tidy data and the five common
+  problems in untidy data that we talked about in class. Sketch out
+  (your welcome to use the whiteboards) what a tidy version of this data
+  would look like.
+\item
+  Open a new R script file. Write R code to transform this dataset into
+  a tidy dataset. Try using a pipe chain, with
+  \texttt{\%\textgreater{}\%} and tidyverse functions, to clean the
+  data.
+\item
+  Use the tidy data to create the following graph:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-338-1.pdf}
+
+There is no example R code for this-- try to figure out the code
+yourselves. We will go over a solution in class. You may find the
+RStudio Data Wrangling cheatsheet helpful for remembering which
+tidyverse functions do what.
+
+\subsection{Exploring Fatality Analysis Reporting System (FARS)
+data}\label{exploring-fatality-analysis-reporting-system-fars-data}
+
+\begin{itemize}
+\tightlist
+\item
+  Try exploring the interactive visualization at
+  \url{http://metrocosm.com/10-years-of-traffic-accidents-mapped.html}.
+  This was created by Max Galka using this dataset.
+\item
+  Go to \href{http://www.nhtsa.gov/FARS}{FARS web page}. We want to get
+  the raw data. Navigate this page to figure out how you can get this
+  raw data for the whole county for 2015. Save 2015 data to your
+  computer. What is the structure of how this data is saved (e.g.,
+  directory structure, file structure)?
+\item
+  On the \href{http://www.nhtsa.gov/FARS}{FARS web page}, find the
+  documentation describing this raw data. Look through both this
+  documentation and the raw files you downloaded to figure out what
+  information is included in this data.
+\item
+  Read the \texttt{accident.csv} file for 2015 into R (this is one of
+  the files you'll get if you download the raw data for 2015). Use the
+  documentation to figure out what each column represents.
+\item
+  Discuss what steps you would need to take to create the following
+  plot. To start, don't write any code, just develop a plan. Talk about
+  what the dataset should look like right before you create the plot and
+  what functions you could use to get the data from its current format
+  to that format. (Hint: Functions from the \texttt{lubridate} package
+  will be very helpful, including \texttt{yday} and \texttt{wday}).
+\item
+  Try to write the code to create this plot. I will add one example
+  answer after class, but I'd like you to try to figure it out
+  yourselves first.
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-1.pdf}
 
 \appendix
 
