@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-09-28}
+\date{2016-09-29}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.39\\
+a & -0.47\\
 \hline
-b & 0.66\\
+b & -0.53\\
 \hline
-c & 1.55\\
+c & 0.78\\
 \hline
 \end{tabular}
 \end{table}
@@ -9906,8 +9906,7 @@ section.
 
 Getting your data into a ``tidy'' format makes it easier to model and
 plot. By taking the time to tidy your data at the start of an analysis,
-you will save yourself time, and make it easier to plan out, later
-steps.
+you will save yourself time, and make it easier to plan out later steps.
 
 Characteristics of tidy data are:
 
@@ -10040,7 +10039,7 @@ functions:
 \item
   \texttt{gather}: Take several columns and gather them into two
   columns, one with the former column names, and one with the former
-  cell values
+  cell values.
 \item
   \texttt{spread}: Take two columns and spread them into multiple
   columns. Column names for the new columns will come from one of the
@@ -10060,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.4194746 -2.3580004 -1.818212
-## 2 2009-01-02 -0.7585987  3.2510939  4.094685
-## 3 2009-01-03 -0.3346512  0.1566115  2.584742
+##         time          X          Y          Z
+## 1 2009-01-01 -0.2943872 -2.1424991 -0.4110521
+## 2 2009-01-02  1.1435732 -1.6448562 -3.0222667
+## 3 2009-01-03  1.4804383 -0.6918197  5.0493104
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10080,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.4194746 -2.3580004 -1.818212
-## 2 2009-01-02 -0.7585987  3.2510939  4.094685
-## 3 2009-01-03 -0.3346512  0.1566115  2.584742
+##         time          X          Y          Z
+## 1 2009-01-01 -0.2943872 -2.1424991 -0.4110521
+## 2 2009-01-02  1.1435732 -1.6448562 -3.0222667
+## 3 2009-01-03  1.4804383 -0.6918197  5.0493104
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10099,12 +10098,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  0.41947461
-## 2 2009-01-02     X -0.75859866
-## 3 2009-01-03     X -0.33465121
-## 4 2009-01-04     X  0.04213256
-## 5 2009-01-05     X -0.12638064
+##         time stock      price
+## 1 2009-01-01     X -0.2943872
+## 2 2009-01-02     X  1.1435732
+## 3 2009-01-03     X  1.4804383
+## 4 2009-01-04     X  0.3536956
+## 5 2009-01-05     X -0.3929928
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10118,12 +10117,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  0.41947461
-## 2 2009-01-02     X -0.75859866
-## 3 2009-01-03     X -0.33465121
-## 4 2009-01-04     X  0.04213256
-## 5 2009-01-05     X -0.12638064
+##         time stock      price
+## 1 2009-01-01     X -0.2943872
+## 2 2009-01-02     X  1.1435732
+## 3 2009-01-03     X  1.4804383
+## 4 2009-01-04     X  0.3536956
+## 5 2009-01-05     X -0.3929928
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10144,7 +10143,7 @@ Three important notes:
 \begin{itemize}
 \tightlist
 \item
-  Everything is gathered into one of two columns-- one column with the
+  Everything is gathered into one of two columns -- one column with the
   old column names, and one column with the old cell values
 \item
   With the \texttt{key} and \texttt{value} arguments, you are just
@@ -10179,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01  0.41947461 -2.3580004 -1.8182117
-## 2 2009-01-02 -0.75859866  3.2510939  4.0946854
-## 3 2009-01-03 -0.33465121  0.1566115  2.5847417
-## 4 2009-01-04  0.04213256  0.8970423  0.4434295
-## 5 2009-01-05 -0.12638064  1.5280443  1.8514991
+##         time          X          Y          Z
+## 1 2009-01-01 -0.2943872 -2.1424991 -0.4110521
+## 2 2009-01-02  1.1435732 -1.6448562 -3.0222667
+## 3 2009-01-03  1.4804383 -0.6918197  5.0493104
+## 4 2009-01-04  0.3536956 -0.4609397 -5.0681448
+## 5 2009-01-05 -0.3929928 -3.4370446  2.4998396
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10195,8 +10194,8 @@ Notice that this reverses the action of \texttt{gather}.
 reports and presentations.
 
 For example, if you wanted to create a table with means and standard
-deviationsfor each of the three stocks, you could use \texttt{spread} to
-rearrange the final summary to create an attractive table.
+deviations for each of the three stocks, you could use \texttt{spread}
+to rearrange the final summary to create an attractive table.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10209,11 +10208,11 @@ rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10  0.01592174 0.7170962
-## 2     Y    10 -0.36898424 2.1601504
-## 3     Z    10  0.93233719 2.6881214
+##   stock     N       mean       sd
+##   <chr> <int>      <dbl>    <dbl>
+## 1     X    10  0.3186942 1.239606
+## 2     Y    10 -2.3684435 2.093125
+## 3     Z    10 -1.4986206 3.552361
 \end{verbatim}
 
 \begin{Shaded}
@@ -10232,7 +10231,7 @@ rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.02 (0.72) & -0.37 (2.16) & 0.93 (2.69)\\
+Mean (Std.dev.) & 0.32 (1.24) & -2.37 (2.09) & -1.5 (3.55)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -10796,7 +10795,7 @@ see how that changes these graphs:
 Put all of the steps of this cleaning process into just a few
 ``chaining'' calls. (Note: I'm using \texttt{sub} here instead of
 \texttt{strsplit} for the variable-splitting step, just to keep the code
-a bit cleaner. Again, this is using regular expressions, which we're
+a bit cleaner. Again, this is using regular expressions, which we'll
 cover more later in the course.)
 
 \begin{Shaded}
@@ -10863,7 +10862,7 @@ per 1,000 people in Virginia in 1940 by age, sex, and rural / urban.
 \tightlist
 \item
   Use \texttt{data("VADeaths")} to load this data. Make sure you
-  understand what each column and row is showing-- use the helpfile
+  understand what each column and row is showing -- use the helpfile
   (\texttt{?VADeaths}) if you need.
 \item
   Go through the three characteristics of tidy data and the five common
@@ -10881,7 +10880,7 @@ per 1,000 people in Virginia in 1940 by age, sex, and rural / urban.
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-338-1.pdf}
 
-There is no example R code for this-- try to figure out the code
+There is no example R code for this -- try to figure out the code
 yourselves. We will go over a solution in class. You may find the
 RStudio Data Wrangling cheatsheet helpful for remembering which
 tidyverse functions do what.
