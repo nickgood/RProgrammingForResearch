@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-09-29}
+\date{2016-10-02}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.47\\
+a & -0.14\\
 \hline
-b & -0.53\\
+b & 1.49\\
 \hline
-c & 0.78\\
+c & -0.27\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.2943872 -2.1424991 -0.4110521
-## 2 2009-01-02  1.1435732 -1.6448562 -3.0222667
-## 3 2009-01-03  1.4804383 -0.6918197  5.0493104
+##         time            X           Y         Z
+## 1 2009-01-01 -0.017406250 -2.08392701  3.439337
+## 2 2009-01-02  0.504954668  0.22940760 -1.258671
+## 3 2009-01-03  0.007268696  0.04265709 -3.574551
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.2943872 -2.1424991 -0.4110521
-## 2 2009-01-02  1.1435732 -1.6448562 -3.0222667
-## 3 2009-01-03  1.4804383 -0.6918197  5.0493104
+##         time            X           Y         Z
+## 1 2009-01-01 -0.017406250 -2.08392701  3.439337
+## 2 2009-01-02  0.504954668  0.22940760 -1.258671
+## 3 2009-01-03  0.007268696  0.04265709 -3.574551
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,12 +10098,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -0.2943872
-## 2 2009-01-02     X  1.1435732
-## 3 2009-01-03     X  1.4804383
-## 4 2009-01-04     X  0.3536956
-## 5 2009-01-05     X -0.3929928
+##         time stock        price
+## 1 2009-01-01     X -0.017406250
+## 2 2009-01-02     X  0.504954668
+## 3 2009-01-03     X  0.007268696
+## 4 2009-01-04     X -0.695681613
+## 5 2009-01-05     X  0.972604201
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,12 +10117,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -0.2943872
-## 2 2009-01-02     X  1.1435732
-## 3 2009-01-03     X  1.4804383
-## 4 2009-01-04     X  0.3536956
-## 5 2009-01-05     X -0.3929928
+##         time stock        price
+## 1 2009-01-01     X -0.017406250
+## 2 2009-01-02     X  0.504954668
+## 3 2009-01-03     X  0.007268696
+## 4 2009-01-04     X -0.695681613
+## 5 2009-01-05     X  0.972604201
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.2943872 -2.1424991 -0.4110521
-## 2 2009-01-02  1.1435732 -1.6448562 -3.0222667
-## 3 2009-01-03  1.4804383 -0.6918197  5.0493104
-## 4 2009-01-04  0.3536956 -0.4609397 -5.0681448
-## 5 2009-01-05 -0.3929928 -3.4370446  2.4998396
+##         time            X           Y         Z
+## 1 2009-01-01 -0.017406250 -2.08392701  3.439337
+## 2 2009-01-02  0.504954668  0.22940760 -1.258671
+## 3 2009-01-03  0.007268696  0.04265709 -3.574551
+## 4 2009-01-04 -0.695681613 -0.81680536 -3.609648
+## 5 2009-01-05  0.972604201  0.55772150  1.354882
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10  0.3186942 1.239606
-## 2     Y    10 -2.3684435 2.093125
-## 3     Z    10 -1.4986206 3.552361
+##   stock     N      mean       sd
+##   <chr> <int>     <dbl>    <dbl>
+## 1     X    10 0.4121689 1.181706
+## 2     Y    10 0.3056845 2.058388
+## 3     Z    10 0.5286191 3.496569
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.32 (1.24) & -2.37 (2.09) & -1.5 (3.55)\\
+Mean (Std.dev.) & 0.41 (1.18) & 0.31 (2.06) & 0.53 (3.5)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11257,17 +11257,12 @@ vocabulary for the weekly quizzes.
 \begin{itemize}
 \tightlist
 \item
-  \texttt{as.Date}, including \texttt{format=} option
-\item
-  \texttt{format} applied to Date objects (including what class the
-  output of this function will be)
-\item
   Reproducible research, including what it is and advantages to aiming
   to make your research reproducible
 \item
-  R style guidelines on variable names, \texttt{attach()},
-  \texttt{\textless{}-} vs. \texttt{=}, line length, spacing,
-  semicolons, commenting, indentation, and code grouping
+  R style guidelines on variable names, \texttt{\textless{}-} vs.
+  \texttt{=}, line length, spacing, semicolons, commenting, indentation,
+  and code grouping
 \item
   Markup languages (concept and examples)
 \item
