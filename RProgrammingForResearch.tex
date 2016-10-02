@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.14\\
+a & -1.25\\
 \hline
-b & 1.49\\
+b & 1.67\\
 \hline
-c & -0.27\\
+c & -0.26\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time            X           Y         Z
-## 1 2009-01-01 -0.017406250 -2.08392701  3.439337
-## 2 2009-01-02  0.504954668  0.22940760 -1.258671
-## 3 2009-01-03  0.007268696  0.04265709 -3.574551
+##         time           X          Y          Z
+## 1 2009-01-01 -0.01463272 -0.4829234 -0.4462418
+## 2 2009-01-02 -0.43281202 -0.8847432  2.5517017
+## 3 2009-01-03  0.52360182 -4.8854137 -6.0836778
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time            X           Y         Z
-## 1 2009-01-01 -0.017406250 -2.08392701  3.439337
-## 2 2009-01-02  0.504954668  0.22940760 -1.258671
-## 3 2009-01-03  0.007268696  0.04265709 -3.574551
+##         time           X          Y          Z
+## 1 2009-01-01 -0.01463272 -0.4829234 -0.4462418
+## 2 2009-01-02 -0.43281202 -0.8847432  2.5517017
+## 3 2009-01-03  0.52360182 -4.8854137 -6.0836778
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,12 +10098,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock        price
-## 1 2009-01-01     X -0.017406250
-## 2 2009-01-02     X  0.504954668
-## 3 2009-01-03     X  0.007268696
-## 4 2009-01-04     X -0.695681613
-## 5 2009-01-05     X  0.972604201
+##         time stock       price
+## 1 2009-01-01     X -0.01463272
+## 2 2009-01-02     X -0.43281202
+## 3 2009-01-03     X  0.52360182
+## 4 2009-01-04     X -0.65375649
+## 5 2009-01-05     X -0.04104295
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,12 +10117,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock        price
-## 1 2009-01-01     X -0.017406250
-## 2 2009-01-02     X  0.504954668
-## 3 2009-01-03     X  0.007268696
-## 4 2009-01-04     X -0.695681613
-## 5 2009-01-05     X  0.972604201
+##         time stock       price
+## 1 2009-01-01     X -0.01463272
+## 2 2009-01-02     X -0.43281202
+## 3 2009-01-03     X  0.52360182
+## 4 2009-01-04     X -0.65375649
+## 5 2009-01-05     X -0.04104295
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time            X           Y         Z
-## 1 2009-01-01 -0.017406250 -2.08392701  3.439337
-## 2 2009-01-02  0.504954668  0.22940760 -1.258671
-## 3 2009-01-03  0.007268696  0.04265709 -3.574551
-## 4 2009-01-04 -0.695681613 -0.81680536 -3.609648
-## 5 2009-01-05  0.972604201  0.55772150  1.354882
+##         time           X          Y          Z
+## 1 2009-01-01 -0.01463272 -0.4829234 -0.4462418
+## 2 2009-01-02 -0.43281202 -0.8847432  2.5517017
+## 3 2009-01-03  0.52360182 -4.8854137 -6.0836778
+## 4 2009-01-04 -0.65375649  2.6805273 -1.9299505
+## 5 2009-01-05 -0.04104295  0.4164664 -2.7595149
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N      mean       sd
-##   <chr> <int>     <dbl>    <dbl>
-## 1     X    10 0.4121689 1.181706
-## 2     Y    10 0.3056845 2.058388
-## 3     Z    10 0.5286191 3.496569
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.2273970 0.5898989
+## 2     Y    10 -0.5311874 2.7980937
+## 3     Z    10 -1.8312865 2.3706546
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.41 (1.18) & 0.31 (2.06) & 0.53 (3.5)\\
+Mean (Std.dev.) & 0.23 (0.59) & -0.53 (2.8) & -1.83 (2.37)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11295,35 +11295,35 @@ vocabulary for the weekly quizzes.
 \begin{itemize}
 \tightlist
 \item
-  \texttt{with()}
-\item
   Three characteristics of tidy data
 \item
   Five common problems with tidy data and how to resolve them (make sure
   you understand the examples shown, which you can find out more about
   in the Hadley Wickham paper I reference)
 \item
-  \texttt{select()}
+  \texttt{select}
 \item
-  \texttt{filter()}
+  \texttt{filter}
 \item
-  \texttt{mutate()}
+  \texttt{mutate}
 \item
-  \texttt{summarize()}
+  \texttt{summarize}
 \item
-  \texttt{group\_by()}
+  \texttt{group\_by}
 \item
-  \texttt{arrange()}
+  \texttt{arrange}
 \item
-  \texttt{gather()}
+  \texttt{gather}
 \item
-  \texttt{spread()}
+  \texttt{spread}
+\item
+  The \texttt{*\_join} family of functions
 \item
   \texttt{\%\textgreater{}\%}
 \item
-  Go through the examples where I've chained together several functions
-  to clean up a dataset and make sure you can follow through these
-  chained examples
+  Go through the examples from in-course exercises where we chained
+  together several functions to clean up a dataset and make sure you can
+  follow through these chained examples
 \end{itemize}
 
 \section{Week 7 (Quiz 7)}\label{week-7-quiz-7}
