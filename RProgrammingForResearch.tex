@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.25\\
+a & -0.55\\
 \hline
-b & 1.67\\
+b & -0.14\\
 \hline
-c & -0.26\\
+c & 0.35\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01 -0.01463272 -0.4829234 -0.4462418
-## 2 2009-01-02 -0.43281202 -0.8847432  2.5517017
-## 3 2009-01-03  0.52360182 -4.8854137 -6.0836778
+##         time          X          Y          Z
+## 1 2009-01-01 -0.4102436 -1.4244071  0.1155299
+## 2 2009-01-02 -0.9862242 -0.1549195 -8.2176491
+## 3 2009-01-03 -2.1277209  0.4800278 -2.2811994
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01 -0.01463272 -0.4829234 -0.4462418
-## 2 2009-01-02 -0.43281202 -0.8847432  2.5517017
-## 3 2009-01-03  0.52360182 -4.8854137 -6.0836778
+##         time          X          Y          Z
+## 1 2009-01-01 -0.4102436 -1.4244071  0.1155299
+## 2 2009-01-02 -0.9862242 -0.1549195 -8.2176491
+## 3 2009-01-03 -2.1277209  0.4800278 -2.2811994
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,12 +10098,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X -0.01463272
-## 2 2009-01-02     X -0.43281202
-## 3 2009-01-03     X  0.52360182
-## 4 2009-01-04     X -0.65375649
-## 5 2009-01-05     X -0.04104295
+##         time stock      price
+## 1 2009-01-01     X -0.4102436
+## 2 2009-01-02     X -0.9862242
+## 3 2009-01-03     X -2.1277209
+## 4 2009-01-04     X  0.6231087
+## 5 2009-01-05     X -0.3601509
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,12 +10117,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X -0.01463272
-## 2 2009-01-02     X -0.43281202
-## 3 2009-01-03     X  0.52360182
-## 4 2009-01-04     X -0.65375649
-## 5 2009-01-05     X -0.04104295
+##         time stock      price
+## 1 2009-01-01     X -0.4102436
+## 2 2009-01-02     X -0.9862242
+## 3 2009-01-03     X -2.1277209
+## 4 2009-01-04     X  0.6231087
+## 5 2009-01-05     X -0.3601509
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01 -0.01463272 -0.4829234 -0.4462418
-## 2 2009-01-02 -0.43281202 -0.8847432  2.5517017
-## 3 2009-01-03  0.52360182 -4.8854137 -6.0836778
-## 4 2009-01-04 -0.65375649  2.6805273 -1.9299505
-## 5 2009-01-05 -0.04104295  0.4164664 -2.7595149
+##         time          X          Y          Z
+## 1 2009-01-01 -0.4102436 -1.4244071  0.1155299
+## 2 2009-01-02 -0.9862242 -0.1549195 -8.2176491
+## 3 2009-01-03 -2.1277209  0.4800278 -2.2811994
+## 4 2009-01-04  0.6231087 -1.1939118  5.0663788
+## 5 2009-01-05 -0.3601509  3.3936812  0.2540334
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.2273970 0.5898989
-## 2     Y    10 -0.5311874 2.7980937
-## 3     Z    10 -1.8312865 2.3706546
+##   stock     N       mean       sd
+##   <chr> <int>      <dbl>    <dbl>
+## 1     X    10 -0.3194234 1.151930
+## 2     Y    10 -0.7070633 2.029478
+## 3     Z    10 -1.9767309 3.732102
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.23 (0.59) & -0.53 (2.8) & -1.83 (2.37)\\
+Mean (Std.dev.) & -0.32 (1.15) & -0.71 (2.03) & -1.98 (3.73)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
