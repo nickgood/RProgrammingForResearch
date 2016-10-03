@@ -438,7 +438,27 @@ After telling swirl that you would like to send a notification email, an already
 <div id="homework-3" class="section level2">
 <h2><span class="header-section-number">B.3</span> Homework #3</h2>
 <p><strong>Due date: Oct. 12</strong></p>
-<p>[<code>dplyr</code>, tidy data homework assignment]</p>
+<p>For Homework 2, recreate the R Markdown document that you can download from <a href="https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework_3.docx">here</a>.</p>
+<p>Here are some initial tips:</p>
+<ul>
+<li>Your goal is to create an R Markdown document that you can compile to create a Word document that looks just like the example document we’ve linked above. The only difference is that you will use <code>echo = TRUE</code> to show your code within the rendered Word document. All formating within the text should be similar or identical to the target document.<br />
+</li>
+<li>You will turn in (by email) both the compiled Word document and the .Rmd original file.</li>
+<li>Add your name as “Author” and the due date of the assignment as “Date”. You should add these within the R Markdown document, rather than changing them in the final, compiled Word document.</li>
+<li>Set the chunk options <code>warning = FALSE</code> and <code>message = FALSE</code> to prevent warnings and messages from being printed out. You will get some messages and warnings in the code from things like missing values and from loading packages, but you want to hide all of those messages in your final document.</li>
+<li>For things like templates, colors, level of transparency, and point size, you will receive full credit if you create figures that are visually similar to the ones shown in the example document. In other words, if the example document shows some transparency in points, you will get full credit if you also include some transparency in the points in your plot, but you do not have to include the exact same value of <code>alpha</code>.</li>
+<li>In R, there are often many different ways to achieve something. As long as your code <em>works</em>, it’s fine if you haven’t coded it exactly like we have in our version. However, your output should look identical to ours (or, in the case of color, transparency, point size, and themes, visually similar).</li>
+<li>There is one formated table in the target document. Be sure that you render this as a formated table, not as raw R output.</li>
+</ul>
+<p>If you need them, here are some further tips:</p>
+<ul>
+<li>Functions from the tidyverse (especially from <code>dplyr</code>, <code>readr</code>, and <code>ggplot</code> packages) will make your life much easier for this exercise. You can now install and load the <code>tidyverse</code> package to load them all at once.</li>
+<li>To reference column names with “special” characters in them, like dollar signs or spaces, wrap the whole old column name in backticks. For example, to change a column name that has a dollar sign in it, you would use something like “rename(new_col_name = `old_col_name$`)”.</li>
+<li>To change the size of a figure in a report, use the “fig.width” and “fig.height” chunk options.</li>
+<li>Don’t forget that there are functions in the <code>scale</code> family that allow you to use log-scale axes.</li>
+<li>The string “\n” can be included in legends and labels to include a carriage return.</li>
+<li>Coordinates can be flipped in a graph with the <code>coord_flip</code> geom. So, if you can figure out a way to make a graph with the coordinates flipped, use that code and just add <code>coord_flip</code> at the end.</li>
+</ul>
 </div>
 <div id="homework-4" class="section level2">
 <h2><span class="header-section-number">B.4</span> Homework #4</h2>
