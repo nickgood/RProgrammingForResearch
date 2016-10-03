@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-10-02}
+\date{2016-10-03}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -8628,9 +8628,7 @@ research?}\label{what-is-reproducible-research}
 
 A data analysis is \textbf{reproducible} if all the information (data,
 files, etc.) required is available for someone else to re-do your entire
-analysis.
-
-This includes:
+analysis. This includes:
 
 \begin{itemize}
 \tightlist
@@ -9539,11 +9537,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.55\\
+a & 1.63\\
 \hline
-b & -0.14\\
+b & -1.48\\
 \hline
-c & 0.35\\
+c & -1.55\\
 \hline
 \end{tabular}
 \end{table}
@@ -10060,9 +10058,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01 -0.4102436 -1.4244071  0.1155299
-## 2 2009-01-02 -0.9862242 -0.1549195 -8.2176491
-## 3 2009-01-03 -2.1277209  0.4800278 -2.2811994
+## 1 2009-01-01 -0.1084759 -0.4577456  4.6278585
+## 2 2009-01-02 -1.1283044  3.6474241  0.4957394
+## 3 2009-01-03  0.3250218  0.1644266 -5.3647726
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10080,9 +10078,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01 -0.4102436 -1.4244071  0.1155299
-## 2 2009-01-02 -0.9862242 -0.1549195 -8.2176491
-## 3 2009-01-03 -2.1277209  0.4800278 -2.2811994
+## 1 2009-01-01 -0.1084759 -0.4577456  4.6278585
+## 2 2009-01-02 -1.1283044  3.6474241  0.4957394
+## 3 2009-01-03  0.3250218  0.1644266 -5.3647726
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10099,11 +10097,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.4102436
-## 2 2009-01-02     X -0.9862242
-## 3 2009-01-03     X -2.1277209
-## 4 2009-01-04     X  0.6231087
-## 5 2009-01-05     X -0.3601509
+## 1 2009-01-01     X -0.1084759
+## 2 2009-01-02     X -1.1283044
+## 3 2009-01-03     X  0.3250218
+## 4 2009-01-04     X -0.1613947
+## 5 2009-01-05     X  0.3328873
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10118,11 +10116,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.4102436
-## 2 2009-01-02     X -0.9862242
-## 3 2009-01-03     X -2.1277209
-## 4 2009-01-04     X  0.6231087
-## 5 2009-01-05     X -0.3601509
+## 1 2009-01-01     X -0.1084759
+## 2 2009-01-02     X -1.1283044
+## 3 2009-01-03     X  0.3250218
+## 4 2009-01-04     X -0.1613947
+## 5 2009-01-05     X  0.3328873
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10179,11 +10177,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01 -0.4102436 -1.4244071  0.1155299
-## 2 2009-01-02 -0.9862242 -0.1549195 -8.2176491
-## 3 2009-01-03 -2.1277209  0.4800278 -2.2811994
-## 4 2009-01-04  0.6231087 -1.1939118  5.0663788
-## 5 2009-01-05 -0.3601509  3.3936812  0.2540334
+## 1 2009-01-01 -0.1084759 -0.4577456  4.6278585
+## 2 2009-01-02 -1.1283044  3.6474241  0.4957394
+## 3 2009-01-03  0.3250218  0.1644266 -5.3647726
+## 4 2009-01-04 -0.1613947  0.6065201  2.0374586
+## 5 2009-01-05  0.3328873 -2.3333410  4.4443248
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10206,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.3194234 1.151930
-## 2     Y    10 -0.7070633 2.029478
-## 3     Z    10 -1.9767309 3.732102
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 -0.1668955 0.8330679
+## 2     Y    10 -0.2739659 1.7728531
+## 3     Z    10 -0.9070970 4.3829023
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10229,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.32 (1.15) & -0.71 (2.03) & -1.98 (3.73)\\
+Mean (Std.dev.) & -0.17 (0.83) & -0.27 (1.77) & -0.91 (4.38)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -10928,6 +10926,1360 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
 \end{itemize}
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-1.pdf}
+
+\part{Part III:
+Intermediate}\label{part-part-iii-intermediate-1}
+\addcontentsline{toc}{chapter}{(PART) Part III: Intermediate}
+
+\chapter{Entering and cleaning data
+\#2}\label{entering-and-cleaning-data-2-1}
+
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week7.pdf}{Download}
+a pdf of the lecture slides covering this topic.
+
+\section{Parentheses}\label{parentheses}
+
+If you put parentheses around an entire code statement, it will both run
+the code and print out the answer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_months <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Feb"}\NormalTok{, }\StringTok{"Mar"}\NormalTok{)}
+\NormalTok{study_months}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Jan" "Feb" "Mar"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(study_months <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Feb"}\NormalTok{, }\StringTok{"Mar"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Jan" "Feb" "Mar"
+\end{verbatim}
+
+\section{Loops}\label{loops}
+
+Loops allow you to ``walk through'' and repeat the same code for
+different values of an index. For each run of the loop, R is told that,
+for \textbf{some index} in \textbf{some vector}, do \textbf{some code}.
+For example, the following loop specifies: For \texttt{i} in
+\texttt{1:3}, \texttt{print(i)}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for(i in }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))\{}
+        \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+\end{verbatim}
+
+Note that this code is equivalent to:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{1}
+\KeywordTok{print}\NormalTok{(i)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{2}
+\KeywordTok{print}\NormalTok{(i)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{3}
+\KeywordTok{print}\NormalTok{(i)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+Often, the index will be set to a number for each cycle of the loop, and
+then the index will be used within the code to index vectors or
+dataframes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_months <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Feb"}\NormalTok{, }\StringTok{"Mar"}\NormalTok{)}
+\NormalTok{for(i in }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{))\{}
+        \KeywordTok{print}\NormalTok{(study_months[i])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Jan"
+## [1] "Mar"
+\end{verbatim}
+
+Often, you want to set the index to sequential numbers (e.g., 1, 2, 3,
+4). In this case, you can save time by using the \texttt{:} notation to
+create a vector of a sequence of numbers:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{)\{}
+        \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+\end{verbatim}
+
+With this notation, sometimes it may be helpful to use the
+\texttt{length} function to set the largest index value for the loop as
+the length of a vector (or \texttt{nrow} for indexing a dataframe). For
+example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_months <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Feb"}\NormalTok{, }\StringTok{"Mar"}\NormalTok{)}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(study_months))\{}
+        \KeywordTok{print}\NormalTok{(study_months[i])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Jan"
+## [1] "Feb"
+## [1] "Mar"
+\end{verbatim}
+
+Sometimes, you want to set the index for each cycle of the loop to
+something that is not a number. You can set the index to any class of
+vector.
+
+Remember that a loop works by saying for \textbf{some index} in
+\textbf{some vector}, do \textbf{some code}. For example, you may want
+to run: for \texttt{study\_month} in \texttt{study\_months},
+\texttt{print(study\_month)}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_months <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Feb"}\NormalTok{, }\StringTok{"Mar"}\NormalTok{)}
+\NormalTok{for(study_month in study_months)\{}
+        \KeywordTok{print}\NormalTok{(study_month)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Jan"
+## [1] "Feb"
+## [1] "Mar"
+\end{verbatim}
+
+Note that this is equivalent to:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_month <-}\StringTok{ "Jan"}
+\KeywordTok{print}\NormalTok{(study_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Jan"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_month <-}\StringTok{ "Feb"}
+\KeywordTok{print}\NormalTok{(study_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Feb"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{study_month <-}\StringTok{ "Mar"}
+\KeywordTok{print}\NormalTok{(study_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Mar"
+\end{verbatim}
+
+What would this loop do?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Time"}\NormalTok{, }\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(vars))\{}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]])}
+        \KeywordTok{print}\NormalTok{(var_mean)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Time"}\NormalTok{, }\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(vars))\{}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]])}
+        \KeywordTok{print}\NormalTok{(var_mean)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 208.8639
+## [1] 2.304202
+## [1] 84.52101
+## [1] 4.191597
+## [1] 0.6672269
+\end{verbatim}
+
+What would this loop do?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Time"}\NormalTok{, }\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(vars))\{}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]])}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{round}\NormalTok{(var_mean, }\DecValTok{1}\NormalTok{)}
+        \NormalTok{out <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"mean of "}\NormalTok{, vars[i], }\StringTok{": "}\NormalTok{, var_mean)}
+        \KeywordTok{print}\NormalTok{(out)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+To figure out, you can set \texttt{i\ \textless{}-\ 1} and then walk
+through the loop:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{1}
+\NormalTok{(var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 208.8639
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(var_mean <-}\StringTok{ }\KeywordTok{round}\NormalTok{(var_mean, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 208.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(out <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"mean of "}\NormalTok{, vars[i], }\StringTok{": "}\NormalTok{, var_mean))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mean of Time: 208.9"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Time"}\NormalTok{, }\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(vars))\{}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]])}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{round}\NormalTok{(var_mean, }\DecValTok{1}\NormalTok{)}
+        \NormalTok{out <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"mean of "}\NormalTok{, vars[i], }\StringTok{": "}\NormalTok{, var_mean)}
+        \KeywordTok{print}\NormalTok{(out)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mean of Time: 208.9"
+## [1] "mean of Shots: 2.3"
+## [1] "mean of Passes: 84.5"
+## [1] "mean of Tackles: 4.2"
+## [1] "mean of Saves: 0.7"
+\end{verbatim}
+
+Often, it's convenient to create a dataset to fill up as you loop
+through:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Time"}\NormalTok{, }\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)}
+\NormalTok{my_df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{variable =} \NormalTok{vars, }\DataTypeTok{mean =} \OtherTok{NA}\NormalTok{)}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{nrow}\NormalTok{(my_df))\{}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]])}
+        \NormalTok{my_df[i , }\StringTok{"mean"}\NormalTok{] <-}\StringTok{ }\KeywordTok{round}\NormalTok{(var_mean, }\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Time"}\NormalTok{, }\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)}
+\NormalTok{(my_df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{variable =} \NormalTok{vars, }\DataTypeTok{mean =} \OtherTok{NA}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   variable mean
+## 1     Time   NA
+## 2    Shots   NA
+## 3   Passes   NA
+## 4  Tackles   NA
+## 5    Saves   NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{1}
+\NormalTok{(var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 208.8639
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_df[i , }\StringTok{"mean"}\NormalTok{] <-}\StringTok{ }\KeywordTok{round}\NormalTok{(var_mean, }\DecValTok{1}\NormalTok{)}
+\NormalTok{my_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   variable  mean
+## 1     Time 208.9
+## 2    Shots    NA
+## 3   Passes    NA
+## 4  Tackles    NA
+## 5    Saves    NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{nrow}\NormalTok{(my_df))\{}
+        \NormalTok{var_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(worldcup[ , vars[i]])}
+        \NormalTok{my_df[i , }\StringTok{"mean"}\NormalTok{] <-}\StringTok{ }\KeywordTok{round}\NormalTok{(var_mean, }\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{my_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   variable  mean
+## 1     Time 208.9
+## 2    Shots   2.3
+## 3   Passes  84.5
+## 4  Tackles   4.2
+## 5    Saves   0.7
+\end{verbatim}
+
+Note: This is a pretty simplistic example. There are some easier ways to
+have done this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup %>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Time =} \KeywordTok{mean}\NormalTok{(Time), }\DataTypeTok{Passes =} \KeywordTok{mean}\NormalTok{(Passes),}
+            \DataTypeTok{Shots =} \KeywordTok{mean}\NormalTok{(Shots), }\DataTypeTok{Tackles =} \KeywordTok{mean}\NormalTok{(Tackles),}
+            \DataTypeTok{Saves =} \KeywordTok{mean}\NormalTok{(Saves)) %>%}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \NormalTok{var, }\DataTypeTok{value =} \NormalTok{mean) %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{round}\NormalTok{(mean, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       var  mean
+## 1    Time 208.9
+## 2  Passes  84.5
+## 3   Shots   2.3
+## 4 Tackles   4.2
+## 5   Saves   0.7
+\end{verbatim}
+
+Another way to have done this is with \texttt{apply}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{means <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(worldcup[ , vars], }\DecValTok{2}\NormalTok{, mean)}
+\NormalTok{(means <-}\StringTok{ }\KeywordTok{round}\NormalTok{(means, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Time   Shots  Passes Tackles   Saves 
+##   208.9     2.3    84.5     4.2     0.7
+\end{verbatim}
+
+However, you can use this same looping process for much more complex
+tasks that you can't do as easily with \texttt{apply} or \texttt{dplyr}
+tools.
+
+Loops can be very useful for more complex repeated tasks. For example:
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-360-1.pdf}
+
+Creating this graph requires:
+
+\begin{itemize}
+\tightlist
+\item
+  Create a subset limited to each of the four positions
+\item
+  Fit a Poisson regression of Passes on Time within each subset
+\item
+  Pull the regression coefficient and standard error from each model
+\item
+  Use those values to calculate 95\% confidence intervals
+\item
+  Convert everything from log relative rate to relative rate
+\item
+  Plot everything
+\end{itemize}
+
+Create a vector with the names of all positions. Create an empty
+dataframe to store regression results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(positions <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(worldcup$Position))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Midfielder Defender   Forward    Goalkeeper
+## Levels: Defender Forward Goalkeeper Midfielder
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(pos_est <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{position =} \NormalTok{positions,}
+                       \DataTypeTok{est =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{se =} \OtherTok{NA}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     position est se
+## 1 Midfielder  NA NA
+## 2   Defender  NA NA
+## 3    Forward  NA NA
+## 4 Goalkeeper  NA NA
+\end{verbatim}
+
+Loop through and fit a Poisson regression model for each subset of data.
+Save regression coefficients in the empty dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{nrow}\NormalTok{(pos_est))\{}
+        \NormalTok{pos_df <-}\StringTok{ }\NormalTok{worldcup %>%}
+\StringTok{          }\KeywordTok{filter}\NormalTok{(Position ==}\StringTok{ }\NormalTok{positions[i]) }
+        \NormalTok{pos_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(Passes ~}\StringTok{ }\NormalTok{Time,}
+                       \DataTypeTok{data =} \NormalTok{pos_df,}
+                       \DataTypeTok{family =} \KeywordTok{poisson}\NormalTok{(}\DataTypeTok{link =} \StringTok{"log"}\NormalTok{))}
+        \NormalTok{pos_coefs <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(pos_mod)$coefficients[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{]}
+        \NormalTok{pos_est[i, }\KeywordTok{c}\NormalTok{(}\StringTok{"est"}\NormalTok{, }\StringTok{"se"}\NormalTok{)] <-}\StringTok{ }\NormalTok{pos_coefs}
+\NormalTok{\}}
+\NormalTok{pos_est[}\DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     position         est           se
+## 1 Midfielder 0.004716096 4.185925e-05
+## 2   Defender 0.004616260 5.192736e-05
+\end{verbatim}
+
+Calculate 95\% confidence intervals for log relative risk values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos_est <-}\StringTok{ }\NormalTok{pos_est %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lower_ci =} \NormalTok{est -}\StringTok{ }\FloatTok{1.96} \NormalTok{*}\StringTok{ }\NormalTok{se,}
+         \DataTypeTok{upper_ci =} \NormalTok{est +}\StringTok{ }\FloatTok{1.96} \NormalTok{*}\StringTok{ }\NormalTok{se)}
+
+\NormalTok{pos_est %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(position, est, lower_ci, upper_ci) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     position         est    lower_ci    upper_ci
+## 1 Midfielder 0.004716096 0.004634052 0.004798140
+## 2   Defender 0.004616260 0.004514483 0.004718038
+## 3    Forward 0.005299009 0.005158945 0.005439074
+## 4 Goalkeeper 0.003101124 0.002770562 0.003431687
+\end{verbatim}
+
+Calculate relative risk per 90 minute increase in minutes played.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos_est <-}\StringTok{ }\NormalTok{pos_est %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{rr_est =} \KeywordTok{exp}\NormalTok{(}\DecValTok{90} \NormalTok{*}\StringTok{ }\NormalTok{est),}
+         \DataTypeTok{rr_low =} \KeywordTok{exp}\NormalTok{(}\DecValTok{90} \NormalTok{*}\StringTok{ }\NormalTok{lower_ci),}
+         \DataTypeTok{rr_high =} \KeywordTok{exp}\NormalTok{(}\DecValTok{90} \NormalTok{*}\StringTok{ }\NormalTok{upper_ci))}
+\NormalTok{pos_est %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(position, rr_est, rr_low, rr_high) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     position   rr_est   rr_low  rr_high
+## 1 Midfielder 1.528747 1.517501 1.540077
+## 2   Defender 1.515073 1.501258 1.529015
+## 3    Forward 1.611090 1.590908 1.631527
+## 4 Goalkeeper 1.321941 1.283192 1.361861
+\end{verbatim}
+
+Re-level the \texttt{position} factor so the plot will be ordered from
+highest to lowest estimates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos_est <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(pos_est, rr_est) %>%}
+\StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{factor}\NormalTok{(position,}
+                                 \DataTypeTok{levels =} \NormalTok{position))}
+\NormalTok{pos_est %>%}\StringTok{ }\KeywordTok{select}\NormalTok{(position, est)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     position         est
+## 1 Goalkeeper 0.003101124
+## 2   Defender 0.004616260
+## 3 Midfielder 0.004716096
+## 4    Forward 0.005299009
+\end{verbatim}
+
+Create the plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(pos_est, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{rr_low, }\DataTypeTok{y =} \NormalTok{position)) +}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend =} \NormalTok{rr_high, }\DataTypeTok{yend =} \NormalTok{position)) +}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{rr_est, }\DataTypeTok{y =} \NormalTok{position)) +}\StringTok{ }
+\StringTok{        }\KeywordTok{theme_few}\NormalTok{() +}\StringTok{ }
+\StringTok{        }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) +}\StringTok{ }
+\StringTok{        }\KeywordTok{scale_x_continuous}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Relative rate of passes}\CharTok{\textbackslash{}n}\StringTok{per"}\NormalTok{,}
+                                 \StringTok{"90 minute increase in minutes played"}\NormalTok{),}
+                           \DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\KeywordTok{max}\NormalTok{(pos_est$rr_high))) +}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_vline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"lightgray"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-366-1.pdf}
+
+\section{Functions}\label{functions}
+
+You can write your own functions for tasks you do a lot. \bigskip 
+
+If you find yourself cutting and pasting a lot, convert the code to a
+function. Here is an example of a very basic function. This function
+takes a number as input and adds 1 to that number.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{add_one <-}\StringTok{ }\NormalTok{function(number)\{}
+        \NormalTok{out <-}\StringTok{ }\NormalTok{number +}\StringTok{ }\DecValTok{1}
+        \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+
+\KeywordTok{add_one}\NormalTok{(}\DataTypeTok{number =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{add_one}\NormalTok{(}\DataTypeTok{number =} \NormalTok{-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+You can name a function anything you want (although try to avoid names
+of pre-existing functions). You then include options (including any
+defaults) and the code to run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Note: this code will not run}
+\NormalTok{[function name] <-}\StringTok{ }\NormalTok{function([any options and defaults])\{}
+        \NormalTok{[code to run]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Example: You want to take a log relative rate estimate determined per
+minute and convert it to a relative rate per 90 minutes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rr_per90 <-}\StringTok{ }\NormalTok{function(log_rr)\{}
+        \NormalTok{out <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(log_rr *}\StringTok{ }\DecValTok{90}\NormalTok{)}
+        \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+\KeywordTok{rr_per90}\NormalTok{(pos_est$est[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.321941
+\end{verbatim}
+
+Example: You want to take a vector of values for a log relative rate
+estimate and its standard error and convert it to a pretty format of
+relative rate and confidence intervals per 90 minute increase in playing
+time:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pretty_rr90 <-}\StringTok{ }\NormalTok{function(vec)\{}
+        \NormalTok{ests <-}\StringTok{ }\NormalTok{vec[}\DecValTok{1}\NormalTok{] +}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, -}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{) *}\StringTok{ }\FloatTok{1.96} \NormalTok{*}\StringTok{ }\NormalTok{vec[}\DecValTok{2}\NormalTok{]}
+        \NormalTok{ests <-}\StringTok{ }\KeywordTok{round}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\DecValTok{90} \NormalTok{*}\StringTok{ }\NormalTok{ests), }\DecValTok{2}\NormalTok{)}
+        \NormalTok{out <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(ests[}\DecValTok{1}\NormalTok{], }\StringTok{" ("}\NormalTok{, ests[}\DecValTok{2}\NormalTok{], }\StringTok{", "}\NormalTok{, ests[}\DecValTok{3}\NormalTok{], }\StringTok{")"}\NormalTok{)}
+        \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+\KeywordTok{pretty_rr90}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.0031}\NormalTok{, }\FloatTok{0.00017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1.32 (1.28, 1.36)"
+\end{verbatim}
+
+You can test out functions by walking through them, just like you can
+with loops.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.0031}\NormalTok{, }\FloatTok{0.00017}\NormalTok{)}
+\NormalTok{(ests <-}\StringTok{ }\NormalTok{vec[}\DecValTok{1}\NormalTok{] +}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, -}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{) *}\StringTok{ }\FloatTok{1.96} \NormalTok{*}\StringTok{ }\NormalTok{vec[}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0031000 0.0027668 0.0034332
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(ests <-}\StringTok{ }\KeywordTok{round}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\DecValTok{90} \NormalTok{*}\StringTok{ }\NormalTok{ests), }\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.32 1.28 1.36
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(out <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(ests[}\DecValTok{1}\NormalTok{], }\StringTok{" ("}\NormalTok{, ests[}\DecValTok{2}\NormalTok{], }\StringTok{", "}\NormalTok{, ests[}\DecValTok{3}\NormalTok{], }\StringTok{")"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1.32 (1.28, 1.36)"
+\end{verbatim}
+
+You can use \texttt{apply} to apply a function you've created to many
+rows at a time. For example, you have log relative risk estimates and
+standard errors for each position in \texttt{pos\_est}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos_est[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"est"}\NormalTok{, }\StringTok{"se"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           est           se
+## 1 0.003101124 1.686543e-04
+## 2 0.004616260 5.192736e-05
+## 3 0.004716096 4.185925e-05
+## 4 0.005299009 7.146148e-05
+\end{verbatim}
+
+You can apply \texttt{pretty\_rr90} to each row (\texttt{MARGIN\ =\ 1})
+of this part of the dataframe to get pretty estimates for each position:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(pos_est[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"est"}\NormalTok{, }\StringTok{"se"}\NormalTok{)], }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, }\DataTypeTok{FUN =} \NormalTok{pretty_rr90)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1.32 (1.28, 1.36)" "1.52 (1.5, 1.53)"  "1.53 (1.52, 1.54)"
+## [4] "1.61 (1.59, 1.63)"
+\end{verbatim}
+
+You can use this to create a table to print:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out_tab <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Position"} \NormalTok{=}\StringTok{ }\NormalTok{pos_est$position,}
+                      \StringTok{"Effect Estimate"} \NormalTok{=}\StringTok{ }\KeywordTok{apply}\NormalTok{(pos_est[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"est"}\NormalTok{, }\StringTok{"se"}\NormalTok{)],}
+                                                \DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{,}
+                                                \DataTypeTok{FUN =} \NormalTok{pretty_rr90))}
+\NormalTok{out_tab}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Position   Effect.Estimate
+## 1 Goalkeeper 1.32 (1.28, 1.36)
+## 2   Defender  1.52 (1.5, 1.53)
+## 3 Midfielder 1.53 (1.52, 1.54)
+## 4    Forward 1.61 (1.59, 1.63)
+\end{verbatim}
+
+And use \texttt{knitr}'s \texttt{kable()} function to print it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(out_tab, }\DataTypeTok{format =} \StringTok{"markdown"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+Position & Effect.Estimate\tabularnewline
+\midrule
+\endhead
+Goalkeeper & 1.32 (1.28, 1.36)\tabularnewline
+Defender & 1.52 (1.5, 1.53)\tabularnewline
+Midfielder & 1.53 (1.52, 1.54)\tabularnewline
+Forward & 1.61 (1.59, 1.63)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{\texorpdfstring{\texttt{apply} family of
+functions}{apply family of functions}}\label{apply-family-of-functions}
+
+First, you need to know about two more object types in R:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{matrix}
+\item
+  \texttt{list}
+\end{itemize}
+
+A matrix is like a dataframe, but all the values in all columns must be
+of the same class (e.g., numeric, character):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{5}\NormalTok{)}
+\NormalTok{foo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10
+\end{verbatim}
+
+The matrix will default to make all values the most general class of any
+of the values, in any column. For example, if we replaced one numeric
+value with the character ``a'', everything would turn into a character:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] <-}\StringTok{ "a"}
+\NormalTok{foo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,] "a"  "3"  "5"  "7"  "9" 
+## [2,] "2"  "4"  "6"  "8"  "10"
+\end{verbatim}
+
+R uses matrices a lot for its underlying math (e.g., for the linear
+algebra operations required for fitting regression models). R can do
+matrix operations quite quickly.
+
+A list has different elements, just like a dataframe has different
+columns. However, the different elements of a list can have different
+lengths (unlike the columns of a dataframe). The different elements can
+also have different classes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{),}
+            \DataTypeTok{b =} \DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{, }
+            \DataTypeTok{c =} \KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{))}
+\NormalTok{bar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] "a" "b" "c"
+## 
+## $b
+## [1] 1 2 3 4 5
+## 
+## $c
+## [1]  TRUE FALSE
+\end{verbatim}
+
+To index an element from a list, use double square brackets. You can use
+this either with numbers (which element in the list?) or with names or
+the \texttt{\$} operator:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar[[}\StringTok{"b"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar$c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE
+\end{verbatim}
+
+Lists can be used to contain data with an unusual structure and / or
+lots of different components. For example, the information from fitting
+a regression is often stored as a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{) ~}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{))}
+\KeywordTok{is.list}\NormalTok{(my_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{names}\NormalTok{(my_mod))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "coefficients"  "residuals"     "fitted.values" "effects"      
+## [5] "R"             "rank"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_mod[[}\StringTok{"coefficients"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept)     c(1:10) 
+##  0.70393280 -0.05690983
+\end{verbatim}
+
+There is also a whole family of \texttt{apply} functions, as part of R's
+based package. These include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{apply}: Apply a function over all the rows
+  (\texttt{MARGIN\ =\ 1}) or columns (\texttt{MARGIN\ =\ 2}) of a matrix
+\item
+  \texttt{lapply}: Apply a function over elements of a list.
+\item
+  \texttt{sapply}: Like \texttt{lapply}, but returns a vector instead of
+  a list.
+\end{itemize}
+
+Convention for \texttt{apply}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{([matrix], }\DataTypeTok{MARGIN =} \NormalTok{[}\KeywordTok{margin} \NormalTok{(}\DecValTok{1}\NormalTok{:}\StringTok{ }\NormalTok{rows, }\DecValTok{2}\NormalTok{:}\StringTok{ }\NormalTok{columns)], }\DataTypeTok{FUN =}  \NormalTok{[function])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex <-}\StringTok{ }\NormalTok{worldcup[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)]}
+\KeywordTok{head}\NormalTok{(ex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Shots Passes Tackles Saves
+## Abdoun         0      6       0     0
+## Abe            0    101      14     0
+## Abidal         0     91       6     0
+## Abou Diaby     1    111       5     0
+## Aboubakar      2     16       0     0
+## Abreu          0     15       0     0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(ex, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Shots     Passes    Tackles      Saves 
+##  2.3042017 84.5210084  4.1915966  0.6672269
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{apply}\NormalTok{(ex, }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, sum))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Abdoun        Abe     Abidal Abou Diaby  Aboubakar      Abreu 
+##          6        115         97        117         18         15
+\end{verbatim}
+
+\texttt{lapply()} will apply a function across a list. The different
+elements of the list do not have to be the same length (unlike a
+dataframe, where the columns all have to have the same length).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(ex <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{), }\DataTypeTok{b =} \KeywordTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{), }\DataTypeTok{c =} \KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 1 2 3 4 5
+## 
+## $b
+## [1] -0.77577526  0.23464681  0.02419673
+## 
+## $c
+## [1] 5 3 3 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(ex, }\DataTypeTok{FUN =} \NormalTok{mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 3
+## 
+## $b
+## [1] -0.1723106
+## 
+## $c
+## [1] 3.25
+\end{verbatim}
+
+\texttt{sapply()} also applies a function over a list, but it returns a
+vector rather than a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(ex, }\DataTypeTok{FUN =} \NormalTok{mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          a          b          c 
+##  3.0000000 -0.1723106  3.2500000
+\end{verbatim}
+
+This can often be convenient in the context of a large data analysis.
+
+In practice, I do use \texttt{apply()} some, but I can often find a way
+to do similar things to other \texttt{apply} family functions using the
+tools in \texttt{dplyr}.
+
+You should know that \texttt{apply} family functions take advantage of
+the matrix structure in R. This can be one of the fastest way to run
+code in R. It is definitely faster than doing the same things with
+loops. However, unless you are working with large datasets, you may not
+notice a difference.
+
+I would recommend using whichever method makes the most sense to you
+until you run into an analysis that takes a noticable amount of time to
+run, and then you might want to work a bit more to optimize your code.
+
+\section{In-course exercise}\label{in-course-exercise-6}
+
+\subsection{Exploring Fatality Analysis Reporting System (FARS)
+data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Visit
+  \url{http://metrocosm.com/10-years-of-traffic-accidents-mapped.html}
+  and explore the interactive visualization created by Max Galka using
+  this public dataset on US fatal motor vehicle accidents.
+\item
+  Go to \href{http://www.nhtsa.gov/FARS}{FARS web page} to find and
+  download the data for this week's exercise. We want to get the raw
+  data on fatal accidents. Navigate this page to figure out how you can
+  get this raw data for the whole county for 2015. Download the 2015
+  data to your computer. What is the structure of how this data is saved
+  (e.g., directory structure, file structure)?
+\item
+  On the \href{http://www.nhtsa.gov/FARS}{FARS web page}, find the
+  documentation describing this raw data. Look through both this
+  documentation and the raw files you downloaded to figure out what
+  information is included in the data.
+\item
+  Read the \texttt{accident.csv} file for 2015 into R (this is one of
+  the files you'll get if you download the raw data for 2015). Use the
+  documentation to figure out what each column represents.
+\item
+  Discuss what steps you would need to take to create the following
+  plot. To start, don't write any code, just develop a plan. Talk about
+  what the dataset should look like right before you create the plot and
+  what functions you could use to get the data from its current format
+  to that format. (Hint: Functions from the \texttt{lubridate} package
+  will be very helpful, including \texttt{yday} and \texttt{wday}).
+\item
+  Discuss which of the variables in this dataset could be used to merge
+  the dataset with other appropriate data, either other datasets in the
+  FARS raw data, or outside datasets.
+\item
+  Try to write the code to create the plot below. This will include some
+  code for cleaning the data and some code for plotting. I will add one
+  example answer after class, but I'd like you to try to figure it out
+  yourselves first.
+\end{itemize}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-388-1} \end{center}
+
+\subsection{Using a loop to create state-specific
+plots}\label{using-a-loop-to-create-state-specific-plots}
+
+Next, you will write a loop to write a four-page pdf file with
+state-specific plots for the states of Colorado, Texas, California, and
+New York.
+
+\begin{itemize}
+\tightlist
+\item
+  The data has a column called \texttt{STATE}, but it gives state as a
+  one- or two-digit code, rather than by name. These codes are the state
+  Federal Information Processing Standard (FIPS) codes. A dataset with
+  state names and FIPS codes is available at
+  \url{http://www2.census.gov/geo/docs/reference/state.txt}. Read that
+  data into an R object called \texttt{state\_fips} and clean it so the
+  first few lines look like this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 5 × 2
+##   state state_name
+##   <int>      <chr>
+## 1     1    Alabama
+## 2     2     Alaska
+## 3     4    Arizona
+## 4     5   Arkansas
+## 5     6 California
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Read the 2015 FARS data into an R object named \texttt{accident}. Use
+  all the date and time information to create a column named
+  \texttt{date} with the date and time of the accident. Include
+  information on whether the accident was related to drunk driving
+  (FALSE if there were 0 drunk drivers, TRUE if there were one or more),
+  and create columns that gives whether the accident was during the day
+  (7 AM to 7 PM) or not as well as the month of the accident (for this
+  last column, you can either retain it from the original data or
+  recalculate it based on the new \texttt{date} variable). Filter out
+  any values where the date-time does not render (i.e., \texttt{date} is
+  a missing value). The first few rows of the cleaned dataframe should
+  look like this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 5 × 5
+##   state                date drunk_dr daytime month
+##   <int>              <dttm>    <lgl>   <lgl> <dbl>
+## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1
+## 2     1 2015-01-01 22:13:00    FALSE   FALSE     1
+## 3     1 2015-01-01 01:25:00     TRUE   FALSE     1
+## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1
+## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Join the information from \texttt{state\_fips} into the
+  \texttt{accident} dataframe. There may be a few locations in the
+  \texttt{state\_fips} dataframe that are not included in the
+  \texttt{accident} dataframe (e.g., Virgin Islands), so when you join
+  keep all observations in \texttt{accident} but only the observations
+  in \texttt{state\_fips} that match at least one row of
+  \texttt{accident}. The first few rows of the joined dataset should
+  look like this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 5 × 6
+##   state                date drunk_dr daytime month state_name
+##   <int>              <dttm>    <lgl>   <lgl> <dbl>      <chr>
+## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1    Alabama
+## 2     1 2015-01-01 22:13:00    FALSE   FALSE     1    Alabama
+## 3     1 2015-01-01 01:25:00     TRUE   FALSE     1    Alabama
+## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1    Alabama
+## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1    Alabama
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Write the code to create boxplots for Colorado of the distribution of
+  total accidents within each month. Create separate boxplots for
+  daytime and nighttime accidents, and facet by whether the accident was
+  related to drunk driving. The plot should look like the plot below.
+\end{itemize}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-392-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Write a loop to create a plot like the one you just made for Colorado
+  for four different states-- Colorado, Texas, California, and New York.
+  The code should write the plots out to a pdf, with one plot per page
+  of the pdf. (\emph{Hint}: To get a loop to print out a plot created
+  with ggplot, you must explicitly print the plot object. For example,
+  you could assign the plot to \texttt{a}, and then you would run
+  \texttt{print(a)} within your loop as the last step.)
+\end{itemize}
+
+\subsubsection{Example R code}\label{example-r-code-10}
+
+Here is example R code for creating state-specific plots using a loop:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state_fips <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"http://www2.census.gov/geo/docs/reference/state.txt"}\NormalTok{,}
+                         \DataTypeTok{delim =} \StringTok{"|"}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =} \NormalTok{STATE,}
+         \DataTypeTok{state_name =} \NormalTok{STATE_NAME) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(state, state_name) %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state =} \KeywordTok{as.integer}\NormalTok{(state))}
+
+\NormalTok{accident <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/accident.csv"}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(STATE, DAY:MINUTE, DRUNK_DR) %>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =} \NormalTok{STATE, }
+         \DataTypeTok{drunk_dr =} \NormalTok{DRUNK_DR) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(-DAY_WEEK) %>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(date, DAY:MINUTE, }\DataTypeTok{sep =} \StringTok{"-"}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{dmy_hm}\NormalTok{(date), }
+         \DataTypeTok{drunk_dr =} \NormalTok{drunk_dr >=}\StringTok{ }\DecValTok{1}\NormalTok{,}
+         \DataTypeTok{daytime =} \KeywordTok{hour}\NormalTok{(date) %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{:}\DecValTok{19}\NormalTok{),}
+         \DataTypeTok{month =} \KeywordTok{month}\NormalTok{(date)) %>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(date)) %>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(state_fips, }\DataTypeTok{by =} \StringTok{"state"}\NormalTok{)}
+
+\KeywordTok{pdf}\NormalTok{(}\StringTok{"StateFARSPlots.pdf"}\NormalTok{, }\DataTypeTok{height =} \FloatTok{3.5}\NormalTok{, }\DataTypeTok{width =} \DecValTok{7}\NormalTok{)}
+\NormalTok{state_list <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Texas"}\NormalTok{, }\StringTok{"California"}\NormalTok{, }\StringTok{"New York"}\NormalTok{)}
+\NormalTok{for(which_state in state_list)\{}
+  \NormalTok{a <-accident %>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state) %>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr, }\DataTypeTok{labels =} 
+                               \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
+                                 \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
+           \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
+\StringTok{    }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
+\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents, }\DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) +}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
+  \KeywordTok{print}\NormalTok{(a)}
+\NormalTok{\}}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Writing a function to create state-specific
+plots}\label{writing-a-function-to-create-state-specific-plots}
+
+\begin{itemize}
+\tightlist
+\item
+  Adapt the code that you wrote for the loop and write a function that
+  will create a state-specific plot when you call it. This function
+  should have inputs of \texttt{datafr} and \texttt{which\_state}, where
+  \texttt{datafr} is the dataframe with the full dataset
+  (\texttt{accident} in this case) and \texttt{which\_state} is the name
+  of the state for which you'd like to create the plot. Name your
+  functions \texttt{make\_state\_plot}. Here are a few examples of
+  running this function:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{make_state_plot}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"California"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-395-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{make_state_plot}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"North Carolina"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-395-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{make_state_plot}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"Illinois"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-395-3} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  In general, there is a pattern of more of the fatal accidents during
+  the daytime are unrelated to drunk driving versus related, while the
+  pattern is reversed for nighttime accidents. Use your function to see
+  if you can find any states that don't follow this pattern.
+\item
+  So far, we have not covered error checking in functions. In the
+  function that you just wrote, we are assuming that the user will never
+  give inputs that would cause errors. Look through the code for your
+  function and see what assumptions we're making about what values a
+  user would input for \texttt{datafr} and \texttt{which\_state}. What
+  could go wrong if a user does not comply with these assumptions?
+\item
+  The best practice when writing functions, especially for others to
+  use, is to use the package::function syntax to identify which package
+  each function comes from. For example, if you're using \texttt{mutate}
+  in a function, you should write the function code as
+  \texttt{dplyr::mutate}. Go back through the code for the function you
+  wrote. Every time it uses a function that is not part of base R,
+  change the code to use this package::function syntax.
+\end{itemize}
+
+\subsubsection{Example R code}\label{example-r-code-11}
+
+Here is some example R code for writing the function to create
+state-specific plots:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make_state_plot <-}\StringTok{ }\NormalTok{function(datafr, which_state)\{}
+  \NormalTok{a <-}\StringTok{ }\NormalTok{datafr %>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state) %>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr,}
+                             \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
+                                        \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
+           \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
+\StringTok{    }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
+\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents, }\DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) +}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
+  \KeywordTok{return}\NormalTok{(a)}
+\NormalTok{\}}
+
+\CommentTok{# With package::function notation}
+\NormalTok{make_state_plot <-}\StringTok{ }\NormalTok{function(datafr, which_state)\{}
+  \NormalTok{a <-}\StringTok{ }\NormalTok{datafr %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr,}
+                             \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
+                                        \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
+           \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents,}
+                                 \DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) +}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
+  \KeywordTok{return}\NormalTok{(a)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \appendix
 
