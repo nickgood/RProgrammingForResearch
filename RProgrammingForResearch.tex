@@ -9537,11 +9537,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 1.81\\
+a & 0.70\\
 \hline
-b & -0.48\\
+b & 0.71\\
 \hline
-c & -1.23\\
+c & 1.02\\
 \hline
 \end{tabular}
 \end{table}
@@ -10057,10 +10057,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 0.98220407  0.2353139 -9.190170
-## 2 2009-01-02 2.46865005 -0.3652023  5.542733
-## 3 2009-01-03 0.09396673 -1.8066647 -3.144303
+##         time           X          Y          Z
+## 1 2009-01-01 -0.09327628 -0.4080834  0.1727689
+## 2 2009-01-02 -0.43469221  0.4113342 -3.8675486
+## 3 2009-01-03  0.81055091  3.1100724  6.9243167
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10077,10 +10077,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 0.98220407  0.2353139 -9.190170
-## 2 2009-01-02 2.46865005 -0.3652023  5.542733
-## 3 2009-01-03 0.09396673 -1.8066647 -3.144303
+##         time           X          Y          Z
+## 1 2009-01-01 -0.09327628 -0.4080834  0.1727689
+## 2 2009-01-02 -0.43469221  0.4113342 -3.8675486
+## 3 2009-01-03  0.81055091  3.1100724  6.9243167
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10097,11 +10097,11 @@ data:
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X  0.98220407
-## 2 2009-01-02     X  2.46865005
-## 3 2009-01-03     X  0.09396673
-## 4 2009-01-04     X -0.43003377
-## 5 2009-01-05     X  1.60945177
+## 1 2009-01-01     X -0.09327628
+## 2 2009-01-02     X -0.43469221
+## 3 2009-01-03     X  0.81055091
+## 4 2009-01-04     X -1.29659046
+## 5 2009-01-05     X  1.51166575
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10116,11 +10116,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X  0.98220407
-## 2 2009-01-02     X  2.46865005
-## 3 2009-01-03     X  0.09396673
-## 4 2009-01-04     X -0.43003377
-## 5 2009-01-05     X  1.60945177
+## 1 2009-01-01     X -0.09327628
+## 2 2009-01-02     X -0.43469221
+## 3 2009-01-03     X  0.81055091
+## 4 2009-01-04     X -1.29659046
+## 5 2009-01-05     X  1.51166575
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10176,12 +10176,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y         Z
-## 1 2009-01-01  0.98220407  0.2353139 -9.190170
-## 2 2009-01-02  2.46865005 -0.3652023  5.542733
-## 3 2009-01-03  0.09396673 -1.8066647 -3.144303
-## 4 2009-01-04 -0.43003377 -2.4626361  7.408120
-## 5 2009-01-05  1.60945177  1.5382549 -5.620168
+##         time           X          Y          Z
+## 1 2009-01-01 -0.09327628 -0.4080834  0.1727689
+## 2 2009-01-02 -0.43469221  0.4113342 -3.8675486
+## 3 2009-01-03  0.81055091  3.1100724  6.9243167
+## 4 2009-01-04 -1.29659046  1.4333580  3.4584420
+## 5 2009-01-05  1.51166575  1.5151538 -0.8807810
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10206,11 +10206,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10  0.6474466 1.140363
-## 2     Y    10 -0.1056369 1.294101
-## 3     Z    10 -1.0773185 5.626071
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10  0.01250637 0.7764331
+## 2     Y    10  0.88642566 1.1243630
+## 3     Z    10 -0.93215109 4.9402717
 \end{verbatim}
 
 \begin{Shaded}
@@ -10229,7 +10229,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.65 (1.14) & -0.11 (1.29) & -1.08 (5.63)\\
+Mean (Std.dev.) & 0.01 (0.78) & 0.89 (1.12) & -0.93 (4.94)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11838,7 +11838,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##    1.016029   -0.112444
+## -0.05303656 -0.01366850
 \end{verbatim}
 
 There is also a whole family of \texttt{apply} functions, as part of R's
@@ -11918,7 +11918,7 @@ dataframe, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  0.688922 -1.156171  1.097913
+## [1]  0.6797466  0.2896616 -0.6060776
 ## 
 ## $c
 ## [1] 5 3 3 2
@@ -11935,7 +11935,7 @@ dataframe, where the columns all have to have the same length).
 ## [1] 3
 ## 
 ## $b
-## [1] 0.2102215
+## [1] 0.1211102
 ## 
 ## $c
 ## [1] 3.25
@@ -11952,7 +11952,7 @@ vector rather than a list:
 
 \begin{verbatim}
 ##         a         b         c 
-## 3.0000000 0.2102215 3.2500000
+## 3.0000000 0.1211102 3.2500000
 \end{verbatim}
 
 This can often be convenient in the context of a large data analysis.
@@ -12979,7 +12979,7 @@ Here are some initial tips:
 \tightlist
 \item
   Your goal is to create an R Markdown document that you can compile to
-  create a Word document that looks just like the example document we've
+  create a Word document that looks just like the target document we've
   linked above. The only difference is that you will use
   \texttt{echo\ =\ TRUE} to show your code within the rendered Word
   document. All formating within the text should be similar or identical
@@ -13037,14 +13037,6 @@ If you need them, here are some further tips:
 \item
   Don't forget that there are functions in the \texttt{scale} family
   that allow you to use log-scale axes.
-\item
-  The string ``\textbackslash{}n'' can be included in legends and labels
-  to include a carriage return.
-\item
-  Coordinates can be flipped in a graph with the \texttt{coord\_flip}
-  geom. So, if you can figure out a way to make a graph with the
-  coordinates flipped, use that code and just add \texttt{coord\_flip}
-  at the end.
 \end{itemize}
 
 \section{Homework \#4}\label{homework-4}

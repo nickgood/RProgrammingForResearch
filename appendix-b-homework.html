@@ -441,7 +441,7 @@ After telling swirl that you would like to send a notification email, an already
 <p>For Homework 2, recreate the R Markdown document that you can download from <a href="https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework_3.docx">here</a>.</p>
 <p>Here are some initial tips:</p>
 <ul>
-<li>Your goal is to create an R Markdown document that you can compile to create a Word document that looks just like the example document we’ve linked above. The only difference is that you will use <code>echo = TRUE</code> to show your code within the rendered Word document. All formating within the text should be similar or identical to the target document.<br />
+<li>Your goal is to create an R Markdown document that you can compile to create a Word document that looks just like the target document we’ve linked above. The only difference is that you will use <code>echo = TRUE</code> to show your code within the rendered Word document. All formating within the text should be similar or identical to the target document.<br />
 </li>
 <li>You will turn in (by email) both the compiled Word document and the .Rmd original file.</li>
 <li>Add your name as “Author” and the due date of the assignment as “Date”. You should add these within the R Markdown document, rather than changing them in the final, compiled Word document.</li>
@@ -456,8 +456,6 @@ After telling swirl that you would like to send a notification email, an already
 <li>To reference column names with “special” characters in them, like dollar signs or spaces, wrap the whole old column name in backticks. For example, to change a column name that has a dollar sign in it, you would use something like “rename(new_col_name = `old_col_name$`)”.</li>
 <li>To change the size of a figure in a report, use the “fig.width” and “fig.height” chunk options.</li>
 <li>Don’t forget that there are functions in the <code>scale</code> family that allow you to use log-scale axes.</li>
-<li>The string “\n” can be included in legends and labels to include a carriage return.</li>
-<li>Coordinates can be flipped in a graph with the <code>coord_flip</code> geom. So, if you can figure out a way to make a graph with the coordinates flipped, use that code and just add <code>coord_flip</code> at the end.</li>
 </ul>
 </div>
 <div id="homework-4" class="section level2">
