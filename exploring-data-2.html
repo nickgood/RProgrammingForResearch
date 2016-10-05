@@ -8,7 +8,7 @@
   <title>R Programming for Research</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.1.14 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.15 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-03">
+<meta name="date" content="2016-10-05">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -739,7 +739,7 @@ bar</code></pre></div>
 ## [5] &quot;R&quot;             &quot;rank&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##   0.6313147  -0.1909888</code></pre>
+##  -1.3866551   0.1737354</code></pre>
 <p>There is also a whole family of <code>apply</code> functions, as part of R’s based package. These include:</p>
 <ul>
 <li><code>apply</code>: Apply a function over all the rows (<code>MARGIN = 1</code>) or columns (<code>MARGIN = 2</code>) of a matrix</li>
@@ -769,7 +769,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.2833625 -0.3043877  1.3644786
+## [1] -0.5235134  2.1409237  0.2207496
 ## 
 ## $c
 ## [1] 5 3 3 2</code></pre>
@@ -778,14 +778,14 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] 0.2589095
+## [1] 0.61272
 ## 
 ## $c
 ## [1] 3.25</code></pre>
 <p><code>sapply()</code> also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> mean)</code></pre></div>
-<pre><code>##         a         b         c 
-## 3.0000000 0.2589095 3.2500000</code></pre>
+<pre><code>##       a       b       c 
+## 3.00000 0.61272 3.25000</code></pre>
 <p>This can often be convenient in the context of a large data analysis.</p>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>.</p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest way to run code in R. It is definitely faster than doing the same things with loops. However, unless you are working with large datasets, you may not notice a difference.</p>
