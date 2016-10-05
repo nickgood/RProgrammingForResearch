@@ -9537,11 +9537,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.15\\
+a & -1.01\\
 \hline
-b & -1.48\\
+b & 1.28\\
 \hline
-c & -0.92\\
+c & -1.21\\
 \hline
 \end{tabular}
 \end{table}
@@ -10057,10 +10057,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01 -0.74905104  1.4044624 0.06868466
-## 2 2009-01-02 -0.22012327 -0.6589192 1.53497662
-## 3 2009-01-03  0.08510515  0.5049302 9.69327425
+##         time          X          Y         Z
+## 1 2009-01-01  1.2087833 -3.2914138  1.947613
+## 2 2009-01-02  0.7733576 -0.3037502 -1.140435
+## 3 2009-01-03 -1.2771629  0.8224820  4.620797
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10077,10 +10077,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01 -0.74905104  1.4044624 0.06868466
-## 2 2009-01-02 -0.22012327 -0.6589192 1.53497662
-## 3 2009-01-03  0.08510515  0.5049302 9.69327425
+##         time          X          Y         Z
+## 1 2009-01-01  1.2087833 -3.2914138  1.947613
+## 2 2009-01-02  0.7733576 -0.3037502 -1.140435
+## 3 2009-01-03 -1.2771629  0.8224820  4.620797
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10097,11 +10097,11 @@ data:
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X -0.74905104
-## 2 2009-01-02     X -0.22012327
-## 3 2009-01-03     X  0.08510515
-## 4 2009-01-04     X  0.50636878
-## 5 2009-01-05     X -0.33196889
+## 1 2009-01-01     X  1.20878331
+## 2 2009-01-02     X  0.77335760
+## 3 2009-01-03     X -1.27716288
+## 4 2009-01-04     X  0.07795984
+## 5 2009-01-05     X  1.29043492
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10116,11 +10116,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X -0.74905104
-## 2 2009-01-02     X -0.22012327
-## 3 2009-01-03     X  0.08510515
-## 4 2009-01-04     X  0.50636878
-## 5 2009-01-05     X -0.33196889
+## 1 2009-01-01     X  1.20878331
+## 2 2009-01-02     X  0.77335760
+## 3 2009-01-03     X -1.27716288
+## 4 2009-01-04     X  0.07795984
+## 5 2009-01-05     X  1.29043492
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10176,12 +10176,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y           Z
-## 1 2009-01-01 -0.74905104  1.4044624  0.06868466
-## 2 2009-01-02 -0.22012327 -0.6589192  1.53497662
-## 3 2009-01-03  0.08510515  0.5049302  9.69327425
-## 4 2009-01-04  0.50636878 -3.3123771 -0.35907300
-## 5 2009-01-05 -0.33196889  1.0819919 -7.04374934
+##         time           X          Y         Z
+## 1 2009-01-01  1.20878331 -3.2914138  1.947613
+## 2 2009-01-02  0.77335760 -0.3037502 -1.140435
+## 3 2009-01-03 -1.27716288  0.8224820  4.620797
+## 4 2009-01-04  0.07795984 -1.1753267  3.625681
+## 5 2009-01-05  1.29043492 -1.8088229 -4.144953
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,9 +10208,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 × 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.2057735 0.7208811
-## 2     Y    10 -0.5094561 2.0725488
-## 3     Z    10  0.1739897 4.6771686
+## 1     X    10  0.1207380 0.9061169
+## 2     Y    10 -0.6652269 2.4810342
+## 3     Z    10  1.7625017 3.3225575
 \end{verbatim}
 
 \begin{Shaded}
@@ -10229,7 +10229,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.21 (0.72) & -0.51 (2.07) & 0.17 (4.68)\\
+Mean (Std.dev.) & 0.12 (0.91) & -0.67 (2.48) & 1.76 (3.32)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12547,12 +12547,47 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   FARS raw data, or outside datasets.
 \item
   Try to write the code to create the plot below. This will include some
-  code for cleaning the data and some code for plotting. I will add one
-  example answer after class, but I'd like you to try to figure it out
+  code for cleaning the data and some code for plotting. There is an
+  example answer below, but I'd like you to try to figure it out
   yourselves first.
 \end{itemize}
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-409-1} \end{center}
+
+\subsubsection{Example R code}\label{example-r-code-10}
+
+Here is example code for the section above:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{library}\NormalTok{(ggthemes)}
+
+\NormalTok{accident <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/accident.csv"}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(DAY:MINUTE) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(-DAY_WEEK) %>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(date, DAY:MINUTE, }\DataTypeTok{sep =} \StringTok{"-"}\NormalTok{, }\DataTypeTok{remove =} \OtherTok{FALSE}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{dmy_hm}\NormalTok{(date), }
+         \DataTypeTok{yday =} \KeywordTok{yday}\NormalTok{(date),}
+         \DataTypeTok{weekday =} \KeywordTok{wday}\NormalTok{(date, }\DataTypeTok{label =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{abbr =} \OtherTok{FALSE}\NormalTok{),}
+         \DataTypeTok{weekend =} \NormalTok{weekday %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)) }
+
+\NormalTok{accident %>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(yday)) %>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(yday) %>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{weekend =} \KeywordTok{first}\NormalTok{(weekend)) %>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{yday, }\DataTypeTok{y =} \NormalTok{accidents, }\DataTypeTok{color =} \NormalTok{weekend)) +}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) +}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Day of the year in 2015"}\NormalTok{) +}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of fatal accidents"}\NormalTok{) +}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_few}\NormalTok{() +}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-410-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -12645,7 +12680,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-413-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-414-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -12659,7 +12694,7 @@ New York.
   \texttt{print(a)} within your loop as the last step.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-10}
+\subsubsection{Example R code}\label{example-r-code-11}
 
 Here is example R code for creating state-specific plots using a loop:
 
@@ -12729,7 +12764,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-416-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12737,7 +12772,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-416-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12745,7 +12780,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-416-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-3} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -12771,7 +12806,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
   change the code to use this package::function syntax.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-11}
+\subsubsection{Example R code}\label{example-r-code-12}
 
 Here is some example R code for writing the function to create
 state-specific plots:

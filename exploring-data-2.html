@@ -1076,9 +1076,38 @@ with_spaces</code></pre></div>
 <li>Read the <code>accident.csv</code> file for 2015 into R (this is one of the files you’ll get if you download the raw data for 2015). Use the documentation to figure out what each column represents.</li>
 <li>Discuss what steps you would need to take to create the following plot. To start, don’t write any code, just develop a plan. Talk about what the dataset should look like right before you create the plot and what functions you could use to get the data from its current format to that format. (Hint: Functions from the <code>lubridate</code> package will be very helpful, including <code>yday</code> and <code>wday</code>).</li>
 <li>Discuss which of the variables in this dataset could be used to merge the dataset with other appropriate data, either other datasets in the FARS raw data, or outside datasets.</li>
-<li>Try to write the code to create the plot below. This will include some code for cleaning the data and some code for plotting. I will add one example answer after class, but I’d like you to try to figure it out yourselves first.</li>
+<li>Try to write the code to create the plot below. This will include some code for cleaning the data and some code for plotting. There is an example answer below, but I’d like you to try to figure it out yourselves first.</li>
 </ul>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-409-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="example-r-code-10" class="section level4">
+<h4><span class="header-section-number">7.7.1.1</span> Example R code</h4>
+<p>Here is example code for the section above:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(lubridate)
+<span class="kw">library</span>(ggthemes)
+
+accident &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/accident.csv&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(DAY:MINUTE) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(-DAY_WEEK) %&gt;%
+<span class="st">  </span><span class="kw">unite</span>(date, DAY:MINUTE, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">dmy_hm</span>(date), 
+         <span class="dt">yday =</span> <span class="kw">yday</span>(date),
+         <span class="dt">weekday =</span> <span class="kw">wday</span>(date, <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">abbr =</span> <span class="ot">FALSE</span>),
+         <span class="dt">weekend =</span> weekday %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>)) 
+
+accident %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(yday)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(yday) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>(),
+            <span class="dt">weekend =</span> <span class="kw">first</span>(weekend)) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> yday, <span class="dt">y =</span> accidents, <span class="dt">color =</span> weekend)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Day of the year in 2015&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;# of fatal accidents&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_few</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-410-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 <div id="using-a-loop-to-create-state-specific-plots" class="section level3">
 <h3><span class="header-section-number">7.7.2</span> Using a loop to create state-specific plots</h3>
@@ -1119,11 +1148,11 @@ with_spaces</code></pre></div>
 <ul>
 <li>Write the code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. The plot should look like the plot below.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-413-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-414-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Write a loop to create a plot like the one you just made for Colorado for four different states– Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
 </ul>
-<div id="example-r-code-10" class="section level4">
+<div id="example-r-code-11" class="section level4">
 <h4><span class="header-section-number">7.7.2.1</span> Example R code</h4>
 <p>Here is example R code for creating state-specific plots using a loop:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_fips &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;http://www2.census.gov/geo/docs/reference/state.txt&quot;</span>,
@@ -1173,17 +1202,17 @@ for(which_state in state_list){
 <li>Adapt the code that you wrote for the loop and write a function that will create a state-specific plot when you call it. This function should have inputs of <code>datafr</code> and <code>which_state</code>, where <code>datafr</code> is the dataframe with the full dataset (<code>accident</code> in this case) and <code>which_state</code> is the name of the state for which you’d like to create the plot. Name your functions <code>make_state_plot</code>. Here are a few examples of running this function:</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">make_state_plot</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;California&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-416-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-417-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">make_state_plot</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;North Carolina&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-416-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-417-2.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">make_state_plot</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;Illinois&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-416-3.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-417-3.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
 <li>In general, there is a pattern of more of the fatal accidents during the daytime are unrelated to drunk driving versus related, while the pattern is reversed for nighttime accidents. Use your function to see if you can find any states that don’t follow this pattern.</li>
 <li>So far, we have not covered error checking in functions. In the function that you just wrote, we are assuming that the user will never give inputs that would cause errors. Look through the code for your function and see what assumptions we’re making about what values a user would input for <code>datafr</code> and <code>which_state</code>. What could go wrong if a user does not comply with these assumptions?</li>
 <li>The best practice when writing functions, especially for others to use, is to use the package::function syntax to identify which package each function comes from. For example, if you’re using <code>mutate</code> in a function, you should write the function code as <code>dplyr::mutate</code>. Go back through the code for the function you wrote. Every time it uses a function that is not part of base R, change the code to use this package::function syntax.</li>
 </ul>
-<div id="example-r-code-11" class="section level4">
+<div id="example-r-code-12" class="section level4">
 <h4><span class="header-section-number">7.7.3.1</span> Example R code</h4>
 <p>Here is some example R code for writing the function to create state-specific plots:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make_state_plot &lt;-<span class="st"> </span>function(datafr, which_state){
