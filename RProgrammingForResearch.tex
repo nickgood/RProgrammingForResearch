@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-10-05}
+\date{2016-10-10}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -3669,12 +3669,13 @@ files that you just pulled in your current working directory:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "accident.csv"            "country_timeseries.csv" 
-##  [3] "daily_show_guests.csv"   "deaths-weather.csv"     
-##  [5] "icd-10.xls"              "ICU_Data_Code_Sheet.pdf"
-##  [7] "icu.sas7bdat"            "ld_genetics.txt"        
-##  [9] "measles_data"            "mexico_deaths.csv"      
-## [11] "mexico_exposure.csv"
+##  [1] "accident.csv"             "country_timeseries.csv"  
+##  [3] "daily_show_guests.csv"    "deaths-weather.csv"      
+##  [5] "example_choropleth.Rdata" "icd-10.xls"              
+##  [7] "ICU_Data_Code_Sheet.pdf"  "icu.sas7bdat"            
+##  [9] "ld_genetics.txt"          "measles_data"            
+## [11] "mexico_deaths.csv"        "mexico_exposure.csv"     
+## [13] "serial_map_data.csv"      "serial_phone_data.csv"
 \end{verbatim}
 
 Try the following tasks:
@@ -9537,11 +9538,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.01\\
+a & -0.57\\
 \hline
-b & 1.28\\
+b & 0.47\\
 \hline
-c & -1.21\\
+c & 1.33\\
 \hline
 \end{tabular}
 \end{table}
@@ -10057,10 +10058,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  1.2087833 -3.2914138  1.947613
-## 2 2009-01-02  0.7733576 -0.3037502 -1.140435
-## 3 2009-01-03 -1.2771629  0.8224820  4.620797
+##         time          X         Y         Z
+## 1 2009-01-01 -0.6721175 -2.520364 -4.903970
+## 2 2009-01-02 -2.8014628 -1.858642 -1.748226
+## 3 2009-01-03 -0.6316121  1.926366  3.309551
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10077,10 +10078,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  1.2087833 -3.2914138  1.947613
-## 2 2009-01-02  0.7733576 -0.3037502 -1.140435
-## 3 2009-01-03 -1.2771629  0.8224820  4.620797
+##         time          X         Y         Z
+## 1 2009-01-01 -0.6721175 -2.520364 -4.903970
+## 2 2009-01-02 -2.8014628 -1.858642 -1.748226
+## 3 2009-01-03 -0.6316121  1.926366  3.309551
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10096,12 +10097,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  1.20878331
-## 2 2009-01-02     X  0.77335760
-## 3 2009-01-03     X -1.27716288
-## 4 2009-01-04     X  0.07795984
-## 5 2009-01-05     X  1.29043492
+##         time stock      price
+## 1 2009-01-01     X -0.6721175
+## 2 2009-01-02     X -2.8014628
+## 3 2009-01-03     X -0.6316121
+## 4 2009-01-04     X -1.7757372
+## 5 2009-01-05     X  0.3270331
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10115,12 +10116,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  1.20878331
-## 2 2009-01-02     X  0.77335760
-## 3 2009-01-03     X -1.27716288
-## 4 2009-01-04     X  0.07795984
-## 5 2009-01-05     X  1.29043492
+##         time stock      price
+## 1 2009-01-01     X -0.6721175
+## 2 2009-01-02     X -2.8014628
+## 3 2009-01-03     X -0.6316121
+## 4 2009-01-04     X -1.7757372
+## 5 2009-01-05     X  0.3270331
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10176,12 +10177,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y         Z
-## 1 2009-01-01  1.20878331 -3.2914138  1.947613
-## 2 2009-01-02  0.77335760 -0.3037502 -1.140435
-## 3 2009-01-03 -1.27716288  0.8224820  4.620797
-## 4 2009-01-04  0.07795984 -1.1753267  3.625681
-## 5 2009-01-05  1.29043492 -1.8088229 -4.144953
+##         time          X          Y         Z
+## 1 2009-01-01 -0.6721175 -2.5203642 -4.903970
+## 2 2009-01-02 -2.8014628 -1.8586424 -1.748226
+## 3 2009-01-03 -0.6316121  1.9263661  3.309551
+## 4 2009-01-04 -1.7757372  4.1887439 -3.745826
+## 5 2009-01-05  0.3270331  0.1914225 11.772710
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10206,11 +10207,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.1207380 0.9061169
-## 2     Y    10 -0.6652269 2.4810342
-## 3     Z    10  1.7625017 3.3225575
+##   stock     N       mean       sd
+##   <chr> <int>      <dbl>    <dbl>
+## 1     X    10 -0.1817027 1.407375
+## 2     Y    10 -0.7027929 2.229510
+## 3     Z    10  1.3997251 5.130075
 \end{verbatim}
 
 \begin{Shaded}
@@ -10229,7 +10230,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.12 (0.91) & -0.67 (2.48) & 1.76 (3.32)\\
+Mean (Std.dev.) & -0.18 (1.41) & -0.7 (2.23) & 1.4 (5.13)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12433,79 +12434,6 @@ For more on these patterns, see:
   strings
 \end{itemize}
 
-\section{String operations}\label{string-operations}
-
-The \texttt{str\_trim} function from the \texttt{stringr} package allows
-you to trim leading and trailing whitespace:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{with_spaces <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"    a "}\NormalTok{, }\StringTok{"  bob"}\NormalTok{, }\StringTok{" gamma"}\NormalTok{)}
-\NormalTok{with_spaces}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "    a " "  bob"  " gamma"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{str_trim}\NormalTok{(with_spaces)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "a"     "bob"   "gamma"
-\end{verbatim}
-
-This is rarer, but if you ever want to, you can add leading and / or
-trailing whitespace to elements of a character vector with
-\texttt{str\_pad} from the \texttt{stringr} package.
-
-There are also functions to change a full character string to uppercase,
-lowercase, or title case:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic_train$Name[}\DecValTok{1}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Braund, Mr. Owen Harris"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{str_to_upper}\NormalTok{(titanic_train$Name[}\DecValTok{1}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "BRAUND, MR. OWEN HARRIS"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{str_to_lower}\NormalTok{(titanic_train$Name[}\DecValTok{1}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "braund, mr. owen harris"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{str_to_title}\NormalTok{(}\KeywordTok{str_to_lower}\NormalTok{(titanic_train$Name[}\DecValTok{1}\NormalTok{]))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Braund, Mr. Owen Harris"
-\end{verbatim}
-
 \section{In-course exercise}\label{in-course-exercise-6}
 
 \subsection{Exploring Fatality Analysis Reporting System (FARS)
@@ -12552,7 +12480,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-409-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-407-1} \end{center}
 
 \subsubsection{Example R code}\label{example-r-code-10}
 
@@ -12587,7 +12515,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-410-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-408-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -12680,7 +12608,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-414-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-412-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -12742,20 +12670,1080 @@ Here is example R code for creating state-specific plots using a loop:
 \end{Highlighting}
 \end{Shaded}
 
+\chapter{Reporting data results \#2}\label{reporting-data-results-2}
+
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week8.pdf}{Download}
+a pdf of the lecture slides covering this topic.
+
+\begin{verbatim}
+## Warning: failed to assign RegisteredNativeSymbol for twins to twins since
+## twins is already defined in the 'cluster' namespace
+\end{verbatim}
+
+\section{Matrices and lists}\label{matrices-and-lists}
+
+In this section, we'll talk about the \texttt{apply} family of
+functions, which allow you to apply a function to all values in a
+vector, matrix, or list. \bigskip
+
+First, you need to know about two more object types in R:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{matrix}
+\item
+  \texttt{list}
+\end{itemize}
+
+\subsection{Matrices}\label{matrices}
+
+A matrix is like a data frame, but all the values in all columns must be
+of the same class (e.g., numeric, character).
+
+R uses matrices a lot for its underlying math (e.g., for the linear
+algebra operations required for fitting regression models). R can do
+matrix operations quite quickly.
+
+You can create a matrix with the \texttt{matrix} function. Input a
+vector with the values to fill the matrix and \texttt{ncol} to set the
+number of columns:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{5}\NormalTok{)}
+\NormalTok{foo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10
+\end{verbatim}
+
+By default, the matrix will fill up by column. You can fill it by row
+with the \texttt{byrow} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{5}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{foo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    6    7    8    9   10
+\end{verbatim}
+
+If you want to convert a data frame to a matrix, you can use the
+\texttt{as.matrix} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{col_1 =} \DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{col_2 =} \DecValTok{3}\NormalTok{:}\DecValTok{4}\NormalTok{,}
+                  \DataTypeTok{col_3 =} \DecValTok{5}\NormalTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{col_4 =} \DecValTok{7}\NormalTok{:}\DecValTok{8}\NormalTok{,}
+                  \DataTypeTok{col_5 =} \DecValTok{9}\NormalTok{:}\DecValTok{10}\NormalTok{)}
+\NormalTok{(foo <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(foo))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      col_1 col_2 col_3 col_4 col_5
+## [1,]     1     3     5     7     9
+## [2,]     2     4     6     8    10
+\end{verbatim}
+
+You can index matrices with square brackets, just like data frames:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## col_1 col_2 
+##     1     3
+\end{verbatim}
+
+You cannot, however, use \texttt{dplyr} functions with matrices:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo %>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(col_1 ==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in UseMethod("filter_") : 
+  no applicable method for 'filter_' applied to
+  an object of class "c('matrix', 'integer',
+  'numeric')"
+\end{verbatim}
+
+All elements in a matrix must have the same class. \bigskip
+
+The matrix will default to make all values the most general class of any
+of the values, in any column. For example, if we replaced one numeric
+value with the character ``a'', everything would turn into a character:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] <-}\StringTok{ "a"}
+\NormalTok{foo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      col_1 col_2 col_3 col_4 col_5
+## [1,] "a"   "3"   "5"   "7"   "9"  
+## [2,] "2"   "4"   "6"   "8"   "10"
+\end{verbatim}
+
+\subsection{Lists}\label{lists}
+
+A list has different elements, just like a data frame has different
+columns. However, the different elements of a list can have different
+lengths (unlike the columns of a data frame). The different elements can
+also have different classes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{some_letters =} \NormalTok{letters[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{],}
+            \DataTypeTok{some_numbers =} \DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{, }
+            \DataTypeTok{some_logical_values =} \KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{))}
+\NormalTok{bar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $some_letters
+## [1] "a" "b" "c"
+## 
+## $some_numbers
+## [1] 1 2 3 4 5
+## 
+## $some_logical_values
+## [1]  TRUE FALSE
+\end{verbatim}
+
+To index an element from a list, use double square brackets. You can use
+bracket indexing either with numbers (which element in the list?) or
+with names. You can also index lists with the \texttt{\$} operator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar[[}\StringTok{"some_numbers"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar$some_logical_values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE
+\end{verbatim}
+
+Lists can be used to contain data with an unusual structure and / or
+lots of different components. For example, the information from fitting
+a regression is often stored as a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{) ~}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{))}
+\KeywordTok{is.list}\NormalTok{(my_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{names}\NormalTok{(my_mod), }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "coefficients"  "residuals"     "fitted.values"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_mod[[}\StringTok{"coefficients"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept)     c(1:10) 
+##   0.4340464  -0.1805901
+\end{verbatim}
+
+\section{\texorpdfstring{\texttt{apply}
+functions}{apply functions}}\label{apply-functions}
+
+There is a whole family of \texttt{apply} functions, as part of base R.
+These include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{apply}: Apply a function over all the rows
+  (\texttt{MARGIN\ =\ 1}) or columns (\texttt{MARGIN\ =\ 2}) of a matrix
+\item
+  \texttt{lapply}: Apply a function over elements of a list.
+\item
+  \texttt{sapply}: Like \texttt{lapply}, but returns a vector instead of
+  a list.
+\end{itemize}
+
+Here is the syntax for \texttt{apply}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Generic code}
+\KeywordTok{apply}\NormalTok{([matrix], }\DataTypeTok{MARGIN =} \NormalTok{[}\KeywordTok{margin} \NormalTok{(}\DecValTok{1}\NormalTok{:}\StringTok{ }\NormalTok{rows, }\DecValTok{2}\NormalTok{:}\StringTok{ }\NormalTok{columns)],}
+      \DataTypeTok{FUN =}  \NormalTok{[function])}
+\end{Highlighting}
+\end{Shaded}
+
+I'll use the \texttt{worldcup} data as an example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex <-}\StringTok{ }\NormalTok{worldcup[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"Shots"}\NormalTok{, }\StringTok{"Passes"}\NormalTok{, }\StringTok{"Tackles"}\NormalTok{, }\StringTok{"Saves"}\NormalTok{)]}
+\KeywordTok{head}\NormalTok{(ex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Shots Passes Tackles Saves
+## Abdoun         0      6       0     0
+## Abe            0    101      14     0
+## Abidal         0     91       6     0
+## Abou Diaby     1    111       5     0
+## Aboubakar      2     16       0     0
+## Abreu          0     15       0     0
+\end{verbatim}
+
+Take the mean of all columns:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(ex, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Shots     Passes    Tackles      Saves 
+##  2.3042017 84.5210084  4.1915966  0.6672269
+\end{verbatim}
+
+Take the sum of all rows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{apply}\NormalTok{(ex, }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, sum), }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Abdoun        Abe     Abidal Abou Diaby 
+##          6        115         97        117
+\end{verbatim}
+
+You can use your own function with any of the \texttt{apply} functions.
+For example, if you wanted to calculate a value for each player that is
+a weighted mean of some of their statistics, you could run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weighted_mean <-}\StringTok{ }\NormalTok{function(soccer_stats,}
+                          \DataTypeTok{weights =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.40}\NormalTok{, }\FloatTok{0.01}\NormalTok{,}
+                                      \FloatTok{0.25}\NormalTok{, }\FloatTok{1.5}\NormalTok{))\{}
+  \NormalTok{out <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(weights *}\StringTok{ }\NormalTok{soccer_stats)}
+  \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+
+\KeywordTok{head}\NormalTok{(}\KeywordTok{apply}\NormalTok{(ex, }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, weighted_mean), }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Abdoun        Abe     Abidal Abou Diaby 
+##       0.06       4.51       2.41       2.76
+\end{verbatim}
+
+The \texttt{lapply()} function will apply a function across a list. The
+different elements of the list do not have to be the same length (unlike
+a data frame, where the columns all have to have the same length).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(ex <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{), }\DataTypeTok{b =} \KeywordTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{), }\DataTypeTok{c =} \NormalTok{letters[}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 1 2 3 4 5
+## 
+## $b
+## [1]  1.2846768  1.6704874 -0.4946559
+## 
+## $c
+## [1] "a" "b" "c" "d"
+\end{verbatim}
+
+This call will calculate the mean of each function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(ex, }\DataTypeTok{FUN =} \NormalTok{mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 3
+## 
+## $b
+## [1] 0.8201694
+## 
+## $c
+## [1] NA
+\end{verbatim}
+
+You can include arguments for the function that you specify with
+\texttt{FUN}, and they'll be passed to that function. For example, to
+get the first value of each element, you can run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(ex, }\DataTypeTok{FUN =} \NormalTok{head, }\DataTypeTok{n =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 1
+## 
+## $b
+## [1] 1.284677
+## 
+## $c
+## [1] "a"
+\end{verbatim}
+
+The \texttt{sapply()} function also applies a function over a list, but
+it returns a vector rather than a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(ex, }\DataTypeTok{FUN =} \NormalTok{head, }\DataTypeTok{n =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  a                  b                  c 
+##                "1" "1.28467683598845"                "a"
+\end{verbatim}
+
+In practice, I do use \texttt{apply()} some, but I can often find a way
+to do similar things to other \texttt{apply} family functions using the
+tools in \texttt{dplyr}. \bigskip
+
+You should know that \texttt{apply} family functions take advantage of
+the matrix structure in R. This can be one of the fastest way to run
+code in R. It is usually a lot faster than doing the same things with
+loops. However, unless you are working with large data sets, you may not
+notice a difference, and ``tidyverse'' functions are usually comparable
+in speed. \bigskip
+
+I would recommend using whichever method makes the most sense to you
+until you run into an analysis that takes a noticeable amount of time to
+run, and then you might want to work a bit more to optimize your code.
+\bigskip
+
+\section{Point maps}\label{point-maps}
+
+It is very easy now to create point maps in R based on longitude and
+latitude values of specific locations. You can use the
+\texttt{map\_data} function from the \texttt{ggplot2} package to pull
+data for maps at different levels (``usa'', ``state'', ``world'',
+``county'').
+
+The maps you pull using \texttt{map\_data} are just data to use to plot
+polygon shapes for areas like states and counties.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{us_map <-}\StringTok{ }\KeywordTok{map_data}\NormalTok{(}\StringTok{"state"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(us_map, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        long      lat group order  region subregion
+## 1 -87.46201 30.38968     1     1 alabama      <NA>
+## 2 -87.48493 30.37249     1     2 alabama      <NA>
+## 3 -87.52503 30.37249     1     3 alabama      <NA>
+\end{verbatim}
+
+You can add points to these based on latitude and longitude.
+
+Mapping uses the \texttt{long} and \texttt{lat} columns from this data
+for location:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{north_carolina <-}\StringTok{ }\NormalTok{us_map %>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(region ==}\StringTok{ "north carolina"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(north_carolina, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat)) +}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-435-1} \end{center}
+
+If you try to plot lines, however, you'll have a problem:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{carolinas <-}\StringTok{ }\NormalTok{us_map %>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(region, }\StringTok{"carolina"}\NormalTok{))}
+\KeywordTok{ggplot}\NormalTok{(carolinas, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat)) +}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_path}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-436-1} \end{center}
+
+The \texttt{group} column fixes this problem. It will plot a separate
+path or polygon for each separate group. For mapping, this gives
+separate groupings for mainland versus islands and for different states:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{carolinas %>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(group) %>%}
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Source: local data frame [4 x 6]
+## Groups: group [4]
+## 
+##        long      lat group order         region subregion
+##       <dbl>    <dbl> <dbl> <int>          <chr>     <chr>
+## 1 -75.89399 36.55471    38  9549 north carolina    knotts
+## 2 -78.55824 33.86753    39  9587 north carolina      main
+## 3 -76.00285 36.55471    40 10321 north carolina      spit
+## 4 -83.10753 34.99053    47 11441 south carolina      <NA>
+\end{verbatim}
+
+Using \texttt{group\ =\ group} avoids the extra lines from the earlier
+map:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(carolinas, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat,}
+                      \DataTypeTok{group =} \NormalTok{group)) +}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_path}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-438-1} \end{center}
+
+To plot filled regions, use \texttt{geom\_polygon} with
+\texttt{fill\ =\ region}. Also, the ``void'' theme is often useful when
+mapping:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(carolinas, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat,}
+                      \DataTypeTok{group =} \NormalTok{group,}
+                      \DataTypeTok{fill =} \NormalTok{region)) +}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{color =} \StringTok{"black"}\NormalTok{) +}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_void}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-439-1} \end{center}
+
+Here is an example of plotting all of the US by state:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(us_map, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat,}
+                            \DataTypeTok{group =} \NormalTok{group)) +}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"dodgerblue"}\NormalTok{,}
+                     \DataTypeTok{color =} \StringTok{"white"}\NormalTok{) +}
+\StringTok{        }\KeywordTok{theme_void}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-441-1} \end{center}
+
+To add points to these maps, you can use \texttt{geom\_point}, again
+using longitude and latitude to define position. \bigskip
+
+Here I'll use an example of data points related to the story told in
+last year's \href{http://serialpodcast.org}{``Serial'' podcast}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serial <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/serial_map_data.csv"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(serial, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     x   y      Type Name Description
+## 1 356 437 cell-site L688            
+## 2 740 360 cell-site L698            
+## 3 910 340 cell-site L654
+\end{verbatim}
+
+\href{https://github.com/dgrtwo/serial-ggvis/blob/master/serial-preprocessing.Rmd}{David
+Robinson} figured out a way to convert the x and y coordinates in this
+data to latitude and longitude coordinates. I'm also adding a column for
+whether of not the point is a cell tower.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serial <-}\StringTok{ }\NormalTok{serial %>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{long =} \NormalTok{-}\FloatTok{76.8854} \NormalTok{+}\StringTok{ }\FloatTok{0.00017022} \NormalTok{*}\StringTok{ }\NormalTok{x,}
+           \DataTypeTok{lat  =} \FloatTok{39.23822} \NormalTok{+}\StringTok{ }\FloatTok{1.371014e-04} \NormalTok{*}\StringTok{ }\NormalTok{y,}
+           \DataTypeTok{tower =} \NormalTok{Type ==}\StringTok{ "cell-site"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serial[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{, (}\KeywordTok{nrow}\NormalTok{(serial) -}\StringTok{ }\DecValTok{1}\NormalTok{):}\KeywordTok{nrow}\NormalTok{(serial)), }
+       \KeywordTok{c}\NormalTok{(}\StringTok{"Type"}\NormalTok{, }\StringTok{"Name"}\NormalTok{, }\StringTok{"long"}\NormalTok{, }\StringTok{"lat"}\NormalTok{, }\StringTok{"tower"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Type          Name      long      lat tower
+## 1      cell-site          L688 -76.82480 39.29813  TRUE
+## 2      cell-site          L698 -76.75944 39.28758  TRUE
+## 24 base-location Adnan's house -76.76284 39.30622 FALSE
+## 25 base-location  Jenn's house -76.72301 39.29443 FALSE
+\end{verbatim}
+
+Now I can map just Baltimore City and Baltimore County in Maryland and
+add these points. I used \texttt{map\_data} to pull the ``county'' map
+and specified ``region'' as ``maryland'', to limit the map just to
+Maryland counties.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{baltimore <-}\StringTok{ }\KeywordTok{map_data}\NormalTok{(}\StringTok{'county'}\NormalTok{, }\DataTypeTok{region =} \StringTok{'maryland'}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(baltimore, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        long      lat group order   region subregion
+## 1 -78.64992 39.53982     1     1 maryland  allegany
+## 2 -78.70148 39.55128     1     2 maryland  allegany
+## 3 -78.74159 39.57420     1     3 maryland  allegany
+\end{verbatim}
+
+From that, I subset out just rows where the \texttt{subregion} column
+was ``baltimore city'' or ``baltimore''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{baltimore <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(baltimore, }
+                    \NormalTok{subregion %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"baltimore city"}\NormalTok{,}
+                                     \StringTok{"baltimore"}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(baltimore, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          long      lat group order   region subregion
+## 114 -76.88521 39.35074     3   114 maryland baltimore
+## 115 -76.89094 39.37939     3   115 maryland baltimore
+## 116 -76.88521 39.40804     3   116 maryland baltimore
+\end{verbatim}
+
+I used \texttt{geom\_point} to plot the points. \texttt{ggplot} uses the
+\texttt{group} column to group together counties, but we don't need that
+in the points, so I needed to set \texttt{group\ =\ NA} in the
+\texttt{geom\_point} statement. I put \texttt{color\ =\ tower} inside
+the \texttt{aes} statement so that the points would be one color for
+cell towers and another color for everything else.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{balt_plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(baltimore, }
+                    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }\DataTypeTok{group =} \NormalTok{group)) +}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"lightblue"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{) +}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \NormalTok{serial, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat,}
+                                      \DataTypeTok{group =} \OtherTok{NA}\NormalTok{,}
+                                      \DataTypeTok{color =} \NormalTok{tower)) +}\StringTok{ }
+\StringTok{        }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{balt_plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-448-1.pdf}
+
+\section{Choropleth maps}\label{choropleth-maps}
+
+There's a fantastic new(-ish) package in R to plot choropleth maps. You
+could also plot choropleths using \texttt{ggplot} and other mapping
+functions, but I would strongly recommend this new package if you're
+mapping the US.
+
+You will need to install and load the \texttt{choroplethr} package in R
+to use the functions below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("choroplethr")}
+\KeywordTok{library}\NormalTok{(choroplethr)}
+
+\CommentTok{# install.packages("choroplethrMaps")}
+\KeywordTok{library}\NormalTok{(choroplethrMaps)}
+\end{Highlighting}
+\end{Shaded}
+
+At the most basic level, you can use this package to plot some data that
+comes automatically with the package (you'll just need to load the data
+using the \texttt{data} function). For example, if you wanted to plot
+state-by-state populations as of 2012, you could use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(df_pop_state)}
+\NormalTok{map_3 <-}\StringTok{ }\KeywordTok{state_choropleth}\NormalTok{(df_pop_state)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-451-1.pdf}
+
+You can find out more about the \texttt{df\_pop\_state} data if you type
+\texttt{?df\_pop\_state}. Notice that, for the data frame, the location
+is given in a column called \texttt{region} and the population size to
+plot is in a column called \texttt{value}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(df_pop_state, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    region   value
+## 1 alabama 4777326
+## 2  alaska  711139
+## 3 arizona 6410979
+\end{verbatim}
+
+You could use this function to create any state-level choropleth you
+wanted, as long as you could create a data frame with a column for
+states called \texttt{region} and a column with the value you want to
+show called \texttt{value}.
+
+You can run similar functions at different spatial resolutions (for
+example, county or zip code):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(df_pop_county)}
+\KeywordTok{head}\NormalTok{(df_pop_county, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   region  value
+## 1   1001  54590
+## 2   1003 183226
+## 3   1005  27469
+\end{verbatim}
+
+You can plot choropleths at this level, as well:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_4 <-}\StringTok{ }\KeywordTok{county_choropleth}\NormalTok{(df_pop_county)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_4}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-455-1.pdf}
+
+You can even do this for countries of the world:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(df_pop_country)}
+\KeywordTok{country_choropleth}\NormalTok{(df_pop_country)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-456-1.pdf}
+
+You can zoom into states or counties. For example, to plot population by
+county in Colorado, you could run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{county_choropleth}\NormalTok{(df_pop_county, }\DataTypeTok{state_zoom =} \StringTok{"colorado"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-457-1.pdf}
+
+You can also use this package to map different tables from the US
+Census' American Community Survey.
+
+The package includes the \texttt{choroplethr\_acs()} function to do
+this, with an option for which level of map you want (\texttt{map\ =},
+choices are ``state'', ``country'', and ``zip''). If you want to map at
+the state level, for example, use \texttt{state\_choroplethr\_acs()}
+(other options are county level and zip code level).
+
+These functions pull recent Census data directly from the US Census
+using its API, so they require you to get an API key, which you can get
+\href{http://api.census.gov/data/key_signup.html}{here}. \bigskip
+
+Once you put in your request, they'll email you your key. Once they give
+you your API key, you'll need to install it on R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(acs)}
+\KeywordTok{api.key.install}\NormalTok{(}\StringTok{'[your census api key]'}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+You can pick from a large number of American Community Survey tables--
+\href{http://factfinder.census.gov/faces/affhelp/jsf/pages/metadata.xhtml?lang=en\&type=dataset\&id=dataset.en.ACS_12_5YR}{see
+here} for the list plus ID numbers. If the table has multiple columns,
+you will be prompted to select which one you want to plot.
+
+For example, table B19301 gives per-capita income, so if you wanted to
+plot that, you could run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{county_choropleth_acs}\NormalTok{(}\DataTypeTok{tableId =} \StringTok{"B19301"}\NormalTok{,}
+                       \DataTypeTok{state_zoom =} \KeywordTok{c}\NormalTok{(}\StringTok{"wyoming"}\NormalTok{,}
+                                      \StringTok{"colorado"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-462-1} \end{center}
+
+\section{Google Maps API}\label{google-maps-api}
+
+The \texttt{ggmap} package allows you to use tools from Google Maps
+directly from R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## install.packages("ggmap")}
+\KeywordTok{library}\NormalTok{(ggmap)}
+\end{Highlighting}
+\end{Shaded}
+
+This package uses the Google Maps API, so you should read their
+\href{http://developers.google.com/maps/terms}{terms of service} and
+make sure you follow them. In particular, you are limited to just a
+certain number of queries per time.
+
+You can use the \texttt{get\_map} function to get maps for different
+locations. You can either use the longitude and latitude of the center
+point of the map, along with the \texttt{zoom} option to say how much to
+zoom in (3: continent to 20: building) or you can use a character string
+to specify a location.
+
+If you do the second, \texttt{get\_map} will actually use the Google
+Maps API to geocode the string to a latitude and longitude and then get
+the map (you can imagine that this is like searching in Google Maps in
+the search box for a location).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beijing <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\StringTok{"Beijing"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{12}\NormalTok{)}
+\KeywordTok{ggmap}\NormalTok{(beijing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-465-1} \end{center}
+
+With this package, you can get maps from the following different
+sources:
+
+\begin{itemize}
+\tightlist
+\item
+  Google Maps
+\item
+  OpenStreetMap
+\item
+  Stamen Maps
+\item
+  CloudMade Maps (You may need a separate API key for this)
+\end{itemize}
+
+Here are different examples of Beijing using different map sources.
+(Also, note that I'm using the option \texttt{extent\ =\ "device"} to
+fill up the whole plot are with the map, instead of including axis
+labels and titles.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beijing_a <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\StringTok{"Beijing"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{12}\NormalTok{,}
+                     \DataTypeTok{source =} \StringTok{"stamen"}\NormalTok{, }\DataTypeTok{maptype =} \StringTok{"toner"}\NormalTok{)}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(beijing_a, }\DataTypeTok{extent =} \StringTok{"device"}\NormalTok{)}
+
+\NormalTok{beijing_b <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\StringTok{"Beijing"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{12}\NormalTok{,}
+                     \DataTypeTok{source =} \StringTok{"stamen"}\NormalTok{, }\DataTypeTok{maptype =} \StringTok{"watercolor"}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(beijing_b, }\DataTypeTok{extent =} \StringTok{"device"}\NormalTok{)}
+
+\NormalTok{beijing_c <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\StringTok{"Beijing"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{12}\NormalTok{,}
+                     \DataTypeTok{source =} \StringTok{"google"}\NormalTok{, }\DataTypeTok{maptype =} \StringTok{"hybrid"}\NormalTok{)}
+\NormalTok{c <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(beijing_c, }\DataTypeTok{extent =} \StringTok{"device"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grid.arrange}\NormalTok{(a, b, c, }\DataTypeTok{nrow =} \DecValTok{1}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-467-1.pdf}
+
+As with the maps from \texttt{ggplot2}, you can add points to these
+maps:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serial_phone <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/serial_phone_data.csv"}\NormalTok{) %>%}\StringTok{ }
+\StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Cell_Site =} \KeywordTok{substring}\NormalTok{(Cell_Site, }\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{),}
+               \DataTypeTok{Call_Time =} \KeywordTok{as.POSIXct}\NormalTok{(Call_Time, }\DataTypeTok{format =} \StringTok{"%d/%m/%y %H:%M"}\NormalTok{,}
+                                      \DataTypeTok{tz =} \StringTok{"EST"}\NormalTok{)) %>%}
+\StringTok{        }\KeywordTok{left_join}\NormalTok{(serial, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Cell_Site"} \NormalTok{=}\StringTok{ "Name"}\NormalTok{)) %>%}
+\StringTok{        }\KeywordTok{select}\NormalTok{(Person_Called, Call_Time, Duration, long, lat) %>%}
+\StringTok{        }\KeywordTok{filter}\NormalTok{(!(Person_Called %in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"incoming"}\NormalTok{, }\StringTok{"# + Adnan cell"}\NormalTok{))) %>%}
+\StringTok{        }\KeywordTok{arrange}\NormalTok{(Call_Time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serial_map <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\KeywordTok{c}\NormalTok{(-}\FloatTok{76.7}\NormalTok{, }\FloatTok{39.3}\NormalTok{), }\DataTypeTok{zoom =} \DecValTok{12}\NormalTok{,}
+                      \DataTypeTok{source =} \StringTok{"stamen"}\NormalTok{,}
+                      \DataTypeTok{maptype =} \StringTok{"toner"}\NormalTok{)}
+\NormalTok{serial_map <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(serial_map, }\DataTypeTok{extent =} \StringTok{"device"}\NormalTok{) +}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \NormalTok{serial_phone,}
+                   \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat),}
+                   \DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{3}\NormalTok{,}
+                   \DataTypeTok{alpha =} \FloatTok{0.4}\NormalTok{) +}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{subset}\NormalTok{(serial,}
+                                 \NormalTok{Type !=}\StringTok{ "cell-site"}\NormalTok{),}
+                   \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat),}
+                   \DataTypeTok{color =} \StringTok{"darkgoldenrod1"}\NormalTok{,}
+                   \DataTypeTok{size =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-470-1} \end{center}
+
+You can also use the Google Maps API, through the \texttt{geocode}
+function, to get the latitude and longitude of specific locations.
+Basically, if the string would give you the right location if you typed
+it in Google Maps, \texttt{geocode} should be able to geocode it.
+
+For example, you can get the location of CSU:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{geocode}\NormalTok{(}\StringTok{"Colorado State University"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         lon      lat
+## 1 -105.0807 40.57478
+\end{verbatim}
+
+You can also get a location by address through this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{geocode}\NormalTok{(}\StringTok{"1 First St NE, Washington, DC"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         lon      lat
+## 1 -77.00465 38.89051
+\end{verbatim}
+
+You can get distances, too, using the \texttt{mapdist} function with two
+locations. This will give you distance and also time.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapdist}\NormalTok{(}\StringTok{"Fort Collins CO"}\NormalTok{,}
+        \StringTok{"1 First St NE, Washington, DC"}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(from, miles, hours)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              from    miles    hours
+## 1 Fort Collins CO 1670.348 24.60139
+\end{verbatim}
+
+\section{String operations}\label{string-operations}
+
+The \texttt{str\_trim} function from the \texttt{stringr} package allows
+you to trim leading and trailing whitespace:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{with_spaces <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"    a "}\NormalTok{, }\StringTok{"  bob"}\NormalTok{, }\StringTok{" gamma"}\NormalTok{)}
+\NormalTok{with_spaces}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "    a " "  bob"  " gamma"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_trim}\NormalTok{(with_spaces)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"     "bob"   "gamma"
+\end{verbatim}
+
+This is rarer, but if you ever want to, you can add leading and / or
+trailing whitespace to elements of a character vector with
+\texttt{str\_pad} from the \texttt{stringr} package.
+
+There are also functions to change a full character string to uppercase,
+lowercase, or title case:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{titanic_train$Name[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Braund, Mr. Owen Harris"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_to_upper}\NormalTok{(titanic_train$Name[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "BRAUND, MR. OWEN HARRIS"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_to_lower}\NormalTok{(titanic_train$Name[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "braund, mr. owen harris"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_to_title}\NormalTok{(}\KeywordTok{str_to_lower}\NormalTok{(titanic_train$Name[}\DecValTok{1}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Braund, Mr. Owen Harris"
+\end{verbatim}
+
+\section{In-course exercise}\label{in-course-exercise-7}
+
+This exercise will continue using the Fatality Analysis Reporting System
+(FARS) data we started using last week.
+
 \subsection{Writing a function to create state-specific
 plots}\label{writing-a-function-to-create-state-specific-plots}
 
 \begin{itemize}
 \tightlist
 \item
-  Adapt the code that you wrote for the loop and write a function that
-  will create a state-specific plot when you call it. This function
-  should have inputs of \texttt{datafr} and \texttt{which\_state}, where
-  \texttt{datafr} is the dataframe with the full dataset
-  (\texttt{accident} in this case) and \texttt{which\_state} is the name
-  of the state for which you'd like to create the plot. Name your
-  functions \texttt{make\_state\_plot}. Here are a few examples of
-  running this function:
+  Adapt the code that you wrote for to create a loop in last week's
+  in-course exercise and write a function that will create a
+  state-specific plot when you call it. This function should have inputs
+  of \texttt{datafr} and \texttt{which\_state}, where \texttt{datafr} is
+  the dataframe with the full dataset (\texttt{accident} in this case)
+  and \texttt{which\_state} is the name of the state for which you'd
+  like to create the plot. Name your functions
+  \texttt{make\_state\_plot}. Here are a few examples of running this
+  function:
 \end{itemize}
 
 \begin{Shaded}
@@ -12764,7 +13752,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-478-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12772,7 +13760,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-478-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12780,7 +13768,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-478-3} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -12804,6 +13792,12 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
   \texttt{dplyr::mutate}. Go back through the code for the function you
   wrote. Every time it uses a function that is not part of base R,
   change the code to use this package::function syntax.
+\item
+  If you have time: Can you combine your function, a loop (or
+  \texttt{lapply}), and regular expressions to create plots for all
+  states that start with ``C''? That have ``North'' in their names?
+  (\emph{Hint}: One way to get a list of states is from the
+  \texttt{accident} dataframe: \texttt{unique(accident\$state\_name)}.)
 \end{itemize}
 
 \subsubsection{Example R code}\label{example-r-code-12}
@@ -12821,7 +13815,7 @@ state-specific plots:
                                         \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
            \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
 \StringTok{    }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
-\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents, }\DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
 \StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
 \StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
@@ -12850,6 +13844,140 @@ state-specific plots:
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+Example of using this function to create plots for all states that start
+with ``C'':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{states <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(accident$state_name)}
+\NormalTok{c_states <-}\StringTok{ }\NormalTok{states[}\KeywordTok{str_detect}\NormalTok{(states, }\StringTok{"^C"}\NormalTok{)]}
+
+\NormalTok{for(state in c_states)\{}
+  \NormalTok{state_plot <-}\StringTok{ }\KeywordTok{make_state_plot}\NormalTok{(}\DataTypeTok{datafr =} \NormalTok{accident,}
+                                \DataTypeTok{which_state =} \NormalTok{state)}
+  \KeywordTok{print}\NormalTok{(state_plot)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-480-1} \end{center}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-480-2} \end{center}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-480-3} \end{center}
+
+To use \texttt{lapply}, the state name needs to be the first argument in
+the function. We could re-write the function to comply and then use
+\texttt{lapply}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make_state_plot <-}\StringTok{ }\NormalTok{function(which_state, datafr)\{}
+  \NormalTok{a <-}\StringTok{ }\NormalTok{datafr %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr,}
+                             \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
+                                        \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
+           \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents,}
+                                 \DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) +}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
+  \KeywordTok{return}\NormalTok{(a)}
+\NormalTok{\}}
+
+\NormalTok{north_states <-}\StringTok{ }\NormalTok{states[}\KeywordTok{str_detect}\NormalTok{(states, }\StringTok{"North"}\NormalTok{)]}
+\KeywordTok{lapply}\NormalTok{(north_states, make_state_plot, }\DataTypeTok{datafr =} \NormalTok{accident)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-481-1} \end{center}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-481-2} \end{center}
+
+\subsection{Writing a mapping
+function}\label{writing-a-mapping-function}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accident <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/accident.csv"}\NormalTok{) %>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(STATE, LATITUDE, LONGITUD, DRUNK_DR) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =} \NormalTok{STATE,}
+                \DataTypeTok{lat =} \NormalTok{LATITUDE,}
+                \DataTypeTok{long =} \NormalTok{LONGITUD,}
+                \DataTypeTok{drunk_dr =} \NormalTok{DRUNK_DR) %>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \NormalTok{drunk_dr >}\StringTok{ }\DecValTok{0}\NormalTok{,}
+         \DataTypeTok{lat =} \KeywordTok{ifelse}\NormalTok{(lat >}\StringTok{ }\DecValTok{80}\NormalTok{, }\OtherTok{NA}\NormalTok{, lat),}
+         \DataTypeTok{long =} \KeywordTok{ifelse}\NormalTok{(long >}\StringTok{ }\DecValTok{99}\NormalTok{, }\OtherTok{NA}\NormalTok{, long)) %>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(state_fips, }\DataTypeTok{by =} \StringTok{"state"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_fatal_accidents <-}\StringTok{ }\NormalTok{function(}\DataTypeTok{datafr =} \NormalTok{accident, which_state,}
+                                \DataTypeTok{drunk_dr =} \OtherTok{FALSE}\NormalTok{)\{}
+  \NormalTok{state_accidents <-}\StringTok{ }\NormalTok{datafr %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state)}
+  \NormalTok{state_map_data <-}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{map_data}\NormalTok{(}\StringTok{"county"}\NormalTok{, }\DataTypeTok{region =} \NormalTok{which_state)}
+  
+  \NormalTok{accident_map <-}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(state_map_data,}
+                                  \NormalTok{ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }
+                                               \DataTypeTok{group =} \NormalTok{subregion)) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{theme_void}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \NormalTok{state_accidents, }
+                        \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }\DataTypeTok{group =} \OtherTok{NULL}\NormalTok{),}
+                        \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.7} \NormalTok{)}
+  
+  \NormalTok{if(drunk_dr)\{}
+    \NormalTok{accident_map <-}\StringTok{ }\NormalTok{accident_map +}\StringTok{ }
+\StringTok{      }\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+  \NormalTok{\}}
+  
+  \KeywordTok{return}\NormalTok{(accident_map)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_fatal_accidents}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"Colorado"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-484-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_fatal_accidents}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"Texas"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-485-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_fatal_accidents}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"Colorado"}\NormalTok{, }
+                    \DataTypeTok{drunk_dr =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-486-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_fatal_accidents}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"Texas"}\NormalTok{,}
+                    \DataTypeTok{drunk_dr =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-487-1} \end{center}
 
 \appendix
 
