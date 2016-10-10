@@ -446,7 +446,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##  0.28806716 -0.06261983</code></pre>
+##  -0.5583636   0.1095399</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -496,7 +496,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  1.99846832 -0.98910249 -0.04105681
+## [1] -0.9428868 -0.2051313 -0.2764138
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -506,7 +506,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] 0.3227697
+## [1] -0.4748106
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -516,14 +516,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] 1.998468
+## [1] -0.9428868
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                  a                  b                  c 
-##                &quot;1&quot; &quot;1.99846832082056&quot;                &quot;a&quot;</code></pre>
+<pre><code>##                    a                    b                    c 
+##                  &quot;1&quot; &quot;-0.942886847113233&quot;                  &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest way to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
@@ -757,13 +757,13 @@ serial_map &lt;-<span class="st"> </span><span class="kw">ggmap</span>(serial_ma
 </div>
 <div id="string-operations" class="section level2">
 <h2><span class="header-section-number">8.6</span> String operations</h2>
-<p>The <code>str_trim</code> function from the <code>stringr</code> package allows you to trim leading and trailing whitespace:</p>
+<p>The <code>str_trim</code> function from the <code>stringr</code> package allows you to trim leading and trailing white space:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">with_spaces &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;    a &quot;</span>, <span class="st">&quot;  bob&quot;</span>, <span class="st">&quot; gamma&quot;</span>)
 with_spaces</code></pre></div>
 <pre><code>## [1] &quot;    a &quot; &quot;  bob&quot;  &quot; gamma&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_trim</span>(with_spaces)</code></pre></div>
 <pre><code>## [1] &quot;a&quot;     &quot;bob&quot;   &quot;gamma&quot;</code></pre>
-<p>This is rarer, but if you ever want to, you can add leading and / or trailing whitespace to elements of a character vector with <code>str_pad</code> from the <code>stringr</code> package.</p>
+<p>This is rarer, but if you ever want to, you can add leading and / or trailing white space to elements of a character vector with <code>str_pad</code> from the <code>stringr</code> package.</p>
 <p>There are also functions to change a full character string to uppercase, lowercase, or title case:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train$Name[<span class="dv">1</span>]</code></pre></div>
 <pre><code>## [1] &quot;Braund, Mr. Owen Harris&quot;</code></pre>
@@ -780,7 +780,7 @@ with_spaces</code></pre></div>
 <div id="writing-a-function-to-create-state-specific-plots" class="section level3">
 <h3><span class="header-section-number">8.7.1</span> Writing a function to create state-specific plots</h3>
 <ul>
-<li>Adapt the code that you wrote for to create a loop in last week’s in-course exercise and write a function that will create a state-specific plot when you call it. This function should have inputs of <code>datafr</code> and <code>which_state</code>, where <code>datafr</code> is the dataframe with the full dataset (<code>accident</code> in this case) and <code>which_state</code> is the name of the state for which you’d like to create the plot. Name your functions <code>make_state_plot</code>. Here are a few examples of running this function:</li>
+<li>Adapt the code that you wrote for to create a loop in last week’s in-course exercise and write a function that will create a state-specific plot when you call it. This function should have inputs of <code>datafr</code> and <code>which_state</code>, where <code>datafr</code> is the data frame with the full data set (<code>accident</code> in this case) and <code>which_state</code> is the name of the state for which you’d like to create the plot. Name your functions <code>make_state_plot</code>. Here are a few examples of running this function:</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">make_state_plot</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;California&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-478-1.png" width="576" style="display: block; margin: auto;" /></p>
@@ -792,7 +792,7 @@ with_spaces</code></pre></div>
 <li>In general, there is a pattern of more of the fatal accidents during the daytime are unrelated to drunk driving versus related, while the pattern is reversed for nighttime accidents. Use your function to see if you can find any states that don’t follow this pattern.</li>
 <li>So far, we have not covered error checking in functions. In the function that you just wrote, we are assuming that the user will never give inputs that would cause errors. Look through the code for your function and see what assumptions we’re making about what values a user would input for <code>datafr</code> and <code>which_state</code>. What could go wrong if a user does not comply with these assumptions?</li>
 <li>The best practice when writing functions, especially for others to use, is to use the package::function syntax to identify which package each function comes from. For example, if you’re using <code>mutate</code> in a function, you should write the function code as <code>dplyr::mutate</code>. Go back through the code for the function you wrote. Every time it uses a function that is not part of base R, change the code to use this package::function syntax.</li>
-<li>If you have time: Can you combine your function, a loop (or <code>lapply</code>), and regular expressions to create plots for all states that start with “C”? That have “North” in their names? (<em>Hint</em>: One way to get a list of states is from the <code>accident</code> dataframe: <code>unique(accident$state_name)</code>.)</li>
+<li>If you have time: Can you combine your function, a loop (or <code>lapply</code>), and regular expressions to create plots for all states that start with “C”? That have “North” in their names? (<em>Hint</em>: One way to get a list of states is from the <code>accident</code> data frame, once you’ve joined in state names as a column called <code>state_name</code>: <code>unique(accident$state_name)</code>.)</li>
 </ul>
 <div id="example-r-code-12" class="section level4">
 <h4><span class="header-section-number">8.7.1.1</span> Example R code</h4>

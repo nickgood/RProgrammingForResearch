@@ -9538,11 +9538,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.57\\
+a & -1.06\\
 \hline
-b & 0.47\\
+b & 0.37\\
 \hline
-c & 1.33\\
+c & 0.15\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,9 +10059,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X         Y         Z
-## 1 2009-01-01 -0.6721175 -2.520364 -4.903970
-## 2 2009-01-02 -2.8014628 -1.858642 -1.748226
-## 3 2009-01-03 -0.6316121  1.926366  3.309551
+## 1 2009-01-01  0.8031632 -1.947643 -1.953531
+## 2 2009-01-02 -0.3742218 -4.664797 -2.604345
+## 3 2009-01-03  0.8467072  1.543852  8.365365
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,9 +10079,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X         Y         Z
-## 1 2009-01-01 -0.6721175 -2.520364 -4.903970
-## 2 2009-01-02 -2.8014628 -1.858642 -1.748226
-## 3 2009-01-03 -0.6316121  1.926366  3.309551
+## 1 2009-01-01  0.8031632 -1.947643 -1.953531
+## 2 2009-01-02 -0.3742218 -4.664797 -2.604345
+## 3 2009-01-03  0.8467072  1.543852  8.365365
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,11 +10098,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.6721175
-## 2 2009-01-02     X -2.8014628
-## 3 2009-01-03     X -0.6316121
-## 4 2009-01-04     X -1.7757372
-## 5 2009-01-05     X  0.3270331
+## 1 2009-01-01     X  0.8031632
+## 2 2009-01-02     X -0.3742218
+## 3 2009-01-03     X  0.8467072
+## 4 2009-01-04     X -1.7528175
+## 5 2009-01-05     X -1.7721633
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,11 +10117,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.6721175
-## 2 2009-01-02     X -2.8014628
-## 3 2009-01-03     X -0.6316121
-## 4 2009-01-04     X -1.7757372
-## 5 2009-01-05     X  0.3270331
+## 1 2009-01-01     X  0.8031632
+## 2 2009-01-02     X -0.3742218
+## 3 2009-01-03     X  0.8467072
+## 4 2009-01-04     X -1.7528175
+## 5 2009-01-05     X -1.7721633
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,11 +10178,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01 -0.6721175 -2.5203642 -4.903970
-## 2 2009-01-02 -2.8014628 -1.8586424 -1.748226
-## 3 2009-01-03 -0.6316121  1.9263661  3.309551
-## 4 2009-01-04 -1.7757372  4.1887439 -3.745826
-## 5 2009-01-05  0.3270331  0.1914225 11.772710
+## 1 2009-01-01  0.8031632 -1.9476433 -1.953531
+## 2 2009-01-02 -0.3742218 -4.6647975 -2.604345
+## 3 2009-01-03  0.8467072  1.5438521  8.365365
+## 4 2009-01-04 -1.7528175 -1.7927280  2.673768
+## 5 2009-01-05 -1.7721633 -0.1266133  2.060034
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10209,9 +10209,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 × 4
 ##   stock     N       mean       sd
 ##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.1817027 1.407375
-## 2     Y    10 -0.7027929 2.229510
-## 3     Z    10  1.3997251 5.130075
+## 1     X    10 -0.1653150 1.042902
+## 2     Y    10 -0.6432692 2.057150
+## 3     Z    10  2.5832835 4.099028
 \end{verbatim}
 
 \begin{Shaded}
@@ -10230,7 +10230,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.18 (1.41) & -0.7 (2.23) & 1.4 (5.13)\\
+Mean (Std.dev.) & -0.17 (1.04) & -0.64 (2.06) & 2.58 (4.1)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12897,7 +12897,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##   0.4340464  -0.1805901
+##  -0.8161356   0.1450142
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13010,7 +13010,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  1.2846768  1.6704874 -0.4946559
+## [1]  0.3190039 -1.0216655  0.2454114
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13029,7 +13029,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] 0.8201694
+## [1] -0.1524167
 ## 
 ## $c
 ## [1] NA
@@ -13050,7 +13050,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] 1.284677
+## [1] 0.3190039
 ## 
 ## $c
 ## [1] "a"
@@ -13066,8 +13066,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                  a                  b                  c 
-##                "1" "1.28467683598845"                "a"
+##                   a                   b                   c 
+##                 "1" "0.319003934225694"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -13654,7 +13654,7 @@ locations. This will give you distance and also time.
 \section{String operations}\label{string-operations}
 
 The \texttt{str\_trim} function from the \texttt{stringr} package allows
-you to trim leading and trailing whitespace:
+you to trim leading and trailing white space:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13678,7 +13678,7 @@ you to trim leading and trailing whitespace:
 \end{verbatim}
 
 This is rarer, but if you ever want to, you can add leading and / or
-trailing whitespace to elements of a character vector with
+trailing white space to elements of a character vector with
 \texttt{str\_pad} from the \texttt{stringr} package.
 
 There are also functions to change a full character string to uppercase,
@@ -13739,7 +13739,7 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
   in-course exercise and write a function that will create a
   state-specific plot when you call it. This function should have inputs
   of \texttt{datafr} and \texttt{which\_state}, where \texttt{datafr} is
-  the dataframe with the full dataset (\texttt{accident} in this case)
+  the data frame with the full data set (\texttt{accident} in this case)
   and \texttt{which\_state} is the name of the state for which you'd
   like to create the plot. Name your functions
   \texttt{make\_state\_plot}. Here are a few examples of running this
@@ -13797,7 +13797,9 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
   \texttt{lapply}), and regular expressions to create plots for all
   states that start with ``C''? That have ``North'' in their names?
   (\emph{Hint}: One way to get a list of states is from the
-  \texttt{accident} dataframe: \texttt{unique(accident\$state\_name)}.)
+  \texttt{accident} data frame, once you've joined in state names as a
+  column called \texttt{state\_name}:
+  \texttt{unique(accident\$state\_name)}.)
 \end{itemize}
 
 \subsubsection{Example R code}\label{example-r-code-12}
