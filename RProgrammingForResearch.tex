@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-10-10}
+\date{2016-10-12}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -9538,11 +9538,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.06\\
+a & -0.10\\
 \hline
-b & 0.37\\
+b & 0.67\\
 \hline
-c & 0.15\\
+c & -0.69\\
 \hline
 \end{tabular}
 \end{table}
@@ -10058,10 +10058,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.8031632 -1.947643 -1.953531
-## 2 2009-01-02 -0.3742218 -4.664797 -2.604345
-## 3 2009-01-03  0.8467072  1.543852  8.365365
+##         time         X          Y        Z
+## 1 2009-01-01 -2.441961 -0.8088143 9.637389
+## 2 2009-01-02 -1.252942 -0.5011839 2.704401
+## 3 2009-01-03  1.345988  0.3741912 1.671146
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10078,10 +10078,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.8031632 -1.947643 -1.953531
-## 2 2009-01-02 -0.3742218 -4.664797 -2.604345
-## 3 2009-01-03  0.8467072  1.543852  8.365365
+##         time         X          Y        Z
+## 1 2009-01-01 -2.441961 -0.8088143 9.637389
+## 2 2009-01-02 -1.252942 -0.5011839 2.704401
+## 3 2009-01-03  1.345988  0.3741912 1.671146
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,11 +10098,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.8031632
-## 2 2009-01-02     X -0.3742218
-## 3 2009-01-03     X  0.8467072
-## 4 2009-01-04     X -1.7528175
-## 5 2009-01-05     X -1.7721633
+## 1 2009-01-01     X -2.4419605
+## 2 2009-01-02     X -1.2529415
+## 3 2009-01-03     X  1.3459880
+## 4 2009-01-04     X  0.6356567
+## 5 2009-01-05     X -0.6193862
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,11 +10117,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.8031632
-## 2 2009-01-02     X -0.3742218
-## 3 2009-01-03     X  0.8467072
-## 4 2009-01-04     X -1.7528175
-## 5 2009-01-05     X -1.7721633
+## 1 2009-01-01     X -2.4419605
+## 2 2009-01-02     X -1.2529415
+## 3 2009-01-03     X  1.3459880
+## 4 2009-01-04     X  0.6356567
+## 5 2009-01-05     X -0.6193862
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,11 +10178,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.8031632 -1.9476433 -1.953531
-## 2 2009-01-02 -0.3742218 -4.6647975 -2.604345
-## 3 2009-01-03  0.8467072  1.5438521  8.365365
-## 4 2009-01-04 -1.7528175 -1.7927280  2.673768
-## 5 2009-01-05 -1.7721633 -0.1266133  2.060034
+## 1 2009-01-01 -2.4419605 -0.8088143  9.637389
+## 2 2009-01-02 -1.2529415 -0.5011839  2.704401
+## 3 2009-01-03  1.3459880  0.3741912  1.671146
+## 4 2009-01-04  0.6356567 -2.2344972 -1.774798
+## 5 2009-01-05 -0.6193862  1.9585604 -3.910654
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10209,9 +10209,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 × 4
 ##   stock     N       mean       sd
 ##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.1653150 1.042902
-## 2     Y    10 -0.6432692 2.057150
-## 3     Z    10  2.5832835 4.099028
+## 1     X    10 -0.4715913 1.125011
+## 2     Y    10 -0.5106063 2.112891
+## 3     Z    10  0.4246690 4.006540
 \end{verbatim}
 
 \begin{Shaded}
@@ -10230,7 +10230,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.17 (1.04) & -0.64 (2.06) & 2.58 (4.1)\\
+Mean (Std.dev.) & -0.47 (1.13) & -0.51 (2.11) & 0.42 (4.01)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12675,11 +12675,6 @@ Here is example R code for creating state-specific plots using a loop:
 \href{https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week8.pdf}{Download}
 a pdf of the lecture slides covering this topic.
 
-\begin{verbatim}
-## Warning: failed to assign RegisteredNativeSymbol for twins to twins since
-## twins is already defined in the 'cluster' namespace
-\end{verbatim}
-
 \section{Matrices and lists}\label{matrices-and-lists}
 
 In this section, we'll talk about the \texttt{apply} family of
@@ -12897,7 +12892,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  -0.8161356   0.1450142
+##   1.1606678  -0.1546863
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13010,7 +13005,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  0.3190039 -1.0216655  0.2454114
+## [1] 0.02223301 1.07328664 0.70232166
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13029,7 +13024,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.1524167
+## [1] 0.5992804
 ## 
 ## $c
 ## [1] NA
@@ -13050,7 +13045,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] 0.3190039
+## [1] 0.02223301
 ## 
 ## $c
 ## [1] "a"
@@ -13066,8 +13061,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                   a                   b                   c 
-##                 "1" "0.319003934225694"                 "a"
+##                    a                    b                    c 
+##                  "1" "0.0222330068849147"                  "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -13648,7 +13643,7 @@ locations. This will give you distance and also time.
 
 \begin{verbatim}
 ##              from    miles    hours
-## 1 Fort Collins CO 1670.348 24.60139
+## 1 Fort Collins CO 1670.348 24.60167
 \end{verbatim}
 
 \section{String operations}\label{string-operations}
@@ -13811,18 +13806,19 @@ state-specific plots:
 \begin{Highlighting}[]
 \NormalTok{make_state_plot <-}\StringTok{ }\NormalTok{function(datafr, which_state)\{}
   \NormalTok{a <-}\StringTok{ }\NormalTok{datafr %>%}
-\StringTok{    }\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state) %>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr,}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr,}
                              \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
                                         \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
            \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
-\StringTok{    }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
-\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
-\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents, }\DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
-\StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
-\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
-\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) +}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) +}\StringTok{ }
-\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize_}\NormalTok{(}\DataTypeTok{accidents =} \NormalTok{~}\StringTok{ }\KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents,}
+                                 \DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) +}
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) +}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
   \KeywordTok{return}\NormalTok{(a)}
 \NormalTok{\}}
 
@@ -13835,7 +13831,7 @@ state-specific plots:
                                         \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
            \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
 \StringTok{    }\NormalTok{dplyr::}\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
-\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize_}\NormalTok{(}\DataTypeTok{accidents =} \NormalTok{~}\StringTok{ }\KeywordTok{n}\NormalTok{()) %>%}
 \StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents,}
                                  \DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
 \StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
@@ -13883,7 +13879,7 @@ the function. We could re-write the function to comply and then use
                                         \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
            \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) %>%}
 \StringTok{    }\NormalTok{dplyr::}\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) %>%}
-\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{summarize_}\NormalTok{(}\DataTypeTok{accidents =} \NormalTok{~}\StringTok{ }\KeywordTok{n}\NormalTok{()) %>%}
 \StringTok{    }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{daytime, }\DataTypeTok{y =} \NormalTok{accidents,}
                                  \DataTypeTok{group =} \NormalTok{daytime)) +}\StringTok{ }
 \StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_boxplot}\NormalTok{() +}\StringTok{ }
@@ -13902,50 +13898,95 @@ the function. We could re-write the function to comply and then use
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-481-2} \end{center}
 
-\subsection{Writing a mapping
-function}\label{writing-a-mapping-function}
+\subsection{First steps in mapping}\label{first-steps-in-mapping}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{accident <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/accident.csv"}\NormalTok{) %>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(STATE, LATITUDE, LONGITUD, DRUNK_DR) %>%}
-\StringTok{  }\NormalTok{dplyr::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =} \NormalTok{STATE,}
-                \DataTypeTok{lat =} \NormalTok{LATITUDE,}
-                \DataTypeTok{long =} \NormalTok{LONGITUD,}
-                \DataTypeTok{drunk_dr =} \NormalTok{DRUNK_DR) %>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \NormalTok{drunk_dr >}\StringTok{ }\DecValTok{0}\NormalTok{,}
-         \DataTypeTok{lat =} \KeywordTok{ifelse}\NormalTok{(lat >}\StringTok{ }\DecValTok{80}\NormalTok{, }\OtherTok{NA}\NormalTok{, lat),}
-         \DataTypeTok{long =} \KeywordTok{ifelse}\NormalTok{(long >}\StringTok{ }\DecValTok{99}\NormalTok{, }\OtherTok{NA}\NormalTok{, long)) %>%}
-\StringTok{  }\KeywordTok{left_join}\NormalTok{(state_fips, }\DataTypeTok{by =} \StringTok{"state"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+If you have time, you can try some exercises with mapping.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{map_fatal_accidents <-}\StringTok{ }\NormalTok{function(}\DataTypeTok{datafr =} \NormalTok{accident, which_state,}
-                                \DataTypeTok{drunk_dr =} \OtherTok{FALSE}\NormalTok{)\{}
-  \NormalTok{state_accidents <-}\StringTok{ }\NormalTok{datafr %>%}
-\StringTok{    }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state)}
-  \NormalTok{state_map_data <-}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{map_data}\NormalTok{(}\StringTok{"county"}\NormalTok{, }\DataTypeTok{region =} \NormalTok{which_state)}
-  
-  \NormalTok{accident_map <-}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(state_map_data,}
-                                  \NormalTok{ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }
-                                               \DataTypeTok{group =} \NormalTok{subregion)) +}\StringTok{ }
-\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{) +}\StringTok{ }
-\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{theme_void}\NormalTok{() +}\StringTok{ }
-\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \NormalTok{state_accidents, }
-                        \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }\DataTypeTok{group =} \OtherTok{NULL}\NormalTok{),}
-                        \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.7} \NormalTok{)}
-  
-  \NormalTok{if(drunk_dr)\{}
-    \NormalTok{accident_map <-}\StringTok{ }\NormalTok{accident_map +}\StringTok{ }
-\StringTok{      }\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
-  \NormalTok{\}}
-  
-  \KeywordTok{return}\NormalTok{(accident_map)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  Read in and clean up the FARS data and save it to an R object called
+  \texttt{accident}. The \texttt{accident} data frame should include
+  location (longitude / latitude), state, and whether the accident
+  involved drunk driving. Once you're done cleaning, the dataset should
+  look like this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 5 × 4
+##        lat      long drunk_dr state_name
+##      <dbl>     <dbl>    <lgl>      <chr>
+## 1 33.87865 -87.32533     TRUE    Alabama
+## 2 34.91044 -86.90871    FALSE    Alabama
+## 3 32.14201 -85.75846     TRUE    Alabama
+## 4 31.43981 -85.51030     TRUE    Alabama
+## 5 31.31933 -85.51510    FALSE    Alabama
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Next, create another R object with state-specific summaries. This
+  object should be a data frame called \texttt{state\_summaries} that
+  gives the total number of fatal accidents in each state and the
+  percent of all fatal accidents related to drunk driving in each state.
+  The \texttt{state\_summaries} data frame should look like this when
+  you are done cleaning:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 5 × 3
+##   state_name     n perc_drunk_dr
+##        <chr> <int>         <dbl>
+## 1    Alabama   783      27.45849
+## 2     Alaska    60      40.00000
+## 3    Arizona   810      28.76543
+## 4   Arkansas   472      25.84746
+## 5 California  2925      24.54701
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Create the following state-level choropleths of number of fatal
+  accidents in 2015 in each state and of the percent of fatal accidents
+  linked to drunk driving in each state. The quickest way to do this is
+  with the \texttt{choroplethr} package.
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-484-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-484-2.pdf}
+
+\begin{itemize}
+\item
+  Now, you will be using the latitude and longitude of each accident to
+  plot accident locations within a state. Check if the columns for
+  latitude and longitude need more cleaning (spoiler alert--- they do).
+  Filter out any values that could not reasonably be within the 50 U.S.
+  states and D.C.
+\item
+  Map the locations of fatal accidents in Texas in 2015 on top of a
+  Google Map base map that shows major roads. An example map is shown
+  below. (\emph{Hint:} Use the \texttt{get\_map} and \texttt{ggmap}
+  functions for this part.)
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-486-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Create a function that will take three inputs: \texttt{datafr}, a data
+  frame like \texttt{accident} with fatal accident data;
+  \texttt{which\_state}, a state name; and \texttt{drunk\_dr}, a logical
+  value (TRUE / FALSE) specifying whether to create separate maps for
+  accidents that were and were not linked to drunk driving. This
+  function should output a map (or two maps if \texttt{drunk\_dr} is set
+  to TRUE) with points for all fatal accidents in the state. Use
+  \texttt{map\_data} and create the map yourself, rather than using
+  \texttt{choroplethr} for this question. Examples of calling this
+  function are shown below.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13953,7 +13994,7 @@ function}\label{writing-a-mapping-function}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-484-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-488-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13961,7 +14002,7 @@ function}\label{writing-a-mapping-function}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-485-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-489-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13970,7 +14011,7 @@ function}\label{writing-a-mapping-function}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-486-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-490-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13979,7 +14020,7 @@ function}\label{writing-a-mapping-function}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-487-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-491-1} \end{center}
 
 \appendix
 
