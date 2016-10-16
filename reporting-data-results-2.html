@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-12">
+<meta name="date" content="2016-10-16">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -444,7 +444,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##  0.84237349 -0.09663747</code></pre>
+## -0.51200125  0.01120957</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -494,7 +494,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  1.4257477  1.6741114 -0.4559205
+## [1] -0.85348251 -0.18579509  0.05109074
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -504,7 +504,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] 0.8813129
+## [1] -0.3293956
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -514,14 +514,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] 1.425748
+## [1] -0.8534825
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                  a                  b                  c 
-##                &quot;1&quot; &quot;1.42574772249466&quot;                &quot;a&quot;</code></pre>
+<pre><code>##                    a                    b                    c 
+##                  &quot;1&quot; &quot;-0.853482509843238&quot;                  &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest way to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
@@ -751,7 +751,7 @@ serial_map &lt;-<span class="st"> </span><span class="kw">ggmap</span>(serial_ma
         <span class="st">&quot;1 First St NE, Washington, DC&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(from, miles, hours)</code></pre></div>
 <pre><code>##              from    miles    hours
-## 1 Fort Collins CO 1670.348 24.60167</code></pre>
+## 1 Fort Collins CO 1670.348 24.54444</code></pre>
 </div>
 <div id="string-operations" class="section level2">
 <h2><span class="header-section-number">8.6</span> String operations</h2>
