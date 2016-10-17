@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-10-16}
+\date{2016-10-17}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -3675,7 +3675,8 @@ files that you just pulled in your current working directory:
 ##  [7] "ICU_Data_Code_Sheet.pdf"  "icu.sas7bdat"            
 ##  [9] "ld_genetics.txt"          "measles_data"            
 ## [11] "mexico_deaths.csv"        "mexico_exposure.csv"     
-## [13] "serial_map_data.csv"      "serial_phone_data.csv"
+## [13] "serial_map_data.csv"      "serial_phone_data.csv"   
+## [15] "titanic.csv"
 \end{verbatim}
 
 Try the following tasks:
@@ -9538,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.18\\
+a & 0.36\\
 \hline
-b & 0.08\\
+b & 0.17\\
 \hline
-c & -1.18\\
+c & -0.99\\
 \hline
 \end{tabular}
 \end{table}
@@ -10058,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y           Z
-## 1 2009-01-01  1.5385996  0.5276827  3.06531909
-## 2 2009-01-02  0.5630877 -1.9588743  0.00572569
-## 3 2009-01-03 -2.4102603  0.8126885 -4.52079741
+##         time          X          Y         Z
+## 1 2009-01-01  0.2259367 -0.5085004  5.700083
+## 2 2009-01-02 -0.5615761 -1.2368012  8.842539
+## 3 2009-01-03  1.0919286  1.2528773 -3.308943
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10078,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y           Z
-## 1 2009-01-01  1.5385996  0.5276827  3.06531909
-## 2 2009-01-02  0.5630877 -1.9588743  0.00572569
-## 3 2009-01-03 -2.4102603  0.8126885 -4.52079741
+##         time          X          Y         Z
+## 1 2009-01-01  0.2259367 -0.5085004  5.700083
+## 2 2009-01-02 -0.5615761 -1.2368012  8.842539
+## 3 2009-01-03  1.0919286  1.2528773 -3.308943
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,11 +10099,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  1.5385996
-## 2 2009-01-02     X  0.5630877
-## 3 2009-01-03     X -2.4102603
-## 4 2009-01-04     X  0.7524605
-## 5 2009-01-05     X -0.3921524
+## 1 2009-01-01     X  0.2259367
+## 2 2009-01-02     X -0.5615761
+## 3 2009-01-03     X  1.0919286
+## 4 2009-01-04     X -0.3989625
+## 5 2009-01-05     X  0.7585382
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,11 +10118,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  1.5385996
-## 2 2009-01-02     X  0.5630877
-## 3 2009-01-03     X -2.4102603
-## 4 2009-01-04     X  0.7524605
-## 5 2009-01-05     X -0.3921524
+## 1 2009-01-01     X  0.2259367
+## 2 2009-01-02     X -0.5615761
+## 3 2009-01-03     X  1.0919286
+## 4 2009-01-04     X -0.3989625
+## 5 2009-01-05     X  0.7585382
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10177,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y           Z
-## 1 2009-01-01  1.5385996  0.5276827  3.06531909
-## 2 2009-01-02  0.5630877 -1.9588743  0.00572569
-## 3 2009-01-03 -2.4102603  0.8126885 -4.52079741
-## 4 2009-01-04  0.7524605 -2.8640980  5.34191176
-## 5 2009-01-05 -0.3921524  2.2569294 -1.57893797
+##         time          X          Y         Z
+## 1 2009-01-01  0.2259367 -0.5085004  5.700083
+## 2 2009-01-02 -0.5615761 -1.2368012  8.842539
+## 3 2009-01-03  1.0919286  1.2528773 -3.308943
+## 4 2009-01-04 -0.3989625  4.6852630 -4.428764
+## 5 2009-01-05  0.7585382 -2.6501204 -4.646879
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10207,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.1480952 1.047593
-## 2     Y    10 -0.6824720 1.911654
-## 3     Z    10 -0.1176434 3.169194
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.5759133 0.7079146
+## 2     Y    10 -0.3400682 2.7965569
+## 3     Z    10  0.2881280 5.0513696
 \end{verbatim}
 
 \begin{Shaded}
@@ -10230,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.15 (1.05) & -0.68 (1.91) & -0.12 (3.17)\\
+Mean (Std.dev.) & 0.58 (0.71) & -0.34 (2.8) & 0.29 (5.05)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12892,7 +12893,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-## -0.30813822  0.09994182
+##  0.19029755 -0.02373599
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13005,7 +13006,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] 0.7849327 0.4458864 0.3794523
+## [1] -0.5326713 -0.6134460 -0.9279719
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13024,7 +13025,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] 0.5367571
+## [1] -0.6913631
 ## 
 ## $c
 ## [1] NA
@@ -13045,7 +13046,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] 0.7849327
+## [1] -0.5326713
 ## 
 ## $c
 ## [1] "a"
@@ -13061,8 +13062,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                   a                   b                   c 
-##                 "1" "0.784932708977587"                 "a"
+##                    a                    b                    c 
+##                  "1" "-0.532671289496876"                  "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -14021,6 +14022,348 @@ If you have time, you can try some exercises with mapping.
 \end{Shaded}
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-491-1} \end{center}
+
+\chapter{Reporting data results \#2}\label{reporting-data-results-2-1}
+
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week9.pdf}{Download}
+a pdf of the lecture slides covering this topic.
+
+\section{R Notebooks}\label{r-notebooks}
+
+From RStudio's
+\href{http://rmarkdown.rstudio.com/r_notebooks.html}{article on R
+Notebooks}:
+
+\begin{quote}
+``An R Notebook is an R Markdown document with chunks that can be
+executed independently and interactively, with output visible
+immediately beneath the input.''
+\end{quote}
+
+R Notebooks are a new feature. Right now, if you want to use them, you
+need to update to RStudio's Preview version. You can get that
+\href{https://www.rstudio.com/products/rstudio/download/preview/}{here}.
+
+You can render an R Notebook document to a final, static version (e.g.,
+pdf, Word, HTML) just like an R Markdown file.
+
+Therefore, you can use R Notebooks as an alternative to R Markdown, with
+the ability to try out and change chunks interactively as you write the
+document.
+
+You can open a new R Notebook file by going in RStudio to ``File''
+-\textgreater{} ``New File''. In the Preview version of RStudio, there's
+an option there for ``R Notebook''.
+
+As with R Markdown files, when you choose to create a new R Notebook
+file, RStudio opens a skeleton file with some example text and
+formatting already in the file.
+
+The syntax is very similar to an R Markdown file, but the YAML now
+specifies:
+
+\begin{verbatim}
+output: html_notebook
+\end{verbatim}
+
+\section{Templates}\label{templates}
+
+R Markdown \textbf{templates} can be used to change multiple elements of
+the style of a rendered document. You can think of these as being the
+document-level analog to the themes we've used with \texttt{ggplot}
+objects.
+
+To do this, some kind of style file is applied when rendering document.
+For HTML documents, Cascading Style Sheets (CSS) (\texttt{.css}) can be
+used to change the style of different elements. For pdf files, LaTeX
+package (style) files (\texttt{.sty}) are used.
+
+To open a new R Markdown file that uses a template, in RStudio, go to
+``File'' -\textgreater{} ``New File'' -\textgreater{} ``R Markdown''
+-\textgreater{} ``From Template''.
+
+Different templates come with different R packages. A couple of
+templates come with the \texttt{rmarkdown} package, which you likely
+already have.
+
+Many of these templates will only render to pdf.
+
+To render a pdf from R Markdown, you need to have a version of TeX
+installed on your computer. Like R, TeX is open source software. RStudio
+recommends the following installations by system:
+
+\begin{itemize}
+\tightlist
+\item
+  For Macs: MacTeX
+\item
+  For PCs: MiKTeX
+\end{itemize}
+
+Links for installing both can be found at
+\url{http://www.latex-project.org/ftp.html}
+
+Current version of TeX: 3.14159265.
+
+The \texttt{tufte} package has templates for creating handouts typeset
+like Edward Tufte's books.
+
+This package includes templates for creating both pdf and HTML documents
+in this style.
+
+The package includes special functions like \texttt{newthought}, special
+chunk options like \texttt{fig.fullwidth}, and special knitr engines
+like \texttt{marginfigure}. Special features available in the tufte
+template include:
+
+\begin{itemize}
+\tightlist
+\item
+  Margin references
+\item
+  Margin figures
+\item
+  Side notes
+\item
+  Full width figures
+\end{itemize}
+
+The \texttt{rticles} package has templates for several journals:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Journal of Statistical Software}
+\item
+  \emph{The R Journal}
+\item
+  \emph{Association for Computing Machinery}
+\item
+  ACS publications (\emph{Journal of the American Chemical Society},
+  \emph{Environmental Science \& Technology})
+\item
+  Elsevier publications
+\end{itemize}
+
+Some of these templates create a whole directory, with several files
+besides the .Rmd file. For example, the template for \emph{The R
+Journal} includes:
+
+\begin{itemize}
+\tightlist
+\item
+  The R Markdown file in which you write your article
+\item
+  ``RJournal.sty'': A LaTeX package (style) file specific to \emph{The R
+  Journal}. This file tells LaTeX how to render all the elements in your
+  article in the style desired by this journal.
+\item
+  ``RJreferences.bib'': A BibTeX file, where you can save citation
+  information for all references in your article.
+\item
+  ``Rlogo.png'': An example figure (the R logo).
+\end{itemize}
+
+Once you render the R Markdown document from this template, you'll end
+up with some new files in the directory:
+
+\begin{itemize}
+\tightlist
+\item
+  ``{[}your file name{]}.tex'': A TeX file with the content from your R
+  Markdown file. This will be ``wrapped'' with some additional
+  formatting input to create ``RJwrapper.tex''.
+\item
+  ``RJwrapper.tex'': A TeX file that includes both the content from your
+  R Markdown file and additional formatting input. Typically, you will
+  submit this file (along with the BibTeX, any figure and image files,
+  and possibly the style file) to the journal.
+\item
+  ``RJwrapper.pdf'': The rendered pdf file (what the published article
+  would look like)
+\end{itemize}
+
+This template files will often require some syntax that looks more like
+LaTeX than Markdown.
+
+For example, for the template for \emph{The R Journal}, you need to use
+\texttt{\textbackslash{}citep\{\}} and
+\texttt{\textbackslash{}citet\{\}} to include citations. These details
+will depend on the style file of the template.
+
+As a note, you can always use raw LaTeX in R Markdown documents, not
+just in documents you're creating with a template. You just need to be
+careful not to mix the two. For example, if you use a LaTeX environment
+to begin an itemized list (e.g., with \texttt{begin\{itemize\}}), you
+must start each item with \texttt{item}, not \texttt{-}.
+
+You can create your own template. You create it as part of a custom R
+package, and then will have access to the template once you've installed
+the package. This can be useful if you often write documents in a
+certain style, or if you ever work somewhere with certain formatting
+requirements for reports.
+
+RStudio has full instructions for creating your own template:
+\url{http://rmarkdown.rstudio.com/developer_document_templates.html}
+
+\section{R Projects}\label{r-projects}
+
+\subsection{Organization}\label{organization}
+
+So far, you have run much of your analysis within a single R script or R
+Markdown file. Often, any associated data are within the same working
+directory as your script or R Markdown file, but the files for one
+project are not separated from files for other projects.
+
+As you move to larger projects, this kind of set-up won't work as well.
+Instead, you'll want to start keeping all materials for a project in a
+single and exclusive directory.
+
+Often, it helps to organize the files in a project directory into
+subdirectories. Common subdirectories include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{data-raw}: Raw data and R scripts to clean the raw data.
+\item
+  \texttt{data}: Cleaned data, often saved as \texttt{.RData} after
+  being generated by a script in \texttt{data-raw}.
+\item
+  \texttt{R}: Code for any functions used in analysis.
+\item
+  \texttt{reports}: Any final products rendered from R Markdown and
+  their original R Markdown files (e.g., paper drafts, reports,
+  presentations).
+\end{itemize}
+
+\subsection{Creating R Projects}\label{creating-r-projects}
+
+RStudio allows you to create ``Projects'' to organize code, data, and
+results within a directory. When you create a project, RStudio adds a
+file with the extension ``.Rproj'' to the directory.
+
+Advantages of setting a directory to be an R Project are:
+
+\begin{itemize}
+\tightlist
+\item
+  Automatically uses the directory as your current working directory
+  when you open the project.
+\item
+  Coordinates well with git version control and GitHub repository
+  system.
+\item
+  Opens a ``Files'' window for navigating project files in an RStudio
+  pane when you open the project.
+\end{itemize}
+
+You can create a new project from scratch or from an existing directory.
+
+To create an R project from a working directory, in RStudio go to
+``File'' -\textgreater{} ``New Project'' -\textgreater{} ``New
+Directory''. You can then choose where you want to save the new project
+directory.
+
+\section{In-course exercise}\label{in-course-exercise-8}
+
+\subsection{Trying out templates}\label{trying-out-templates}
+
+\begin{itemize}
+\tightlist
+\item
+  Open a ``Tufte'' template document. To open a new document from a
+  template, in RStudio go to ``File'' -\textgreater{} ``New File''
+  -\textgreater{} ``R Markdown'' -\textgreater{} ``From Template''. If
+  ``Tufte Handout'' does not show up as a choice, install and load the
+  \texttt{tufte} package, restart R, and try again.
+\item
+  Render the document to an HTML and open it in a browser. Explore the
+  rendered document. What elements does it include that are not typical
+  for R Markdown documents?
+\item
+  Now go and look at the .Rmd file. Find the spots where these new
+  elements are specified in the R Markdown file. How are elements like
+  margin plots and all caps at the starts of some paragraphs included in
+  the document?
+\end{itemize}
+
+\subsection{Organizing a project}\label{organizing-a-project}
+
+In this part of the group exercise, you will set up an R Project to use
+for the next homework assignment. You will want to set up a similar
+project for your group project.
+
+\begin{itemize}
+\tightlist
+\item
+  First, you need to create a new project. In RStudio, go to ``File''
+  -\textgreater{} ``New Project'' -\textgreater{} ``New Directory''.
+  Choose where you want to save this directory and what you want to name
+  it.
+\item
+  If the R Project does not automatically open once you make it,
+  navigate to the ``.Rproj'' file created for the project and
+  double-click on that. Alternatively, you can go to ``File''
+  -\textgreater{} ``Open Project''.
+\item
+  Use \texttt{getwd} once you've opened your project to determine which
+  working directory is automatically used for the project.
+\item
+  Once you open the project, one of the RStudio panes should have a tab
+  called ``Files''. This shows the files in this project directory and
+  allows you to navigate through them. Currently, you won't have any
+  files other than the R project file (``.Rproj''). As a next step,
+  create several subdirectories. We'll use these to structure the code,
+  data, and R Markdown files for your homework. Create the following
+  subdirectories (you can use the ``New Folder'' button in the RStudio
+  ``Files'' pane):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{data-raw}
+  \item
+    \texttt{data}
+  \item
+    \texttt{R}
+  \item
+    \texttt{writing}
+  \end{itemize}
+\item
+  The \texttt{data-raw} directory will have your raw data as well as
+  some R scripts (``.R'') with code for cleaning up the raw data. The
+  homework requires you to pull FARS data from several years. We'll
+  create a subdirectory in \texttt{data-raw} that will just have that
+  data. In the ``Files'' pane in RStudio, navigate into the
+  \texttt{data-raw} subdirectory. Use the ``New Folder'' button to
+  create a new subdirectory within the \texttt{data-raw} subdirectory.
+  Name it \texttt{yearly\_person\_data}.
+\item
+  Download FARS data from the years 1999 to 2010. From each year, pull
+  out the ``person'' file. Save these yearly ``person'' files in the
+  \texttt{yearly\_person\_data} subdirectory you created. As a file
+  name, use ``person\_'' and then the year. For example, if you are
+  saving this file for 1999 in the form of a csv, you would name the
+  file ``person\_1999.csv''.
+\item
+  The \texttt{writing} subdirectory will have your R Markdown file and
+  its output. Create a new R Markdown file (``File'' -\textgreater{}
+  ``New File'' -\textgreater{} ``R Markdown'') and save it to this
+  subdirectory. You can change the name and date for the file if you'd
+  like. Delete all the text that comes as a default. Write a piece of
+  code that lists the files you saved in
+  \texttt{data-raw/yearly\_person\_data}. Remember that the working
+  directory for an R Markdown file is the directory in which it's saved,
+  so you'll need to use a relative pathname that goes up one directory
+  (\texttt{..}) and then goes into \texttt{data-raw} and
+  \texttt{yearly\_person\_data}.
+\item
+  If you have time, go to the
+  \href{https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812316}{FARS
+  documentation} and find out more about which variables are included in
+  this data set and which values they can have.
+\end{itemize}
 
 \appendix
 
