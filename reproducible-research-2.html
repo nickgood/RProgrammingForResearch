@@ -475,6 +475,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Open a “Tufte” template document. To open a new document from a template, in RStudio go to “File” -&gt; “New File” -&gt; “R Markdown” -&gt; “From Template”. If “Tufte Handout” does not show up as a choice, install and load the <code>tufte</code> package, restart R, and try again.</li>
 <li>Render the document to an HTML and open it in a browser. Explore the rendered document. What elements does it include that are not typical for R Markdown documents?</li>
 <li>Now go and look at the .Rmd file. Find the spots where these new elements are specified in the R Markdown file. How are elements like margin plots and all caps at the starts of some paragraphs included in the document?</li>
+<li>Download and install the <code>rticles</code> package. Create a new document using the template for <em>The R Journal</em>. When you do that, a whole directory will be copied to your current working directory. Check out the files in that directory. If you have a version of TeX installed on your computer, try compiling the example file.</li>
+<li>Select three or four key journals in your field. Go to the journal’s website and see if you can figure out:
+<ul>
+<li>Do they allow authors to submit “.tex” files?</li>
+<li>If so, do they provide a LaTeX style file for their journal?</li>
+</ul></li>
 </ul>
 </div>
 <div id="organizing-a-project" class="section level3">
@@ -491,7 +497,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>R</code></li>
 <li><code>writing</code></li>
 </ul></li>
-<li>The <code>data-raw</code> directory will have your raw data as well as some R scripts (“.R”) with code for cleaning up the raw data. The homework requires you to pull FARS data from several years. We’ll create a subdirectory in <code>data-raw</code> that will just have that data. In the “Files” pane in RStudio, navigate into the <code>data-raw</code> subdirectory. Use the “New Folder” button to create a new subdirectory within the <code>data-raw</code> subdirectory. Name it <code>yearly_person_data</code>.</li>
+<li>The <code>data-raw</code> directory will ultimately have your raw data as well as some R scripts with code for cleaning up the raw data. The homework requires you to pull FARS data from several years. Create a subdirectory in <code>data-raw</code> that will just have that data. In the “Files” pane in RStudio, navigate into the <code>data-raw</code> subdirectory. Use the “New Folder” button to create a new subdirectory within the <code>data-raw</code> subdirectory. Name it <code>yearly_person_data</code>.</li>
 <li>Download FARS data from the years 1999 to 2010. From each year, pull out the “person” file. Save these yearly “person” files in the <code>yearly_person_data</code> subdirectory you created. As a file name, use “person_” and then the year. For example, if you are saving this file for 1999 in the form of a csv, you would name the file “person_1999.csv”.</li>
 <li>The <code>writing</code> subdirectory will have your R Markdown file and its output. Create a new R Markdown file (“File” -&gt; “New File” -&gt; “R Markdown”) and save it to this subdirectory. You can change the name and date for the file if you’d like. Delete all the text that comes as a default. Write a piece of code that lists the files you saved in <code>data-raw/yearly_person_data</code>. Remember that the working directory for an R Markdown file is the directory in which it’s saved, so you’ll need to use a relative pathname that goes up one directory (<code>..</code>) and then goes into <code>data-raw</code> and <code>yearly_person_data</code>.</li>
 <li>If you have time, go to the <a href="https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812316">FARS documentation</a> and find out more about which variables are included in this data set and which values they can have.</li>

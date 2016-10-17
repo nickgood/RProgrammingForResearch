@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 1.00\\
+a & 1.78\\
 \hline
-b & 0.15\\
+b & -1.02\\
 \hline
-c & 1.22\\
+c & 0.02\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X             Y          Z
-## 1 2009-01-01 0.5544887  0.0006445481  0.2639765
-## 2 2009-01-02 0.2487938 -1.2761624699 -4.6602022
-## 3 2009-01-03 1.0190118 -0.3456462371 -0.4407474
+##         time          X          Y          Z
+## 1 2009-01-01  0.4417362 -0.1682369 -4.2200271
+## 2 2009-01-02 -1.3954303  0.2820184  5.2108777
+## 3 2009-01-03 -0.8697111  0.7947322  0.5743067
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X             Y          Z
-## 1 2009-01-01 0.5544887  0.0006445481  0.2639765
-## 2 2009-01-02 0.2487938 -1.2761624699 -4.6602022
-## 3 2009-01-03 1.0190118 -0.3456462371 -0.4407474
+##         time          X          Y          Z
+## 1 2009-01-01  0.4417362 -0.1682369 -4.2200271
+## 2 2009-01-02 -1.3954303  0.2820184  5.2108777
+## 3 2009-01-03 -0.8697111  0.7947322  0.5743067
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,12 +10098,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock     price
-## 1 2009-01-01     X 0.5544887
-## 2 2009-01-02     X 0.2487938
-## 3 2009-01-03     X 1.0190118
-## 4 2009-01-04     X 1.3525913
-## 5 2009-01-05     X 0.8671538
+##         time stock      price
+## 1 2009-01-01     X  0.4417362
+## 2 2009-01-02     X -1.3954303
+## 3 2009-01-03     X -0.8697111
+## 4 2009-01-04     X  1.1381325
+## 5 2009-01-05     X  0.5733248
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,12 +10117,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock     price
-## 1 2009-01-01     X 0.5544887
-## 2 2009-01-02     X 0.2487938
-## 3 2009-01-03     X 1.0190118
-## 4 2009-01-04     X 1.3525913
-## 5 2009-01-05     X 0.8671538
+##         time stock      price
+## 1 2009-01-01     X  0.4417362
+## 2 2009-01-02     X -1.3954303
+## 3 2009-01-03     X -0.8697111
+## 4 2009-01-04     X  1.1381325
+## 5 2009-01-05     X  0.5733248
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X             Y          Z
-## 1 2009-01-01 0.5544887  0.0006445481  0.2639765
-## 2 2009-01-02 0.2487938 -1.2761624699 -4.6602022
-## 3 2009-01-03 1.0190118 -0.3456462371 -0.4407474
-## 4 2009-01-04 1.3525913 -0.0527473330  2.8565050
-## 5 2009-01-05 0.8671538 -3.9562347997  5.6176736
+##         time          X          Y          Z
+## 1 2009-01-01  0.4417362 -0.1682369 -4.2200271
+## 2 2009-01-02 -1.3954303  0.2820184  5.2108777
+## 3 2009-01-03 -0.8697111  0.7947322  0.5743067
+## 4 2009-01-04  1.1381325 -0.1774964  0.6051824
+## 5 2009-01-05  0.5733248  1.6263266  6.7435016
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10210,9 +10210,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 × 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.4534009 0.7486022
-## 2     Y    10  0.6435893 2.6556952
-## 3     Z    10 -0.1302997 2.7660754
+## 1     X    10 -0.4246592 0.9755535
+## 2     Y    10  0.7529656 1.4601871
+## 3     Z    10  2.3578992 3.5289421
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.45 (0.75) & 0.64 (2.66) & -0.13 (2.77)\\
+Mean (Std.dev.) & -0.42 (0.98) & 0.75 (1.46) & 2.36 (3.53)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12893,7 +12893,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  0.44276347 -0.07118406
+##  0.20993771 -0.03008829
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13006,7 +13006,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -1.3347538  0.3079137  0.2150808
+## [1] -0.8509574 -1.4776017  1.0083491
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13025,7 +13025,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.2705864
+## [1] -0.44007
 ## 
 ## $c
 ## [1] NA
@@ -13046,7 +13046,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -1.334754
+## [1] -0.8509574
 ## 
 ## $c
 ## [1] "a"
@@ -13062,8 +13062,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                   a                   b                   c 
-##                 "1" "-1.33475383202424"                 "a"
+##                    a                    b                    c 
+##                  "1" "-0.850957407743729"                  "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -14396,6 +14396,24 @@ directory.
   elements are specified in the R Markdown file. How are elements like
   margin plots and all caps at the starts of some paragraphs included in
   the document?
+\item
+  Download and install the \texttt{rticles} package. Create a new
+  document using the template for \emph{The R Journal}. When you do
+  that, a whole directory will be copied to your current working
+  directory. Check out the files in that directory. If you have a
+  version of TeX installed on your computer, try compiling the example
+  file.
+\item
+  Select three or four key journals in your field. Go to the journal's
+  website and see if you can figure out:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Do they allow authors to submit ``.tex'' files?
+  \item
+    If so, do they provide a LaTeX style file for their journal?
+  \end{itemize}
 \end{itemize}
 
 \subsection{Organizing a project}\label{organizing-a-project}
@@ -14441,14 +14459,14 @@ project for your group project.
     \texttt{writing}
   \end{itemize}
 \item
-  The \texttt{data-raw} directory will have your raw data as well as
-  some R scripts (``.R'') with code for cleaning up the raw data. The
-  homework requires you to pull FARS data from several years. We'll
-  create a subdirectory in \texttt{data-raw} that will just have that
-  data. In the ``Files'' pane in RStudio, navigate into the
-  \texttt{data-raw} subdirectory. Use the ``New Folder'' button to
-  create a new subdirectory within the \texttt{data-raw} subdirectory.
-  Name it \texttt{yearly\_person\_data}.
+  The \texttt{data-raw} directory will ultimately have your raw data as
+  well as some R scripts with code for cleaning up the raw data. The
+  homework requires you to pull FARS data from several years. Create a
+  subdirectory in \texttt{data-raw} that will just have that data. In
+  the ``Files'' pane in RStudio, navigate into the \texttt{data-raw}
+  subdirectory. Use the ``New Folder'' button to create a new
+  subdirectory within the \texttt{data-raw} subdirectory. Name it
+  \texttt{yearly\_person\_data}.
 \item
   Download FARS data from the years 1999 to 2010. From each year, pull
   out the ``person'' file. Save these yearly ``person'' files in the
