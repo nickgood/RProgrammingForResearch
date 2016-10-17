@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.36\\
+a & -1.51\\
 \hline
-b & 0.17\\
+b & 0.80\\
 \hline
-c & -0.99\\
+c & 0.26\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.2259367 -0.5085004  5.700083
-## 2 2009-01-02 -0.5615761 -1.2368012  8.842539
-## 3 2009-01-03  1.0919286  1.2528773 -3.308943
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2817617  4.776356 -7.574521
+## 2 2009-01-02  0.1399526 -1.127237 -4.354170
+## 3 2009-01-03 -1.7486998 -4.304850  7.244213
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.2259367 -0.5085004  5.700083
-## 2 2009-01-02 -0.5615761 -1.2368012  8.842539
-## 3 2009-01-03  1.0919286  1.2528773 -3.308943
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2817617  4.776356 -7.574521
+## 2 2009-01-02  0.1399526 -1.127237 -4.354170
+## 3 2009-01-03 -1.7486998 -4.304850  7.244213
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10099,11 +10099,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.2259367
-## 2 2009-01-02     X -0.5615761
-## 3 2009-01-03     X  1.0919286
-## 4 2009-01-04     X -0.3989625
-## 5 2009-01-05     X  0.7585382
+## 1 2009-01-01     X -1.2817617
+## 2 2009-01-02     X  0.1399526
+## 3 2009-01-03     X -1.7486998
+## 4 2009-01-04     X -0.8275885
+## 5 2009-01-05     X -0.9663334
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10118,11 +10118,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.2259367
-## 2 2009-01-02     X -0.5615761
-## 3 2009-01-03     X  1.0919286
-## 4 2009-01-04     X -0.3989625
-## 5 2009-01-05     X  0.7585382
+## 1 2009-01-01     X -1.2817617
+## 2 2009-01-02     X  0.1399526
+## 3 2009-01-03     X -1.7486998
+## 4 2009-01-04     X -0.8275885
+## 5 2009-01-05     X -0.9663334
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.2259367 -0.5085004  5.700083
-## 2 2009-01-02 -0.5615761 -1.2368012  8.842539
-## 3 2009-01-03  1.0919286  1.2528773 -3.308943
-## 4 2009-01-04 -0.3989625  4.6852630 -4.428764
-## 5 2009-01-05  0.7585382 -2.6501204 -4.646879
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2817617  4.776356 -7.574521
+## 2 2009-01-02  0.1399526 -1.127237 -4.354170
+## 3 2009-01-03 -1.7486998 -4.304850  7.244213
+## 4 2009-01-04 -0.8275885 -1.566109  2.491677
+## 5 2009-01-05 -0.9663334 -2.733678 -1.483235
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.5759133 0.7079146
-## 2     Y    10 -0.3400682 2.7965569
-## 3     Z    10  0.2881280 5.0513696
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10 -0.78020267 0.7427651
+## 2     Y    10 -0.01189882 3.0032333
+## 3     Z    10  0.48587643 4.8693704
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.58 (0.71) & -0.34 (2.8) & 0.29 (5.05)\\
+Mean (Std.dev.) & -0.78 (0.74) & -0.01 (3) & 0.49 (4.87)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12893,7 +12893,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  0.19029755 -0.02373599
+## -0.49465817  0.04897806
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13006,7 +13006,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.5326713 -0.6134460 -0.9279719
+## [1] -1.2601469 -1.7643629 -0.7792018
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13025,7 +13025,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.6913631
+## [1] -1.267904
 ## 
 ## $c
 ## [1] NA
@@ -13046,7 +13046,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.5326713
+## [1] -1.260147
 ## 
 ## $c
 ## [1] "a"
@@ -13062,8 +13062,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                    a                    b                    c 
-##                  "1" "-0.532671289496876"                  "a"
+##                   a                   b                   c 
+##                 "1" "-1.26014689685039"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -13913,6 +13913,28 @@ If you have time, you can try some exercises with mapping.
   look like this:
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state_fips <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"http://www2.census.gov/geo/docs/reference/state.txt"}\NormalTok{,}
+                         \DataTypeTok{delim =} \StringTok{"|"}\NormalTok{) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =} \NormalTok{STATE,}
+                \DataTypeTok{state_name =} \NormalTok{STATE_NAME) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{select}\NormalTok{(state, state_name) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state =} \KeywordTok{as.integer}\NormalTok{(state))}
+
+\NormalTok{accident <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/accident.csv"}\NormalTok{) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{select}\NormalTok{(STATE, LATITUDE, LONGITUD, DRUNK_DR) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =} \NormalTok{STATE,}
+                \DataTypeTok{lat =} \NormalTok{LATITUDE,}
+                \DataTypeTok{long =} \NormalTok{LONGITUD,}
+                \DataTypeTok{drunk_dr =} \NormalTok{DRUNK_DR) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \NormalTok{drunk_dr >}\StringTok{ }\DecValTok{0}\NormalTok{) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{left_join}\NormalTok{(state_fips, }\DataTypeTok{by =} \StringTok{"state"}\NormalTok{) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{select}\NormalTok{(-state)}
+\NormalTok{accident %>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 ## # A tibble: 5 × 4
 ##        lat      long drunk_dr state_name
@@ -13935,6 +13957,18 @@ If you have time, you can try some exercises with mapping.
   you are done cleaning:
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state_summaries <-}\StringTok{ }\NormalTok{accident %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{group_by}\NormalTok{(state_name) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{summarize_}\NormalTok{(}\DataTypeTok{n =} \NormalTok{~}\StringTok{ }\KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{perc_drunk_dr =} \NormalTok{~}\StringTok{ }\DecValTok{100} \NormalTok{*}\StringTok{ }\KeywordTok{mean}\NormalTok{(drunk_dr)) }\CommentTok{# Because `drunk_dr` is }
+                                            \CommentTok{# 0 / 1, the mean is the percent of }
+                                            \CommentTok{# values where `drunk_dr` == 1.}
+\NormalTok{state_summaries %>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 ## # A tibble: 5 × 3
 ##   state_name     n perc_drunk_dr
@@ -13955,22 +13989,71 @@ If you have time, you can try some exercises with mapping.
   with the \texttt{choroplethr} package.
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# With `choroplethr` package}
+\KeywordTok{library}\NormalTok{(choroplethr)}
+\NormalTok{state_summaries %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state_name =} \KeywordTok{str_to_lower}\NormalTok{(state_name)) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{region =} \NormalTok{state_name,}
+                \DataTypeTok{value =} \NormalTok{n) %>%}
+\StringTok{  }\KeywordTok{state_choropleth}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Fatal accidents by state, 2015"}\NormalTok{,}
+                   \DataTypeTok{legend =} \StringTok{"# of fatal accidents"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-484-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state_summaries %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state_name =} \KeywordTok{str_to_lower}\NormalTok{(state_name)) %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{region =} \NormalTok{state_name,}
+                \DataTypeTok{value =} \NormalTok{perc_drunk_dr) %>%}
+\StringTok{  }\KeywordTok{state_choropleth}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Percent of fatal accidents linked}\CharTok{\textbackslash{}n}\StringTok{to drunk driving, 2015"}\NormalTok{,}
+                   \DataTypeTok{legend =} \StringTok{"% of fatal accidents}\CharTok{\textbackslash{}n}\StringTok{linked to drunk driving"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-484-2.pdf}
 
 \begin{itemize}
+\tightlist
 \item
   Now, you will be using the latitude and longitude of each accident to
   plot accident locations within a state. Check if the columns for
   latitude and longitude need more cleaning (spoiler alert--- they do).
   Filter out any values that could not reasonably be within the 50 U.S.
   states and D.C.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# It turns out that values like 77.7777, 88.8888, and 99.9999 are used as }
+\CommentTok{# missing values of latitude (similar for 777.777, etc., for longitude)}
+\NormalTok{accident <-}\StringTok{ }\NormalTok{accident %>%}
+\StringTok{  }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(lat <}\StringTok{ }\DecValTok{75} \NormalTok{&}\StringTok{ }\NormalTok{long <}\StringTok{ }\DecValTok{777}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
 \item
   Map the locations of fatal accidents in Texas in 2015 on top of a
   Google Map base map that shows major roads. An example map is shown
   below. (\emph{Hint:} Use the \texttt{get\_map} and \texttt{ggmap}
   functions for this part.)
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texas <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\DataTypeTok{location =} \StringTok{"texas"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{6}\NormalTok{, }\DataTypeTok{maptype =} \StringTok{"roadmap"}\NormalTok{)}
+\KeywordTok{ggmap}\NormalTok{(texas, }\DataTypeTok{extent =} \StringTok{"device"}\NormalTok{) +}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(accident, state_name ==}\StringTok{ "Texas"}\NormalTok{), }
+             \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat), }\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{,}
+             \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-486-1.pdf}
 
@@ -13986,8 +14069,35 @@ If you have time, you can try some exercises with mapping.
   to TRUE) with points for all fatal accidents in the state. Use
   \texttt{map\_data} and create the map yourself, rather than using
   \texttt{choroplethr} for this question. Examples of calling this
-  function are shown below.
+  function are shown below the function definition.
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_fatal_accidents <-}\StringTok{ }\NormalTok{function(}\DataTypeTok{datafr =} \NormalTok{accident, which_state,}
+                                \DataTypeTok{drunk_dr =} \OtherTok{FALSE}\NormalTok{)\{}
+  \NormalTok{state_accidents <-}\StringTok{ }\NormalTok{datafr %>%}
+\StringTok{    }\NormalTok{dplyr::}\KeywordTok{filter}\NormalTok{(state_name ==}\StringTok{ }\NormalTok{which_state)}
+  \NormalTok{state_map_data <-}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{map_data}\NormalTok{(}\StringTok{"county"}\NormalTok{, }\DataTypeTok{region =} \NormalTok{which_state)}
+  
+  \NormalTok{accident_map <-}\StringTok{ }\NormalTok{ggplot2::}\KeywordTok{ggplot}\NormalTok{(state_map_data,}
+                                  \NormalTok{ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }
+                                               \DataTypeTok{group =} \NormalTok{subregion)) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{) +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{theme_void}\NormalTok{() +}\StringTok{ }
+\StringTok{    }\NormalTok{ggplot2::}\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \NormalTok{state_accidents, }
+                        \NormalTok{ggplot2::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{long, }\DataTypeTok{y =} \NormalTok{lat, }\DataTypeTok{group =} \OtherTok{NULL}\NormalTok{),}
+                        \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.7} \NormalTok{)}
+  
+  \NormalTok{if(drunk_dr)\{}
+    \NormalTok{accident_map <-}\StringTok{ }\NormalTok{accident_map +}\StringTok{ }
+\StringTok{      }\NormalTok{ggplot2::}\KeywordTok{facet_wrap}\NormalTok{(~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+  \NormalTok{\}}
+  
+  \KeywordTok{return}\NormalTok{(accident_map)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
