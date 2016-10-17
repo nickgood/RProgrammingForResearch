@@ -456,7 +456,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##  -0.7954769   0.1691865</code></pre>
+##  0.07555741 -0.04698340</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -506,7 +506,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.5876506 -1.3574039  0.2875290
+## [1]  0.1862297  2.7888983 -0.8716025
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -516,7 +516,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] -0.5525085
+## [1] 0.7011752
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -526,14 +526,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] -0.5876506
+## [1] 0.1862297
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                    a                    b                    c 
-##                  &quot;1&quot; &quot;-0.587650622051618&quot;                  &quot;a&quot;</code></pre>
+<pre><code>##                   a                   b                   c 
+##                 &quot;1&quot; &quot;0.186229739090581&quot;                 &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest way to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>

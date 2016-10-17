@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 1.78\\
+a & 0.95\\
 \hline
-b & -1.02\\
+b & -1.09\\
 \hline
-c & 0.02\\
+c & 0.71\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.4417362 -0.1682369 -4.2200271
-## 2 2009-01-02 -1.3954303  0.2820184  5.2108777
-## 3 2009-01-03 -0.8697111  0.7947322  0.5743067
+##         time          X          Y         Z
+## 1 2009-01-01 -2.0462600  0.7008742  3.391660
+## 2 2009-01-02  1.0651303  1.4689723 -3.922190
+## 3 2009-01-03  0.4696001 -3.2778340  5.910715
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.4417362 -0.1682369 -4.2200271
-## 2 2009-01-02 -1.3954303  0.2820184  5.2108777
-## 3 2009-01-03 -0.8697111  0.7947322  0.5743067
+##         time          X          Y         Z
+## 1 2009-01-01 -2.0462600  0.7008742  3.391660
+## 2 2009-01-02  1.0651303  1.4689723 -3.922190
+## 3 2009-01-03  0.4696001 -3.2778340  5.910715
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10099,11 +10099,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.4417362
-## 2 2009-01-02     X -1.3954303
-## 3 2009-01-03     X -0.8697111
-## 4 2009-01-04     X  1.1381325
-## 5 2009-01-05     X  0.5733248
+## 1 2009-01-01     X -2.0462600
+## 2 2009-01-02     X  1.0651303
+## 3 2009-01-03     X  0.4696001
+## 4 2009-01-04     X  2.3723642
+## 5 2009-01-05     X -0.7358570
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10118,11 +10118,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.4417362
-## 2 2009-01-02     X -1.3954303
-## 3 2009-01-03     X -0.8697111
-## 4 2009-01-04     X  1.1381325
-## 5 2009-01-05     X  0.5733248
+## 1 2009-01-01     X -2.0462600
+## 2 2009-01-02     X  1.0651303
+## 3 2009-01-03     X  0.4696001
+## 4 2009-01-04     X  2.3723642
+## 5 2009-01-05     X -0.7358570
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10179,11 +10179,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01  0.4417362 -0.1682369 -4.2200271
-## 2 2009-01-02 -1.3954303  0.2820184  5.2108777
-## 3 2009-01-03 -0.8697111  0.7947322  0.5743067
-## 4 2009-01-04  1.1381325 -0.1774964  0.6051824
-## 5 2009-01-05  0.5733248  1.6263266  6.7435016
+## 1 2009-01-01 -2.0462600  0.7008742  3.3916599
+## 2 2009-01-02  1.0651303  1.4689723 -3.9221901
+## 3 2009-01-03  0.4696001 -3.2778340  5.9107146
+## 4 2009-01-04  2.3723642 -1.4326879  2.0151534
+## 5 2009-01-05 -0.7358570 -1.2908137 -0.2272249
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 -0.4246592 0.9755535
-## 2     Y    10  0.7529656 1.4601871
-## 3     Z    10  2.3578992 3.5289421
+##   stock     N      mean       sd
+##   <chr> <int>     <dbl>    <dbl>
+## 1     X    10 0.3784142 1.449361
+## 2     Y    10 0.3912556 1.831647
+## 3     Z    10 1.0825672 2.851772
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.42 (0.98) & 0.75 (1.46) & 2.36 (3.53)\\
+Mean (Std.dev.) & 0.38 (1.45) & 0.39 (1.83) & 1.08 (2.85)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12448,17 +12448,19 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   and explore the interactive visualization created by Max Galka using
   this public dataset on US fatal motor vehicle accidents.
 \item
-  Go to \href{http://www.nhtsa.gov/FARS}{FARS web page} to find and
-  download the data for this week's exercise. We want to get the raw
-  data on fatal accidents. Navigate this page to figure out how you can
-  get this raw data for the whole county for 2015. Download the 2015
-  data to your computer. What is the structure of how this data is saved
-  (e.g., directory structure, file structure)?
+  Go to
+  \href{http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)}{FARS
+  web page} to find and download the data for this week's exercise. We
+  want to get the raw data on fatal accidents. Navigate this page to
+  figure out how you can get this raw data for the whole county for
+  2015. Download the 2015 data to your computer. What is the structure
+  of how this data is saved (e.g., directory structure, file structure)?
 \item
-  On the \href{http://www.nhtsa.gov/FARS}{FARS web page}, find the
-  documentation describing this raw data. Look through both this
-  documentation and the raw files you downloaded to figure out what
-  information is included in the data.
+  On the
+  \href{http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)}{FARS
+  web page}, find the documentation describing this raw data. Look
+  through both this documentation and the raw files you downloaded to
+  figure out what information is included in the data.
 \item
   Read the \texttt{accident.csv} file for 2015 into R (this is one of
   the files you'll get if you download the raw data for 2015). Use the
@@ -12892,8 +12894,8 @@ a regression is often stored as a list:
 \end{Shaded}
 
 \begin{verbatim}
-## (Intercept)     c(1:10) 
-##  0.20993771 -0.03008829
+##  (Intercept)      c(1:10) 
+## -0.003085402 -0.079894553
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13006,7 +13008,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.8509574 -1.4776017  1.0083491
+## [1]  0.3491467 -1.8543776  0.9717668
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13025,7 +13027,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.44007
+## [1] -0.1778214
 ## 
 ## $c
 ## [1] NA
@@ -13046,7 +13048,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.8509574
+## [1] 0.3491467
 ## 
 ## $c
 ## [1] "a"
@@ -13062,8 +13064,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                    a                    b                    c 
-##                  "1" "-0.850957407743729"                  "a"
+##                   a                   b                   c 
+##                 "1" "0.349146665893719"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
