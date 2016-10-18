@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-17">
+<meta name="date" content="2016-10-18">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -547,7 +547,7 @@ my_df</code></pre></div>
 <p>However, you can use this same looping process for much more complex tasks that you can’t do as easily with <code>apply</code> or <code>dplyr</code> tools.</p>
 <p>Loops can be very useful for more complex repeated tasks. For example:</p>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-360-1.png" width="576" /></p>
-<p>Creating this graph requires:</p>
+<p>Creating this graph requires that you:</p>
 <ul>
 <li>Create a subset limited to each of the four positions</li>
 <li>Fit a Poisson regression of Passes on Time within each subset</li>
@@ -556,7 +556,7 @@ my_df</code></pre></div>
 <li>Convert everything from log relative rate to relative rate</li>
 <li>Plot everything</li>
 </ul>
-<p>Create a vector with the names of all positions. Create an empty dataframe to store regression results.</p>
+<p>Create a vector with the names of all positions. Create an empty dataframe to store regression results:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(positions &lt;-<span class="st"> </span><span class="kw">unique</span>(worldcup$Position))</code></pre></div>
 <pre><code>## [1] Midfielder Defender   Forward    Goalkeeper
 ## Levels: Defender Forward Goalkeeper Midfielder</code></pre>
@@ -567,7 +567,7 @@ my_df</code></pre></div>
 ## 2   Defender  NA NA
 ## 3    Forward  NA NA
 ## 4 Goalkeeper  NA NA</code></pre>
-<p>Loop through and fit a Poisson regression model for each subset of data. Save regression coefficients in the empty dataframe.</p>
+<p>Loop through and fit a Poisson regression model for each subset of data. Save regression coefficients in the empty dataframe:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(pos_est)){
         pos_df &lt;-<span class="st"> </span>worldcup %&gt;%
 <span class="st">          </span><span class="kw">filter</span>(Position ==<span class="st"> </span>positions[i]) 
@@ -581,7 +581,7 @@ pos_est[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div
 <pre><code>##     position         est           se
 ## 1 Midfielder 0.004716096 4.185925e-05
 ## 2   Defender 0.004616260 5.192736e-05</code></pre>
-<p>Calculate 95% confidence intervals for log relative risk values.</p>
+<p>Calculate 95% confidence intervals for log relative risk values:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span>pos_est %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lower_ci =</span> est -<span class="st"> </span><span class="fl">1.96</span> *<span class="st"> </span>se,
          <span class="dt">upper_ci =</span> est +<span class="st"> </span><span class="fl">1.96</span> *<span class="st"> </span>se)
@@ -593,7 +593,7 @@ pos_est %&gt;%
 ## 2   Defender 0.004616260 0.004514483 0.004718038
 ## 3    Forward 0.005299009 0.005158945 0.005439074
 ## 4 Goalkeeper 0.003101124 0.002770562 0.003431687</code></pre>
-<p>Calculate relative risk per 90 minute increase in minutes played.</p>
+<p>Calculate relative risk per 90 minute increase in minutes played:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span>pos_est %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rr_est =</span> <span class="kw">exp</span>(<span class="dv">90</span> *<span class="st"> </span>est),
          <span class="dt">rr_low =</span> <span class="kw">exp</span>(<span class="dv">90</span> *<span class="st"> </span>lower_ci),
@@ -605,7 +605,7 @@ pos_est %&gt;%
 ## 2   Defender 1.515073 1.501258 1.529015
 ## 3    Forward 1.611090 1.590908 1.631527
 ## 4 Goalkeeper 1.321941 1.283192 1.361861</code></pre>
-<p>Re-level the <code>position</code> factor so the plot will be ordered from highest to lowest estimates.</p>
+<p>Re-level the <code>position</code> factor so the plot will be ordered from highest to lowest estimates:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span><span class="kw">arrange</span>(pos_est, rr_est) %&gt;%
 <span class="st">        </span><span class="kw">mutate</span>(<span class="dt">position =</span> <span class="kw">factor</span>(position,
                                  <span class="dt">levels =</span> position))
@@ -632,7 +632,7 @@ pos_est %&gt;%<span class="st"> </span><span class="kw">select</span>(position, 
 <div id="if-else-loops" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> if / else loops</h3>
 <p>There are other control structures you can use in your R code. Two that you will commonly use within R functions are <code>if</code> and <code>ifelse</code> statements. </p>
-<p>An <code>if</code> statement tells R that, <strong>if</strong> a certain condition is true, <strong>do</strong> run some code. For example, if you wanted to print out only odd numbers between 1 and 5, one way to do that is with an <code>if</code> statement:</p>
+<p>An <code>if</code> statement tells R that, <strong>if</strong> a certain condition is true, <strong>do</strong> run some code. For example, if you wanted to print out only odd numbers between 1 and 5, one way to do that is with an <code>if</code> statement: (Note: the <code>%%</code> operator in R returns the remainder of the first value (i) divided by the second value (2).)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">5</span>){
   if(i %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">1</span>){
     <span class="kw">print</span>(i)
@@ -728,7 +728,7 @@ while(my_sum &lt;<span class="st"> </span><span class="dv">10</span>){
 <p>Advantages of writing functions include:</p>
 <ul>
 <li>Coding is more efficient</li>
-<li>Easier to change your code (if you’ve cut and paste code and you want to change something, you have to change it everywhere)</li>
+<li>Easier to change your code (if you’ve cut and paste code and you want to change something, you have to change it everywhere - this is an easy way to accidentally create bugs in your code)</li>
 <li>Easier to share code with others</li>
 </ul>
 <p>You can name a function anything you want (although try to avoid names of preexisting-existing functions). You then define any inputs (arguments; separate multiple arguments with commas) and put the code to run in braces:</p>
@@ -904,7 +904,7 @@ str_extract(string = [vector you want to check],
 ## 1                             Braund, Mr. Owen Harris   Mr.
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)  Mrs.
 ## 3                              Heikkinen, Miss. Laina  &lt;NA&gt;</code></pre>
-<p>Note that this pattern uses a special operator (<code>|</code>) to find one pattern <strong>or</strong> another. Double backslashs (<code>\\</code>) <strong>escape</strong> the special character “.”.</p>
+<p>Note that this pattern uses a special operator (<code>|</code>) to find one pattern <strong>or</strong> another. Double backslashes (<code>\\</code>) <strong>escape</strong> the special character “.”.</p>
 <p>As a note, in regular expressions, all of the following characters are special characters that need to be escaped with backslashes if you want to use them literally:</p>
 <pre><code>. * + ^ ? $ \ | ( ) [ ] { }</code></pre>
 <p>Notice that “Mr.” and “Mrs.” both start with “Mr”, end with “.”, and may or may not have an “s” in between.</p>
@@ -974,7 +974,7 @@ str_extract(string = [vector you want to check],
 ## 3    Mrs   125
 ## 4 Master    40
 ## 5     Dr     7</code></pre>
-<p>The following slides have a few other examples of regular expressions in action with this dataset. </p>
+<p>Here are a few other examples of regular expressions in action with this dataset. </p>
 <p>Get just names that start with (“^”) the letter “A”:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;^A&quot;</span>)) %&gt;%
@@ -1156,7 +1156,7 @@ accident %&gt;%<span class="st"> </span>
 </ul>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-412-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Write a loop to create a plot like the one you just made for Colorado for four different states– Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
+<li>Write a loop to create a plot like the one you just made for Colorado for four different states – Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
 </ul>
 <div id="example-r-code-11" class="section level4">
 <h4><span class="header-section-number">7.6.2.1</span> Example R code</h4>

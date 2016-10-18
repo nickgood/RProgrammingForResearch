@@ -92,7 +92,7 @@
 
 \title{R Programming for Research\\\vspace{0.5em}{\large Colorado State University, ERHS 535}}
 \author{Brooke Anderson and Rachel Severson}
-\date{2016-10-17}
+\date{2016-10-18}
 \usepackage{booktabs}
 
 \usepackage{longtable}
@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.95\\
+a & -0.43\\
 \hline
-b & -1.09\\
+b & 1.22\\
 \hline
-c & 0.71\\
+c & 1.71\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -2.0462600  0.7008742  3.391660
-## 2 2009-01-02  1.0651303  1.4689723 -3.922190
-## 3 2009-01-03  0.4696001 -3.2778340  5.910715
+##         time         X         Y         Z
+## 1 2009-01-01 0.6006223 0.1246978  5.840111
+## 2 2009-01-02 0.8974727 1.2350591 -3.406522
+## 3 2009-01-03 0.7784234 0.2183621 -1.489170
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -2.0462600  0.7008742  3.391660
-## 2 2009-01-02  1.0651303  1.4689723 -3.922190
-## 3 2009-01-03  0.4696001 -3.2778340  5.910715
+##         time         X         Y         Z
+## 1 2009-01-01 0.6006223 0.1246978  5.840111
+## 2 2009-01-02 0.8974727 1.2350591 -3.406522
+## 3 2009-01-03 0.7784234 0.2183621 -1.489170
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10099,11 +10099,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -2.0462600
-## 2 2009-01-02     X  1.0651303
-## 3 2009-01-03     X  0.4696001
-## 4 2009-01-04     X  2.3723642
-## 5 2009-01-05     X -0.7358570
+## 1 2009-01-01     X  0.6006223
+## 2 2009-01-02     X  0.8974727
+## 3 2009-01-03     X  0.7784234
+## 4 2009-01-04     X -0.6186619
+## 5 2009-01-05     X  1.2130847
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10118,11 +10118,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -2.0462600
-## 2 2009-01-02     X  1.0651303
-## 3 2009-01-03     X  0.4696001
-## 4 2009-01-04     X  2.3723642
-## 5 2009-01-05     X -0.7358570
+## 1 2009-01-01     X  0.6006223
+## 2 2009-01-02     X  0.8974727
+## 3 2009-01-03     X  0.7784234
+## 4 2009-01-04     X -0.6186619
+## 5 2009-01-05     X  1.2130847
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10179,11 +10179,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01 -2.0462600  0.7008742  3.3916599
-## 2 2009-01-02  1.0651303  1.4689723 -3.9221901
-## 3 2009-01-03  0.4696001 -3.2778340  5.9107146
-## 4 2009-01-04  2.3723642 -1.4326879  2.0151534
-## 5 2009-01-05 -0.7358570 -1.2908137 -0.2272249
+## 1 2009-01-01  0.6006223  0.1246978  5.8401108
+## 2 2009-01-02  0.8974727  1.2350591 -3.4065223
+## 3 2009-01-03  0.7784234  0.2183621 -1.4891696
+## 4 2009-01-04 -0.6186619  1.7514550  0.8653787
+## 5 2009-01-05  1.2130847 -1.4197006  5.0378601
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N      mean       sd
-##   <chr> <int>     <dbl>    <dbl>
-## 1     X    10 0.3784142 1.449361
-## 2     Y    10 0.3912556 1.831647
-## 3     Z    10 1.0825672 2.851772
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.2250185 0.8123735
+## 2     Y    10 -0.2698139 1.4561814
+## 3     Z    10  2.6150536 5.2299871
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.38 (1.45) & 0.39 (1.83) & 1.08 (2.85)\\
+Mean (Std.dev.) & 0.23 (0.81) & -0.27 (1.46) & 2.62 (5.23)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11351,7 +11351,7 @@ Loops can be very useful for more complex repeated tasks. For example:
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-360-1.pdf}
 
-Creating this graph requires:
+Creating this graph requires that you:
 
 \begin{itemize}
 \tightlist
@@ -11370,7 +11370,7 @@ Creating this graph requires:
 \end{itemize}
 
 Create a vector with the names of all positions. Create an empty
-dataframe to store regression results.
+dataframe to store regression results:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11399,7 +11399,7 @@ dataframe to store regression results.
 \end{verbatim}
 
 Loop through and fit a Poisson regression model for each subset of data.
-Save regression coefficients in the empty dataframe.
+Save regression coefficients in the empty dataframe:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11422,7 +11422,7 @@ Save regression coefficients in the empty dataframe.
 ## 2   Defender 0.004616260 5.192736e-05
 \end{verbatim}
 
-Calculate 95\% confidence intervals for log relative risk values.
+Calculate 95\% confidence intervals for log relative risk values:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11443,7 +11443,7 @@ Calculate 95\% confidence intervals for log relative risk values.
 ## 4 Goalkeeper 0.003101124 0.002770562 0.003431687
 \end{verbatim}
 
-Calculate relative risk per 90 minute increase in minutes played.
+Calculate relative risk per 90 minute increase in minutes played:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11465,7 +11465,7 @@ Calculate relative risk per 90 minute increase in minutes played.
 \end{verbatim}
 
 Re-level the \texttt{position} factor so the plot will be ordered from
-highest to lowest estimates.
+highest to lowest estimates:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11513,7 +11513,8 @@ you will commonly use within R functions are \texttt{if} and
 An \texttt{if} statement tells R that, \textbf{if} a certain condition
 is true, \textbf{do} run some code. For example, if you wanted to print
 out only odd numbers between 1 and 5, one way to do that is with an
-\texttt{if} statement:
+\texttt{if} statement: (Note: the \texttt{\%\%} operator in R returns
+the remainder of the first value (i) divided by the second value (2).)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11704,7 +11705,8 @@ Advantages of writing functions include:
   Coding is more efficient
 \item
   Easier to change your code (if you've cut and paste code and you want
-  to change something, you have to change it everywhere)
+  to change something, you have to change it everywhere - this is an
+  easy way to accidentally create bugs in your code)
 \item
   Easier to share code with others
 \end{itemize}
@@ -12135,7 +12137,7 @@ find ``Mr.'' or ``Mrs.'':
 \end{verbatim}
 
 Note that this pattern uses a special operator (\texttt{\textbar{}}) to
-find one pattern \textbf{or} another. Double backslashs
+find one pattern \textbf{or} another. Double backslashes
 (\texttt{\textbackslash{}\textbackslash{}}) \textbf{escape} the special
 character ``.''.
 
@@ -12294,8 +12296,8 @@ Here are some of the most common titles:
 ## 5     Dr     7
 \end{verbatim}
 
-The following slides have a few other examples of regular expressions in
-action with this dataset. \bigskip
+Here are a few other examples of regular expressions in action with this
+dataset. \bigskip
 
 Get just names that start with (``\^{}'') the letter ``A'':
 
@@ -12617,12 +12619,12 @@ New York.
 \tightlist
 \item
   Write a loop to create a plot like the one you just made for Colorado
-  for four different states-- Colorado, Texas, California, and New York.
-  The code should write the plots out to a pdf, with one plot per page
-  of the pdf. (\emph{Hint}: To get a loop to print out a plot created
-  with ggplot, you must explicitly print the plot object. For example,
-  you could assign the plot to \texttt{a}, and then you would run
-  \texttt{print(a)} within your loop as the last step.)
+  for four different states -- Colorado, Texas, California, and New
+  York. The code should write the plots out to a pdf, with one plot per
+  page of the pdf. (\emph{Hint}: To get a loop to print out a plot
+  created with ggplot, you must explicitly print the plot object. For
+  example, you could assign the plot to \texttt{a}, and then you would
+  run \texttt{print(a)} within your loop as the last step.)
 \end{itemize}
 
 \subsubsection{Example R code}\label{example-r-code-11}
@@ -12736,6 +12738,9 @@ with the \texttt{byrow} function:
 ## [2,]    6    7    8    9   10
 \end{verbatim}
 
+In certain situations, you might want to work with a matrix instead of a
+data frame (for example, in cases where you were concerned about speed
+-- a matrix is more memory efficient than the corresponding data frame).
 If you want to convert a data frame to a matrix, you can use the
 \texttt{as.matrix} function:
 
@@ -12894,8 +12899,8 @@ a regression is often stored as a list:
 \end{Shaded}
 
 \begin{verbatim}
-##  (Intercept)      c(1:10) 
-## -0.003085402 -0.079894553
+## (Intercept)     c(1:10) 
+##  -0.5371681   0.1848041
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13008,7 +13013,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  0.3491467 -1.8543776  0.9717668
+## [1] -0.08102007 -0.96052047 -0.82732586
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13027,7 +13032,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.1778214
+## [1] -0.6229555
 ## 
 ## $c
 ## [1] NA
@@ -13048,7 +13053,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] 0.3491467
+## [1] -0.08102007
 ## 
 ## $c
 ## [1] "a"
@@ -13064,8 +13069,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                   a                   b                   c 
-##                 "1" "0.349146665893719"                 "a"
+##                    a                    b                    c 
+##                  "1" "-0.081020073076832"                  "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -13073,7 +13078,7 @@ to do similar things to other \texttt{apply} family functions using the
 tools in \texttt{dplyr}. \bigskip
 
 You should know that \texttt{apply} family functions take advantage of
-the matrix structure in R. This can be one of the fastest way to run
+the matrix structure in R. This can be one of the fastest ways to run
 code in R. It is usually a lot faster than doing the same things with
 loops. However, unless you are working with large data sets, you may not
 notice a difference, and ``tidyverse'' functions are usually comparable
@@ -13280,8 +13285,8 @@ Maryland counties.
 ## 3 -78.74159 39.57420     1     3 maryland  allegany
 \end{verbatim}
 
-From that, I subset out just rows where the \texttt{subregion} column
-was ``baltimore city'' or ``baltimore''.
+From that, I subset out rows where the \texttt{subregion} column was
+``baltimore city'' or ``baltimore''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13620,7 +13625,7 @@ For example, you can get the location of CSU:
 ## 1 -105.0807 40.57478
 \end{verbatim}
 
-You can also get a location by address through this:
+You can also get a location by address:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13675,7 +13680,7 @@ you to trim leading and trailing white space:
 ## [1] "a"     "bob"   "gamma"
 \end{verbatim}
 
-This is rarer, but if you ever want to, you can add leading and / or
+This is rarer, but if you ever want to, you can add leading and/or
 trailing white space to elements of a character vector with
 \texttt{str\_pad} from the \texttt{stringr} package.
 
@@ -13771,10 +13776,10 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
 \begin{itemize}
 \tightlist
 \item
-  In general, there is a pattern of more of the fatal accidents during
-  the daytime are unrelated to drunk driving versus related, while the
-  pattern is reversed for nighttime accidents. Use your function to see
-  if you can find any states that don't follow this pattern.
+  In general, there is a pattern of more fatal accidents during the
+  daytime being unrelated to drunk driving versus related. The pattern
+  is reversed for nighttime accidents. Use your function to see if you
+  can find any states that don't follow this pattern.
 \item
   So far, we have not covered error checking in functions. In the
   function that you just wrote, we are assuming that the user will never
@@ -13795,8 +13800,8 @@ plots}\label{writing-a-function-to-create-state-specific-plots}
   \texttt{lapply}), and regular expressions to create plots for all
   states that start with ``C''? That have ``North'' in their names?
   (\emph{Hint}: One way to get a list of states is from the
-  \texttt{accident} data frame, once you've joined in state names as a
-  column called \texttt{state\_name}:
+  \texttt{accident} data frame. Once you've joined in state names as a
+  column called \texttt{state\_name}, you can use:
   \texttt{unique(accident\$state\_name)}.)
 \end{itemize}
 
@@ -13910,7 +13915,7 @@ If you have time, you can try some exercises with mapping.
 \item
   Read in and clean up the FARS data and save it to an R object called
   \texttt{accident}. The \texttt{accident} data frame should include
-  location (longitude / latitude), state, and whether the accident
+  location (longitude and latitude), state, and whether the accident
   involved drunk driving. Once you're done cleaning, the dataset should
   look like this:
 \end{itemize}
@@ -14355,7 +14360,8 @@ RStudio allows you to create ``Projects'' to organize code, data, and
 results within a directory. When you create a project, RStudio adds a
 file with the extension ``.Rproj'' to the directory.
 
-Advantages of setting a directory to be an R Project are:
+There are some advantages to setting a directory to be an R Project. The
+project:
 
 \begin{itemize}
 \tightlist

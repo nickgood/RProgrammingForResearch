@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-17">
+<meta name="date" content="2016-10-18">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -400,7 +400,7 @@ foo</code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    1    2    3    4    5
 ## [2,]    6    7    8    9   10</code></pre>
-<p>If you want to convert a data frame to a matrix, you can use the <code>as.matrix</code> function:</p>
+<p>In certain situations, you might want to work with a matrix instead of a data frame (for example, in cases where you were concerned about speed – a matrix is more memory efficient than the corresponding data frame). If you want to convert a data frame to a matrix, you can use the <code>as.matrix</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col_1 =</span> <span class="dv">1</span>:<span class="dv">2</span>, <span class="dt">col_2 =</span> <span class="dv">3</span>:<span class="dv">4</span>,
                   <span class="dt">col_3 =</span> <span class="dv">5</span>:<span class="dv">6</span>, <span class="dt">col_4 =</span> <span class="dv">7</span>:<span class="dv">8</span>,
                   <span class="dt">col_5 =</span> <span class="dv">9</span>:<span class="dv">10</span>)
@@ -456,7 +456,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##  0.07555741 -0.04698340</code></pre>
+## -0.38896099  0.04914797</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -506,7 +506,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  0.1862297  2.7888983 -0.8716025
+## [1] -0.5612670  0.8983686 -1.4645502
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -516,7 +516,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] 0.7011752
+## [1] -0.3758162
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -526,16 +526,16 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] 0.1862297
+## [1] -0.561267
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                   a                   b                   c 
-##                 &quot;1&quot; &quot;0.186229739090581&quot;                 &quot;a&quot;</code></pre>
+<pre><code>##                    a                    b                    c 
+##                  &quot;1&quot; &quot;-0.561267015372288&quot;                  &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
-<p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest way to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
+<p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
 </div>
 <div id="point-maps" class="section level2">
@@ -622,7 +622,7 @@ us_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span clas
 ## 1 -78.64992 39.53982     1     1 maryland  allegany
 ## 2 -78.70148 39.55128     1     2 maryland  allegany
 ## 3 -78.74159 39.57420     1     3 maryland  allegany</code></pre>
-<p>From that, I subset out just rows where the <code>subregion</code> column was “baltimore city” or “baltimore”.</p>
+<p>From that, I subset out rows where the <code>subregion</code> column was “baltimore city” or “baltimore”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">baltimore &lt;-<span class="st"> </span><span class="kw">subset</span>(baltimore, 
                     subregion %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;baltimore city&quot;</span>,
                                      <span class="st">&quot;baltimore&quot;</span>))
@@ -754,7 +754,7 @@ serial_map &lt;-<span class="st"> </span><span class="kw">ggmap</span>(serial_ma
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">geocode</span>(<span class="st">&quot;Colorado State University&quot;</span>)</code></pre></div>
 <pre><code>##         lon      lat
 ## 1 -105.0807 40.57478</code></pre>
-<p>You can also get a location by address through this:</p>
+<p>You can also get a location by address:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">geocode</span>(<span class="st">&quot;1 First St NE, Washington, DC&quot;</span>)</code></pre></div>
 <pre><code>##         lon      lat
 ## 1 -77.00465 38.89051</code></pre>
@@ -773,7 +773,7 @@ with_spaces</code></pre></div>
 <pre><code>## [1] &quot;    a &quot; &quot;  bob&quot;  &quot; gamma&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_trim</span>(with_spaces)</code></pre></div>
 <pre><code>## [1] &quot;a&quot;     &quot;bob&quot;   &quot;gamma&quot;</code></pre>
-<p>This is rarer, but if you ever want to, you can add leading and / or trailing white space to elements of a character vector with <code>str_pad</code> from the <code>stringr</code> package.</p>
+<p>This is rarer, but if you ever want to, you can add leading and/or trailing white space to elements of a character vector with <code>str_pad</code> from the <code>stringr</code> package.</p>
 <p>There are also functions to change a full character string to uppercase, lowercase, or title case:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train$Name[<span class="dv">1</span>]</code></pre></div>
 <pre><code>## [1] &quot;Braund, Mr. Owen Harris&quot;</code></pre>
@@ -799,10 +799,10 @@ with_spaces</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">make_state_plot</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;Illinois&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-478-3.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
-<li>In general, there is a pattern of more of the fatal accidents during the daytime are unrelated to drunk driving versus related, while the pattern is reversed for nighttime accidents. Use your function to see if you can find any states that don’t follow this pattern.</li>
+<li>In general, there is a pattern of more fatal accidents during the daytime being unrelated to drunk driving versus related. The pattern is reversed for nighttime accidents. Use your function to see if you can find any states that don’t follow this pattern.</li>
 <li>So far, we have not covered error checking in functions. In the function that you just wrote, we are assuming that the user will never give inputs that would cause errors. Look through the code for your function and see what assumptions we’re making about what values a user would input for <code>datafr</code> and <code>which_state</code>. What could go wrong if a user does not comply with these assumptions?</li>
 <li>The best practice when writing functions, especially for others to use, is to use the package::function syntax to identify which package each function comes from. For example, if you’re using <code>mutate</code> in a function, you should write the function code as <code>dplyr::mutate</code>. Go back through the code for the function you wrote. Every time it uses a function that is not part of base R, change the code to use this package::function syntax.</li>
-<li>If you have time: Can you combine your function, a loop (or <code>lapply</code>), and regular expressions to create plots for all states that start with “C”? That have “North” in their names? (<em>Hint</em>: One way to get a list of states is from the <code>accident</code> data frame, once you’ve joined in state names as a column called <code>state_name</code>: <code>unique(accident$state_name)</code>.)</li>
+<li>If you have time: Can you combine your function, a loop (or <code>lapply</code>), and regular expressions to create plots for all states that start with “C”? That have “North” in their names? (<em>Hint</em>: One way to get a list of states is from the <code>accident</code> data frame. Once you’ve joined in state names as a column called <code>state_name</code>, you can use: <code>unique(accident$state_name)</code>.)</li>
 </ul>
 <div id="example-r-code-12" class="section level4">
 <h4><span class="header-section-number">8.7.1.1</span> Example R code</h4>
@@ -881,7 +881,7 @@ north_states &lt;-<span class="st"> </span>states[<span class="kw">str_detect</s
 <h3><span class="header-section-number">8.7.2</span> First steps in mapping</h3>
 <p>If you have time, you can try some exercises with mapping.</p>
 <ul>
-<li>Read in and clean up the FARS data and save it to an R object called <code>accident</code>. The <code>accident</code> data frame should include location (longitude / latitude), state, and whether the accident involved drunk driving. Once you’re done cleaning, the dataset should look like this:</li>
+<li>Read in and clean up the FARS data and save it to an R object called <code>accident</code>. The <code>accident</code> data frame should include location (longitude and latitude), state, and whether the accident involved drunk driving. Once you’re done cleaning, the dataset should look like this:</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_fips &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;http://www2.census.gov/geo/docs/reference/state.txt&quot;</span>,
                          <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>) %&gt;%
