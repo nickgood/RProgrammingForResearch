@@ -9539,11 +9539,11 @@ amounts, use a vector with one element for each column.
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.43\\
+a & 1.34\\
 \hline
-b & 1.22\\
+b & 0.03\\
 \hline
-c & 1.71\\
+c & -0.56\\
 \hline
 \end{tabular}
 \end{table}
@@ -10059,10 +10059,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X         Y         Z
-## 1 2009-01-01 0.6006223 0.1246978  5.840111
-## 2 2009-01-02 0.8974727 1.2350591 -3.406522
-## 3 2009-01-03 0.7784234 0.2183621 -1.489170
+##         time          X         Y         Z
+## 1 2009-01-01 0.53862976 -1.363089 -0.237263
+## 2 2009-01-02 1.71517065  1.670268  3.908939
+## 3 2009-01-03 0.08435323  3.585955 -3.684146
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10079,10 +10079,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X         Y         Z
-## 1 2009-01-01 0.6006223 0.1246978  5.840111
-## 2 2009-01-02 0.8974727 1.2350591 -3.406522
-## 3 2009-01-03 0.7784234 0.2183621 -1.489170
+##         time          X         Y         Z
+## 1 2009-01-01 0.53862976 -1.363089 -0.237263
+## 2 2009-01-02 1.71517065  1.670268  3.908939
+## 3 2009-01-03 0.08435323  3.585955 -3.684146
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10098,12 +10098,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X  0.6006223
-## 2 2009-01-02     X  0.8974727
-## 3 2009-01-03     X  0.7784234
-## 4 2009-01-04     X -0.6186619
-## 5 2009-01-05     X  1.2130847
+##         time stock       price
+## 1 2009-01-01     X  0.53862976
+## 2 2009-01-02     X  1.71517065
+## 3 2009-01-03     X  0.08435323
+## 4 2009-01-04     X  0.19683224
+## 5 2009-01-05     X -0.61225041
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10117,12 +10117,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X  0.6006223
-## 2 2009-01-02     X  0.8974727
-## 3 2009-01-03     X  0.7784234
-## 4 2009-01-04     X -0.6186619
-## 5 2009-01-05     X  1.2130847
+##         time stock       price
+## 1 2009-01-01     X  0.53862976
+## 2 2009-01-02     X  1.71517065
+## 3 2009-01-03     X  0.08435323
+## 4 2009-01-04     X  0.19683224
+## 5 2009-01-05     X -0.61225041
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10178,12 +10178,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.6006223  0.1246978  5.8401108
-## 2 2009-01-02  0.8974727  1.2350591 -3.4065223
-## 3 2009-01-03  0.7784234  0.2183621 -1.4891696
-## 4 2009-01-04 -0.6186619  1.7514550  0.8653787
-## 5 2009-01-05  1.2130847 -1.4197006  5.0378601
+##         time           X          Y         Z
+## 1 2009-01-01  0.53862976 -1.3630890 -0.237263
+## 2 2009-01-02  1.71517065  1.6702682  3.908939
+## 3 2009-01-03  0.08435323  3.5859554 -3.684146
+## 4 2009-01-04  0.19683224  0.1061784  3.755073
+## 5 2009-01-05 -0.61225041  1.9615602  4.485507
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10208,11 +10208,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 × 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.2250185 0.8123735
-## 2     Y    10 -0.2698139 1.4561814
-## 3     Z    10  2.6150536 5.2299871
+##   stock     N        mean       sd
+##   <chr> <int>       <dbl>    <dbl>
+## 1     X    10  0.10225041 1.303336
+## 2     Y    10 -0.05259935 2.019436
+## 3     Z    10  1.24182058 4.112814
 \end{verbatim}
 
 \begin{Shaded}
@@ -10231,7 +10231,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.23 (0.81) & -0.27 (1.46) & 2.62 (5.23)\\
+Mean (Std.dev.) & 0.1 (1.3) & -0.05 (2.02) & 1.24 (4.11)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -12900,7 +12900,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  -0.5371681   0.1848041
+##   0.5854361  -0.1240620
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -13013,7 +13013,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.08102007 -0.96052047 -0.82732586
+## [1]  0.6355728 -0.8646302  1.3389615
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -13032,7 +13032,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.6229555
+## [1] 0.3699681
 ## 
 ## $c
 ## [1] NA
@@ -13053,7 +13053,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.08102007
+## [1] 0.6355728
 ## 
 ## $c
 ## [1] "a"
@@ -13069,8 +13069,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                    a                    b                    c 
-##                  "1" "-0.081020073076832"                  "a"
+##                   a                   b                   c 
+##                 "1" "0.635572844964546"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -15244,22 +15244,35 @@ If you need them, here are some further tips:
 
 \section{Homework \#4}\label{homework-4}
 
-\textbf{Due date: Oct. 26}
+\textbf{Optional due date: Oct. 28}
 
-{[}Advanced R Markdown homework assignment{]}
+All instructions for this homework can be downloaded
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework4and5.pdf}{here}.
+The example ``fars\_analysis.pdf'' document you will try to recreate is
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/fars_analysis.pdf}{here}.
+
+You have the option to turn in parts of this homework (up through
+creating a clean dataset) by Oct. 28. If you do so, I will email you the
+code I used to clean the data, so you can check your own code and be
+sure you have a reasonable version of the clean data as you do the final
+parts of the assignment.
 
 \section{Homework \#5}\label{homework-5}
 
 \textbf{Due date: Nov. 9}
 
-{[}Homework on functions, regular expressions, and web data
-assignment{]}
+All instructions for this homework can be downloaded
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework4and5.pdf}{here}.
+The example ``fars\_analysis.pdf'' document you will try to recreate is
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/fars_analysis.pdf}{here}.
+
+You will submit this homework by posting a repo with your project
+directory on GitHub. We will work on setting that up during an in-course
+exercise.
 
 \section{Homework \#6}\label{homework-6}
 
 \textbf{Due date: Nov. 30}
-
-{[}Mapping homework assignment{]}
 
 \bibliography{packages.bib,book.bib}
 
