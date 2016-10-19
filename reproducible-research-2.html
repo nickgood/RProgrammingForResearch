@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-18">
+<meta name="date" content="2016-10-19">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -327,6 +327,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#in-course-exercise-8"><i class="fa fa-check"></i><b>9.4</b> In-course exercise</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#trying-out-templates"><i class="fa fa-check"></i><b>9.4.1</b> Trying out templates</a></li>
 <li class="chapter" data-level="9.4.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organizing-a-project"><i class="fa fa-check"></i><b>9.4.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="9.4.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-your-project-with-a-github-repository"><i class="fa fa-check"></i><b>9.4.3</b> Linking your project with a GitHub repository</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -501,6 +502,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Download FARS data from the years 1999 to 2010. From each year, pull out the “person” file. Save these yearly “person” files in the <code>yearly_person_data</code> subdirectory you created. As a file name, use “person_” and then the year. For example, if you are saving this file for 1999 in the form of a csv, you would name the file “person_1999.csv”.</li>
 <li>The <code>writing</code> subdirectory will have your R Markdown file and its output. Create a new R Markdown file (“File” -&gt; “New File” -&gt; “R Markdown”) and save it to this subdirectory. You can change the name and date for the file if you’d like. Delete all the text that comes as a default. Write a piece of code that lists the files you saved in <code>data-raw/yearly_person_data</code>. Remember that the working directory for an R Markdown file is the directory in which it’s saved, so you’ll need to use a relative pathname that goes up one directory (<code>..</code>) and then goes into <code>data-raw</code> and <code>yearly_person_data</code>.</li>
 <li>If you have time, go to the <a href="https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812316">FARS documentation</a> and find out more about which variables are included in this data set and which values they can have.</li>
+</ul>
+</div>
+<div id="linking-your-project-with-a-github-repository" class="section level3">
+<h3><span class="header-section-number">9.4.3</span> Linking your project with a GitHub repository</h3>
+<ul>
+<li>If you do not already have one, sign up for a GitHub account. The free option is fine.</li>
+<li>If you do not already have git installed on your computer, install it: <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a></li>
+<li><p>Open a shell and configure git. For example, I would open a shell and run:</p>
+<pre><code>git config --global user.name &quot;Brooke Anderson&quot;
+git config --global user.email &quot;brooke.anderson@colostate.edu&quot;</code></pre></li>
+<li>Restart RStudio. go to “RStudio” -&gt; “Preferences” -&gt;“Git/SVN”. Choose “Enable version control”. If RStudio doesn’t find yourversion of git in the “Git executable” box, browse for it.</li>
+<li>Open your FARS analysis project in RStudio. Change your Project settings to initialize git for this project (see the course notes for tips on how to do that).</li>
+<li>Try changing a few things in files you have in that project directory (or add a new file). Commit those changes using the “Commit” window. After you commit the changes, look at the “History” window to see the history of your commits.</li>
+<li>Create an empty GitHub repository for the project. Give it the same name as the name of your R project directory.</li>
+<li>Create an RSA key in RStudio and add it as an SSH key in your GitHub settings.</li>
+<li>Add this empty GitHub repository as the remote branch of your local git repository for the project.</li>
+<li>Push your local repository to this GitHub repository.</li>
+<li>Go to your GitHub account and make sure the repository was pushed.</li>
+<li><p>Try making some more changes to your local repository. Commit the changes, then use the green up arrow in the Git window to push the changes to your GitHub repository.</p></li>
 </ul>
 
 </div>
