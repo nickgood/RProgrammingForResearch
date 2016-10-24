@@ -343,6 +343,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.17.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-your-project-with-a-github-repository"><i class="fa fa-check"></i><b>9.17.3</b> Linking your project with a GitHub repository</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>Part IV: Advanced</b></span></li>
+<li class="chapter" data-level="10" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html"><i class="fa fa-check"></i><b>10</b> Entering and cleaning data #3</a><ul>
+<li class="chapter" data-level="10.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#cleaning-very-messy-data"><i class="fa fa-check"></i><b>10.1</b> Cleaning very messy data</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-of-messy-data"><i class="fa fa-check"></i><b>10.1.1</b> Example of messy data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#strategy-for-messy-data"><i class="fa fa-check"></i><b>10.1.2</b> Strategy for messy data</a></li>
+<li class="chapter" data-level="10.1.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#readlines-function"><i class="fa fa-check"></i><b>10.1.3</b> <code>readLines</code> function</a></li>
+<li class="chapter" data-level="10.1.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#regular-expressions-for-cleaning"><i class="fa fa-check"></i><b>10.1.4</b> Regular expressions for cleaning</a></li>
+<li class="chapter" data-level="10.1.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#working-with-lists"><i class="fa fa-check"></i><b>10.1.5</b> Working with lists</a></li>
+<li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
+<li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
+</ul></li>
+</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
 <li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1-quiz-1"><i class="fa fa-check"></i><b>A.1</b> Week 1 (Quiz 1)</a></li>
@@ -470,7 +482,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##  0.31584121 -0.06538466</code></pre>
+## -0.43623624  0.06789749</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -520,7 +532,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  0.9901496 -0.1739501 -1.0824341
+## [1]  2.3920372  0.5509855 -0.8176151
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -530,7 +542,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] -0.08874487
+## [1] 0.7084692
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -540,14 +552,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] 0.9901496
+## [1] 2.392037
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                   a                   b                   c 
-##                 &quot;1&quot; &quot;0.990149600699089&quot;                 &quot;a&quot;</code></pre>
+<pre><code>##                  a                  b                  c 
+##                &quot;1&quot; &quot;2.39203720928784&quot;                &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>

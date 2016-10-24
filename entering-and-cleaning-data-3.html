@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R Programming for Research</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
+  <meta name="generator" content="bookdown 0.1.16 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R Programming for Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R Programming for Research" />
+  
+  <meta name="twitter:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  
+
+<meta name="author" content="Brooke Anderson and Rachel Severson">
+
+  
+<meta name="date" content="2016-10-24">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="reproducible-research-2.html">
+<link rel="next" href="appendix-a-vocabulary.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming for Research</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Online course book, ERHS 535</a></li>
+<li class="chapter" data-level="" data-path="course-information.html"><a href="course-information.html"><i class="fa fa-check"></i>Course information</a><ul>
+<li class="chapter" data-level="0.1" data-path="course-information.html"><a href="course-information.html#course-overview"><i class="fa fa-check"></i><b>0.1</b> Course overview</a></li>
+<li class="chapter" data-level="0.2" data-path="course-information.html"><a href="course-information.html#time-and-place"><i class="fa fa-check"></i><b>0.2</b> Time and place</a></li>
+<li class="chapter" data-level="0.3" data-path="course-information.html"><a href="course-information.html#detailed-schedule"><i class="fa fa-check"></i><b>0.3</b> Detailed schedule</a></li>
+<li class="chapter" data-level="0.4" data-path="course-information.html"><a href="course-information.html#grading"><i class="fa fa-check"></i><b>0.4</b> Grading</a><ul>
+<li class="chapter" data-level="0.4.1" data-path="course-information.html"><a href="course-information.html#attendance-and-class-participation"><i class="fa fa-check"></i><b>0.4.1</b> Attendance and class participation</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="course-information.html"><a href="course-information.html#weekly-in-course-group-exercises"><i class="fa fa-check"></i><b>0.5</b> Weekly in-course group exercises</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="course-information.html"><a href="course-information.html#in-class-quizzes"><i class="fa fa-check"></i><b>0.5.1</b> In-class quizzes</a></li>
+<li class="chapter" data-level="0.5.2" data-path="course-information.html"><a href="course-information.html#homework"><i class="fa fa-check"></i><b>0.5.2</b> Homework</a></li>
+<li class="chapter" data-level="0.5.3" data-path="course-information.html"><a href="course-information.html#final-group-project"><i class="fa fa-check"></i><b>0.5.3</b> Final group project</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#course-set-up"><i class="fa fa-check"></i><b>0.6</b> Course set-up</a></li>
+<li class="chapter" data-level="0.7" data-path="course-information.html"><a href="course-information.html#helpful-books-for-learning-r"><i class="fa fa-check"></i><b>0.7</b> Helpful books for learning R</a></li>
+</ul></li>
+<li class="part"><span><b>Part I: Preliminaries</b></span></li>
+<li class="chapter" data-level="1" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>1</b> R Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-r"><i class="fa fa-check"></i><b>1.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#open-source-software"><i class="fa fa-check"></i><b>1.1.2</b> Open-source software</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> What is RStudio?</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#setting-up"><i class="fa fa-check"></i><b>1.1.4</b> Setting up</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#the-package-system"><i class="fa fa-check"></i><b>1.2</b> The “package” system</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#installing-from-cran"><i class="fa fa-check"></i><b>1.2.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>1.2.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#basic-code-conventions-of-r"><i class="fa fa-check"></i><b>1.3</b> Basic code conventions of R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>1.3.1</b> R’s MVP: The <em>gets arrow</em></a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>1.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>1.3.3</b> Naming objects</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#commenting-code"><i class="fa fa-check"></i><b>1.3.4</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>1.4</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#dataframes"><i class="fa fa-check"></i><b>1.4.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-r-functions"><i class="fa fa-check"></i><b>1.5</b> Using R functions</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-structure"><i class="fa fa-check"></i><b>1.5.1</b> Function structure</a></li>
+<li class="chapter" data-level="1.5.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-help-files"><i class="fa fa-check"></i><b>1.5.2</b> Function help files</a></li>
+<li class="chapter" data-level="1.5.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-parameters"><i class="fa fa-check"></i><b>1.5.3</b> Function parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#in-course-exercise"><i class="fa fa-check"></i><b>1.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#about-the-dataset"><i class="fa fa-check"></i><b>1.6.1</b> About the dataset</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>1.6.2</b> Getting the data onto your computer</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.3</b> Getting the data into R</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.4</b> Checking out the data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.5</b> Using the data to answer questions</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part II: Basics</b></span></li>
+<li class="chapter" data-level="2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html"><i class="fa fa-check"></i><b>2</b> Entering and cleaning data #1</a><ul>
+<li class="chapter" data-level="2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#r-scripts"><i class="fa fa-check"></i><b>2.1</b> R scripts</a></li>
+<li class="chapter" data-level="2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories-and-pathnames"><i class="fa fa-check"></i><b>2.2</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directory-structure"><i class="fa fa-check"></i><b>2.2.1</b> Directory structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#working-directory"><i class="fa fa-check"></i><b>2.2.2</b> Working directory</a></li>
+<li class="chapter" data-level="2.2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>2.2.3</b> File and directory pathnames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#diversion-paste"><i class="fa fa-check"></i><b>2.3</b> Diversion: <code>paste</code></a></li>
+<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Reading data into R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>2.4.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#the-read_-functions"><i class="fa fa-check"></i><b>2.4.2</b> The <code>read_*</code> functions</a></li>
+<li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>2.4.3</b> Reading online flat files</a></li>
+<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-and-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving and loading R objects</a></li>
+<li class="chapter" data-level="2.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-other-file-types"><i class="fa fa-check"></i><b>2.4.5</b> Reading other file types</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#data-cleaning"><i class="fa fa-check"></i><b>2.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#selecting-columns"><i class="fa fa-check"></i><b>2.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>2.5.3</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#add-or-change-columns"><i class="fa fa-check"></i><b>2.5.4</b> Add or change columns</a></li>
+<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#piping"><i class="fa fa-check"></i><b>2.5.5</b> Piping</a></li>
+<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>2.5.6</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#dates-in-r"><i class="fa fa-check"></i><b>2.6</b> Dates in R</a></li>
+<li class="chapter" data-level="2.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.7</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.7.1</b> Checking out directory structures</a></li>
+<li class="chapter" data-level="2.7.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.7.2</b> Using relative and absolute file pathnames</a></li>
+<li class="chapter" data-level="2.7.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.7.3</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="2.7.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.7.4</b> Cleaning up data</a></li>
+<li class="chapter" data-level="2.7.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.7.5</b> A taste of what’s to come…</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#data-from-a-package"><i class="fa fa-check"></i><b>3.1</b> Data from a package</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plots-to-explore-data"><i class="fa fa-check"></i><b>3.2</b> Plots to explore data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>3.2.1</b> Initializing a ggplot object</a></li>
+<li class="chapter" data-level="3.2.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plot-aesthetics"><i class="fa fa-check"></i><b>3.2.2</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="3.2.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#adding-geoms"><i class="fa fa-check"></i><b>3.2.3</b> Adding geoms</a></li>
+<li class="chapter" data-level="3.2.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#constant-aesthetics"><i class="fa fa-check"></i><b>3.2.4</b> Constant aesthetics</a></li>
+<li class="chapter" data-level="3.2.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#useful-plot-additions"><i class="fa fa-check"></i><b>3.2.5</b> Useful plot additions</a></li>
+<li class="chapter" data-level="3.2.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#example-dataset"><i class="fa fa-check"></i><b>3.2.6</b> Example dataset</a></li>
+<li class="chapter" data-level="3.2.7" data-path="exploring-data-1.html"><a href="exploring-data-1.html#histograms"><i class="fa fa-check"></i><b>3.2.7</b> Histograms</a></li>
+<li class="chapter" data-level="3.2.8" data-path="exploring-data-1.html"><a href="exploring-data-1.html#scatterplots"><i class="fa fa-check"></i><b>3.2.8</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.2.9" data-path="exploring-data-1.html"><a href="exploring-data-1.html#boxplots"><i class="fa fa-check"></i><b>3.2.9</b> Boxplots</a></li>
+<li class="chapter" data-level="3.2.10" data-path="exploring-data-1.html"><a href="exploring-data-1.html#extensions-of-ggplot2"><i class="fa fa-check"></i><b>3.2.10</b> Extensions of <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summary-statistics"><i class="fa fa-check"></i><b>3.3.1</b> Summary statistics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summarize-function"><i class="fa fa-check"></i><b>3.3.2</b> <code>summarize</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#logical-vectors"><i class="fa fa-check"></i><b>3.4</b> Logical vectors</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#regression-models"><i class="fa fa-check"></i><b>3.5</b> Regression models</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#formula-structure"><i class="fa fa-check"></i><b>3.5.1</b> Formula structure</a></li>
+<li class="chapter" data-level="3.5.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#linear-models"><i class="fa fa-check"></i><b>3.5.2</b> Linear models</a></li>
+<li class="chapter" data-level="3.5.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#generalized-linear-models-glms"><i class="fa fa-check"></i><b>3.5.3</b> Generalized linear models (GLMs)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#references-statistics-in-r"><i class="fa fa-check"></i><b>3.5.4</b> References– statistics in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.6</b> In-course exercise</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.6.2</b> Basic plots of the data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and logical statements</a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
+<li class="chapter" data-level="4.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#guidelines-for-good-plots"><i class="fa fa-check"></i><b>4.1</b> Guidelines for good plots</a></li>
+<li class="chapter" data-level="4.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#high-data-density"><i class="fa fa-check"></i><b>4.2</b> High data density</a></li>
+<li class="chapter" data-level="4.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#meaningful-labels"><i class="fa fa-check"></i><b>4.3</b> Meaningful labels</a></li>
+<li class="chapter" data-level="4.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#references"><i class="fa fa-check"></i><b>4.4</b> References</a></li>
+<li class="chapter" data-level="4.5" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#highlighting"><i class="fa fa-check"></i><b>4.5</b> Highlighting</a></li>
+<li class="chapter" data-level="4.6" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#order"><i class="fa fa-check"></i><b>4.6</b> Order</a></li>
+<li class="chapter" data-level="4.7" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#small-multiples"><i class="fa fa-check"></i><b>4.7</b> Small multiples</a></li>
+<li class="chapter" data-level="4.8" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#advanced-customization"><i class="fa fa-check"></i><b>4.8</b> Advanced customization</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#scales"><i class="fa fa-check"></i><b>4.8.1</b> Scales</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
+<li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
+<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
+<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
+<li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i><b>5</b> Reproducible research #1</a><ul>
+<li class="chapter" data-level="5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>5.1</b> What is reproducible research?</a></li>
+<li class="chapter" data-level="5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#markdown"><i class="fa fa-check"></i><b>5.2</b> Markdown</a></li>
+<li class="chapter" data-level="5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#literate-programming-in-r"><i class="fa fa-check"></i><b>5.3</b> Literate programming in R</a></li>
+<li class="chapter" data-level="5.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#style-guidelines"><i class="fa fa-check"></i><b>5.4</b> Style guidelines</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#line-length"><i class="fa fa-check"></i><b>5.4.1</b> Line length</a></li>
+<li class="chapter" data-level="5.4.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#spacing"><i class="fa fa-check"></i><b>5.4.2</b> Spacing</a></li>
+<li class="chapter" data-level="5.4.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#semicolons"><i class="fa fa-check"></i><b>5.4.3</b> Semicolons</a></li>
+<li class="chapter" data-level="5.4.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#commenting"><i class="fa fa-check"></i><b>5.4.4</b> Commenting</a></li>
+<li class="chapter" data-level="5.4.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#indentation"><i class="fa fa-check"></i><b>5.4.5</b> Indentation</a></li>
+<li class="chapter" data-level="5.4.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#code-grouping"><i class="fa fa-check"></i><b>5.4.6</b> Code grouping</a></li>
+<li class="chapter" data-level="5.4.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#broader-guidelines"><i class="fa fa-check"></i><b>5.4.7</b> Broader guidelines</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#more-with-knitr"><i class="fa fa-check"></i><b>5.5</b> More with knitr</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#equations-in-knitr"><i class="fa fa-check"></i><b>5.5.1</b> Equations in <code>knitr</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#figures-from-file"><i class="fa fa-check"></i><b>5.5.2</b> Figures from file</a></li>
+<li class="chapter" data-level="5.5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files"><i class="fa fa-check"></i><b>5.5.3</b> Saving graphics files</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files-1"><i class="fa fa-check"></i><b>5.6</b> Saving graphics files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>5.6.1</b> Tables in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#in-course-exercise-4"><i class="fa fa-check"></i><b>5.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#creating-a-markdown-document"><i class="fa fa-check"></i><b>5.7.1</b> Creating a Markdown document</a></li>
+<li class="chapter" data-level="5.7.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#adding-in-r-code"><i class="fa fa-check"></i><b>5.7.2</b> Adding in R code</a></li>
+<li class="chapter" data-level="5.7.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#working-with-r-markdown-documents"><i class="fa fa-check"></i><b>5.7.3</b> Working with R Markdown documents</a></li>
+<li class="chapter" data-level="5.7.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#r-style-guidelines"><i class="fa fa-check"></i><b>5.7.4</b> R style guidelines</a></li>
+<li class="chapter" data-level="5.7.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#trying-out-knitr-with-your-own-data"><i class="fa fa-check"></i><b>5.7.5</b> Trying out <code>knitr</code> with your own data</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part III: Intermediate</b></span></li>
+<li class="chapter" data-level="6" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html"><i class="fa fa-check"></i><b>6</b> Entering and cleaning data #2</a><ul>
+<li class="chapter" data-level="6.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#joining-datasets"><i class="fa fa-check"></i><b>6.1</b> Joining datasets</a></li>
+<li class="chapter" data-level="6.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidy-data"><i class="fa fa-check"></i><b>6.2</b> Tidy data</a></li>
+<li class="chapter" data-level="6.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#gathering"><i class="fa fa-check"></i><b>6.3</b> Gathering</a></li>
+<li class="chapter" data-level="6.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#in-course-exercise-5"><i class="fa fa-check"></i><b>6.4</b> In-course exercise</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#designing-tidy-data"><i class="fa fa-check"></i><b>6.4.1</b> Designing tidy data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#easier-data-wrangling"><i class="fa fa-check"></i><b>6.4.2</b> Easier data wrangling</a></li>
+<li class="chapter" data-level="6.4.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#more-extensive-data-wrangling"><i class="fa fa-check"></i><b>6.4.3</b> More extensive data wrangling</a></li>
+<li class="chapter" data-level="6.4.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidying-vadeaths-data"><i class="fa fa-check"></i><b>6.4.4</b> Tidying <code>VADeaths</code> data</a></li>
+<li class="chapter" data-level="6.4.5" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#exploring-fatality-analysis-reporting-system-fars-data"><i class="fa fa-check"></i><b>6.4.5</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="exploring-data-2.html"><a href="exploring-data-2.html"><i class="fa fa-check"></i><b>7</b> Exploring data #2</a><ul>
+<li class="chapter" data-level="7.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#parentheses"><i class="fa fa-check"></i><b>7.1</b> Parentheses</a></li>
+<li class="chapter" data-level="7.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#loops"><i class="fa fa-check"></i><b>7.2</b> Loops</a></li>
+<li class="chapter" data-level="7.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#other-control-structures"><i class="fa fa-check"></i><b>7.3</b> Other control structures</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#if-else-loops"><i class="fa fa-check"></i><b>7.3.1</b> if / else loops</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#some-other-control-structures"><i class="fa fa-check"></i><b>7.3.2</b> Some other control structures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#functions"><i class="fa fa-check"></i><b>7.4</b> Functions</a></li>
+<li class="chapter" data-level="7.5" data-path="exploring-data-2.html"><a href="exploring-data-2.html#regular-expressions"><i class="fa fa-check"></i><b>7.5</b> Regular expressions</a></li>
+<li class="chapter" data-level="7.6" data-path="exploring-data-2.html"><a href="exploring-data-2.html#in-course-exercise-6"><i class="fa fa-check"></i><b>7.6</b> In-course exercise</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
+<li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.2</b> Using a loop to create state-specific plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html"><i class="fa fa-check"></i><b>8</b> Reporting data results #2</a><ul>
+<li class="chapter" data-level="8.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices-and-lists"><i class="fa fa-check"></i><b>8.1</b> Matrices and lists</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices"><i class="fa fa-check"></i><b>8.1.1</b> Matrices</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#lists"><i class="fa fa-check"></i><b>8.1.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#apply-functions"><i class="fa fa-check"></i><b>8.2</b> <code>apply</code> functions</a></li>
+<li class="chapter" data-level="8.3" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#point-maps"><i class="fa fa-check"></i><b>8.3</b> Point maps</a></li>
+<li class="chapter" data-level="8.4" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#choropleth-maps"><i class="fa fa-check"></i><b>8.4</b> Choropleth maps</a></li>
+<li class="chapter" data-level="8.5" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#google-maps-api"><i class="fa fa-check"></i><b>8.5</b> Google Maps API</a></li>
+<li class="chapter" data-level="8.6" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#string-operations"><i class="fa fa-check"></i><b>8.6</b> String operations</a></li>
+<li class="chapter" data-level="8.7" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#in-course-exercise-7"><i class="fa fa-check"></i><b>8.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#writing-a-function-to-create-state-specific-plots"><i class="fa fa-check"></i><b>8.7.1</b> Writing a function to create state-specific plots</a></li>
+<li class="chapter" data-level="8.7.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#first-steps-in-mapping"><i class="fa fa-check"></i><b>8.7.2</b> First steps in mapping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html"><i class="fa fa-check"></i><b>9</b> Reproducible research #2</a><ul>
+<li class="chapter" data-level="9.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-notebooks"><i class="fa fa-check"></i><b>9.1</b> R Notebooks</a></li>
+<li class="chapter" data-level="9.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#templates"><i class="fa fa-check"></i><b>9.2</b> Templates</a></li>
+<li class="chapter" data-level="9.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-projects"><i class="fa fa-check"></i><b>9.3</b> R Projects</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organization"><i class="fa fa-check"></i><b>9.3.1</b> Organization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#creating-r-projects"><i class="fa fa-check"></i><b>9.3.2</b> Creating R Projects</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#git"><i class="fa fa-check"></i><b>9.4</b> git</a></li>
+<li class="chapter" data-level="9.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository"><i class="fa fa-check"></i><b>9.5</b> Initializing a git repository</a></li>
+<li class="chapter" data-level="9.6" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository-1"><i class="fa fa-check"></i><b>9.6</b> Initializing a git repository</a></li>
+<li class="chapter" data-level="9.7" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository-2"><i class="fa fa-check"></i><b>9.7</b> Initializing a git repository</a></li>
+<li class="chapter" data-level="9.8" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository-3"><i class="fa fa-check"></i><b>9.8</b> Initializing a git repository</a></li>
+<li class="chapter" data-level="9.9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#committing"><i class="fa fa-check"></i><b>9.9</b> Committing</a></li>
+<li class="chapter" data-level="9.10" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#browsing-history"><i class="fa fa-check"></i><b>9.10</b> Browsing history</a></li>
+<li class="chapter" data-level="9.11" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-local-repo-to-github-repo"><i class="fa fa-check"></i><b>9.11</b> Linking local repo to GitHub repo</a></li>
+<li class="chapter" data-level="9.12" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#syncing-rstudio-and-github"><i class="fa fa-check"></i><b>9.12</b> Syncing RStudio and GitHub</a></li>
+<li class="chapter" data-level="9.13" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#issues"><i class="fa fa-check"></i><b>9.13</b> Issues</a></li>
+<li class="chapter" data-level="9.14" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#pull-request"><i class="fa fa-check"></i><b>9.14</b> Pull request</a></li>
+<li class="chapter" data-level="9.15" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#merge-conflicts"><i class="fa fa-check"></i><b>9.15</b> Merge conflicts</a></li>
+<li class="chapter" data-level="9.16" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#find-out-more"><i class="fa fa-check"></i><b>9.16</b> Find out more</a></li>
+<li class="chapter" data-level="9.17" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#in-course-exercise-8"><i class="fa fa-check"></i><b>9.17</b> In-course exercise</a><ul>
+<li class="chapter" data-level="9.17.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#trying-out-templates"><i class="fa fa-check"></i><b>9.17.1</b> Trying out templates</a></li>
+<li class="chapter" data-level="9.17.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organizing-a-project"><i class="fa fa-check"></i><b>9.17.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="9.17.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-your-project-with-a-github-repository"><i class="fa fa-check"></i><b>9.17.3</b> Linking your project with a GitHub repository</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part IV: Advanced</b></span></li>
+<li class="chapter" data-level="10" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html"><i class="fa fa-check"></i><b>10</b> Entering and cleaning data #3</a><ul>
+<li class="chapter" data-level="10.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#cleaning-very-messy-data"><i class="fa fa-check"></i><b>10.1</b> Cleaning very messy data</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-of-messy-data"><i class="fa fa-check"></i><b>10.1.1</b> Example of messy data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#strategy-for-messy-data"><i class="fa fa-check"></i><b>10.1.2</b> Strategy for messy data</a></li>
+<li class="chapter" data-level="10.1.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#readlines-function"><i class="fa fa-check"></i><b>10.1.3</b> <code>readLines</code> function</a></li>
+<li class="chapter" data-level="10.1.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#regular-expressions-for-cleaning"><i class="fa fa-check"></i><b>10.1.4</b> Regular expressions for cleaning</a></li>
+<li class="chapter" data-level="10.1.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#working-with-lists"><i class="fa fa-check"></i><b>10.1.5</b> Working with lists</a></li>
+<li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
+<li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1-quiz-1"><i class="fa fa-check"></i><b>A.1</b> Week 1 (Quiz 1)</a></li>
+<li class="chapter" data-level="A.2" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-2-quiz-2"><i class="fa fa-check"></i><b>A.2</b> Week 2 (Quiz 2)</a></li>
+<li class="chapter" data-level="A.3" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-3-quiz-3"><i class="fa fa-check"></i><b>A.3</b> Week 3 (Quiz 3)</a></li>
+<li class="chapter" data-level="A.4" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-4-quiz-4"><i class="fa fa-check"></i><b>A.4</b> Week 4 (Quiz 4)</a></li>
+<li class="chapter" data-level="A.5" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-5-quiz-5"><i class="fa fa-check"></i><b>A.5</b> Week 5 (Quiz 5)</a></li>
+<li class="chapter" data-level="A.6" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-6-quiz-6"><i class="fa fa-check"></i><b>A.6</b> Week 6 (Quiz 6)</a></li>
+<li class="chapter" data-level="A.7" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-7-quiz-7"><i class="fa fa-check"></i><b>A.7</b> Week 7 (Quiz 7)</a></li>
+<li class="chapter" data-level="A.8" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-8-quiz-8"><i class="fa fa-check"></i><b>A.8</b> Week 8 (Quiz 8)</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html"><i class="fa fa-check"></i><b>B</b> Appendix B: Homework</a><ul>
+<li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#getting-started"><i class="fa fa-check"></i><b>B.1.1</b> Getting started</a></li>
+<li class="chapter" data-level="B.1.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#swirl-lessons"><i class="fa fa-check"></i><b>B.1.2</b> Swirl lessons</a></li>
+<li class="chapter" data-level="B.1.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#special-swirl-commands"><i class="fa fa-check"></i><b>B.1.3</b> Special swirl commands</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-2"><i class="fa fa-check"></i><b>B.2</b> Homework #2</a></li>
+<li class="chapter" data-level="B.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-3"><i class="fa fa-check"></i><b>B.3</b> Homework #3</a></li>
+<li class="chapter" data-level="B.4" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-4"><i class="fa fa-check"></i><b>B.4</b> Homework #4</a></li>
+<li class="chapter" data-level="B.5" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-5"><i class="fa fa-check"></i><b>B.5</b> Homework #5</a></li>
+<li class="chapter" data-level="B.6" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-6"><i class="fa fa-check"></i><b>B.6</b> Homework #6</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="entering-and-cleaning-data-3" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Entering and cleaning data #3</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week10.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="cleaning-very-messy-data" class="section level2">
+<h2><span class="header-section-number">10.1</span> Cleaning very messy data</h2>
+<div id="example-of-messy-data" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Example of messy data</h3>
+<p>One version of Atlantic basin hurricane tracks is available here: <a href="http://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2015-070616.txt" class="uri">http://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2015-070616.txt</a>. The data is not in a classic delimited format:</p>
+<p><img src="figures/hurrtrackformat.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>This data is formatted in the following way:</p>
+<ul>
+<li>Data for many storms are included in one file.</li>
+<li>Data for a storm starts with a shorter line, with values for the storm ID, name, and number of observations for the storm. These values are comma separated.</li>
+<li>Observations for each storm are longer lines. There are multiple observations for each storm, where each observation gives values like the location and maximum winds for the storm at that time.</li>
+</ul>
+</div>
+<div id="strategy-for-messy-data" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Strategy for messy data</h3>
+<p>Because the hurricane tracking data is not nicely formatted, you can’t use <code>read_csv</code> or similar functions to read it in. Here is a strategy for reading in very messy data:</p>
+<ol style="list-style-type: decimal">
+<li>Read in all lines individually.</li>
+<li>Use regular expressions to split each line into the elements you’d like to use to fill columns.</li>
+<li>Write functions, loops, or <code>apply</code> calls to process lines and use the contents to fill a data frame.</li>
+<li>Once you have the data in a data frame, do any remaining cleaning to create a data frame that is easy to use to answer research questions.</li>
+</ol>
+</div>
+<div id="readlines-function" class="section level3">
+<h3><span class="header-section-number">10.1.3</span> <code>readLines</code> function</h3>
+<p>However, the <code>readLines</code> function allows you to read a text file in one line at a time. You can then write code and functions to parse the file one line at a time, to turn it into a dataframe you can use.</p>
+<p>The <code>readLines</code> function will read in lines from a text file directly, without trying to separate into columns. You can use the <code>n</code> argument to specify the number of lines to read it. </p>
+<p>For example, to read in three lines from the hurricane tracking data, you can run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.nhc.noaa.gov/data/hurdat/&quot;</span>,
+                     <span class="st">&quot;hurdat2-1851-2015-070616.txt&quot;</span>)
+hurr_tracks &lt;-<span class="st"> </span><span class="kw">readLines</span>(tracks_url, <span class="dt">n =</span> <span class="dv">3</span>)
+hurr_tracks</code></pre></div>
+<pre><code>## [1] &quot;AL011851,            UNNAMED,     14,&quot;                                                                                   
+## [2] &quot;18510625, 0000,  , HU, 28.0N,  94.8W,  80, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999,&quot;
+## [3] &quot;18510625, 0600,  , HU, 28.0N,  95.4W,  80, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999,&quot;</code></pre>
+<p>The data has been read in as a vector, rather than a dataframe:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(hurr_tracks)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(hurr_tracks)</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_tracks[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] &quot;AL011851,            UNNAMED,     14,&quot;</code></pre>
+</div>
+<div id="regular-expressions-for-cleaning" class="section level3">
+<h3><span class="header-section-number">10.1.4</span> Regular expressions for cleaning</h3>
+<p>You can use regular expressions to break each line up. For example, you can use <code>str_split</code> from the <code>stringr</code> package to break the first line of the hurricane track data into its three separate components:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)
+<span class="kw">str_split</span>(hurr_tracks[<span class="dv">1</span>], <span class="dt">pattern =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;AL011851&quot;            &quot;            UNNAMED&quot; &quot;     14&quot;            
+## [4] &quot;&quot;</code></pre>
+<p>You can use this to create a list where each element of the list has the split-up version of a line of the original data. First, read in all of the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.nhc.noaa.gov/data/hurdat/&quot;</span>,
+                     <span class="st">&quot;hurdat2-1851-2015-070616.txt&quot;</span>)
+hurr_tracks &lt;-<span class="st"> </span><span class="kw">readLines</span>(tracks_url)
+<span class="kw">length</span>(hurr_tracks)</code></pre></div>
+<pre><code>## [1] 50919</code></pre>
+</div>
+<div id="working-with-lists" class="section level3">
+<h3><span class="header-section-number">10.1.5</span> Working with lists</h3>
+<p>Next, use <code>lapply</code> with <code>str_split</code> to split each line of the data at the commas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_tracks &lt;-<span class="st"> </span><span class="kw">lapply</span>(hurr_tracks, str_split,
+                      <span class="dt">pattern =</span> <span class="st">&quot;,&quot;</span>,
+                      <span class="dt">simplify =</span> <span class="ot">TRUE</span>)
+hurr_tracks[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>##      [,1]       [,2]                  [,3]      [,4]
+## [1,] &quot;AL011851&quot; &quot;            UNNAMED&quot; &quot;     14&quot; &quot;&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_tracks[[<span class="dv">2</span>]][<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] &quot;18510625&quot; &quot; 0000&quot;</code></pre>
+<p>Next, you want to split this list into two lists, one with the shorter “meta-data” lines and one with the longer “observation” lines. You can use <code>sapply</code> to create a vector with the length of each line. You will later use this to identify which lines are short or long.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_lengths &lt;-<span class="st"> </span><span class="kw">sapply</span>(hurr_tracks, length)
+hurr_lengths[<span class="dv">1</span>:<span class="dv">17</span>]</code></pre></div>
+<pre><code>##  [1]  4 21 21 21 21 21 21 21 21 21 21 21 21 21 21  4 21</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(hurr_lengths)</code></pre></div>
+<pre><code>## [1]  4 21</code></pre>
+<p>You can use bracket indexing to split the <code>hurr_tracks</code> into two lists: one with the shorter lines that start each observation (<code>hurr_meta</code>) and one with the storm observations (<code>hurr_obs</code>). Use bracket indexing with the <code>hurr_lengths</code> vector you just created to make that split.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_meta &lt;-<span class="st"> </span>hurr_tracks[hurr_lengths ==<span class="st"> </span><span class="dv">4</span>]
+hurr_obs &lt;-<span class="st"> </span>hurr_tracks[hurr_lengths ==<span class="st"> </span><span class="dv">21</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_meta[<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [[1]]
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] &quot;AL011851&quot; &quot;            UNNAMED&quot; &quot;     14&quot; &quot;&quot;  
+## 
+## [[2]]
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] &quot;AL021851&quot; &quot;            UNNAMED&quot; &quot;      1&quot; &quot;&quot;  
+## 
+## [[3]]
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] &quot;AL031851&quot; &quot;            UNNAMED&quot; &quot;      1&quot; &quot;&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs[<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [[1]]
+##      [,1]       [,2]    [,3] [,4]  [,5]     [,6]      [,7]   [,8]   
+## [1,] &quot;18510625&quot; &quot; 0000&quot; &quot;  &quot; &quot; HU&quot; &quot; 28.0N&quot; &quot;  94.8W&quot; &quot;  80&quot; &quot; -999&quot;
+##      [,9]    [,10]   [,11]   [,12]   [,13]   [,14]   [,15]   [,16]  
+## [1,] &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot;
+##      [,17]   [,18]   [,19]   [,20]   [,21]
+## [1,] &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot;&quot;   
+## 
+## [[2]]
+##      [,1]       [,2]    [,3] [,4]  [,5]     [,6]      [,7]   [,8]   
+## [1,] &quot;18510625&quot; &quot; 0600&quot; &quot;  &quot; &quot; HU&quot; &quot; 28.0N&quot; &quot;  95.4W&quot; &quot;  80&quot; &quot; -999&quot;
+##      [,9]    [,10]   [,11]   [,12]   [,13]   [,14]   [,15]   [,16]  
+## [1,] &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot;
+##      [,17]   [,18]   [,19]   [,20]   [,21]
+## [1,] &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot; -999&quot; &quot;&quot;</code></pre>
+</div>
+<div id="converting-to-dataframes" class="section level3">
+<h3><span class="header-section-number">10.1.6</span> Converting to dataframes</h3>
+<p>Now, you can use <code>bind_rows</code> from <code>dplyr</code> to change the list of metadata into a dataframe. (You first need to use <code>as_tibble</code> with <code>lapply</code> to convert all elements of the list from matrices to dataframes.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+hurr_meta &lt;-<span class="st"> </span><span class="kw">lapply</span>(hurr_meta, tibble::as_tibble)
+hurr_meta &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(hurr_meta)
+hurr_meta %&gt;%
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##         V1                  V2      V3    V4
+##      &lt;chr&gt;               &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
+## 1 AL011851             UNNAMED      14      
+## 2 AL021851             UNNAMED       1      
+## 3 AL031851             UNNAMED       1</code></pre>
+<p>You can clean up the data a bit more.</p>
+<ul>
+<li>First, the fourth column doesn’t have any non-missing values, so you can get rid of it:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(hurr_meta$V4)</code></pre></div>
+<pre><code>## [1] &quot;&quot;</code></pre>
+<ul>
+<li>Second, the second and third columns include a lot of leading whitespace:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_meta$V2[<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] &quot;            UNNAMED&quot; &quot;            UNNAMED&quot;</code></pre>
+<ul>
+<li>Last, we want to name the columns.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_meta &lt;-<span class="st"> </span>hurr_meta %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">select</span>(-V4) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">rename</span>(<span class="dt">storm_id =</span> V1, <span class="dt">storm_name =</span> V2, <span class="dt">n_obs =</span> V3) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_name =</span> <span class="kw">str_trim</span>(storm_name),
+                <span class="dt">n_obs =</span> <span class="kw">as.numeric</span>(n_obs))
+hurr_meta %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   storm_id storm_name n_obs
+##      &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt;
+## 1 AL011851    UNNAMED    14
+## 2 AL021851    UNNAMED     1
+## 3 AL031851    UNNAMED     1</code></pre>
+<p>Now you can do the same idea with the hurricane observations. First, we’ll want to add storm identifiers to that data. The “meta” data includes storm ids and the number of observations per storm. We can take advantage of that to make a <code>storm_id</code> vector that will line up with the storm observations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">storm_id &lt;-<span class="st"> </span><span class="kw">rep</span>(hurr_meta$storm_id, <span class="dt">times =</span> hurr_meta$n_obs)
+<span class="kw">head</span>(storm_id, <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] &quot;AL011851&quot; &quot;AL011851&quot; &quot;AL011851&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(storm_id)</code></pre></div>
+<pre><code>## [1] 49105</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(hurr_obs)</code></pre></div>
+<pre><code>## [1] 49105</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span><span class="kw">lapply</span>(hurr_obs, tibble::as_tibble)
+hurr_obs &lt;-<span class="st"> </span>dplyr::<span class="kw">bind_rows</span>(hurr_obs) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_id =</span> storm_id)
+hurr_obs %&gt;%<span class="st"> </span>dplyr::<span class="kw">select</span>(V1, V2, V5, V6, storm_id) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##         V1    V2     V5      V6 storm_id
+##      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;
+## 1 18510625  0000  28.0N   94.8W AL011851
+## 2 18510625  0600  28.0N   95.4W AL011851
+## 3 18510625  1200  28.0N   96.0W AL011851</code></pre>
+<p>To finish, you just need to clean up the data. Now that the data is in a dataframe, this process is inline with what you’ve been doing with <code>dplyr</code> and related packages. </p>
+<p>The “README” file for the hurricane tracking data is useful at this point:</p>
+<p><a href="http://www.nhc.noaa.gov/data/hurdat/hurdat2-format-atlantic.pdf" class="uri">http://www.nhc.noaa.gov/data/hurdat/hurdat2-format-atlantic.pdf</a></p>
+<p>First, say you only want some of the columns for a study you are doing. You can use <code>select</code> to clean up the dataframe by limiting it to columns you need. </p>
+<p>If you only need date, time, storm status, location (latitude and longitude), maximum sustained winds, and minimum pressure, then you can run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">select</span>(V1, V2, V4:V8, storm_id) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">rename</span>(<span class="dt">date =</span> V1, <span class="dt">time =</span> V2, <span class="dt">status =</span> V4, <span class="dt">latitude =</span> V5, 
+                <span class="dt">longitude =</span> V6, <span class="dt">wind =</span> V7, <span class="dt">pressure =</span> V8)
+hurr_obs %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">select</span>(date, time, status, latitude, longitude)</code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##       date  time status latitude longitude
+##      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;
+## 1 18510625  0000     HU    28.0N     94.8W
+## 2 18510625  0600     HU    28.0N     95.4W
+## 3 18510625  1200     HU    28.0N     96.0W</code></pre>
+<p>Next, the first two columns give the date and time. You can <code>unite</code> these and then convert them to a Date-time class.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(lubridate)
+hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>tidyr::<span class="kw">unite</span>(date_time, date, time) %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">date_time =</span> <span class="kw">ymd_hm</span>(date_time))
+hurr_obs %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">select</span>(date_time, status, latitude, longitude)</code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##             date_time status latitude longitude
+##                &lt;dttm&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;
+## 1 1851-06-25 00:00:00     HU    28.0N     94.8W
+## 2 1851-06-25 06:00:00     HU    28.0N     95.4W
+## 3 1851-06-25 12:00:00     HU    28.0N     96.0W</code></pre>
+<p>Next, you can change <code>status</code> to a factor and give the levels more meaningful names:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(hurr_obs$status)</code></pre></div>
+<pre><code>## [1] &quot; HU&quot; &quot; TS&quot; &quot; EX&quot; &quot; TD&quot; &quot; LO&quot; &quot; DB&quot; &quot; SD&quot; &quot; SS&quot; &quot; WV&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">storm_levels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;TD&quot;</span>, <span class="st">&quot;TS&quot;</span>, <span class="st">&quot;HU&quot;</span>, <span class="st">&quot;EX&quot;</span>, 
+                  <span class="st">&quot;SD&quot;</span>, <span class="st">&quot;SS&quot;</span>, <span class="st">&quot;LO&quot;</span>, <span class="st">&quot;WV&quot;</span>, <span class="st">&quot;DB&quot;</span>)
+storm_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Tropical depression&quot;</span>, <span class="st">&quot;Tropical storm&quot;</span>,
+                  <span class="st">&quot;Hurricane&quot;</span>, <span class="st">&quot;Extratropical cyclone&quot;</span>,
+                  <span class="st">&quot;Subtropical depression&quot;</span>,
+                  <span class="st">&quot;Subtropical storm&quot;</span>, <span class="st">&quot;Other low&quot;</span>,
+                  <span class="st">&quot;Tropical wave&quot;</span>, <span class="st">&quot;Disturbance&quot;</span>)
+hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">status =</span> <span class="kw">factor</span>(<span class="kw">str_trim</span>(status), 
+                                <span class="dt">levels =</span> storm_levels, 
+                                <span class="dt">labels =</span> storm_labels))</code></pre></div>
+<p>Now, you can clean up the latitude and longitude. Ultimately, we’ll want numeric values for those so we can use them for mapping. You can use regular expressions to separate the numeric and non-numeric parts of these columns. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">str_extract</span>(hurr_obs$latitude, <span class="st">&quot;[A-Z]&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot;N&quot; &quot;N&quot; &quot;N&quot; &quot;N&quot; &quot;N&quot; &quot;N&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">str_extract</span>(hurr_obs$latitude, <span class="st">&quot;[^A-Z]+&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot; 28.0&quot; &quot; 28.0&quot; &quot; 28.0&quot; &quot; 28.1&quot; &quot; 28.2&quot; &quot; 28.2&quot;</code></pre>
+<p>Use this idea to split the numeric latitude from the direction of that latitude:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">lat_dir =</span> <span class="kw">str_extract</span>(latitude, <span class="st">&quot;[A-Z]&quot;</span>),
+                <span class="dt">latitude =</span> <span class="kw">as.numeric</span>(<span class="kw">str_extract</span>(latitude, <span class="st">&quot;[^A-Z]+&quot;</span>)),
+                <span class="dt">lon_dir =</span> <span class="kw">str_extract</span>(longitude, <span class="st">&quot;[A-Z]&quot;</span>),
+                <span class="dt">longitude =</span> <span class="kw">as.numeric</span>(<span class="kw">str_extract</span>(longitude, <span class="st">&quot;[^A-Z]+&quot;</span>)))</code></pre></div>
+<p>Now these elements are in separate columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">select</span>(latitude, lat_dir, longitude, lon_dir) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">2</span>)</code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   latitude lat_dir longitude lon_dir
+##      &lt;dbl&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;chr&gt;
+## 1       28       N      94.8       W
+## 2       28       N      95.4       W</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(hurr_obs$lat_dir)</code></pre></div>
+<pre><code>## [1] &quot;N&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(hurr_obs$lon_dir)</code></pre></div>
+<pre><code>## [1] &quot;W&quot; &quot;E&quot;</code></pre>
+<p>If we’re looking at US impacts, we probably only need observations from the western hemisphere, so let’s filter out other values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">filter</span>(lon_dir ==<span class="st"> &quot;W&quot;</span>)</code></pre></div>
+<p>Next, clean up the wind column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(hurr_obs$wind)[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
+<pre><code>## [1] &quot;  80&quot; &quot;  70&quot; &quot;  60&quot; &quot;  50&quot; &quot;  40&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">wind =</span> <span class="kw">ifelse</span>(wind ==<span class="st"> &quot; -99&quot;</span>, <span class="ot">NA</span>, <span class="kw">as.numeric</span>(wind)))</code></pre></div>
+<p>Check the cleaned measurements:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(hurr_obs, <span class="kw">aes</span>(<span class="dt">x =</span> wind)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-522-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
+<p>Clean and check air pressure measurements in the same way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">unique</span>(hurr_obs$pressure))</code></pre></div>
+<pre><code>## [1] &quot; -999&quot; &quot;  961&quot; &quot;  924&quot; &quot;  938&quot; &quot;  950&quot; &quot;  997&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">pressure =</span> <span class="kw">ifelse</span>(pressure ==<span class="st"> &quot; -999&quot;</span>, <span class="ot">NA</span>,
+                                  <span class="kw">as.numeric</span>(pressure)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(hurr_obs, <span class="kw">aes</span>(<span class="dt">x =</span> pressure)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-524-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
+<p>Check some of the very low pressure measurements:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs %&gt;%<span class="st"> </span>dplyr::<span class="kw">arrange</span>(pressure) %&gt;%<span class="st"> </span>
+<span class="st">  </span>dplyr::<span class="kw">select</span>(date_time, wind, pressure) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>)</code></pre></div>
+<pre><code>## # A tibble: 5 × 3
+##             date_time  wind pressure
+##                &lt;dttm&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 2005-10-19 12:00:00   160      882
+## 2 1988-09-14 00:00:00   160      888
+## 3 1988-09-14 06:00:00   155      889
+## 4 1935-09-03 00:00:00   160      892
+## 5 1935-09-03 02:00:00   160      892</code></pre>
+</div>
+<div id="exploring-the-hurricane-tracking-data" class="section level3">
+<h3><span class="header-section-number">10.1.7</span> Exploring the hurricane tracking data</h3>
+<p>Explore pressure versus wind speed, by storm status:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(hurr_obs, <span class="kw">aes</span>(<span class="dt">x =</span> pressure, <span class="dt">y =</span> wind,
+                     <span class="dt">color =</span> status)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.2</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>) </code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-526-1.png" width="0.9\textwidth" style="display: block; margin: auto;" /></p>
+<p>Next, we want to map storms by decade. Add hurricane decade:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">substring</span>(<span class="kw">year</span>(date_time), <span class="dv">1</span>, <span class="dv">3</span>),
+                <span class="dt">decade =</span> <span class="kw">paste0</span>(decade, <span class="st">&quot;0s&quot;</span>))
+<span class="kw">unique</span>(hurr_obs$decade)</code></pre></div>
+<pre><code>##  [1] &quot;1850s&quot; &quot;1860s&quot; &quot;1870s&quot; &quot;1880s&quot; &quot;1890s&quot; &quot;1900s&quot; &quot;1910s&quot; &quot;1920s&quot;
+##  [9] &quot;1930s&quot; &quot;1940s&quot; &quot;1950s&quot; &quot;1960s&quot; &quot;1970s&quot; &quot;1980s&quot; &quot;1990s&quot; &quot;2000s&quot;
+## [17] &quot;2010s&quot;</code></pre>
+<p>Add logical for whether the storm was ever category 5:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">group_by</span>(storm_id) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">cat_5 =</span> <span class="kw">max</span>(wind) &gt;=<span class="st"> </span><span class="dv">137</span>) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">ungroup</span>()</code></pre></div>
+<p>To map the hurricane tracks, you need a base map to add the tracks to. Pull data to map hurricane-prone states:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">east_states &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;florida&quot;</span>, <span class="st">&quot;georgia&quot;</span>, <span class="st">&quot;south carolina&quot;</span>, 
+                 <span class="st">&quot;north carolina&quot;</span>, <span class="st">&quot;virginia&quot;</span>, <span class="st">&quot;maryland&quot;</span>,
+                 <span class="st">&quot;delaware&quot;</span>, <span class="st">&quot;new jersey&quot;</span>, <span class="st">&quot;new york&quot;</span>, 
+                 <span class="st">&quot;connecticut&quot;</span>, <span class="st">&quot;massachusetts&quot;</span>, 
+                 <span class="st">&quot;rhode island&quot;</span>, <span class="st">&quot;vermont&quot;</span>, <span class="st">&quot;new hampshire&quot;</span>,
+                 <span class="st">&quot;maine&quot;</span>, <span class="st">&quot;pennsylvania&quot;</span>, <span class="st">&quot;west virginia&quot;</span>,
+                 <span class="st">&quot;tennessee&quot;</span>, <span class="st">&quot;kentucky&quot;</span>, <span class="st">&quot;alabama&quot;</span>,
+                 <span class="st">&quot;arkansas&quot;</span>, <span class="st">&quot;texas&quot;</span>, <span class="st">&quot;mississippi&quot;</span>,
+                 <span class="st">&quot;louisiana&quot;</span>)
+east_us &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>, <span class="dt">region =</span> east_states)</code></pre></div>
+<p>Plot tracks over a map of hurricane-prone states. Add thicker lines for storms that were category 5 at least once in their history.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(east_us, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;cornsilk&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;cornsilk&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_void</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="kw">c</span>(-<span class="dv">108</span>, -<span class="dv">65</span>)) +<span class="st"> </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">48</span>)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> hurr_obs, 
+            <span class="kw">aes</span>(<span class="dt">x =</span> -longitude, <span class="dt">y =</span> latitude,
+                <span class="dt">group =</span> storm_id),
+            <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">size =</span> <span class="fl">0.2</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> <span class="kw">filter</span>(hurr_obs, cat_5), 
+            <span class="kw">aes</span>(<span class="dt">x =</span> -longitude, <span class="dt">y =</span> latitude,
+                <span class="dt">group =</span> storm_id),
+            <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>decade)</code></pre></div>
+<p>Check trends in maximum wind recorded in any observation each year:</p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-531-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>Maximum wind observed each year:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_year =</span> <span class="kw">year</span>(date_time)) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">group_by</span>(storm_year) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">summarize</span>(<span class="dt">highest_wind =</span> <span class="kw">max</span>(wind, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> storm_year, <span class="dt">y =</span> highest_wind)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">span =</span> <span class="fl">0.5</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-532-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
+<p>There is an R package named <code>gender</code> that predicts whether a name is male or female based on historical data: </p>
+<p><a href="https://cran.r-project.org/web/packages/gender/vignettes/predicting-gender.html">Vignette for <code>gender</code> package</a> </p>
+<p>This package uses one of several databases of names (here, we’ll use Social Security Administration data), inputs a year or range of years, and outputs whether a name in that year was more likely female or male. </p>
+<p>We can apply a function from this package across all the named storms to see how male / female proportions changed over time.</p>
+<p>First, install the package (as wll as <code>genderdata</code>, which is required to use the package). Once you do, you can use <code>gender</code> to determine the most common gender associated with a name in a given year or range of years:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;gender&quot;)</span>
+<span class="co"># install.packages(&quot;genderdata&quot;, type = &quot;source&quot;,</span>
+<span class="co">#                 repos = &quot;http://packages.ropensci.org&quot;)</span>
+<span class="kw">library</span>(gender)
+<span class="kw">gender</span>(<span class="st">&quot;KATRINA&quot;</span>, <span class="dt">years =</span> <span class="dv">2005</span>)[ , <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;gender&quot;</span>)]</code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##      name gender
+##     &lt;chr&gt;  &lt;chr&gt;
+## 1 KATRINA female</code></pre>
+<p>To apply this function across all our storms, it helps if we write a small function that “wraps” the <code>gender</code> function and outputs exactly (and only) what we want, in the format we want:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">get_gender &lt;-<span class="st"> </span>function(storm_name, storm_year){
+  storm_gender &lt;-<span class="st"> </span><span class="kw">gender</span>(<span class="dt">names =</span> storm_name,
+                         <span class="dt">years =</span> storm_year,
+                         <span class="dt">method =</span> <span class="st">&quot;ssa&quot;</span>)$gender
+  if(<span class="kw">length</span>(storm_gender) ==<span class="st"> </span><span class="dv">0</span>) storm_gender &lt;-<span class="st"> </span><span class="ot">NA</span>
+  <span class="kw">return</span>(storm_gender)
+}</code></pre></div>
+<p>Now we can use <code>mapply</code> with this wrapper function to apply it across all our named storms:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_genders &lt;-<span class="st"> </span>hurr_meta %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">filter</span>(storm_name !=<span class="st"> &quot;UNNAMED&quot;</span>) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_year =</span> <span class="kw">substring</span>(storm_id, <span class="dv">5</span>, <span class="dv">8</span>),
+                <span class="dt">storm_year =</span> <span class="kw">as.numeric</span>(storm_year)) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">filter</span>(<span class="dv">1880</span> &lt;=<span class="st"> </span>storm_year &amp;<span class="st"> </span>storm_year &lt;=<span class="st"> </span><span class="dv">2012</span>) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">select</span>(storm_name, storm_year, storm_id) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_gender =</span> <span class="kw">mapply</span>(get_gender, 
+                                      <span class="dt">storm_name =</span> storm_name,
+                                      <span class="dt">storm_year =</span> <span class="kw">as.numeric</span>(storm_year)))</code></pre></div>
+<p>Now, plot a bar chart with the number of male, female, and unclear storms each year:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_genders %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">group_by</span>(storm_year, storm_gender) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> storm_year, <span class="dt">y =</span> n, <span class="dt">fill =</span> storm_gender)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_flip</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_reverse</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of storms&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-537-1.png" width="672" /></p>
+<p>Next, you can write a function to plot the track for a specific storm. You’ll want to be able to call the function by storm name and year, so join in the storm names from the <code>hurr_meta</code> dataset. We’ll exclude any “UNNAMED” storms.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">left_join</span>(hurr_meta, <span class="dt">by =</span> <span class="st">&quot;storm_id&quot;</span>) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">filter</span>(storm_name !=<span class="st"> &quot;UNNAMED&quot;</span>) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_year =</span> <span class="kw">year</span>(date_time))</code></pre></div>
+<p>Next, write a function to plot the track for a single storm. Use color to show storm status and size to show wind speed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_track &lt;-<span class="st"> </span>function(storm, year, <span class="dt">map_data =</span> east_us,
+                      <span class="dt">hurr_data =</span> hurr_obs){
+  to_plot &lt;-<span class="st"> </span>hurr_obs %&gt;%
+<span class="st">    </span>dplyr::<span class="kw">filter</span>(storm_name ==<span class="st"> </span><span class="kw">toupper</span>(storm) &amp;<span class="st"> </span>storm_year ==<span class="st"> </span>year)
+  out &lt;-<span class="st"> </span><span class="kw">ggplot</span>(east_us, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat,
+                             <span class="dt">group =</span> group)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;cornsilk&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">theme_void</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">xlim</span>(<span class="kw">c</span>(-<span class="dv">108</span>, -<span class="dv">65</span>)) +<span class="st"> </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">48</span>)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_path</span>(<span class="dt">data =</span> to_plot,
+              <span class="kw">aes</span>(<span class="dt">x =</span> -longitude, <span class="dt">y =</span> latitude,
+                  <span class="dt">group =</span> <span class="ot">NULL</span>)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data =</span> to_plot,
+              <span class="kw">aes</span>(<span class="dt">x =</span> -longitude, <span class="dt">y =</span> latitude,
+                  <span class="dt">group =</span> <span class="ot">NULL</span>, <span class="dt">color =</span> status,
+                  <span class="dt">size =</span> wind), <span class="dt">alpha =</span> <span class="fl">0.5</span>)
+  <span class="kw">return</span>(out)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_track</span>(<span class="dt">storm =</span> <span class="st">&quot;Katrina&quot;</span>, <span class="dt">year =</span> <span class="st">&quot;2005&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-540-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_track</span>(<span class="dt">storm =</span> <span class="st">&quot;Camille&quot;</span>, <span class="dt">year =</span> <span class="st">&quot;1969&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-541-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_track</span>(<span class="dt">storm =</span> <span class="st">&quot;Hazel&quot;</span>, <span class="dt">year =</span> <span class="st">&quot;1954&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-542-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>You can also write code with <code>readLines</code> that will read, check, and clean each line, one line at a time.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con  &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&quot;~/my_file.txt&quot;</span>, <span class="dt">open =</span> <span class="st">&quot;r&quot;</span>)
+while (<span class="kw">length</span>(single_line &lt;-<span class="st"> </span>
+<span class="st">              </span><span class="kw">readLines</span>(con, <span class="dt">n =</span> <span class="dv">1</span>,
+                        <span class="dt">warn =</span> <span class="ot">FALSE</span>)) &gt;<span class="st"> </span><span class="dv">0</span>) {
+    
+  ## Code to check and clean each line and 
+  ## then add it to &quot;cleaned&quot; data frame.
+  ## Run operations on `single_line`.
+
+  } 
+<span class="kw">close</span>(con)</code></pre></div>
+<p>This can be particularly useful if you’re cleaning a very big file, especially if there are many lines you don’t want to keep.</p>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reproducible-research-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/10-gettingcleaningdata3.Rmd",
+"text": "Edit"
+},
+"download": ["RProgrammingForResearch.pdf", "RProgrammingForResearch.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
