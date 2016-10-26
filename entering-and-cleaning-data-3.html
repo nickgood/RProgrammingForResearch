@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-24">
+<meta name="date" content="2016-10-26">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -354,6 +354,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
 <li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#pulling-online-data"><i class="fa fa-check"></i><b>10.2</b> Pulling online data</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#apis"><i class="fa fa-check"></i><b>10.2.1</b> APIs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-riem-package"><i class="fa fa-check"></i><b>10.2.2</b> Example– <code>riem</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-r-api-wrappers"><i class="fa fa-check"></i><b>10.3</b> Example R API wrappers</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#ropensci"><i class="fa fa-check"></i><b>10.3.1</b> rOpenSci</a></li>
+<li class="chapter" data-level="10.3.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#countyweather"><i class="fa fa-check"></i><b>10.3.2</b> <code>countyweather</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#usgs-r-packages"><i class="fa fa-check"></i><b>10.3.3</b> USGS-R Packages</a></li>
+<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#us-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> US Census packages</a></li>
+<li class="chapter" data-level="10.3.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#other-r-api-wrappers"><i class="fa fa-check"></i><b>10.3.5</b> Other R API wrappers</a></li>
+<li class="chapter" data-level="10.3.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#r-and-apis"><i class="fa fa-check"></i><b>10.3.6</b> R and APIs</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#parsing-webpages"><i class="fa fa-check"></i><b>10.4</b> Parsing webpages</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#rvest"><i class="fa fa-check"></i><b>10.4.1</b> <code>rvest</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#scraping-multiple-pages"><i class="fa fa-check"></i><b>10.4.2</b> Scraping multiple pages</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
@@ -428,7 +444,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="readlines-function" class="section level3">
 <h3><span class="header-section-number">10.1.3</span> <code>readLines</code> function</h3>
 <p>However, the <code>readLines</code> function allows you to read a text file in one line at a time. You can then write code and functions to parse the file one line at a time, to turn it into a dataframe you can use.</p>
-<p>The <code>readLines</code> function will read in lines from a text file directly, without trying to separate into columns. You can use the <code>n</code> argument to specify the number of lines to read it. </p>
+<p>The <code>readLines</code> function will read in lines from a text file directly, without trying to separate into columns. You can use the <code>n</code> argument to specify the number of lines to read it.</p>
 <p>For example, to read in three lines from the hurricane tracking data, you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tracks_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.nhc.noaa.gov/data/hurdat/&quot;</span>,
                      <span class="st">&quot;hurdat2-1851-2015-070616.txt&quot;</span>)
@@ -567,10 +583,10 @@ hurr_obs %&gt;%<span class="st"> </span>dplyr::<span class="kw">select</span>(V1
 ## 1 18510625  0000  28.0N   94.8W AL011851
 ## 2 18510625  0600  28.0N   95.4W AL011851
 ## 3 18510625  1200  28.0N   96.0W AL011851</code></pre>
-<p>To finish, you just need to clean up the data. Now that the data is in a dataframe, this process is inline with what you’ve been doing with <code>dplyr</code> and related packages. </p>
+<p>To finish, you just need to clean up the data. Now that the data is in a dataframe, this process is inline with what you’ve been doing with <code>dplyr</code> and related packages.</p>
 <p>The “README” file for the hurricane tracking data is useful at this point:</p>
 <p><a href="http://www.nhc.noaa.gov/data/hurdat/hurdat2-format-atlantic.pdf" class="uri">http://www.nhc.noaa.gov/data/hurdat/hurdat2-format-atlantic.pdf</a></p>
-<p>First, say you only want some of the columns for a study you are doing. You can use <code>select</code> to clean up the dataframe by limiting it to columns you need. </p>
+<p>First, say you only want some of the columns for a study you are doing. You can use <code>select</code> to clean up the dataframe by limiting it to columns you need.</p>
 <p>If you only need date, time, storm status, location (latitude and longitude), maximum sustained winds, and minimum pressure, then you can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">select</span>(V1, V2, V4:V8, storm_id) %&gt;%
@@ -725,9 +741,9 @@ east_us &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span cla
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> storm_year, <span class="dt">y =</span> highest_wind)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">span =</span> <span class="fl">0.5</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-532-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
-<p>There is an R package named <code>gender</code> that predicts whether a name is male or female based on historical data: </p>
-<p><a href="https://cran.r-project.org/web/packages/gender/vignettes/predicting-gender.html">Vignette for <code>gender</code> package</a> </p>
-<p>This package uses one of several databases of names (here, we’ll use Social Security Administration data), inputs a year or range of years, and outputs whether a name in that year was more likely female or male. </p>
+<p>There is an R package named <code>gender</code> that predicts whether a name is male or female based on historical data:</p>
+<p><a href="https://cran.r-project.org/web/packages/gender/vignettes/predicting-gender.html">Vignette for <code>gender</code> package</a></p>
+<p>This package uses one of several databases of names (here, we’ll use Social Security Administration data), inputs a year or range of years, and outputs whether a name in that year was more likely female or male.</p>
 <p>We can apply a function from this package across all the named storms to see how male / female proportions changed over time.</p>
 <p>First, install the package (as wll as <code>genderdata</code>, which is required to use the package). Once you do, you can use <code>gender</code> to determine the most common gender associated with a name in a given year or range of years:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;gender&quot;)</span>
@@ -811,6 +827,242 @@ while (<span class="kw">length</span>(single_line &lt;-<span class="st"> </span>
   } 
 <span class="kw">close</span>(con)</code></pre></div>
 <p>This can be particularly useful if you’re cleaning a very big file, especially if there are many lines you don’t want to keep.</p>
+</div>
+</div>
+<div id="pulling-online-data" class="section level2">
+<h2><span class="header-section-number">10.2</span> Pulling online data</h2>
+<div id="apis" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> APIs</h3>
+<p>API: “Application Program Interface”</p>
+<p>An API provides the rules for software applications to interact. In the case of open data APIs, they provide the rules you need to know to write R code to request and pull data from the organization’s web server into your R session.</p>
+<p>Often, an API can help you avoid downloading all available data, and instead only download the subset you need.</p>
+<p>Strategy for using APIs from R:</p>
+<ul>
+<li>Figure out the API rules for HTTP requests</li>
+<li>Write R code to create a request in the proper format</li>
+<li>Send the request using GET or POST HTTP methods</li>
+<li>Once you get back data from the request, parse it into an easier-to-use format if necessary</li>
+</ul>
+<p>Start by reading any documentation available for the API. This will often give information on what data is available and how to put together requests.</p>
+<p><img src="figures/NASA_API_documentation.png" width="1.1\textwidth" style="display: block; margin: auto;" /></p>
+<p>Source: <a href="https://api.nasa.gov/api.html#EONET" class="uri">https://api.nasa.gov/api.html#EONET</a></p>
+<p>Many organizations will require you to get an API key and use this key in each of your API requests. This key allows the organization to control API access, including enforcing rate limits per user. API rate limits restrict how often you can request data (e.g., an hourly limit of 1,000 requests per user for NASA APIs).</p>
+<p>You should keep this key private. In particular, make sure you do not include it in code that is posted to GitHub.</p>
+</div>
+<div id="example-riem-package" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Example– <code>riem</code> package</h3>
+<p>The <code>riem</code> package, developed by Maelle Salmon and an ROpenSci package, is an excellent and straightforward example of how you can use R to pull open data through a web API.</p>
+<p>This package allows you to pull weather data from airports around the world directly from the <a href="https://mesonet.agron.iastate.edu">Iowa Environmental Mesonet</a>.</p>
+<p>To get a certain set of weather data from the Iowa Environmental Mesonet, you can send an HTTP request specifying a base URL, “<a href="https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py/" class="uri">https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py/</a>”, as well as some parameters describing the subset of dataset you want (e.g., date ranges, weather variables, output format).</p>
+<p>Once you know the rules for the names and possible values of these parameters (more on that below), you can submit an HTTP GET request using the <code>GET</code> function from the <code>httr</code> package.</p>
+<p><img src="figures/mesonet_example.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p><a href="https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=DEN&amp;data=sknt&amp;year1=2016&amp;month1=6&amp;day1=1&amp;year2=2016&amp;month2=6&amp;day2=30&amp;tz=America%2FDenver&amp;format=comma&amp;latlon=no&amp;direct=no&amp;report_type=1&amp;report_type=2">https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=DEN&amp;data=sknt&amp;year1=2016&amp;month1=6&amp;day1=1&amp;year2=2016&amp;month2=6&amp;day2=30&amp;tz=America%2FDenver&amp;format=comma&amp;latlon=no&amp;direct=no&amp;report_type=1&amp;report_type=2</a></p>
+<p>When you are making an HTTP request using the <code>GET</code> or <code>POST</code> functions from the <code>httr</code> package, you can include the key-value pairs for any query parameters as a list object in the <code>query</code> argurment of the function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(httr)
+meso_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;https://mesonet.agron.iastate.edu/&quot;</span>,
+                   <span class="st">&quot;cgi-bin/request/asos.py/&quot;</span>)
+denver &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="dt">url =</span> meso_url,
+              <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">station =</span> <span class="st">&quot;DEN&quot;</span>, <span class="dt">data =</span> <span class="st">&quot;sped&quot;</span>,
+                           <span class="dt">year1 =</span> <span class="st">&quot;2016&quot;</span>, <span class="dt">month1 =</span> <span class="st">&quot;6&quot;</span>,
+                           <span class="dt">day1 =</span> <span class="st">&quot;1&quot;</span>, <span class="dt">year2 =</span> <span class="st">&quot;2016&quot;</span>,
+                           <span class="dt">month2 =</span> <span class="st">&quot;6&quot;</span>, <span class="dt">day2 =</span> <span class="st">&quot;30&quot;</span>,
+                           <span class="dt">tz =</span> <span class="st">&quot;America/Denver&quot;</span>,
+                           <span class="dt">format =</span> <span class="st">&quot;comma&quot;</span>))</code></pre></div>
+<p>You can then use <code>content</code> from <code>httr</code> to retrieve the contents of the HTTP request. For this particular web data, the requested data is a comma-separated file, so you can convert it to a dataframe with <code>read_csv</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">denver %&gt;%<span class="st"> </span><span class="kw">content</span>() %&gt;%<span class="st"> </span>
+<span class="st">  </span>readr::<span class="kw">read_csv</span>(<span class="dt">skip =</span> <span class="dv">5</span>, <span class="dt">na =</span> <span class="st">&quot;M&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   station               valid  sped
+##     &lt;chr&gt;              &lt;dttm&gt; &lt;dbl&gt;
+## 1     DEN 2016-06-01 00:00:00   9.2
+## 2     DEN 2016-06-01 00:05:00   9.2
+## 3     DEN 2016-06-01 00:10:00   6.9</code></pre>
+</div>
+</div>
+<div id="example-r-api-wrappers" class="section level2">
+<h2><span class="header-section-number">10.3</span> Example R API wrappers</h2>
+<div id="ropensci" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> rOpenSci</h3>
+<p>rOpenSci (<a href="https://ropensci.org" class="uri">https://ropensci.org</a>):</p>
+<blockquote>
+<p>“At rOpenSci we are creating packages that allow access to data repositories through the R statistical programming environment that is already a familiar part of the workflow of many scientists. Our tools not only facilitate drawing data into an environment where it can readily be manipulated, but also one in which those analyses and methods can be easily shared, replicated, and extended by other researchers.”</p>
+</blockquote>
+<p>rOpenSci collects a number of packages for tapping into open data for research: <a href="https://ropensci.org/packages" class="uri">https://ropensci.org/packages</a></p>
+<p>Some examples (all descriptions from rOpenSci):</p>
+<ul>
+<li><code>AntWeb</code>: Access data from the world’s largest ant database</li>
+<li><code>chromer</code>: Interact with the chromosome counts database (CCDB)</li>
+<li><code>gender</code>: Encodes gender based on names and dates of birth</li>
+<li><code>musemeta</code>: R Client for Scraping Museum Metadata, including The Metropolitan Museum of Art, the Canadian Science &amp; Technology Museum Corporation, the National Gallery of Art, and the Getty Museum, and more to come.</li>
+<li><code>rusda</code>: Interface to some USDA databases</li>
+<li><code>webchem</code>: Retrieve chemical information from many sources. Currently includes: Chemical Identifier Resolver, ChemSpider, PubChem, and Chemical Translation Service.</li>
+</ul>
+<p>For example, here is the description for the <code>rnoaa</code> package:</p>
+<blockquote>
+<p>“Access climate data from NOAA, including temperature and precipitation, as well as sea ice cover data, and extreme weather events”</p>
+</blockquote>
+<ul>
+<li>Buoy data from the National Buoy Data Center</li>
+<li>Historical Observing Metadata Repository (HOMR))— climate station metadata</li>
+<li>National Climatic Data Center weather station data</li>
+<li>Sea ice data</li>
+<li>International Best Track Archive for Climate Stewardship (IBTrACS)— tropical cyclone tracking data</li>
+<li>Severe Weather Data Inventory (SWDI)</li>
+</ul>
+</div>
+<div id="countyweather" class="section level3">
+<h3><span class="header-section-number">10.3.2</span> <code>countyweather</code></h3>
+<p>The <code>countyweather</code> package wraps the <code>rnoaa</code> package to let you pull and aggregate weather at the county level in the U.S. For example, you can pull all data from Miami during Hurricane Andrew:</p>
+<p><img src="figures/countyweather2.png" width="\textwidth" /></p>
+<p>When you pull the data for a county, the package also maps the contributing weather stations:</p>
+<p><img src="figures/countyweather1.png" width="\textwidth" /></p>
+</div>
+<div id="usgs-r-packages" class="section level3">
+<h3><span class="header-section-number">10.3.3</span> USGS-R Packages</h3>
+<p>USGS has a very nice collection of R packages that wrap USGS open data APIs: <a href="https://owi.usgs.gov/R/" class="uri">https://owi.usgs.gov/R/</a></p>
+<blockquote>
+<p>“USGS-R is a community of support for users of the R scientific programming language. USGS-R resources include R training materials, R tools for the retrieval and analysis of USGS data, and support for a growing group of USGS-R developers.”</p>
+</blockquote>
+<p>USGS R packages include:</p>
+<ul>
+<li><code>dataRetrieval</code>: Obtain water quality sample data, streamflow data, and metadata directly from either the USGS or EPA</li>
+<li><code>EGRET</code>: Analysis of long-term changes in water quality and streamflow, including the water-quality method Weighted Regressions on Time, Discharge, and Season (WRTDS)</li>
+<li><code>laketemps</code>: Lake temperature data package for Global Lake Temperature Collaboration Project</li>
+<li><code>lakeattributes</code>: Common useful lake attribute data</li>
+<li><code>soilmoisturetools</code>: Tools for soil moisture data retrieval and visualization</li>
+</ul>
+</div>
+<div id="us-census-packages" class="section level3">
+<h3><span class="header-section-number">10.3.4</span> US Census packages</h3>
+<p>A number of R packages help you access and use data from the U.S. Census:</p>
+<ul>
+<li><code>tigris</code>: Download and use Census TIGER/Line shapefiles in R</li>
+<li><code>acs</code>: Download, manipulate, and present American Community Survey and Decennial data from the US Census</li>
+<li><code>USABoundaries</code>: Historical and contemporary boundaries of the United States of America</li>
+<li><code>idbr</code>: R interface to the US Census Bureau International Data Base API</li>
+</ul>
+<p>For example, the <code>tigris</code> package allows you to pull spatial data for:</p>
+<ul>
+<li>Location boundaries
+<ul>
+<li>States</li>
+<li>Counties</li>
+<li>Blocks</li>
+<li>Tracks</li>
+<li>School districts</li>
+<li>Congressional districts</li>
+</ul></li>
+<li>Roads
+<ul>
+<li>Primary roads</li>
+<li>Primary and secondary roads</li>
+</ul></li>
+<li>Water
+<ul>
+<li>Area-water</li>
+<li>Linear-water</li>
+<li>Coastline</li>
+</ul></li>
+<li>Other
+<ul>
+<li>Landmarks</li>
+<li>Military</li>
+</ul></li>
+</ul>
+<p>Example from: Kyle Walker. 2016. “tigris: An R Package to Access and Work with Geographic Data from the US Census Bureau”. The R Journal.</p>
+<p><img src="figures/tigris_example.png" width="0.6\textwidth" style="display: block; margin: auto;" /></p>
+</div>
+<div id="other-r-api-wrappers" class="section level3">
+<h3><span class="header-section-number">10.3.5</span> Other R API wrappers</h3>
+<p>Here are some examples of other R packages that faciliate use of an API for open data:</p>
+<ul>
+<li><code>twitteR</code>: Twitter</li>
+<li><code>Quandl</code>: Quandl (financial data)</li>
+<li><code>RGoogleAnalytics</code>: Google Analytics</li>
+<li><code>WDI</code>, <code>wbstats</code>: World Bank</li>
+<li><code>GuardianR</code>, <code>rdian</code>: The Guardian Media Group</li>
+<li><code>blsAPI</code>: Bureau of Labor Statistics</li>
+<li><code>rtimes</code>: New York Times</li>
+</ul>
+</div>
+<div id="r-and-apis" class="section level3">
+<h3><span class="header-section-number">10.3.6</span> R and APIs</h3>
+<p>Find out more about writing API packages with this vignette for the httr package: <a href="https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html" class="uri">https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html</a>.</p>
+<p>This document includes advice on error handling within R code that accesses data through an open API.</p>
+</div>
+</div>
+<div id="parsing-webpages" class="section level2">
+<h2><span class="header-section-number">10.4</span> Parsing webpages</h2>
+<p>You can also use R to pull and clean web-based data that is not accessible through a web API or as an online flat file.</p>
+<p>In this case, the strategy is:</p>
+<ul>
+<li>Pull in the full web page file (often in HTML or XML)</li>
+<li>Parse or clean the file within R (e.g., with regular expressions)</li>
+</ul>
+<div id="rvest" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> <code>rvest</code></h3>
+<p>The <code>rvest</code> package should be the first thing you try if you need to pull and parse data from a webpage that is not a flat file.</p>
+<p>This package allows you to read an HTML or XML file and pull out a certain element. Here is a very simple example of this parsing (this and later examples are from <code>rvest</code> documentation):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+<span class="kw">read_html</span>(<span class="st">&quot;&lt;html&gt;&lt;title&gt;Hi&lt;title&gt;&lt;/html&gt;&quot;</span>)</code></pre></div>
+<pre><code>## {xml_document}
+## &lt;html&gt;
+## [1] &lt;head&gt;\n  &lt;title&gt;Hi&lt;title/&gt;&lt;/title&gt;\n&lt;/head&gt;</code></pre>
+<p>If you have an HTML or XML page you want to pull data from, you’ll first need to read the page:</p>
+<p><img src="figures/moviereviewpage.png" width="\textwidth" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+lego_movie &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;http://www.imdb.com/title/tt1490017/&quot;</span>)
+lego_movie</code></pre></div>
+<pre><code>## {xml_document}
+## &lt;html xmlns:og=&quot;http://ogp.me/ns#&quot; xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot;&gt;
+## [1] &lt;head&gt;\n  &lt;meta charset=&quot;utf-8&quot;/&gt;\n  &lt;meta http-equiv=&quot;X-UA-Compatib ...
+## [2] &lt;body&gt;&lt;noscript&gt;\n            &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; ...</code></pre>
+<p>Then you can use <code>html_nodes</code> and <code>html_text</code> to pull and parse just the elements you want:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rating_node &lt;-<span class="st"> </span>lego_movie %&gt;%<span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) 
+rating_node</code></pre></div>
+<pre><code>## {xml_nodeset (1)}
+## [1] &lt;span itemprop=&quot;ratingValue&quot;&gt;7.8&lt;/span&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rating &lt;-<span class="st"> </span>rating_node %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%<span class="st"> </span><span class="kw">as.numeric</span>()
+rating</code></pre></div>
+<pre><code>## [1] 7.8</code></pre>
+<p>You can pull and parse tables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lego_movie %&gt;%
+<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;table&quot;</span>) %&gt;%<span class="st"> `</span><span class="dt">[[</span><span class="st">`</span>(<span class="dv">1</span>) %&gt;%
+<span class="st">  </span><span class="kw">html_table</span>() %&gt;%<span class="st"> </span><span class="kw">select</span>(X2) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">2</span>:<span class="dv">8</span>) </code></pre></div>
+<pre><code>##                X2
+## 1     Will Arnett
+## 2 Elizabeth Banks
+## 3     Craig Berry
+## 4     Alison Brie
+## 5   David Burrows
+## 6 Anthony Daniels
+## 7     Charlie Day</code></pre>
+<p>The only tricky part of this is figuring out which CSS selector you can use to pull a specific element of a webpage.</p>
+<p>You can use “Selectorgadget” to help with this. Read the vignette for that tool here: <a href="ftp://cran.r-project.org/pub/R/web/packages/rvest/vignettes/selectorgadget.html" class="uri">ftp://cran.r-project.org/pub/R/web/packages/rvest/vignettes/selectorgadget.html</a></p>
+</div>
+<div id="scraping-multiple-pages" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> Scraping multiple pages</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;denver&quot;</span>, <span class="st">&quot;boulder&quot;</span>, <span class="st">&quot;fort-collins&quot;</span>)
+
+kitchen_addresses &lt;-<span class="st"> </span><span class="kw">c</span>()
+for(i in <span class="dv">1</span>:<span class="kw">length</span>(cities)){
+  restaurant_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://thekitchen.com/the-kitchen-&quot;</span>,
+                           cities[i])
+  restaurant_page &lt;-<span class="st"> </span><span class="kw">read_html</span>(restaurant_url)
+  address &lt;-<span class="st"> </span>restaurant_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;p:nth-child(2)&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">html_text</span>()
+  kitchen_addresses[i] &lt;-<span class="st"> </span>address[<span class="dv">1</span>]
+}
+kitchen_addresses</code></pre></div>
+<pre><code>## [1] &quot;1530 16th Street (Entrance on Wazee Street)\nDenver, CO 80202&quot;
+## [2] &quot;1039 Pearl St.,\nBoulder, CO 80302&quot;                           
+## [3] &quot;100 North College Avenue\nFort Collins, CO 80524&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
+<span class="kw">library</span>(stringr)
+kitchen_latlons &lt;-<span class="st"> </span><span class="kw">geocode</span>(kitchen_addresses)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-559-1.png" width="0.33\textwidth" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-559-2.png" width="0.33\textwidth" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-559-3.png" width="0.33\textwidth" /></p>
 
 </div>
 </div>

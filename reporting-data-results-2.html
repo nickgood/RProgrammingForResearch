@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
   
-<meta name="date" content="2016-10-24">
+<meta name="date" content="2016-10-26">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -354,6 +354,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
 <li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#pulling-online-data"><i class="fa fa-check"></i><b>10.2</b> Pulling online data</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#apis"><i class="fa fa-check"></i><b>10.2.1</b> APIs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-riem-package"><i class="fa fa-check"></i><b>10.2.2</b> Example– <code>riem</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-r-api-wrappers"><i class="fa fa-check"></i><b>10.3</b> Example R API wrappers</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#ropensci"><i class="fa fa-check"></i><b>10.3.1</b> rOpenSci</a></li>
+<li class="chapter" data-level="10.3.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#countyweather"><i class="fa fa-check"></i><b>10.3.2</b> <code>countyweather</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#usgs-r-packages"><i class="fa fa-check"></i><b>10.3.3</b> USGS-R Packages</a></li>
+<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#us-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> US Census packages</a></li>
+<li class="chapter" data-level="10.3.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#other-r-api-wrappers"><i class="fa fa-check"></i><b>10.3.5</b> Other R API wrappers</a></li>
+<li class="chapter" data-level="10.3.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#r-and-apis"><i class="fa fa-check"></i><b>10.3.6</b> R and APIs</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#parsing-webpages"><i class="fa fa-check"></i><b>10.4</b> Parsing webpages</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#rvest"><i class="fa fa-check"></i><b>10.4.1</b> <code>rvest</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#scraping-multiple-pages"><i class="fa fa-check"></i><b>10.4.2</b> Scraping multiple pages</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
@@ -482,7 +498,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-## -0.43623624  0.06789749</code></pre>
+##   -1.419707    0.276860</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -532,7 +548,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  2.3920372  0.5509855 -0.8176151
+## [1] -0.03316387  0.56061351  0.93224151
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -542,7 +558,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] 0.7084692
+## [1] 0.4865637
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -552,14 +568,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] 2.392037
+## [1] -0.03316387
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                  a                  b                  c 
-##                &quot;1&quot; &quot;2.39203720928784&quot;                &quot;a&quot;</code></pre>
+<pre><code>##                     a                     b                     c 
+##                   &quot;1&quot; &quot;-0.0331638700856364&quot;                   &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
@@ -789,7 +805,7 @@ serial_map &lt;-<span class="st"> </span><span class="kw">ggmap</span>(serial_ma
         <span class="st">&quot;1 First St NE, Washington, DC&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(from, miles, hours)</code></pre></div>
 <pre><code>##              from    miles    hours
-## 1 Fort Collins CO 1670.348 24.54444</code></pre>
+## 1 Fort Collins CO 1670.348 24.55222</code></pre>
 </div>
 <div id="string-operations" class="section level2">
 <h2><span class="header-section-number">8.6</span> String operations</h2>
