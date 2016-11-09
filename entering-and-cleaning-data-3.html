@@ -375,17 +375,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#ensemble-models-and-friends"><i class="fa fa-check"></i><b>11.3.3</b> Ensemble models and friends</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting data results #3</a><ul>
-<li class="chapter" data-level="12.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1</b> Resources for learning Shiny</a></li>
-<li class="chapter" data-level="12.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.2</b> Basics of Shiny apps</a></li>
-<li class="chapter" data-level="12.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.3</b> <code>server.R</code> file</a></li>
-<li class="chapter" data-level="12.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.4</b> <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.5</b> Making a Shiny app</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.5.1</b> Starting with the <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.5.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.5.2</b> Adding in widgets</a></li>
-<li class="chapter" data-level="12.5.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.5.3</b> Creating output in <code>server.R</code></a></li>
-<li class="chapter" data-level="12.5.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.5.4</b> Making the output reactive</a></li>
-<li class="chapter" data-level="12.5.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.5.5</b> Fancier version</a></li>
+<li class="chapter" data-level="12" data-path="reporting-results-3.html"><a href="reporting-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting results #3</a><ul>
+<li class="chapter" data-level="12.1" data-path="reporting-results-3.html"><a href="reporting-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1</b> Resources for learning Shiny</a></li>
+<li class="chapter" data-level="12.2" data-path="reporting-results-3.html"><a href="reporting-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.2</b> Basics of Shiny apps</a></li>
+<li class="chapter" data-level="12.3" data-path="reporting-results-3.html"><a href="reporting-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.3</b> <code>server.R</code> file</a></li>
+<li class="chapter" data-level="12.4" data-path="reporting-results-3.html"><a href="reporting-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.4</b> <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.5" data-path="reporting-results-3.html"><a href="reporting-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.5</b> Making a Shiny app</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="reporting-results-3.html"><a href="reporting-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.5.1</b> Starting with the <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.5.2" data-path="reporting-results-3.html"><a href="reporting-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.5.2</b> Adding in widgets</a></li>
+<li class="chapter" data-level="12.5.3" data-path="reporting-results-3.html"><a href="reporting-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.5.3</b> Creating output in <code>server.R</code></a></li>
+<li class="chapter" data-level="12.5.4" data-path="reporting-results-3.html"><a href="reporting-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.5.4</b> Making the output reactive</a></li>
+<li class="chapter" data-level="12.5.5" data-path="reporting-results-3.html"><a href="reporting-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.5.5</b> Fancier version</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -1048,14 +1048,8 @@ rating</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lego_movie %&gt;%
 <span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;table&quot;</span>) %&gt;%<span class="st"> `</span><span class="dt">[[</span><span class="st">`</span>(<span class="dv">1</span>) %&gt;%
 <span class="st">  </span><span class="kw">html_table</span>() %&gt;%<span class="st"> </span><span class="kw">select</span>(X2) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">2</span>:<span class="dv">8</span>) </code></pre></div>
-<pre><code>##                X2
-## 1     Will Arnett
-## 2 Elizabeth Banks
-## 3     Craig Berry
-## 4     Alison Brie
-## 5   David Burrows
-## 6 Anthony Daniels
-## 7     Charlie Day</code></pre>
+<pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                X2
+## 1 if (typeof uet == &#39;function&#39;) {\n      uet(&quot;bb&quot;, &quot;LargeTrailerWidget&quot;, {wb: 1});\n    }\n Watch Trailer\n\n    if (typeof uet == &#39;function&#39;) {\n      uet(&quot;be&quot;, &quot;LargeTrailerWidget&quot;, {wb: 1});\n    }\n\n    if (typeof uex == &#39;function&#39;) {\n      uex(&quot;ld&quot;, &quot;LargeTrailerWidget&quot;, {wb: 1});\n    }\n\n\n0Check in    \n        X\n        Beta\n        I&#39;m Watching This!\n        \n            Keep track of everything you watch; tell your friends.\n            \n            \n                Error Please try again!\n                Added to Your Check-Ins. View\n            \n            \n                Check in\n\n            \n        \n    \n    \n\n0Share...\n    X\n    Share\n\n    \n    \n    \n                            \n                            Facebook\n                        \n\n    \n    \n    \n                            \n                            Twitter\n                        \n    \n    \n                        \n                        E-mail\n                    \n\n        \n            \n                \n                Check in</code></pre>
 <p>The only tricky part of this is figuring out which CSS selector you can use to pull a specific element of a webpage.</p>
 <p>You can use “Selectorgadget” to help with this. Read the vignette for that tool here: <a href="ftp://cran.r-project.org/pub/R/web/packages/rvest/vignettes/selectorgadget.html" class="uri">ftp://cran.r-project.org/pub/R/web/packages/rvest/vignettes/selectorgadget.html</a></p>
 </div>
