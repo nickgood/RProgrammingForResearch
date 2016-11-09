@@ -8,7 +8,7 @@
   <title>R Programming for Research</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.1.18 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.19 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2016-11-07">
+<meta name="date" content="2016-11-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -374,6 +374,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bootstrap-and-friends"><i class="fa fa-check"></i><b>11.3.1</b> Bootstrap and friends</a></li>
 <li class="chapter" data-level="11.3.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bayesian-analysis"><i class="fa fa-check"></i><b>11.3.2</b> Bayesian analysis</a></li>
 <li class="chapter" data-level="11.3.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#ensemble-models-and-friends"><i class="fa fa-check"></i><b>11.3.3</b> Ensemble models and friends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="reporting-results-3.html"><a href="reporting-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting results #3</a><ul>
+<li class="chapter" data-level="12.1" data-path="reporting-results-3.html"><a href="reporting-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1</b> Resources for learning Shiny</a></li>
+<li class="chapter" data-level="12.2" data-path="reporting-results-3.html"><a href="reporting-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.2</b> Basics of Shiny apps</a></li>
+<li class="chapter" data-level="12.3" data-path="reporting-results-3.html"><a href="reporting-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.3</b> <code>server.R</code> file</a></li>
+<li class="chapter" data-level="12.4" data-path="reporting-results-3.html"><a href="reporting-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.4</b> <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.5" data-path="reporting-results-3.html"><a href="reporting-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.5</b> Making a Shiny app</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="reporting-results-3.html"><a href="reporting-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.5.1</b> Starting with the <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.5.2" data-path="reporting-results-3.html"><a href="reporting-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.5.2</b> Adding in widgets</a></li>
+<li class="chapter" data-level="12.5.3" data-path="reporting-results-3.html"><a href="reporting-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.5.3</b> Creating output in <code>server.R</code></a></li>
+<li class="chapter" data-level="12.5.4" data-path="reporting-results-3.html"><a href="reporting-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.5.4</b> Making the output reactive</a></li>
+<li class="chapter" data-level="12.5.5" data-path="reporting-results-3.html"><a href="reporting-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.5.5</b> Fancier version</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -938,15 +951,15 @@ E(Y_{t}) \sim \beta_{0} + \beta_{1}X_{1}
 <tbody>
 <tr class="odd">
 <td align="right">a</td>
-<td align="center">-0.77</td>
+<td align="center">0.07</td>
 </tr>
 <tr class="even">
 <td align="right">b</td>
-<td align="center">-0.97</td>
+<td align="center">-0.16</td>
 </tr>
 <tr class="odd">
 <td align="right">c</td>
-<td align="center">1.27</td>
+<td align="center">0.89</td>
 </tr>
 </tbody>
 </table>

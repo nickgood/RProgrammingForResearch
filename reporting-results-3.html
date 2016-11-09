@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R Programming for Research</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
+  <meta name="generator" content="bookdown 0.1.19 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R Programming for Research" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R Programming for Research" />
+  
+  <meta name="twitter:description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016." />
+  
+
+<meta name="author" content="Brooke Anderson and Rachel Severson">
+
+
+<meta name="date" content="2016-11-09">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exploring-data-3.html">
+<link rel="next" href="appendix-a-vocabulary.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming for Research</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Online course book, ERHS 535</a></li>
+<li class="chapter" data-level="" data-path="course-information.html"><a href="course-information.html"><i class="fa fa-check"></i>Course information</a><ul>
+<li class="chapter" data-level="0.1" data-path="course-information.html"><a href="course-information.html#course-overview"><i class="fa fa-check"></i><b>0.1</b> Course overview</a></li>
+<li class="chapter" data-level="0.2" data-path="course-information.html"><a href="course-information.html#time-and-place"><i class="fa fa-check"></i><b>0.2</b> Time and place</a></li>
+<li class="chapter" data-level="0.3" data-path="course-information.html"><a href="course-information.html#detailed-schedule"><i class="fa fa-check"></i><b>0.3</b> Detailed schedule</a></li>
+<li class="chapter" data-level="0.4" data-path="course-information.html"><a href="course-information.html#grading"><i class="fa fa-check"></i><b>0.4</b> Grading</a><ul>
+<li class="chapter" data-level="0.4.1" data-path="course-information.html"><a href="course-information.html#attendance-and-class-participation"><i class="fa fa-check"></i><b>0.4.1</b> Attendance and class participation</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="course-information.html"><a href="course-information.html#weekly-in-course-group-exercises"><i class="fa fa-check"></i><b>0.5</b> Weekly in-course group exercises</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="course-information.html"><a href="course-information.html#in-class-quizzes"><i class="fa fa-check"></i><b>0.5.1</b> In-class quizzes</a></li>
+<li class="chapter" data-level="0.5.2" data-path="course-information.html"><a href="course-information.html#homework"><i class="fa fa-check"></i><b>0.5.2</b> Homework</a></li>
+<li class="chapter" data-level="0.5.3" data-path="course-information.html"><a href="course-information.html#final-group-project"><i class="fa fa-check"></i><b>0.5.3</b> Final group project</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#course-set-up"><i class="fa fa-check"></i><b>0.6</b> Course set-up</a></li>
+<li class="chapter" data-level="0.7" data-path="course-information.html"><a href="course-information.html#helpful-books-for-learning-r"><i class="fa fa-check"></i><b>0.7</b> Helpful books for learning R</a></li>
+</ul></li>
+<li class="part"><span><b>Part I: Preliminaries</b></span></li>
+<li class="chapter" data-level="1" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>1</b> R Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.1</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-r"><i class="fa fa-check"></i><b>1.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#open-source-software"><i class="fa fa-check"></i><b>1.1.2</b> Open-source software</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#what-is-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> What is RStudio?</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#setting-up"><i class="fa fa-check"></i><b>1.1.4</b> Setting up</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#the-package-system"><i class="fa fa-check"></i><b>1.2</b> The “package” system</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#installing-from-cran"><i class="fa fa-check"></i><b>1.2.2</b> Installing from CRAN</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#loading-an-installed-package"><i class="fa fa-check"></i><b>1.2.3</b> Loading an installed package</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#basic-code-conventions-of-r"><i class="fa fa-check"></i><b>1.3</b> Basic code conventions of R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-mvp-the-gets-arrow"><i class="fa fa-check"></i><b>1.3.1</b> R’s MVP: The <em>gets arrow</em></a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#assignment-operator-wars---vs."><i class="fa fa-check"></i><b>1.3.2</b> Assignment operator wars: <code>&lt;-</code> vs. <code>=</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#naming-objects"><i class="fa fa-check"></i><b>1.3.3</b> Naming objects</a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#commenting-code"><i class="fa fa-check"></i><b>1.3.4</b> Commenting code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#rs-most-basic-object-types"><i class="fa fa-check"></i><b>1.4</b> R’s most basic object types</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#dataframes"><i class="fa fa-check"></i><b>1.4.2</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-r-functions"><i class="fa fa-check"></i><b>1.5</b> Using R functions</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-structure"><i class="fa fa-check"></i><b>1.5.1</b> Function structure</a></li>
+<li class="chapter" data-level="1.5.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-help-files"><i class="fa fa-check"></i><b>1.5.2</b> Function help files</a></li>
+<li class="chapter" data-level="1.5.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#function-parameters"><i class="fa fa-check"></i><b>1.5.3</b> Function parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#in-course-exercise"><i class="fa fa-check"></i><b>1.6</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#about-the-dataset"><i class="fa fa-check"></i><b>1.6.1</b> About the dataset</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>1.6.2</b> Getting the data onto your computer</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.3</b> Getting the data into R</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.4</b> Checking out the data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.5</b> Using the data to answer questions</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part II: Basics</b></span></li>
+<li class="chapter" data-level="2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html"><i class="fa fa-check"></i><b>2</b> Entering and cleaning data #1</a><ul>
+<li class="chapter" data-level="2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#r-scripts"><i class="fa fa-check"></i><b>2.1</b> R scripts</a></li>
+<li class="chapter" data-level="2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directories-and-pathnames"><i class="fa fa-check"></i><b>2.2</b> Directories and pathnames</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#directory-structure"><i class="fa fa-check"></i><b>2.2.1</b> Directory structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#working-directory"><i class="fa fa-check"></i><b>2.2.2</b> Working directory</a></li>
+<li class="chapter" data-level="2.2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#file-and-directory-pathnames"><i class="fa fa-check"></i><b>2.2.3</b> File and directory pathnames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#diversion-paste"><i class="fa fa-check"></i><b>2.3</b> Diversion: <code>paste</code></a></li>
+<li class="chapter" data-level="2.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-data-into-r"><i class="fa fa-check"></i><b>2.4</b> Reading data into R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-local-flat-files"><i class="fa fa-check"></i><b>2.4.1</b> Reading local flat files</a></li>
+<li class="chapter" data-level="2.4.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#the-read_-functions"><i class="fa fa-check"></i><b>2.4.2</b> The <code>read_*</code> functions</a></li>
+<li class="chapter" data-level="2.4.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-online-flat-files"><i class="fa fa-check"></i><b>2.4.3</b> Reading online flat files</a></li>
+<li class="chapter" data-level="2.4.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#saving-and-loading-r-objects"><i class="fa fa-check"></i><b>2.4.4</b> Saving and loading R objects</a></li>
+<li class="chapter" data-level="2.4.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-other-file-types"><i class="fa fa-check"></i><b>2.4.5</b> Reading other file types</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#data-cleaning"><i class="fa fa-check"></i><b>2.5</b> Data cleaning</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#renaming-columns"><i class="fa fa-check"></i><b>2.5.1</b> Renaming columns</a></li>
+<li class="chapter" data-level="2.5.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#selecting-columns"><i class="fa fa-check"></i><b>2.5.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="2.5.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#filtering-to-certain-rows"><i class="fa fa-check"></i><b>2.5.3</b> Filtering to certain rows</a></li>
+<li class="chapter" data-level="2.5.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#add-or-change-columns"><i class="fa fa-check"></i><b>2.5.4</b> Add or change columns</a></li>
+<li class="chapter" data-level="2.5.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#piping"><i class="fa fa-check"></i><b>2.5.5</b> Piping</a></li>
+<li class="chapter" data-level="2.5.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#base-r-equivalents-to-dplyr-functions"><i class="fa fa-check"></i><b>2.5.6</b> Base R equivalents to <code>dplyr</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#dates-in-r"><i class="fa fa-check"></i><b>2.6</b> Dates in R</a></li>
+<li class="chapter" data-level="2.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#in-course-exercise-1"><i class="fa fa-check"></i><b>2.7</b> In-course Exercise</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.7.1</b> Checking out directory structures</a></li>
+<li class="chapter" data-level="2.7.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.7.2</b> Using relative and absolute file pathnames</a></li>
+<li class="chapter" data-level="2.7.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.7.3</b> Reading in different types of files</a></li>
+<li class="chapter" data-level="2.7.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.7.4</b> Cleaning up data</a></li>
+<li class="chapter" data-level="2.7.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.7.5</b> A taste of what’s to come…</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#data-from-a-package"><i class="fa fa-check"></i><b>3.1</b> Data from a package</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plots-to-explore-data"><i class="fa fa-check"></i><b>3.2</b> Plots to explore data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#initializing-a-ggplot-object"><i class="fa fa-check"></i><b>3.2.1</b> Initializing a ggplot object</a></li>
+<li class="chapter" data-level="3.2.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#plot-aesthetics"><i class="fa fa-check"></i><b>3.2.2</b> Plot aesthetics</a></li>
+<li class="chapter" data-level="3.2.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#adding-geoms"><i class="fa fa-check"></i><b>3.2.3</b> Adding geoms</a></li>
+<li class="chapter" data-level="3.2.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#constant-aesthetics"><i class="fa fa-check"></i><b>3.2.4</b> Constant aesthetics</a></li>
+<li class="chapter" data-level="3.2.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#useful-plot-additions"><i class="fa fa-check"></i><b>3.2.5</b> Useful plot additions</a></li>
+<li class="chapter" data-level="3.2.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#example-dataset"><i class="fa fa-check"></i><b>3.2.6</b> Example dataset</a></li>
+<li class="chapter" data-level="3.2.7" data-path="exploring-data-1.html"><a href="exploring-data-1.html#histograms"><i class="fa fa-check"></i><b>3.2.7</b> Histograms</a></li>
+<li class="chapter" data-level="3.2.8" data-path="exploring-data-1.html"><a href="exploring-data-1.html#scatterplots"><i class="fa fa-check"></i><b>3.2.8</b> Scatterplots</a></li>
+<li class="chapter" data-level="3.2.9" data-path="exploring-data-1.html"><a href="exploring-data-1.html#boxplots"><i class="fa fa-check"></i><b>3.2.9</b> Boxplots</a></li>
+<li class="chapter" data-level="3.2.10" data-path="exploring-data-1.html"><a href="exploring-data-1.html#extensions-of-ggplot2"><i class="fa fa-check"></i><b>3.2.10</b> Extensions of <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#simple-statistics-functions"><i class="fa fa-check"></i><b>3.3</b> Simple statistics functions</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summary-statistics"><i class="fa fa-check"></i><b>3.3.1</b> Summary statistics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#summarize-function"><i class="fa fa-check"></i><b>3.3.2</b> <code>summarize</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#logical-vectors"><i class="fa fa-check"></i><b>3.4</b> Logical vectors</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#regression-models"><i class="fa fa-check"></i><b>3.5</b> Regression models</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#formula-structure"><i class="fa fa-check"></i><b>3.5.1</b> Formula structure</a></li>
+<li class="chapter" data-level="3.5.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#linear-models"><i class="fa fa-check"></i><b>3.5.2</b> Linear models</a></li>
+<li class="chapter" data-level="3.5.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#generalized-linear-models-glms"><i class="fa fa-check"></i><b>3.5.3</b> Generalized linear models (GLMs)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#references-statistics-in-r"><i class="fa fa-check"></i><b>3.5.4</b> References– statistics in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.6</b> In-course exercise</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.6.2</b> Basic plots of the data</a></li>
+<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and logical statements</a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
+<li class="chapter" data-level="4.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#guidelines-for-good-plots"><i class="fa fa-check"></i><b>4.1</b> Guidelines for good plots</a></li>
+<li class="chapter" data-level="4.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#high-data-density"><i class="fa fa-check"></i><b>4.2</b> High data density</a></li>
+<li class="chapter" data-level="4.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#meaningful-labels"><i class="fa fa-check"></i><b>4.3</b> Meaningful labels</a></li>
+<li class="chapter" data-level="4.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#references"><i class="fa fa-check"></i><b>4.4</b> References</a></li>
+<li class="chapter" data-level="4.5" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#highlighting"><i class="fa fa-check"></i><b>4.5</b> Highlighting</a></li>
+<li class="chapter" data-level="4.6" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#order"><i class="fa fa-check"></i><b>4.6</b> Order</a></li>
+<li class="chapter" data-level="4.7" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#small-multiples"><i class="fa fa-check"></i><b>4.7</b> Small multiples</a></li>
+<li class="chapter" data-level="4.8" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#advanced-customization"><i class="fa fa-check"></i><b>4.8</b> Advanced customization</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#scales"><i class="fa fa-check"></i><b>4.8.1</b> Scales</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
+<li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
+<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
+<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
+<li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i><b>5</b> Reproducible research #1</a><ul>
+<li class="chapter" data-level="5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>5.1</b> What is reproducible research?</a></li>
+<li class="chapter" data-level="5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#markdown"><i class="fa fa-check"></i><b>5.2</b> Markdown</a></li>
+<li class="chapter" data-level="5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#literate-programming-in-r"><i class="fa fa-check"></i><b>5.3</b> Literate programming in R</a></li>
+<li class="chapter" data-level="5.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#style-guidelines"><i class="fa fa-check"></i><b>5.4</b> Style guidelines</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#line-length"><i class="fa fa-check"></i><b>5.4.1</b> Line length</a></li>
+<li class="chapter" data-level="5.4.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#spacing"><i class="fa fa-check"></i><b>5.4.2</b> Spacing</a></li>
+<li class="chapter" data-level="5.4.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#semicolons"><i class="fa fa-check"></i><b>5.4.3</b> Semicolons</a></li>
+<li class="chapter" data-level="5.4.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#commenting"><i class="fa fa-check"></i><b>5.4.4</b> Commenting</a></li>
+<li class="chapter" data-level="5.4.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#indentation"><i class="fa fa-check"></i><b>5.4.5</b> Indentation</a></li>
+<li class="chapter" data-level="5.4.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#code-grouping"><i class="fa fa-check"></i><b>5.4.6</b> Code grouping</a></li>
+<li class="chapter" data-level="5.4.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#broader-guidelines"><i class="fa fa-check"></i><b>5.4.7</b> Broader guidelines</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#more-with-knitr"><i class="fa fa-check"></i><b>5.5</b> More with knitr</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#equations-in-knitr"><i class="fa fa-check"></i><b>5.5.1</b> Equations in <code>knitr</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#figures-from-file"><i class="fa fa-check"></i><b>5.5.2</b> Figures from file</a></li>
+<li class="chapter" data-level="5.5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files"><i class="fa fa-check"></i><b>5.5.3</b> Saving graphics files</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files-1"><i class="fa fa-check"></i><b>5.6</b> Saving graphics files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>5.6.1</b> Tables in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#in-course-exercise-4"><i class="fa fa-check"></i><b>5.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#creating-a-markdown-document"><i class="fa fa-check"></i><b>5.7.1</b> Creating a Markdown document</a></li>
+<li class="chapter" data-level="5.7.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#adding-in-r-code"><i class="fa fa-check"></i><b>5.7.2</b> Adding in R code</a></li>
+<li class="chapter" data-level="5.7.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#working-with-r-markdown-documents"><i class="fa fa-check"></i><b>5.7.3</b> Working with R Markdown documents</a></li>
+<li class="chapter" data-level="5.7.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#r-style-guidelines"><i class="fa fa-check"></i><b>5.7.4</b> R style guidelines</a></li>
+<li class="chapter" data-level="5.7.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#trying-out-knitr-with-your-own-data"><i class="fa fa-check"></i><b>5.7.5</b> Trying out <code>knitr</code> with your own data</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part III: Intermediate</b></span></li>
+<li class="chapter" data-level="6" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html"><i class="fa fa-check"></i><b>6</b> Entering and cleaning data #2</a><ul>
+<li class="chapter" data-level="6.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#joining-datasets"><i class="fa fa-check"></i><b>6.1</b> Joining datasets</a></li>
+<li class="chapter" data-level="6.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidy-data"><i class="fa fa-check"></i><b>6.2</b> Tidy data</a></li>
+<li class="chapter" data-level="6.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#gathering"><i class="fa fa-check"></i><b>6.3</b> Gathering</a></li>
+<li class="chapter" data-level="6.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#in-course-exercise-5"><i class="fa fa-check"></i><b>6.4</b> In-course exercise</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#designing-tidy-data"><i class="fa fa-check"></i><b>6.4.1</b> Designing tidy data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#easier-data-wrangling"><i class="fa fa-check"></i><b>6.4.2</b> Easier data wrangling</a></li>
+<li class="chapter" data-level="6.4.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#more-extensive-data-wrangling"><i class="fa fa-check"></i><b>6.4.3</b> More extensive data wrangling</a></li>
+<li class="chapter" data-level="6.4.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidying-vadeaths-data"><i class="fa fa-check"></i><b>6.4.4</b> Tidying <code>VADeaths</code> data</a></li>
+<li class="chapter" data-level="6.4.5" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#exploring-fatality-analysis-reporting-system-fars-data"><i class="fa fa-check"></i><b>6.4.5</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="exploring-data-2.html"><a href="exploring-data-2.html"><i class="fa fa-check"></i><b>7</b> Exploring data #2</a><ul>
+<li class="chapter" data-level="7.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#parentheses"><i class="fa fa-check"></i><b>7.1</b> Parentheses</a></li>
+<li class="chapter" data-level="7.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#loops"><i class="fa fa-check"></i><b>7.2</b> Loops</a></li>
+<li class="chapter" data-level="7.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#other-control-structures"><i class="fa fa-check"></i><b>7.3</b> Other control structures</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#if-else-loops"><i class="fa fa-check"></i><b>7.3.1</b> if / else loops</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#some-other-control-structures"><i class="fa fa-check"></i><b>7.3.2</b> Some other control structures</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#functions"><i class="fa fa-check"></i><b>7.4</b> Functions</a></li>
+<li class="chapter" data-level="7.5" data-path="exploring-data-2.html"><a href="exploring-data-2.html#regular-expressions"><i class="fa fa-check"></i><b>7.5</b> Regular expressions</a></li>
+<li class="chapter" data-level="7.6" data-path="exploring-data-2.html"><a href="exploring-data-2.html#in-course-exercise-6"><i class="fa fa-check"></i><b>7.6</b> In-course exercise</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
+<li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.2</b> Using a loop to create state-specific plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html"><i class="fa fa-check"></i><b>8</b> Reporting data results #2</a><ul>
+<li class="chapter" data-level="8.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices-and-lists"><i class="fa fa-check"></i><b>8.1</b> Matrices and lists</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices"><i class="fa fa-check"></i><b>8.1.1</b> Matrices</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#lists"><i class="fa fa-check"></i><b>8.1.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#apply-functions"><i class="fa fa-check"></i><b>8.2</b> <code>apply</code> functions</a></li>
+<li class="chapter" data-level="8.3" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#point-maps"><i class="fa fa-check"></i><b>8.3</b> Point maps</a></li>
+<li class="chapter" data-level="8.4" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#choropleth-maps"><i class="fa fa-check"></i><b>8.4</b> Choropleth maps</a></li>
+<li class="chapter" data-level="8.5" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#google-maps-api"><i class="fa fa-check"></i><b>8.5</b> Google Maps API</a></li>
+<li class="chapter" data-level="8.6" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#string-operations"><i class="fa fa-check"></i><b>8.6</b> String operations</a></li>
+<li class="chapter" data-level="8.7" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#in-course-exercise-7"><i class="fa fa-check"></i><b>8.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#writing-a-function-to-create-state-specific-plots"><i class="fa fa-check"></i><b>8.7.1</b> Writing a function to create state-specific plots</a></li>
+<li class="chapter" data-level="8.7.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#first-steps-in-mapping"><i class="fa fa-check"></i><b>8.7.2</b> First steps in mapping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html"><i class="fa fa-check"></i><b>9</b> Reproducible research #2</a><ul>
+<li class="chapter" data-level="9.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-notebooks"><i class="fa fa-check"></i><b>9.1</b> R Notebooks</a></li>
+<li class="chapter" data-level="9.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#templates"><i class="fa fa-check"></i><b>9.2</b> Templates</a></li>
+<li class="chapter" data-level="9.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-projects"><i class="fa fa-check"></i><b>9.3</b> R Projects</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organization"><i class="fa fa-check"></i><b>9.3.1</b> Organization</a></li>
+<li class="chapter" data-level="9.3.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#creating-r-projects"><i class="fa fa-check"></i><b>9.3.2</b> Creating R Projects</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#git"><i class="fa fa-check"></i><b>9.4</b> git</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository"><i class="fa fa-check"></i><b>9.4.1</b> Initializing a git repository</a></li>
+<li class="chapter" data-level="9.4.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#committing"><i class="fa fa-check"></i><b>9.4.2</b> Committing</a></li>
+<li class="chapter" data-level="9.4.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#browsing-history"><i class="fa fa-check"></i><b>9.4.3</b> Browsing history</a></li>
+<li class="chapter" data-level="9.4.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-local-repo-to-github-repo"><i class="fa fa-check"></i><b>9.4.4</b> Linking local repo to GitHub repo</a></li>
+<li class="chapter" data-level="9.4.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#syncing-rstudio-and-github"><i class="fa fa-check"></i><b>9.4.5</b> Syncing RStudio and GitHub</a></li>
+<li class="chapter" data-level="9.4.6" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#issues"><i class="fa fa-check"></i><b>9.4.6</b> Issues</a></li>
+<li class="chapter" data-level="9.4.7" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#pull-request"><i class="fa fa-check"></i><b>9.4.7</b> Pull request</a></li>
+<li class="chapter" data-level="9.4.8" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#merge-conflicts"><i class="fa fa-check"></i><b>9.4.8</b> Merge conflicts</a></li>
+<li class="chapter" data-level="9.4.9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#find-out-more"><i class="fa fa-check"></i><b>9.4.9</b> Find out more</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#in-course-exercise-8"><i class="fa fa-check"></i><b>9.5</b> In-course exercise</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#trying-out-templates"><i class="fa fa-check"></i><b>9.5.1</b> Trying out templates</a></li>
+<li class="chapter" data-level="9.5.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organizing-a-project"><i class="fa fa-check"></i><b>9.5.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="9.5.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-your-project-with-a-github-repository"><i class="fa fa-check"></i><b>9.5.3</b> Linking your project with a GitHub repository</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Part IV: Advanced</b></span></li>
+<li class="chapter" data-level="10" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html"><i class="fa fa-check"></i><b>10</b> Entering and cleaning data #3</a><ul>
+<li class="chapter" data-level="10.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#cleaning-very-messy-data"><i class="fa fa-check"></i><b>10.1</b> Cleaning very messy data</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-of-messy-data"><i class="fa fa-check"></i><b>10.1.1</b> Example of messy data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#strategy-for-messy-data"><i class="fa fa-check"></i><b>10.1.2</b> Strategy for messy data</a></li>
+<li class="chapter" data-level="10.1.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#readlines-function"><i class="fa fa-check"></i><b>10.1.3</b> <code>readLines</code> function</a></li>
+<li class="chapter" data-level="10.1.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#regular-expressions-for-cleaning"><i class="fa fa-check"></i><b>10.1.4</b> Regular expressions for cleaning</a></li>
+<li class="chapter" data-level="10.1.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#working-with-lists"><i class="fa fa-check"></i><b>10.1.5</b> Working with lists</a></li>
+<li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
+<li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#pulling-online-data"><i class="fa fa-check"></i><b>10.2</b> Pulling online data</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#apis"><i class="fa fa-check"></i><b>10.2.1</b> APIs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-riem-package"><i class="fa fa-check"></i><b>10.2.2</b> Example– <code>riem</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-r-api-wrappers"><i class="fa fa-check"></i><b>10.3</b> Example R API wrappers</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#ropensci"><i class="fa fa-check"></i><b>10.3.1</b> rOpenSci</a></li>
+<li class="chapter" data-level="10.3.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#countyweather"><i class="fa fa-check"></i><b>10.3.2</b> <code>countyweather</code></a></li>
+<li class="chapter" data-level="10.3.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#usgs-r-packages"><i class="fa fa-check"></i><b>10.3.3</b> USGS-R Packages</a></li>
+<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#us-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> US Census packages</a></li>
+<li class="chapter" data-level="10.3.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#other-r-api-wrappers"><i class="fa fa-check"></i><b>10.3.5</b> Other R API wrappers</a></li>
+<li class="chapter" data-level="10.3.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#r-and-apis"><i class="fa fa-check"></i><b>10.3.6</b> R and APIs</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#parsing-webpages"><i class="fa fa-check"></i><b>10.4</b> Parsing webpages</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#rvest"><i class="fa fa-check"></i><b>10.4.1</b> <code>rvest</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#scraping-multiple-pages"><i class="fa fa-check"></i><b>10.4.2</b> Scraping multiple pages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="exploring-data-3.html"><a href="exploring-data-3.html"><i class="fa fa-check"></i><b>11</b> Exploring data #3</a><ul>
+<li class="chapter" data-level="11.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#forcats"><i class="fa fa-check"></i><b>11.1</b> <code>forcats</code></a></li>
+<li class="chapter" data-level="11.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#simulations"><i class="fa fa-check"></i><b>11.2</b> Simulations</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#the-lady-tasting-tea"><i class="fa fa-check"></i><b>11.2.1</b> The lady tasting tea</a></li>
+<li class="chapter" data-level="11.2.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#playing-darts"><i class="fa fa-check"></i><b>11.2.2</b> Playing darts</a></li>
+<li class="chapter" data-level="11.2.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#simulations-in-research"><i class="fa fa-check"></i><b>11.2.3</b> Simulations in research</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#other-computationally-intensive-approaches"><i class="fa fa-check"></i><b>11.3</b> Other computationally-intensive approaches</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bootstrap-and-friends"><i class="fa fa-check"></i><b>11.3.1</b> Bootstrap and friends</a></li>
+<li class="chapter" data-level="11.3.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bayesian-analysis"><i class="fa fa-check"></i><b>11.3.2</b> Bayesian analysis</a></li>
+<li class="chapter" data-level="11.3.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#ensemble-models-and-friends"><i class="fa fa-check"></i><b>11.3.3</b> Ensemble models and friends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="reporting-results-3.html"><a href="reporting-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting results #3</a><ul>
+<li class="chapter" data-level="12.1" data-path="reporting-results-3.html"><a href="reporting-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1</b> Resources for learning Shiny</a></li>
+<li class="chapter" data-level="12.2" data-path="reporting-results-3.html"><a href="reporting-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.2</b> Basics of Shiny apps</a></li>
+<li class="chapter" data-level="12.3" data-path="reporting-results-3.html"><a href="reporting-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.3</b> <code>server.R</code> file</a></li>
+<li class="chapter" data-level="12.4" data-path="reporting-results-3.html"><a href="reporting-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.4</b> <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.5" data-path="reporting-results-3.html"><a href="reporting-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.5</b> Making a Shiny app</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="reporting-results-3.html"><a href="reporting-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.5.1</b> Starting with the <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.5.2" data-path="reporting-results-3.html"><a href="reporting-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.5.2</b> Adding in widgets</a></li>
+<li class="chapter" data-level="12.5.3" data-path="reporting-results-3.html"><a href="reporting-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.5.3</b> Creating output in <code>server.R</code></a></li>
+<li class="chapter" data-level="12.5.4" data-path="reporting-results-3.html"><a href="reporting-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.5.4</b> Making the output reactive</a></li>
+<li class="chapter" data-level="12.5.5" data-path="reporting-results-3.html"><a href="reporting-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.5.5</b> Fancier version</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1-quiz-1"><i class="fa fa-check"></i><b>A.1</b> Week 1 (Quiz 1)</a></li>
+<li class="chapter" data-level="A.2" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-2-quiz-2"><i class="fa fa-check"></i><b>A.2</b> Week 2 (Quiz 2)</a></li>
+<li class="chapter" data-level="A.3" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-3-quiz-3"><i class="fa fa-check"></i><b>A.3</b> Week 3 (Quiz 3)</a></li>
+<li class="chapter" data-level="A.4" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-4-quiz-4"><i class="fa fa-check"></i><b>A.4</b> Week 4 (Quiz 4)</a></li>
+<li class="chapter" data-level="A.5" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-5-quiz-5"><i class="fa fa-check"></i><b>A.5</b> Week 5 (Quiz 5)</a></li>
+<li class="chapter" data-level="A.6" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-6-quiz-6"><i class="fa fa-check"></i><b>A.6</b> Week 6 (Quiz 6)</a></li>
+<li class="chapter" data-level="A.7" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-7-quiz-7"><i class="fa fa-check"></i><b>A.7</b> Week 7 (Quiz 7)</a></li>
+<li class="chapter" data-level="A.8" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-8-quiz-8"><i class="fa fa-check"></i><b>A.8</b> Week 8 (Quiz 8)</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html"><i class="fa fa-check"></i><b>B</b> Appendix B: Homework</a><ul>
+<li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#getting-started"><i class="fa fa-check"></i><b>B.1.1</b> Getting started</a></li>
+<li class="chapter" data-level="B.1.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#swirl-lessons"><i class="fa fa-check"></i><b>B.1.2</b> Swirl lessons</a></li>
+<li class="chapter" data-level="B.1.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#special-swirl-commands"><i class="fa fa-check"></i><b>B.1.3</b> Special swirl commands</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-2"><i class="fa fa-check"></i><b>B.2</b> Homework #2</a></li>
+<li class="chapter" data-level="B.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-3"><i class="fa fa-check"></i><b>B.3</b> Homework #3</a></li>
+<li class="chapter" data-level="B.4" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-4"><i class="fa fa-check"></i><b>B.4</b> Homework #4</a></li>
+<li class="chapter" data-level="B.5" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-5"><i class="fa fa-check"></i><b>B.5</b> Homework #5</a></li>
+<li class="chapter" data-level="B.6" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-6"><i class="fa fa-check"></i><b>B.6</b> Homework #6</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Research</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reporting-results-3" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Reporting results #3</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week12.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="resources-for-learning-shiny" class="section level2">
+<h2><span class="header-section-number">12.1</span> Resources for learning Shiny</h2>
+<p>There is an excellent tutorial to get you started <a href="http://shiny.rstudio.com/tutorial/lesson1/">here</a> at RStudio. There are also several great sites that show you both Shiny examples and their code, <a href="http://shiny.rstudio.com/gallery/">here</a> and <a href="http://www.showmeshiny.com">here</a>.</p>
+<p>Many of the examples and ideas in the course notes this week come directly or are adapted from RStudio’s <a href="http://shiny.rstudio.com/tutorial/lesson1/">Shiny tutorial</a>.</p>
+<p>To start, Shiny has several example apps that you can try out. These are all available through your R session once you install the Shiny package. You can make them available to your R session using the command <code>system.file()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)
+<span class="kw">library</span>(shiny)
+<span class="kw">system.file</span>(<span class="st">&quot;examples&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;shiny&quot;</span>)</code></pre></div>
+</div>
+<div id="basics-of-shiny-apps" class="section level2">
+<h2><span class="header-section-number">12.2</span> Basics of Shiny apps</h2>
+<p>Once you have Shiny installed, you can run the examples using the <code>runExample()</code> command. For example, to run the first example, you would run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runExample</span>(<span class="st">&quot;01_hello&quot;</span>)</code></pre></div>
+<p>This is a histogram that lets you adjust the number of bins using a slider bar. Other examples are: <code>02_text</code>, <code>03_reactivity</code>, <code>04_mpg</code>, <code>05_sliders</code>, <code>06_tabsets</code>, <code>07_widgets</code>, <code>08_html</code>, <code>09_upload</code>, <code>10_download</code>, and <code>11_timer</code>.</p>
+<p>When you run any of these, a window will come up in your R session that shows the Shiny App, and your R session will pay attention to commands it gets from that application until you close the window. Notice that if you scroll down, you’ll be able to see the code that’s running behind the application:</p>
+<p><img src="figures/AppCodeExample.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>Generally, each application takes two files: (1) a user interface file and (2) a server file. You can kind of think of the two elements of an R shiny app, the user interface and the server, as two parts of a restaurant.</p>
+<p><img src="figures/FrontBackRestaurant.jpg" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>The user interface is the dining area. This is the only place the customer every sees. It’s where the customer makes his order, and it’s also where the final product comes out for him to consume. The server is the kitchen. It takes the order, does all the stuff to make it happen, and then sends out the final product back to the dining area.</p>
+<p>At its heart, an R shiny app is just a directory on your computer or a server with these two files (as well as any necessary data files) in it. For example, here’s a visual of an App I wrote to go with a paper:</p>
+<p><img src="figures/AppFileExample.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>This has the heart of the application (<code>server.R</code> and <code>ui.R</code>) plus a couple of R helper files and subdirectories with some figures and data that I’m using in the <a href="https://brookeanderson.shinyapps.io/App-2">that application</a>. If I open either of the main files in RStudio, I can run the application locally using a button at the top of the file called “Run App”. Once I have the App running, if I have an account for the Shiny server, I can choose to “Publish” the application to the Shiny server, and then anyone can access and use it online (this service is free up to a certain number of visitors per time– unless you make something that is very popular, you should be well within the free limit).</p>
+</div>
+<div id="server.r-file" class="section level2">
+<h2><span class="header-section-number">12.3</span> <code>server.R</code> file</h2>
+<p>The server file will be named <code>server.R</code>. This file tells R what code to run with the inputs it gets from a user making certain selections. For example, for the histogram example, this file tells R how to re-draw a histogram of the data with the number of bins that the user specified on the slider on the application. Once you get through all the code for what to do, this file also will have code telling R what to send back to the application for the user to see (in this case, a picture of a histogram made with the specified number of bars). Here is the code in the <code>server.R</code> file for the histogram example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shiny)
+
+<span class="co"># Define server logic required to draw a histogram</span>
+<span class="kw">shinyServer</span>(function(input, output) {
+
+  <span class="co"># Expression that generates a histogram. The expression is</span>
+  <span class="co"># wrapped in a call to renderPlot to indicate that:</span>
+  <span class="co">#</span>
+  <span class="co">#  1) It is &quot;reactive&quot; and therefore should be automatically</span>
+  <span class="co">#     re-executed when inputs change</span>
+  <span class="co">#  2) Its output type is a plot</span>
+
+  output$distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+    <span class="co"># draw the histogram with the specified number of bins</span>
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)
+  })
+
+})</code></pre></div>
+<p>Notice that some of the “interior” code here looks very familiar and should remind you of code we’ve been learning about this class. For example, this file has within it some code to figure out the breaks for histogram bins, based on how many total bins you want, and draw a histogram with those bin breaks:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+<span class="co"># draw the histogram with the specified number of bins</span>
+<span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
+<p>This code is then “wrapped” in two other functions. First, this code is generating a plot that will be posted to the application, so it’s wrapped in a <code>renderPlot</code> function to send that plot as output back to the application:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output$distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+    <span class="co"># draw the histogram with the specified number of bins</span>
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)
+  })</code></pre></div>
+<p>Notice that this code is putting the results of <code>renderPlot</code> into a slot of the object <code>output</code> named <code>distPlot</code>. We could have used any name we wanted to here, not just <code>distPlot</code>, for the name of the slot where we’re putting this plot, but it is important to put everything into an object called <code>output</code>. Now that we’ve rendered the plot and put it in that slot of the <code>output</code> object, we’ll be able to refer to it by its name in the user interface file, when we want to draw it somewhere there.</p>
+<p>All of this is wrapped up in another wrapper:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Define server logic required to draw a histogram</span>
+<span class="kw">shinyServer</span>(function(input, output) {
+
+  <span class="co"># Expression that generates a histogram. The expression is</span>
+  <span class="co"># wrapped in a call to renderPlot to indicate that:</span>
+  <span class="co">#</span>
+  <span class="co">#  1) It is &quot;reactive&quot; and therefore should be automatically</span>
+  <span class="co">#     re-executed when inputs change</span>
+  <span class="co">#  2) Its output type is a plot</span>
+
+  output$distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+    <span class="co"># draw the histogram with the specified number of bins</span>
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)
+  })
+
+})</code></pre></div>
+<p>The <code>server.R</code> file also has a line to load the <code>shiny</code> package. You should think of apps as being like Rmd files– if there are any packages or datasets that you need to use in the code in that file, you need to load it within the file, because R won’t check in your current R session to find it when it runs the file.</p>
+</div>
+<div id="ui.r-file" class="section level2">
+<h2><span class="header-section-number">12.4</span> <code>ui.R</code> file</h2>
+<p>The other file that a Shiny app needs is the user interface file (<code>ui.R</code>). This is the file that describes how the application should look. It will write all the buttons and sliders and all that you want for the application interface. This is also where you specify what you want to go where and put in any text that you want to show up.</p>
+<p>For example, here is the <code>ui.R</code> file for the histogram example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shiny)
+
+<span class="co"># Define UI for application that draws a histogram</span>
+<span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+
+  <span class="co"># Application title</span>
+  <span class="kw">titlePanel</span>(<span class="st">&quot;Hello Shiny!&quot;</span>),
+
+  <span class="co"># Sidebar with a slider input for the number of bins</span>
+  <span class="kw">sidebarLayout</span>(
+    <span class="kw">sidebarPanel</span>(
+      <span class="kw">sliderInput</span>(<span class="st">&quot;bins&quot;</span>,
+                  <span class="st">&quot;Number of bins:&quot;</span>,
+                  <span class="dt">min =</span> <span class="dv">1</span>,
+                  <span class="dt">max =</span> <span class="dv">50</span>,
+                  <span class="dt">value =</span> <span class="dv">30</span>)
+    ),
+
+    <span class="co"># Show a plot of the generated distribution</span>
+    <span class="kw">mainPanel</span>(
+      <span class="kw">plotOutput</span>(<span class="st">&quot;distPlot&quot;</span>)
+    )
+  )
+))</code></pre></div>
+<p>There are a few things to notice with this code. First, there is some code that tells the application to show the results from the <code>server.R</code> code. For example, the following code tells R to show the histogram that we put into the <code>output</code> object in the <code>distPlot</code> slot and to put that graph in the main panel of the application:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mainPanel</span>(
+      <span class="kw">plotOutput</span>(<span class="st">&quot;distPlot&quot;</span>)
+)</code></pre></div>
+<p>Other parts of the <code>ui.R</code> code will tell the application what kinds of choice boxes and sliders to have on the application, and what default value to set each to. For example, the following code tells the application that it should have a slider bar that can take a minimum value of 1 and a maximum value of 50. When you first open the application, its default value should be 30. It should be annotated with the text “Number of bins:”. Whatever value is selected should be saved to the <code>bins</code> slot of the <code>input</code> object (just like we’re using the <code>output</code> object to get things out of the server and printed to the application, we’re using the <code>input</code> object to get things that the user chooses from the application interface to the server where we can run R code).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sliderInput</span>(<span class="st">&quot;bins&quot;</span>,
+            <span class="st">&quot;Number of bins:&quot;</span>,
+             <span class="dt">min =</span> <span class="dv">1</span>,
+             <span class="dt">max =</span> <span class="dv">50</span>,
+             <span class="dt">value =</span> <span class="dv">30</span>)</code></pre></div>
+</div>
+<div id="making-a-shiny-app" class="section level2">
+<h2><span class="header-section-number">12.5</span> Making a Shiny app</h2>
+<p>The first step in making a Shiny app is to make a new directory somewhere and to create R scripts for that directory called <code>server.R</code> and <code>ui.R</code>. You can just make these two files the normal way– within RStudio, do “New File”, “R Script”, and then just save them with the correct names to the directory you created for the App. Once you save a file as <code>ui.R</code>, notice that you’ll have a button in the top right of the file called “Run App”. When you’re ready to run your application, you can either use this button or use the command <code>runApp</code>.</p>
+<div id="starting-with-the-ui.r-file" class="section level3">
+<h3><span class="header-section-number">12.5.1</span> Starting with the <code>ui.R</code> file</h3>
+<p>Next, you’ll need to put code in these files. I would suggest starting with the <code>ui.R</code> files. This file is where you get to set up how the application looks and how people will be able to interact with it. That means that this is a good place to start because it’s both quickly fulfilling (I made something pretty!) and also because you need to have an idea of what inputs and outputs you need before you can effectively make the server file to tell R what to do. In truth, though, you’ll be going back and forth quite a bit between these two files as you edit your application.</p>
+<p>In the <code>ui.R</code> file, everything needs to be wrapped in a <code>shinyUI()</code> function, and then most things will be wrapped in other functions within that to set up different panels. For example, here’s a very basic <code>ui.R</code> file (adapted directly from the RStudio tutorial) that shows a very basic set up for a user interface:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+        
+        <span class="kw">titlePanel</span>(<span class="st">&quot;Tweets during Paris Attack&quot;</span>),
+        
+        <span class="kw">sidebarLayout</span>(
+                <span class="kw">sidebarPanel</span>(<span class="st">&quot;Select hashtag to display&quot;</span>),
+                <span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>)
+        )
+))</code></pre></div>
+<p>Notice that everything that I want to go in certain panels of the page are wrapped in functions like <code>sidebarPanel</code> and <code>mainPanel</code> and <code>titlePanel</code>. Everything in this file will be divided up by the place you want it to go in the final version.</p>
+<p>As a note, the sidebar layout (a sidebar on one side and one main panel) is the simplest possible Shiny layout. You can do fancier layouts if you want by using different functions like <code>fluidRow()</code> and <code>navBarPage()</code>. RStudio has a <a href="http://shiny.rstudio.com/articles/layout-guide.html">layout help page</a> with very detailed instructions and examples to help you figure out how to do other layouts.</p>
+<p>If I run this <code>ui.R</code>, even if my <code>server.R</code> file only includes the line <code>shinyServer(function(input, output) { })</code>, I’ll get the following version application:</p>
+<p><img src="figures/SimplestUI.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>This doesn’t have anything interactive on it, and it isn’t using R at all, but it shows the basics of how the syntax of the <code>ui.R</code> file works. As a note, I don’t have all of the functions for this, like <code>fluidPage</code> and <code>titlePanel</code> memorized. When I’m working on this file, I’ll either look to example code from other Shiny apps of look at RStudio’s help for Shiny applications until I can figure out what syntax to use to do what I want to do.</p>
+</div>
+<div id="adding-in-widgets" class="section level3">
+<h3><span class="header-section-number">12.5.2</span> Adding in widgets</h3>
+<p>Next, I’ll add in some cool things that will let the user interact with the application. In this case, I’d like to have a slider bar so people can chose the range of time for the tweets that are shown. I’d also like to have a selection box so that users can look at maps of specific hashtags or terms. To add these on (they won’t be functional, yet, but they’ll be there!), I can edit the <code>ui.R</code> script to the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+        
+        <span class="kw">titlePanel</span>(<span class="st">&quot;Tweets during Paris Attack&quot;</span>),
+        
+        <span class="kw">sidebarLayout</span>(<span class="dt">position =</span> <span class="st">&quot;right&quot;</span>,
+                <span class="kw">sidebarPanel</span>(<span class="st">&quot;Choose what to display&quot;</span>,
+                             <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;time_range&quot;</span>,
+                                         <span class="dt">label =</span> <span class="st">&quot;Select the time range: &quot;</span>,
+                                         <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                                   <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)), 
+                                         <span class="dt">min =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">max =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">step =</span> <span class="dv">60</span>,
+                                         <span class="dt">timeFormat =</span> <span class="st">&quot;%dth %H:%M&quot;</span>,
+                                         <span class="dt">timezone =</span> <span class="st">&quot;+0100&quot;</span>)),
+                <span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>)
+        )
+))</code></pre></div>
+<p>The important part of this is the new <code>sliderInput</code> call, which sets up a slider bar that users can use to specify certain time ranges to look at. Here is what the interface of the app looks like now:</p>
+<p><img src="figures/UI2.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>If I open this application, I can move the slider bar around, but I it isn’t actually sending any information to R yet.</p>
+<p>The heart of this new addition to the <code>ui.R</code> file is this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;time_range&quot;</span>,
+            <span class="dt">label =</span> <span class="st">&quot;Select the time range: &quot;</span>,
+            <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                      <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)), 
+            <span class="dt">min =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+            <span class="dt">max =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+            <span class="dt">step =</span> <span class="dv">60</span>,
+            <span class="dt">timeFormat =</span> <span class="st">&quot;%dth %H:%M&quot;</span>,
+            <span class="dt">timezone =</span> <span class="st">&quot;+0100&quot;</span>)</code></pre></div>
+<p>This is all within the function <code>sliderInput</code> and is all being used to set up the slider bar. <code>&quot;time_range&quot;</code> is the name I’m giving the input I get from this. Later, when I write my server code, I’ll be able to pull the values that the user suggested from the <code>time_range</code> slot of the <code>input</code> object. The next thing is the label. This is what I want R to print right before it gives the slider bar. The <code>value</code> object says which values I want to be the defaults on the slider. This is where the slider positions will be when someone initially opens the application. <code>min</code> and <code>max</code> give the highest and lowest values that will show up on the slider bar. For this application, I’m calling them as <code>POSIXct</code> objects because I want to do this for times rather than numbers. <code>step</code> says how big of an increment I want the slider to advance by when someone is pulling it. If the values of the slider are times, then the default unit for this is seconds, so I’m saying to have a step size of one minute. The <code>timeFormat</code> says how I want the time to print out at the interface and the <code>timezone</code> says what time zone I want time values to display in.</p>
+<p>Things like this slider bar are called “Control Widgets”, and there’s a whole list of them in <a href="http://shiny.rstudio.com/tutorial/lesson3/">the third lesson of RStudio’s Shiny tutorial</a>. There are also examples online in the <a href="http://shiny.rstudio.com/gallery/">Shiny Gallery</a>.</p>
+</div>
+<div id="creating-output-in-server.r" class="section level3">
+<h3><span class="header-section-number">12.5.3</span> Creating output in <code>server.R</code></h3>
+<p>Next, I’ll put some R code in the <code>server.R</code> file to create a figure and pass it through to the <code>ui.R</code> file to print out to the application interface. At first, I won’t make this figure “reactive”; that is, it won’t change at all when the user changes the slider bar. However, I will eventually add in that reactivity so that the plot changes everytime a user changes the slider bar.</p>
+<p>I am going to create a map of all the Tweets that included certain hashtags or phrases and that were Tweeted (and geolocated) from within a five-mile radius of the center of Paris during the attacks last Friday. For this, I’m going to use data on Tweets I pulled using the <code>TwitteR</code> package, which syncs up with Twitter’s API. Here’s an example of what the data looks like (I’ve cleared out some of the extra columns I won’t use):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paris_twitter &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/App-1/data/final_tweets.csv&quot;</span>, <span class="dt">as.is =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">factor</span>(tag),
+               <span class="dt">created =</span> <span class="kw">ymd_hms</span>(created, <span class="dt">tz =</span> <span class="st">&quot;Europe/Paris&quot;</span>),
+               <span class="dt">text =</span> <span class="kw">iconv</span>(text, <span class="dt">to=</span><span class="st">&#39;ASCII//TRANSLIT&#39;</span>))
+paris_twitter[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
+<pre><code>##                                                                                                                                               text
+## 1 RT @forza_will2006: My heart aches for the people of France. #PorteOuverte #PrayForParis #DownWithTerrorism #Pompidou... https://t.co/KwtNPsQ...
+## 2                                      Ensemble contre la haine #jesuisparis #porteouverte #paris @ Place de la Republique https://t.co/TZykpVJHwd
+##               created longitude latitude           tag
+## 1 2015-11-15 01:27:56        NA       NA #PorteOuverte
+## 2 2015-11-14 22:19:47  2.364184 48.86747 #PorteOuverte</code></pre>
+<p>About an equal number of these have and don’t have location data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(!<span class="kw">is.na</span>(paris_twitter$longitude))</code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+## 10478 10683</code></pre>
+<p>Here is a table of the number of tweets under the five most-tweeted tags:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(paris_twitter)</code></pre></div>
+<pre><code>##                                                                                                                                               text
+## 1 RT @forza_will2006: My heart aches for the people of France. #PorteOuverte #PrayForParis #DownWithTerrorism #Pompidou... https://t.co/KwtNPsQ...
+## 2                                      Ensemble contre la haine #jesuisparis #porteouverte #paris @ Place de la Republique https://t.co/TZykpVJHwd
+## 3                     Liberte, egalite, fraternite #Paris #TodosSomosParis #JeSuisParis #PorteOuverte #peace #paix #paz... https://t.co/AjYVrmCCnL
+## 4                  Stay With My French #prayforparis #parisattacks #porteouverte #france #riphumanity #liberte #egalite... https://t.co/9DH5diHmyz
+## 5                                                                                                                                             &lt;NA&gt;
+## 6                                                              RT @bodoi_music: J&#39;ai peur je cherche un abri #porteouverte https://t.co/1DIr4VLOEa
+##               created longitude latitude           tag
+## 1 2015-11-15 01:27:56        NA       NA #PorteOuverte
+## 2 2015-11-14 22:19:47  2.364184 48.86747 #PorteOuverte
+## 3 2015-11-14 21:36:06  2.350800 48.85670 #PorteOuverte
+## 4 2015-11-14 21:00:49  2.350800 48.85670 #PorteOuverte
+## 5 2015-11-14 20:11:01  2.350800 48.85670 #PorteOuverte
+## 6 2015-11-14 19:52:43        NA       NA #PorteOuverte</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tweet_sum &lt;-<span class="st"> </span>paris_twitter %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">group_by_</span>(~<span class="st"> </span>tag) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">summarize_</span>(<span class="dt">n =</span> ~<span class="st"> </span><span class="kw">n</span>(),
+                   <span class="dt">example =</span> ~<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot; &quot;</span>, 
+                                 base::<span class="kw">sample</span>(text, <span class="dv">1</span>))) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">arrange_</span>(~<span class="st"> </span>dplyr::<span class="kw">desc</span>(n))
+knitr::<span class="kw">kable</span>(tweet_sum[<span class="dv">1</span>:<span class="dv">5</span>, ],
+             <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Tag&quot;</span>, <span class="st">&quot;# of Tweets&quot;</span>, <span class="st">&quot;Example Tweet&quot;</span>))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tag</th>
+<th align="right"># of Tweets</th>
+<th align="left">Example Tweet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">#Paris</td>
+<td align="right">7502</td>
+<td align="left">RT taimaz Paris bataclan le quartier de plus en plus boucle AFP https t co 3EbjiQi00y</td>
+</tr>
+<tr class="even">
+<td align="left">#PrayForParis</td>
+<td align="right">7250</td>
+<td align="left">prayforparis Paris France https t co 6zVtrIVz6D</td>
+</tr>
+<tr class="odd">
+<td align="left">#13novembre</td>
+<td align="right">1255</td>
+<td align="left">RT taimaz Situation tres tendue devant le Bataclan les curieux degages manu militari afp 13novembre Paris https t co 6ElhABjw4L</td>
+</tr>
+<tr class="even">
+<td align="left">#PorteOuverte</td>
+<td align="right">1147</td>
+<td align="left">RT hiyadisoufiane1 porteouverte Eiffel st Charles 37 rue Saint Charles si Jamais vs avez besoin</td>
+</tr>
+<tr class="odd">
+<td align="left">#fusillade</td>
+<td align="right">765</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p>For the Tweets that are geolocated, it’s possible to map the tweet locations using the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paris_map &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="st">&quot;paris&quot;</span>, <span class="dt">zoom =</span> <span class="dv">12</span>, <span class="dt">color =</span> <span class="st">&quot;bw&quot;</span>)
+
+paris_locations &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Stade de France&quot;</span>, <span class="st">&quot;18 Rue Alibert&quot;</span>,
+                     <span class="st">&quot;50 Boulevard Voltaire&quot;</span>, <span class="st">&quot;92 Rue de Charonne&quot;</span>,
+                     <span class="st">&quot;Place de la Republique&quot;</span>)
+paris_locations &lt;-<span class="st"> </span><span class="kw">paste</span>(paris_locations, <span class="st">&quot;paris france&quot;</span>)
+paris_locations &lt;-<span class="st"> </span><span class="kw">cbind</span>(paris_locations, <span class="kw">geocode</span>(paris_locations))
+
+<span class="co"># Plot contour map of tweet locations</span>
+plot_map &lt;-<span class="st"> </span>function(<span class="dt">tag =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">df =</span> paris_twitter){
+        <span class="kw">library</span>(ggmap)
+        <span class="kw">library</span>(dplyr)
+        df &lt;-<span class="st"> </span>dplyr::<span class="kw">select</span>(df, tag, latitude, longitude) %&gt;%
+<span class="st">                </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(longitude)) %&gt;%
+<span class="st">                </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">as.character</span>(tag))
+        
+        if(tag !=<span class="st"> &quot;all&quot;</span>){
+                if(!(tag %in%<span class="st"> </span>df$tag)){
+                        <span class="kw">stop</span>(<span class="kw">paste</span>(<span class="st">&quot;That tag is not in the data. Try one of the following tags instead: &quot;</span>, <span class="kw">paste</span>(<span class="kw">unique</span>(df$tag), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)))
+                }
+                to_plot &lt;-<span class="st"> </span>df[df$tag ==<span class="st"> </span>tag, ]
+        } else {
+                to_plot &lt;-<span class="st"> </span>df
+        }
+        
+        hotel_de_ville &lt;-<span class="st"> </span>to_plot$latitude ==<span class="st"> </span><span class="fl">48.85670</span> &amp;
+<span class="st">                </span>to_plot$longitude ==<span class="st"> </span><span class="fl">2.350800</span>
+        n_hotel_de_ville &lt;-<span class="st"> </span><span class="kw">sum</span>(hotel_de_ville)
+        
+        if(n_hotel_de_ville ==<span class="st"> </span><span class="kw">max</span>(<span class="kw">table</span>(to_plot$latitude))){
+                hdv_index &lt;-<span class="st"> </span><span class="kw">sample</span>((<span class="dv">1</span>:<span class="kw">nrow</span>(to_plot))[hotel_de_ville],
+                            <span class="kw">round</span>(n_hotel_de_ville /<span class="st"> </span><span class="dv">2</span>))
+                to_plot &lt;-<span class="st"> </span>to_plot[-hdv_index, ]
+        }
+        
+        my_map &lt;-<span class="st"> </span><span class="kw">ggmap</span>(paris_map, <span class="dt">extent =</span> <span class="st">&quot;device&quot;</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">geom_point</span>(<span class="dt">data =</span> to_plot, <span class="kw">aes</span>(<span class="dt">x =</span> longitude, <span class="dt">y =</span> latitude),
+                           <span class="dt">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>) +
+<span class="st">                </span><span class="kw">geom_density2d</span>(<span class="dt">data =</span> to_plot, 
+                               <span class="kw">aes</span>(<span class="dt">x =</span> longitude, latitude), <span class="dt">size =</span> <span class="fl">0.3</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">stat_density2d</span>(<span class="dt">data =</span> to_plot, 
+                               <span class="kw">aes</span>(<span class="dt">x =</span> longitude, <span class="dt">y =</span> latitude,
+                                   <span class="dt">fill =</span> ..level.., <span class="dt">alpha =</span> ..level..),
+                               <span class="dt">size =</span> <span class="fl">0.01</span>, <span class="dt">bins =</span> <span class="kw">round</span>(<span class="kw">nrow</span>(to_plot) /<span class="st"> </span><span class="fl">3.3</span>),
+                               <span class="dt">geom =</span> <span class="st">&quot;polygon&quot;</span>) +
+<span class="st">                </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">guide =</span> <span class="ot">FALSE</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">scale_alpha</span>(<span class="dt">guide =</span> <span class="ot">FALSE</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">geom_point</span>(<span class="dt">data =</span> paris_locations, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat),
+                           <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>) 
+        <span class="kw">return</span>(my_map)
+}</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/aae-1.png" width="336" style="display: block; margin: auto;" /></p>
+<p>To print this out in the application, I’ll put all the code for the mapping function in a file called <code>helper.R</code>, source this file in the <code>server.R</code> file, and then I can just call the function within the server file. The application will look as follows after this step:</p>
+<p><img src="figures/UI3.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>To complete this, I first changed the <code>server.R</code> file to look like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(lubridate)
+
+<span class="kw">source</span>(<span class="st">&quot;helper.R&quot;</span>)
+
+paris_twitter &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/final_tweets.csv&quot;</span>, <span class="dt">as.is =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">factor</span>(tag),
+               <span class="dt">created =</span> <span class="kw">ymd_hms</span>(created, <span class="dt">tz =</span> <span class="st">&quot;Europe/Paris&quot;</span>))
+
+<span class="kw">shinyServer</span>(function(input, output) {
+        output$twitter_map &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({ <span class="kw">plot_map</span>() })
+})</code></pre></div>
+<p>Notice a few things here:</p>
+<ol style="list-style-type: decimal">
+<li>I’m loading the packages I’ll need for the code.</li>
+<li>I’m running all the code in the <code>helper.R</code> file (which includes the function I created to plot this map) using the <code>source()</code> command.</li>
+<li>I put the code to plot the map (<code>plot_map()</code>) inside the <code>renderPlot({})</code> function.</li>
+<li>I’m putting the plot in a <code>twitter_map</code> slot of the <code>output</code> object.</li>
+<li>All of this is going inside the call <code>shinyServer(function(input, output){  })</code>.</li>
+</ol>
+<p>One other change is necessary to get the map to print on the app. I need to add code to the <code>ui.R</code> file to tell R where to plot this map on the final interface. The full file now looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+        
+        <span class="kw">titlePanel</span>(<span class="st">&quot;Tweets during Paris Attack&quot;</span>),
+        
+        <span class="kw">sidebarLayout</span>(<span class="dt">position =</span> <span class="st">&quot;right&quot;</span>,
+                <span class="kw">sidebarPanel</span>(<span class="st">&quot;Choose what to display&quot;</span>,
+                             <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;time_range&quot;</span>,
+                                         <span class="dt">label =</span> <span class="st">&quot;Select the time range: &quot;</span>,
+                                         <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                                   <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-15 06:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)), 
+                                         <span class="dt">min =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">max =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">step =</span> <span class="dv">60</span>,
+                                         <span class="dt">timeFormat =</span> <span class="st">&quot;%dth %H:%M&quot;</span>,
+                                         <span class="dt">timezone =</span> <span class="st">&quot;+0100&quot;</span>)),
+                <span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>,
+                          <span class="kw">plotOutput</span>(<span class="st">&quot;twitter_map&quot;</span>))
+        )
+))</code></pre></div>
+<p>The new part is where I’ve added the code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>,
+          <span class="kw">plotOutput</span>(<span class="st">&quot;twitter_map&quot;</span>))</code></pre></div>
+<p>This tells R to put the plot output <code>twitter_map</code> from the <code>output</code> object in the main panel of the Shiny app.</p>
+</div>
+<div id="making-the-output-reactive" class="section level3">
+<h3><span class="header-section-number">12.5.4</span> Making the output reactive</h3>
+<p>Now almost all of the pieces are in place to make this graphic reactive. First, I added some options to the function in <code>helper.R</code> to let it input time ranges and only plot the tweets within that range. Next, I need to use the values that the user selects from the slider in the call for plotting the map. To do this, I can use the values passed from the slider bar in the <code>input</code> object into the code in the <code>server.R</code> file. Here is the new code for the <code>server.R</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(lubridate)
+
+<span class="kw">source</span>(<span class="st">&quot;helper.R&quot;</span>)
+
+paris_twitter &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/final_tweets.csv&quot;</span>, <span class="dt">as.is =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">factor</span>(tag))
+paris_twitter$created &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(paris_twitter$created, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)
+
+<span class="kw">shinyServer</span>(function(input, output) {
+        output$twitter_map &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+                <span class="kw">plot_map</span>(<span class="dt">start.time =</span> input$time_range[<span class="dv">1</span>],
+                         <span class="dt">end.time =</span> input$time_range[<span class="dv">2</span>])
+                })
+})</code></pre></div>
+<p>The only addition from before is to use the <code>start.time</code> and <code>end.time</code> options in the <code>plot_map</code> function and to set them to the first, <code>[1]</code>, and second, <code>[2]</code>, values in the <code>time_range</code> slot of the <code>input</code> object. Remember that we chose to label the input from the slider bar <code>time_range</code> when we set up the <code>ui.R</code> file.</p>
+<p>This app is saved in the directory <code>App-1</code> in this week’s directory if you’d like to play around with the code. I’ve deployed it on shinyapps <a href="https://github.com/geanders/RProgrammingForResearch/tree/master/data/App-1">here</a>.</p>
+</div>
+<div id="fancier-version" class="section level3">
+<h3><span class="header-section-number">12.5.5</span> Fancier version</h3>
+<p>I’ve also created a (much) fancier version of a Shiny App looking at this Twitter data that you can check out <a href="https://brookeanderson.shinyapps.io/TweetsParisAttacks">here</a>. All the code for that is <a href="https://github.com/geanders/RProgrammingForResearch/tree/master/data/App-1">here</a>.</p>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploring-data-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/12-reportingresults3.Rmd",
+"text": "Edit"
+},
+"download": ["RProgrammingForResearch.pdf", "RProgrammingForResearch.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
