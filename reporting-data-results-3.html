@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="course-information.html">
+<link rel="prev" href="exploring-data-3.html">
+<link rel="next" href="appendix-a-vocabulary.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,27 +432,416 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R Programming for Research</h1>
-<h3 class="subtitle"><em>Colorado State University, ERHS 535</em></h3>
-<h4 class="author"><em>Brooke Anderson and Rachel Severson</em></h4>
-<h4 class="date"><em>2016-11-09</em></h4>
+<div id="reporting-data-results-3" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Reporting data results #3</h1>
+<p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week12.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
+<div id="resources-for-learning-shiny" class="section level2">
+<h2><span class="header-section-number">12.1</span> Resources for learning Shiny</h2>
+<p>There is an excellent tutorial to get you started <a href="http://shiny.rstudio.com/tutorial/lesson1/">here</a> at RStudio. There are also several great sites that show you both Shiny examples and their code, <a href="http://shiny.rstudio.com/gallery/">here</a> and <a href="http://www.showmeshiny.com">here</a>.</p>
+<p>Many of the examples and ideas in the course notes this week come directly or are adapted from RStudio’s <a href="http://shiny.rstudio.com/tutorial/lesson1/">Shiny tutorial</a>.</p>
+<p>To start, Shiny has several example apps that you can try out. These are all available through your R session once you install the Shiny package. You can make them available to your R session using the command <code>system.file()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)
+<span class="kw">library</span>(shiny)
+<span class="kw">system.file</span>(<span class="st">&quot;examples&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;shiny&quot;</span>)</code></pre></div>
 </div>
-<div id="online-course-book-erhs-535" class="section level1 unnumbered">
-<h1>Online course book, ERHS 535</h1>
-<p>This is the online book for Colorado State University’s ERHS 535 <em>R Programming for Research</em> course. This book includes course information, course notes, links to download pdfs of lecture slides, in-course exercises, homework assignments, and vocabulary lists for quizzes for this course. Because this is my first semester teaching the course with this online book, it will be evolving throughout the semester, as we get to new material.</p>
-<iframe src="https://brookeanderson.shinyapps.io/attendance/?showcase=0" width="672" height="600px">
-</iframe>
+<div id="basics-of-shiny-apps" class="section level2">
+<h2><span class="header-section-number">12.2</span> Basics of Shiny apps</h2>
+<p>Once you have Shiny installed, you can run the examples using the <code>runExample()</code> command. For example, to run the first example, you would run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runExample</span>(<span class="st">&quot;01_hello&quot;</span>)</code></pre></div>
+<p>This is a histogram that lets you adjust the number of bins using a slider bar. Other examples are: <code>02_text</code>, <code>03_reactivity</code>, <code>04_mpg</code>, <code>05_sliders</code>, <code>06_tabsets</code>, <code>07_widgets</code>, <code>08_html</code>, <code>09_upload</code>, <code>10_download</code>, and <code>11_timer</code>.</p>
+<p>When you run any of these, a window will come up in your R session that shows the Shiny App, and your R session will pay attention to commands it gets from that application until you close the window. Notice that if you scroll down, you’ll be able to see the code that’s running behind the application:</p>
+<p><img src="figures/AppCodeExample.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>Generally, each application takes two files: (1) a user interface file and (2) a server file. You can kind of think of the two elements of an R shiny app, the user interface and the server, as two parts of a restaurant.</p>
+<p><img src="figures/FrontBackRestaurant.jpg" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>The user interface is the dining area. This is the only place the customer every sees. It’s where the customer makes his order, and it’s also where the final product comes out for him to consume. The server is the kitchen. It takes the order, does all the stuff to make it happen, and then sends out the final product back to the dining area.</p>
+<p>At its heart, an R shiny app is just a directory on your computer or a server with these two files (as well as any necessary data files) in it. For example, here’s a visual of an App I wrote to go with a paper:</p>
+<p><img src="figures/AppFileExample.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>This has the heart of the application (<code>server.R</code> and <code>ui.R</code>) plus a couple of R helper files and subdirectories with some figures and data that I’m using in the <a href="https://brookeanderson.shinyapps.io/App-2">that application</a>. If I open either of the main files in RStudio, I can run the application locally using a button at the top of the file called “Run App”. Once I have the App running, if I have an account for the Shiny server, I can choose to “Publish” the application to the Shiny server, and then anyone can access and use it online (this service is free up to a certain number of visitors per time– unless you make something that is very popular, you should be well within the free limit).</p>
+</div>
+<div id="server.r-file" class="section level2">
+<h2><span class="header-section-number">12.3</span> <code>server.R</code> file</h2>
+<p>The server file will be named <code>server.R</code>. This file tells R what code to run with the inputs it gets from a user making certain selections. For example, for the histogram example, this file tells R how to re-draw a histogram of the data with the number of bins that the user specified on the slider on the application. Once you get through all the code for what to do, this file also will have code telling R what to send back to the application for the user to see (in this case, a picture of a histogram made with the specified number of bars). Here is the code in the <code>server.R</code> file for the histogram example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shiny)
 
-<p></p>
+<span class="co"># Define server logic required to draw a histogram</span>
+<span class="kw">shinyServer</span>(function(input, output) {
+
+  <span class="co"># Expression that generates a histogram. The expression is</span>
+  <span class="co"># wrapped in a call to renderPlot to indicate that:</span>
+  <span class="co">#</span>
+  <span class="co">#  1) It is &quot;reactive&quot; and therefore should be automatically</span>
+  <span class="co">#     re-executed when inputs change</span>
+  <span class="co">#  2) Its output type is a plot</span>
+
+  output$distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+    <span class="co"># draw the histogram with the specified number of bins</span>
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)
+  })
+
+})</code></pre></div>
+<p>Notice that some of the “interior” code here looks very familiar and should remind you of code we’ve been learning about this class. For example, this file has within it some code to figure out the breaks for histogram bins, based on how many total bins you want, and draw a histogram with those bin breaks:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+<span class="co"># draw the histogram with the specified number of bins</span>
+<span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
+<p>This code is then “wrapped” in two other functions. First, this code is generating a plot that will be posted to the application, so it’s wrapped in a <code>renderPlot</code> function to send that plot as output back to the application:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output$distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+    <span class="co"># draw the histogram with the specified number of bins</span>
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)
+  })</code></pre></div>
+<p>Notice that this code is putting the results of <code>renderPlot</code> into a slot of the object <code>output</code> named <code>distPlot</code>. We could have used any name we wanted to here, not just <code>distPlot</code>, for the name of the slot where we’re putting this plot, but it is important to put everything into an object called <code>output</code>. Now that we’ve rendered the plot and put it in that slot of the <code>output</code> object, we’ll be able to refer to it by its name in the user interface file, when we want to draw it somewhere there.</p>
+<p>All of this is wrapped up in another wrapper:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Define server logic required to draw a histogram</span>
+<span class="kw">shinyServer</span>(function(input, output) {
+
+  <span class="co"># Expression that generates a histogram. The expression is</span>
+  <span class="co"># wrapped in a call to renderPlot to indicate that:</span>
+  <span class="co">#</span>
+  <span class="co">#  1) It is &quot;reactive&quot; and therefore should be automatically</span>
+  <span class="co">#     re-executed when inputs change</span>
+  <span class="co">#  2) Its output type is a plot</span>
+
+  output$distPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    x    &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]  <span class="co"># Old Faithful Geyser data</span>
+    bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input$bins +<span class="st"> </span><span class="dv">1</span>)
+
+    <span class="co"># draw the histogram with the specified number of bins</span>
+    <span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)
+  })
+
+})</code></pre></div>
+<p>The <code>server.R</code> file also has a line to load the <code>shiny</code> package. You should think of apps as being like Rmd files– if there are any packages or datasets that you need to use in the code in that file, you need to load it within the file, because R won’t check in your current R session to find it when it runs the file.</p>
 </div>
+<div id="ui.r-file" class="section level2">
+<h2><span class="header-section-number">12.4</span> <code>ui.R</code> file</h2>
+<p>The other file that a Shiny app needs is the user interface file (<code>ui.R</code>). This is the file that describes how the application should look. It will write all the buttons and sliders and all that you want for the application interface. This is also where you specify what you want to go where and put in any text that you want to show up.</p>
+<p>For example, here is the <code>ui.R</code> file for the histogram example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shiny)
+
+<span class="co"># Define UI for application that draws a histogram</span>
+<span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+
+  <span class="co"># Application title</span>
+  <span class="kw">titlePanel</span>(<span class="st">&quot;Hello Shiny!&quot;</span>),
+
+  <span class="co"># Sidebar with a slider input for the number of bins</span>
+  <span class="kw">sidebarLayout</span>(
+    <span class="kw">sidebarPanel</span>(
+      <span class="kw">sliderInput</span>(<span class="st">&quot;bins&quot;</span>,
+                  <span class="st">&quot;Number of bins:&quot;</span>,
+                  <span class="dt">min =</span> <span class="dv">1</span>,
+                  <span class="dt">max =</span> <span class="dv">50</span>,
+                  <span class="dt">value =</span> <span class="dv">30</span>)
+    ),
+
+    <span class="co"># Show a plot of the generated distribution</span>
+    <span class="kw">mainPanel</span>(
+      <span class="kw">plotOutput</span>(<span class="st">&quot;distPlot&quot;</span>)
+    )
+  )
+))</code></pre></div>
+<p>There are a few things to notice with this code. First, there is some code that tells the application to show the results from the <code>server.R</code> code. For example, the following code tells R to show the histogram that we put into the <code>output</code> object in the <code>distPlot</code> slot and to put that graph in the main panel of the application:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mainPanel</span>(
+      <span class="kw">plotOutput</span>(<span class="st">&quot;distPlot&quot;</span>)
+)</code></pre></div>
+<p>Other parts of the <code>ui.R</code> code will tell the application what kinds of choice boxes and sliders to have on the application, and what default value to set each to. For example, the following code tells the application that it should have a slider bar that can take a minimum value of 1 and a maximum value of 50. When you first open the application, its default value should be 30. It should be annotated with the text “Number of bins:”. Whatever value is selected should be saved to the <code>bins</code> slot of the <code>input</code> object (just like we’re using the <code>output</code> object to get things out of the server and printed to the application, we’re using the <code>input</code> object to get things that the user chooses from the application interface to the server where we can run R code).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sliderInput</span>(<span class="st">&quot;bins&quot;</span>,
+            <span class="st">&quot;Number of bins:&quot;</span>,
+             <span class="dt">min =</span> <span class="dv">1</span>,
+             <span class="dt">max =</span> <span class="dv">50</span>,
+             <span class="dt">value =</span> <span class="dv">30</span>)</code></pre></div>
+</div>
+<div id="making-a-shiny-app" class="section level2">
+<h2><span class="header-section-number">12.5</span> Making a Shiny app</h2>
+<p>The first step in making a Shiny app is to make a new directory somewhere and to create R scripts for that directory called <code>server.R</code> and <code>ui.R</code>. You can just make these two files the normal way– within RStudio, do “New File”, “R Script”, and then just save them with the correct names to the directory you created for the App. Once you save a file as <code>ui.R</code>, notice that you’ll have a button in the top right of the file called “Run App”. When you’re ready to run your application, you can either use this button or use the command <code>runApp</code>.</p>
+<div id="starting-with-the-ui.r-file" class="section level3">
+<h3><span class="header-section-number">12.5.1</span> Starting with the <code>ui.R</code> file</h3>
+<p>Next, you’ll need to put code in these files. I would suggest starting with the <code>ui.R</code> files. This file is where you get to set up how the application looks and how people will be able to interact with it. That means that this is a good place to start because it’s both quickly fulfilling (I made something pretty!) and also because you need to have an idea of what inputs and outputs you need before you can effectively make the server file to tell R what to do. In truth, though, you’ll be going back and forth quite a bit between these two files as you edit your application.</p>
+<p>In the <code>ui.R</code> file, everything needs to be wrapped in a <code>shinyUI()</code> function, and then most things will be wrapped in other functions within that to set up different panels. For example, here’s a very basic <code>ui.R</code> file (adapted directly from the RStudio tutorial) that shows a very basic set up for a user interface:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+        
+        <span class="kw">titlePanel</span>(<span class="st">&quot;Tweets during Paris Attack&quot;</span>),
+        
+        <span class="kw">sidebarLayout</span>(
+                <span class="kw">sidebarPanel</span>(<span class="st">&quot;Select hashtag to display&quot;</span>),
+                <span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>)
+        )
+))</code></pre></div>
+<p>Notice that everything that I want to go in certain panels of the page are wrapped in functions like <code>sidebarPanel</code> and <code>mainPanel</code> and <code>titlePanel</code>. Everything in this file will be divided up by the place you want it to go in the final version.</p>
+<p>As a note, the sidebar layout (a sidebar on one side and one main panel) is the simplest possible Shiny layout. You can do fancier layouts if you want by using different functions like <code>fluidRow()</code> and <code>navBarPage()</code>. RStudio has a <a href="http://shiny.rstudio.com/articles/layout-guide.html">layout help page</a> with very detailed instructions and examples to help you figure out how to do other layouts.</p>
+<p>If I run this <code>ui.R</code>, even if my <code>server.R</code> file only includes the line <code>shinyServer(function(input, output) { })</code>, I’ll get the following version application:</p>
+<p><img src="figures/SimplestUI.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>This doesn’t have anything interactive on it, and it isn’t using R at all, but it shows the basics of how the syntax of the <code>ui.R</code> file works. As a note, I don’t have all of the functions for this, like <code>fluidPage</code> and <code>titlePanel</code> memorized. When I’m working on this file, I’ll either look to example code from other Shiny apps of look at RStudio’s help for Shiny applications until I can figure out what syntax to use to do what I want to do.</p>
+</div>
+<div id="adding-in-widgets" class="section level3">
+<h3><span class="header-section-number">12.5.2</span> Adding in widgets</h3>
+<p>Next, I’ll add in some cool things that will let the user interact with the application. In this case, I’d like to have a slider bar so people can chose the range of time for the tweets that are shown. I’d also like to have a selection box so that users can look at maps of specific hashtags or terms. To add these on (they won’t be functional, yet, but they’ll be there!), I can edit the <code>ui.R</code> script to the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+        
+        <span class="kw">titlePanel</span>(<span class="st">&quot;Tweets during Paris Attack&quot;</span>),
+        
+        <span class="kw">sidebarLayout</span>(<span class="dt">position =</span> <span class="st">&quot;right&quot;</span>,
+                <span class="kw">sidebarPanel</span>(<span class="st">&quot;Choose what to display&quot;</span>,
+                             <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;time_range&quot;</span>,
+                                         <span class="dt">label =</span> <span class="st">&quot;Select the time range: &quot;</span>,
+                                         <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                                   <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)), 
+                                         <span class="dt">min =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">max =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">step =</span> <span class="dv">60</span>,
+                                         <span class="dt">timeFormat =</span> <span class="st">&quot;%dth %H:%M&quot;</span>,
+                                         <span class="dt">timezone =</span> <span class="st">&quot;+0100&quot;</span>)),
+                <span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>)
+        )
+))</code></pre></div>
+<p>The important part of this is the new <code>sliderInput</code> call, which sets up a slider bar that users can use to specify certain time ranges to look at. Here is what the interface of the app looks like now:</p>
+<p><img src="figures/UI2.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>If I open this application, I can move the slider bar around, but I it isn’t actually sending any information to R yet.</p>
+<p>The heart of this new addition to the <code>ui.R</code> file is this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;time_range&quot;</span>,
+            <span class="dt">label =</span> <span class="st">&quot;Select the time range: &quot;</span>,
+            <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                      <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)), 
+            <span class="dt">min =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+            <span class="dt">max =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+            <span class="dt">step =</span> <span class="dv">60</span>,
+            <span class="dt">timeFormat =</span> <span class="st">&quot;%dth %H:%M&quot;</span>,
+            <span class="dt">timezone =</span> <span class="st">&quot;+0100&quot;</span>)</code></pre></div>
+<p>This is all within the function <code>sliderInput</code> and is all being used to set up the slider bar. <code>&quot;time_range&quot;</code> is the name I’m giving the input I get from this. Later, when I write my server code, I’ll be able to pull the values that the user suggested from the <code>time_range</code> slot of the <code>input</code> object. The next thing is the label. This is what I want R to print right before it gives the slider bar. The <code>value</code> object says which values I want to be the defaults on the slider. This is where the slider positions will be when someone initially opens the application. <code>min</code> and <code>max</code> give the highest and lowest values that will show up on the slider bar. For this application, I’m calling them as <code>POSIXct</code> objects because I want to do this for times rather than numbers. <code>step</code> says how big of an increment I want the slider to advance by when someone is pulling it. If the values of the slider are times, then the default unit for this is seconds, so I’m saying to have a step size of one minute. The <code>timeFormat</code> says how I want the time to print out at the interface and the <code>timezone</code> says what time zone I want time values to display in.</p>
+<p>Things like this slider bar are called “Control Widgets”, and there’s a whole list of them in <a href="http://shiny.rstudio.com/tutorial/lesson3/">the third lesson of RStudio’s Shiny tutorial</a>. There are also examples online in the <a href="http://shiny.rstudio.com/gallery/">Shiny Gallery</a>.</p>
+</div>
+<div id="creating-output-in-server.r" class="section level3">
+<h3><span class="header-section-number">12.5.3</span> Creating output in <code>server.R</code></h3>
+<p>Next, I’ll put some R code in the <code>server.R</code> file to create a figure and pass it through to the <code>ui.R</code> file to print out to the application interface. At first, I won’t make this figure “reactive”; that is, it won’t change at all when the user changes the slider bar. However, I will eventually add in that reactivity so that the plot changes everytime a user changes the slider bar.</p>
+<p>I am going to create a map of all the Tweets that included certain hashtags or phrases and that were Tweeted (and geolocated) from within a five-mile radius of the center of Paris during the attacks last Friday. For this, I’m going to use data on Tweets I pulled using the <code>TwitteR</code> package, which syncs up with Twitter’s API. Here’s an example of what the data looks like (I’ve cleared out some of the extra columns I won’t use):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paris_twitter &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/App-1/data/final_tweets.csv&quot;</span>, <span class="dt">as.is =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">factor</span>(tag),
+               <span class="dt">created =</span> <span class="kw">ymd_hms</span>(created, <span class="dt">tz =</span> <span class="st">&quot;Europe/Paris&quot;</span>),
+               <span class="dt">text =</span> <span class="kw">iconv</span>(text, <span class="dt">to=</span><span class="st">&#39;ASCII//TRANSLIT&#39;</span>))
+paris_twitter[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
+<pre><code>##                                                                                                                                               text
+## 1 RT @forza_will2006: My heart aches for the people of France. #PorteOuverte #PrayForParis #DownWithTerrorism #Pompidou... https://t.co/KwtNPsQ...
+## 2                                      Ensemble contre la haine #jesuisparis #porteouverte #paris @ Place de la Republique https://t.co/TZykpVJHwd
+##               created longitude latitude           tag
+## 1 2015-11-15 01:27:56        NA       NA #PorteOuverte
+## 2 2015-11-14 22:19:47  2.364184 48.86747 #PorteOuverte</code></pre>
+<p>About an equal number of these have and don’t have location data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(!<span class="kw">is.na</span>(paris_twitter$longitude))</code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+## 10478 10683</code></pre>
+<p>Here is a table of the number of tweets under the five most-tweeted tags:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(paris_twitter)</code></pre></div>
+<pre><code>##                                                                                                                                               text
+## 1 RT @forza_will2006: My heart aches for the people of France. #PorteOuverte #PrayForParis #DownWithTerrorism #Pompidou... https://t.co/KwtNPsQ...
+## 2                                      Ensemble contre la haine #jesuisparis #porteouverte #paris @ Place de la Republique https://t.co/TZykpVJHwd
+## 3                     Liberte, egalite, fraternite #Paris #TodosSomosParis #JeSuisParis #PorteOuverte #peace #paix #paz... https://t.co/AjYVrmCCnL
+## 4                  Stay With My French #prayforparis #parisattacks #porteouverte #france #riphumanity #liberte #egalite... https://t.co/9DH5diHmyz
+## 5                                                                                                                                             &lt;NA&gt;
+## 6                                                              RT @bodoi_music: J&#39;ai peur je cherche un abri #porteouverte https://t.co/1DIr4VLOEa
+##               created longitude latitude           tag
+## 1 2015-11-15 01:27:56        NA       NA #PorteOuverte
+## 2 2015-11-14 22:19:47  2.364184 48.86747 #PorteOuverte
+## 3 2015-11-14 21:36:06  2.350800 48.85670 #PorteOuverte
+## 4 2015-11-14 21:00:49  2.350800 48.85670 #PorteOuverte
+## 5 2015-11-14 20:11:01  2.350800 48.85670 #PorteOuverte
+## 6 2015-11-14 19:52:43        NA       NA #PorteOuverte</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tweet_sum &lt;-<span class="st"> </span>paris_twitter %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">group_by_</span>(~<span class="st"> </span>tag) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">summarize_</span>(<span class="dt">n =</span> ~<span class="st"> </span><span class="kw">n</span>(),
+                   <span class="dt">example =</span> ~<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot; &quot;</span>, 
+                                 base::<span class="kw">sample</span>(text, <span class="dv">1</span>))) %&gt;%
+<span class="st">  </span>dplyr::<span class="kw">arrange_</span>(~<span class="st"> </span>dplyr::<span class="kw">desc</span>(n))
+knitr::<span class="kw">kable</span>(tweet_sum[<span class="dv">1</span>:<span class="dv">5</span>, ],
+             <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Tag&quot;</span>, <span class="st">&quot;# of Tweets&quot;</span>, <span class="st">&quot;Example Tweet&quot;</span>))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tag</th>
+<th align="right"># of Tweets</th>
+<th align="left">Example Tweet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">#Paris</td>
+<td align="right">7502</td>
+<td align="left">RT Vince66240 Tirs a la Kalash au petit Cambodge dans le 10 eme a Paris plusieurs morts Secours et police sur place tir https t co B</td>
+</tr>
+<tr class="even">
+<td align="left">#PrayForParis</td>
+<td align="right">7250</td>
+<td align="left">prayforparis Tour Eiffel https t co qBOqqvcOWd</td>
+</tr>
+<tr class="odd">
+<td align="left">#13novembre</td>
+<td align="right">1255</td>
+<td align="left">RT taimaz Le metro Oberkampf neutralise paris 13novembre AFP https t co I0SNKsKIOs</td>
+</tr>
+<tr class="even">
+<td align="left">#PorteOuverte</td>
+<td align="right">1147</td>
+<td align="left">RT fake rebel Si jamais quelqu un a besoin porteouverte Metro Maraichers L appart est vide car on a signe le bail il y a 1h mais on e</td>
+</tr>
+<tr class="odd">
+<td align="left">#fusillade</td>
+<td align="right">765</td>
+<td align="left">RT jacques lefort Coups de feu et haute tension a l angle rues de Charonne amp Keller Paris11 Gendarmes en position fusillade https t</td>
+</tr>
+</tbody>
+</table>
+<p>For the Tweets that are geolocated, it’s possible to map the tweet locations using the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paris_map &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="st">&quot;paris&quot;</span>, <span class="dt">zoom =</span> <span class="dv">12</span>, <span class="dt">color =</span> <span class="st">&quot;bw&quot;</span>)
+
+paris_locations &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Stade de France&quot;</span>, <span class="st">&quot;18 Rue Alibert&quot;</span>,
+                     <span class="st">&quot;50 Boulevard Voltaire&quot;</span>, <span class="st">&quot;92 Rue de Charonne&quot;</span>,
+                     <span class="st">&quot;Place de la Republique&quot;</span>)
+paris_locations &lt;-<span class="st"> </span><span class="kw">paste</span>(paris_locations, <span class="st">&quot;paris france&quot;</span>)
+paris_locations &lt;-<span class="st"> </span><span class="kw">cbind</span>(paris_locations, <span class="kw">geocode</span>(paris_locations))
+
+<span class="co"># Plot contour map of tweet locations</span>
+plot_map &lt;-<span class="st"> </span>function(<span class="dt">tag =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">df =</span> paris_twitter){
+        <span class="kw">library</span>(ggmap)
+        <span class="kw">library</span>(dplyr)
+        df &lt;-<span class="st"> </span>dplyr::<span class="kw">select</span>(df, tag, latitude, longitude) %&gt;%
+<span class="st">                </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(longitude)) %&gt;%
+<span class="st">                </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">as.character</span>(tag))
+        
+        if(tag !=<span class="st"> &quot;all&quot;</span>){
+                if(!(tag %in%<span class="st"> </span>df$tag)){
+                        <span class="kw">stop</span>(<span class="kw">paste</span>(<span class="st">&quot;That tag is not in the data. Try one of the following tags instead: &quot;</span>, <span class="kw">paste</span>(<span class="kw">unique</span>(df$tag), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)))
+                }
+                to_plot &lt;-<span class="st"> </span>df[df$tag ==<span class="st"> </span>tag, ]
+        } else {
+                to_plot &lt;-<span class="st"> </span>df
+        }
+        
+        hotel_de_ville &lt;-<span class="st"> </span>to_plot$latitude ==<span class="st"> </span><span class="fl">48.85670</span> &amp;
+<span class="st">                </span>to_plot$longitude ==<span class="st"> </span><span class="fl">2.350800</span>
+        n_hotel_de_ville &lt;-<span class="st"> </span><span class="kw">sum</span>(hotel_de_ville)
+        
+        if(n_hotel_de_ville ==<span class="st"> </span><span class="kw">max</span>(<span class="kw">table</span>(to_plot$latitude))){
+                hdv_index &lt;-<span class="st"> </span><span class="kw">sample</span>((<span class="dv">1</span>:<span class="kw">nrow</span>(to_plot))[hotel_de_ville],
+                            <span class="kw">round</span>(n_hotel_de_ville /<span class="st"> </span><span class="dv">2</span>))
+                to_plot &lt;-<span class="st"> </span>to_plot[-hdv_index, ]
+        }
+        
+        my_map &lt;-<span class="st"> </span><span class="kw">ggmap</span>(paris_map, <span class="dt">extent =</span> <span class="st">&quot;device&quot;</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">geom_point</span>(<span class="dt">data =</span> to_plot, <span class="kw">aes</span>(<span class="dt">x =</span> longitude, <span class="dt">y =</span> latitude),
+                           <span class="dt">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>) +
+<span class="st">                </span><span class="kw">geom_density2d</span>(<span class="dt">data =</span> to_plot, 
+                               <span class="kw">aes</span>(<span class="dt">x =</span> longitude, latitude), <span class="dt">size =</span> <span class="fl">0.3</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">stat_density2d</span>(<span class="dt">data =</span> to_plot, 
+                               <span class="kw">aes</span>(<span class="dt">x =</span> longitude, <span class="dt">y =</span> latitude,
+                                   <span class="dt">fill =</span> ..level.., <span class="dt">alpha =</span> ..level..),
+                               <span class="dt">size =</span> <span class="fl">0.01</span>, <span class="dt">bins =</span> <span class="kw">round</span>(<span class="kw">nrow</span>(to_plot) /<span class="st"> </span><span class="fl">3.3</span>),
+                               <span class="dt">geom =</span> <span class="st">&quot;polygon&quot;</span>) +
+<span class="st">                </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">guide =</span> <span class="ot">FALSE</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">scale_alpha</span>(<span class="dt">guide =</span> <span class="ot">FALSE</span>) +<span class="st"> </span>
+<span class="st">                </span><span class="kw">geom_point</span>(<span class="dt">data =</span> paris_locations, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat),
+                           <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>) 
+        <span class="kw">return</span>(my_map)
+}</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/aae-1.png" width="336" style="display: block; margin: auto;" /></p>
+<p>To print this out in the application, I’ll put all the code for the mapping function in a file called <code>helper.R</code>, source this file in the <code>server.R</code> file, and then I can just call the function within the server file. The application will look as follows after this step:</p>
+<p><img src="figures/UI3.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p>To complete this, I first changed the <code>server.R</code> file to look like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(lubridate)
+
+<span class="kw">source</span>(<span class="st">&quot;helper.R&quot;</span>)
+
+paris_twitter &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/final_tweets.csv&quot;</span>, <span class="dt">as.is =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">factor</span>(tag),
+               <span class="dt">created =</span> <span class="kw">ymd_hms</span>(created, <span class="dt">tz =</span> <span class="st">&quot;Europe/Paris&quot;</span>))
+
+<span class="kw">shinyServer</span>(function(input, output) {
+        output$twitter_map &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({ <span class="kw">plot_map</span>() })
+})</code></pre></div>
+<p>Notice a few things here:</p>
+<ol style="list-style-type: decimal">
+<li>I’m loading the packages I’ll need for the code.</li>
+<li>I’m running all the code in the <code>helper.R</code> file (which includes the function I created to plot this map) using the <code>source()</code> command.</li>
+<li>I put the code to plot the map (<code>plot_map()</code>) inside the <code>renderPlot({})</code> function.</li>
+<li>I’m putting the plot in a <code>twitter_map</code> slot of the <code>output</code> object.</li>
+<li>All of this is going inside the call <code>shinyServer(function(input, output){  })</code>.</li>
+</ol>
+<p>One other change is necessary to get the map to print on the app. I need to add code to the <code>ui.R</code> file to tell R where to plot this map on the final interface. The full file now looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shinyUI</span>(<span class="kw">fluidPage</span>(
+        
+        <span class="kw">titlePanel</span>(<span class="st">&quot;Tweets during Paris Attack&quot;</span>),
+        
+        <span class="kw">sidebarLayout</span>(<span class="dt">position =</span> <span class="st">&quot;right&quot;</span>,
+                <span class="kw">sidebarPanel</span>(<span class="st">&quot;Choose what to display&quot;</span>,
+                             <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;time_range&quot;</span>,
+                                         <span class="dt">label =</span> <span class="st">&quot;Select the time range: &quot;</span>,
+                                         <span class="dt">value =</span> <span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                                   <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-15 06:00:00&quot;</span>,
+                                                              <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)), 
+                                         <span class="dt">min =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-13 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">max =</span> <span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-11-14 12:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>),
+                                         <span class="dt">step =</span> <span class="dv">60</span>,
+                                         <span class="dt">timeFormat =</span> <span class="st">&quot;%dth %H:%M&quot;</span>,
+                                         <span class="dt">timezone =</span> <span class="st">&quot;+0100&quot;</span>)),
+                <span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>,
+                          <span class="kw">plotOutput</span>(<span class="st">&quot;twitter_map&quot;</span>))
+        )
+))</code></pre></div>
+<p>The new part is where I’ve added the code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mainPanel</span>(<span class="st">&quot;Map of tweets&quot;</span>,
+          <span class="kw">plotOutput</span>(<span class="st">&quot;twitter_map&quot;</span>))</code></pre></div>
+<p>This tells R to put the plot output <code>twitter_map</code> from the <code>output</code> object in the main panel of the Shiny app.</p>
+</div>
+<div id="making-the-output-reactive" class="section level3">
+<h3><span class="header-section-number">12.5.4</span> Making the output reactive</h3>
+<p>Now almost all of the pieces are in place to make this graphic reactive. First, I added some options to the function in <code>helper.R</code> to let it input time ranges and only plot the tweets within that range. Next, I need to use the values that the user selects from the slider in the call for plotting the map. To do this, I can use the values passed from the slider bar in the <code>input</code> object into the code in the <code>server.R</code> file. Here is the new code for the <code>server.R</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(lubridate)
+
+<span class="kw">source</span>(<span class="st">&quot;helper.R&quot;</span>)
+
+paris_twitter &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/final_tweets.csv&quot;</span>, <span class="dt">as.is =</span> <span class="ot">TRUE</span>) %&gt;%
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">tag =</span> <span class="kw">factor</span>(tag))
+paris_twitter$created &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(paris_twitter$created, <span class="dt">tz =</span> <span class="st">&quot;CET&quot;</span>)
+
+<span class="kw">shinyServer</span>(function(input, output) {
+        output$twitter_map &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+                <span class="kw">plot_map</span>(<span class="dt">start.time =</span> input$time_range[<span class="dv">1</span>],
+                         <span class="dt">end.time =</span> input$time_range[<span class="dv">2</span>])
+                })
+})</code></pre></div>
+<p>The only addition from before is to use the <code>start.time</code> and <code>end.time</code> options in the <code>plot_map</code> function and to set them to the first, <code>[1]</code>, and second, <code>[2]</code>, values in the <code>time_range</code> slot of the <code>input</code> object. Remember that we chose to label the input from the slider bar <code>time_range</code> when we set up the <code>ui.R</code> file.</p>
+<p>This app is saved in the directory <code>App-1</code> in this week’s directory if you’d like to play around with the code. I’ve deployed it on shinyapps <a href="https://github.com/geanders/RProgrammingForResearch/tree/master/data/App-1">here</a>.</p>
+</div>
+<div id="fancier-version" class="section level3">
+<h3><span class="header-section-number">12.5.5</span> Fancier version</h3>
+<p>I’ve also created a (much) fancier version of a Shiny App looking at this Twitter data that you can check out <a href="https://brookeanderson.shinyapps.io/TweetsParisAttacks">here</a>. All the code for that is <a href="https://github.com/geanders/RProgrammingForResearch/tree/master/data/App-2">here</a>.</p>
+
+</div>
+</div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="course-information.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="exploring-data-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -479,7 +868,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/index.Rmd",
+"link": "https://github.com/geanders/RProgrammingForResearch/edit/master/12-reportingresults3.Rmd",
 "text": "Edit"
 },
 "download": ["RProgrammingForResearch.pdf", "RProgrammingForResearch.epub"],
