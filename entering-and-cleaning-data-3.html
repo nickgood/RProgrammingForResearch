@@ -8,7 +8,7 @@
   <title>R Programming for Research</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.1.19 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.20 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2016-11-09">
+<meta name="date" content="2016-11-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,23 @@
 
 
 
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.5.6/plotly.js"></script>
+<link href="libs/bokehjs-0.12.2/bokeh.min.css" rel="stylesheet" />
+<link href="libs/bokehjs-0.12.2/loader.css" rel="stylesheet" />
+<script src="libs/bokehjs-0.12.2/bokeh.min.js"></script>
+<script src="libs/rbokeh-binding-0.5.0/rbokeh.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.3/dygraphs.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
 
 
 <style type="text/css">
@@ -353,7 +370,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.3.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#ropensci"><i class="fa fa-check"></i><b>10.3.1</b> rOpenSci</a></li>
 <li class="chapter" data-level="10.3.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#countyweather"><i class="fa fa-check"></i><b>10.3.2</b> <code>countyweather</code></a></li>
 <li class="chapter" data-level="10.3.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#usgs-r-packages"><i class="fa fa-check"></i><b>10.3.3</b> USGS-R Packages</a></li>
-<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#us-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> US Census packages</a></li>
+<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#u.s.-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> U.S. Census packages</a></li>
 <li class="chapter" data-level="10.3.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#other-r-api-wrappers"><i class="fa fa-check"></i><b>10.3.5</b> Other R API wrappers</a></li>
 <li class="chapter" data-level="10.3.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#r-and-apis"><i class="fa fa-check"></i><b>10.3.6</b> R and APIs</a></li>
 </ul></li>
@@ -376,16 +393,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting data results #3</a><ul>
-<li class="chapter" data-level="12.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1</b> Resources for learning Shiny</a></li>
-<li class="chapter" data-level="12.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.2</b> Basics of Shiny apps</a></li>
-<li class="chapter" data-level="12.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.3</b> <code>server.R</code> file</a></li>
-<li class="chapter" data-level="12.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.4</b> <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.5</b> Making a Shiny app</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.5.1</b> Starting with the <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.5.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.5.2</b> Adding in widgets</a></li>
-<li class="chapter" data-level="12.5.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.5.3</b> Creating output in <code>server.R</code></a></li>
-<li class="chapter" data-level="12.5.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.5.4</b> Making the output reactive</a></li>
-<li class="chapter" data-level="12.5.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.5.5</b> Fancier version</a></li>
+<li class="chapter" data-level="12.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#shiny-web-apps"><i class="fa fa-check"></i><b>12.1</b> Shiny web apps</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1.1</b> Resources for learning Shiny</a></li>
+<li class="chapter" data-level="12.1.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.1.2</b> Basics of Shiny apps</a></li>
+<li class="chapter" data-level="12.1.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.1.3</b> <code>server.R</code> file</a></li>
+<li class="chapter" data-level="12.1.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.1.4</b> <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.1.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.1.5</b> Making a Shiny app</a></li>
+<li class="chapter" data-level="12.1.6" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.1.6</b> Starting with the <code>ui.R</code> file</a></li>
+<li class="chapter" data-level="12.1.7" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.1.7</b> Adding in widgets</a></li>
+<li class="chapter" data-level="12.1.8" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.1.8</b> Creating output in <code>server.R</code></a></li>
+<li class="chapter" data-level="12.1.9" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.1.9</b> Making the output reactive</a></li>
+<li class="chapter" data-level="12.1.10" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.1.10</b> Fancier version</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#viridis-color-map"><i class="fa fa-check"></i><b>12.2</b> Viridis color map</a></li>
+<li class="chapter" data-level="12.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#htmlwidgets"><i class="fa fa-check"></i><b>12.3</b> htmlWidgets</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#overview-of-htmlwidgets"><i class="fa fa-check"></i><b>12.3.1</b> Overview of htmlWidgets</a></li>
+<li class="chapter" data-level="12.3.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#plotly-package"><i class="fa fa-check"></i><b>12.3.2</b> <code>plotly</code> package</a></li>
+<li class="chapter" data-level="12.3.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#rbokeh-package"><i class="fa fa-check"></i><b>12.3.3</b> <code>rbokeh</code> package</a></li>
+<li class="chapter" data-level="12.3.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#dygraphs-package"><i class="fa fa-check"></i><b>12.3.4</b> <code>dygraphs</code> package</a></li>
+<li class="chapter" data-level="12.3.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#dt-package"><i class="fa fa-check"></i><b>12.3.5</b> <code>DT</code> package</a></li>
+<li class="chapter" data-level="12.3.6" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-your-own-widget"><i class="fa fa-check"></i><b>12.3.6</b> Creating your own widget</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -681,7 +708,7 @@ hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(hurr_obs, <span class="kw">aes</span>(<span class="dt">x =</span> wind)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-522-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-444-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
 <p>Clean and check air pressure measurements in the same way:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">unique</span>(hurr_obs$pressure))</code></pre></div>
 <pre><code>## [1] &quot; -999&quot; &quot;  961&quot; &quot;  924&quot; &quot;  938&quot; &quot;  950&quot; &quot;  997&quot;</code></pre>
@@ -690,7 +717,7 @@ hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
                                   <span class="kw">as.numeric</span>(pressure)))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(hurr_obs, <span class="kw">aes</span>(<span class="dt">x =</span> pressure)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-524-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-446-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
 <p>Check some of the very low pressure measurements:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs %&gt;%<span class="st"> </span>dplyr::<span class="kw">arrange</span>(pressure) %&gt;%<span class="st"> </span>
 <span class="st">  </span>dplyr::<span class="kw">select</span>(date_time, wind, pressure) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>)</code></pre></div>
@@ -709,7 +736,7 @@ hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(hurr_obs, <span class="kw">aes</span>(<span class="dt">x =</span> pressure, <span class="dt">y =</span> wind,
                      <span class="dt">color =</span> status)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.2</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>) </code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-526-1.png" width="0.9\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-448-1.png" width="0.9\textwidth" style="display: block; margin: auto;" /></p>
 <p>Next, we want to map storms by decade. Add hurricane decade:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">substring</span>(<span class="kw">year</span>(date_time), <span class="dv">1</span>, <span class="dv">3</span>),
@@ -749,7 +776,7 @@ east_us &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span cla
             <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>decade)</code></pre></div>
 <p>Check trends in maximum wind recorded in any observation each year:</p>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-531-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-453-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 <p>Maximum wind observed each year:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">storm_year =</span> <span class="kw">year</span>(date_time)) %&gt;%
@@ -757,12 +784,12 @@ east_us &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span cla
 <span class="st">  </span>dplyr::<span class="kw">summarize</span>(<span class="dt">highest_wind =</span> <span class="kw">max</span>(wind, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> storm_year, <span class="dt">y =</span> highest_wind)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">span =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-532-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-454-1.png" width="0.8\textwidth" style="display: block; margin: auto;" /></p>
 <p>There is an R package named <code>gender</code> that predicts whether a name is male or female based on historical data:</p>
 <p><a href="https://cran.r-project.org/web/packages/gender/vignettes/predicting-gender.html">Vignette for <code>gender</code> package</a></p>
 <p>This package uses one of several databases of names (here, we’ll use Social Security Administration data), inputs a year or range of years, and outputs whether a name in that year was more likely female or male.</p>
 <p>We can apply a function from this package across all the named storms to see how male / female proportions changed over time.</p>
-<p>First, install the package (as wll as <code>genderdata</code>, which is required to use the package). Once you do, you can use <code>gender</code> to determine the most common gender associated with a name in a given year or range of years:</p>
+<p>First, install the package (as well as <code>genderdata</code>, which is required to use the package). Once you do, you can use <code>gender</code> to determine the most common gender associated with a name in a given year or range of years:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;gender&quot;)</span>
 <span class="co"># install.packages(&quot;genderdata&quot;, type = &quot;source&quot;,</span>
 <span class="co">#                 repos = &quot;http://packages.ropensci.org&quot;)</span>
@@ -800,7 +827,7 @@ east_us &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span cla
 <span class="st">  </span><span class="kw">scale_x_reverse</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of storms&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-537-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-459-1.png" width="672" /></p>
 <p>Next, you can write a function to plot the track for a specific storm. You’ll want to be able to call the function by storm name and year, so join in the storm names from the <code>hurr_meta</code> dataset. We’ll exclude any “UNNAMED” storms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hurr_obs &lt;-<span class="st"> </span>hurr_obs %&gt;%
 <span class="st">  </span>dplyr::<span class="kw">left_join</span>(hurr_meta, <span class="dt">by =</span> <span class="st">&quot;storm_id&quot;</span>) %&gt;%
@@ -826,11 +853,11 @@ east_us &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span cla
   <span class="kw">return</span>(out)
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_track</span>(<span class="dt">storm =</span> <span class="st">&quot;Katrina&quot;</span>, <span class="dt">year =</span> <span class="st">&quot;2005&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-540-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-462-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_track</span>(<span class="dt">storm =</span> <span class="st">&quot;Camille&quot;</span>, <span class="dt">year =</span> <span class="st">&quot;1969&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-541-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-463-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_track</span>(<span class="dt">storm =</span> <span class="st">&quot;Hazel&quot;</span>, <span class="dt">year =</span> <span class="st">&quot;1954&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-542-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-464-1.png" width="\textwidth" style="display: block; margin: auto;" /></p>
 <p>You can also write code with <code>readLines</code> that will read, check, and clean each line, one line at a time.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con  &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&quot;~/my_file.txt&quot;</span>, <span class="dt">open =</span> <span class="st">&quot;r&quot;</span>)
 while (<span class="kw">length</span>(single_line &lt;-<span class="st"> </span>
@@ -950,8 +977,8 @@ denver &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="dt
 <li><code>soilmoisturetools</code>: Tools for soil moisture data retrieval and visualization</li>
 </ul>
 </div>
-<div id="us-census-packages" class="section level3">
-<h3><span class="header-section-number">10.3.4</span> US Census packages</h3>
+<div id="u.s.-census-packages" class="section level3">
+<h3><span class="header-section-number">10.3.4</span> U.S. Census packages</h3>
 <p>A number of R packages help you access and use data from the U.S. Census:</p>
 <ul>
 <li><code>tigris</code>: Download and use Census TIGER/Line shapefiles in R</li>
@@ -1093,7 +1120,7 @@ kitchen_latlons &lt;-<span class="st"> </span><span class="kw">geocode</span>(ki
                   <span class="kw">str_to_title</span>(<span class="kw">gsub</span>(<span class="st">&quot;-&quot;</span>, <span class="st">&quot; &quot;</span>, cities[i]))))
   <span class="kw">print</span>(city_map)
 }</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-559-1.png" width="672" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-559-2.png" width="672" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-559-3.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-481-1.png" width="672" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-481-2.png" width="672" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-481-3.png" width="672" /></p>
 
 </div>
 </div>
