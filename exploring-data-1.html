@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R Programming for Research</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.3.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-01-18">
+<meta name="date" content="2017-08-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,8 +33,7 @@
   
   
 <link rel="prev" href="entering-and-cleaning-data-1.html">
-<link rel="next" href="reporting-data-results-1.html">
-
+<link rel="next" href="appendix-a-vocabulary.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,27 +47,6 @@
 
 
 
-<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
-<link href="libs/plotlyjs-1.20.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.20.2/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-4.5.6.9000/plotly.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/bokehjs-0.12.2/bokeh.min.css" rel="stylesheet" />
-<link href="libs/bokehjs-0.12.2/loader.css" rel="stylesheet" />
-<script src="libs/bokehjs-0.12.2/bokeh.min.js"></script>
-<script src="libs/rbokeh-binding-0.5.0/rbokeh.js"></script>
-<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
-<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
-<script src="libs/moment-2.8.4/moment.js"></script>
-<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
-<script src="libs/dygraphs-binding-1.1.1.4/dygraphs.js"></script>
-<script src="libs/datatables-binding-0.2/datatables.js"></script>
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
 
 
 <style type="text/css">
@@ -139,7 +116,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.4.5" data-path="course-information.html"><a href="course-information.html#final-group-project"><i class="fa fa-check"></i><b>0.4.5</b> Final group project</a></li>
 </ul></li>
 <li class="chapter" data-level="0.5" data-path="course-information.html"><a href="course-information.html#course-set-up"><i class="fa fa-check"></i><b>0.5</b> Course set-up</a></li>
-<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#helpful-books-for-learning-r"><i class="fa fa-check"></i><b>0.6</b> Helpful books for learning R</a></li>
+<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#coursebook"><i class="fa fa-check"></i><b>0.6</b> Coursebook</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="course-information.html"><a href="course-information.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>0.6.1</b> Other helpful books (not required)</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>I Part I: Preliminaries</b></span></li>
 <li class="chapter" data-level="1" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>1</b> R Preliminaries</a><ul>
@@ -242,185 +221,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
-<li class="chapter" data-level="4.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#guidelines-for-good-plots"><i class="fa fa-check"></i><b>4.1</b> Guidelines for good plots</a></li>
-<li class="chapter" data-level="4.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#high-data-density"><i class="fa fa-check"></i><b>4.2</b> High data density</a></li>
-<li class="chapter" data-level="4.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#meaningful-labels"><i class="fa fa-check"></i><b>4.3</b> Meaningful labels</a></li>
-<li class="chapter" data-level="4.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#references"><i class="fa fa-check"></i><b>4.4</b> References</a></li>
-<li class="chapter" data-level="4.5" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#highlighting"><i class="fa fa-check"></i><b>4.5</b> Highlighting</a></li>
-<li class="chapter" data-level="4.6" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#order"><i class="fa fa-check"></i><b>4.6</b> Order</a></li>
-<li class="chapter" data-level="4.7" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#small-multiples"><i class="fa fa-check"></i><b>4.7</b> Small multiples</a></li>
-<li class="chapter" data-level="4.8" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#advanced-customization"><i class="fa fa-check"></i><b>4.8</b> Advanced customization</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#scales"><i class="fa fa-check"></i><b>4.8.1</b> Scales</a></li>
-</ul></li>
-<li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
-<li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
-<li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
-<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
-<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
-<li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i><b>5</b> Reproducible research #1</a><ul>
-<li class="chapter" data-level="5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#what-is-reproducible-research"><i class="fa fa-check"></i><b>5.1</b> What is reproducible research?</a></li>
-<li class="chapter" data-level="5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#markdown"><i class="fa fa-check"></i><b>5.2</b> Markdown</a></li>
-<li class="chapter" data-level="5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#literate-programming-in-r"><i class="fa fa-check"></i><b>5.3</b> Literate programming in R</a></li>
-<li class="chapter" data-level="5.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#style-guidelines"><i class="fa fa-check"></i><b>5.4</b> Style guidelines</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#line-length"><i class="fa fa-check"></i><b>5.4.1</b> Line length</a></li>
-<li class="chapter" data-level="5.4.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#spacing"><i class="fa fa-check"></i><b>5.4.2</b> Spacing</a></li>
-<li class="chapter" data-level="5.4.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#semicolons"><i class="fa fa-check"></i><b>5.4.3</b> Semicolons</a></li>
-<li class="chapter" data-level="5.4.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#commenting"><i class="fa fa-check"></i><b>5.4.4</b> Commenting</a></li>
-<li class="chapter" data-level="5.4.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#indentation"><i class="fa fa-check"></i><b>5.4.5</b> Indentation</a></li>
-<li class="chapter" data-level="5.4.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#code-grouping"><i class="fa fa-check"></i><b>5.4.6</b> Code grouping</a></li>
-<li class="chapter" data-level="5.4.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#broader-guidelines"><i class="fa fa-check"></i><b>5.4.7</b> Broader guidelines</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#more-with-knitr"><i class="fa fa-check"></i><b>5.5</b> More with knitr</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#equations-in-knitr"><i class="fa fa-check"></i><b>5.5.1</b> Equations in <code>knitr</code></a></li>
-<li class="chapter" data-level="5.5.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#figures-from-file"><i class="fa fa-check"></i><b>5.5.2</b> Figures from file</a></li>
-<li class="chapter" data-level="5.5.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files"><i class="fa fa-check"></i><b>5.5.3</b> Saving graphics files</a></li>
-</ul></li>
-<li class="chapter" data-level="5.6" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#saving-graphics-files-1"><i class="fa fa-check"></i><b>5.6</b> Saving graphics files</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>5.6.1</b> Tables in R Markdown</a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#in-course-exercise-4"><i class="fa fa-check"></i><b>5.7</b> In-course exercise</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#creating-a-markdown-document"><i class="fa fa-check"></i><b>5.7.1</b> Creating a Markdown document</a></li>
-<li class="chapter" data-level="5.7.2" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#adding-in-r-code"><i class="fa fa-check"></i><b>5.7.2</b> Adding in R code</a></li>
-<li class="chapter" data-level="5.7.3" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#working-with-r-markdown-documents"><i class="fa fa-check"></i><b>5.7.3</b> Working with R Markdown documents</a></li>
-<li class="chapter" data-level="5.7.4" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#r-style-guidelines"><i class="fa fa-check"></i><b>5.7.4</b> R style guidelines</a></li>
-<li class="chapter" data-level="5.7.5" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#trying-out-knitr-with-your-own-data"><i class="fa fa-check"></i><b>5.7.5</b> Trying out <code>knitr</code> with your own data</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>III Part III: Intermediate</b></span></li>
-<li class="chapter" data-level="6" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html"><i class="fa fa-check"></i><b>6</b> Entering and cleaning data #2</a><ul>
-<li class="chapter" data-level="6.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#joining-datasets"><i class="fa fa-check"></i><b>6.1</b> Joining datasets</a></li>
-<li class="chapter" data-level="6.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidy-data"><i class="fa fa-check"></i><b>6.2</b> Tidy data</a></li>
-<li class="chapter" data-level="6.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#gathering"><i class="fa fa-check"></i><b>6.3</b> Gathering</a></li>
-<li class="chapter" data-level="6.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#in-course-exercise-5"><i class="fa fa-check"></i><b>6.4</b> In-course exercise</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#designing-tidy-data"><i class="fa fa-check"></i><b>6.4.1</b> Designing tidy data</a></li>
-<li class="chapter" data-level="6.4.2" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#easier-data-wrangling"><i class="fa fa-check"></i><b>6.4.2</b> Easier data wrangling</a></li>
-<li class="chapter" data-level="6.4.3" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#more-extensive-data-wrangling"><i class="fa fa-check"></i><b>6.4.3</b> More extensive data wrangling</a></li>
-<li class="chapter" data-level="6.4.4" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#tidying-vadeaths-data"><i class="fa fa-check"></i><b>6.4.4</b> Tidying <code>VADeaths</code> data</a></li>
-<li class="chapter" data-level="6.4.5" data-path="entering-and-cleaning-data-2.html"><a href="entering-and-cleaning-data-2.html#exploring-fatality-analysis-reporting-system-fars-data"><i class="fa fa-check"></i><b>6.4.5</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="exploring-data-2.html"><a href="exploring-data-2.html"><i class="fa fa-check"></i><b>7</b> Exploring data #2</a><ul>
-<li class="chapter" data-level="7.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#parentheses"><i class="fa fa-check"></i><b>7.1</b> Parentheses</a></li>
-<li class="chapter" data-level="7.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#loops"><i class="fa fa-check"></i><b>7.2</b> Loops</a></li>
-<li class="chapter" data-level="7.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#other-control-structures"><i class="fa fa-check"></i><b>7.3</b> Other control structures</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#if-else-loops"><i class="fa fa-check"></i><b>7.3.1</b> if / else loops</a></li>
-<li class="chapter" data-level="7.3.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#some-other-control-structures"><i class="fa fa-check"></i><b>7.3.2</b> Some other control structures</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#functions"><i class="fa fa-check"></i><b>7.4</b> Functions</a></li>
-<li class="chapter" data-level="7.5" data-path="exploring-data-2.html"><a href="exploring-data-2.html#regular-expressions"><i class="fa fa-check"></i><b>7.5</b> Regular expressions</a></li>
-<li class="chapter" data-level="7.6" data-path="exploring-data-2.html"><a href="exploring-data-2.html#in-course-exercise-6"><i class="fa fa-check"></i><b>7.6</b> In-course exercise</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
-<li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.2</b> Using a loop to create state-specific plots</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html"><i class="fa fa-check"></i><b>8</b> Reporting data results #2</a><ul>
-<li class="chapter" data-level="8.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices-and-lists"><i class="fa fa-check"></i><b>8.1</b> Matrices and lists</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices"><i class="fa fa-check"></i><b>8.1.1</b> Matrices</a></li>
-<li class="chapter" data-level="8.1.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#lists"><i class="fa fa-check"></i><b>8.1.2</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#apply-functions"><i class="fa fa-check"></i><b>8.2</b> <code>apply</code> functions</a></li>
-<li class="chapter" data-level="8.3" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#point-maps"><i class="fa fa-check"></i><b>8.3</b> Point maps</a></li>
-<li class="chapter" data-level="8.4" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#choropleth-maps"><i class="fa fa-check"></i><b>8.4</b> Choropleth maps</a></li>
-<li class="chapter" data-level="8.5" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#google-maps-api"><i class="fa fa-check"></i><b>8.5</b> Google Maps API</a></li>
-<li class="chapter" data-level="8.6" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#string-operations"><i class="fa fa-check"></i><b>8.6</b> String operations</a></li>
-<li class="chapter" data-level="8.7" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#in-course-exercise-7"><i class="fa fa-check"></i><b>8.7</b> In-course exercise</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#writing-a-function-to-create-state-specific-plots"><i class="fa fa-check"></i><b>8.7.1</b> Writing a function to create state-specific plots</a></li>
-<li class="chapter" data-level="8.7.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#first-steps-in-mapping"><i class="fa fa-check"></i><b>8.7.2</b> First steps in mapping</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html"><i class="fa fa-check"></i><b>9</b> Reproducible research #2</a><ul>
-<li class="chapter" data-level="9.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-notebooks"><i class="fa fa-check"></i><b>9.1</b> R Notebooks</a></li>
-<li class="chapter" data-level="9.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#templates"><i class="fa fa-check"></i><b>9.2</b> Templates</a></li>
-<li class="chapter" data-level="9.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-projects"><i class="fa fa-check"></i><b>9.3</b> R Projects</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organization"><i class="fa fa-check"></i><b>9.3.1</b> Organization</a></li>
-<li class="chapter" data-level="9.3.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#creating-r-projects"><i class="fa fa-check"></i><b>9.3.2</b> Creating R Projects</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#git"><i class="fa fa-check"></i><b>9.4</b> git</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository"><i class="fa fa-check"></i><b>9.4.1</b> Initializing a git repository</a></li>
-<li class="chapter" data-level="9.4.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#committing"><i class="fa fa-check"></i><b>9.4.2</b> Committing</a></li>
-<li class="chapter" data-level="9.4.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#browsing-history"><i class="fa fa-check"></i><b>9.4.3</b> Browsing history</a></li>
-<li class="chapter" data-level="9.4.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-local-repo-to-github-repo"><i class="fa fa-check"></i><b>9.4.4</b> Linking local repo to GitHub repo</a></li>
-<li class="chapter" data-level="9.4.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#syncing-rstudio-and-github"><i class="fa fa-check"></i><b>9.4.5</b> Syncing RStudio and GitHub</a></li>
-<li class="chapter" data-level="9.4.6" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#issues"><i class="fa fa-check"></i><b>9.4.6</b> Issues</a></li>
-<li class="chapter" data-level="9.4.7" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#pull-request"><i class="fa fa-check"></i><b>9.4.7</b> Pull request</a></li>
-<li class="chapter" data-level="9.4.8" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#merge-conflicts"><i class="fa fa-check"></i><b>9.4.8</b> Merge conflicts</a></li>
-<li class="chapter" data-level="9.4.9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#find-out-more"><i class="fa fa-check"></i><b>9.4.9</b> Find out more</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#in-course-exercise-8"><i class="fa fa-check"></i><b>9.5</b> In-course exercise</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#trying-out-templates"><i class="fa fa-check"></i><b>9.5.1</b> Trying out templates</a></li>
-<li class="chapter" data-level="9.5.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organizing-a-project"><i class="fa fa-check"></i><b>9.5.2</b> Organizing a project</a></li>
-<li class="chapter" data-level="9.5.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-your-project-with-a-github-repository"><i class="fa fa-check"></i><b>9.5.3</b> Linking your project with a GitHub repository</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>IV Part IV: Advanced</b></span></li>
-<li class="chapter" data-level="10" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html"><i class="fa fa-check"></i><b>10</b> Entering and cleaning data #3</a><ul>
-<li class="chapter" data-level="10.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#cleaning-very-messy-data"><i class="fa fa-check"></i><b>10.1</b> Cleaning very messy data</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-of-messy-data"><i class="fa fa-check"></i><b>10.1.1</b> Example of messy data</a></li>
-<li class="chapter" data-level="10.1.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#strategy-for-messy-data"><i class="fa fa-check"></i><b>10.1.2</b> Strategy for messy data</a></li>
-<li class="chapter" data-level="10.1.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#readlines-function"><i class="fa fa-check"></i><b>10.1.3</b> <code>readLines</code> function</a></li>
-<li class="chapter" data-level="10.1.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#regular-expressions-for-cleaning"><i class="fa fa-check"></i><b>10.1.4</b> Regular expressions for cleaning</a></li>
-<li class="chapter" data-level="10.1.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#working-with-lists"><i class="fa fa-check"></i><b>10.1.5</b> Working with lists</a></li>
-<li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
-<li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#pulling-online-data"><i class="fa fa-check"></i><b>10.2</b> Pulling online data</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#apis"><i class="fa fa-check"></i><b>10.2.1</b> APIs</a></li>
-<li class="chapter" data-level="10.2.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-riem-package"><i class="fa fa-check"></i><b>10.2.2</b> Example– <code>riem</code> package</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-r-api-wrappers"><i class="fa fa-check"></i><b>10.3</b> Example R API wrappers</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#ropensci"><i class="fa fa-check"></i><b>10.3.1</b> rOpenSci</a></li>
-<li class="chapter" data-level="10.3.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#countyweather"><i class="fa fa-check"></i><b>10.3.2</b> <code>countyweather</code></a></li>
-<li class="chapter" data-level="10.3.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#usgs-r-packages"><i class="fa fa-check"></i><b>10.3.3</b> USGS-R Packages</a></li>
-<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#u.s.-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> U.S. Census packages</a></li>
-<li class="chapter" data-level="10.3.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#other-r-api-wrappers"><i class="fa fa-check"></i><b>10.3.5</b> Other R API wrappers</a></li>
-<li class="chapter" data-level="10.3.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#r-and-apis"><i class="fa fa-check"></i><b>10.3.6</b> R and APIs</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#parsing-webpages"><i class="fa fa-check"></i><b>10.4</b> Parsing webpages</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#rvest"><i class="fa fa-check"></i><b>10.4.1</b> <code>rvest</code></a></li>
-<li class="chapter" data-level="10.4.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#scraping-multiple-pages"><i class="fa fa-check"></i><b>10.4.2</b> Scraping multiple pages</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="exploring-data-3.html"><a href="exploring-data-3.html"><i class="fa fa-check"></i><b>11</b> Exploring data #3</a><ul>
-<li class="chapter" data-level="11.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#forcats"><i class="fa fa-check"></i><b>11.1</b> <code>forcats</code></a></li>
-<li class="chapter" data-level="11.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#simulations"><i class="fa fa-check"></i><b>11.2</b> Simulations</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#the-lady-tasting-tea"><i class="fa fa-check"></i><b>11.2.1</b> The lady tasting tea</a></li>
-<li class="chapter" data-level="11.2.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#playing-darts"><i class="fa fa-check"></i><b>11.2.2</b> Playing darts</a></li>
-<li class="chapter" data-level="11.2.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#simulations-in-research"><i class="fa fa-check"></i><b>11.2.3</b> Simulations in research</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#other-computationally-intensive-approaches"><i class="fa fa-check"></i><b>11.3</b> Other computationally-intensive approaches</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bootstrap-and-friends"><i class="fa fa-check"></i><b>11.3.1</b> Bootstrap and friends</a></li>
-<li class="chapter" data-level="11.3.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bayesian-analysis"><i class="fa fa-check"></i><b>11.3.2</b> Bayesian analysis</a></li>
-<li class="chapter" data-level="11.3.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#ensemble-models-and-friends"><i class="fa fa-check"></i><b>11.3.3</b> Ensemble models and friends</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting data results #3</a><ul>
-<li class="chapter" data-level="12.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#shiny-web-apps"><i class="fa fa-check"></i><b>12.1</b> Shiny web apps</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1.1</b> Resources for learning Shiny</a></li>
-<li class="chapter" data-level="12.1.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.1.2</b> Basics of Shiny apps</a></li>
-<li class="chapter" data-level="12.1.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.1.3</b> <code>server.R</code> file</a></li>
-<li class="chapter" data-level="12.1.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.1.4</b> <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.1.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.1.5</b> Making a Shiny app</a></li>
-<li class="chapter" data-level="12.1.6" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.1.6</b> Starting with the <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.1.7" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.1.7</b> Adding in widgets</a></li>
-<li class="chapter" data-level="12.1.8" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.1.8</b> Creating output in <code>server.R</code></a></li>
-<li class="chapter" data-level="12.1.9" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.1.9</b> Making the output reactive</a></li>
-<li class="chapter" data-level="12.1.10" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.1.10</b> Fancier version</a></li>
-</ul></li>
-<li class="chapter" data-level="12.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#viridis-color-map"><i class="fa fa-check"></i><b>12.2</b> Viridis color map</a></li>
-<li class="chapter" data-level="12.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#htmlwidgets"><i class="fa fa-check"></i><b>12.3</b> htmlWidgets</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#overview-of-htmlwidgets"><i class="fa fa-check"></i><b>12.3.1</b> Overview of htmlWidgets</a></li>
-<li class="chapter" data-level="12.3.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#plotly-package"><i class="fa fa-check"></i><b>12.3.2</b> <code>plotly</code> package</a></li>
-<li class="chapter" data-level="12.3.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#rbokeh-package"><i class="fa fa-check"></i><b>12.3.3</b> <code>rbokeh</code> package</a></li>
-<li class="chapter" data-level="12.3.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#dygraphs-package"><i class="fa fa-check"></i><b>12.3.4</b> <code>dygraphs</code> package</a></li>
-<li class="chapter" data-level="12.3.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#dt-package"><i class="fa fa-check"></i><b>12.3.5</b> <code>DT</code> package</a></li>
-<li class="chapter" data-level="12.3.6" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-your-own-widget"><i class="fa fa-check"></i><b>12.3.6</b> Creating your own widget</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="reporting-data-results-3-1.html"><a href="reporting-data-results-3-1.html"><i class="fa fa-check"></i><b>13</b> Reporting data results #3</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
 <li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1-quiz-1"><i class="fa fa-check"></i><b>A.1</b> Week 1 (Quiz 1)</a></li>
@@ -444,7 +244,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="B.5" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-5"><i class="fa fa-check"></i><b>B.5</b> Homework #5</a></li>
 <li class="chapter" data-level="B.6" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-6"><i class="fa fa-check"></i><b>B.6</b> Homework #6</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -512,7 +312,7 @@ If R gets to the end of a line and there is not some indication that the call is
 <p>The first step in creating a plot using <code>ggplot2</code> is to create a ggplot object. This object will not, by itself, create a plot with anything in it. Instead, it typically specifies the data frame you want to use and which aesthetics will be mapped to certain columns of that data frame (aesthetics are explained more in the next subsection).</p>
 <p>Use the following conventions to initialize a ggplot object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
-object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> column_1, <span class="dt">y =</span> column_2))</code></pre></div>
+object &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataframe, <span class="kw">aes</span>(<span class="dt">x =</span> column_<span class="dv">1</span>, <span class="dt">y =</span> column_<span class="dv">2</span>))</code></pre></div>
 <p>The data frame is the first parameter in a <code>ggplot</code> call and, if you like, you can use the parameter definition with that call (e.g., <code>data = dataframe</code>). Aesthetics are defined within an <code>aes</code> function call that typically is used within the <code>ggplot</code> call.</p>
 <div class="rmdnote">
 <p>
@@ -662,11 +462,11 @@ Figure 3.3: Example of available shades of blue in R.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)</code></pre></div>
 <p>Each observation is a single measurement for a child; there can be multiple observations per child. I used the following code to select only the columns for child id, sex, weight, height, and age. I also used <code>distinct</code> to limit the dataset to only include one measurement for each chile, the child’s first measurement in the dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%
-<span class="st">  </span><span class="kw">select</span>(id, sex, wt, ht, age) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(id, sex, wt, ht, age) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">factor</span>(id),
          <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
-                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))) %&gt;%
+                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">distinct</span>(id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>After this cleaning, the data looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali)</code></pre></div>
@@ -681,7 +481,7 @@ Figure 3.3: Example of available shades of blue in R.
 <div id="histograms" class="section level3">
 <h3><span class="header-section-number">3.2.7</span> Histograms</h3>
 <p>Histograms show the distribution of a single variable. Therefore, <code>geom_histogram()</code> requires only one main aesthetic, <code>x</code>, the (numeric) vector for which you want to create a histogram. For example, to create a histogram of children’s heights for the Nepali dataset (Figure <a href="exploring-data-1.html#fig:nepalihist1">3.4</a>), run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepalihist1"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepalihist1-1.png" alt="Basic example of plotting a histogram with `ggplot2`. This histogram shows the distribution of heights for the first recorded measurements of each child in the `nepali` dataset." width="384" />
@@ -695,10 +495,10 @@ If you run the code with no arguments for <code>binwidth</code> or <code>bins</c
 </p>
 </div>
 <p>You can add some elements to the histogram now to customize it a bit. For example (Figure @ref()), you can add a figure title (<code>ggtitle</code>) and clearer labels for the x-axis (<code>xlab</code>). You can also change the range of values shown by the x-axis (<code>xlim</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Height of children&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Height of children&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepalihist2"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepalihist2-1.png" alt="Example of adding ggplot elements to customize a histogram." width="384" />
 <p class="caption">
@@ -706,7 +506,7 @@ Figure 3.5: Example of adding ggplot elements to customize a histogram.
 </p>
 </div>
 <p>The geom <code>geom_histogram</code> also has special argument for setting the number of width of the bins used in the histogram. Figure <a href="#fig"><strong>??</strong></a> shows an example of how you can use the <code>bins</code> argument to change the number of bins that are used to make the histogram of height for the <code>nepali</code> dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,
                  <span class="dt">bins =</span> <span class="dv">40</span>) </code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepalihist3"></span>
@@ -716,7 +516,7 @@ Figure 3.6: Example of using the <code>bins</code> argument to change the number
 </p>
 </div>
 <p>Similarly, the <code>binwidth</code> argument can be used to set the width of bins. Figure <a href="exploring-data-1.html#fig:nepalihist4">3.7</a> shows an example of using this function to create a histogram of the Nepali children’s heights with binwidths of 10 centimeters (note that this argument is set in the same units as the x variable).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,
                  <span class="dt">binwidth =</span> <span class="dv">10</span>) </code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepalihist4"></span>
@@ -729,7 +529,7 @@ Figure 3.7: Example of using the <code>binwidth</code> argument to set the width
 <div id="scatterplots" class="section level3">
 <h3><span class="header-section-number">3.2.8</span> Scatterplots</h3>
 <p>A scatterplot shows how one variable changes as another changes. You can use the <code>geom_point</code> geom to create a scatterplot. For example, to create a scatterplot of height versus age for the Nepali data (Figure <a href="exploring-data-1.html#fig:nepaliscatter1">3.8</a>), you can run the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliscatter1"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepaliscatter1-1.png" alt="Example of creating a scatterplot. This scatterplot shows the relationship between children's heights and weights within the nepali dataset." width="480" />
@@ -738,10 +538,10 @@ Figure 3.8: Example of creating a scatterplot. This scatterplot shows the relati
 </p>
 </div>
 <p>Again, you can use some of the options and additions to change the plot appearance. For example, to add a title, change the x- and y-axis labels, and change the color and size of the points on the scatterplot (Figure <a href="exploring-data-1.html#fig:nepaliscatter2">3.9</a>), you can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliscatter2"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepaliscatter2-1.png" alt="Example of adding ggplot elements to customize a scatterplot." width="480" />
 <p class="caption">
@@ -749,10 +549,10 @@ Figure 3.9: Example of adding ggplot elements to customize a scatterplot.
 </p>
 </div>
 <p>You can also try mapping another variable in the dataset to the <code>color</code> aesthetic. For example, to use color to show the sex of each child in the scatterplot (Figure <a href="exploring-data-1.html#fig:nepaliscatter3">3.10</a>), you can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt, <span class="dt">color =</span> sex)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt, <span class="dt">color =</span> sex)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Weight versus Height&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliscatter3"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepaliscatter3-1.png" alt="Example of mapping color to an element of the data in a scatterplot." width="480" />
 <p class="caption">
@@ -763,9 +563,9 @@ Figure 3.10: Example of mapping color to an element of the data in a scatterplot
 <div id="boxplots" class="section level3">
 <h3><span class="header-section-number">3.2.9</span> Boxplots</h3>
 <p>Boxplots can be used to show the distribution of a continuous variable. To create a boxplot, you can use the <code>geom_boxplot</code> geom. To plot a boxplot for a single, continuous variable, you can map that variable to <code>y</code> in the <code>aes</code> call, and map <code>x</code> to the constant <code>1</code>. For example, to create a boxplot of the heights of children in the Nepali dataset (Figure <a href="exploring-data-1.html#fig:nepaliboxplot1">3.11</a>), you can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> ht)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> ht)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliboxplot1"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepaliboxplot1-1.png" alt="Example of creating a boxplot. The example shows the distribution of height data for children in the nepali dataset." width="384" />
 <p class="caption">
@@ -773,9 +573,9 @@ Figure 3.11: Example of creating a boxplot. The example shows the distribution o
 </p>
 </div>
 <p>You can also create separate boxplots, one for each level of a factor (Figure <a href="exploring-data-1.html#fig:nepaliboxplot2">3.12</a>). In this case, you’ll need to include two aesthetics (<code>x</code> and <code>y</code>) when you initialize the ggplot object The <code>y</code> variable is the variable for which the distribution will be shown, and the <code>x</code> variable should be a discrete (categorical or TRUE/FALSE) variable, and will be used to group the variable. This <code>x</code> variable should also be specified as the grouping variable, using <code>group</code> within the aesthetic call.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> ht, <span class="dt">group =</span> sex)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sex&quot;</span>)+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> ht, <span class="dt">group =</span> sex)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sex&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Height (cm)&quot;</span>) </code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:nepaliboxplot2"></span>
 <img src="RProgrammingForResearch_files/figure-html/nepaliboxplot2-1.png" alt="Example of creating separate boxplots, divided by a categorical grouping variable in the data." width="480" />
 <p class="caption">
@@ -787,7 +587,7 @@ Figure 3.12: Example of creating separate boxplots, divided by a categorical gro
 <h3><span class="header-section-number">3.2.10</span> Extensions of <code>ggplot2</code></h3>
 <p>There are lots of R extensions for creating other interesting plots. For example, you can use the <code>ggpairs</code> function from the <code>GGally</code> package to plot all pairs of scatterplots for several variables (Figure <a href="#fig:ggallyexample"><strong>??</strong></a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">ggpairs</span>(nepali %&gt;%<span class="st"> </span><span class="kw">select</span>(sex, wt, ht, age))</code></pre></div>
+<span class="kw">ggpairs</span>(nepali <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex, wt, ht, age))</code></pre></div>
 <p>Notice how this output shows continuous and binary variables differently. For example, the center diagonal shows density plots for continuous variables, but a bar chart for the categorical variable.</p>
 <p>See <a href="https://www.ggplot2-exts.org" class="uri">https://www.ggplot2-exts.org</a> to find more <code>ggplot2</code> extensions.</p>
 </div>
@@ -801,66 +601,66 @@ Figure 3.12: Example of creating separate boxplots, divided by a categorical gro
 <table>
 <thead>
 <tr class="header">
-<th align="left">Function</th>
-<th align="left">Description</th>
+<th>Function</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>range()</code></td>
-<td align="left">Range (minimum and maximum) of vector</td>
+<td><code>range()</code></td>
+<td>Range (minimum and maximum) of vector</td>
 </tr>
 <tr class="even">
-<td align="left"><code>min()</code>, <code>max()</code></td>
-<td align="left">Minimum or maximum of vector</td>
+<td><code>min()</code>, <code>max()</code></td>
+<td>Minimum or maximum of vector</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>mean()</code>, <code>median()</code></td>
-<td align="left">Mean or median of vector</td>
+<td><code>mean()</code>, <code>median()</code></td>
+<td>Mean or median of vector</td>
 </tr>
 <tr class="even">
-<td align="left"><code>sd()</code></td>
-<td align="left">Standard deviation of vector</td>
+<td><code>sd()</code></td>
+<td>Standard deviation of vector</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>table()</code></td>
-<td align="left">Number of observations per level for a factor vector</td>
+<td><code>table()</code></td>
+<td>Number of observations per level for a factor vector</td>
 </tr>
 <tr class="even">
-<td align="left"><code>cor()</code></td>
-<td align="left">Determine correlation(s) between two or more vectors</td>
+<td><code>cor()</code></td>
+<td>Determine correlation(s) between two or more vectors</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>summary()</code></td>
-<td align="left">Summary statistics, depends on class</td>
+<td><code>summary()</code></td>
+<td>Summary statistics, depends on class</td>
 </tr>
 </tbody>
 </table>
 <p>All of these functions take, as the main argument, the vector or vectors for which you want the statistic. If there are missing values in the vector, you’ll typically need to add an argument to say what to do with the missing values. The parameter name for this varies by function, but for many of these functions it’s <code>na.rm = TRUE</code> or <code>use=&quot;complete.obs&quot;</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(nepali$wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(nepali<span class="op">$</span>wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 10.18432</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(nepali$ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(nepali<span class="op">$</span>ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1]  52.4 104.1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(nepali$ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(nepali<span class="op">$</span>ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 12.64529</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(nepali$sex)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(nepali<span class="op">$</span>sex)</code></pre></div>
 <pre><code>## 
 ##   Male Female 
 ##    107     93</code></pre>
 <p>Most of these functions take a single vector as the input. The <code>cor</code> function, however, calculates the correlation between vectors and so takes two or more vectors. If you give it multiple values, it will give the correlation matrix for all the vectors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(nepali$wt, nepali$ht, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(nepali<span class="op">$</span>wt, nepali<span class="op">$</span>ht, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
 <pre><code>## [1] 0.9571535</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>((nepali %&gt;%<span class="st"> </span><span class="kw">select</span>(wt, ht, age)), <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>((nepali <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(wt, ht, age)), <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</code></pre></div>
 <pre><code>##            wt        ht       age
 ## wt  1.0000000 0.9571535 0.8931195
 ## ht  0.9571535 1.0000000 0.9287129
 ## age 0.8931195 0.9287129 1.0000000</code></pre>
 <p>R supports object-oriented programming. Your first taste of this shows up with the <code>summary</code> function. For the <code>summary</code> function, R does not run the same code every time. Instead, R first checks what type of object was input to <code>summary</code>, and then it runs a function (<em>method</em>) specific to that type of object. For example, if you input a continuous vector, like the <code>ht</code> column in <code>nepali</code>, to <code>summary</code>, the function will return the mean, median, range, and 25th and 75th percentile values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali$wt)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali<span class="op">$</span>wt)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##    3.80    7.90   10.10   10.18   12.40   16.70      15</code></pre>
 <p>However, if you submit a factor vector, like the <code>sex</code> column in <code>nepali</code>, the <code>summary</code> function will return a count of how many elements of the vector are in each factor level (as a note, you could do the same thing with the <code>table</code> function):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali$sex)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nepali<span class="op">$</span>sex)</code></pre></div>
 <pre><code>##   Male Female 
 ##    107     93</code></pre>
 <p>The <code>summary</code> function can also input other data structures, including dataframes, lists, and special object types, like regression model objects. In each case, it performs different actions specific to the object type. Later in this section, we’ll cover regression models, and see what the <code>summary</code> function returns when it is used with regression model objects.</p>
@@ -868,24 +668,24 @@ Figure 3.12: Example of creating separate boxplots, divided by a categorical gro
 <div id="summarize-function" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> <code>summarize</code> function</h3>
 <p>You will often want to use these functions in conjunction with the <code>summarize</code> function in <code>dplyr</code>. For example, to create a new dataframe with the mean weight of children in the <code>nepali</code> dataset, you can use <code>mean</code> inside a <code>summarize</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>##    mean_wt
 ## 1 10.18432</code></pre>
 <p>There are also some special functions that you can use with <code>summarize</code>. For example, the <code>n</code> function will calculate the number of observations and the <code>first</code> function will return the first value of a column:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_children =</span><span class="kw">n</span>(), 
             <span class="dt">first_id =</span> <span class="kw">first</span>(id))</code></pre></div>
 <pre><code>##   n_children first_id
 ## 1        200   120011</code></pre>
 <p>See the “summary function” section of the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">the RStudio Data Wrangling cheatsheet</a> for more examples of these special functions.</p>
 <p>Often, you will be more interested in summaries within certain groupings of your data, rather than overall summaries. For example, you may be interested in mean height and weight by sex, rather than across all children, for the <code>nepali</code> data. It is very easy to calculate these grouped summaries using <code>dplyr</code>– you just need to group data using the <code>group_by</code> function (also a <code>dplyr</code> function) before you run the <code>summarize</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(wt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
             <span class="dt">n_children =</span><span class="kw">n</span>(), 
             <span class="dt">first_id =</span> <span class="kw">first</span>(id))</code></pre></div>
-<pre><code>## # A tibble: 2 × 4
+<pre><code>## # A tibble: 2 x 4
 ##      sex   mean_wt n_children first_id
 ##   &lt;fctr&gt;     &lt;dbl&gt;      &lt;int&gt;   &lt;fctr&gt;
 ## 1   Male 10.497980        107   120011
@@ -901,13 +701,13 @@ Don’t forget that you need to save the output to a new object if you want to u
 <h2><span class="header-section-number">3.4</span> Logical vectors</h2>
 <p>Last week, you learned a lot about logical statements and how to use them with the <code>filter</code> function. You can also use logical vectors, created with these logical statements, for a lot of other things. For example, you can use them directly in the square bracket indexing (<code>[..., ...]</code>) to pull out just the rows of a dataframe that meet a certain condition.</p>
 <p>When you run a logical statement on a vector, you create a logical vector the same length as the original vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is_male &lt;-<span class="st"> </span>nepali$sex ==<span class="st"> &quot;Male&quot;</span>
-<span class="kw">length</span>(nepali$sex)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">is_male &lt;-<span class="st"> </span>nepali<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>
+<span class="kw">length</span>(nepali<span class="op">$</span>sex)</code></pre></div>
 <pre><code>## [1] 200</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(is_male)</code></pre></div>
 <pre><code>## [1] 200</code></pre>
 <p>The logical vector (<code>is_male</code> in this example) will have the value <code>TRUE</code> at any position where the original vector (<code>nepali$sex</code> in this example) met the logical condition you tested, and <code>FALSE</code> anywhere else:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali$sex)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali<span class="op">$</span>sex)</code></pre></div>
 <pre><code>## [1] Male   Female Female Female Male   Male  
 ## Levels: Male Female</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(is_male)</code></pre></div>
@@ -915,7 +715,7 @@ Don’t forget that you need to save the output to a new object if you want to u
 <p>You can “flip” this logical vector (i.e., change every <code>TRUE</code> to <code>FALSE</code> and vice-versa) using the <em>bang operator</em>, <code>!</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(is_male)</code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(!is_male)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="op">!</span>is_male)</code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
 <p>The bang operator turns out to be very useful. You will often find cases where it’s difficult to write a logical vector to get what you want, but fairly easy to write the inverse (find everything you don’t want). One example is filtering down to non-missing values– the <code>is.na</code> function will return <code>TRUE</code> for any value that is <code>NA</code>, so you can use <code>!is.na()</code> to identify any non-missing values.</p>
 <p>You can do a few cool things with a logical vector. For example, you can use it with indexing to pull out just the rows of a dataframe where <code>is_male</code> is <code>TRUE</code>:</p>
@@ -928,7 +728,7 @@ Don’t forget that you need to save the output to a new object if you want to u
 ## 9  120053 Male 15.8 96.0  54
 ## 11 120062 Male 12.1 89.9  57</code></pre>
 <p>Or, with <code>!</code>, just the rows where <code>is_male</code> is <code>FALSE</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali[!is_male, ])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nepali[<span class="op">!</span>is_male, ])</code></pre></div>
 <pre><code>##        id    sex   wt    ht age
 ## 2  120012 Female 14.9 103.9  57
 ## 3  120021 Female  7.7  70.1   8
@@ -940,18 +740,18 @@ Don’t forget that you need to save the output to a new object if you want to u
 <p>You can also use <code>sum()</code> and <code>table()</code> with a logical vector to find out how many of the values in the vector are <code>TRUE</code> AND <code>FALSE</code>. In the example, you can use these functions to find out how many males and females are in the dataset:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(is_male)</code></pre></div>
 <pre><code>## [1] 107</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(!is_male)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="op">!</span>is_male)</code></pre></div>
 <pre><code>## [1] 93</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(is_male)</code></pre></div>
 <pre><code>## is_male
 ## FALSE  TRUE 
 ##    93   107</code></pre>
 <p>Note that you could also achieve the same thing with <code>dplyr</code> functions. For example, you could use <code>mutate</code> with a logical statement to create an <code>is_male</code> column in the <code>nepali</code> dataframe, then group by the new <code>is_male</code> column and summarize, using the <code>n</code> function to count the number of observations in each group:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_male =</span> sex ==<span class="st"> &quot;Male&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(is_male) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_male =</span> sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(is_male) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_children =</span> <span class="kw">n</span>())</code></pre></div>
-<pre><code>## # A tibble: 2 × 2
+<pre><code>## # A tibble: 2 x 2
 ##   is_male n_children
 ##     &lt;lgl&gt;      &lt;int&gt;
 ## 1   FALSE         93
@@ -964,17 +764,17 @@ Don’t forget that you need to save the output to a new object if you want to u
 <p><em>Regression models</em> can be used to estimate how the expected value of a <em>dependent variable</em> changes as <em>independent variables</em> change. </p>
 <p>In R, regression formulas take this structure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
-[response variable] ~<span class="st"> </span>[indep. var. <span class="dv">1</span>] +<span class="st">  </span>[indep. var. <span class="dv">2</span>] +<span class="st"> </span>...</code></pre></div>
+[response variable] <span class="op">~</span><span class="st"> </span>[indep. var. <span class="dv">1</span>] <span class="op">+</span><span class="st">  </span>[indep. var. <span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>...</code></pre></div>
 <p>Notice that a tilde, <code>~</code>, is used to separate the independent and dependent variables and that a plus sign, <code>+</code>, is used to join independent variables. This format mimics the statistical notation:</p>
 <p><span class="math display">\[
 Y_i \sim X_1 + X_2 + X_3
 \]</span></p>
 <p>You will use this type of structure in R fo a lot of different function calls, including those for linear models (fit with the <code>lm</code> function) and generalized linear models (fit with the <code>glm</code> function).</p>
 <p>There are some conventions that can be used in R formulas. Common ones include:</p>
-<table style="width:97%;">
+<table>
 <colgroup>
 <col width="18%" />
-<col width="79%" />
+<col width="81%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1013,7 +813,7 @@ Y_i \sim X_1 + X_2 + X_3
 <div id="linear-models" class="section level3">
 <h3><span class="header-section-number">3.5.2</span> Linear models</h3>
 <p>To fit a linear model, you can use the function <code>lm()</code>. This function is part of the <code>stats</code> package, which comes installed with base R. In this function, you can use the <code>data</code> option to specify the dataframe from which to get the vectors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_a &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_a &lt;-<span class="st"> </span><span class="kw">lm</span>(wt <span class="op">~</span><span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
 <p>This previous call fits the model:</p>
 <p><span class="math display">\[ Y_{i} = \beta_{0} + \beta_{1}X_{1,i} + \epsilon_{i} \]</span></p>
 <p>where:</p>
@@ -1022,7 +822,7 @@ Y_i \sim X_1 + X_2 + X_3
 <li><span class="math inline">\(X_{1,i}\)</span> : height of child <span class="math inline">\(i\)</span></li>
 </ul>
 <p>If you run the <code>lm</code> function without saving it as an object, R will fit the regression and print out the function call and the estimated model coefficients:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(wt ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(wt <span class="op">~</span><span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = wt ~ ht, data = nepali)
@@ -1031,7 +831,7 @@ Y_i \sim X_1 + X_2 + X_3
 ## (Intercept)           ht  
 ##     -8.6948       0.2351</code></pre>
 <p>However, to be able to use the model later for things like predictions and model assessments, you should save the output of the function as an R object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_a &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_a &lt;-<span class="st"> </span><span class="kw">lm</span>(wt <span class="op">~</span><span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
 <p>This object has a special class, <code>lm</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mod_a)</code></pre></div>
 <pre><code>## [1] &quot;lm&quot;</code></pre>
@@ -1041,8 +841,8 @@ Y_i \sim X_1 + X_2 + X_3
 <p>There are a number of functions that you can apply to an <code>lm</code> object. These include:</p>
 <table>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col width="22%" />
+<col width="77%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1080,9 +880,9 @@ Y_i \sim X_1 + X_2 + X_3
 <p>The estimated coefficient for the intercept is always given under the name “(Intercept)”. Estimated coefficients for independent variables are given based on their column names in the original data (“ht” here, for <span class="math inline">\(\beta_1\)</span>, or the estimated increase in expected weight for a one unit increase in height).</p>
 <p>You can use the output from a <code>coefficients</code> call to plot a regression line based on the model fit on top of points showing the original data (Figure <a href="exploring-data-1.html#fig:modelcoefplot">3.13</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coef &lt;-<span class="st"> </span><span class="kw">coefficients</span>(mod_a)
-<span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>) +<span class="st"> </span>
+<span class="kw">ggplot</span>(nepali, <span class="kw">aes</span>(<span class="dt">x =</span> ht, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Height (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (kg)&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coef[<span class="dv">1</span>],
                   <span class="dt">slope =</span> mod_coef[<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:modelcoefplot"></span>
@@ -1137,7 +937,7 @@ You can also use the shorter function <code>coef</code> as an alternative to <co
 ##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
 ##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;  &quot;na.action&quot;</code></pre>
 <p>You can use the <code>$</code> operator to pull out any element of the list. For example, to pull out the table with information on the estimated model coefficients, you can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_a)$coefficients</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_a)<span class="op">$</span>coefficients</code></pre></div>
 <pre><code>##              Estimate  Std. Error   t value      Pr(&gt;|t|)
 ## (Intercept) -8.694768 0.427397843 -20.34350  7.424640e-49
 ## ht           0.235050 0.005256822  44.71334 1.962647e-100</code></pre>
@@ -1150,12 +950,12 @@ Figure 3.14: Example output from running the plot function with an lm object as 
 </p>
 </div>
 <p>You can also use binary variables or factors as independent variables in regression models. For example, in the <code>nepali</code> dataset, <code>sex</code> is a factor variable with the levels “Male” and “Female”. You can fit a linear model of weight regressed on sex for this data with the call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_b &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span class="st"> </span>sex, <span class="dt">data =</span> nepali)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_b &lt;-<span class="st"> </span><span class="kw">lm</span>(wt <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> nepali)</code></pre></div>
 <p>This call fits the model:</p>
 <p><span class="math display">\[ Y_{i} = \beta_{0} + \beta_{1}X_{1,i} + \epsilon_{i} \]</span></p>
 <p>where <span class="math inline">\(X_{1,i}\)</span> : sex of child <span class="math inline">\(i\)</span>, where 0 = male and 1 = female.</p>
 <p>Here are the estimated coefficients from fitting this model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_b)$coefficients</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_b)<span class="op">$</span>coefficients</code></pre></div>
 <pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 10.497980  0.3110957 33.745177 1.704550e-80
 ## sexFemale   -0.674724  0.4562792 -1.478752 1.409257e-01</code></pre>
@@ -1163,10 +963,10 @@ Figure 3.14: Example output from running the plot function with an lm object as 
 <p>This is because, when a factor or binary variable is input as an independent variable in a linear regression model, R will fit an estimated coefficient for all levels of factors <em>except</em> the first factor level. By default, this first factor level is used as the baseline level, and so its estimated mean is given by the estimated intercept, while the other model coefficients give the estimated <em>difference</em> from this baseline.</p>
 <p>For example, the model fit above tells us that the estimated mean weight of males is 10.5, while the estimated mean weight of females is 10.5 + -0.7 = 9.8.</p>
 <p>If you would prefer that a different level of the factor be the baseline (for example, “Female” rather than “Male” for the previous regression), you can do that by using the <code>levels</code> argument in the <code>factor</code> function to reset factor levels. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali_reset &lt;-<span class="st"> </span>nepali %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali_reset &lt;-<span class="st"> </span>nepali <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)))
-mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span class="st"> </span>sex, <span class="dt">data =</span> nepali_reset)
-<span class="kw">summary</span>(mod_b_reset)$coef</code></pre></div>
+mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> nepali_reset)
+<span class="kw">summary</span>(mod_b_reset)<span class="op">$</span>coef</code></pre></div>
 <pre><code>##             Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 9.823256  0.3337816 29.430189 2.626719e-71
 ## sexMale     0.674724  0.4562792  1.478752 1.409257e-01</code></pre>
@@ -1177,7 +977,7 @@ mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span c
 <p>You can fit a variety of models, including linear models, logistic models, and Poisson models, using generalized linear models (GLMs). </p>
 <p>For linear models, the only difference between <code>lm</code> and <code>glm</code> are the mechanics of how they estimate the model coefficients (<code>lm</code> uses least squares while <code>glm</code> uses maximum likelihood). You will (almost always) get exactly the same estimated coefficients regardless of whether you use <code>glm</code> or <code>lm</code> to fit a linear regression.</p>
 <p>For example, here is the code to fit a linear regression model for weight regressed on height from the <code>nepali</code> dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_c &lt;-<span class="st"> </span><span class="kw">glm</span>(wt ~<span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_c &lt;-<span class="st"> </span><span class="kw">glm</span>(wt <span class="op">~</span><span class="st"> </span>ht, <span class="dt">data =</span> nepali)</code></pre></div>
 <p>This call fits the same regression model I fit earlier with the <code>lm</code> function and saved as <code>mod_a</code>. You can see that the two methods give exactly the same coefficient estimates:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_c)</code></pre></div>
 <pre><code>## (Intercept)          ht 
@@ -1210,8 +1010,8 @@ mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span c
 </table>
 <p>For example, say we wanted to fit a logistic regression for the <code>nepali</code> data of whether the probability of a child weighing more than 13 kg is associated with the child’s sex.</p>
 <p>First, create a binary variable in the <code>nepali</code> dataset, <code>wt_over_13</code>, that is <code>TRUE</code> if a child weighed more than 13 kilograms and FALSE otherwise. You can use the <code>mutate</code> function from <code>dplyr</code> to add this new column (which, as a note, is a logical vector):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wt_over_13 =</span> wt &gt;<span class="st"> </span><span class="dv">13</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nepali &lt;-<span class="st"> </span>nepali <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wt_over_13 =</span> wt <span class="op">&gt;</span><span class="st"> </span><span class="dv">13</span>)
 <span class="kw">head</span>(nepali)</code></pre></div>
 <pre><code>##       id    sex   wt    ht age wt_over_13
 ## 1 120011   Male 12.8  91.2  41      FALSE
@@ -1221,10 +1021,10 @@ mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span c
 ## 5 120023   Male 14.2  99.4  49       TRUE
 ## 6 120031   Male 13.9  96.4  46       TRUE</code></pre>
 <p>Now you can fit a logistic regression of <code>wt_over_13</code> regressed on sex, using a logistic model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_d &lt;-<span class="st"> </span><span class="kw">glm</span>(wt_over_13 ~<span class="st"> </span>sex, <span class="dt">data =</span> nepali,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_d &lt;-<span class="st"> </span><span class="kw">glm</span>(wt_over_<span class="dv">13</span> <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> nepali,
              <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>))</code></pre></div>
 <p>Elements of a GLM can be pulled out in the same way that we looked at elements from the linear model fit with <code>lm</code>. For example, to see a table of estimated model coefficients, you can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_d)$coef</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_d)<span class="op">$</span>coef</code></pre></div>
 <pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
 ## (Intercept) -1.3121864  0.2458445 -5.337465 9.425485e-08
 ## sexFemale   -0.4133237  0.3886659 -1.063442 2.875815e-01</code></pre>
@@ -1323,29 +1123,29 @@ mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span c
 <h4><span class="header-section-number">3.6.2.1</span> Example R code:</h4>
 <p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
+<span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-191-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-191-2.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-191-3.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-191-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-192-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-192-2.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-192-3.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-192-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
@@ -1354,21 +1154,21 @@ mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span c
 <span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-193-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-194-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Team =</span> <span class="kw">factor</span>(Team))</code></pre></div>
 <p>This dataset will still have all the levels saved for the <code>Team</code> factor, even though it isn’t using them all. You can re-set this by resetting <code>Team</code> as a factor, which is what I’ve done with the <code>mutate</code> line. When R creates a factor from a vector, its default is to only use as levels the values that show up in the vector.</p>
 <p>Now, you can plot the boxplots, mapping <code>Team</code> to the <code>x</code> aesthetic and <code>Shots</code> or <code>Saves</code> to the <code>y</code> aesthetic:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-196-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-196-2.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
@@ -1376,16 +1176,16 @@ mod_b_reset &lt;-<span class="st"> </span><span class="kw">lm</span>(wt ~<span c
 <h4><span class="header-section-number">3.6.2.2</span> If you have extra time:</h4>
 <p>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, you could create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with the column names for all of the numeric variables
-my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span>:<span class="dv">7</span>]
+my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span><span class="op">:</span><span class="dv">7</span>]
 
 ## Loop through all of those variables. Print out a histogram with the 
 ## variable, and have it print on the plot, as the main title, the 
 ## column name for that variable
-for(var in my_vars){
-  worldcup$to_plot &lt;-<span class="st"> </span>worldcup[ , var]
-  a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> to_plot)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;navy&quot;</span>) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(var) +<span class="st"> </span>
+<span class="cf">for</span>(var <span class="cf">in</span> my_vars){
+  worldcup<span class="op">$</span>to_plot &lt;-<span class="st"> </span>worldcup[ , var]
+  a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> to_plot)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;navy&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(var) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Histogram of&quot;</span>, var))
   <span class="kw">plot</span>(a)
 }</code></pre></div>
@@ -1408,48 +1208,48 @@ for(var in my_vars){
 <div id="example-r-code-2" class="section level4">
 <h4><span class="header-section-number">3.6.3.1</span> Example R code:</h4>
 <p>Use <code>range()</code> to find out the range of time these players played in the World Cup.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup$Time)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup<span class="op">$</span>Time)</code></pre></div>
 <pre><code>## [1]   1 570</code></pre>
 <p>To figure out who played the most time, you need to subset out the rows of the dataset where the <code>Time</code> variable equals the maximum of the <code>Time</code> variable for the whole dataset. There are a few ways to do that. Here I’m showing two: (1) using logic within the “square-bracket indexing”, to pull out just rows where it is TRUE that the <code>Time</code> for that row equals <code>max(worldcup$Time)</code> and (2) using <code>filter</code> from the <code>dplyr</code> package to filter down to rows where where it is TRUE that the <code>Time</code> for that row equals <code>max(Time)</code> for the whole dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(worldcup$Time)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(worldcup<span class="op">$</span>Time)</code></pre></div>
 <pre><code>## [1] 570</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(worldcup$Time ==<span class="st"> </span><span class="kw">max</span>(worldcup$Time))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(worldcup<span class="op">$</span>Time <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(worldcup<span class="op">$</span>Time))</code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup[worldcup$Time ==<span class="st"> </span><span class="kw">max</span>(worldcup$Time), ]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup[worldcup<span class="op">$</span>Time <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(worldcup<span class="op">$</span>Time), ]</code></pre></div>
 <pre><code>##                 Team   Position Time Shots Passes Tackles Saves to_plot
 ## Arevalo Rios Uruguay Midfielder  570     5    195      21     0       0
 ## Maxi Pereira Uruguay Midfielder  570     5    182      15     0       0
 ## Muslera      Uruguay Goalkeeper  570     0     75       0    16      16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Time ==<span class="st"> </span><span class="kw">max</span>(Time))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Time <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(Time))</code></pre></div>
 <pre><code>##      Team   Position Time Shots Passes Tackles Saves to_plot
 ## 1 Uruguay Midfielder  570     5    195      21     0       0
 ## 2 Uruguay Midfielder  570     5    182      15     0       0
 ## 3 Uruguay Goalkeeper  570     0     75       0    16      16</code></pre>
 <p><em>Note</em>: You may have noticed that you lost the players names when you did this using the <code>dplyr</code> pipechain. That’s because <code>dplyr</code> functions convert the data to a dataframe format that does not include rownames. If you want to keep players’ names, use <code>mutate</code> to move those names from the rownames of the data into a column in the dataframe:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Name =</span> <span class="kw">rownames</span>(worldcup)) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(Time ==<span class="st"> </span><span class="kw">max</span>(Time))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Name =</span> <span class="kw">rownames</span>(worldcup)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Time <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(Time))</code></pre></div>
 <pre><code>##      Team   Position Time Shots Passes Tackles Saves to_plot         Name
 ## 1 Uruguay Midfielder  570     5    195      21     0       0 Arevalo Rios
 ## 2 Uruguay Midfielder  570     5    182      15     0       0 Maxi Pereira
 ## 3 Uruguay Goalkeeper  570     0     75       0    16      16      Muslera</code></pre>
 <p>To calculate the mean number of saves among all the players, use the <code>mean</code> function, either by itself or within a <code>summarize</code> call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(worldcup$Saves)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(worldcup<span class="op">$</span>Saves)</code></pre></div>
 <pre><code>## [1] 0.6672269</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_saves =</span> <span class="kw">mean</span>(Saves))</code></pre></div>
 <pre><code>##   mean_saves
 ## 1  0.6672269</code></pre>
 <p>For the next parts of the question, it will be convenient to have a logical vector for whether each player is a goalkeeper, so here’s how you would create that:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">goalie &lt;-<span class="st"> </span>worldcup$Position ==<span class="st"> &quot;Goalkeeper&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">goalie &lt;-<span class="st"> </span>worldcup<span class="op">$</span>Position <span class="op">==</span><span class="st"> &quot;Goalkeeper&quot;</span></code></pre></div>
 <p>This new object, <code>goalie</code>, is a vector the same length as <code>worldcup$Position</code>. Each element of <code>goalie</code> says whether it is TRUE or FALSE that <code>worldcup$Position</code> is equal to “Goalkeeper” at that spot on the <code>worldcup$Position</code> vector.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(goalie)</code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>The <code>summary()</code> function will count up the total number of times that <code>goalie</code> is TRUE and FALSE.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(goalie)</code></pre></div>
-<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
-## logical     559      36       0</code></pre>
+<pre><code>##    Mode   FALSE    TRUE 
+## logical     559      36</code></pre>
 <p>There are a few ways to use this vector to figure out how many players were goalkeepers. First, you could use <code>summary</code> (which I just showed) or <code>table</code>, and just read how many times this vector has the value <code>TRUE</code>. Second, since R saves logical vectors with <code>TRUE</code> as 1 and <code>FALSE</code> as 0, you could just the <code>sum</code> function to add up the vector to find out how often it’s <code>TRUE</code> (<code>sum</code> adds up every value in the vector).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(goalie)</code></pre></div>
 <pre><code>## goalie
@@ -1458,10 +1258,10 @@ for(var in my_vars){
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(goalie)</code></pre></div>
 <pre><code>## [1] 36</code></pre>
 <p>You could also answer this question by using <code>summarize</code> from <code>dplyr</code>. You need to <code>group_by</code> player position and then you can use the <code>n</code> function in <code>summarize</code> to count up the total number of observations in each group:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Position) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Position) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_players =</span> <span class="kw">n</span>())</code></pre></div>
-<pre><code>## # A tibble: 4 × 2
+<pre><code>## # A tibble: 4 x 2
 ##     Position n_players
 ##       &lt;fctr&gt;     &lt;int&gt;
 ## 1   Defender       188
@@ -1479,17 +1279,17 @@ for(var in my_vars){
 ## Chaouchi     Algeria Goalkeeper   90     0     17       0     2       2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(worldcup[goalie, <span class="st">&quot;Saves&quot;</span>])</code></pre></div>
 <pre><code>## [1] 11.02778</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup[!goalie, <span class="st">&quot;Saves&quot;</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(worldcup[<span class="op">!</span>goalie, <span class="st">&quot;Saves&quot;</span>])</code></pre></div>
 <pre><code>## [1] 0 0</code></pre>
 <p>You could also answer this quesiton using a <code>dplyr</code> pipe chain to summarize the data after grouping it by position:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(Position) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Position) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">number_players =</span> <span class="kw">n</span>(), 
             <span class="dt">mean_saves =</span> <span class="kw">mean</span>(Saves),
             <span class="dt">max_saves =</span> <span class="kw">max</span>(Saves))</code></pre></div>
-<pre><code>## # A tibble: 4 × 4
+<pre><code>## # A tibble: 4 x 4
 ##     Position number_players mean_saves max_saves
-##       &lt;fctr&gt;          &lt;int&gt;      &lt;dbl&gt;     &lt;int&gt;
+##       &lt;fctr&gt;          &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;
 ## 1   Defender            188    0.00000         0
 ## 2    Forward            143    0.00000         0
 ## 3 Goalkeeper             36   11.02778        20
@@ -1518,8 +1318,8 @@ for(var in my_vars){
 <span class="kw">data</span>(<span class="st">&quot;chicagoNMMAPS&quot;</span>)
 chic &lt;-<span class="st"> </span>chicagoNMMAPS</code></pre></div>
 <p>Fit a linear regression of <code>dptp</code> on <code>temp</code> and save as the object <code>mod_1</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1 &lt;-<span class="st"> </span><span class="kw">lm</span>(dptp ~<span class="st"> </span>temp, <span class="dt">data =</span> chic)
-mod_1</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
+mod_<span class="dv">1</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dptp ~ temp, data = chic)
@@ -1528,7 +1328,7 @@ mod_1</code></pre></div>
 ## (Intercept)         temp  
 ##      24.025        1.621</code></pre>
 <p>Use <code>summary()</code> to check out a bit more about the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_<span class="dv">1</span>)</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dptp ~ temp, data = chic)
@@ -1549,20 +1349,20 @@ mod_1</code></pre></div>
 ## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a 1.6 unit increase in dewpoint temperature. The p-value for the temperature coefficient is &lt;2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.</p>
 <p>Plot these two variables and add in the regression line from the model (note: I’ve used the <code>color</code> option to make the color of the points gray). Use the values from <code>coef</code> with a <code>geom_abline</code> to add the regression line for the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_1)
-<span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_<span class="dv">1</span>)
+<span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 <p>Plot some plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
-<span class="kw">plot</span>(mod_1)</code></pre></div>
+<span class="kw">plot</span>(mod_<span class="dv">1</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-213-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
 <p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp ~<span class="st"> </span>temp, <span class="dt">data =</span> chic)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
 
-<span class="kw">coef</span>(mod_1)</code></pre></div>
+<span class="kw">coef</span>(mod_<span class="dv">1</span>)</code></pre></div>
 <pre><code>## (Intercept)        temp 
 ##    24.02487     1.62065</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_1a)</code></pre></div>
@@ -1570,8 +1370,8 @@ mod_1</code></pre></div>
 ##    24.02487     1.62065</code></pre>
 <p>The results from the two models are identical.</p>
 <p>Fit a model of <span class="math inline">\(PM_{10}\)</span> regressed on day of week, where day of week is a factor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_2 &lt;-<span class="st"> </span><span class="kw">lm</span>(pm10 ~<span class="st"> </span>dow, <span class="dt">data =</span> chic)
-<span class="kw">summary</span>(mod_2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(pm10 <span class="op">~</span><span class="st"> </span>dow, <span class="dt">data =</span> chic)
+<span class="kw">summary</span>(mod_<span class="dv">2</span>)</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = pm10 ~ dow, data = chic)
@@ -1597,7 +1397,7 @@ mod_1</code></pre></div>
 ## Multiple R-squared:  0.02588,    Adjusted R-squared:  0.02467 
 ## F-statistic:  21.5 on 6 and 4856 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Use the <code>anova()</code> command to compare this model to a model with only an intercept (i.e., one that only fits a global mean and uses that as the expected value for all of the observations).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod_2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod_<span class="dv">2</span>)</code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: pm10
@@ -1608,22 +1408,22 @@ mod_1</code></pre></div>
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The p-value for an ANOVA of the model with day-of-week coefficients versus the model that just has an intercept is &lt; 2.2e-16. This is well below 0.05, which suggests that day-of-week is associated with PM10 concentration, as a model that includes day-of-week does a much better job of explaining variation in PM10 than a model without it does. (Note, too, that the F value and Pr(&gt;F) for the <code>anova()</code> call are identical to the F-statistic information given in the <code>summary()</code> of the model object. This will always be true when you’re using <code>anova()</code> to compare a model to a model with just an intercept.)</p>
 <p>Use a boxplot to visually compare PM10 by day of week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-217-1.png" width="576" /></p>
 <p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
 <pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-218-1.png" width="576" /></p>
 <p>Create a subset called <code>summer</code> with just the summer days:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(month %in%<span class="st"> </span><span class="dv">6</span>:<span class="dv">8</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(month <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>)</code></pre></div>
 <p>Use <code>glm()</code> to fit a Poisson model of respiratory deaths regressed on temperature. Since you want to fit a Poisson model, use the option <code>family = poisson(link = &quot;log&quot;)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_3 &lt;-<span class="st"> </span><span class="kw">glm</span>(resp ~<span class="st"> </span>temp, <span class="dt">data =</span> summer,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(resp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> summer,
              <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
-<span class="kw">summary</span>(mod_3)</code></pre></div>
+<span class="kw">summary</span>(mod_<span class="dv">3</span>)</code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = resp ~ temp, family = poisson(link = &quot;log&quot;), data = summer)
@@ -1647,13 +1447,13 @@ mod_1</code></pre></div>
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Use the fitted model coefficient to determine the relative risk for a one degree Celcius increase in temperature. First, remember that you can use the <code>coef()</code> function to read out the model coefficients. The second of these is the value for the temperature coefficient. That means that you can use indexing (<code>[2]</code>) to get just that value. That’s the log relative risk; take the exponent to get the relative risk.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_3)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_<span class="dv">3</span>)</code></pre></div>
 <pre><code>## (Intercept)        temp 
 ## 1.910316958 0.006136743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_3)[<span class="dv">2</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_<span class="dv">3</span>)[<span class="dv">2</span>]</code></pre></div>
 <pre><code>##        temp 
 ## 0.006136743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(mod_3)[<span class="dv">2</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(mod_<span class="dv">3</span>)[<span class="dv">2</span>])</code></pre></div>
 <pre><code>##     temp 
 ## 1.006156</code></pre>
 
@@ -1661,14 +1461,18 @@ mod_1</code></pre></div>
 </div>
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
 <a href="entering-and-cleaning-data-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reporting-data-results-1.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1677,7 +1481,7 @@ mod_1</code></pre></div>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1711,7 +1515,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);
