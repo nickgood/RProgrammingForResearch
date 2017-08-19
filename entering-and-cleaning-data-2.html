@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R Programming for Research</title>
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.4.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4.8 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -477,34 +477,34 @@ y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="
 <p>The following examples are from <code>tidyr</code> help files and show the effects of gathering and spreading a dataset.</p>
 <p>Here is some simulated wide data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wide_stocks[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</code></pre></div>
-<pre><code>##         time          X         Y         Z
-## 1 2009-01-01  1.5079434 3.3593907 -1.133684
-## 2 2009-01-02  0.1540215 2.5561836  1.329814
-## 3 2009-01-03 -0.4834728 0.4513861  4.452909</code></pre>
+<pre><code>##         time          X          Y         Z
+## 1 2009-01-01  1.0801274 -1.1688728 -2.629019
+## 2 2009-01-02 -0.8007287 -0.2256888 -2.843819
+## 3 2009-01-03 -0.3723425 -1.9984482  1.889434</code></pre>
 <p>In the <code>wide_stocks</code> dataset, there are separate columns for three different stocks (<code>X</code>, <code>Y</code>, and <code>Z</code>). Each cell gives the value for a certain stock on a certain day. This data isn’t “tidy”, because the identify of the stock (<code>X</code>, <code>Y</code>, or <code>Z</code>) is a variable, and you’ll probably want to include it as a variable in modeling.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wide_stocks[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</code></pre></div>
-<pre><code>##         time          X         Y         Z
-## 1 2009-01-01  1.5079434 3.3593907 -1.133684
-## 2 2009-01-02  0.1540215 2.5561836  1.329814
-## 3 2009-01-03 -0.4834728 0.4513861  4.452909</code></pre>
+<pre><code>##         time          X          Y         Z
+## 1 2009-01-01  1.0801274 -1.1688728 -2.629019
+## 2 2009-01-02 -0.8007287 -0.2256888 -2.843819
+## 3 2009-01-03 -0.3723425 -1.9984482  1.889434</code></pre>
 <p>If you want to convert the dataframe to have all stock values in a single column, you can use <code>gather</code> to convert wide data to long data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">long_stocks &lt;-<span class="st"> </span><span class="kw">gather</span>(wide_stocks, <span class="dt">key =</span> stock,
                       <span class="dt">value =</span> price, <span class="op">-</span>time)
 long_stocks[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre></div>
 <pre><code>##         time stock      price
-## 1 2009-01-01     X  1.5079434
-## 2 2009-01-02     X  0.1540215
-## 3 2009-01-03     X -0.4834728
-## 4 2009-01-04     X -0.1641941
-## 5 2009-01-05     X  0.9297444</code></pre>
+## 1 2009-01-01     X  1.0801274
+## 2 2009-01-02     X -0.8007287
+## 3 2009-01-03     X -0.3723425
+## 4 2009-01-04     X -0.9994459
+## 5 2009-01-05     X  1.4525597</code></pre>
 <p>In this “long” dataframe, there is now one column that gives the identify of the stock (<code>stock</code>) and another column that gives the price of that stock that day (<code>price</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">long_stocks[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre></div>
 <pre><code>##         time stock      price
-## 1 2009-01-01     X  1.5079434
-## 2 2009-01-02     X  0.1540215
-## 3 2009-01-03     X -0.4834728
-## 4 2009-01-04     X -0.1641941
-## 5 2009-01-05     X  0.9297444</code></pre>
+## 1 2009-01-01     X  1.0801274
+## 2 2009-01-02     X -0.8007287
+## 3 2009-01-03     X -0.3723425
+## 4 2009-01-04     X -0.9994459
+## 5 2009-01-05     X  1.4525597</code></pre>
 <p>The format for a <code>gather</code> call is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Generic code
 new_df &lt;-<span class="st"> </span><span class="kw">gather</span>(old_df,
@@ -526,12 +526,12 @@ new_df &lt;-<span class="st"> </span><span class="kw">gather</span>(old_df,
 <p>If you have data in a “long” format and would like to spread it out, you can use <code>spread</code> to do that:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stocks &lt;-<span class="st"> </span><span class="kw">spread</span>(long_stocks, <span class="dt">key =</span> stock, <span class="dt">value =</span> price)
 stocks[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre></div>
-<pre><code>##         time          X         Y          Z
-## 1 2009-01-01  1.5079434 3.3593907 -1.1336841
-## 2 2009-01-02  0.1540215 2.5561836  1.3298139
-## 3 2009-01-03 -0.4834728 0.4513861  4.4529086
-## 4 2009-01-04 -0.1641941 1.8375025 -0.9230133
-## 5 2009-01-05  0.9297444 1.2861305 -4.3101639</code></pre>
+<pre><code>##         time          X          Y          Z
+## 1 2009-01-01  1.0801274 -1.1688728 -2.6290187
+## 2 2009-01-02 -0.8007287 -0.2256888 -2.8438192
+## 3 2009-01-03 -0.3723425 -1.9984482  1.8894343
+## 4 2009-01-04 -0.9994459 -0.7487081 -4.3312575
+## 5 2009-01-05  1.4525597 -2.3014914  0.0627508</code></pre>
 <p>Notice that this reverses the action of <code>gather</code>.</p>
 <p>“Spread” data is typically not tidy, so you often won’t want to use <code>spread</code> when you are preparing data for analysis. However, <code>spread</code> can be very helpful in creating clean tables for final reports and presentations.</p>
 <p>For example, if you wanted to create a table with means and standard deviations for each of the three stocks, you could use <code>spread</code> to rearrange the final summary to create an attractive table.</p>
@@ -542,9 +542,9 @@ stock_summary</code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##   stock     N       mean       sd
 ##   &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;
-## 1     X    10 -0.2088900 1.031360
-## 2     Y    10  1.0672580 1.489903
-## 3     Z    10  0.6401537 4.542053</code></pre>
+## 1     X    10 -0.1003860 1.119675
+## 2     Y    10 -0.8023622 1.753362
+## 3     Z    10 -0.8806175 3.166047</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stock_summary <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Mean (Std.dev.)&quot;</span> =<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">round</span>(mean, <span class="dv">2</span>), <span class="st">&quot; (&quot;</span>,
                                     <span class="kw">round</span>(sd, <span class="dv">2</span>), <span class="st">&quot;)&quot;</span>)) <span class="op">%&gt;%</span>
@@ -564,9 +564,9 @@ stock_summary</code></pre></div>
 <tbody>
 <tr class="odd">
 <td align="left">Mean (Std.dev.)</td>
-<td align="left">-0.21 (1.03)</td>
-<td align="left">1.07 (1.49)</td>
-<td align="left">0.64 (4.54)</td>
+<td align="left">-0.1 (1.12)</td>
+<td align="left">-0.8 (1.75)</td>
+<td align="left">-0.88 (3.17)</td>
 </tr>
 <tr class="even">
 <td align="left">N</td>
