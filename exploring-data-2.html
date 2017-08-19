@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R Programming for Research</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.3.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-01-18">
+<meta name="date" content="2017-08-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,8 +33,7 @@
   
   
 <link rel="prev" href="entering-and-cleaning-data-2.html">
-<link rel="next" href="reporting-data-results-2.html">
-
+<link rel="next" href="appendix-a-vocabulary.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,27 +47,6 @@
 
 
 
-<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
-<link href="libs/plotlyjs-1.20.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.20.2/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-4.5.6.9000/plotly.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/bokehjs-0.12.2/bokeh.min.css" rel="stylesheet" />
-<link href="libs/bokehjs-0.12.2/loader.css" rel="stylesheet" />
-<script src="libs/bokehjs-0.12.2/bokeh.min.js"></script>
-<script src="libs/rbokeh-binding-0.5.0/rbokeh.js"></script>
-<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
-<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
-<script src="libs/moment-2.8.4/moment.js"></script>
-<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
-<script src="libs/dygraphs-binding-1.1.1.4/dygraphs.js"></script>
-<script src="libs/datatables-binding-0.2/datatables.js"></script>
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
 
 
 <style type="text/css">
@@ -139,7 +116,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.4.5" data-path="course-information.html"><a href="course-information.html#final-group-project"><i class="fa fa-check"></i><b>0.4.5</b> Final group project</a></li>
 </ul></li>
 <li class="chapter" data-level="0.5" data-path="course-information.html"><a href="course-information.html#course-set-up"><i class="fa fa-check"></i><b>0.5</b> Course set-up</a></li>
-<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#helpful-books-for-learning-r"><i class="fa fa-check"></i><b>0.6</b> Helpful books for learning R</a></li>
+<li class="chapter" data-level="0.6" data-path="course-information.html"><a href="course-information.html#coursebook"><i class="fa fa-check"></i><b>0.6</b> Coursebook</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="course-information.html"><a href="course-information.html#other-helpful-books-not-required"><i class="fa fa-check"></i><b>0.6.1</b> Other helpful books (not required)</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>I Part I: Preliminaries</b></span></li>
 <li class="chapter" data-level="1" data-path="r-preliminaries.html"><a href="r-preliminaries.html"><i class="fa fa-check"></i><b>1</b> R Preliminaries</a><ul>
@@ -317,110 +296,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.2</b> Using a loop to create state-specific plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html"><i class="fa fa-check"></i><b>8</b> Reporting data results #2</a><ul>
-<li class="chapter" data-level="8.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices-and-lists"><i class="fa fa-check"></i><b>8.1</b> Matrices and lists</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices"><i class="fa fa-check"></i><b>8.1.1</b> Matrices</a></li>
-<li class="chapter" data-level="8.1.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#lists"><i class="fa fa-check"></i><b>8.1.2</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#apply-functions"><i class="fa fa-check"></i><b>8.2</b> <code>apply</code> functions</a></li>
-<li class="chapter" data-level="8.3" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#point-maps"><i class="fa fa-check"></i><b>8.3</b> Point maps</a></li>
-<li class="chapter" data-level="8.4" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#choropleth-maps"><i class="fa fa-check"></i><b>8.4</b> Choropleth maps</a></li>
-<li class="chapter" data-level="8.5" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#google-maps-api"><i class="fa fa-check"></i><b>8.5</b> Google Maps API</a></li>
-<li class="chapter" data-level="8.6" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#string-operations"><i class="fa fa-check"></i><b>8.6</b> String operations</a></li>
-<li class="chapter" data-level="8.7" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#in-course-exercise-7"><i class="fa fa-check"></i><b>8.7</b> In-course exercise</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#writing-a-function-to-create-state-specific-plots"><i class="fa fa-check"></i><b>8.7.1</b> Writing a function to create state-specific plots</a></li>
-<li class="chapter" data-level="8.7.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#first-steps-in-mapping"><i class="fa fa-check"></i><b>8.7.2</b> First steps in mapping</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html"><i class="fa fa-check"></i><b>9</b> Reproducible research #2</a><ul>
-<li class="chapter" data-level="9.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-notebooks"><i class="fa fa-check"></i><b>9.1</b> R Notebooks</a></li>
-<li class="chapter" data-level="9.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#templates"><i class="fa fa-check"></i><b>9.2</b> Templates</a></li>
-<li class="chapter" data-level="9.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#r-projects"><i class="fa fa-check"></i><b>9.3</b> R Projects</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organization"><i class="fa fa-check"></i><b>9.3.1</b> Organization</a></li>
-<li class="chapter" data-level="9.3.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#creating-r-projects"><i class="fa fa-check"></i><b>9.3.2</b> Creating R Projects</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#git"><i class="fa fa-check"></i><b>9.4</b> git</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#initializing-a-git-repository"><i class="fa fa-check"></i><b>9.4.1</b> Initializing a git repository</a></li>
-<li class="chapter" data-level="9.4.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#committing"><i class="fa fa-check"></i><b>9.4.2</b> Committing</a></li>
-<li class="chapter" data-level="9.4.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#browsing-history"><i class="fa fa-check"></i><b>9.4.3</b> Browsing history</a></li>
-<li class="chapter" data-level="9.4.4" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-local-repo-to-github-repo"><i class="fa fa-check"></i><b>9.4.4</b> Linking local repo to GitHub repo</a></li>
-<li class="chapter" data-level="9.4.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#syncing-rstudio-and-github"><i class="fa fa-check"></i><b>9.4.5</b> Syncing RStudio and GitHub</a></li>
-<li class="chapter" data-level="9.4.6" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#issues"><i class="fa fa-check"></i><b>9.4.6</b> Issues</a></li>
-<li class="chapter" data-level="9.4.7" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#pull-request"><i class="fa fa-check"></i><b>9.4.7</b> Pull request</a></li>
-<li class="chapter" data-level="9.4.8" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#merge-conflicts"><i class="fa fa-check"></i><b>9.4.8</b> Merge conflicts</a></li>
-<li class="chapter" data-level="9.4.9" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#find-out-more"><i class="fa fa-check"></i><b>9.4.9</b> Find out more</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#in-course-exercise-8"><i class="fa fa-check"></i><b>9.5</b> In-course exercise</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#trying-out-templates"><i class="fa fa-check"></i><b>9.5.1</b> Trying out templates</a></li>
-<li class="chapter" data-level="9.5.2" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#organizing-a-project"><i class="fa fa-check"></i><b>9.5.2</b> Organizing a project</a></li>
-<li class="chapter" data-level="9.5.3" data-path="reproducible-research-2.html"><a href="reproducible-research-2.html#linking-your-project-with-a-github-repository"><i class="fa fa-check"></i><b>9.5.3</b> Linking your project with a GitHub repository</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>IV Part IV: Advanced</b></span></li>
-<li class="chapter" data-level="10" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html"><i class="fa fa-check"></i><b>10</b> Entering and cleaning data #3</a><ul>
-<li class="chapter" data-level="10.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#cleaning-very-messy-data"><i class="fa fa-check"></i><b>10.1</b> Cleaning very messy data</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-of-messy-data"><i class="fa fa-check"></i><b>10.1.1</b> Example of messy data</a></li>
-<li class="chapter" data-level="10.1.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#strategy-for-messy-data"><i class="fa fa-check"></i><b>10.1.2</b> Strategy for messy data</a></li>
-<li class="chapter" data-level="10.1.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#readlines-function"><i class="fa fa-check"></i><b>10.1.3</b> <code>readLines</code> function</a></li>
-<li class="chapter" data-level="10.1.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#regular-expressions-for-cleaning"><i class="fa fa-check"></i><b>10.1.4</b> Regular expressions for cleaning</a></li>
-<li class="chapter" data-level="10.1.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#working-with-lists"><i class="fa fa-check"></i><b>10.1.5</b> Working with lists</a></li>
-<li class="chapter" data-level="10.1.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#converting-to-dataframes"><i class="fa fa-check"></i><b>10.1.6</b> Converting to dataframes</a></li>
-<li class="chapter" data-level="10.1.7" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#exploring-the-hurricane-tracking-data"><i class="fa fa-check"></i><b>10.1.7</b> Exploring the hurricane tracking data</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#pulling-online-data"><i class="fa fa-check"></i><b>10.2</b> Pulling online data</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#apis"><i class="fa fa-check"></i><b>10.2.1</b> APIs</a></li>
-<li class="chapter" data-level="10.2.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-riem-package"><i class="fa fa-check"></i><b>10.2.2</b> Example– <code>riem</code> package</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#example-r-api-wrappers"><i class="fa fa-check"></i><b>10.3</b> Example R API wrappers</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#ropensci"><i class="fa fa-check"></i><b>10.3.1</b> rOpenSci</a></li>
-<li class="chapter" data-level="10.3.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#countyweather"><i class="fa fa-check"></i><b>10.3.2</b> <code>countyweather</code></a></li>
-<li class="chapter" data-level="10.3.3" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#usgs-r-packages"><i class="fa fa-check"></i><b>10.3.3</b> USGS-R Packages</a></li>
-<li class="chapter" data-level="10.3.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#u.s.-census-packages"><i class="fa fa-check"></i><b>10.3.4</b> U.S. Census packages</a></li>
-<li class="chapter" data-level="10.3.5" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#other-r-api-wrappers"><i class="fa fa-check"></i><b>10.3.5</b> Other R API wrappers</a></li>
-<li class="chapter" data-level="10.3.6" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#r-and-apis"><i class="fa fa-check"></i><b>10.3.6</b> R and APIs</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#parsing-webpages"><i class="fa fa-check"></i><b>10.4</b> Parsing webpages</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#rvest"><i class="fa fa-check"></i><b>10.4.1</b> <code>rvest</code></a></li>
-<li class="chapter" data-level="10.4.2" data-path="entering-and-cleaning-data-3.html"><a href="entering-and-cleaning-data-3.html#scraping-multiple-pages"><i class="fa fa-check"></i><b>10.4.2</b> Scraping multiple pages</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="exploring-data-3.html"><a href="exploring-data-3.html"><i class="fa fa-check"></i><b>11</b> Exploring data #3</a><ul>
-<li class="chapter" data-level="11.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#forcats"><i class="fa fa-check"></i><b>11.1</b> <code>forcats</code></a></li>
-<li class="chapter" data-level="11.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#simulations"><i class="fa fa-check"></i><b>11.2</b> Simulations</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#the-lady-tasting-tea"><i class="fa fa-check"></i><b>11.2.1</b> The lady tasting tea</a></li>
-<li class="chapter" data-level="11.2.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#playing-darts"><i class="fa fa-check"></i><b>11.2.2</b> Playing darts</a></li>
-<li class="chapter" data-level="11.2.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#simulations-in-research"><i class="fa fa-check"></i><b>11.2.3</b> Simulations in research</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#other-computationally-intensive-approaches"><i class="fa fa-check"></i><b>11.3</b> Other computationally-intensive approaches</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bootstrap-and-friends"><i class="fa fa-check"></i><b>11.3.1</b> Bootstrap and friends</a></li>
-<li class="chapter" data-level="11.3.2" data-path="exploring-data-3.html"><a href="exploring-data-3.html#bayesian-analysis"><i class="fa fa-check"></i><b>11.3.2</b> Bayesian analysis</a></li>
-<li class="chapter" data-level="11.3.3" data-path="exploring-data-3.html"><a href="exploring-data-3.html#ensemble-models-and-friends"><i class="fa fa-check"></i><b>11.3.3</b> Ensemble models and friends</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html"><i class="fa fa-check"></i><b>12</b> Reporting data results #3</a><ul>
-<li class="chapter" data-level="12.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#shiny-web-apps"><i class="fa fa-check"></i><b>12.1</b> Shiny web apps</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#resources-for-learning-shiny"><i class="fa fa-check"></i><b>12.1.1</b> Resources for learning Shiny</a></li>
-<li class="chapter" data-level="12.1.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#basics-of-shiny-apps"><i class="fa fa-check"></i><b>12.1.2</b> Basics of Shiny apps</a></li>
-<li class="chapter" data-level="12.1.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#server.r-file"><i class="fa fa-check"></i><b>12.1.3</b> <code>server.R</code> file</a></li>
-<li class="chapter" data-level="12.1.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#ui.r-file"><i class="fa fa-check"></i><b>12.1.4</b> <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.1.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-a-shiny-app"><i class="fa fa-check"></i><b>12.1.5</b> Making a Shiny app</a></li>
-<li class="chapter" data-level="12.1.6" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#starting-with-the-ui.r-file"><i class="fa fa-check"></i><b>12.1.6</b> Starting with the <code>ui.R</code> file</a></li>
-<li class="chapter" data-level="12.1.7" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#adding-in-widgets"><i class="fa fa-check"></i><b>12.1.7</b> Adding in widgets</a></li>
-<li class="chapter" data-level="12.1.8" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-output-in-server.r"><i class="fa fa-check"></i><b>12.1.8</b> Creating output in <code>server.R</code></a></li>
-<li class="chapter" data-level="12.1.9" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#making-the-output-reactive"><i class="fa fa-check"></i><b>12.1.9</b> Making the output reactive</a></li>
-<li class="chapter" data-level="12.1.10" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#fancier-version"><i class="fa fa-check"></i><b>12.1.10</b> Fancier version</a></li>
-</ul></li>
-<li class="chapter" data-level="12.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#viridis-color-map"><i class="fa fa-check"></i><b>12.2</b> Viridis color map</a></li>
-<li class="chapter" data-level="12.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#htmlwidgets"><i class="fa fa-check"></i><b>12.3</b> htmlWidgets</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#overview-of-htmlwidgets"><i class="fa fa-check"></i><b>12.3.1</b> Overview of htmlWidgets</a></li>
-<li class="chapter" data-level="12.3.2" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#plotly-package"><i class="fa fa-check"></i><b>12.3.2</b> <code>plotly</code> package</a></li>
-<li class="chapter" data-level="12.3.3" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#rbokeh-package"><i class="fa fa-check"></i><b>12.3.3</b> <code>rbokeh</code> package</a></li>
-<li class="chapter" data-level="12.3.4" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#dygraphs-package"><i class="fa fa-check"></i><b>12.3.4</b> <code>dygraphs</code> package</a></li>
-<li class="chapter" data-level="12.3.5" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#dt-package"><i class="fa fa-check"></i><b>12.3.5</b> <code>DT</code> package</a></li>
-<li class="chapter" data-level="12.3.6" data-path="reporting-data-results-3.html"><a href="reporting-data-results-3.html#creating-your-own-widget"><i class="fa fa-check"></i><b>12.3.6</b> Creating your own widget</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="reporting-data-results-3-1.html"><a href="reporting-data-results-3-1.html"><i class="fa fa-check"></i><b>13</b> Reporting data results #3</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
 <li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#week-1-quiz-1"><i class="fa fa-check"></i><b>A.1</b> Week 1 (Quiz 1)</a></li>
@@ -480,7 +355,7 @@ study_months</code></pre></div>
 <div id="loops" class="section level2">
 <h2><span class="header-section-number">7.2</span> Loops</h2>
 <p>Loops allow you to “walk through” and repeat the same code for different values of an index. For each run of the loop, R is told that, for <strong>some index</strong> in <strong>some vector</strong>, do <strong>some code</strong>. For example, the following loop specifies: For <code>i</code> in <code>1:3</code>, <code>print(i)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)){
         <span class="kw">print</span>(i)
 }</code></pre></div>
 <pre><code>## [1] 1
@@ -498,13 +373,13 @@ study_months</code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Often, the index will be set to a number for each cycle of the loop, and then the index will be used within the code to index vectors or dataframes:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">study_months &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
-for(i in <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)){
         <span class="kw">print</span>(study_months[i])
 }</code></pre></div>
 <pre><code>## [1] &quot;Jan&quot;
 ## [1] &quot;Mar&quot;</code></pre>
 <p>Often, you want to set the index to sequential numbers (e.g., 1, 2, 3, 4). In this case, you can save time by using the <code>:</code> notation to create a vector of a sequence of numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">3</span>){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>){
         <span class="kw">print</span>(i)
 }</code></pre></div>
 <pre><code>## [1] 1
@@ -512,7 +387,7 @@ for(i in <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3
 ## [1] 3</code></pre>
 <p>With this notation, sometimes it may be helpful to use the <code>length</code> function to set the largest index value for the loop as the length of a vector (or <code>nrow</code> for indexing a dataframe). For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">study_months &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
-for(i in <span class="dv">1</span>:<span class="kw">length</span>(study_months)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(study_months)){
         <span class="kw">print</span>(study_months[i])
 }</code></pre></div>
 <pre><code>## [1] &quot;Jan&quot;
@@ -521,7 +396,7 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(study_months))
 <p>Sometimes, you want to set the index for each cycle of the loop to something that is not a number. You can set the index to any class of vector.</p>
 <p>Remember that a loop works by saying for <strong>some index</strong> in <strong>some vector</strong>, do <strong>some code</strong>. For example, you may want to run: for <code>study_month</code> in <code>study_months</code>, <code>print(study_month)</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">study_months &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>)
-for(study_month in study_months){
+<span class="cf">for</span>(study_month <span class="cf">in</span> study_months){
         <span class="kw">print</span>(study_month)
 }</code></pre></div>
 <pre><code>## [1] &quot;Jan&quot;
@@ -539,12 +414,12 @@ for(study_month in study_months){
 <pre><code>## [1] &quot;Mar&quot;</code></pre>
 <p>What would this loop do?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Shots&quot;</span>, <span class="st">&quot;Passes&quot;</span>, <span class="st">&quot;Tackles&quot;</span>, <span class="st">&quot;Saves&quot;</span>)
-for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(vars)){
         var_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(worldcup[ , vars[i]])
         <span class="kw">print</span>(var_mean)
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Shots&quot;</span>, <span class="st">&quot;Passes&quot;</span>, <span class="st">&quot;Tackles&quot;</span>, <span class="st">&quot;Saves&quot;</span>)
-for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(vars)){
         var_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(worldcup[ , vars[i]])
         <span class="kw">print</span>(var_mean)
 }</code></pre></div>
@@ -555,7 +430,7 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
 ## [1] 0.6672269</code></pre>
 <p>What would this loop do?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Shots&quot;</span>, <span class="st">&quot;Passes&quot;</span>, <span class="st">&quot;Tackles&quot;</span>, <span class="st">&quot;Saves&quot;</span>)
-for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(vars)){
         var_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(worldcup[ , vars[i]])
         var_mean &lt;-<span class="st"> </span><span class="kw">round</span>(var_mean, <span class="dv">1</span>)
         out &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;mean of &quot;</span>, vars[i], <span class="st">&quot;: &quot;</span>, var_mean)
@@ -570,7 +445,7 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(out &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;mean of &quot;</span>, vars[i], <span class="st">&quot;: &quot;</span>, var_mean))</code></pre></div>
 <pre><code>## [1] &quot;mean of Time: 208.9&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Shots&quot;</span>, <span class="st">&quot;Passes&quot;</span>, <span class="st">&quot;Tackles&quot;</span>, <span class="st">&quot;Saves&quot;</span>)
-for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(vars)){
         var_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(worldcup[ , vars[i]])
         var_mean &lt;-<span class="st"> </span><span class="kw">round</span>(var_mean, <span class="dv">1</span>)
         out &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;mean of &quot;</span>, vars[i], <span class="st">&quot;: &quot;</span>, var_mean)
@@ -584,7 +459,7 @@ for(i in <span class="dv">1</span>:<span class="kw">length</span>(vars)){
 <p>Often, it’s convenient to create a dataset to fill up as you loop through:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Shots&quot;</span>, <span class="st">&quot;Passes&quot;</span>, <span class="st">&quot;Tackles&quot;</span>, <span class="st">&quot;Saves&quot;</span>)
 my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">variable =</span> vars, <span class="dt">mean =</span> <span class="ot">NA</span>)
-for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(my_df)){
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_df)){
         var_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(worldcup[ , vars[i]])
         my_df[i , <span class="st">&quot;mean&quot;</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(var_mean, <span class="dv">1</span>)
 }</code></pre></div>
@@ -607,7 +482,7 @@ my_df</code></pre></div>
 ## 3   Passes    NA
 ## 4  Tackles    NA
 ## 5    Saves    NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(my_df)){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_df)){
         var_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(worldcup[ , vars[i]])
         my_df[i , <span class="st">&quot;mean&quot;</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(var_mean, <span class="dv">1</span>)
 }
@@ -619,11 +494,11 @@ my_df</code></pre></div>
 ## 4  Tackles   4.2
 ## 5    Saves   0.7</code></pre>
 <p>Note: This is a pretty simplistic example. There are some easier ways to have done this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">Time =</span> <span class="kw">mean</span>(Time), <span class="dt">Passes =</span> <span class="kw">mean</span>(Passes),
             <span class="dt">Shots =</span> <span class="kw">mean</span>(Shots), <span class="dt">Tackles =</span> <span class="kw">mean</span>(Tackles),
-            <span class="dt">Saves =</span> <span class="kw">mean</span>(Saves)) %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> mean) %&gt;%
+            <span class="dt">Saves =</span> <span class="kw">mean</span>(Saves)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> mean) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mean =</span> <span class="kw">round</span>(mean, <span class="dv">1</span>))</code></pre></div>
 <pre><code>##       var  mean
 ## 1    Time 208.9
@@ -638,7 +513,7 @@ my_df</code></pre></div>
 ##   208.9     2.3    84.5     4.2     0.7</code></pre>
 <p>However, you can use this same looping process for much more complex tasks that you can’t do as easily with <code>apply</code> or <code>dplyr</code> tools.</p>
 <p>Loops can be very useful for more complex repeated tasks. For example:</p>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-360-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-359-1.png" width="576" /></p>
 <p>Creating this graph requires that you:</p>
 <ul>
 <li>Create a subset limited to each of the four positions</li>
@@ -649,7 +524,7 @@ my_df</code></pre></div>
 <li>Plot everything</li>
 </ul>
 <p>Create a vector with the names of all positions. Create an empty dataframe to store regression results:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(positions &lt;-<span class="st"> </span><span class="kw">unique</span>(worldcup$Position))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(positions &lt;-<span class="st"> </span><span class="kw">unique</span>(worldcup<span class="op">$</span>Position))</code></pre></div>
 <pre><code>## [1] Midfielder Defender   Forward    Goalkeeper
 ## Levels: Defender Forward Goalkeeper Midfielder</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(pos_est &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">position =</span> positions,
@@ -660,25 +535,25 @@ my_df</code></pre></div>
 ## 3    Forward  NA NA
 ## 4 Goalkeeper  NA NA</code></pre>
 <p>Loop through and fit a Poisson regression model for each subset of data. Save regression coefficients in the empty dataframe:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(pos_est)){
-        pos_df &lt;-<span class="st"> </span>worldcup %&gt;%
-<span class="st">          </span><span class="kw">filter</span>(Position ==<span class="st"> </span>positions[i]) 
-        pos_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(Passes ~<span class="st"> </span>Time,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(pos_est)){
+        pos_df &lt;-<span class="st"> </span>worldcup <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">filter</span>(Position <span class="op">==</span><span class="st"> </span>positions[i]) 
+        pos_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(Passes <span class="op">~</span><span class="st"> </span>Time,
                        <span class="dt">data =</span> pos_df,
                        <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
-        pos_coefs &lt;-<span class="st"> </span><span class="kw">summary</span>(pos_mod)$coefficients[<span class="dv">2</span>, <span class="dv">1</span>:<span class="dv">2</span>]
+        pos_coefs &lt;-<span class="st"> </span><span class="kw">summary</span>(pos_mod)<span class="op">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
         pos_est[i, <span class="kw">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>)] &lt;-<span class="st"> </span>pos_coefs
 }
-pos_est[<span class="dv">1</span>:<span class="dv">2</span>, ]</code></pre></div>
+pos_est[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]</code></pre></div>
 <pre><code>##     position         est           se
 ## 1 Midfielder 0.004716096 4.185925e-05
 ## 2   Defender 0.004616260 5.192736e-05</code></pre>
 <p>Calculate 95% confidence intervals for log relative risk values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span>pos_est %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lower_ci =</span> est -<span class="st"> </span><span class="fl">1.96</span> *<span class="st"> </span>se,
-         <span class="dt">upper_ci =</span> est +<span class="st"> </span><span class="fl">1.96</span> *<span class="st"> </span>se)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span>pos_est <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lower_ci =</span> est <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se,
+         <span class="dt">upper_ci =</span> est <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>se)
 
-pos_est %&gt;%
+pos_est <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(position, est, lower_ci, upper_ci) </code></pre></div>
 <pre><code>##     position         est    lower_ci    upper_ci
 ## 1 Midfielder 0.004716096 0.004634052 0.004798140
@@ -686,11 +561,11 @@ pos_est %&gt;%
 ## 3    Forward 0.005299009 0.005158945 0.005439074
 ## 4 Goalkeeper 0.003101124 0.002770562 0.003431687</code></pre>
 <p>Calculate relative risk per 90 minute increase in minutes played:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span>pos_est %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rr_est =</span> <span class="kw">exp</span>(<span class="dv">90</span> *<span class="st"> </span>est),
-         <span class="dt">rr_low =</span> <span class="kw">exp</span>(<span class="dv">90</span> *<span class="st"> </span>lower_ci),
-         <span class="dt">rr_high =</span> <span class="kw">exp</span>(<span class="dv">90</span> *<span class="st"> </span>upper_ci))
-pos_est %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span>pos_est <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rr_est =</span> <span class="kw">exp</span>(<span class="dv">90</span> <span class="op">*</span><span class="st"> </span>est),
+         <span class="dt">rr_low =</span> <span class="kw">exp</span>(<span class="dv">90</span> <span class="op">*</span><span class="st"> </span>lower_ci),
+         <span class="dt">rr_high =</span> <span class="kw">exp</span>(<span class="dv">90</span> <span class="op">*</span><span class="st"> </span>upper_ci))
+pos_est <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(position, rr_est, rr_low, rr_high) </code></pre></div>
 <pre><code>##     position   rr_est   rr_low  rr_high
 ## 1 Midfielder 1.528747 1.517501 1.540077
@@ -698,26 +573,26 @@ pos_est %&gt;%
 ## 3    Forward 1.611090 1.590908 1.631527
 ## 4 Goalkeeper 1.321941 1.283192 1.361861</code></pre>
 <p>Re-level the <code>position</code> factor so the plot will be ordered from highest to lowest estimates:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span><span class="kw">arrange</span>(pos_est, rr_est) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pos_est &lt;-<span class="st"> </span><span class="kw">arrange</span>(pos_est, rr_est) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">mutate</span>(<span class="dt">position =</span> <span class="kw">factor</span>(position,
                                  <span class="dt">levels =</span> position))
-pos_est %&gt;%<span class="st"> </span><span class="kw">select</span>(position, est)</code></pre></div>
+pos_est <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(position, est)</code></pre></div>
 <pre><code>##     position         est
 ## 1 Goalkeeper 0.003101124
 ## 2   Defender 0.004616260
 ## 3 Midfielder 0.004716096
 ## 4    Forward 0.005299009</code></pre>
 <p>Create the plot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pos_est, <span class="kw">aes</span>(<span class="dt">x =</span> rr_low, <span class="dt">y =</span> position)) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> rr_high, <span class="dt">yend =</span> position)) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> rr_est, <span class="dt">y =</span> position)) +<span class="st"> </span>
-<span class="st">        </span><span class="kw">theme_few</span>() +<span class="st"> </span>
-<span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pos_est, <span class="kw">aes</span>(<span class="dt">x =</span> rr_low, <span class="dt">y =</span> position)) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> rr_high, <span class="dt">yend =</span> position)) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> rr_est, <span class="dt">y =</span> position)) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">theme_few</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">scale_x_continuous</span>(<span class="kw">paste</span>(<span class="st">&quot;Relative rate of passes</span><span class="ch">\n</span><span class="st">per&quot;</span>,
                                  <span class="st">&quot;90 minute increase in minutes played&quot;</span>),
-                           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="fl">1.0</span>, <span class="kw">max</span>(pos_est$rr_high))) +<span class="st"> </span>
+                           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="fl">1.0</span>, <span class="kw">max</span>(pos_est<span class="op">$</span>rr_high))) <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;lightgray&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-366-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-365-1.png" width="576" /></p>
 </div>
 <div id="other-control-structures" class="section level2">
 <h2><span class="header-section-number">7.3</span> Other control structures</h2>
@@ -725,8 +600,8 @@ pos_est %&gt;%<span class="st"> </span><span class="kw">select</span>(position, 
 <h3><span class="header-section-number">7.3.1</span> if / else loops</h3>
 <p>There are other control structures you can use in your R code. Two that you will commonly use within R functions are <code>if</code> and <code>ifelse</code> statements. </p>
 <p>An <code>if</code> statement tells R that, <strong>if</strong> a certain condition is true, <strong>do</strong> run some code. For example, if you wanted to print out only odd numbers between 1 and 5, one way to do that is with an <code>if</code> statement: (Note: the <code>%%</code> operator in R returns the remainder of the first value (i) divided by the second value (2).)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">5</span>){
-  if(i %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">1</span>){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){
+  <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>){
     <span class="kw">print</span>(i)
   }
 }</code></pre></div>
@@ -734,10 +609,10 @@ pos_est %&gt;%<span class="st"> </span><span class="kw">select</span>(position, 
 ## [1] 3
 ## [1] 5</code></pre>
 <p>The <code>if</code> statement runs some code if a condition is true, but does nothing if it is false. If you’d like different code to run depending on whether the condition is true or false, you can us an if / else or an if / else if / else statement.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">5</span>){
-  if(i %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">1</span>){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){
+  <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>){
     <span class="kw">print</span>(i)
-  } else {
+  } <span class="cf">else</span> {
     <span class="kw">print</span>(<span class="kw">paste</span>(i, <span class="st">&quot;is even&quot;</span>))
   }
 }</code></pre></div>
@@ -747,21 +622,21 @@ pos_est %&gt;%<span class="st"> </span><span class="kw">select</span>(position, 
 ## [1] &quot;4 is even&quot;
 ## [1] 5</code></pre>
 <p>What would this code do? </p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">100</span>){
-  if(i %%<span class="st"> </span><span class="dv">3</span> ==<span class="st"> </span><span class="dv">0</span> &amp;<span class="st"> </span>i %%<span class="st"> </span><span class="dv">5</span> ==<span class="st"> </span><span class="dv">0</span>){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){
+  <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){
     <span class="kw">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)
-  } else if(i %%<span class="st"> </span><span class="dv">3</span> ==<span class="st"> </span><span class="dv">0</span>){
+  } <span class="cf">else</span> <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){
     <span class="kw">print</span>(<span class="st">&quot;Fizz&quot;</span>)
-  } else if(i %%<span class="st"> </span><span class="dv">5</span> ==<span class="st"> </span><span class="dv">0</span>){
+  } <span class="cf">else</span> <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){
     <span class="kw">print</span>(<span class="st">&quot;Buzz&quot;</span>)
-  } else {
+  } <span class="cf">else</span> {
     <span class="kw">print</span>(i)
   }
 }</code></pre></div>
 <p>If / else statements are extremely useful in functions. </p>
 <p>In R, the <code>if</code> statement evaluates everything in the parentheses and, if that evaluates to <code>TRUE</code>, runs everything in the braces. This means that you can trigger code in an <code>if</code> statement with a single-value logical vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weekend &lt;-<span class="st"> </span><span class="ot">TRUE</span>
-if(weekend){
+<span class="cf">if</span>(weekend){
   <span class="kw">print</span>(<span class="st">&quot;It&#39;s the weekend!&quot;</span>)
 }</code></pre></div>
 <pre><code>## [1] &quot;It&#39;s the weekend!&quot;</code></pre>
@@ -776,9 +651,9 @@ if(weekend){
 <li><code>while</code></li>
 </ul>
 <p>You can use the <code>next</code> structure to skip to the next round of a loop when a certain condition is met. For example, we could have used this code to print out odd numbers between 1 and 5:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">5</span>){
-  if(i %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>){
-    next
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){
+  <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){
+    <span class="cf">next</span>
   }
   <span class="kw">print</span>(i)
 }</code></pre></div>
@@ -786,9 +661,9 @@ if(weekend){
 ## [1] 3
 ## [1] 5</code></pre>
 <p>You can use <code>break</code> to break out of a loop if a certain condition is met. For example, the final code will break out of the loop once <code>i</code> is over 3, so it will only print the numbers 1 through 3:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">5</span>){
-  if(i &gt;<span class="st"> </span><span class="dv">3</span>){
-    break
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){
+  <span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>){
+    <span class="cf">break</span>
   }
   <span class="kw">print</span>(i)
 }</code></pre></div>
@@ -796,8 +671,8 @@ if(weekend){
 ## [1] 2
 ## [1] 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_sum &lt;-<span class="st"> </span><span class="dv">1</span>
-while(my_sum &lt;<span class="st"> </span><span class="dv">10</span>){
-  my_sum &lt;-<span class="st"> </span>my_sum *<span class="st"> </span><span class="dv">2</span>
+<span class="cf">while</span>(my_sum <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>){
+  my_sum &lt;-<span class="st"> </span>my_sum <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
   <span class="kw">print</span>(my_sum)
 }</code></pre></div>
 <pre><code>## [1] 2
@@ -815,7 +690,7 @@ while(my_sum &lt;<span class="st"> </span><span class="dv">10</span>){
 <li>Running a specific type of analysis</li>
 <li>Creating a specific type of plot or map</li>
 </ul>
-<p></p>
+
 <p>If you find yourself cutting and pasting a lot, convert the code to a function.</p>
 <p>Advantages of writing functions include:</p>
 <ul>
@@ -825,18 +700,18 @@ while(my_sum &lt;<span class="st"> </span><span class="dv">10</span>){
 </ul>
 <p>You can name a function anything you want (although try to avoid names of preexisting-existing functions). You then define any inputs (arguments; separate multiple arguments with commas) and put the code to run in braces:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note: this code will not run
-[function name] &lt;-<span class="st"> </span>function([any arguments]){
+[<span class="cf">function</span> name] &lt;-<span class="st"> </span><span class="cf">function</span>([any arguments]){
         [code to run]
 }</code></pre></div>
 <p>Here is an example of a very basic function. This function takes a number as input and adds 1 to that number.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">add_one &lt;-<span class="st"> </span>function(number){
-        out &lt;-<span class="st"> </span>number +<span class="st"> </span><span class="dv">1</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">add_one &lt;-<span class="st"> </span><span class="cf">function</span>(number){
+        out &lt;-<span class="st"> </span>number <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
         <span class="kw">return</span>(out)
 }
 
 <span class="kw">add_one</span>(<span class="dt">number =</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">add_one</span>(<span class="dt">number =</span> -<span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">add_one</span>(<span class="dt">number =</span> <span class="op">-</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <ul>
 <li>Functions can input any type of R object (for example, vectors, data frames, even other functions and ggplot objects)</li>
@@ -846,9 +721,9 @@ while(my_sum &lt;<span class="st"> </span><span class="dv">10</span>){
 <li>There are ways to check for errors in the arguments a user inputs to the function</li>
 </ul>
 <p>For example, the following function inputs a data frame (<code>datafr</code>) and a one-element vector (<code>child_id</code>) and returns only rows in the data frame where it’s <code>id</code> column matches <code>child_id</code>. It includes a default value for <code>datafr</code>, but not for <code>child_id</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span>function(<span class="dt">datafr =</span> nepali, child_id){
-  datafr &lt;-<span class="st"> </span>datafr %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(id ==<span class="st"> </span>child_id)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">datafr =</span> nepali, child_id){
+  datafr &lt;-<span class="st"> </span>datafr <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>child_id)
   <span class="kw">return</span>(datafr)
 }</code></pre></div>
 <p>If an argument is not given for a parameter with a default, the function will run using the default value for that parameter. For example:</p>
@@ -861,11 +736,11 @@ while(my_sum &lt;<span class="st"> </span><span class="dv">10</span>){
 ## 5 120011 Male   NA   NA   35   0    2     5  57</code></pre>
 <p>If an argument is not given for a parameter without a default, the function call will result in an error. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset_nepali</span>(<span class="dt">datafr =</span> nepali)</code></pre></div>
-<pre><code>## Error in filter_impl(.data, dots): argument 2 is empty</code></pre>
+<pre><code>## Error in filter_impl(.data, quo): Evaluation error: argument &quot;child_id&quot; is missing, with no default.</code></pre>
 <p>By default, the function will return the last defined object, although the choice of using <code>return</code> can affect printing behavior when you run the function. For example, I could have written the <code>subset_nepali</code> function like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span>function(<span class="dt">datafr =</span> nepali, child_id){
-  datafr &lt;-<span class="st"> </span>datafr %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(id ==<span class="st"> </span>child_id)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">datafr =</span> nepali, child_id){
+  datafr &lt;-<span class="st"> </span>datafr <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>child_id)
 }</code></pre></div>
 <p>In this case, the output will not automatically print out when you call the function without assigning it to an R object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset_nepali</span>(<span class="dt">child_id =</span> <span class="st">&quot;120011&quot;</span>)</code></pre></div>
@@ -879,17 +754,17 @@ first_childs_data</code></pre></div>
 ## 4 120011 Male 13.8 96.9   35   0    2     5  53
 ## 5 120011 Male   NA   NA   35   0    2     5  57</code></pre>
 <p>The <code>return</code> function can also be used to return an object other than the last defined object (although doesn’t tend to be something you need to do very often). For example, if you did not use <code>return</code> in the following code, it will output “Test output”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span>function(<span class="dt">datafr =</span> nepali, child_id){
-  datafr &lt;-<span class="st"> </span>datafr %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(id ==<span class="st"> </span>child_id)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">datafr =</span> nepali, child_id){
+  datafr &lt;-<span class="st"> </span>datafr <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>child_id)
   a &lt;-<span class="st"> &quot;Test output&quot;</span>
 }
 (<span class="kw">subset_nepali</span>(<span class="dt">child_id =</span> <span class="st">&quot;120011&quot;</span>))</code></pre></div>
 <pre><code>## [1] &quot;Test output&quot;</code></pre>
 <p>Conversely, you can use <code>return</code> to output <code>datafr</code>, even though it’s not the last object defined:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span>function(<span class="dt">datafr =</span> nepali, child_id){
-  datafr &lt;-<span class="st"> </span>datafr %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(id ==<span class="st"> </span>child_id)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">datafr =</span> nepali, child_id){
+  datafr &lt;-<span class="st"> </span>datafr <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>child_id)
   a &lt;-<span class="st"> &quot;Test output&quot;</span>
   <span class="kw">return</span>(datafr)
 }
@@ -906,12 +781,12 @@ first_childs_data</code></pre></div>
 <pre><code> Error: comparison (1) is possible only for 
  atomic and list types </code></pre>
 <p>You can rewrite the function to stop if the input <code>datafr</code> does not have a column named “id”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span>function(<span class="dt">datafr =</span> nepali, child_id){
-  if(!(<span class="st">&quot;id&quot;</span> %in%<span class="st"> </span><span class="kw">colnames</span>(datafr))){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subset_nepali &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">datafr =</span> nepali, child_id){
+  <span class="cf">if</span>(<span class="op">!</span>(<span class="st">&quot;id&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">colnames</span>(datafr))){
     <span class="kw">stop</span>(<span class="st">&quot;`datafr` must include a column named `id`&quot;</span>)
   }
-  datafr &lt;-<span class="st"> </span>datafr %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(id ==<span class="st"> </span>child_id)
+  datafr &lt;-<span class="st"> </span>datafr <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>child_id)
   <span class="kw">return</span>(datafr)
 }
 <span class="kw">subset_nepali</span>(<span class="dt">datafr =</span> <span class="kw">data.frame</span>(<span class="dt">wt =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)),
@@ -931,17 +806,21 @@ child_id = &quot;12011&quot;) :
 <p>We will be using the <code>stringr</code> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)</code></pre></div>
 <p>This data includes a column called “Name” with passenger names. This column is somewhat messy and includes several elements that we might want to separate (last name, first name, title). Here are the first few values of “Name”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%<span class="st"> </span><span class="kw">select</span>(Name) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##                                                  Name
+##                                                 &lt;chr&gt;
 ## 1                             Braund, Mr. Owen Harris
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
 ## 3                              Heikkinen, Miss. Laina</code></pre>
 <p>We’ve already done some things to manipulate strings. For example, if we wanted to separate “Name” into last name and first name (including title), we could actually do that with the <code>separate</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(Name) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">separate</span>(Name, <span class="kw">c</span>(<span class="st">&quot;last_name&quot;</span>, <span class="st">&quot;first_name&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</code></pre></div>
-<pre><code>##   last_name                                 first_name
+<pre><code>## # A tibble: 3 x 2
+##   last_name                                 first_name
+## *     &lt;chr&gt;                                      &lt;chr&gt;
 ## 1    Braund                            Mr. Owen Harris
 ## 2   Cumings Mrs. John Bradley (Florence Briggs Thayer)
 ## 3 Heikkinen                                Miss. Laina</code></pre>
@@ -952,24 +831,28 @@ child_id = &quot;12011&quot;) :
 str_detect(string = [vector you want to check], 
            pattern = [pattern you want to check for])</code></pre>
 <p>For example, to create a logical vector specifying which of the Titanic passenger names include “Mrs.”, you can call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mrs &lt;-<span class="st"> </span><span class="kw">str_detect</span>(titanic_train$Name, <span class="st">&quot;Mrs.&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mrs &lt;-<span class="st"> </span><span class="kw">str_detect</span>(titanic_train<span class="op">$</span>Name, <span class="st">&quot;Mrs.&quot;</span>)
 <span class="kw">head</span>(mrs)</code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE  TRUE FALSE FALSE</code></pre>
 <p>The result is a logical vector, so <code>str_detect</code> can be used in <code>filter</code> to subset data to only rows where the passenger’s name includes “Mrs.”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;Mrs.&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;Mrs.&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##                                                  Name
+##                                                 &lt;chr&gt;
 ## 1 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
 ## 2        Futrelle, Mrs. Jacques Heath (Lily May Peel)
 ## 3   Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</code></pre>
 <p>There is an older, base R function called <code>grepl</code> that does something very similar (although note that the order of the arguments is reversed).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Mrs.&quot;</span>, Name)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Mrs.&quot;</span>, Name)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##                                                  Name
+##                                                 &lt;chr&gt;
 ## 1 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
 ## 2        Futrelle, Mrs. Jacques Heath (Lily May Peel)
 ## 3   Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</code></pre>
@@ -978,21 +861,25 @@ str_detect(string = [vector you want to check],
 str_extract(string = [vector you want to check], 
            pattern = [pattern you want to check for])</code></pre>
 <p>For example, you might want to extract “Mrs.” if it exists in a passenger’s name:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mrs =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;Mrs.&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name, mrs) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name  mrs
-## 1                             Braund, Mr. Owen Harris &lt;NA&gt;
-## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) Mrs.
-## 3                              Heikkinen, Miss. Laina &lt;NA&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mrs =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;Mrs.&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name, mrs) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##                                                  Name   mrs
+##                                                 &lt;chr&gt; &lt;chr&gt;
+## 1                             Braund, Mr. Owen Harris  &lt;NA&gt;
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)  Mrs.
+## 3                              Heikkinen, Miss. Laina  &lt;NA&gt;</code></pre>
 <p>Notice that now we’re creating a new column (<code>mrs</code>) that either has “Mrs.” (if there’s a match) or is missing (<code>NA</code>) if there’s not a match.</p>
 <p>For this first example, we were looking for an exact string (“Mrs”). However, you can use patterns that match a particular pattern, but not an exact string. For example, we could expand the regular expression to find “Mr.” or “Mrs.”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;Mr</span><span class="ch">\\</span><span class="st">.|Mrs</span><span class="ch">\\</span><span class="st">.&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name, title) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name title
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;Mr</span><span class="ch">\\</span><span class="st">.|Mrs</span><span class="ch">\\</span><span class="st">.&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name, title) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##                                                  Name title
+##                                                 &lt;chr&gt; &lt;chr&gt;
 ## 1                             Braund, Mr. Owen Harris   Mr.
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)  Mrs.
 ## 3                              Heikkinen, Miss. Laina  &lt;NA&gt;</code></pre>
@@ -1000,21 +887,25 @@ str_extract(string = [vector you want to check],
 <p>As a note, in regular expressions, all of the following characters are special characters that need to be escaped with backslashes if you want to use them literally:</p>
 <pre><code>. * + ^ ? $ \ | ( ) [ ] { }</code></pre>
 <p>Notice that “Mr.” and “Mrs.” both start with “Mr”, end with “.”, and may or may not have an “s” in between.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;Mr(s)*</span><span class="ch">\\</span><span class="st">.&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name, title) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name title
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;Mr(s)*</span><span class="ch">\\</span><span class="st">.&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name, title) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##                                                  Name title
+##                                                 &lt;chr&gt; &lt;chr&gt;
 ## 1                             Braund, Mr. Owen Harris   Mr.
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)  Mrs.
 ## 3                              Heikkinen, Miss. Laina  &lt;NA&gt;</code></pre>
 <p>This pattern uses <code>(s)*</code> to match zero or more “s”s at this spot in the pattern.</p>
 <p>In the previous code, we found “Mr.” and “Mrs.”, but missed “Miss.”. We could tweak the pattern again to try to capture that, as well. For all three, we have the pattern that it starts with “M”, has some lowercase letters, and then ends with “.”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;M[a-z]+</span><span class="ch">\\</span><span class="st">.&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name, title) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name title
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;M[a-z]+</span><span class="ch">\\</span><span class="st">.&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name, title) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##                                                  Name title
+##                                                 &lt;chr&gt; &lt;chr&gt;
 ## 1                             Braund, Mr. Owen Harris   Mr.
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)  Mrs.
 ## 3                              Heikkinen, Miss. Laina Miss.</code></pre>
@@ -1022,17 +913,19 @@ str_extract(string = [vector you want to check],
 <p>You can also match digits (<code>[0-9]</code>), uppercase letters (<code>[A-Z]</code>), just some letters (<code>[aeiou]</code>), etc. </p>
 <p>You can negate a character class by starting it with <code>^</code>. For example, <code>[^0-9]</code> will match anything that <strong>isn’t</strong> a digit.</p>
 <p>Sometimes, you want to match a pattern, but then only subset a part of it. For example, each passenger seems to have a title (“Mr.”, “Mrs.”, etc.) that comes after “,” and before “.”. We can use this pattern to find the title, but then we get some extra stuff with the match:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s[A-Za-z]*</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(title) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##      title
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(Name, <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s[A-Za-z]*</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(title) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##      title
+##      &lt;chr&gt;
 ## 1   , Mr. 
 ## 2  , Mrs. 
 ## 3 , Miss.</code></pre>
 <p>As a note, in this pattern, <code>\\s</code> is used to match a space.</p>
 <p>We are getting things like “, Mr.”, when we really want “Mr”. We can use the <code>str_match</code> function to do this. We group what we want to extract from the pattern in parentheses, and then the function returns a matrix. The first column is the full pattern match, and each following column gives just what matches within the groups.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">str_match</span>(titanic_train$Name,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">str_match</span>(titanic_train<span class="op">$</span>Name,
           <span class="dt">pattern =</span> <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s([A-Za-z]*)</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>))</code></pre></div>
 <pre><code>##      [,1]       [,2]  
 ## [1,] &quot;, Mr. &quot;   &quot;Mr&quot;  
@@ -1042,23 +935,25 @@ str_extract(string = [vector you want to check],
 ## [5,] &quot;, Mr. &quot;   &quot;Mr&quot;  
 ## [6,] &quot;, Mr. &quot;   &quot;Mr&quot;</code></pre>
 <p>To get just the title, then, we can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> 
-           <span class="kw">str_match</span>(Name, <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s([A-Za-z]*)</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>)[ , <span class="dv">2</span>]) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name, title) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                  Name title
+           <span class="kw">str_match</span>(Name, <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s([A-Za-z]*)</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>)[ , <span class="dv">2</span>]) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name, title) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##                                                  Name title
+##                                                 &lt;chr&gt; &lt;chr&gt;
 ## 1                             Braund, Mr. Owen Harris    Mr
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)   Mrs
 ## 3                              Heikkinen, Miss. Laina  Miss</code></pre>
 <p>The <code>[ , 2]</code> pulls out just the second column from the matrix returned by <code>str_match</code>.</p>
 <p>Here are some of the most common titles:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> 
-           <span class="kw">str_match</span>(Name, <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s([A-Za-z]*)</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>)[ , <span class="dv">2</span>]) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(title) %&gt;%<span class="st"> </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) %&gt;%<span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">5</span>)</code></pre></div>
-<pre><code>## # A tibble: 5 × 2
+           <span class="kw">str_match</span>(Name, <span class="st">&quot;,</span><span class="ch">\\</span><span class="st">s([A-Za-z]*)</span><span class="ch">\\</span><span class="st">.</span><span class="ch">\\</span><span class="st">s&quot;</span>)[ , <span class="dv">2</span>]) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(title) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
+<pre><code>## # A tibble: 5 x 2
 ##    title     n
 ##    &lt;chr&gt; &lt;int&gt;
 ## 1     Mr   517
@@ -1068,25 +963,29 @@ str_extract(string = [vector you want to check],
 ## 5     Dr     7</code></pre>
 <p>Here are a few other examples of regular expressions in action with this dataset. </p>
 <p>Get just names that start with (“^”) the letter “A”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;^A&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                                        Name
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;^A&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##                                                        Name
+##                                                       &lt;chr&gt;
 ## 1                                  Allen, Mr. William Henry
 ## 2                               Andersson, Mr. Anders Johan
 ## 3 Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)</code></pre>
 <p>Get names with “II” or “III” (<code>{2,}</code> says to match at least two times):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;I{2,}&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                                   Name
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;I{2,}&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 2 x 1
+##                                   Name
+##                                  &lt;chr&gt;
 ## 1  Carter, Master. William Thornton II
 ## 2 Roebling, Mr. Washington Augustus II</code></pre>
 <p>Get names with “Andersen” or “Anderson” (alternatives in square brackets):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;Anders[eo]n&quot;</span>)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;Anders[eo]n&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(Name)</code></pre></div>
 <pre><code>##                                              Name
 ## 1 Andersen-Jensen, Miss. Carla Christine Nielsine
@@ -1095,17 +994,19 @@ str_extract(string = [vector you want to check],
 ## 4                     Olsvigen, Mr. Thor Anderson
 ## 5      Soholt, Mr. Peter Andreas Lauritz Andersen</code></pre>
 <p>Get names that start with (“^” outside of brackets) the letters “A” and “B”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;^[AB]&quot;</span>)) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(Name) %&gt;%
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
-<pre><code>##                       Name
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;^[AB]&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##                       Name
+##                      &lt;chr&gt;
 ## 1  Braund, Mr. Owen Harris
 ## 2 Allen, Mr. William Henry
 ## 3 Bonnell, Miss. Elizabeth</code></pre>
 <p>Get names that end with (“$”) the letter “b” (either lowercase or uppercase):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;[bB]$&quot;</span>)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titanic_train <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Name, <span class="st">&quot;[bB]$&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(Name) </code></pre></div>
 <pre><code>##                        Name
 ## 1   Emir, Mr. Farred Chehab
@@ -1176,7 +1077,7 @@ str_extract(string = [vector you want to check],
 <li>Discuss which of the variables in this dataset could be used to merge the dataset with other appropriate data, either other datasets in the FARS raw data, or outside datasets.</li>
 <li>Try to write the code to create the plot below. This will include some code for cleaning the data and some code for plotting. There is an example answer below, but I’d like you to try to figure it out yourselves first.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-407-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-406-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div id="example-r-code-10" class="section level4">
 <h4><span class="header-section-number">7.6.1.1</span> Example R code</h4>
 <p>Here is example code for the section above:</p>
@@ -1184,27 +1085,27 @@ str_extract(string = [vector you want to check],
 <span class="kw">library</span>(lubridate)
 <span class="kw">library</span>(ggthemes)
 
-accident &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/accident.csv&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(DAY:MINUTE) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(-DAY_WEEK) %&gt;%
-<span class="st">  </span><span class="kw">unite</span>(date, DAY:MINUTE, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) %&gt;%
+accident &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/accident.csv&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(DAY<span class="op">:</span>MINUTE) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>DAY_WEEK) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(date, DAY<span class="op">:</span>MINUTE, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">dmy_hm</span>(date), 
          <span class="dt">yday =</span> <span class="kw">yday</span>(date),
          <span class="dt">weekday =</span> <span class="kw">wday</span>(date, <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">abbr =</span> <span class="ot">FALSE</span>),
-         <span class="dt">weekend =</span> weekday %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>)) 
+         <span class="dt">weekend =</span> weekday <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>)) 
 
-accident %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(yday)) %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(yday) %&gt;%
+accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(yday)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(yday) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>(),
-            <span class="dt">weekend =</span> <span class="kw">first</span>(weekend)) %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> yday, <span class="dt">y =</span> accidents, <span class="dt">color =</span> weekend)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Day of the year in 2015&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;# of fatal accidents&quot;</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_few</span>() +<span class="st"> </span>
+            <span class="dt">weekend =</span> <span class="kw">first</span>(weekend)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> yday, <span class="dt">y =</span> accidents, <span class="dt">color =</span> weekend)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Day of the year in 2015&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;# of fatal accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_few</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-408-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-407-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="using-a-loop-to-create-state-specific-plots" class="section level3">
@@ -1213,7 +1114,7 @@ accident %&gt;%<span class="st"> </span>
 <ul>
 <li>The data has a column called <code>STATE</code>, but it gives state as a one- or two-digit code, rather than by name. These codes are the state Federal Information Processing Standard (FIPS) codes. A dataset with state names and FIPS codes is available at <a href="http://www2.census.gov/geo/docs/reference/state.txt" class="uri">http://www2.census.gov/geo/docs/reference/state.txt</a>. Read that data into an R object called <code>state_fips</code> and clean it so the first few lines look like this:</li>
 </ul>
-<pre><code>## # A tibble: 5 × 2
+<pre><code>## # A tibble: 5 x 2
 ##   state state_name
 ##   &lt;int&gt;      &lt;chr&gt;
 ## 1     1    Alabama
@@ -1224,7 +1125,7 @@ accident %&gt;%<span class="st"> </span>
 <ul>
 <li>Read the 2015 FARS data into an R object named <code>accident</code>. Use all the date and time information to create a column named <code>date</code> with the date and time of the accident. Include information on whether the accident was related to drunk driving (FALSE if there were 0 drunk drivers, TRUE if there were one or more), and create columns that gives whether the accident was during the day (7 AM to 7 PM) or not as well as the month of the accident (for this last column, you can either retain it from the original data or recalculate it based on the new <code>date</code> variable). Filter out any values where the date-time does not render (i.e., <code>date</code> is a missing value). The first few rows of the cleaned dataframe should look like this:</li>
 </ul>
-<pre><code>## # A tibble: 5 × 5
+<pre><code>## # A tibble: 5 x 5
 ##   state                date drunk_dr daytime month
 ##   &lt;int&gt;              &lt;dttm&gt;    &lt;lgl&gt;   &lt;lgl&gt; &lt;dbl&gt;
 ## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1
@@ -1235,7 +1136,7 @@ accident %&gt;%<span class="st"> </span>
 <ul>
 <li>Join the information from <code>state_fips</code> into the <code>accident</code> dataframe. There may be a few locations in the <code>state_fips</code> dataframe that are not included in the <code>accident</code> dataframe (e.g., Virgin Islands), so when you join keep all observations in <code>accident</code> but only the observations in <code>state_fips</code> that match at least one row of <code>accident</code>. The first few rows of the joined dataset should look like this:</li>
 </ul>
-<pre><code>## # A tibble: 5 × 6
+<pre><code>## # A tibble: 5 x 6
 ##   state                date drunk_dr daytime month state_name
 ##   &lt;int&gt;              &lt;dttm&gt;    &lt;lgl&gt;   &lt;lgl&gt; &lt;dbl&gt;      &lt;chr&gt;
 ## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1    Alabama
@@ -1246,7 +1147,7 @@ accident %&gt;%<span class="st"> </span>
 <ul>
 <li>Write the code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. The plot should look like the plot below.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-412-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-411-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Write a loop to create a plot like the one you just made for Colorado for four different states – Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
 </ul>
@@ -1254,40 +1155,40 @@ accident %&gt;%<span class="st"> </span>
 <h4><span class="header-section-number">7.6.2.1</span> Example R code</h4>
 <p>Here is example R code for creating state-specific plots using a loop:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_fips &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;http://www2.census.gov/geo/docs/reference/state.txt&quot;</span>,
-                         <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>) %&gt;%
+                         <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">rename</span>(<span class="dt">state =</span> STATE,
-         <span class="dt">state_name =</span> STATE_NAME) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(state, state_name) %&gt;%
+         <span class="dt">state_name =</span> STATE_NAME) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(state, state_name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">state =</span> <span class="kw">as.integer</span>(state))
 
-accident &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/accident.csv&quot;</span>) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(STATE, DAY:MINUTE, DRUNK_DR) %&gt;%
+accident &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/accident.csv&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(STATE, DAY<span class="op">:</span>MINUTE, DRUNK_DR) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">rename</span>(<span class="dt">state =</span> STATE, 
-         <span class="dt">drunk_dr =</span> DRUNK_DR) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(-DAY_WEEK) %&gt;%
-<span class="st">  </span><span class="kw">unite</span>(date, DAY:MINUTE, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) %&gt;%
+         <span class="dt">drunk_dr =</span> DRUNK_DR) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>DAY_WEEK) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(date, DAY<span class="op">:</span>MINUTE, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">dmy_hm</span>(date), 
-         <span class="dt">drunk_dr =</span> drunk_dr &gt;=<span class="st"> </span><span class="dv">1</span>,
-         <span class="dt">daytime =</span> <span class="kw">hour</span>(date) %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>:<span class="dv">19</span>),
-         <span class="dt">month =</span> <span class="kw">month</span>(date)) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(date)) %&gt;%
+         <span class="dt">drunk_dr =</span> drunk_dr <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>,
+         <span class="dt">daytime =</span> <span class="kw">hour</span>(date) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span><span class="op">:</span><span class="dv">19</span>),
+         <span class="dt">month =</span> <span class="kw">month</span>(date)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(date)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">left_join</span>(state_fips, <span class="dt">by =</span> <span class="st">&quot;state&quot;</span>)
 
 <span class="kw">pdf</span>(<span class="st">&quot;StateFARSPlots.pdf&quot;</span>, <span class="dt">height =</span> <span class="fl">3.5</span>, <span class="dt">width =</span> <span class="dv">7</span>)
 state_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)
-for(which_state in state_list){
-  a &lt;-accident %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(state_name ==<span class="st"> </span>which_state) %&gt;%
+<span class="cf">for</span>(which_state <span class="cf">in</span> state_list){
+  a &lt;-accident <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> </span>which_state) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">mutate</span>(<span class="dt">drunk_dr =</span> <span class="kw">factor</span>(drunk_dr, <span class="dt">labels =</span> 
                                <span class="kw">c</span>(<span class="st">&quot;Unrelated to</span><span class="ch">\n</span><span class="st">drunk driving&quot;</span>,
                                  <span class="st">&quot;Related to</span><span class="ch">\n</span><span class="st">drunk driving&quot;</span>)),
-           <span class="dt">daytime =</span> <span class="kw">factor</span>(daytime, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Nighttime&quot;</span>, <span class="st">&quot;Daytime&quot;</span>))) %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(daytime, month, drunk_dr) %&gt;%
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>()) %&gt;%
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> daytime, <span class="dt">y =</span> accidents, <span class="dt">group =</span> daytime)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>drunk_dr, <span class="dt">ncol =</span> <span class="dv">2</span>) +
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Time of day&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of monthly accidents&quot;</span>) +<span class="st"> </span>
+           <span class="dt">daytime =</span> <span class="kw">factor</span>(daytime, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Nighttime&quot;</span>, <span class="st">&quot;Daytime&quot;</span>))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(daytime, month, drunk_dr) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> daytime, <span class="dt">y =</span> accidents, <span class="dt">group =</span> daytime)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>drunk_dr, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Time of day&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of monthly accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Fatal accidents in&quot;</span>, which_state, <span class="st">&quot;in 2015&quot;</span>))
   <span class="kw">print</span>(a)
 }
@@ -1297,14 +1198,18 @@ for(which_state in state_list){
 </div>
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
 <a href="entering-and-cleaning-data-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reporting-data-results-2.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1313,7 +1218,7 @@ for(which_state in state_list){
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1347,7 +1252,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);
