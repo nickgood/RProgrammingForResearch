@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-08-19}
+\date{2017-08-21}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -9543,11 +9543,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.34\\
+a & -0.74\\
 \hline
-b & 1.99\\
+b & -2.42\\
 \hline
-c & -0.88\\
+c & 0.14\\
 \hline
 \end{tabular}
 \end{table}
@@ -10062,10 +10062,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -0.1047717  1.3142789 -4.842685
-## 2 2009-01-02 -0.7017624 -0.5740539 -8.370351
-## 3 2009-01-03  0.3908031  1.1176672 -2.275203
+##         time         X          Y        Z
+## 1 2009-01-01 0.1012705  5.5295206 8.088471
+## 2 2009-01-02 0.7328515 -0.6669572 1.491075
+## 3 2009-01-03 0.8335625 -0.6534924 4.899917
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10082,10 +10082,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -0.1047717  1.3142789 -4.842685
-## 2 2009-01-02 -0.7017624 -0.5740539 -8.370351
-## 3 2009-01-03  0.3908031  1.1176672 -2.275203
+##         time         X          Y        Z
+## 1 2009-01-01 0.1012705  5.5295206 8.088471
+## 2 2009-01-02 0.7328515 -0.6669572 1.491075
+## 3 2009-01-03 0.8335625 -0.6534924 4.899917
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10102,11 +10102,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.1047717
-## 2 2009-01-02     X -0.7017624
-## 3 2009-01-03     X  0.3908031
-## 4 2009-01-04     X  0.2616316
-## 5 2009-01-05     X  0.6476084
+## 1 2009-01-01     X  0.1012705
+## 2 2009-01-02     X  0.7328515
+## 3 2009-01-03     X  0.8335625
+## 4 2009-01-04     X -0.8240268
+## 5 2009-01-05     X  0.1013555
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10121,11 +10121,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.1047717
-## 2 2009-01-02     X -0.7017624
-## 3 2009-01-03     X  0.3908031
-## 4 2009-01-04     X  0.2616316
-## 5 2009-01-05     X  0.6476084
+## 1 2009-01-01     X  0.1012705
+## 2 2009-01-02     X  0.7328515
+## 3 2009-01-03     X  0.8335625
+## 4 2009-01-04     X -0.8240268
+## 5 2009-01-05     X  0.1013555
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10181,12 +10181,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y         Z
-## 1 2009-01-01 -0.1047717  1.31427890 -4.842685
-## 2 2009-01-02 -0.7017624 -0.57405394 -8.370351
-## 3 2009-01-03  0.3908031  1.11766716 -2.275203
-## 4 2009-01-04  0.2616316 -2.09776620  8.880250
-## 5 2009-01-05  0.6476084 -0.09082257  8.971487
+##         time          X          Y         Z
+## 1 2009-01-01  0.1012705  5.5295206 8.0884711
+## 2 2009-01-02  0.7328515 -0.6669572 1.4910753
+## 3 2009-01-03  0.8335625 -0.6534924 4.8999171
+## 4 2009-01-04 -0.8240268 -2.0290136 0.1667057
+## 5 2009-01-05  0.1013555 -0.4713830 4.7642386
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10211,11 +10211,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10  0.1159282 0.936802
-## 2     Y    10 -0.6697403 1.849912
-## 3     Z    10  0.3969035 5.964565
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 0.03855459 0.6305595
+## 2     Y    10 0.03156440 2.2225768
+## 3     Z    10 1.63365981 3.9307132
 \end{verbatim}
 
 \begin{Shaded}
@@ -10234,7 +10234,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.12 (0.94) & -0.67 (1.85) & 0.4 (5.96)\\
+Mean (Std.dev.) & 0.04 (0.63) & 0.03 (2.22) & 1.63 (3.93)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
