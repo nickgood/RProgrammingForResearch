@@ -556,22 +556,18 @@ programming, including:
 \begin{itemize}
 \tightlist
 \item
-  \href{http://discovery.library.colostate.edu/Record/.b40129810}{R for
-  Dummies}
+  \href{https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA51267598310003361\&context=L\&vid=01COLSU\&lang=en_US\&search_scope=Everything\&adaptor=Local\%20Search\%20Engine\&tab=default_tab\&query=any,contains,r\%20for\%20dummies\&sortby=rank\&offset=0}{R
+  for Dummies}
 \item
-  \href{http://discovery.library.colostate.edu/Record/.b40438880}{R in a
-  Nutshell}
-\item
-  \href{http://discovery.library.colostate.edu/Record/.b36840282}{R
+  \href{https://colostate-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01COLSU_ALMA21203304500003361\&context=L\&vid=01COLSU\&lang=en_US\&search_scope=Everything\&adaptor=Local\%20Search\%20Engine\&tab=default_tab\&query=any,contains,r\%20cookbook\&sortby=rank\&offset=0}{R
   Cookbook}
 \item
   \href{http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956/ref=sr_1_1?ie=UTF8\&qid=1440997472\&sr=8-1\&keywords=r+graphics+cookbook}{R
   Graphics Cookbook}
 \item
-  \href{http://discovery.library.colostate.edu/Record/.b44709365}{A
-  Beginner's Guide to R}
-\item
   \href{https://leanpub.com/u/rdpeng}{Roger Peng's Leanpub books}
+\item
+  Various books on \href{www.bookdown.org}{bookdown.org}
 \end{itemize}
 
 The R programming language is used extensively within certain fields,
@@ -9543,11 +9539,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.89\\
+a & 0.47\\
 \hline
-b & 0.52\\
+b & 0.74\\
 \hline
-c & -1.45\\
+c & 1.21\\
 \hline
 \end{tabular}
 \end{table}
@@ -10062,10 +10058,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -1.3333371 -0.3251114  9.228050
-## 2 2009-01-02 -0.1121875  0.3198108  5.110887
-## 3 2009-01-03 -1.3032954  0.9922999 -1.791576
+##         time         X          Y         Z
+## 1 2009-01-01 0.4025970 -4.7899167  4.204830
+## 2 2009-01-02 0.8862007  1.8714958 -4.571425
+## 3 2009-01-03 0.7490731 -0.4857885 -4.691097
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10082,10 +10078,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -1.3333371 -0.3251114  9.228050
-## 2 2009-01-02 -0.1121875  0.3198108  5.110887
-## 3 2009-01-03 -1.3032954  0.9922999 -1.791576
+##         time         X          Y         Z
+## 1 2009-01-01 0.4025970 -4.7899167  4.204830
+## 2 2009-01-02 0.8862007  1.8714958 -4.571425
+## 3 2009-01-03 0.7490731 -0.4857885 -4.691097
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10102,11 +10098,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -1.3333371
-## 2 2009-01-02     X -0.1121875
-## 3 2009-01-03     X -1.3032954
-## 4 2009-01-04     X -0.1261578
-## 5 2009-01-05     X -0.9844295
+## 1 2009-01-01     X  0.4025970
+## 2 2009-01-02     X  0.8862007
+## 3 2009-01-03     X  0.7490731
+## 4 2009-01-04     X -0.2619977
+## 5 2009-01-05     X -1.0855417
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10121,11 +10117,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -1.3333371
-## 2 2009-01-02     X -0.1121875
-## 3 2009-01-03     X -1.3032954
-## 4 2009-01-04     X -0.1261578
-## 5 2009-01-05     X -0.9844295
+## 1 2009-01-01     X  0.4025970
+## 2 2009-01-02     X  0.8862007
+## 3 2009-01-03     X  0.7490731
+## 4 2009-01-04     X -0.2619977
+## 5 2009-01-05     X -1.0855417
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10181,12 +10177,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y          Z
-## 1 2009-01-01 -1.3333371 -0.32511144  9.2280496
-## 2 2009-01-02 -0.1121875  0.31981080  5.1108866
-## 3 2009-01-03 -1.3032954  0.99229986 -1.7915763
-## 4 2009-01-04 -0.1261578 -2.50095928  1.9523938
-## 5 2009-01-05 -0.9844295 -0.01872621 -0.5011222
+##         time          X          Y         Z
+## 1 2009-01-01  0.4025970 -4.7899167  4.204830
+## 2 2009-01-02  0.8862007  1.8714958 -4.571425
+## 3 2009-01-03  0.7490731 -0.4857885 -4.691097
+## 4 2009-01-04 -0.2619977  0.5308683 -1.838803
+## 5 2009-01-05 -1.0855417  0.3926050 -4.822427
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10211,11 +10207,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.1896889 1.022213
-## 2     Y    10  0.3657221 2.057327
-## 3     Z    10  0.9694975 5.522546
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10  0.08352808 0.8782767
+## 2     Y    10 -0.02840152 2.0884736
+## 3     Z    10 -2.02856129 3.0305396
 \end{verbatim}
 
 \begin{Shaded}
@@ -10234,7 +10230,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.19 (1.02) & 0.37 (2.06) & 0.97 (5.52)\\
+Mean (Std.dev.) & 0.08 (0.88) & -0.03 (2.09) & -2.03 (3.03)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
