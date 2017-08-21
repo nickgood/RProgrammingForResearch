@@ -533,9 +533,9 @@ This book was developed using Yihui Xie's phenomenal
 code that combines R code, data, and text to create a book for which R
 code and examples can be re-executed every time the book is re-built,
 which helps identify bugs and broken code examples quickly. The online
-book is hosted using GitHub's free GitHub Pages
-{[}\url{https://pages.github.com}{]}. All material for this book is
-available and can be explored at
+book is hosted using GitHub's free
+\href{https://pages.github.com}{GitHub Pages}. All material for this
+book is available and can be explored at
 \href{https://github.com/geanders/RProgrammingForResearch}{the book's
 GitHub repository}.
 
@@ -752,7 +752,7 @@ You first buy a very basic set that looks something like Figure
 
 \begin{figure}
 
-{\centering \includegraphics[width=400pt]{figures/BrioBasicSet} 
+{\centering \includegraphics[width=400pt]{figures/TrainBasic} 
 
 }
 
@@ -766,7 +766,7 @@ looks like Figure \ref{fig:toy-train-fancy}.
 
 \begin{figure}
 
-{\centering \includegraphics[width=800pt]{figures/BrioFancySet} 
+{\centering \includegraphics[width=400pt]{figures/TrainComplex} 
 
 }
 
@@ -9543,11 +9543,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.74\\
+a & 0.89\\
 \hline
-b & -2.42\\
+b & 0.52\\
 \hline
-c & 0.14\\
+c & -1.45\\
 \hline
 \end{tabular}
 \end{table}
@@ -10062,10 +10062,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X          Y        Z
-## 1 2009-01-01 0.1012705  5.5295206 8.088471
-## 2 2009-01-02 0.7328515 -0.6669572 1.491075
-## 3 2009-01-03 0.8335625 -0.6534924 4.899917
+##         time          X          Y         Z
+## 1 2009-01-01 -1.3333371 -0.3251114  9.228050
+## 2 2009-01-02 -0.1121875  0.3198108  5.110887
+## 3 2009-01-03 -1.3032954  0.9922999 -1.791576
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10082,10 +10082,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X          Y        Z
-## 1 2009-01-01 0.1012705  5.5295206 8.088471
-## 2 2009-01-02 0.7328515 -0.6669572 1.491075
-## 3 2009-01-03 0.8335625 -0.6534924 4.899917
+##         time          X          Y         Z
+## 1 2009-01-01 -1.3333371 -0.3251114  9.228050
+## 2 2009-01-02 -0.1121875  0.3198108  5.110887
+## 3 2009-01-03 -1.3032954  0.9922999 -1.791576
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10102,11 +10102,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.1012705
-## 2 2009-01-02     X  0.7328515
-## 3 2009-01-03     X  0.8335625
-## 4 2009-01-04     X -0.8240268
-## 5 2009-01-05     X  0.1013555
+## 1 2009-01-01     X -1.3333371
+## 2 2009-01-02     X -0.1121875
+## 3 2009-01-03     X -1.3032954
+## 4 2009-01-04     X -0.1261578
+## 5 2009-01-05     X -0.9844295
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10121,11 +10121,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.1012705
-## 2 2009-01-02     X  0.7328515
-## 3 2009-01-03     X  0.8335625
-## 4 2009-01-04     X -0.8240268
-## 5 2009-01-05     X  0.1013555
+## 1 2009-01-01     X -1.3333371
+## 2 2009-01-02     X -0.1121875
+## 3 2009-01-03     X -1.3032954
+## 4 2009-01-04     X -0.1261578
+## 5 2009-01-05     X -0.9844295
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10181,12 +10181,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.1012705  5.5295206 8.0884711
-## 2 2009-01-02  0.7328515 -0.6669572 1.4910753
-## 3 2009-01-03  0.8335625 -0.6534924 4.8999171
-## 4 2009-01-04 -0.8240268 -2.0290136 0.1667057
-## 5 2009-01-05  0.1013555 -0.4713830 4.7642386
+##         time          X           Y          Z
+## 1 2009-01-01 -1.3333371 -0.32511144  9.2280496
+## 2 2009-01-02 -0.1121875  0.31981080  5.1108866
+## 3 2009-01-03 -1.3032954  0.99229986 -1.7915763
+## 4 2009-01-04 -0.1261578 -2.50095928  1.9523938
+## 5 2009-01-05 -0.9844295 -0.01872621 -0.5011222
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10211,11 +10211,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 0.03855459 0.6305595
-## 2     Y    10 0.03156440 2.2225768
-## 3     Z    10 1.63365981 3.9307132
+##   stock     N       mean       sd
+##   <chr> <int>      <dbl>    <dbl>
+## 1     X    10 -0.1896889 1.022213
+## 2     Y    10  0.3657221 2.057327
+## 3     Z    10  0.9694975 5.522546
 \end{verbatim}
 
 \begin{Shaded}
@@ -10234,7 +10234,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.04 (0.63) & 0.03 (2.22) & 1.63 (3.93)\\
+Mean (Std.dev.) & -0.19 (1.02) & 0.37 (2.06) & 0.97 (5.52)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
