@@ -709,6 +709,10 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \subsection{Open-source software}\label{open-source-software}
 
+\begin{quote}
+``Life is too short to run proprietary software.'' -- Bdale Garbee
+\end{quote}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{fortune}\NormalTok{(}\StringTok{"the price"}\NormalTok{)}
@@ -717,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -834,6 +838,10 @@ Defaults should be fine for everything.
 ##    -- Mingzhai Sun and Bill Venables
 ##       R-help (January 2004)
 \end{verbatim}
+
+\begin{quote}
+``Talk is cheap. Show me the code.'' - Linus Torvalds
+\end{quote}
 
 \subsection{What is RStudio?}\label{what-is-rstudio}
 
@@ -1310,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x38b79a8>
+## <bytecode: 0x3b9df08>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -2146,40 +2154,58 @@ If you have extra time:
 dataframe}\label{manually-creating-vectors-and-a-dataframe}
 
 Start by manually creating some vectors and data frames with a small
-subset of this data. * Use the concatenate function (\texttt{c}) to
-create a vector ``from scratch'' with the names of the five guests to
-appear on the show (these could be the first five guests, or you could
-also randomly pick five guests). Assign this vector to an object named
-\texttt{five\_guests}. What class (numeric or character) do you think
-this vector will be? Will you need to use quotation marks for each
-element you add to the vector? * Use square bracket indexing to print
-out the following subsets of this vector (you'll have one R call per
-subset): + The first guest in the vector + The third and fifth guests +
-The second through fourth guests * Create a new vector called
-\texttt{first\_guest} with just the first set, using the square bracket
-indexing you used in the previous step. * In the same way, create a
-vector with the year of each of these guests' appearances. Assign this
-vector to an object named \texttt{appearance\_year}. What class (numeric
-or character) do you think this vector will be? Will you need to use
-quotation marks for each element you add to the vector? * Use the
-\texttt{class} function to determine the classes (e.g., numeric,
-character) of each of the vectors you just created. * Combine these two
-vectors to create a dataframe named \texttt{guest\_list}. For the
-columns, use the same column names used in the original, raw data for
-the guest names and appearance year. Print out this dataframe at the R
-console to make sure it looks like you thought it would. * Use square
-bracket indexing to print out the following subsets of this dataframe
-(you'll have one R call per subset): + The appearance year of the first
-guest + Names of the third through fifth guests + Names of all guests +
-Both names and appearance years of the first and third guests * The
-\texttt{str} function can be used to figure out the structure of a
-dataframe. Run this command on the \texttt{guest\_list} dataframe you
-created. What information does this give you? Use the helpfile for
-\texttt{str} to help you figure this out (which you can access by
-running \texttt{?str}). Do you see anything that surprises you? * Use
-the \texttt{ls} function to list all the objects you currently have
-defined in your R session. Compare this list to the ``Environment'' pane
-in RStudio.
+subset of this data.
+
+\begin{itemize}
+\tightlist
+\item
+  Use the concatenate function (\texttt{c}) to create a vector ``from
+  scratch'' with the names of the five guests to appear on the show
+  (these could be the first five guests, or you could also randomly pick
+  five guests). Assign this vector to an object named
+  \texttt{five\_guests}. What class (numeric or character) do you think
+  this vector will be? Will you need to use quotation marks for each
+  element you add to the vector?
+\item
+  Use square bracket indexing to print out the following subsets of this
+  vector (you'll have one R call per subset): (1) The first guest in the
+  vector; (2) The third and fifth guests; (3) The second through fourth
+  guests.
+\item
+  Create a new vector called \texttt{first\_guest} with just the first
+  set, using the square bracket indexing you used in the previous step.
+\item
+  In the same way, create a vector with the year of each of these
+  guests' appearances. Assign this vector to an object named
+  \texttt{appearance\_year}. What class (numeric or character) do you
+  think this vector will be? Will you need to use quotation marks for
+  each element you add to the vector?
+\item
+  Use the \texttt{class} function to determine the classes (e.g.,
+  numeric, character) of each of the vectors you just created.
+\item
+  Combine these two vectors to create a dataframe named
+  \texttt{guest\_list}. For the columns, use the same column names used
+  in the original, raw data for the guest names and appearance year.
+  Print out this dataframe at the R console to make sure it looks like
+  you thought it would.
+\item
+  Use square bracket indexing to print out the following subsets of this
+  dataframe (you'll have one R call per subset): (1) The appearance year
+  of the first guest; (2) Names of the third through fifth guests; (3)
+  Names of all guests; (4) Both names and appearance years of the first
+  and third guests.
+\item
+  The \texttt{str} function can be used to figure out the structure of a
+  dataframe. Run this command on the \texttt{guest\_list} dataframe you
+  created. What information does this give you? Use the helpfile for
+  \texttt{str} to help you figure this out (which you can access by
+  running \texttt{?str}). Do you see anything that surprises you?
+\item
+  Use the \texttt{ls} function to list all the objects you currently
+  have defined in your R session. Compare this list to the
+  ``Environment'' pane in RStudio.
+\end{itemize}
 
 Example R code:
 
@@ -10153,11 +10179,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.97\\
+a & -0.10\\
 \hline
-b & 1.27\\
+b & 0.06\\
 \hline
-c & 0.27\\
+c & 0.09\\
 \hline
 \end{tabular}
 \end{table}
@@ -10673,9 +10699,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X         Y         Z
-## 1 2009-01-01  0.6460444 -1.759439 -6.037102
-## 2 2009-01-02  0.3409224  1.790151 -5.533775
-## 3 2009-01-03 -0.9652591 -1.187000  1.544959
+## 1 2009-01-01 -0.5577042 -2.945102  2.303083
+## 2 2009-01-02 -0.2725525  1.835047  6.951020
+## 3 2009-01-03 -0.4874682  1.883022 -2.529669
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10693,9 +10719,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X         Y         Z
-## 1 2009-01-01  0.6460444 -1.759439 -6.037102
-## 2 2009-01-02  0.3409224  1.790151 -5.533775
-## 3 2009-01-03 -0.9652591 -1.187000  1.544959
+## 1 2009-01-01 -0.5577042 -2.945102  2.303083
+## 2 2009-01-02 -0.2725525  1.835047  6.951020
+## 3 2009-01-03 -0.4874682  1.883022 -2.529669
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10712,11 +10738,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.6460444
-## 2 2009-01-02     X  0.3409224
-## 3 2009-01-03     X -0.9652591
-## 4 2009-01-04     X  0.9118721
-## 5 2009-01-05     X  0.3894738
+## 1 2009-01-01     X -0.5577042
+## 2 2009-01-02     X -0.2725525
+## 3 2009-01-03     X -0.4874682
+## 4 2009-01-04     X  1.5391346
+## 5 2009-01-05     X  0.5884675
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10731,11 +10757,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.6460444
-## 2 2009-01-02     X  0.3409224
-## 3 2009-01-03     X -0.9652591
-## 4 2009-01-04     X  0.9118721
-## 5 2009-01-05     X  0.3894738
+## 1 2009-01-01     X -0.5577042
+## 2 2009-01-02     X -0.2725525
+## 3 2009-01-03     X -0.4874682
+## 4 2009-01-04     X  1.5391346
+## 5 2009-01-05     X  0.5884675
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10791,12 +10817,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.6460444 -1.7594395 -6.0371016
-## 2 2009-01-02  0.3409224  1.7901511 -5.5337753
-## 3 2009-01-03 -0.9652591 -1.1869999  1.5449593
-## 4 2009-01-04  0.9118721  0.6175982 -0.1111467
-## 5 2009-01-05  0.3894738 -1.1222950 -5.9918034
+##         time          X          Y         Z
+## 1 2009-01-01 -0.5577042 -2.9451020  2.303083
+## 2 2009-01-02 -0.2725525  1.8350473  6.951020
+## 3 2009-01-03 -0.4874682  1.8830216 -2.529669
+## 4 2009-01-04  1.5391346  1.5409390  8.208370
+## 5 2009-01-05  0.5884675  0.4761416 -2.138193
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10823,9 +10849,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.6012136 0.7593619
-## 2     Y    10 -0.1500483 1.5762561
-## 3     Z    10 -1.7657498 3.3600853
+## 1     X    10 0.07543666 0.8394419
+## 2     Y    10 0.63543865 1.5664608
+## 3     Z    10 2.61622179 5.1526172
 \end{verbatim}
 
 \begin{Shaded}
@@ -10844,7 +10870,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.6 (0.76) & -0.15 (1.58) & -1.77 (3.36)\\
+Mean (Std.dev.) & 0.08 (0.84) & 0.64 (1.57) & 2.62 (5.15)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
