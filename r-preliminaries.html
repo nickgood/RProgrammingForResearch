@@ -363,13 +363,46 @@ One of the strengths of R is that many different programmers have developed and 
 <li>Machine learning</li>
 <li>Data journalism / data analysis</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;good data analyst&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Can one be a good data analyst without being a half-good programmer? The
+## short answer to that is, &#39;No.&#39; The long answer to that is, &#39;No.&#39;
+##    -- Frank Harrell
+##       1999 S-PLUS User Conference, New Orleans (October 1999)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;most widely used piece of software for statistics&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Let&#39;s not kid ourselves: the most widely used piece of software for
+## statistics is Excel.
+##    -- Brian D. Ripley (&#39;Statistical Methods Need Software: A View of
+##       Statistical Computing&#39;)
+##       Opening lecture RSS 2002, Plymouth (September 2002)</code></pre>
 <p>R has some of the same strengths (quick and easy to code, interfaces well with other languages, easy to work interactively) and weaknesses (slower than compiled languages) as Python. For data-related tasks, R and Python are fairly neck-and-neck. However, R is still the first choice of statisticians in most fields, so I would argue that R has a an advantage if you want to have access to cutting-edge statistical methods.</p>
 <blockquote>
 <p>“The best thing about R is that it was developed by statisticians. The worst thing about R is that… it was developed by statisticians.” -Bo Cowgill, Google, at the Bay Area R Users Group</p>
 </blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;show it&#39;s as good as the others&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Rene M. Raupp: Does anybody know any work comparing R with other (charged)
+## statistical software (like Minitab, SPSS, SAS)? [...] I have to show it&#39;s
+## as good as the others.
+## Kjetil Brinchmann Halvorsen: Sorry. That will be difficult. Couldn&#39;t it do
+## to prove it is better?
+##    -- Rene M. Raupp and Kjetil Brinchmann Halvorsen
+##       R-help (May 2005)</code></pre>
 </div>
 <div id="open-source-software" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Open-source software</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;the price&quot;</span>)</code></pre></div>
+<pre><code>## 
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I&#39;ve
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It&#39;s a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)</code></pre>
 <p>R is open-source software. Many other popular statistical programming languages, conversely, are proprietary. It’s useful to know what it means for software to be “open-source”, both conceptually and in terms of how you will be able to use and add to R in your own work.</p>
 <p>R is free, and it’s tempting to think of open-source software just as “free software”. Things, however, are a little more subtle than that. It helps to consider some different meanings of the word “free”. “Free” can mean:</p>
 <ul>
@@ -399,6 +432,17 @@ Figure 1.1: An overview of how software can be each type of free (beer and speec
 <p>“Despite its name, open-source software is less vulnerable to hacking than the secret, black box systems like those being used in polling places now. That’s because anyone can see how open-source systems operate. Bugs can be spotted and remedied, deterring those who would attempt attacks. This makes them much more secure than closed-source models like Microsoft’s, which only Microsoft employees can get into to fix.” – <a href="https://www.nytimes.com/2017/08/03/opinion/open-source-software-hacker-voting.html?mcubz=3">Woolsey and Fox. <em>To Protect Voting, Use Open-Source Software.</em> New York Times. August 3, 2017.</a></p>
 </blockquote>
 <p>You can download the latest version of R from <a href="https://cran.r-project.org">CRAN</a>. Be sure to select the distribution for your type of computer system. R is updated occasionally; you should plan to re-install R at least once a year, to make sure you’re working with one of the newer versions. Check your current R version (one way is by running <code>sessionInfo()</code> at the R console) to make sure you’re not using an outdated version of R. Defaults should be fine for everything.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;how do you know that the results are trustable?&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Mingzhai Sun: When you use it [R], since it is written by so many authors,
+## how do you know that the results are trustable?
+## Bill Venables: The R engine [...] is pretty well uniformly excellent code
+## but you have to take my word for that. Actually, you don&#39;t. The whole
+## engine is open source so, if you wish, you can check every line of it. If
+## people were out to push dodgy software, this is not the way they&#39;d go
+## about it.
+##    -- Mingzhai Sun and Bill Venables
+##       R-help (January 2004)</code></pre>
 </div>
 <div id="what-is-rstudio" class="section level3">
 <h3><span class="header-section-number">1.1.3</span> What is RStudio?</h3>
@@ -421,6 +465,12 @@ Figure 1.1: An overview of how software can be each type of free (beer and speec
 <h2><span class="header-section-number">1.2</span> The “package” system</h2>
 <div id="r-packages" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> R packages</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;Take that, SAS!&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Any doubts about R&#39;s big-league status should be put to rest, now that we
+## have a Sudoku Puzzle Solver. Take that, SAS!
+##    -- David Brahm (announcing the sudoku package)
+##       R-packages (January 2006)</code></pre>
 <p>Your original download of R is only a starting point. You can expand functionality of R with . To me, this is a bit like the toy train set that my son was obsessed with for a while. You first buy a very basic set that looks something like Figure <a href="r-preliminaries.html#fig:toy-train-basic">1.2</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:toy-train-basic"></span>
 <img src="figures/TrainBasic.JPG" alt="The toy version of base R." width="400pt" />
@@ -450,8 +500,7 @@ Figure 1.4: Telephone keypad with letters corresponding to each number.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;phonenumber&quot;</span>)</code></pre></div>
 <p>This downloads the package from CRAN and saves it in a special location on your computer where R can load it when you’re ready to use it.</p>
 <p>Just like R itself, packages often evolve and are updated by their maintainers. You should update your packages as new versions come out. Typically, you have to reinstall packages when you update your version of R, so this is a good chance to get the most up-to-date version of the packages you use.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fortunes)
-<span class="kw">fortune</span>(<span class="st">&quot;pizza&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;pizza&quot;</span>)</code></pre></div>
 <pre><code>## 
 ## Roger D. Peng: I don&#39;t think anyone actually believes that R is designed
 ## to make *everyone* happy. For me, R does about 99% of the things I need to
@@ -586,7 +635,7 @@ a</code></pre></div>
 ##     numString &lt;- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = &quot;&quot;))
 ## }
-## &lt;bytecode: 0x20e3580&gt;
+## &lt;bytecode: 0x553cfd0&gt;
 ## &lt;environment: namespace:phonenumber&gt;</code></pre>
 </div>
 <div id="assignment-operator-wars---vs." class="section level3">
@@ -616,6 +665,12 @@ one_to_ten</code></pre></div>
 <li>Use an underscore as a separator (<code>fedex_number</code>, not <code>fedex.number</code> or <code>fedexNumber</code>)</li>
 <li>Avoid using names that are already defined in R (e.g., don’t name an object <code>mean</code>, because a function named <code>mean</code> already exists)</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>(<span class="st">&quot;call your matrix&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Firstly, don&#39;t call your matrix &#39;matrix&#39;. Would you call your dog &#39;dog&#39;?
+## Anyway, it might clash with the function &#39;matrix&#39;.
+##    -- Barry Rowlingson
+##       R-help (October 2004)</code></pre>
 <p>Another good practice is to name objects after nouns (e.g., <code>fedex_number</code>) and later, when you start writing functions, name those after verbs (e.g., <code>call_fedex</code>). You’ll want your object names to be short enough that they don’t take forever to type as you’re coding, but not so short that you can’t remember what they stand for.</p>
 <div class="rmdtip">
 <p>
