@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-08-22">
+<meta name="date" content="2017-08-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -150,10 +150,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#in-course-exercise"><i class="fa fa-check"></i><b>1.6</b> In-course Exercise</a><ul>
 <li class="chapter" data-level="1.6.1" data-path="r-preliminaries.html"><a href="r-preliminaries.html#about-the-dataset"><i class="fa fa-check"></i><b>1.6.1</b> About the dataset</a></li>
-<li class="chapter" data-level="1.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>1.6.2</b> Getting the data onto your computer</a></li>
-<li class="chapter" data-level="1.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.3</b> Getting the data into R</a></li>
-<li class="chapter" data-level="1.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.4</b> Checking out the data</a></li>
-<li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.5</b> Using the data to answer questions</a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-preliminaries.html"><a href="r-preliminaries.html#manually-creating-vectors-and-a-dataframe"><i class="fa fa-check"></i><b>1.6.2</b> Manually creating vectors and a dataframe</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-preliminaries.html"><a href="r-preliminaries.html#installing-and-using-a-package"><i class="fa fa-check"></i><b>1.6.3</b> Installing and using a package</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-onto-your-computer"><i class="fa fa-check"></i><b>1.6.4</b> Getting the data onto your computer</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.5</b> Getting the data into R</a></li>
+<li class="chapter" data-level="1.6.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.6</b> Checking out the data</a></li>
+<li class="chapter" data-level="1.6.7" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.7</b> Using the data to answer questions</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Part II: Basics</b></span></li>
@@ -711,9 +713,77 @@ In this exercise, you’re using data posted by <a href="http://fivethirtyeight.
 <li>Who is Nate Silver?</li>
 </ul>
 </div>
+<div id="manually-creating-vectors-and-a-dataframe" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Manually creating vectors and a dataframe</h3>
+<p>Start by manually creating some vectors and data frames with a small subset of this data. * Use the concatenate function (<code>c</code>) to create a vector “from scratch” with the names of the five guests to appear on the show (these could be the first five guests, or you could also randomly pick five guests). Assign this vector to an object named <code>five_guests</code>. What class (numeric or character) do you think this vector will be? Will you need to use quotation marks for each element you add to the vector? * Use square bracket indexing to print out the following subsets of this vector (you’ll have one R call per subset): + The first guest in the vector + The third and fifth guests + The second through fourth guests * Create a new vector called <code>first_guest</code> with just the first set, using the square bracket indexing you used in the previous step. * In the same way, create a vector with the year of each of these guests’ appearances. Assign this vector to an object named <code>appearance_year</code>. What class (numeric or character) do you think this vector will be? Will you need to use quotation marks for each element you add to the vector? * Use the <code>class</code> function to determine the classes (e.g., numeric, character) of each of the vectors you just created. * Combine these two vectors to create a dataframe named <code>guest_list</code>. For the columns, use the same column names used in the original, raw data for the guest names and appearance year. Print out this dataframe at the R console to make sure it looks like you thought it would. * Use square bracket indexing to print out the following subsets of this dataframe (you’ll have one R call per subset): + The appearance year of the first guest + Names of the third through fifth guests + Names of all guests + Both names and appearance years of the first and third guests * The <code>str</code> function can be used to figure out the structure of a dataframe. Run this command on the <code>guest_list</code> dataframe you created. What information does this give you? Use the helpfile for <code>str</code> to help you figure this out (which you can access by running <code>?str</code>). Do you see anything that surprises you? * Use the <code>ls</code> function to list all the objects you currently have defined in your R session. Compare this list to the “Environment” pane in RStudio.</p>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># I picked five random guests from throughout the dataset. The guests you pick will </span>
+<span class="co"># likely be different.</span>
+
+<span class="co"># Create a vector with the names of five guests</span>
+five_guests &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Miss Piggy&quot;</span>, <span class="st">&quot;Stanley Tucci&quot;</span>, <span class="st">&quot;Kermit the Frog&quot;</span>,
+                 <span class="st">&quot;Hank Azaria&quot;</span>, <span class="st">&quot;Al Gore&quot;</span>)
+
+<span class="co"># Use square-bracket indexing to print out some subsets of the data</span>
+five_guests[<span class="dv">1</span>]
+five_guests[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)]
+five_guests[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]
+
+<span class="co"># Save just the first guest in a separate object</span>
+first_guest &lt;-<span class="st"> </span>five_guests[<span class="dv">1</span>]
+first_guest
+
+<span class="co"># Create a vector with the year of the appearance of each guest</span>
+appearance_year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1999</span>, <span class="dv">2000</span>, <span class="dv">2001</span>, <span class="dv">2001</span>, <span class="dv">2002</span>)
+
+<span class="co"># Figure out the classes of the two vectors you just created</span>
+<span class="kw">class</span>(five_guests)
+<span class="kw">class</span>(appearance_year)
+
+<span class="co"># Create the data frame, then print it out to make sure it looks like you thought</span>
+<span class="co"># it would</span>
+guest_list &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Raw_Guest_List =</span> five_guests,
+                         <span class="dt">YEAR =</span> appearance_year)
+guest_list
+
+<span class="co"># Use square bracket indexing to print subsets of the data frame</span>
+guest_list[<span class="dv">1</span>, <span class="dv">2</span>]
+guest_list[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span>]
+guest_list[ , <span class="dv">1</span>]
+guest_list[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ]
+
+<span class="co"># Use `str` to check out the structure of the data frame you created</span>
+<span class="kw">str</span>(guest_list)</code></pre></div>
+</div>
+<div id="installing-and-using-a-package" class="section level3">
+<h3><span class="header-section-number">1.6.3</span> Installing and using a package</h3>
+<p>The <code>stringr</code> package includes a number of functions that make it easier to work with character strings in R. In particular, it includes functions to change the capitalization of words in character stings. Here, you’ll install and load this package and then use it to work with the <code>five_guests</code> vector we created in the last section.</p>
+<ul>
+<li>If you have not already installed the <code>stringr</code> package, install it from CRAN.</li>
+<li>Load the <code>stringr</code> package in your current R session, so you will be able to use its functions.</li>
+<li>Check if the package has a vignette. If so, check out out that vignette.</li>
+<li>See if you can use the <code>str_to_lower</code> function from the <code>stringr</code> package to convert all the names in your <code>five_guests</code> vector to lowercase.</li>
+<li>See if you can find a function in the <code>stringr</code> package that you can use to convert all the names in your <code>five_guests</code> vector to uppercase. (Hint: At the R console, try typing <code>?stringr::</code> and then the Tab key.)</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If you need to, install the package from CRAN</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)
+
+<span class="co"># Load the package into your current R session</span>
+<span class="kw">library</span>(stringr)
+
+<span class="co"># Open the package&#39;s vignette</span>
+<span class="kw">vignette</span>(<span class="st">&quot;stringr&quot;</span>)
+
+<span class="co"># Convert the `five_guests` strings to lowercase</span>
+<span class="kw">str_to_lower</span>(five_guests)
+
+<span class="co"># Convert the `five_guests` strings to uppercase</span>
+<span class="kw">str_to_upper</span>(five_guests)</code></pre></div>
+</div>
 <div id="getting-the-data-onto-your-computer" class="section level3">
-<h3><span class="header-section-number">1.6.2</span> Getting the data onto your computer</h3>
-<p>First, download the data from GitHub onto your computer. Make a directory (folder) on your computer specifically for this course (I strongly recommend that you put it somewhere where the file path will not have any spaces in it– for example, putting it in your home directory, under the name “R_Prog_Course” would be great. Putting it in a directory called “R Prog Course” would not.). Put the <em>Daily Show</em> data in your directory for this course.</p>
+<h3><span class="header-section-number">1.6.4</span> Getting the data onto your computer</h3>
+<p>Next, we will work with the whole dataset. Download the data from GitHub onto your computer. Make a directory (folder) on your computer specifically for this course (I strongly recommend that you put it somewhere where the file path will not have any spaces in it– for example, putting it in your home directory, under the name “R_Prog_Course” would be great. Putting it in a directory called “R Prog Course” would not.). Put the <em>Daily Show</em> data in your directory for this course.</p>
 <p><strong>Take the following steps to get the data onto your computer</strong></p>
 <ul>
 <li>If you do not yet have a directory (folder) just for this course, make one someplace straightforward like in your home directory. Do not use any spaces in the directory name.</li>
@@ -739,7 +809,7 @@ In this exercise, you’re using data posted by <a href="http://fivethirtyeight.
 </ul>
 </div>
 <div id="getting-the-data-into-r" class="section level3">
-<h3><span class="header-section-number">1.6.3</span> Getting the data into R</h3>
+<h3><span class="header-section-number">1.6.5</span> Getting the data into R</h3>
 <p>Now that you have the dataset in your working directory, you can read it into R. This dataset is in a <em>.csv</em> (comma separated values) format. (We will talk more about different file formats next week.) You can read csv files into R using the <code>read.csv</code> function.</p>
 <p><strong>Read the data into your R session</strong></p>
 <ul>
@@ -761,7 +831,7 @@ In this exercise, you’re using data posted by <a href="http://fivethirtyeight.
 daily_show_first10</code></pre></div>
 </div>
 <div id="checking-out-the-data" class="section level3">
-<h3><span class="header-section-number">1.6.4</span> Checking out the data</h3>
+<h3><span class="header-section-number">1.6.6</span> Checking out the data</h3>
 <p>You now have the data available in the <code>daily_show</code> option. You’ll want to check it out to make sure it read in correctly, and also to get a feel for the data. Throughout, you can use the help pages to figure out more about any of the functions being used (for example, <code>?dim</code>).</p>
 <p><strong>Take the following steps to check out the dataset</strong></p>
 <ul>
@@ -783,7 +853,7 @@ daily_show_first10</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(daily_show, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
 </div>
 <div id="using-the-data-to-answer-questions" class="section level3">
-<h3><span class="header-section-number">1.6.5</span> Using the data to answer questions</h3>
+<h3><span class="header-section-number">1.6.7</span> Using the data to answer questions</h3>
 <p>Nate Silver was a guest on <em>The Daily Show</em>. Let’s use this data to figure out how many times he was a guest and when he was on the show.</p>
 <p><strong>Find out more about Nate Silver on The Daily Show</strong></p>
 <ul>
