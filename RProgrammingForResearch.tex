@@ -1604,16 +1604,17 @@ then press the tab key again.
 
 \subsection{About the dataset}\label{about-the-dataset}
 
-For today's class, you'll be using a dataset of all the guests on Jon
-Stewart's \emph{The Daily Show}. This data was originally collected by
-Nate Silver's website,
+For today's class, you'll be using a dataset of all the guests on
+\emph{The Daily Show} when Jon Stewart was the host. This data was
+originally collected by Nate Silver's website,
 \href{http://fivethirtyeight.com}{FiveThirtyEight} and is available on
 \href{https://github.com/fivethirtyeight/data/tree/master/daily-show-guests}{FiveThirtyEight's
 GitHub page} under the
 \href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons
-Attribution 4.0 International License}. The only change made to the
-original file was to add (commented) attribution information at the
-start of the file.
+Attribution 4.0 International License}. I have copied this data into my
+GitHub repository for this class. The only change made to the original
+file was to add (commented) attribution information at the start of the
+file.
 
 \textbf{First, check out a bit more about this data and its source:}
 
@@ -1627,20 +1628,22 @@ start of the file.
   It's often helpful to use prior knowledge to help check out or
   validate your dataset. One thing we might want to know about this data
   is if it covers the whole time that Jon Stewart hosted \emph{The Daily
-  Show}. Find out the dates he started and finished as host.
+  Show}. Use Google to find out the dates he started and finished as
+  host.
 \item
   Briefly browse around
   \href{https://github.com/fivethirtyeight/data}{FiveThirtyEight's
   GitHub data page}. What are some other datasets available that you
-  find interesting? You can scroll to the bottom of the page to get to
-  the compiled README.md content, which gives the full titles and links
-  to relevant datasets. You can also click on any dataset to get more
-  information.
+  find interesting? For any dataset, you can scroll to the bottom of the
+  page to get to the compiled README.md content, which gives the full
+  titles and links to relevant datasets. You can also click on any
+  dataset to get more information.
 \item
   Look at
   \href{https://github.com/fivethirtyeight/data/tree/master/daily-show-guests}{the
   GitHub page for this \emph{Daily Show} data}. How many columns will be
-  in this dataset? What kind of information does the data include?
+  in this dataset? What kind of information does the data include? What
+  do the columns show? What do the rows show?
 \end{itemize}
 
 \begin{rmdnote}
@@ -1822,6 +1825,11 @@ directory for this course.
 \begin{itemize}
 \tightlist
 \item
+  Find out what your home directory is in R. To do this, make sure R is
+  set to your home directory using \texttt{setwd("\textasciitilde{}")},
+  and then get R to print that home directory path using
+  \texttt{getwd()}.
+\item
   If you do not yet have a directory (folder) just for this course, make
   one someplace straightforward like in your home directory. Do not use
   any spaces in the directory name.
@@ -1831,16 +1839,12 @@ directory for this course.
   GitHub}. Right click on \texttt{Raw} and then choose ``Download linked
   file''. Put the file into the directory you created for this course.
 \item
-  Find out what your home directory is in R. To do this, make sure R is
-  set to your home directory using \texttt{setwd("\textasciitilde{}")},
-  and then get R to print that home directory path using
-  \texttt{getwd()}.
-\item
-  Outside of R, open Finder (or your system's equivalent). Go to your
-  home directory (mine, for example, is \texttt{/Users/brookeanderson}).
-  Figure out how to get from your home directory to the directory you
-  created for this course. For example, from my home directory, I would
-  go \texttt{RProgrammingForResearch} to \texttt{data}.
+  Outside of R, open Finder (for Macs), Windows Explorer (for Windows),
+  or your system's equivalent. Go to your home directory (mine, for
+  example, is \texttt{/Users/brookeanderson}). Figure out how to get
+  from your home directory to the directory you created for this course.
+  If you create the course directory as a subdirectory in your home
+  directory, this will just be one step from your home directory.
 \item
   Go back into R. Set R's working directory to your directory for this
   class using the \texttt{setwd} command, now that you know the pathname
@@ -1855,12 +1859,16 @@ The full R code for this task might look something like:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Set the working directory to your home directory}
 \KeywordTok{setwd}\NormalTok{(}\StringTok{"~"}\NormalTok{)}
+
+\CommentTok{# Print out the current working directory}
 \KeywordTok{getwd}\NormalTok{()}
 
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/RProgrammingForResearch/data"}\NormalTok{)}
-\KeywordTok{getwd}\NormalTok{()}
+\CommentTok{# Example code to re-set the working directory to your course directory}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/RProgrammingForResearch"}\NormalTok{)}
 
+\CommentTok{# List the files in your current working directory}
 \KeywordTok{list.files}\NormalTok{()}
 
 \StringTok{"daily_show_guests.csv"} \OperatorTok{%in%}\StringTok{ }\KeywordTok{list.files}\NormalTok{()}
@@ -1878,9 +1886,9 @@ If you have extra time:
 \subsection{Getting the data into R}\label{getting-the-data-into-r}
 
 Now that you have the dataset in your working directory, you can read it
-into R. This dataset is in a \emph{.csv} (comma separated values)
-format. (We will talk more about different file formats next week.) You
-can read csv files into R using the \texttt{read.csv} function.
+into R. This dataset is in a \emph{csv} (comma separated values) format.
+(We will talk more about different file formats next week.) You can read
+csv files into R using the \texttt{read.csv} function.
 
 \textbf{Read the data into your R session}
 
@@ -1891,9 +1899,10 @@ can read csv files into R using the \texttt{read.csv} function.
   as the object \texttt{daily\_show}.
 \item
   Use the help file for the \texttt{read.csv} function to figure out how
-  this function works. To pull that up, use \texttt{?read.csv}. Why are
-  we using the option \texttt{header\ =\ TRUE}? Can you figure out why
-  we're using the \texttt{skip} option, and why it's set to 4?
+  this function works. To pull that up, type \texttt{?read.csv} at the R
+  console. Why are we using the option \texttt{header\ =\ TRUE}? Can you
+  figure out why we're using the \texttt{skip} option, and why it's set
+  to 4?
 \item
   Note that you need to put the file name in quotation marks.
 \item
@@ -1908,6 +1917,7 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Read in dataframe from the csv file with Daily Show guests}
 \NormalTok{daily_show <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"daily_show_guests.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1925,12 +1935,20 @@ If you have extra time:
   Look through the help file for other options available for
   \texttt{read.csv}. Can you think of examples when some of these
   options would be useful?
+\item
+  Look again at the version of this raw data on FiveThirtyEight's GitHub
+  page (rather than the course's GitHub repository, where you downloaded
+  the data for the course exercise). How are these two versions of the
+  raw data different? How would you need to change your
+  \texttt{read.csv} call if you changed to use the FiveThirtyEight
+  version of the raw data?
 \end{itemize}
 
 Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Read in only the first 10 rows of the dataset}
 \NormalTok{daily_show_first10 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"daily_show_guests.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{,}
                        \DataTypeTok{skip =} \DecValTok{4}\NormalTok{, }\DataTypeTok{nrows =} \DecValTok{10}\NormalTok{)}
 \NormalTok{daily_show_first10}
@@ -1939,16 +1957,23 @@ Example R code:
 
 \subsection{Checking out the data}\label{checking-out-the-data}
 
-You now have the data available in the \texttt{daily\_show} option.
-You'll want to check it out to make sure it read in correctly, and also
-to get a feel for the data. Throughout, you can use the help pages to
-figure out more about any of the functions being used (for example,
-\texttt{?dim}).
+You now have the data available in your current R session as the
+\texttt{daily\_show} object. You'll want to check it out to make sure it
+read in correctly, and also to get a feel for the data. Throughout, you
+can use the help pages to figure out more about any of the functions
+being used (for example, \texttt{?dim}).
 
 \textbf{Take the following steps to check out the dataset}
 
 \begin{itemize}
 \tightlist
+\item
+  Use the \texttt{dim} function to find out how many rows and columns
+  this dataframe has. Based on what you found out about the data from
+  the GitHub page, does it have the number of columns you expected?
+  Based on what you know about the data (all the guests who came on The
+  Daily Show with Jon Stewart), do you think it has about the right
+  number of rows?
 \item
   Use indexing to look at the first two rows of the dataset. Based on
   this, what does each row ``measure''? What information do you get for
@@ -1962,13 +1987,6 @@ figure out more about any of the functions being used (for example,
   five rows and all the columns, you'd use
   \texttt{daily\_show{[}1:5,\ {]}}.
 \item
-  Use the \texttt{dim} function to find out how many rows and columns
-  this dataframe has. Based on what you found out about the data from
-  the GitHub page, does it have the number of columns you expected?
-  Based on what you know about the data (all the guests who came on The
-  Daily Show with Jon Stewart), do you think it has about the right
-  number of rows?
-\item
   Use the \texttt{head} function to look at the first few rows of the
   dataframe. Does it look like the rows go in order by date? What was
   the date of Jon Stewart's first show? Does it look like this dataset
@@ -1977,13 +1995,19 @@ figure out more about any of the functions being used (for example,
   Use the \texttt{tail} function to look at the last few rows of the
   dataframe. What is the last show date covered by the dataframe? Who
   was the last guest?
+\item
+  Use the \texttt{str} function to get more details about the
+  \texttt{daily\_show} dataframe you read in.
 \end{itemize}
 
 Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Use indexing to see a subset of the data}
 \NormalTok{daily_show[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, ]}
+
+\CommentTok{# Check the dimensions of the data}
 \KeywordTok{dim}\NormalTok{(daily_show)}
 \KeywordTok{head}\NormalTok{(daily_show)}
 \KeywordTok{tail}\NormalTok{(daily_show)}
@@ -2004,6 +2028,7 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Look at the first few rows of the data}
 \KeywordTok{head}\NormalTok{(daily_show, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2019,9 +2044,13 @@ figure out how many times he was a guest and when he was on the show.
 \begin{itemize}
 \tightlist
 \item
-  Use the \texttt{subset} function to create a new dataframe that only
-  has the rows of \texttt{daily\_show} when Nate Silve was a guest. Put
-  it in the object \texttt{nate\_silver}.
+  The \texttt{subset} function can be combined with logical statements
+  to help you create a specific subset of data. For example, if you only
+  wanted data from guest visits in 1999, you could run
+  \texttt{subset(daily\_show,\ YEAR\ ==\ 1999)}. Check out the helpfile
+  for \texttt{subset} and use the function to create a new dataframe
+  that only has the rows of \texttt{daily\_show} when Nate Silve was a
+  guest. Put it in the object \texttt{nate\_silver}.
 \item
   Print out the full \texttt{nate\_silver} dataframe by typing
   \texttt{nate\_silver}. (You could just use this to answer both
@@ -2045,8 +2074,11 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Create a subset of the data with just Nate Silver appearances}
 \NormalTok{nate_silver <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(daily_show, }
 \NormalTok{                      Raw_Guest_List }\OperatorTok{==}\StringTok{ "Nate Silver"}\NormalTok{)}
+
+\CommentTok{# Investigate this subset of the data}
 \NormalTok{nate_silver}
 \KeywordTok{dim}\NormalTok{(nate_silver)}
 \KeywordTok{nrow}\NormalTok{(nate_silver)}
@@ -9729,11 +9761,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.30\\
+a & 0.68\\
 \hline
-b & -0.24\\
+b & -1.16\\
 \hline
-c & 1.66\\
+c & 2.62\\
 \hline
 \end{tabular}
 \end{table}
@@ -10248,10 +10280,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X         Y         Z
-## 1 2009-01-01 -0.08409145 -3.356560 -3.223800
-## 2 2009-01-02  0.68633595  2.295211 -2.057320
-## 3 2009-01-03 -0.38283837 -1.498462 -5.832615
+##         time          X          Y         Z
+## 1 2009-01-01  1.5607203  0.6252967  3.291394
+## 2 2009-01-02 -1.1269785 -0.1569488  2.046607
+## 3 2009-01-03 -0.9533519  0.5571280 -2.167143
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10268,10 +10300,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X         Y         Z
-## 1 2009-01-01 -0.08409145 -3.356560 -3.223800
-## 2 2009-01-02  0.68633595  2.295211 -2.057320
-## 3 2009-01-03 -0.38283837 -1.498462 -5.832615
+##         time          X          Y         Z
+## 1 2009-01-01  1.5607203  0.6252967  3.291394
+## 2 2009-01-02 -1.1269785 -0.1569488  2.046607
+## 3 2009-01-03 -0.9533519  0.5571280 -2.167143
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10288,11 +10320,11 @@ data:
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X -0.08409145
-## 2 2009-01-02     X  0.68633595
-## 3 2009-01-03     X -0.38283837
-## 4 2009-01-04     X  0.75163718
-## 5 2009-01-05     X  0.05511159
+## 1 2009-01-01     X  1.56072031
+## 2 2009-01-02     X -1.12697852
+## 3 2009-01-03     X -0.95335185
+## 4 2009-01-04     X -0.24940974
+## 5 2009-01-05     X -0.03264983
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10307,11 +10339,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X -0.08409145
-## 2 2009-01-02     X  0.68633595
-## 3 2009-01-03     X -0.38283837
-## 4 2009-01-04     X  0.75163718
-## 5 2009-01-05     X  0.05511159
+## 1 2009-01-01     X  1.56072031
+## 2 2009-01-02     X -1.12697852
+## 3 2009-01-03     X -0.95335185
+## 4 2009-01-04     X -0.24940974
+## 5 2009-01-05     X -0.03264983
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10367,12 +10399,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X         Y         Z
-## 1 2009-01-01 -0.08409145 -3.356560 -3.223800
-## 2 2009-01-02  0.68633595  2.295211 -2.057320
-## 3 2009-01-03 -0.38283837 -1.498462 -5.832615
-## 4 2009-01-04  0.75163718 -1.906658 -6.998759
-## 5 2009-01-05  0.05511159  3.160168 -2.544582
+##         time           X          Y         Z
+## 1 2009-01-01  1.56072031  0.6252967  3.291394
+## 2 2009-01-02 -1.12697852 -0.1569488  2.046607
+## 3 2009-01-03 -0.95335185  0.5571280 -2.167143
+## 4 2009-01-04 -0.24940974  2.7178129 -3.855688
+## 5 2009-01-05 -0.03264983 -2.2058752  5.131630
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10397,11 +10429,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.2149069 0.6678344
-## 2     Y    10 -0.1353834 2.3370826
-## 3     Z    10 -2.4261513 3.7192797
+##   stock     N         mean       sd
+##   <chr> <int>        <dbl>    <dbl>
+## 1     X    10 -0.007699889 1.060316
+## 2     Y    10  0.749201291 2.173026
+## 3     Z    10 -0.255773679 4.219087
 \end{verbatim}
 
 \begin{Shaded}
@@ -10420,7 +10452,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.21 (0.67) & -0.14 (2.34) & -2.43 (3.72)\\
+Mean (Std.dev.) & -0.01 (1.06) & 0.75 (2.17) & -0.26 (4.22)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
