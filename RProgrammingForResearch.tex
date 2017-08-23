@@ -9691,11 +9691,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 1.06\\
+a & -0.86\\
 \hline
-b & 0.52\\
+b & -0.46\\
 \hline
-c & -0.83\\
+c & 0.21\\
 \hline
 \end{tabular}
 \end{table}
@@ -10210,10 +10210,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.9862901 -1.8711176 -2.2286377
-## 2 2009-01-02 -0.9580033 -0.5903058  2.2537816
-## 3 2009-01-03 -0.9873168 -1.7349092 -0.1838483
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2151893 -1.907208  6.585197
+## 2 2009-01-02 -0.4507691 -3.696109  2.918561
+## 3 2009-01-03 -1.4346991 -1.728096 -4.547237
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10230,10 +10230,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.9862901 -1.8711176 -2.2286377
-## 2 2009-01-02 -0.9580033 -0.5903058  2.2537816
-## 3 2009-01-03 -0.9873168 -1.7349092 -0.1838483
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2151893 -1.907208  6.585197
+## 2 2009-01-02 -0.4507691 -3.696109  2.918561
+## 3 2009-01-03 -1.4346991 -1.728096 -4.547237
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10250,11 +10250,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.9862901
-## 2 2009-01-02     X -0.9580033
-## 3 2009-01-03     X -0.9873168
-## 4 2009-01-04     X -0.2376346
-## 5 2009-01-05     X  0.3898179
+## 1 2009-01-01     X -1.2151893
+## 2 2009-01-02     X -0.4507691
+## 3 2009-01-03     X -1.4346991
+## 4 2009-01-04     X  0.3443066
+## 5 2009-01-05     X -1.1146538
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10269,11 +10269,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.9862901
-## 2 2009-01-02     X -0.9580033
-## 3 2009-01-03     X -0.9873168
-## 4 2009-01-04     X -0.2376346
-## 5 2009-01-05     X  0.3898179
+## 1 2009-01-01     X -1.2151893
+## 2 2009-01-02     X -0.4507691
+## 3 2009-01-03     X -1.4346991
+## 4 2009-01-04     X  0.3443066
+## 5 2009-01-05     X -1.1146538
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10329,12 +10329,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.9862901 -1.8711176 -2.2286377
-## 2 2009-01-02 -0.9580033 -0.5903058  2.2537816
-## 3 2009-01-03 -0.9873168 -1.7349092 -0.1838483
-## 4 2009-01-04 -0.2376346  1.4750231  8.6259102
-## 5 2009-01-05  0.3898179  1.0376165 -1.3563679
+##         time          X         Y          Z
+## 1 2009-01-01 -1.2151893 -1.907208  6.5851966
+## 2 2009-01-02 -0.4507691 -3.696109  2.9185608
+## 3 2009-01-03 -1.4346991 -1.728096 -4.5472374
+## 4 2009-01-04  0.3443066 -1.974640  1.4380049
+## 5 2009-01-05 -1.1146538  3.732213  0.9894321
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10359,11 +10359,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10 -0.06997203 0.9611283
-## 2     Y    10 -0.72650933 1.5656476
-## 3     Z    10  2.91503194 4.7436027
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 -0.7055683 0.9953095
+## 2     Y    10 -0.8364679 1.9610281
+## 3     Z    10  0.3855676 3.0637371
 \end{verbatim}
 
 \begin{Shaded}
@@ -10382,7 +10382,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.07 (0.96) & -0.73 (1.57) & 2.92 (4.74)\\
+Mean (Std.dev.) & -0.71 (1) & -0.84 (1.96) & 0.39 (3.06)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
