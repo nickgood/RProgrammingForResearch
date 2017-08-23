@@ -348,6 +348,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><a href="https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week1.pdf">Download</a> a pdf of the lecture slides covering this topic.</p>
 <div id="r-and-r-studio" class="section level2">
 <h2><span class="header-section-number">1.1</span> R and R Studio</h2>
+<div class="rmdtip">
+<p>
+One of the strengths of R is that many different programmers have developed and shared their own extensions of R, called “packages”. We’ll talk a lot more about packages later in this section, but we wanted to introduce one here. The <code>fortunes</code> package allows you to read some notable quotes about R. These quotes are often by leaders in the R community, and they were often originally from R help listservs. We’ll use this package throughout the book to add in some of the R “fortunes” as topics they cover come up.
+</p>
+</div>
 <div id="what-is-r" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> What is R?</h3>
 <p>R in an open-source programming language that evolved from the S language. The S language was developed at Bell Labs in the 1970s, which is the same place (and about the same time) that the C programming language was developed.</p>
@@ -371,7 +376,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><em>Gratis</em>: Free as in beer</li>
 <li><em>Libre</em>: Free as in speech</li>
 </ul>
-<p>Open-source software software is the <em>libre</em> type of free. This means that, with software that is open-source, you can:</p>
+<div class="figure" style="text-align: center"><span id="fig:open-source-overview"></span>
+<img src="figures/OpenSourceOverview.png" alt="An overview of how software can be each type of free (beer and speech). For software programs developed using a compiled programming language, the final product that you open on your computer is run by machine-readable binary code. A developer can give you this code for free (as in beer) without sharing any of the original source code with you. This means you can't dig in to figure out how the software works and how you can extend it. By contrast, open-source software (free as in speech) is software for which you have access to the human-readable code that was used as in input in creating the software binaries. With open-source code, you can figure out exactly how the program is coded." width="400pt" />
+<p class="caption">
+Figure 1.1: An overview of how software can be each type of free (beer and speech). For software programs developed using a compiled programming language, the final product that you open on your computer is run by machine-readable binary code. A developer can give you this code for free (as in beer) without sharing any of the original source code with you. This means you can’t dig in to figure out how the software works and how you can extend it. By contrast, open-source software (free as in speech) is software for which you have access to the human-readable code that was used as in input in creating the software binaries. With open-source code, you can figure out exactly how the program is coded.
+</p>
+</div>
+<p>Open-source software software is the <em>libre</em> type of free (Figure <a href="r-preliminaries.html#fig:open-source-overview">1.1</a>). This means that, with software that is open-source, you can:</p>
 <ul>
 <li>Access all of the code that makes up the software</li>
 <li>Change the code as you’d like for your own applications</li>
@@ -409,29 +420,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">1.2</span> The “package” system</h2>
 <div id="r-packages" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> R packages</h3>
-<p>Your original download of R is only a starting point. To me, this is a bit like the toy train set that my son was obsessed with for a while. You first buy a very basic set that looks something like Figure <a href="r-preliminaries.html#fig:toy-train-basic">1.1</a>.</p>
+<p>Your original download of R is only a starting point. To me, this is a bit like the toy train set that my son was obsessed with for a while. You first buy a very basic set that looks something like Figure <a href="r-preliminaries.html#fig:toy-train-basic">1.2</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:toy-train-basic"></span>
 <img src="figures/TrainBasic.JPG" alt="The toy version of base R." width="400pt" />
 <p class="caption">
-Figure 1.1: The toy version of base R.
+Figure 1.2: The toy version of base R.
 </p>
 </div>
-<p>To take full advantage of R, you’ll want to add on packages. In the case of the train set, at this point, a doting grandparent adds on extensively through birthday presents, so you end up with something that looks like Figure <a href="r-preliminaries.html#fig:toy-train-fancy">1.2</a>.</p>
+<p>To take full advantage of R, you’ll want to add on packages. In the case of the train set, at this point, a doting grandparent adds on extensively through birthday presents, so you end up with something that looks like Figure <a href="r-preliminaries.html#fig:toy-train-fancy">1.3</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:toy-train-fancy"></span>
 <img src="figures/TrainComplex.JPG" alt="The toy version of what your R set-up will look like once you find cool packages to use for your research." width="400pt" />
 <p class="caption">
-Figure 1.2: The toy version of what your R set-up will look like once you find cool packages to use for your research.
+Figure 1.3: The toy version of what your R set-up will look like once you find cool packages to use for your research.
 </p>
 </div>
 <p>The main source for installing packages for R remains the Comprehensive R Archive Network, or <a href="https://cran.r-project.org">CRAN</a>. However, <a href="https://github.com">GitHub</a> is growing in popularity, especially for packages that are still in development. You can also create and share packages among your collaborators or co-workers, without ever posting them publicly.</p>
 </div>
 <div id="installing-from-cran" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Installing from CRAN</h3>
-<p>The most popular place from which to get packages is currently CRAN. You can install packages from CRAN using R code. For example, telephone keypads include letters for each number (Figure <a href="r-preliminaries.html#fig:phone-keypad">1.3</a>), which allow companies to have “named” phone numbers that are easier for people to remember, like 1-800-GO-FEDEX and 1-800-FLOWERS.</p>
+<p>The most popular place from which to get packages is currently CRAN. You can install packages from CRAN using R code. For example, telephone keypads include letters for each number (Figure <a href="r-preliminaries.html#fig:phone-keypad">1.4</a>), which allow companies to have “named” phone numbers that are easier for people to remember, like 1-800-GO-FEDEX and 1-800-FLOWERS.</p>
 <div class="figure" style="text-align: center"><span id="fig:phone-keypad"></span>
 <img src="figures/telephone_keypad.png" alt="Telephone keypad with letters corresponding to each number." width="150pt" />
 <p class="caption">
-Figure 1.3: Telephone keypad with letters corresponding to each number.
+Figure 1.4: Telephone keypad with letters corresponding to each number.
 </p>
 </div>
 <p>The <code>phonenumber</code> package is a cool little package that will convert between numbers and letters based on the telephone keypad. Since this package is on CRAN, you can install the package to your computer using the <code>install.packages</code> function:</p>

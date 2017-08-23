@@ -601,6 +601,17 @@ a pdf of the lecture slides covering this topic.
 
 \section{R and R Studio}\label{r-and-r-studio}
 
+\begin{rmdtip}
+One of the strengths of R is that many different programmers have
+developed and shared their own extensions of R, called ``packages''.
+We'll talk a lot more about packages later in this section, but we
+wanted to introduce one here. The \texttt{fortunes} package allows you
+to read some notable quotes about R. These quotes are often by leaders
+in the R community, and they were often originally from R help
+listservs. We'll use this package throughout the book to add in some of
+the R ``fortunes'' as topics they cover come up.
+\end{rmdtip}
+
 \subsection{What is R?}\label{what-is-r}
 
 R in an open-source programming language that evolved from the S
@@ -664,8 +675,18 @@ It helps to consider some different meanings of the word ``free''.
   \emph{Libre}: Free as in speech
 \end{itemize}
 
-Open-source software software is the \emph{libre} type of free. This
-means that, with software that is open-source, you can:
+\begin{figure}
+
+{\centering \includegraphics[width=400pt]{figures/OpenSourceOverview} 
+
+}
+
+\caption{An overview of how software can be each type of free (beer and speech). For software programs developed using a compiled programming language, the final product that you open on your computer is run by machine-readable binary code. A developer can give you this code for free (as in beer) without sharing any of the original source code with you. This means you can't dig in to figure out how the software works and how you can extend it. By contrast, open-source software (free as in speech) is software for which you have access to the human-readable code that was used as in input in creating the software binaries. With open-source code, you can figure out exactly how the program is coded.}\label{fig:open-source-overview}
+\end{figure}
+
+Open-source software software is the \emph{libre} type of free (Figure
+\ref{fig:open-source-overview}). This means that, with software that is
+open-source, you can:
 
 \begin{itemize}
 \tightlist
@@ -4546,7 +4567,7 @@ Example R code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 \subsection{A taste of what's to
 come\ldots{}}\label{a-taste-of-whats-to-come}
@@ -4737,7 +4758,7 @@ directory for this course is your working directory):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 \chapter{Exploring data \#1}\label{exploring-data-1}
 
@@ -4977,7 +4998,7 @@ Instead of mapping an aesthetic to an element of your data, you can use
 a constant value for it. For example, you may want to make all the
 points green, rather than having color map to gender:
 
-\begin{center}\includegraphics[width=0.6\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-143-1} \end{center}
+\begin{center}\includegraphics[width=0.6\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-144-1} \end{center}
 
 In this case, you'll define that aesthetic when you add the geom,
 outside of an \texttt{aes} statement. In R, you can specify the shape of
@@ -6561,7 +6582,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-194-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6570,7 +6591,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-194-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6579,7 +6600,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-194-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6588,7 +6609,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-194-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-4} \end{center}
 
 Create a scatterplot of \texttt{Time} versus \texttt{Passes}. To change
 the size of the points, use the \texttt{size} argument (use a number
@@ -6604,7 +6625,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-196-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6613,7 +6634,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-196-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6622,7 +6643,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-196-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6631,7 +6652,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-195-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-196-4} \end{center}
 
 Use the \texttt{ggpairs} function from the \texttt{GGally} package to
 plot scatterplots of all combinations of several numeric variables.
@@ -6644,7 +6665,7 @@ plot scatterplots of all combinations of several numeric variables.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-196-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-197-1} \end{center}
 
 To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \texttt{geom\_boxplot}:
@@ -6656,7 +6677,7 @@ To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-197-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-198-1} \end{center}
 
 The top four teams in this World Cup were Spain, the Netherlands,
 Germany, and Uruguay. Create a subset with just the data for these four
@@ -6688,7 +6709,7 @@ aesthetic:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-199-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6698,7 +6719,7 @@ aesthetic:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-199-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-2} \end{center}
 
 \subsubsection{If you have extra time:}\label{if-you-have-extra-time}
 
@@ -6728,11 +6749,11 @@ plots once you've created them):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-1.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-2.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-3.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-4.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-200-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-201-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-201-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-201-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-201-5.pdf}
 
 A few things to note in this example:
 
@@ -7208,7 +7229,7 @@ points gray). Use the values from \texttt{coef} with a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 Plot some plots to check model assumptions for the model you fit using
 the \texttt{plot()} function on your model object:
@@ -7220,7 +7241,7 @@ the \texttt{plot()} function on your model object:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7337,7 +7358,7 @@ Use a boxplot to visually compare PM10 by day of week.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-221-1.pdf}
 
 Now try the same plot, but try using the \texttt{ylim\ =} option to
 change the limits on the y-axis for the graph, so you can get a better
@@ -7357,7 +7378,7 @@ include them all).
 ## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-222-1.pdf}
 
 Create a subset called \texttt{summer} with just the summer days:
 
@@ -7821,7 +7842,7 @@ series by using a thick red line.
 In the below graphs, the names of the players with the most shots and
 passes have been added to highlight these unusual points. \bigskip
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 One helpful way to annotate is with text, using \texttt{geom\_text()}.
 For this, you'll first need to create a dataframe with the hottest day
@@ -7848,7 +7869,7 @@ in the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-230-1} \end{center}
+\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-1} \end{center}
 
 With \texttt{geom\_text}, you'll often want to use position adjustment
 (the \texttt{position} parameter) to move the text so it won't be right
@@ -7862,7 +7883,7 @@ on top of the data points:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.5\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-1} \end{center}
+\begin{center}\includegraphics[width=0.5\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-232-1} \end{center}
 
 You can also use lines to highlight. For this, it is often useful to
 create a new dataframe with data for the reference. To add a line for
@@ -7889,7 +7910,7 @@ to ensure the line will be placed above the mortality data.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-233-1} \end{center}
+\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-234-1} \end{center}
 
 \section{Order}\label{order}
 
@@ -7901,7 +7922,7 @@ You can make the ranking of data clearer from a graph by using order to
 show rank. Often, factor or categorical variables are ordered by
 something that is not interesting, like alphabetical order.
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 You can re-order factor variables in a graph by resetting the factor
 using the \texttt{factor} function and changing the order that levels
@@ -7922,7 +7943,7 @@ Typically, in small multiples, all plots use the same x- and y-axes.
 This makes it easier to compare across plots, and it also allows you to
 save room by limiting axis annotation.
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 You can use the \texttt{facet} functions to create small multiples. This
 separates the graph into several small graphs, one for each level of a
@@ -7949,7 +7970,7 @@ when plotting height versus weight, you can call:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 The \texttt{facet\_grid} function can facet by one or two variables. One
 will be shown by rows, and one by columns:
@@ -7996,7 +8017,7 @@ Notice that the labels for the two graphs have now changed:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 To re-order the factor, and show the plot for ``Female'' first, you can
 use \texttt{factor} to change the order of the levels:
@@ -8018,7 +8039,7 @@ Now notice that the order of the plots has changed:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \section{Advanced customization}\label{advanced-customization}
 
@@ -8052,7 +8073,7 @@ and position shown by color:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-244-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-245-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8065,7 +8086,7 @@ and position shown by color:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-245-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-246-1} \end{center}
 
 Parameters you might find useful in \texttt{scale} functions include:
 
@@ -8097,7 +8118,7 @@ the x-axis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-247-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-248-1} \end{center}
 
 And here's an example of changing the formating and name of the x-axis:
 
@@ -8110,7 +8131,7 @@ And here's an example of changing the formating and name of the x-axis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-248-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-249-1} \end{center}
 
 You can also use the \texttt{scale} functions to transform an axis. For
 example, to show the Chicago plot with ``deaths'' on a log scale, you
@@ -8124,7 +8145,7 @@ can run:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-249-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-1} \end{center}
 
 For colors and fills, the conventions for the names of the
 \texttt{scale} functions can vary. For example, to adjust the color
@@ -8154,9 +8175,9 @@ colors.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-1}
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-2}
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-3}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-1}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-2}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-3}
 
 Use the \texttt{palette} argument within a \texttt{scales} function to
 customize the palette:
@@ -8174,7 +8195,7 @@ customize the palette:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-1}
+\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-252-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8186,7 +8207,7 @@ customize the palette:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-252-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-253-1} \end{center}
 
 You can also set colors manually:
 
@@ -8200,7 +8221,7 @@ You can also set colors manually:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-253-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-254-1} \end{center}
 
 \section{To find out more}\label{to-find-out-more}
 
@@ -8314,7 +8335,7 @@ Use the R base graphics to create a scatterplot of Time versus Shots:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-257-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-258-1.pdf}
 
 Use some of the plotting options to improve the graph's appearance:
 
@@ -8328,13 +8349,13 @@ Use some of the plotting options to improve the graph's appearance:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-258-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-259-1.pdf}
 
 \subsection{Fancier graphs}\label{fancier-graphs}
 
 In this section, we'll work on creating a plot like this:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-259-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-260-1.pdf}
 
 Try the following tasks:
 
@@ -8399,7 +8420,7 @@ Time for the \texttt{worldcup} data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-261-1.pdf}
 
 To add a clearer x-axis label that the current one, use \texttt{xlab()}:
 
@@ -8411,7 +8432,7 @@ To add a clearer x-axis label that the current one, use \texttt{xlab()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-261-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 To make the points smaller, use the \texttt{size} option in
 \texttt{geom\_point()} (smaller than about 2 = smaller than default,
@@ -8425,7 +8446,7 @@ larger than about 2 = larger than default):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-262-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-263-1.pdf}
 
 To make the points semi-transparent, use the \texttt{alpha} option in
 \texttt{geom\_point()} (closer to 0 = more tranparent, closer to 1 =
@@ -8439,7 +8460,7 @@ more opaque):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-263-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-264-1.pdf}
 
 To jitter the points some, use the \texttt{position\ =\ "jitter"} option
 in \texttt{geom\_point()}:
@@ -8453,7 +8474,7 @@ in \texttt{geom\_point()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-264-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-265-1.pdf}
 
 As an alternative, you could also jitter the points by using
 \texttt{geom\_jitter} rather than \texttt{geom\_point}:
@@ -8466,7 +8487,7 @@ As an alternative, you could also jitter the points by using
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-266-1.pdf}
 
 \begin{rmdnote}
 ``Jittering'' the points means adding some extra random noise in either
@@ -8510,7 +8531,7 @@ To color points by this variable, use \texttt{color\ =} in the
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-268-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-269-1.pdf}
 
 To create nicer labels for the legend for color, convert the
 \texttt{top\_four} column into the factor class, with the labels you
@@ -8540,7 +8561,7 @@ want to use in the figure legend:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-270-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-271-1.pdf}
 
 As a note, you can use the \texttt{scale\_color\_discrete()} function to
 put in a nicer legend title:
@@ -8556,7 +8577,7 @@ put in a nicer legend title:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-271-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-272-1.pdf}
 
 To create small multiples, use the \texttt{facet\_grid()} command:
 
@@ -8572,7 +8593,7 @@ To create small multiples, use the \texttt{facet\_grid()} command:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-272-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-273-1.pdf}
 
 To re-order the \texttt{Position} column of the dataframe, use the
 \texttt{levels} option of the \texttt{factor()} function. This re-sets
@@ -8612,7 +8633,7 @@ Then use the same code from before for your plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-276-1.pdf}
 
 You can use the \texttt{filter} function with a logical statement
 comparing \texttt{Shots} to the maximum value of \texttt{Shots}
@@ -8656,7 +8677,7 @@ to add some padding so the label wouldn't be right on top of the point.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 Try out different themes for the plot. First, I'll save everything we've
 done so far as the object \texttt{shot\_plot}, then I'll try adding
@@ -8680,7 +8701,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8688,7 +8709,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8696,7 +8717,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8704,7 +8725,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8712,7 +8733,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8720,7 +8741,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-6.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-6.pdf}
 
 \subsection{Data visualization
 cheatsheet}\label{data-visualization-cheatsheet}
@@ -9755,17 +9776,17 @@ amounts, use a vector with one element for each column.\strut
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-297}My new table}
+\caption{\label{tab:unnamed-chunk-298}My new table}
 \centering
 \begin{tabular}[t]{r|c}
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.68\\
+a & 0.61\\
 \hline
-b & -1.16\\
+b & -1.52\\
 \hline
-c & 2.62\\
+c & -0.10\\
 \hline
 \end{tabular}
 \end{table}
@@ -10280,10 +10301,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  1.5607203  0.6252967  3.291394
-## 2 2009-01-02 -1.1269785 -0.1569488  2.046607
-## 3 2009-01-03 -0.9533519  0.5571280 -2.167143
+##         time          X         Y          Z
+## 1 2009-01-01 -0.4384006 0.4807271  3.8096639
+## 2 2009-01-02 -1.0781864 1.1226463 -0.9442393
+## 3 2009-01-03  1.1319701 1.8633697  6.8367516
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10300,10 +10321,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  1.5607203  0.6252967  3.291394
-## 2 2009-01-02 -1.1269785 -0.1569488  2.046607
-## 3 2009-01-03 -0.9533519  0.5571280 -2.167143
+##         time          X         Y          Z
+## 1 2009-01-01 -0.4384006 0.4807271  3.8096639
+## 2 2009-01-02 -1.0781864 1.1226463 -0.9442393
+## 3 2009-01-03  1.1319701 1.8633697  6.8367516
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10319,12 +10340,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  1.56072031
-## 2 2009-01-02     X -1.12697852
-## 3 2009-01-03     X -0.95335185
-## 4 2009-01-04     X -0.24940974
-## 5 2009-01-05     X -0.03264983
+##         time stock      price
+## 1 2009-01-01     X -0.4384006
+## 2 2009-01-02     X -1.0781864
+## 3 2009-01-03     X  1.1319701
+## 4 2009-01-04     X  0.2158769
+## 5 2009-01-05     X  1.1034130
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10338,12 +10359,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  1.56072031
-## 2 2009-01-02     X -1.12697852
-## 3 2009-01-03     X -0.95335185
-## 4 2009-01-04     X -0.24940974
-## 5 2009-01-05     X -0.03264983
+##         time stock      price
+## 1 2009-01-01     X -0.4384006
+## 2 2009-01-02     X -1.0781864
+## 3 2009-01-03     X  1.1319701
+## 4 2009-01-04     X  0.2158769
+## 5 2009-01-05     X  1.1034130
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10386,7 +10407,7 @@ Notice how easy it is, now that the data is gathered, to use
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-319-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-320-1.pdf}
 
 If you have data in a ``long'' format and would like to spread it out,
 you can use \texttt{spread} to do that:
@@ -10399,12 +10420,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y         Z
-## 1 2009-01-01  1.56072031  0.6252967  3.291394
-## 2 2009-01-02 -1.12697852 -0.1569488  2.046607
-## 3 2009-01-03 -0.95335185  0.5571280 -2.167143
-## 4 2009-01-04 -0.24940974  2.7178129 -3.855688
-## 5 2009-01-05 -0.03264983 -2.2058752  5.131630
+##         time          X          Y          Z
+## 1 2009-01-01 -0.4384006  0.4807271  3.8096639
+## 2 2009-01-02 -1.0781864  1.1226463 -0.9442393
+## 3 2009-01-03  1.1319701  1.8633697  6.8367516
+## 4 2009-01-04  0.2158769 -0.8593481 -0.2404864
+## 5 2009-01-05  1.1034130 -1.4338731  5.2069456
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10429,11 +10450,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N         mean       sd
-##   <chr> <int>        <dbl>    <dbl>
-## 1     X    10 -0.007699889 1.060316
-## 2     Y    10  0.749201291 2.173026
-## 3     Z    10 -0.255773679 4.219087
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.1342499 0.7753865
+## 2     Y    10 -0.2747215 1.4878207
+## 3     Z    10  1.1101716 4.3760984
 \end{verbatim}
 
 \begin{Shaded}
@@ -10452,7 +10473,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.01 (1.06) & 0.75 (2.17) & -0.26 (4.22)\\
+Mean (Std.dev.) & 0.13 (0.78) & -0.27 (1.49) & 1.11 (4.38)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -10676,7 +10697,7 @@ Use this new dataframe to plot deaths by date using \texttt{ggplot}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-328-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-329-1.pdf}
 
 \subsection{More extensive data
 wrangling}\label{more-extensive-data-wrangling}
@@ -10970,7 +10991,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-338-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10981,7 +11002,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-338-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-2.pdf}
 
 Try using the option \texttt{scales\ =\ "free\_y"} in the
 \texttt{facet\_wrap()} function (in the \texttt{gridExtra} package) and
@@ -10996,7 +11017,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-340-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11007,7 +11028,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-340-2.pdf}
 
 Put all of the steps of this cleaning process into just a few
 ``chaining'' calls. (Note: I'm using \texttt{sub} here instead of
@@ -11144,7 +11165,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
   yourselves first.
 \end{itemize}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-341-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-342-1.pdf}
 
 \chapter{Exploring data \#2}\label{exploring-data-2}
 
@@ -11566,7 +11587,7 @@ tools.
 
 Loops can be very useful for more complex repeated tasks. For example:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-362-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-363-1.pdf}
 
 Creating this graph requires that you:
 
@@ -11717,7 +11738,7 @@ Create the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-368-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-369-1.pdf}
 
 \section{Other control structures}\label{other-control-structures}
 
@@ -12728,7 +12749,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-409-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-410-1} \end{center}
 
 \subsubsection{Example R code}\label{example-r-code-10}
 
@@ -12763,7 +12784,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-410-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-411-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -12856,7 +12877,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-414-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-415-1} \end{center}
 
 \begin{itemize}
 \tightlist
