@@ -156,6 +156,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.6.5" data-path="r-preliminaries.html"><a href="r-preliminaries.html#getting-the-data-into-r"><i class="fa fa-check"></i><b>1.6.5</b> Getting the data into R</a></li>
 <li class="chapter" data-level="1.6.6" data-path="r-preliminaries.html"><a href="r-preliminaries.html#checking-out-the-data"><i class="fa fa-check"></i><b>1.6.6</b> Checking out the data</a></li>
 <li class="chapter" data-level="1.6.7" data-path="r-preliminaries.html"><a href="r-preliminaries.html#using-the-data-to-answer-questions"><i class="fa fa-check"></i><b>1.6.7</b> Using the data to answer questions</a></li>
+<li class="chapter" data-level="1.6.8" data-path="r-preliminaries.html"><a href="r-preliminaries.html#writing-your-code-as-an-r-script"><i class="fa fa-check"></i><b>1.6.8</b> Writing your code as an R script</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Part II: Basics</b></span></li>
@@ -894,6 +895,19 @@ statisticians</code></pre></div>
 <span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation <span class="op">==</span><span class="st"> &quot;orca trainer&quot;</span>)
 <span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation <span class="op">==</span><span class="st"> &quot;Puzzle Creator&quot;</span>)
 <span class="kw">subset</span>(daily_show, GoogleKnowlege_Occupation <span class="op">==</span><span class="st"> &quot;Scholar&quot;</span>)</code></pre></div>
+</div>
+<div id="writing-your-code-as-an-r-script" class="section level3">
+<h3><span class="header-section-number">1.6.8</span> Writing your code as an R script</h3>
+<p>While the R console is fine for initially exploring data, you should get in the habit of writing up R code in an R script for most of your data analysis projects in R.</p>
+<ul>
+<li>Open a new R script and save it to your current working directory (i.e., wherever you saved the data you downloaded for this exercise).</li>
+<li>Take some of the code that you wrote for this exercise (including the function to read the data into R). Put it in the R script. Do not put more than one function call per line (but it’s fine to have longer function calls span a few lines).</li>
+<li>Use the “Run” button to run a single line of this code. Check the console to see what happens when you do.</li>
+<li>Highlight a few lines of the code and use “Run” to run them.</li>
+<li>Try using the keyboard shortcut (Command-Return) to run the line of code your cursor is currently on. Try doing this with a function call that runs across several lines of the R script file– what do you see at the console?</li>
+<li>Try running the whole script using “Source”. Again, look at the console after you “source” the script.</li>
+<li>Close your R session (and save any changes to your R script). Do <strong>not</strong> save your R session history. Re-open R and see if you can re-open your R script and re-run it. Try using <code>ls()</code> to list the objects in your R session before and after you re-run your script. Does anything about the results surprise you?</li>
+</ul>
 
 </div>
 </div>

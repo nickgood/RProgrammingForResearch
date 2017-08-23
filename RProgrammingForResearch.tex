@@ -2124,6 +2124,44 @@ Example R code:
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{Writing your code as an R
+script}\label{writing-your-code-as-an-r-script}
+
+While the R console is fine for initially exploring data, you should get
+in the habit of writing up R code in an R script for most of your data
+analysis projects in R.
+
+\begin{itemize}
+\tightlist
+\item
+  Open a new R script and save it to your current working directory
+  (i.e., wherever you saved the data you downloaded for this exercise).
+\item
+  Take some of the code that you wrote for this exercise (including the
+  function to read the data into R). Put it in the R script. Do not put
+  more than one function call per line (but it's fine to have longer
+  function calls span a few lines).
+\item
+  Use the ``Run'' button to run a single line of this code. Check the
+  console to see what happens when you do.
+\item
+  Highlight a few lines of the code and use ``Run'' to run them.
+\item
+  Try using the keyboard shortcut (Command-Return) to run the line of
+  code your cursor is currently on. Try doing this with a function call
+  that runs across several lines of the R script file-- what do you see
+  at the console?
+\item
+  Try running the whole script using ``Source''. Again, look at the
+  console after you ``source'' the script.
+\item
+  Close your R session (and save any changes to your R script). Do
+  \textbf{not} save your R session history. Re-open R and see if you can
+  re-open your R script and re-run it. Try using \texttt{ls()} to list
+  the objects in your R session before and after you re-run your script.
+  Does anything about the results surprise you?
+\end{itemize}
+
 \part{Part II: Basics}\label{part-part-ii-basics}
 
 \chapter{Entering and cleaning data
@@ -9691,11 +9729,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.86\\
+a & -0.30\\
 \hline
-b & -0.46\\
+b & -0.24\\
 \hline
-c & 0.21\\
+c & 1.66\\
 \hline
 \end{tabular}
 \end{table}
@@ -10210,10 +10248,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -1.2151893 -1.907208  6.585197
-## 2 2009-01-02 -0.4507691 -3.696109  2.918561
-## 3 2009-01-03 -1.4346991 -1.728096 -4.547237
+##         time           X         Y         Z
+## 1 2009-01-01 -0.08409145 -3.356560 -3.223800
+## 2 2009-01-02  0.68633595  2.295211 -2.057320
+## 3 2009-01-03 -0.38283837 -1.498462 -5.832615
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10230,10 +10268,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -1.2151893 -1.907208  6.585197
-## 2 2009-01-02 -0.4507691 -3.696109  2.918561
-## 3 2009-01-03 -1.4346991 -1.728096 -4.547237
+##         time           X         Y         Z
+## 1 2009-01-01 -0.08409145 -3.356560 -3.223800
+## 2 2009-01-02  0.68633595  2.295211 -2.057320
+## 3 2009-01-03 -0.38283837 -1.498462 -5.832615
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10249,12 +10287,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -1.2151893
-## 2 2009-01-02     X -0.4507691
-## 3 2009-01-03     X -1.4346991
-## 4 2009-01-04     X  0.3443066
-## 5 2009-01-05     X -1.1146538
+##         time stock       price
+## 1 2009-01-01     X -0.08409145
+## 2 2009-01-02     X  0.68633595
+## 3 2009-01-03     X -0.38283837
+## 4 2009-01-04     X  0.75163718
+## 5 2009-01-05     X  0.05511159
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10268,12 +10306,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -1.2151893
-## 2 2009-01-02     X -0.4507691
-## 3 2009-01-03     X -1.4346991
-## 4 2009-01-04     X  0.3443066
-## 5 2009-01-05     X -1.1146538
+##         time stock       price
+## 1 2009-01-01     X -0.08409145
+## 2 2009-01-02     X  0.68633595
+## 3 2009-01-03     X -0.38283837
+## 4 2009-01-04     X  0.75163718
+## 5 2009-01-05     X  0.05511159
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10329,12 +10367,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y          Z
-## 1 2009-01-01 -1.2151893 -1.907208  6.5851966
-## 2 2009-01-02 -0.4507691 -3.696109  2.9185608
-## 3 2009-01-03 -1.4346991 -1.728096 -4.5472374
-## 4 2009-01-04  0.3443066 -1.974640  1.4380049
-## 5 2009-01-05 -1.1146538  3.732213  0.9894321
+##         time           X         Y         Z
+## 1 2009-01-01 -0.08409145 -3.356560 -3.223800
+## 2 2009-01-02  0.68633595  2.295211 -2.057320
+## 3 2009-01-03 -0.38283837 -1.498462 -5.832615
+## 4 2009-01-04  0.75163718 -1.906658 -6.998759
+## 5 2009-01-05  0.05511159  3.160168 -2.544582
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10361,9 +10399,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 -0.7055683 0.9953095
-## 2     Y    10 -0.8364679 1.9610281
-## 3     Z    10  0.3855676 3.0637371
+## 1     X    10  0.2149069 0.6678344
+## 2     Y    10 -0.1353834 2.3370826
+## 3     Z    10 -2.4261513 3.7192797
 \end{verbatim}
 
 \begin{Shaded}
@@ -10382,7 +10420,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.71 (1) & -0.84 (1.96) & 0.39 (3.06)\\
+Mean (Std.dev.) & 0.21 (0.67) & -0.14 (2.34) & -2.43 (3.72)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
