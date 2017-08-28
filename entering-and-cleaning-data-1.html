@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-08-23">
+<meta name="date" content="2017-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -312,8 +312,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="B" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html"><i class="fa fa-check"></i><b>B</b> Appendix B: Homework</a><ul>
 <li class="chapter" data-level="B.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-1"><i class="fa fa-check"></i><b>B.1</b> Homework #1</a><ul>
-<li class="chapter" data-level="B.1.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#getting-started"><i class="fa fa-check"></i><b>B.1.1</b> Getting started</a></li>
-<li class="chapter" data-level="B.1.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#swirl-lessons"><i class="fa fa-check"></i><b>B.1.2</b> Swirl lessons</a></li>
+<li class="chapter" data-level="B.1.1" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#option-1"><i class="fa fa-check"></i><b>B.1.1</b> Option 1</a></li>
+<li class="chapter" data-level="B.1.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#option-2"><i class="fa fa-check"></i><b>B.1.2</b> Option 2</a></li>
 <li class="chapter" data-level="B.1.3" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#special-swirl-commands"><i class="fa fa-check"></i><b>B.1.3</b> Special swirl commands</a></li>
 </ul></li>
 <li class="chapter" data-level="B.2" data-path="appendix-b-homework.html"><a href="appendix-b-homework.html#homework-2"><i class="fa fa-check"></i><b>B.2</b> Homework #2</a></li>
@@ -1203,20 +1203,15 @@ You must use the <code>format</code> argument to specify what your date column l
 <h2><span class="header-section-number">2.6</span> In-course Exercise</h2>
 <div id="checking-out-directory-structures" class="section level3">
 <h3><span class="header-section-number">2.6.1</span> Checking out directory structures</h3>
-<p>Download the whole directory for this week from Github. Put the “data” directory as a subdirectory in your directory for this class. To do that, go the the <a href="https://github.com/geanders/RProgrammingForResearch">GitHub page for the course</a> and, in the top right, choose “Clone or Download” and then choose “Download ZIP”. Then move the “data” subdirectory into your course directory and throw away rest of what you downloaded.</p>
-<div class="rmdnote">
-<p>
-Unfortunately, while GitHub will let you download data files one at a time, it doesn’t offer a straightforward way of downloading a whole subdirectory from a repository. For this task, where you’re pulling all of the data in the “data” subdirectory of the course repository, the quickest method is to download the entire directory, find and move the subdirectory that you need, and then delete the rest.
-</p>
-</div>
+<p>Download the whole directory for this week from Github (<a href="https://github.com/geanders/week_2_data" class="uri">https://github.com/geanders/week_2_data</a>). To do that, go the the <a href="https://github.com/geanders/week_2_data">GitHub page with data for this week’s exercise</a> and, in the top right, choose “Clone or Download” and then choose “Download ZIP”. This will download a compressed file with the full directory of data, probably to your computer’s “Downloads” folder. Then move the directory into your course directory and “unzip” it (try double-clicking the file, or right click on the file and see if there’s a “decompress” or “unzip” option). Rename this subdirectory “data” (don’t do this in R, just use whatever technique you usually use on your computer to rename directories).</p>
 <ul>
-<li>Look through the structure of the “data” directory. What files are in the directory? What subdirectories? Sketch out the structure of this directory.</li>
+<li>Look through the structure of the “data” directory. What files are in the directory? What subdirectories? Sketch out the structure of this directory (this should look similar to the “directory structure” slide we went over in the course notes).</li>
 <li>Create a new R script to put all the code you use for this exercise. Create a subdirectory in your course directory called “R” and save this script there using a <code>.R</code> extension (e.g., “week_2.R”).</li>
 </ul>
 </div>
 <div id="using-relative-and-absolute-file-pathnames" class="section level3">
 <h3><span class="header-section-number">2.6.2</span> Using relative and absolute file pathnames</h3>
-<p>Once you have the data, I’d like you to try using <code>setwd()</code> to move around the directories on your computer. For this section of the exercise, you’ll try to open the same file from different working directories, to get practice using absolute and relative file pathnames.</p>
+<p>Once you have the data, I’d like you to try using <code>setwd()</code> to move around the directories on your computer. For this section of the exercise, you’ll also try to open the same file from different working directories, to get practice using absolute and relative file pathnames.</p>
 <p>Start by changing your working directory to the “data” subdirectory you just downloaded. For me, the absolute path to that is <code>/Users/brookeanderson/RProgrammingForResearch/data</code>, so to change my working directory to this one using an absolute file pathname, I would run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Users/brookeanderson/RProgrammingForResearch/data&quot;</span>)
 <span class="kw">getwd</span>()</code></pre></div>
@@ -1239,13 +1234,13 @@ Since “~” is shorthand for my home directory (“/Users/brookeanderson”), 
 ## [17] &quot;serial_phone_data.csv&quot;    &quot;titanic.csv&quot;</code></pre>
 <p>Try the following tasks:</p>
 <ul>
-<li>Read in the ebola data in <code>country_timeseries.csv</code>. Save it as the R object <code>ebola</code>. How many rows and columns does it have? What are the names of the columns?</li>
+<li>Read in the ebola data in <code>country_timeseries.csv</code>. Assign it to an R object named <code>ebola</code>. How many rows and columns does it have? What are the names of the columns?</li>
 <li>Now try moving up one directory from your current working directory (which should be the “data” directory), into the directory you created for this course. What happens if you use the same code as before to read in the file? What do you need to change to be able to read the file in from here? Try to read in the data from here using:
 <ul>
 <li>A relative pathname</li>
 <li>An absolute pathname</li>
 </ul></li>
-<li>Now move down into the subdirectory of “data” called “measles_data”. Try to read in the Ebola data from this working directory using:
+<li>Now move your working directory to be the subdirectory of “data” called “measles_data”. Try to read in the Ebola data from this working directory using:
 <ul>
 <li>A relative pathname</li>
 <li>An absolute pathname</li>
@@ -1347,7 +1342,12 @@ ebola &lt;-<span class="st"> </span><span class="kw">read.csv</span>(abs_path, <
 <li>Read in the SAS file <code>icu.sas7bdat</code>. To do this, use the <a href="https://github.com/hadley/haven"><code>haven</code> package</a>. Read the file into the R object <code>icu</code>.</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ld_genetics &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/ld_genetics.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the `readr` package</span>
+<span class="kw">library</span>(readr)
+
+<span class="co"># Use `read_delim` to read this file. You need to specify what the delimiter </span>
+<span class="co"># is with the `delim` argument. `\t` stands for &quot;Tab&quot;.</span>
+ld_genetics &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/ld_genetics.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
 <span class="kw">summary</span>(ld_genetics)</code></pre></div>
 <pre><code>##       pos                nA            nC              nG       
 ##  Min.   :    500   Min.   :185   Min.   :120.0   Min.   : 85.0  
@@ -1370,17 +1370,26 @@ ebola &lt;-<span class="st"> </span><span class="kw">read.csv</span>(abs_path, <
 ##  Mean   : 7855  
 ##  3rd Qu.:15036  
 ##  Max.   :19049</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ca_measles &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,
-                         <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use `read_delim` to read this file. You need to specify what the delimiter </span>
+<span class="co"># is with the `delim` argument. `\t` stands for &quot;Tab&quot;. Because the first line</span>
+<span class="co"># of the file is *not* the column names, you need to specify what the column</span>
+<span class="co"># names should be with the `col_names` parameter. </span>
+ca_measles &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,
+                         <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>), <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
 <span class="kw">head</span>(ca_measles)</code></pre></div>
-<pre><code>##                 city count
+<pre><code>## # A tibble: 6 x 2
+##                 city count
+##                &lt;chr&gt; &lt;int&gt;
 ## 1            ALAMEDA     6
 ## 2        LOS ANGELES    20
 ## 3 City of Long Beach     2
 ## 4   City of Pasadena     4
 ## 5              MARIN     2
 ## 6             ORANGE    34</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># You&#39;ll need the `readxl` package to read in this file. Load that. </span>
+<span class="kw">library</span>(readxl)
+
+<span class="co"># Use the `read_excel` function to read in the file. </span>
 icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/icd-10.xls&quot;</span>)
 <span class="kw">head</span>(icd10)</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
@@ -1392,7 +1401,10 @@ icd10 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span cla
 ## 4   A00.0 Cholera due to Vibrio cholerae 01, biovar cholerae
 ## 5   A00.1    Cholera due to Vibrio cholerae 01, biovar eltor
 ## 6   A00.9                               Cholera, unspecified</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># You&#39;ll need the `haven` function to read in this file. Load that.</span>
+<span class="kw">library</span>(haven)
+
+<span class="co"># Use the `read_sas` function to read in this file.</span>
 icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/icu.sas7bdat&quot;</span>)
 icu[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
 <pre><code>## # A tibble: 5 x 5
@@ -1494,7 +1506,7 @@ ebola_liberia &lt;-<span class="st"> </span>ebola <span class="op">%&gt;%</span>
 
 ## Plot the data
 <span class="kw">plot</span>(ebola_liberia<span class="op">$</span>date, ebola_liberia<span class="op">$</span>cases)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 </div>
 <div id="a-taste-of-whats-to-come" class="section level3">
 <h3><span class="header-section-number">2.6.5</span> A taste of what’s to come…</h3>
@@ -1594,7 +1606,7 @@ df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class=
        <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> count)) <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">geom_line</span>()  <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>city)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-148-1.png" width="960" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="960" /></p>
 
 </div>
 </div>
