@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x37abaf0>
+## <bytecode: 0x3cdb5c0>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -2845,7 +2845,7 @@ directories and set a new working directory using pathnames and the
 
 Finally, later in the course, we'll talk about using R Projects from
 within RStudio. If you open an R Project, R will start in that project's
-working dirctory (the directory in which the \texttt{.Rproj} file for
+working directory (the directory in which the \texttt{.Rproj} file for
 the project is stored).
 
 \subsection{File and directory
@@ -3114,7 +3114,7 @@ wanted to paste all the values together without spaces, you could use
 
 As a shortcut, instead of using the \texttt{sep\ =\ ""} option, you
 could achieve the same thing using the \texttt{paste0} function. This
-function is almost exacly like \texttt{paste}, but it defaults to
+function is almost exactly like \texttt{paste}, but it defaults to
 \texttt{""} (i.e., no space) as the separator between values by default:
 
 \begin{Shaded}
@@ -3146,7 +3146,7 @@ using these functions to start to get a feel for them.
 \section{Reading data into R}\label{reading-data-into-r}
 
 Data comes in files of all shapes and sizes. R has the capability to
-read data in from many of these, even priorietary files for other
+read data in from many of these, even proprietary files for other
 software (e.g., Excel and SAS files). As a small sample, here are some
 of the types of data files that R can read and work with:
 
@@ -3834,7 +3834,7 @@ scientists, you can run:
 ## 6 Astrophysicist 1/30/07  Science    Neil deGrasse Tyson
 \end{verbatim}
 
-To build a logical statment to use in \texttt{filter}, you'll need to
+To build a logical statement to use in \texttt{filter}, you'll need to
 know some of R's logical operators. Some of the most commonly used ones
 are:
 
@@ -4155,7 +4155,7 @@ this package to parse dates much more easily, without having to specify
 specific starting formats.
 
 The \texttt{ymd} function from lubridate can be used to parse a column
-into a Date clase, regardless of the original format of the date, as
+into a Date class, regardless of the original format of the date, as
 long as the date elements are in the order: year, month, day. For
 example:
 
@@ -4638,7 +4638,7 @@ Try the following tasks:
   Check out the file ``measles\_data/02-09-2015.txt''. What type of flat
   file do you think it is? Stay in the ``data'' directory and use a
   relative pathname to read the file in and save it as the R object
-  \texttt{ca\_measles}. Use the \texttt{col.names} option to name the
+  \texttt{ca\_measles}. Use the \texttt{col\_names} option to name the
   columns ``city'' and ``count''. What would the default column names be
   if you didn't use this option?
 \item
@@ -4659,9 +4659,8 @@ Example R code:
 \CommentTok{# Load the `readr` package}
 \KeywordTok{library}\NormalTok{(readr)}
 
-\CommentTok{# Use `read_delim` to read this file. You need to specify what the delimiter }
-\CommentTok{# is with the `delim` argument. `\textbackslash{}t` stands for "Tab".}
-\NormalTok{ld_genetics <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"data/ld_genetics.txt"}\NormalTok{, }\DataTypeTok{delim =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\CommentTok{# Use `read_tsv` to read this file. }
+\NormalTok{ld_genetics <-}\StringTok{ }\KeywordTok{read_tsv}\NormalTok{(}\StringTok{"data/ld_genetics.txt"}\NormalTok{)}
 \KeywordTok{summary}\NormalTok{(ld_genetics)}
 \end{Highlighting}
 \end{Shaded}
@@ -4692,12 +4691,11 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Use `read_delim` to read this file. You need to specify what the delimiter }
-\CommentTok{# is with the `delim` argument. `\textbackslash{}t` stands for "Tab". Because the first line}
+\CommentTok{# Use `read_tsv` to read this file. Because the first line}
 \CommentTok{# of the file is *not* the column names, you need to specify what the column}
 \CommentTok{# names should be with the `col_names` parameter. }
-\NormalTok{ca_measles <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"data/measles_data/02-09-2015.txt"}\NormalTok{,}
-                         \DataTypeTok{col_names =} \KeywordTok{c}\NormalTok{(}\StringTok{"city"}\NormalTok{, }\StringTok{"count"}\NormalTok{), }\DataTypeTok{delim =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{ca_measles <-}\StringTok{ }\KeywordTok{read_tsv}\NormalTok{(}\StringTok{"data/measles_data/02-09-2015.txt"}\NormalTok{,}
+                       \DataTypeTok{col_names =} \KeywordTok{c}\NormalTok{(}\StringTok{"city"}\NormalTok{, }\StringTok{"count"}\NormalTok{))}
 \KeywordTok{head}\NormalTok{(ca_measles)}
 \end{Highlighting}
 \end{Shaded}
@@ -4765,7 +4763,7 @@ If you have extra time:
 \tightlist
 \item
   Is there a way to read the ``ld\_genetics.txt'' file in using
-  \texttt{read.table()} and specific options? If so, try to read the
+  \texttt{read\_delim()} and specific options? If so, try to read the
   data in using that function. Why can you use both \texttt{read.delim}
   and \texttt{read.table} to read in this file?
 \end{itemize}
@@ -4774,20 +4772,41 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{## Using the read.table function }
-\NormalTok{ld_genetics <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"data/ld_genetics.txt"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{,}
-                          \DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{## Using the read_delim function with the `delim` argument specified to `"\textbackslash{}t"`.}
+\NormalTok{ld_genetics <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"data/ld_genetics.txt"}\NormalTok{, }\DataTypeTok{delim =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   pos = col_integer(),
+##   nA = col_integer(),
+##   nC = col_integer(),
+##   nG = col_integer(),
+##   nT = col_integer(),
+##   GCsk = col_integer(),
+##   TAsk = col_integer(),
+##   cGCsk = col_integer(),
+##   cTAsk = col_integer()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{ld_genetics[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    pos  nA  nC  nG  nT
-## 1  500 307 153 192 348
-## 2 1500 310 169 207 314
-## 3 2500 319 167 177 337
-## 4 3500 373 164 168 295
-## 5 4500 330 175 224 271
+## # A tibble: 5 x 5
+##     pos    nA    nC    nG    nT
+##   <int> <int> <int> <int> <int>
+## 1   500   307   153   192   348
+## 2  1500   310   169   207   314
+## 3  2500   319   167   177   337
+## 4  3500   373   164   168   295
+## 5  4500   330   175   224   271
 \end{verbatim}
 
 \subsection{Cleaning up data}\label{cleaning-up-data}
@@ -10193,11 +10212,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.02\\
+a & -0.83\\
 \hline
-b & -0.28\\
+b & -0.42\\
 \hline
-c & -0.27\\
+c & 0.86\\
 \hline
 \end{tabular}
 \end{table}
@@ -10712,10 +10731,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y        Z
-## 1 2009-01-01 -0.9869168  0.2968138 2.571791
-## 2 2009-01-02  1.5323443 -4.9755363 4.408298
-## 3 2009-01-03 -0.6680570  0.5570748 3.987766
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2310944 -3.196428 -1.792398
+## 2 2009-01-02  2.0017059 -3.347798  1.839397
+## 3 2009-01-03 -0.8079211 -4.399936  6.748484
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10732,10 +10751,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y        Z
-## 1 2009-01-01 -0.9869168  0.2968138 2.571791
-## 2 2009-01-02  1.5323443 -4.9755363 4.408298
-## 3 2009-01-03 -0.6680570  0.5570748 3.987766
+##         time          X         Y         Z
+## 1 2009-01-01 -1.2310944 -3.196428 -1.792398
+## 2 2009-01-02  2.0017059 -3.347798  1.839397
+## 3 2009-01-03 -0.8079211 -4.399936  6.748484
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10751,12 +10770,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X -0.98691684
-## 2 2009-01-02     X  1.53234432
-## 3 2009-01-03     X -0.66805702
-## 4 2009-01-04     X -0.05765503
-## 5 2009-01-05     X -1.93306619
+##         time stock      price
+## 1 2009-01-01     X -1.2310944
+## 2 2009-01-02     X  2.0017059
+## 3 2009-01-03     X -0.8079211
+## 4 2009-01-04     X -1.4787862
+## 5 2009-01-05     X  0.3075898
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10770,12 +10789,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X -0.98691684
-## 2 2009-01-02     X  1.53234432
-## 3 2009-01-03     X -0.66805702
-## 4 2009-01-04     X -0.05765503
-## 5 2009-01-05     X -1.93306619
+##         time stock      price
+## 1 2009-01-01     X -1.2310944
+## 2 2009-01-02     X  2.0017059
+## 3 2009-01-03     X -0.8079211
+## 4 2009-01-04     X -1.4787862
+## 5 2009-01-05     X  0.3075898
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10831,12 +10850,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y        Z
-## 1 2009-01-01 -0.98691684  0.2968138 2.571791
-## 2 2009-01-02  1.53234432 -4.9755363 4.408298
-## 3 2009-01-03 -0.66805702  0.5570748 3.987766
-## 4 2009-01-04 -0.05765503 -1.7311015 1.902580
-## 5 2009-01-05 -1.93306619  0.2808407 1.772015
+##         time          X          Y         Z
+## 1 2009-01-01 -1.2310944 -3.1964276 -1.792398
+## 2 2009-01-02  2.0017059 -3.3477980  1.839397
+## 3 2009-01-03 -0.8079211 -4.3999365  6.748484
+## 4 2009-01-04 -1.4787862 -0.0501619 -5.897630
+## 5 2009-01-05  0.3075898 -1.1750339  0.746340
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10861,11 +10880,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean       sd
-##   <chr> <int>       <dbl>    <dbl>
-## 1     X    10 -0.12544403 1.003537
-## 2     Y    10  0.06740482 2.237703
-## 3     Z    10  1.82868240 2.224728
+##   stock     N       mean       sd
+##   <chr> <int>      <dbl>    <dbl>
+## 1     X    10 -0.1852102 1.268802
+## 2     Y    10 -1.2314339 1.951851
+## 3     Z    10  0.1444207 4.915781
 \end{verbatim}
 
 \begin{Shaded}
@@ -10884,7 +10903,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.13 (1) & 0.07 (2.24) & 1.83 (2.22)\\
+Mean (Std.dev.) & -0.19 (1.27) & -1.23 (1.95) & 0.14 (4.92)\\
 \hline
 N & 10 & 10 & 10\\
 \hline

@@ -384,7 +384,7 @@ Figure 2.1: An example of file directory structure.
 <p>This means that, for my current R session, R is working in the <code>RProgrammingForResearch</code> subdirectory of my <code>brookeanderson</code> directory (which is my home directory).</p>
 <p>There are a few general rules for which working directory R will start in when you open an R session. These are not absolute rules, but they’re generally true. If you have R closed, and you open it by double-clicking on an R script, then R will generally open with, as its working directory, the directory in which that script is stored. This is often a very convenient convention, because often any of the data you’ll be reading in for that script is somewhere near where the script file is saved in the directory structure.</p>
 <p>If you open R by double-clicking on the R icon in “Applications” (or something similar on a PC), R will start in its default working directory. You can find out what this is, or change it, in RStudio’s “Preferences”. I have never had a compelling reason to change this on my own computer, as I find it very easy to just move around the directories and set a new working directory using pathnames and the <code>setwd()</code> function.</p>
-<p>Finally, later in the course, we’ll talk about using R Projects from within RStudio. If you open an R Project, R will start in that project’s working dirctory (the directory in which the <code>.Rproj</code> file for the project is stored).</p>
+<p>Finally, later in the course, we’ll talk about using R Projects from within RStudio. If you open an R Project, R will start in that project’s working directory (the directory in which the <code>.Rproj</code> file for the project is stored).</p>
 </div>
 <div id="file-and-directory-pathnames" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> File and directory pathnames</h3>
@@ -467,7 +467,7 @@ heat_mort &lt;- read.csv(my_file)</code></pre>
 <p>The <code>paste()</code> function has an option called <code>sep =</code>. This tells R what you want to use to separate the values you’re pasting together in the output. The default is for R to use a space, as shown in the example above. To change the separator, you can change this option, and you can put in just about anything you want. For example, if you wanted to paste all the values together without spaces, you could use <code>sep = &quot;&quot;</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;SundayMondayTuesday&quot;</code></pre>
-<p>As a shortcut, instead of using the <code>sep = &quot;&quot;</code> option, you could achieve the same thing using the <code>paste0</code> function. This function is almost exacly like <code>paste</code>, but it defaults to <code>&quot;&quot;</code> (i.e., no space) as the separator between values by default:</p>
+<p>As a shortcut, instead of using the <code>sep = &quot;&quot;</code> option, you could achieve the same thing using the <code>paste0</code> function. This function is almost exactly like <code>paste</code>, but it defaults to <code>&quot;&quot;</code> (i.e., no space) as the separator between values by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="st">&quot;Sunday&quot;</span>, <span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;SundayMondayTuesday&quot;</code></pre>
 <p>With pathnames, you will usually not want spaces. Therefore, you could think about using <code>paste0()</code> to write an object with the pathname you want to ultimately use in commands like <code>list.files()</code> and <code>setwd()</code>. This will allow you to keep your code cleaner, since you can now divide long pathnames over multiple lines:</p>
@@ -478,7 +478,7 @@ heat_mort &lt;- read.csv(my_file)</code></pre>
 </div>
 <div id="reading-data-into-r" class="section level2">
 <h2><span class="header-section-number">2.3</span> Reading data into R</h2>
-<p>Data comes in files of all shapes and sizes. R has the capability to read data in from many of these, even priorietary files for other software (e.g., Excel and SAS files). As a small sample, here are some of the types of data files that R can read and work with:</p>
+<p>Data comes in files of all shapes and sizes. R has the capability to read data in from many of these, even proprietary files for other software (e.g., Excel and SAS files). As a small sample, here are some of the types of data files that R can read and work with:</p>
 <ul>
 <li>Flat files (much more about these in just a minute)</li>
 <li>Files from other statistical packages (SAS, Excel, Stata, SPSS)</li>
@@ -865,7 +865,7 @@ Don’t forget that, if you want to change column names in the saved object, you
 ## 4         doctor  9/6/05  Science        Dr. Marc Siegel
 ## 5      astronaut 2/13/06  Science Astronaut Mike Mullane
 ## 6 Astrophysicist 1/30/07  Science    Neil deGrasse Tyson</code></pre>
-<p>To build a logical statment to use in <code>filter</code>, you’ll need to know some of R’s logical operators. Some of the most commonly used ones are:</p>
+<p>To build a logical statement to use in <code>filter</code>, you’ll need to know some of R’s logical operators. Some of the most commonly used ones are:</p>
 <table>
 <thead>
 <tr class="header">
@@ -1145,7 +1145,7 @@ You must use the <code>format</code> argument to specify what your date column l
 </p>
 </div>
 <p>There is also a function in the tidyverse, called <code>lubridate</code>, that helps in parsing dates. In many cases you can use functions from this package to parse dates much more easily, without having to specify specific starting formats.</p>
-<p>The <code>ymd</code> function from lubridate can be used to parse a column into a Date clase, regardless of the original format of the date, as long as the date elements are in the order: year, month, day. For example:</p>
+<p>The <code>ymd</code> function from lubridate can be used to parse a column into a Date class, regardless of the original format of the date, as long as the date elements are in the order: year, month, day. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
 <span class="kw">ymd</span>(<span class="st">&quot;2008-10-13&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;2008-10-13&quot;</code></pre>
@@ -1337,7 +1337,7 @@ ebola &lt;-<span class="st"> </span><span class="kw">read.csv</span>(abs_path, <
 <p>Try the following tasks:</p>
 <ul>
 <li>What type of flat file do you think the “ld_genetics.txt” file is? See if you can read it in and save it as the R object <code>ld_genetics</code>. Use the <code>summary</code> function to check out basic statistics on the data.</li>
-<li>Check out the file “measles_data/02-09-2015.txt”. What type of flat file do you think it is? Stay in the “data” directory and use a relative pathname to read the file in and save it as the R object <code>ca_measles</code>. Use the <code>col.names</code> option to name the columns “city” and “count”. What would the default column names be if you didn’t use this option?</li>
+<li>Check out the file “measles_data/02-09-2015.txt”. What type of flat file do you think it is? Stay in the “data” directory and use a relative pathname to read the file in and save it as the R object <code>ca_measles</code>. Use the <code>col_names</code> option to name the columns “city” and “count”. What would the default column names be if you didn’t use this option?</li>
 <li>Read in the Excel file “icd-10.xls” and assign it to the object name <code>idc10</code>. Use the <a href="https://github.com/hadley/readxl"><code>readxl</code> package to do that</a> (examples are at the bottom of the linked page).</li>
 <li>Read in the SAS file <code>icu.sas7bdat</code>. To do this, use the <a href="https://github.com/hadley/haven"><code>haven</code> package</a>. Read the file into the R object <code>icu</code>.</li>
 </ul>
@@ -1345,9 +1345,8 @@ ebola &lt;-<span class="st"> </span><span class="kw">read.csv</span>(abs_path, <
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the `readr` package</span>
 <span class="kw">library</span>(readr)
 
-<span class="co"># Use `read_delim` to read this file. You need to specify what the delimiter </span>
-<span class="co"># is with the `delim` argument. `\t` stands for &quot;Tab&quot;.</span>
-ld_genetics &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/ld_genetics.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
+<span class="co"># Use `read_tsv` to read this file. </span>
+ld_genetics &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;data/ld_genetics.txt&quot;</span>)
 <span class="kw">summary</span>(ld_genetics)</code></pre></div>
 <pre><code>##       pos                nA            nC              nG       
 ##  Min.   :    500   Min.   :185   Min.   :120.0   Min.   : 85.0  
@@ -1370,12 +1369,11 @@ ld_genetics &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<sp
 ##  Mean   : 7855  
 ##  3rd Qu.:15036  
 ##  Max.   :19049</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use `read_delim` to read this file. You need to specify what the delimiter </span>
-<span class="co"># is with the `delim` argument. `\t` stands for &quot;Tab&quot;. Because the first line</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use `read_tsv` to read this file. Because the first line</span>
 <span class="co"># of the file is *not* the column names, you need to specify what the column</span>
 <span class="co"># names should be with the `col_names` parameter. </span>
-ca_measles &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,
-                         <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>), <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
+ca_measles &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;data/measles_data/02-09-2015.txt&quot;</span>,
+                       <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
 <span class="kw">head</span>(ca_measles)</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##                 city count
@@ -1417,19 +1415,32 @@ icu[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
 ## 5    27     1    76      1     1</code></pre>
 <p>If you have extra time:</p>
 <ul>
-<li>Is there a way to read the “ld_genetics.txt” file in using <code>read.table()</code> and specific options? If so, try to read the data in using that function. Why can you use both <code>read.delim</code> and <code>read.table</code> to read in this file?</li>
+<li>Is there a way to read the “ld_genetics.txt” file in using <code>read_delim()</code> and specific options? If so, try to read the data in using that function. Why can you use both <code>read.delim</code> and <code>read.table</code> to read in this file?</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Using the read.table function 
-ld_genetics &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/ld_genetics.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>,
-                          <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
-ld_genetics[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
-<pre><code>##    pos  nA  nC  nG  nT
-## 1  500 307 153 192 348
-## 2 1500 310 169 207 314
-## 3 2500 319 167 177 337
-## 4 3500 373 164 168 295
-## 5 4500 330 175 224 271</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Using the read_delim function with the `delim` argument specified to `&quot;\t&quot;`.
+ld_genetics &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/ld_genetics.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   pos = col_integer(),
+##   nA = col_integer(),
+##   nC = col_integer(),
+##   nG = col_integer(),
+##   nT = col_integer(),
+##   GCsk = col_integer(),
+##   TAsk = col_integer(),
+##   cGCsk = col_integer(),
+##   cTAsk = col_integer()
+## )</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ld_genetics[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
+<pre><code>## # A tibble: 5 x 5
+##     pos    nA    nC    nG    nT
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1   500   307   153   192   348
+## 2  1500   310   169   207   314
+## 3  2500   319   167   177   337
+## 4  3500   373   164   168   295
+## 5  4500   330   175   224   271</code></pre>
 </div>
 <div id="cleaning-up-data" class="section level3">
 <h3><span class="header-section-number">2.6.4</span> Cleaning up data</h3>
