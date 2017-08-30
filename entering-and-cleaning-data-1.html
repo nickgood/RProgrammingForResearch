@@ -188,8 +188,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6.1" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#checking-out-directory-structures"><i class="fa fa-check"></i><b>2.6.1</b> Checking out directory structures</a></li>
 <li class="chapter" data-level="2.6.2" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#using-relative-and-absolute-file-pathnames"><i class="fa fa-check"></i><b>2.6.2</b> Using relative and absolute file pathnames</a></li>
 <li class="chapter" data-level="2.6.3" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#reading-in-different-types-of-files"><i class="fa fa-check"></i><b>2.6.3</b> Reading in different types of files</a></li>
-<li class="chapter" data-level="2.6.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data"><i class="fa fa-check"></i><b>2.6.4</b> Cleaning up data</a></li>
-<li class="chapter" data-level="2.6.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.6.5</b> A taste of what’s to come…</a></li>
+<li class="chapter" data-level="2.6.4" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-1"><i class="fa fa-check"></i><b>2.6.4</b> Cleaning up data #1</a></li>
+<li class="chapter" data-level="2.6.5" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#cleaning-up-data-2"><i class="fa fa-check"></i><b>2.6.5</b> Cleaning up data #2</a></li>
+<li class="chapter" data-level="2.6.6" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#piping-1"><i class="fa fa-check"></i><b>2.6.6</b> Piping</a></li>
+<li class="chapter" data-level="2.6.7" data-path="entering-and-cleaning-data-1.html"><a href="entering-and-cleaning-data-1.html#a-taste-of-whats-to-come"><i class="fa fa-check"></i><b>2.6.7</b> A taste of what’s to come…</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-data-1.html"><a href="exploring-data-1.html"><i class="fa fa-check"></i><b>3</b> Exploring data #1</a><ul>
@@ -1442,17 +1444,37 @@ ld_genetics &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<sp
 ## 4  3500   373   164   168   295
 ## 5  4500   330   175   224   271</code></pre>
 </div>
-<div id="cleaning-up-data" class="section level3">
-<h3><span class="header-section-number">2.6.4</span> Cleaning up data</h3>
+<div id="cleaning-up-data-1" class="section level3">
+<h3><span class="header-section-number">2.6.4</span> Cleaning up data #1</h3>
 <p>Try out the following tasks:</p>
 <ul>
-<li>You now have an R object called <code>ebola</code>. Create an object called <code>ebola_liberia</code> that only has the columns with the Date and cases and deaths in Liberia. How many observations do you have?</li>
+<li>Copy the following code into an R script. Figure out what each line does, and add comments to each line of code describing what the code is doing.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span>
+<span class="kw">library</span>(haven)
+icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/icu.sas7bdat&quot;</span>)
+
+icu &lt;-<span class="st"> </span><span class="kw">select</span>(icu, ID, AGE, GENDER)
+
+icu &lt;-<span class="st"> </span><span class="kw">rename</span>(icu, 
+              <span class="dt">id =</span> ID,
+              <span class="dt">age =</span> AGE,
+              <span class="dt">gender =</span> GENDER)
+
+icu &lt;-<span class="st"> </span><span class="kw">mutate</span>(icu,
+              <span class="dt">gender =</span> <span class="kw">factor</span>(gender, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>)),
+              <span class="dt">id =</span> <span class="kw">as.character</span>(id))
+
+icu</code></pre></div>
+<ul>
+<li>Following previous parts of the in-course exercise, you have an R object called <code>ebola</code> (if you need to, use some code from earlier in this in-course exercise to read in the data and create that object). Create an object called <code>ebola_liberia</code> that only has the columns with the date and the number of cases and deaths in Liberia. How many columns does this new dataframe have? How many observations?</li>
 <li>Change the column names to <code>date</code>, <code>cases</code>, and <code>deaths</code>.</li>
-<li>What class is the <code>date</code> column currently in? Convert it to a Date object. If it’s currently a factor, you will need to first convert it to a character (do you know why)? What are the starting and ending dates of this data?</li>
-<li>This data has earliest dates last and latest dates first. Often, we want our data in chronological order. Change the dataset so it’s in chronological order. <em>Hint: You can use row indices to do this, if you use row indices to list the data from last row to first. For example, what do you get if you do <code>3:1</code>? What about if you do <code>ebola[3:1, ]</code>? Think of how you can extend this, along with <code>nrow()</code> do this task. There are a number of different ways to do this step, and we’ll talk about more ways later in the course.</em></li>
+<li>Add a column called <code>ratio</code> that has the ratio of deaths to cases for each observation (i.e., death counts divided by case counts).</li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the dplyr package</span>
+<span class="kw">library</span>(dplyr)
+
 ## Create a subset with just the Liberia columns and Date
 ebola_liberia &lt;-<span class="st"> </span><span class="kw">select</span>(ebola, Date, Cases_Liberia, Deaths_Liberia)
 <span class="kw">head</span>(ebola_liberia)</code></pre></div>
@@ -1463,19 +1485,44 @@ ebola_liberia &lt;-<span class="st"> </span><span class="kw">select</span>(ebola
 ## 4   1/2/2015          8157           3496
 ## 5 12/31/2014          8115           3471
 ## 6 12/28/2014          8018           3423</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## How many rows does the whole dataset have?
-<span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## How many colums and rows does the whole dataset have (could also use `dim`)?
+<span class="kw">ncol</span>(ebola_liberia)</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
 <pre><code>## [1] 122</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Rename the columns
 ebola_liberia &lt;-<span class="st"> </span><span class="kw">rename</span>(ebola_liberia,
                         <span class="dt">date =</span> Date,
                         <span class="dt">cases =</span> Cases_Liberia,
                         <span class="dt">deaths =</span> Deaths_Liberia)
-ebola_liberia[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</code></pre></div>
-<pre><code>##       date cases deaths
-## 1 1/5/2015    NA     NA
-## 2 1/4/2015    NA     NA
-## 3 1/3/2015  8166   3496</code></pre>
+<span class="kw">head</span>(ebola_liberia)</code></pre></div>
+<pre><code>##         date cases deaths
+## 1   1/5/2015    NA     NA
+## 2   1/4/2015    NA     NA
+## 3   1/3/2015  8166   3496
+## 4   1/2/2015  8157   3496
+## 5 12/31/2014  8115   3471
+## 6 12/28/2014  8018   3423</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Add a `ratio` column
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">mutate</span>(ebola_liberia, <span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases)
+<span class="kw">head</span>(ebola_liberia)</code></pre></div>
+<pre><code>##         date cases deaths     ratio
+## 1   1/5/2015    NA     NA        NA
+## 2   1/4/2015    NA     NA        NA
+## 3   1/3/2015  8166   3496 0.4281166
+## 4   1/2/2015  8157   3496 0.4285889
+## 5 12/31/2014  8115   3471 0.4277264
+## 6 12/28/2014  8018   3423 0.4269144</code></pre>
+</div>
+<div id="cleaning-up-data-2" class="section level3">
+<h3><span class="header-section-number">2.6.5</span> Cleaning up data #2</h3>
+<ul>
+<li>For the <code>ebola_liberia</code> dataframe, what class is the <code>date</code> column currently in? Convert it to a Date class. What are the starting and ending dates of observations in this dataframe?</li>
+<li>This data has earliest dates last and latest dates first. Often, we want our data in chronological order. Change the dataset so it’s in chronological order, from the observation with the earliest date to the one with the latest date.</li>
+<li>Filter out all rows from the <code>ebola_liberia</code> dataframe that are missing death counts for Liberia. How many rows are in the dataframe now?</li>
+<li>Create a new object called <code>first_five</code> that has only the five observations with the highest death counts in Liberia. What date in this dataset had the most deaths?</li>
+</ul>
+<p>Example R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## What class is the `date` column?
 <span class="kw">class</span>(ebola_liberia<span class="op">$</span>date)</code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
@@ -1483,44 +1530,103 @@ ebola_liberia[<span class="dv">1</span><span class="op">:</span><span class="dv"
 <span class="kw">library</span>(lubridate)
 ebola_liberia &lt;-<span class="st"> </span><span class="kw">mutate</span>(ebola_liberia, 
                         <span class="dt">date =</span> <span class="kw">mdy</span>(date))
-<span class="kw">head</span>(ebola_liberia<span class="op">$</span>date)</code></pre></div>
+<span class="kw">class</span>(ebola_liberia<span class="op">$</span>date)</code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ebola_liberia<span class="op">$</span>date)</code></pre></div>
 <pre><code>## [1] &quot;2015-01-05&quot; &quot;2015-01-04&quot; &quot;2015-01-03&quot; &quot;2015-01-02&quot; &quot;2014-12-31&quot;
 ## [6] &quot;2014-12-28&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## What are the starting and ending dates?
 <span class="kw">range</span>(ebola_liberia<span class="op">$</span>date)</code></pre></div>
 <pre><code>## [1] &quot;2014-03-22&quot; &quot;2015-01-05&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Re-order the dataset from last to first
-ebola_liberia &lt;-<span class="st"> </span>ebola_liberia[<span class="kw">nrow</span>(ebola_liberia)<span class="op">:</span><span class="dv">1</span>, ]
-ebola_liberia[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</code></pre></div>
-<pre><code>##           date cases deaths
-## 122 2014-03-22    NA     NA
-## 121 2014-03-24    NA     NA
-## 120 2014-03-25    NA     NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Re-order the dataset from first date to last date
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">arrange</span>(ebola_liberia, date)
+<span class="kw">head</span>(ebola_liberia)</code></pre></div>
+<pre><code>##         date cases deaths ratio
+## 1 2014-03-22    NA     NA    NA
+## 2 2014-03-24    NA     NA    NA
+## 3 2014-03-25    NA     NA    NA
+## 4 2014-03-26    NA     NA    NA
+## 5 2014-03-27     8      6  0.75
+## 6 2014-03-28     3      3  1.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Filter out the rows that are missing death counts for Liberia
+ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(ebola_liberia, <span class="op">!</span><span class="kw">is.na</span>(deaths))
+<span class="kw">head</span>(ebola_liberia)</code></pre></div>
+<pre><code>##         date cases deaths     ratio
+## 1 2014-03-27     8      6 0.7500000
+## 2 2014-03-28     3      3 1.0000000
+## 3 2014-03-29     7      2 0.2857143
+## 4 2014-03-31     8      4 0.5000000
+## 5 2014-04-01     8      5 0.6250000
+## 6 2014-04-04    18      7 0.3888889</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
+<pre><code>## [1] 81</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with just the top five observations in terms of death counts
+first_five &lt;-<span class="st"> </span><span class="kw">arrange</span>(ebola_liberia, <span class="kw">desc</span>(deaths)) <span class="co"># First, rearrange the rows by deaths</span>
+first_five &lt;-<span class="st"> </span><span class="kw">slice</span>(first_five, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="co"># Limit the dataframe to the first five rows</span>
+first_five <span class="co"># Two days tied for the highest deaths counts (Jan. 2 and 3, 2015).</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##         date cases deaths     ratio
+##       &lt;date&gt; &lt;int&gt;  &lt;int&gt;     &lt;dbl&gt;
+## 1 2015-01-02  8157   3496 0.4285889
+## 2 2015-01-03  8166   3496 0.4281166
+## 3 2014-12-31  8115   3471 0.4277264
+## 4 2014-12-28  8018   3423 0.4269144
+## 5 2014-12-24  7977   3413 0.4278551</code></pre>
 <p>If you have extra time:</p>
 <ul>
-<li>Limit the <code>ebola_liberia</code> dataset just to the days with non-missing case data. How many observations do you have now?</li>
-<li>Write a pipe chain for the full data cleaning process for creating <code>ebola_liberia</code> up to this point. <em>Hint: Try using the <code>arrange</code> function from <code>dplyr</code> to re-order the data by dates in this pipe.</em></li>
-<li>Try using the basic plotting function, <code>plot()</code>, to plot the number of cases over time. Do you think that the <code>cases</code> variable is measuring the count of cases for that day, or the cumulative number of cases up to that day? See if you can figure out more on Caitlin Rivers’ GitHub documentation. Do you notice any potential data quality issues in this data? <em>Hint: The <code>plot()</code> function takes, as required arguments, the vector you want to plot on the x-axis and then the vector you want to plot on the y-axis, like <code>plot([x vector], [y vector])</code>. If you are pulling the vectors from a dataset, you will need to use indexing to pull out the column you want as a vector, like <code>plot([dataframe name]$[column name for x], [dataframe]$[column name for y])</code>.</em></li>
+<li>Try using the basic plotting function, <code>plot()</code>, to plot the number of cases of Ebola over time in Liberia from this dataframe. Do you think that the <code>cases</code> variable is measuring the count of cases for that day, or the cumulative number of cases up to that day? See if you can figure out more on Caitlin Rivers’ GitHub documentation. Do you notice any potential data quality issues in this data? <em>Hint: The <code>plot()</code> function takes, as required arguments, the vector you want to plot on the x-axis and then the vector you want to plot on the y-axis, like <code>plot([x vector], [y vector])</code>. If you are pulling the vectors from a dataset, you will need to use indexing to pull out the column you want as a vector, like <code>plot([dataframe name]$[column name for x], [dataframe]$[column name for y])</code>.</em></li>
 </ul>
 <p>Example R code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Remove observations with missing cases
-ebola_liberia &lt;-<span class="st"> </span><span class="kw">filter</span>(ebola_liberia, <span class="op">!</span><span class="kw">is.na</span>(cases))
-<span class="kw">nrow</span>(ebola_liberia)</code></pre></div>
-<pre><code>## [1] 83</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Rewrite the data cleaning for `ebola_liberia` using a pipe chain
-ebola_liberia &lt;-<span class="st"> </span>ebola <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Date, Cases_Liberia, Deaths_Liberia) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> Date, <span class="dt">cases =</span> Cases_Liberia, <span class="dt">deaths =</span> Deaths_Liberia) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(date) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plot the data
+<span class="kw">plot</span>(ebola_liberia<span class="op">$</span>date, ebola_liberia<span class="op">$</span>cases)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+</div>
+<div id="piping-1" class="section level3">
+<h3><span class="header-section-number">2.6.6</span> Piping</h3>
+<p>Try the following tasks:</p>
+<ul>
+<li>Copy the following “piped” code into an R script. Figure out what each line does, and add comments to each line of code describing what the code is doing.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Copy this code to an R script and add comments describing what each line is doing</span>
+<span class="kw">library</span>(haven)
+icu &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/icu.sas7bdat&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, AGE, GENDER) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">id =</span> ID,
+         <span class="dt">age =</span> AGE, 
+         <span class="dt">gender =</span> GENDER) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gender =</span> <span class="kw">factor</span>(gender, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>)),
+         <span class="dt">id =</span> <span class="kw">as.character</span>(id)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(age) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+
+icu</code></pre></div>
+<ul>
+<li>In previous sections of the in-course exercise, you have created code to read in and clean the Ebola dataset to create <code>ebola_liberia</code>. This included the following cleaning steps: (1) selecting certain columns, (2) renaming those columns, (3) adding a <code>ratio</code> column, (4) mutating the <code>date</code> column to a Date class, (5) re-ordering the observations from earliest to latest date, and (6) removing observations for which the count of deaths in Liberia is missing. Re-write this code to create and clean <code>ebola_liberia</code> as “piped” code. Start from reading in the raw data.</li>
+</ul>
+<p>Example R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ebola_liberia &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/country_timeseries.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Date, Cases_Liberia, Deaths_Liberia) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> Date, 
+         <span class="dt">cases =</span> Cases_Liberia, 
+         <span class="dt">deaths =</span> Deaths_Liberia) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ratio =</span> deaths <span class="op">/</span><span class="st"> </span>cases) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">mdy</span>(date)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(date) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(cases))
 
-## Plot the data
-<span class="kw">plot</span>(ebola_liberia<span class="op">$</span>date, ebola_liberia<span class="op">$</span>cases)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<span class="kw">head</span>(ebola_liberia)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##         date cases deaths     ratio
+##       &lt;date&gt; &lt;int&gt;  &lt;int&gt;     &lt;dbl&gt;
+## 1 2014-03-27     8      6 0.7500000
+## 2 2014-03-28     3      3 1.0000000
+## 3 2014-03-29     7      2 0.2857143
+## 4 2014-03-31     8      4 0.5000000
+## 5 2014-04-01     8      5 0.6250000
+## 6 2014-04-04    18      7 0.3888889</code></pre>
 </div>
 <div id="a-taste-of-whats-to-come" class="section level3">
-<h3><span class="header-section-number">2.6.5</span> A taste of what’s to come…</h3>
+<h3><span class="header-section-number">2.6.7</span> A taste of what’s to come…</h3>
 <p>Here’s an example to give you a feel for why it’s worth learning all these different things about directories, <code>list.files</code>, and pathnames.</p>
 <p>The <code>measles_data</code> subdirectory includes counts of measles made at different times in different cities in California. Say that we wanted to read them all in and make put them into one long dataframe with the variables <code>city</code>, <code>count</code>, and <code>date</code>. You can put together the things you’ve learned so far, along with a few new ideas (including doing a loop), to do this very easily.</p>
 <p>We’ll talk more later about using loops and functions to make your programming more efficient, but for right now just look through this code and see if you can get a feel for how it’s working (make sure your directory for this course is your working directory):</p>
@@ -1591,8 +1697,7 @@ df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class=
 ## have the same number of columns and the same column names.
 <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(measles_files)){
         file_name &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;data/measles_data/&quot;</span>, measles_files[i])
-        df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(file_name, <span class="dt">header =</span> <span class="ot">FALSE</span>, 
-                         <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
+        df &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(file_name, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span>, <span class="st">&quot;count&quot;</span>))
         df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">date =</span> measles_dates[i])
         <span class="cf">if</span>(i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>){
                 ca_measles &lt;-<span class="st"> </span>df
@@ -1604,20 +1709,19 @@ df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class=
 <span class="kw">dim</span>(ca_measles)</code></pre></div>
 <pre><code>## [1] 232   3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ca_measles)</code></pre></div>
-<pre><code>##                  city         count             date           
-##  ALAMEDA           : 16   Min.   : 1.000   Min.   :2015-02-09  
-##  City of Long Beach: 16   1st Qu.: 2.000   1st Qu.:2015-02-20  
-##  City of Pasadena  : 16   Median : 4.000   Median :2015-03-02  
-##  LOS ANGELES       : 16   Mean   : 8.698   Mean   :2015-03-07  
-##  MARIN             : 16   3rd Qu.:12.000   3rd Qu.:2015-03-27  
-##  ORANGE            : 16   Max.   :35.000   Max.   :2015-04-17  
-##  (Other)           :136</code></pre>
+<pre><code>##      city               count             date           
+##  Length:232         Min.   : 1.000   Min.   :2015-02-09  
+##  Class :character   1st Qu.: 2.000   1st Qu.:2015-02-20  
+##  Mode  :character   Median : 4.000   Median :2015-03-02  
+##                     Mean   : 8.698   Mean   :2015-03-07  
+##                     3rd Qu.:12.000   3rd Qu.:2015-03-27  
+##                     Max.   :35.000   Max.   :2015-04-17</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">ggplot</span>(<span class="kw">subset</span>(ca_measles, city <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LOS ANGELES&quot;</span>, <span class="st">&quot;SAN DIEGO&quot;</span>, <span class="st">&quot;ORANGE&quot;</span>)),
        <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> count)) <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">geom_line</span>()  <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>city)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-147-1.png" width="960" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-151-1.png" width="960" /></p>
 
 </div>
 </div>

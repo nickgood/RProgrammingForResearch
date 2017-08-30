@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x39be1d8>
+## <bytecode: 0x355e880>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -4809,41 +4809,65 @@ Example R code:
 ## 5  4500   330   175   224   271
 \end{verbatim}
 
-\subsection{Cleaning up data}\label{cleaning-up-data}
+\subsection{Cleaning up data \#1}\label{cleaning-up-data-1}
 
 Try out the following tasks:
 
 \begin{itemize}
 \tightlist
 \item
-  You now have an R object called \texttt{ebola}. Create an object
-  called \texttt{ebola\_liberia} that only has the columns with the Date
-  and cases and deaths in Liberia. How many observations do you have?
+  Copy the following code into an R script. Figure out what each line
+  does, and add comments to each line of code describing what the code
+  is doing.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Copy this code to an R script and add comments describing what each line is doing}
+\KeywordTok{library}\NormalTok{(haven)}
+\NormalTok{icu <-}\StringTok{ }\KeywordTok{read_sas}\NormalTok{(}\StringTok{"data/icu.sas7bdat"}\NormalTok{)}
+
+\NormalTok{icu <-}\StringTok{ }\KeywordTok{select}\NormalTok{(icu, ID, AGE, GENDER)}
+
+\NormalTok{icu <-}\StringTok{ }\KeywordTok{rename}\NormalTok{(icu, }
+              \DataTypeTok{id =}\NormalTok{ ID,}
+              \DataTypeTok{age =}\NormalTok{ AGE,}
+              \DataTypeTok{gender =}\NormalTok{ GENDER)}
+
+\NormalTok{icu <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(icu,}
+              \DataTypeTok{gender =} \KeywordTok{factor}\NormalTok{(gender, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{)),}
+              \DataTypeTok{id =} \KeywordTok{as.character}\NormalTok{(id))}
+
+\NormalTok{icu}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Following previous parts of the in-course exercise, you have an R
+  object called \texttt{ebola} (if you need to, use some code from
+  earlier in this in-course exercise to read in the data and create that
+  object). Create an object called \texttt{ebola\_liberia} that only has
+  the columns with the date and the number of cases and deaths in
+  Liberia. How many columns does this new dataframe have? How many
+  observations?
 \item
   Change the column names to \texttt{date}, \texttt{cases}, and
   \texttt{deaths}.
 \item
-  What class is the \texttt{date} column currently in? Convert it to a
-  Date object. If it's currently a factor, you will need to first
-  convert it to a character (do you know why)? What are the starting and
-  ending dates of this data?
-\item
-  This data has earliest dates last and latest dates first. Often, we
-  want our data in chronological order. Change the dataset so it's in
-  chronological order. \emph{Hint: You can use row indices to do this,
-  if you use row indices to list the data from last row to first. For
-  example, what do you get if you do \texttt{3:1}? What about if you do
-  \texttt{ebola{[}3:1,\ {]}}? Think of how you can extend this, along
-  with \texttt{nrow()} do this task. There are a number of different
-  ways to do this step, and we'll talk about more ways later in the
-  course.}
+  Add a column called \texttt{ratio} that has the ratio of deaths to
+  cases for each observation (i.e., death counts divided by case
+  counts).
 \end{itemize}
 
 Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Load the dplyr package}
 \KeywordTok{library}\NormalTok{(dplyr)}
+
 \NormalTok{## Create a subset with just the Liberia columns and Date}
 \NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{select}\NormalTok{(ebola, Date, Cases_Liberia, Deaths_Liberia)}
 \KeywordTok{head}\NormalTok{(ebola_liberia)}
@@ -4862,7 +4886,17 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{## How many rows does the whole dataset have?}
+\NormalTok{## How many colums and rows does the whole dataset have (could also use `dim`)?}
+\KeywordTok{ncol}\NormalTok{(ebola_liberia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{nrow}\NormalTok{(ebola_liberia)}
 \end{Highlighting}
 \end{Shaded}
@@ -4878,16 +4912,62 @@ Example R code:
                         \DataTypeTok{date =}\NormalTok{ Date,}
                         \DataTypeTok{cases =}\NormalTok{ Cases_Liberia,}
                         \DataTypeTok{deaths =}\NormalTok{ Deaths_Liberia)}
-\NormalTok{ebola_liberia[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, ]}
+\KeywordTok{head}\NormalTok{(ebola_liberia)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       date cases deaths
-## 1 1/5/2015    NA     NA
-## 2 1/4/2015    NA     NA
-## 3 1/3/2015  8166   3496
+##         date cases deaths
+## 1   1/5/2015    NA     NA
+## 2   1/4/2015    NA     NA
+## 3   1/3/2015  8166   3496
+## 4   1/2/2015  8157   3496
+## 5 12/31/2014  8115   3471
+## 6 12/28/2014  8018   3423
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Add a `ratio` column}
+\NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(ebola_liberia, }\DataTypeTok{ratio =}\NormalTok{ deaths }\OperatorTok{/}\StringTok{ }\NormalTok{cases)}
+\KeywordTok{head}\NormalTok{(ebola_liberia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         date cases deaths     ratio
+## 1   1/5/2015    NA     NA        NA
+## 2   1/4/2015    NA     NA        NA
+## 3   1/3/2015  8166   3496 0.4281166
+## 4   1/2/2015  8157   3496 0.4285889
+## 5 12/31/2014  8115   3471 0.4277264
+## 6 12/28/2014  8018   3423 0.4269144
+\end{verbatim}
+
+\subsection{Cleaning up data \#2}\label{cleaning-up-data-2}
+
+\begin{itemize}
+\tightlist
+\item
+  For the \texttt{ebola\_liberia} dataframe, what class is the
+  \texttt{date} column currently in? Convert it to a Date class. What
+  are the starting and ending dates of observations in this dataframe?
+\item
+  This data has earliest dates last and latest dates first. Often, we
+  want our data in chronological order. Change the dataset so it's in
+  chronological order, from the observation with the earliest date to
+  the one with the latest date.
+\item
+  Filter out all rows from the \texttt{ebola\_liberia} dataframe that
+  are missing death counts for Liberia. How many rows are in the
+  dataframe now?
+\item
+  Create a new object called \texttt{first\_five} that has only the five
+  observations with the highest death counts in Liberia. What date in
+  this dataset had the most deaths?
+\end{itemize}
+
+Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4906,6 +4986,16 @@ Example R code:
 \KeywordTok{library}\NormalTok{(lubridate)}
 \NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(ebola_liberia, }
                         \DataTypeTok{date =} \KeywordTok{mdy}\NormalTok{(date))}
+\KeywordTok{class}\NormalTok{(ebola_liberia}\OperatorTok{$}\NormalTok{date)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Date"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(ebola_liberia}\OperatorTok{$}\NormalTok{date)}
 \end{Highlighting}
 \end{Shaded}
@@ -4928,17 +5018,68 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{## Re-order the dataset from last to first}
-\NormalTok{ebola_liberia <-}\StringTok{ }\NormalTok{ebola_liberia[}\KeywordTok{nrow}\NormalTok{(ebola_liberia)}\OperatorTok{:}\DecValTok{1}\NormalTok{, ]}
-\NormalTok{ebola_liberia[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, ]}
+\NormalTok{## Re-order the dataset from first date to last date}
+\NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(ebola_liberia, date)}
+\KeywordTok{head}\NormalTok{(ebola_liberia)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##           date cases deaths
-## 122 2014-03-22    NA     NA
-## 121 2014-03-24    NA     NA
-## 120 2014-03-25    NA     NA
+##         date cases deaths ratio
+## 1 2014-03-22    NA     NA    NA
+## 2 2014-03-24    NA     NA    NA
+## 3 2014-03-25    NA     NA    NA
+## 4 2014-03-26    NA     NA    NA
+## 5 2014-03-27     8      6  0.75
+## 6 2014-03-28     3      3  1.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Filter out the rows that are missing death counts for Liberia}
+\NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(ebola_liberia, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(deaths))}
+\KeywordTok{head}\NormalTok{(ebola_liberia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         date cases deaths     ratio
+## 1 2014-03-27     8      6 0.7500000
+## 2 2014-03-28     3      3 1.0000000
+## 3 2014-03-29     7      2 0.2857143
+## 4 2014-03-31     8      4 0.5000000
+## 5 2014-04-01     8      5 0.6250000
+## 6 2014-04-04    18      7 0.3888889
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(ebola_liberia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 81
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Create an object with just the top five observations in terms of death counts}
+\NormalTok{first_five <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(ebola_liberia, }\KeywordTok{desc}\NormalTok{(deaths)) }\CommentTok{# First, rearrange the rows by deaths}
+\NormalTok{first_five <-}\StringTok{ }\KeywordTok{slice}\NormalTok{(first_five, }\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) }\CommentTok{# Limit the dataframe to the first five rows}
+\NormalTok{first_five }\CommentTok{# Two days tied for the highest deaths counts (Jan. 2 and 3, 2015).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 4
+##         date cases deaths     ratio
+##       <date> <int>  <int>     <dbl>
+## 1 2015-01-02  8157   3496 0.4285889
+## 2 2015-01-03  8166   3496 0.4281166
+## 3 2014-12-31  8115   3471 0.4277264
+## 4 2014-12-28  8018   3423 0.4269144
+## 5 2014-12-24  7977   3413 0.4278551
 \end{verbatim}
 
 If you have extra time:
@@ -4946,25 +5087,18 @@ If you have extra time:
 \begin{itemize}
 \tightlist
 \item
-  Limit the \texttt{ebola\_liberia} dataset just to the days with
-  non-missing case data. How many observations do you have now?
-\item
-  Write a pipe chain for the full data cleaning process for creating
-  \texttt{ebola\_liberia} up to this point. \emph{Hint: Try using the
-  \texttt{arrange} function from \texttt{dplyr} to re-order the data by
-  dates in this pipe.}
-\item
   Try using the basic plotting function, \texttt{plot()}, to plot the
-  number of cases over time. Do you think that the \texttt{cases}
-  variable is measuring the count of cases for that day, or the
-  cumulative number of cases up to that day? See if you can figure out
-  more on Caitlin Rivers' GitHub documentation. Do you notice any
-  potential data quality issues in this data? \emph{Hint: The
-  \texttt{plot()} function takes, as required arguments, the vector you
-  want to plot on the x-axis and then the vector you want to plot on the
-  y-axis, like \texttt{plot({[}x\ vector{]},\ {[}y\ vector{]})}. If you
-  are pulling the vectors from a dataset, you will need to use indexing
-  to pull out the column you want as a vector, like
+  number of cases of Ebola over time in Liberia from this dataframe. Do
+  you think that the \texttt{cases} variable is measuring the count of
+  cases for that day, or the cumulative number of cases up to that day?
+  See if you can figure out more on Caitlin Rivers' GitHub
+  documentation. Do you notice any potential data quality issues in this
+  data? \emph{Hint: The \texttt{plot()} function takes, as required
+  arguments, the vector you want to plot on the x-axis and then the
+  vector you want to plot on the y-axis, like
+  \texttt{plot({[}x\ vector{]},\ {[}y\ vector{]})}. If you are pulling
+  the vectors from a dataset, you will need to use indexing to pull out
+  the column you want as a vector, like
   \texttt{plot({[}dataframe\ name{]}\${[}column\ name\ for\ x{]},\ {[}dataframe{]}\${[}column\ name\ for\ y{]})}.}
 \end{itemize}
 
@@ -4972,32 +5106,87 @@ Example R code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{## Remove observations with missing cases}
-\NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(ebola_liberia, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(cases))}
-\KeywordTok{nrow}\NormalTok{(ebola_liberia)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 83
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{## Rewrite the data cleaning for `ebola_liberia` using a pipe chain}
-\NormalTok{ebola_liberia <-}\StringTok{ }\NormalTok{ebola }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(Date, Cases_Liberia, Deaths_Liberia) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{date =}\NormalTok{ Date, }\DataTypeTok{cases =}\NormalTok{ Cases_Liberia, }\DataTypeTok{deaths =}\NormalTok{ Deaths_Liberia) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{mdy}\NormalTok{(date)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(date) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(cases))}
-
 \NormalTok{## Plot the data}
 \KeywordTok{plot}\NormalTok{(ebola_liberia}\OperatorTok{$}\NormalTok{date, ebola_liberia}\OperatorTok{$}\NormalTok{cases)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-146-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-148-1.pdf}
+
+\subsection{Piping}\label{piping-1}
+
+Try the following tasks:
+
+\begin{itemize}
+\tightlist
+\item
+  Copy the following ``piped'' code into an R script. Figure out what
+  each line does, and add comments to each line of code describing what
+  the code is doing.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Copy this code to an R script and add comments describing what each line is doing}
+\KeywordTok{library}\NormalTok{(haven)}
+\NormalTok{icu <-}\StringTok{ }\KeywordTok{read_sas}\NormalTok{(}\StringTok{"data/icu.sas7bdat"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, AGE, GENDER) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{id =}\NormalTok{ ID,}
+         \DataTypeTok{age =}\NormalTok{ AGE, }
+         \DataTypeTok{gender =}\NormalTok{ GENDER) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{gender =} \KeywordTok{factor}\NormalTok{(gender, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{)),}
+         \DataTypeTok{id =} \KeywordTok{as.character}\NormalTok{(id)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(age) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
+
+\NormalTok{icu}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  In previous sections of the in-course exercise, you have created code
+  to read in and clean the Ebola dataset to create
+  \texttt{ebola\_liberia}. This included the following cleaning steps:
+  (1) selecting certain columns, (2) renaming those columns, (3) adding
+  a \texttt{ratio} column, (4) mutating the \texttt{date} column to a
+  Date class, (5) re-ordering the observations from earliest to latest
+  date, and (6) removing observations for which the count of deaths in
+  Liberia is missing. Re-write this code to create and clean
+  \texttt{ebola\_liberia} as ``piped'' code. Start from reading in the
+  raw data.
+\end{itemize}
+
+Example R code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ebola_liberia <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/country_timeseries.csv"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Date, Cases_Liberia, Deaths_Liberia) }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{date =}\NormalTok{ Date, }
+         \DataTypeTok{cases =}\NormalTok{ Cases_Liberia, }
+         \DataTypeTok{deaths =}\NormalTok{ Deaths_Liberia) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ratio =}\NormalTok{ deaths }\OperatorTok{/}\StringTok{ }\NormalTok{cases) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{mdy}\NormalTok{(date)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(date) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(cases))}
+
+\KeywordTok{head}\NormalTok{(ebola_liberia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##         date cases deaths     ratio
+##       <date> <int>  <int>     <dbl>
+## 1 2014-03-27     8      6 0.7500000
+## 2 2014-03-28     3      3 1.0000000
+## 3 2014-03-29     7      2 0.2857143
+## 4 2014-03-31     8      4 0.5000000
+## 5 2014-04-01     8      5 0.6250000
+## 6 2014-04-04    18      7 0.3888889
+\end{verbatim}
 
 \subsection{A taste of what's to
 come\ldots{}}\label{a-taste-of-whats-to-come}
@@ -5143,8 +5332,7 @@ directory for this course is your working directory):
 \NormalTok{## have the same number of columns and the same column names.}
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(measles_files))\{}
 \NormalTok{        file_name <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"data/measles_data/"}\NormalTok{, measles_files[i])}
-\NormalTok{        df <-}\StringTok{ }\KeywordTok{read.delim}\NormalTok{(file_name, }\DataTypeTok{header =} \OtherTok{FALSE}\NormalTok{, }
-                         \DataTypeTok{col.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"city"}\NormalTok{, }\StringTok{"count"}\NormalTok{))}
+\NormalTok{        df <-}\StringTok{ }\KeywordTok{read_tsv}\NormalTok{(file_name, }\DataTypeTok{col_names =} \KeywordTok{c}\NormalTok{(}\StringTok{"city"}\NormalTok{, }\StringTok{"count"}\NormalTok{))}
 \NormalTok{        df <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(df, }\DataTypeTok{date =}\NormalTok{ measles_dates[i])}
         \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)\{}
 \NormalTok{                ca_measles <-}\StringTok{ }\NormalTok{df}
@@ -5168,14 +5356,13 @@ directory for this course is your working directory):
 \end{Shaded}
 
 \begin{verbatim}
-##                  city         count             date           
-##  ALAMEDA           : 16   Min.   : 1.000   Min.   :2015-02-09  
-##  City of Long Beach: 16   1st Qu.: 2.000   1st Qu.:2015-02-20  
-##  City of Pasadena  : 16   Median : 4.000   Median :2015-03-02  
-##  LOS ANGELES       : 16   Mean   : 8.698   Mean   :2015-03-07  
-##  MARIN             : 16   3rd Qu.:12.000   3rd Qu.:2015-03-27  
-##  ORANGE            : 16   Max.   :35.000   Max.   :2015-04-17  
-##  (Other)           :136
+##      city               count             date           
+##  Length:232         Min.   : 1.000   Min.   :2015-02-09  
+##  Class :character   1st Qu.: 2.000   1st Qu.:2015-02-20  
+##  Mode  :character   Median : 4.000   Median :2015-03-02  
+##                     Mean   : 8.698   Mean   :2015-03-07  
+##                     3rd Qu.:12.000   3rd Qu.:2015-03-27  
+##                     Max.   :35.000   Max.   :2015-04-17
 \end{verbatim}
 
 \begin{Shaded}
@@ -5188,7 +5375,7 @@ directory for this course is your working directory):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-147-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-151-1.pdf}
 
 \chapter{Exploring data \#1}\label{exploring-data-1}
 
@@ -5428,7 +5615,7 @@ Instead of mapping an aesthetic to an element of your data, you can use
 a constant value for it. For example, you may want to make all the
 points green, rather than having color map to gender:
 
-\begin{center}\includegraphics[width=0.6\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-159-1} \end{center}
+\begin{center}\includegraphics[width=0.6\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-163-1} \end{center}
 
 In this case, you'll define that aesthetic when you add the geom,
 outside of an \texttt{aes} statement. In R, you can specify the shape of
@@ -7012,7 +7199,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-210-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7021,7 +7208,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-210-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7030,7 +7217,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-210-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7039,7 +7226,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-210-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-4} \end{center}
 
 Create a scatterplot of \texttt{Time} versus \texttt{Passes}. To change
 the size of the points, use the \texttt{size} argument (use a number
@@ -7055,7 +7242,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-211-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7064,7 +7251,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-211-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7073,7 +7260,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-211-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7082,7 +7269,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-211-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-4} \end{center}
 
 Use the \texttt{ggpairs} function from the \texttt{GGally} package to
 plot scatterplots of all combinations of several numeric variables.
@@ -7095,7 +7282,7 @@ plot scatterplots of all combinations of several numeric variables.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-212-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-1} \end{center}
 
 To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \texttt{geom\_boxplot}:
@@ -7107,7 +7294,7 @@ To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-213-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-217-1} \end{center}
 
 The top four teams in this World Cup were Spain, the Netherlands,
 Germany, and Uruguay. Create a subset with just the data for these four
@@ -7139,7 +7326,7 @@ aesthetic:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-219-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7149,7 +7336,7 @@ aesthetic:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-219-2} \end{center}
 
 \subsubsection{If you have extra time:}\label{if-you-have-extra-time}
 
@@ -7179,11 +7366,11 @@ plots once you've created them):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-1.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-2.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-3.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-4.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-5.pdf}
 
 A few things to note in this example:
 
@@ -7659,7 +7846,7 @@ points gray). Use the values from \texttt{coef} with a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 Plot some plots to check model assumptions for the model you fit using
 the \texttt{plot()} function on your model object:
@@ -7671,7 +7858,7 @@ the \texttt{plot()} function on your model object:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-232-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7788,7 +7975,7 @@ Use a boxplot to visually compare PM10 by day of week.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 Now try the same plot, but try using the \texttt{ylim\ =} option to
 change the limits on the y-axis for the graph, so you can get a better
@@ -7808,7 +7995,7 @@ include them all).
 ## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-237-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 Create a subset called \texttt{summer} with just the summer days:
 
@@ -8272,7 +8459,7 @@ series by using a thick red line.
 In the below graphs, the names of the players with the most shots and
 passes have been added to highlight these unusual points. \bigskip
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 One helpful way to annotate is with text, using \texttt{geom\_text()}.
 For this, you'll first need to create a dataframe with the hottest day
@@ -8299,7 +8486,7 @@ in the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-246-1} \end{center}
+\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-1} \end{center}
 
 With \texttt{geom\_text}, you'll often want to use position adjustment
 (the \texttt{position} parameter) to move the text so it won't be right
@@ -8313,7 +8500,7 @@ on top of the data points:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.5\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-247-1} \end{center}
+\begin{center}\includegraphics[width=0.5\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-1} \end{center}
 
 You can also use lines to highlight. For this, it is often useful to
 create a new dataframe with data for the reference. To add a line for
@@ -8340,7 +8527,7 @@ to ensure the line will be placed above the mortality data.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-249-1} \end{center}
+\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-253-1} \end{center}
 
 \section{Order}\label{order}
 
@@ -8352,7 +8539,7 @@ You can make the ranking of data clearer from a graph by using order to
 show rank. Often, factor or categorical variables are ordered by
 something that is not interesting, like alphabetical order.
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-254-1.pdf}
 
 You can re-order factor variables in a graph by resetting the factor
 using the \texttt{factor} function and changing the order that levels
@@ -8373,7 +8560,7 @@ Typically, in small multiples, all plots use the same x- and y-axes.
 This makes it easier to compare across plots, and it also allows you to
 save room by limiting axis annotation.
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-255-1.pdf}
 
 You can use the \texttt{facet} functions to create small multiples. This
 separates the graph into several small graphs, one for each level of a
@@ -8400,7 +8587,7 @@ when plotting height versus weight, you can call:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-252-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-256-1.pdf}
 
 The \texttt{facet\_grid} function can facet by one or two variables. One
 will be shown by rows, and one by columns:
@@ -8447,7 +8634,7 @@ Notice that the labels for the two graphs have now changed:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-256-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-260-1.pdf}
 
 To re-order the factor, and show the plot for ``Female'' first, you can
 use \texttt{factor} to change the order of the levels:
@@ -8469,7 +8656,7 @@ Now notice that the order of the plots has changed:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-258-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 \section{Advanced customization}\label{advanced-customization}
 
@@ -8503,7 +8690,7 @@ and position shown by color:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-260-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-264-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8516,7 +8703,7 @@ and position shown by color:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-261-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-265-1} \end{center}
 
 Parameters you might find useful in \texttt{scale} functions include:
 
@@ -8548,7 +8735,7 @@ the x-axis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-263-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-267-1} \end{center}
 
 And here's an example of changing the formating and name of the x-axis:
 
@@ -8561,7 +8748,7 @@ And here's an example of changing the formating and name of the x-axis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-264-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-268-1} \end{center}
 
 You can also use the \texttt{scale} functions to transform an axis. For
 example, to show the Chicago plot with ``deaths'' on a log scale, you
@@ -8575,7 +8762,7 @@ can run:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-265-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-269-1} \end{center}
 
 For colors and fills, the conventions for the names of the
 \texttt{scale} functions can vary. For example, to adjust the color
@@ -8605,9 +8792,9 @@ colors.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-266-1}
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-266-2}
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-266-3}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-270-1}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-270-2}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-270-3}
 
 Use the \texttt{palette} argument within a \texttt{scales} function to
 customize the palette:
@@ -8625,7 +8812,7 @@ customize the palette:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-267-1}
+\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-271-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8637,7 +8824,7 @@ customize the palette:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-268-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-272-1} \end{center}
 
 You can also set colors manually:
 
@@ -8651,7 +8838,7 @@ You can also set colors manually:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-269-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-273-1} \end{center}
 
 \section{To find out more}\label{to-find-out-more}
 
@@ -8765,7 +8952,7 @@ Use the R base graphics to create a scatterplot of Time versus Shots:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-273-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 Use some of the plotting options to improve the graph's appearance:
 
@@ -8779,13 +8966,13 @@ Use some of the plotting options to improve the graph's appearance:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 \subsection{Fancier graphs}\label{fancier-graphs}
 
 In this section, we'll work on creating a plot like this:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
 
 Try the following tasks:
 
@@ -8850,7 +9037,7 @@ Time for the \texttt{worldcup} data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-276-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-280-1.pdf}
 
 To add a clearer x-axis label that the current one, use \texttt{xlab()}:
 
@@ -8862,7 +9049,7 @@ To add a clearer x-axis label that the current one, use \texttt{xlab()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-281-1.pdf}
 
 To make the points smaller, use the \texttt{size} option in
 \texttt{geom\_point()} (smaller than about 2 = smaller than default,
@@ -8876,7 +9063,7 @@ larger than about 2 = larger than default):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-282-1.pdf}
 
 To make the points semi-transparent, use the \texttt{alpha} option in
 \texttt{geom\_point()} (closer to 0 = more tranparent, closer to 1 =
@@ -8890,7 +9077,7 @@ more opaque):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-283-1.pdf}
 
 To jitter the points some, use the \texttt{position\ =\ "jitter"} option
 in \texttt{geom\_point()}:
@@ -8904,7 +9091,7 @@ in \texttt{geom\_point()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-280-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-284-1.pdf}
 
 As an alternative, you could also jitter the points by using
 \texttt{geom\_jitter} rather than \texttt{geom\_point}:
@@ -8917,7 +9104,7 @@ As an alternative, you could also jitter the points by using
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-281-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-1.pdf}
 
 \begin{rmdnote}
 ``Jittering'' the points means adding some extra random noise in either
@@ -8961,7 +9148,7 @@ To color points by this variable, use \texttt{color\ =} in the
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-284-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-288-1.pdf}
 
 To create nicer labels for the legend for color, convert the
 \texttt{top\_four} column into the factor class, with the labels you
@@ -8991,7 +9178,7 @@ want to use in the figure legend:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-286-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-290-1.pdf}
 
 As a note, you can use the \texttt{scale\_color\_discrete()} function to
 put in a nicer legend title:
@@ -9007,7 +9194,7 @@ put in a nicer legend title:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-287-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-291-1.pdf}
 
 To create small multiples, use the \texttt{facet\_grid()} command:
 
@@ -9023,7 +9210,7 @@ To create small multiples, use the \texttt{facet\_grid()} command:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-288-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-292-1.pdf}
 
 To re-order the \texttt{Position} column of the dataframe, use the
 \texttt{levels} option of the \texttt{factor()} function. This re-sets
@@ -9063,7 +9250,7 @@ Then use the same code from before for your plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-291-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-1.pdf}
 
 You can use the \texttt{filter} function with a logical statement
 comparing \texttt{Shots} to the maximum value of \texttt{Shots}
@@ -9107,7 +9294,7 @@ to add some padding so the label wouldn't be right on top of the point.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-293-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-297-1.pdf}
 
 Try out different themes for the plot. First, I'll save everything we've
 done so far as the object \texttt{shot\_plot}, then I'll try adding
@@ -9131,7 +9318,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9139,7 +9326,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9147,7 +9334,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9155,7 +9342,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9163,7 +9350,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9171,7 +9358,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-6.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-6.pdf}
 
 \subsection{Data visualization
 cheatsheet}\label{data-visualization-cheatsheet}
@@ -10206,17 +10393,17 @@ amounts, use a vector with one element for each column.\strut
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-313}My new table}
+\caption{\label{tab:unnamed-chunk-317}My new table}
 \centering
 \begin{tabular}[t]{r|c}
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.37\\
+a & 0.16\\
 \hline
-b & 1.76\\
+b & 0.54\\
 \hline
-c & -0.56\\
+c & -1.08\\
 \hline
 \end{tabular}
 \end{table}
@@ -10731,10 +10918,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -1.0686407  0.4865417 -3.258698
-## 2 2009-01-02 -0.2027774  1.2667853 -4.111210
-## 3 2009-01-03  0.7393298 -0.7930342 -2.938949
+##         time         X           Y         Z
+## 1 2009-01-01  1.151467  0.05979703 -1.237018
+## 2 2009-01-02  1.114313  1.41122740  3.249921
+## 3 2009-01-03 -1.935960 -1.75847360 -1.493971
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10751,10 +10938,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -1.0686407  0.4865417 -3.258698
-## 2 2009-01-02 -0.2027774  1.2667853 -4.111210
-## 3 2009-01-03  0.7393298 -0.7930342 -2.938949
+##         time         X           Y         Z
+## 1 2009-01-01  1.151467  0.05979703 -1.237018
+## 2 2009-01-02  1.114313  1.41122740  3.249921
+## 3 2009-01-03 -1.935960 -1.75847360 -1.493971
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10771,11 +10958,11 @@ data:
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X -1.06864074
-## 2 2009-01-02     X -0.20277739
-## 3 2009-01-03     X  0.73932984
-## 4 2009-01-04     X  0.05598489
-## 5 2009-01-05     X  0.11774158
+## 1 2009-01-01     X  1.15146730
+## 2 2009-01-02     X  1.11431345
+## 3 2009-01-03     X -1.93596014
+## 4 2009-01-04     X  0.09490888
+## 5 2009-01-05     X -0.19595695
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10790,11 +10977,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock       price
-## 1 2009-01-01     X -1.06864074
-## 2 2009-01-02     X -0.20277739
-## 3 2009-01-03     X  0.73932984
-## 4 2009-01-04     X  0.05598489
-## 5 2009-01-05     X  0.11774158
+## 1 2009-01-01     X  1.15146730
+## 2 2009-01-02     X  1.11431345
+## 3 2009-01-03     X -1.93596014
+## 4 2009-01-04     X  0.09490888
+## 5 2009-01-05     X -0.19595695
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10837,7 +11024,7 @@ Notice how easy it is, now that the data is gathered, to use
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-335-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-339-1.pdf}
 
 If you have data in a ``long'' format and would like to spread it out,
 you can use \texttt{spread} to do that:
@@ -10850,12 +11037,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y          Z
-## 1 2009-01-01 -1.06864074  0.4865417 -3.2586984
-## 2 2009-01-02 -0.20277739  1.2667853 -4.1112100
-## 3 2009-01-03  0.73932984 -0.7930342 -2.9389487
-## 4 2009-01-04  0.05598489 -0.7893776  1.8577726
-## 5 2009-01-05  0.11774158 -5.4543135 -0.7728524
+##         time           X           Y          Z
+## 1 2009-01-01  1.15146730  0.05979703 -1.2370181
+## 2 2009-01-02  1.11431345  1.41122740  3.2499213
+## 3 2009-01-03 -1.93596014 -1.75847360 -1.4939707
+## 4 2009-01-04  0.09490888  1.25863403 -1.7446751
+## 5 2009-01-05 -0.19595695 -1.37158096 -0.9834895
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10880,11 +11067,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10  0.08464954 0.9324093
-## 2     Y    10 -0.60046781 2.5180159
-## 3     Z    10 -1.86256495 3.3212538
+##   stock     N        mean       sd
+##   <chr> <int>       <dbl>    <dbl>
+## 1     X    10  0.05661636 0.871356
+## 2     Y    10 -0.80292069 1.861811
+## 3     Z    10 -1.72049929 2.120606
 \end{verbatim}
 
 \begin{Shaded}
@@ -10903,7 +11090,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.08 (0.93) & -0.6 (2.52) & -1.86 (3.32)\\
+Mean (Std.dev.) & 0.06 (0.87) & -0.8 (1.86) & -1.72 (2.12)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11127,7 +11314,7 @@ Use this new dataframe to plot deaths by date using \texttt{ggplot}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-344-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-348-1.pdf}
 
 \subsection{More extensive data
 wrangling}\label{more-extensive-data-wrangling}
@@ -11421,7 +11608,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-354-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-358-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11432,7 +11619,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-354-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-358-2.pdf}
 
 Try using the option \texttt{scales\ =\ "free\_y"} in the
 \texttt{facet\_wrap()} function (in the \texttt{gridExtra} package) and
@@ -11447,7 +11634,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-359-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11458,7 +11645,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-359-2.pdf}
 
 Put all of the steps of this cleaning process into just a few
 ``chaining'' calls. (Note: I'm using \texttt{sub} here instead of
@@ -11595,7 +11782,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
   yourselves first.
 \end{itemize}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-357-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-361-1.pdf}
 
 \chapter{Exploring data \#2}\label{exploring-data-2}
 
@@ -12017,7 +12204,7 @@ tools.
 
 Loops can be very useful for more complex repeated tasks. For example:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-378-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-382-1.pdf}
 
 Creating this graph requires that you:
 
@@ -12168,7 +12355,7 @@ Create the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-384-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-388-1.pdf}
 
 \section{Other control structures}\label{other-control-structures}
 
@@ -13179,7 +13366,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-425-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-429-1} \end{center}
 
 \subsubsection{Example R code}\label{example-r-code-10}
 
@@ -13214,7 +13401,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-426-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-430-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -13307,7 +13494,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-430-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-434-1} \end{center}
 
 \begin{itemize}
 \tightlist
