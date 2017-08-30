@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-08-28}
+\date{2017-08-30}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x4a03198>
+## <bytecode: 0x3d466d8>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10212,11 +10212,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.32\\
+a & 1.28\\
 \hline
-b & -0.44\\
+b & -0.52\\
 \hline
-c & -0.26\\
+c & 0.32\\
 \hline
 \end{tabular}
 \end{table}
@@ -10731,10 +10731,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time        X          Y         Z
-## 1 2009-01-01 0.234457 -0.8193598  1.507022
-## 2 2009-01-02 1.155268 -1.3964197  7.743129
-## 3 2009-01-03 1.065842 -1.1831003 -0.669229
+##         time          X         Y         Z
+## 1 2009-01-01 -0.7865553 -1.759550 -2.300381
+## 2 2009-01-02 -0.5886625 -2.787017 -3.146901
+## 3 2009-01-03 -0.2330264 -3.250676  5.529575
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10751,10 +10751,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time        X          Y         Z
-## 1 2009-01-01 0.234457 -0.8193598  1.507022
-## 2 2009-01-02 1.155268 -1.3964197  7.743129
-## 3 2009-01-03 1.065842 -1.1831003 -0.669229
+##         time          X         Y         Z
+## 1 2009-01-01 -0.7865553 -1.759550 -2.300381
+## 2 2009-01-02 -0.5886625 -2.787017 -3.146901
+## 3 2009-01-03 -0.2330264 -3.250676  5.529575
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10770,12 +10770,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock     price
-## 1 2009-01-01     X 0.2344570
-## 2 2009-01-02     X 1.1552678
-## 3 2009-01-03     X 1.0658420
-## 4 2009-01-04     X 2.3348249
-## 5 2009-01-05     X 0.3703053
+##         time stock      price
+## 1 2009-01-01     X -0.7865553
+## 2 2009-01-02     X -0.5886625
+## 3 2009-01-03     X -0.2330264
+## 4 2009-01-04     X  0.5538239
+## 5 2009-01-05     X  1.0909726
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10789,12 +10789,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock     price
-## 1 2009-01-01     X 0.2344570
-## 2 2009-01-02     X 1.1552678
-## 3 2009-01-03     X 1.0658420
-## 4 2009-01-04     X 2.3348249
-## 5 2009-01-05     X 0.3703053
+##         time stock      price
+## 1 2009-01-01     X -0.7865553
+## 2 2009-01-02     X -0.5886625
+## 3 2009-01-03     X -0.2330264
+## 4 2009-01-04     X  0.5538239
+## 5 2009-01-05     X  1.0909726
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10850,12 +10850,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X          Y         Z
-## 1 2009-01-01 0.2344570 -0.8193598  1.507022
-## 2 2009-01-02 1.1552678 -1.3964197  7.743129
-## 3 2009-01-03 1.0658420 -1.1831003 -0.669229
-## 4 2009-01-04 2.3348249  0.1735566 -1.905338
-## 5 2009-01-05 0.3703053 -0.4828258 -3.944669
+##         time          X         Y            Z
+## 1 2009-01-01 -0.7865553 -1.759550 -2.300380738
+## 2 2009-01-02 -0.5886625 -2.787017 -3.146900689
+## 3 2009-01-03 -0.2330264 -3.250676  5.529574778
+## 4 2009-01-04  0.5538239 -1.274964 -3.057145304
+## 5 2009-01-05  1.0909726  2.254629 -0.005103459
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10880,11 +10880,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.8135916 0.8948747
-## 2     Y    10 -0.3431379 1.1760908
-## 3     Z    10  0.7924945 3.2056237
+##   stock     N        mean       sd
+##   <chr> <int>       <dbl>    <dbl>
+## 1     X    10 -0.21495757 1.059550
+## 2     Y    10 -0.78783623 2.549056
+## 3     Z    10 -0.04531426 4.794751
 \end{verbatim}
 
 \begin{Shaded}
@@ -10903,7 +10903,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.81 (0.89) & -0.34 (1.18) & 0.79 (3.21)\\
+Mean (Std.dev.) & -0.21 (1.06) & -0.79 (2.55) & -0.05 (4.79)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
