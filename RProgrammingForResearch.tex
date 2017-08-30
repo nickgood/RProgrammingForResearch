@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x3d466d8>
+## <bytecode: 0x39be1d8>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10212,11 +10212,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 1.28\\
+a & -1.37\\
 \hline
-b & -0.52\\
+b & 1.76\\
 \hline
-c & 0.32\\
+c & -0.56\\
 \hline
 \end{tabular}
 \end{table}
@@ -10731,10 +10731,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -0.7865553 -1.759550 -2.300381
-## 2 2009-01-02 -0.5886625 -2.787017 -3.146901
-## 3 2009-01-03 -0.2330264 -3.250676  5.529575
+##         time          X          Y         Z
+## 1 2009-01-01 -1.0686407  0.4865417 -3.258698
+## 2 2009-01-02 -0.2027774  1.2667853 -4.111210
+## 3 2009-01-03  0.7393298 -0.7930342 -2.938949
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10751,10 +10751,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -0.7865553 -1.759550 -2.300381
-## 2 2009-01-02 -0.5886625 -2.787017 -3.146901
-## 3 2009-01-03 -0.2330264 -3.250676  5.529575
+##         time          X          Y         Z
+## 1 2009-01-01 -1.0686407  0.4865417 -3.258698
+## 2 2009-01-02 -0.2027774  1.2667853 -4.111210
+## 3 2009-01-03  0.7393298 -0.7930342 -2.938949
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10770,12 +10770,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -0.7865553
-## 2 2009-01-02     X -0.5886625
-## 3 2009-01-03     X -0.2330264
-## 4 2009-01-04     X  0.5538239
-## 5 2009-01-05     X  1.0909726
+##         time stock       price
+## 1 2009-01-01     X -1.06864074
+## 2 2009-01-02     X -0.20277739
+## 3 2009-01-03     X  0.73932984
+## 4 2009-01-04     X  0.05598489
+## 5 2009-01-05     X  0.11774158
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10789,12 +10789,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -0.7865553
-## 2 2009-01-02     X -0.5886625
-## 3 2009-01-03     X -0.2330264
-## 4 2009-01-04     X  0.5538239
-## 5 2009-01-05     X  1.0909726
+##         time stock       price
+## 1 2009-01-01     X -1.06864074
+## 2 2009-01-02     X -0.20277739
+## 3 2009-01-03     X  0.73932984
+## 4 2009-01-04     X  0.05598489
+## 5 2009-01-05     X  0.11774158
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10850,12 +10850,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y            Z
-## 1 2009-01-01 -0.7865553 -1.759550 -2.300380738
-## 2 2009-01-02 -0.5886625 -2.787017 -3.146900689
-## 3 2009-01-03 -0.2330264 -3.250676  5.529574778
-## 4 2009-01-04  0.5538239 -1.274964 -3.057145304
-## 5 2009-01-05  1.0909726  2.254629 -0.005103459
+##         time           X          Y          Z
+## 1 2009-01-01 -1.06864074  0.4865417 -3.2586984
+## 2 2009-01-02 -0.20277739  1.2667853 -4.1112100
+## 3 2009-01-03  0.73932984 -0.7930342 -2.9389487
+## 4 2009-01-04  0.05598489 -0.7893776  1.8577726
+## 5 2009-01-05  0.11774158 -5.4543135 -0.7728524
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10880,11 +10880,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean       sd
-##   <chr> <int>       <dbl>    <dbl>
-## 1     X    10 -0.21495757 1.059550
-## 2     Y    10 -0.78783623 2.549056
-## 3     Z    10 -0.04531426 4.794751
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10  0.08464954 0.9324093
+## 2     Y    10 -0.60046781 2.5180159
+## 3     Z    10 -1.86256495 3.3212538
 \end{verbatim}
 
 \begin{Shaded}
@@ -10903,7 +10903,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.21 (1.06) & -0.79 (2.55) & -0.05 (4.79)\\
+Mean (Std.dev.) & 0.08 (0.93) & -0.6 (2.52) & -1.86 (3.32)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
