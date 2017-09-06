@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x4a13430>
+## <bytecode: 0x3f2b028>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10064,11 +10064,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.16\\
+a & -0.84\\
 \hline
-b & -0.44\\
+b & 0.14\\
 \hline
-c & 2.02\\
+c & -0.07\\
 \hline
 \end{tabular}
 \end{table}
@@ -10584,9 +10584,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X         Y         Z
-## 1 2009-01-01 -0.6620706 -1.133716 -2.174028
-## 2 2009-01-02  1.9368273 -2.908011  1.265979
-## 3 2009-01-03  0.2598184 -1.763428 -6.299783
+## 1 2009-01-01  0.5651842  4.198673 -1.858630
+## 2 2009-01-02  0.3937359 -1.622498  4.180060
+## 3 2009-01-03 -0.1794519  1.868321  1.723736
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10604,9 +10604,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X         Y         Z
-## 1 2009-01-01 -0.6620706 -1.133716 -2.174028
-## 2 2009-01-02  1.9368273 -2.908011  1.265979
-## 3 2009-01-03  0.2598184 -1.763428 -6.299783
+## 1 2009-01-01  0.5651842  4.198673 -1.858630
+## 2 2009-01-02  0.3937359 -1.622498  4.180060
+## 3 2009-01-03 -0.1794519  1.868321  1.723736
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10623,11 +10623,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.6620706
-## 2 2009-01-02     X  1.9368273
-## 3 2009-01-03     X  0.2598184
-## 4 2009-01-04     X  1.1668797
-## 5 2009-01-05     X  1.1947831
+## 1 2009-01-01     X  0.5651842
+## 2 2009-01-02     X  0.3937359
+## 3 2009-01-03     X -0.1794519
+## 4 2009-01-04     X  0.3867194
+## 5 2009-01-05     X -2.5153286
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10642,11 +10642,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.6620706
-## 2 2009-01-02     X  1.9368273
-## 3 2009-01-03     X  0.2598184
-## 4 2009-01-04     X  1.1668797
-## 5 2009-01-05     X  1.1947831
+## 1 2009-01-01     X  0.5651842
+## 2 2009-01-02     X  0.3937359
+## 3 2009-01-03     X -0.1794519
+## 4 2009-01-04     X  0.3867194
+## 5 2009-01-05     X -2.5153286
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10702,12 +10702,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -0.6620706 -1.1337164 -2.174028
-## 2 2009-01-02  1.9368273 -2.9080109  1.265979
-## 3 2009-01-03  0.2598184 -1.7634276 -6.299783
-## 4 2009-01-04  1.1668797 -3.3807693  4.723238
-## 5 2009-01-05  1.1947831  0.6947629 -2.757425
+##         time          X         Y         Z
+## 1 2009-01-01  0.5651842  4.198673 -1.858630
+## 2 2009-01-02  0.3937359 -1.622498  4.180060
+## 3 2009-01-03 -0.1794519  1.868321  1.723736
+## 4 2009-01-04  0.3867194 -3.187045  4.539828
+## 5 2009-01-05 -2.5153286  1.441175 -1.701104
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10732,11 +10732,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10  0.4465816 1.129727
-## 2     Y    10 -0.4137613 1.908841
-## 3     Z    10 -0.9035416 3.113959
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10 -0.04666202 0.9868222
+## 2     Y    10  0.34237748 2.4797756
+## 3     Z    10  0.61142462 4.5671349
 \end{verbatim}
 
 \begin{Shaded}
@@ -10755,7 +10755,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.45 (1.13) & -0.41 (1.91) & -0.9 (3.11)\\
+Mean (Std.dev.) & -0.05 (0.99) & 0.34 (2.48) & 0.61 (4.57)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
