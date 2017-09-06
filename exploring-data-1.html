@@ -223,8 +223,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
 <li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-logical-statements"><i class="fa fa-check"></i><b>3.6.2</b> Exploring the data using logical statements</a></li>
 <li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-summarize"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and <code>summarize</code></a></li>
-<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots"><i class="fa fa-check"></i><b>3.6.4</b> Exploring the data using basic plots</a></li>
-<li class="chapter" data-level="3.6.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.5</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots-1"><i class="fa fa-check"></i><b>3.6.4</b> Exploring the data using basic plots #1</a></li>
+<li class="chapter" data-level="3.6.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots-2"><i class="fa fa-check"></i><b>3.6.5</b> Exploring the data using basic plots #2</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
@@ -300,7 +300,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6" data-path="exploring-data-2.html"><a href="exploring-data-2.html#in-course-exercise-6"><i class="fa fa-check"></i><b>7.6</b> In-course exercise</a><ul>
 <li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
 <li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.2</b> Using a loop to create state-specific plots</a></li>
-<li class="chapter" data-level="7.6.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data-1"><i class="fa fa-check"></i><b>7.6.3</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="7.6.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>7.6.3</b> Using regression models to explore data</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -1326,54 +1326,60 @@ worldcup <span class="op">%&gt;%</span>
 ## 3   Chile Defender  306     6    178      17     0</code></pre>
 </div>
 </div>
-<div id="exploring-the-data-using-basic-plots" class="section level3">
-<h3><span class="header-section-number">3.6.4</span> Exploring the data using basic plots</h3>
+<div id="exploring-the-data-using-basic-plots-1" class="section level3">
+<h3><span class="header-section-number">3.6.4</span> Exploring the data using basic plots #1</h3>
 <p>Use some basic plots to check out this data. Try the following:</p>
 <ul>
-<li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>)</li>
-<li>Plot scatterplots of different combinations of numeric variables (e.g., <code>Time</code> vs. <code>Shots</code>). Try doing this using the <code>geom_point()</code> geom from <code>ggplot2</code>. Also try doing it using the <code>ggpairs()</code> function from the <code>GGally</code> package, to plot several of these at the same time. Try using different constant or mapped values with the <code>color</code> aesthetic.</li>
-<li>Create boxplots of <code>Time</code>, <code>Shots</code>, <code>Passes</code> and <code>Saves</code> by position.</li>
-<li>Go online and find out which teams were the top four teams in this World Cup (i.e., first through fourth places). Create a <code>top_teams</code> subset with just these teams. Plot boxplots of <code>Shots</code> and <code>Saves</code> by team for just these teams.</li>
-<li>Did you notice any interesting features of the data when you did any of the graphs in this section?</li>
+<li><p>Plot scatterplots of different combinations of numeric variables (e.g., <code>Time</code> vs. <code>Shots</code>). Try doing this using the <code>geom_point()</code> geom from <code>ggplot2</code>. Try using different constant or mapped values with the <code>color</code> aesthetic.</p></li>
+<li><p>Did you notice any interesting features of the data when you did any of the graphs in this section?</p></li>
 </ul>
 <div id="example-r-code-3" class="section level4">
 <h4><span class="header-section-number">3.6.4.1</span> Example R code:</h4>
-<p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-2.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-3.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-4.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="exploring-the-data-using-basic-plots-2" class="section level3">
+<h3><span class="header-section-number">3.6.5</span> Exploring the data using basic plots #2</h3>
+<p>Use some basic plots to check out this data. Try the following:</p>
+<ul>
+<li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>).</li>
+<li>Try customizing the number of bins used for the histogram plotted in the previous step.</li>
+<li>Try using constant values for some of the aesthetics (e.g., customize the color and the fill) of the histogram created in the previous step.</li>
+<li>Go online and find out which teams were the top four teams in this World Cup (i.e., first through fourth places). Create a <code>top_teams</code> subset with just these teams. Plot boxplots of <code>Shots</code> and <code>Saves</code> by team for just these teams.</li>
+<li>In the previous section of the group exercise, you should have identified that the four top teams in this tournament were Spain, the Netherlands, Germany, and Uruguay. Create a histogram using data only from these four citis for the amount of time each player played. Use the color aesthetic of the histogram to show team.</li>
+<li>Create boxplots of <code>Time</code>, <code>Shots</code>, <code>Passes</code> and <code>Saves</code> by position.</li>
+</ul>
+<div id="example-r-code-4" class="section level4">
+<h4><span class="header-section-number">3.6.5.1</span> Example R code</h4>
+<p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-2.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-3.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-4.png" width="480" style="display: block; margin: auto;" /></p>
-<p>Use the <code>ggpairs</code> function from the <code>GGally</code> package to plot scatterplots of all combinations of several numeric variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
-<span class="kw">library</span>(dplyr)
-<span class="kw">ggpairs</span>(<span class="kw">select</span>(worldcup, Time, Shots, Passes, Tackles, Saves))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-227-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-228-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-227-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -1383,14 +1389,20 @@ worldcup <span class="op">%&gt;%</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-229-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-2.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-229-2.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">fill =</span> Team)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
 </div>
 <div id="if-you-have-extra-time" class="section level4">
-<h4><span class="header-section-number">3.6.4.2</span> If you have extra time:</h4>
+<h4><span class="header-section-number">3.6.5.2</span> If you have extra time:</h4>
 <p>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, you could create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with the column names for all of the numeric variables
 my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span><span class="op">:</span><span class="dv">7</span>]
@@ -1413,168 +1425,6 @@ my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)
 <li>If you run code to create a ggplot object within a loop, it won’t automatically print. Instead, you need to use <code>print</code> to get the object to print out. One way to do that is to save the final ggplot object as an R object (here I’m saving it to <code>a</code>) and then use the <code>print</code> function to print that object.</li>
 <li>Next week, we’ll talk some about faceting, which can create multiple plots by variable like this in a lot less code. However, it’s useful at this point to start thinking about how to extend code to use in loops, to save yourself time when you need to repeat something similar many times.</li>
 </ul>
-</div>
-</div>
-<div id="using-regression-models-to-explore-data" class="section level3">
-<h3><span class="header-section-number">3.6.5</span> Using regression models to explore data</h3>
-<p>For this part of the exercise, you’ll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called <code>chicagoNMMAPS</code> and is part of the <code>dlnm</code> package. Change the name of the dataframe to something shorter, like <code>chic</code>. Check out the data a bit to see what variables you have, and then perform the following tasks:</p>
-<ul>
-<li>Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature.</li>
-<li>Try fitting a linear regression of dew point temperature (<code>dptp</code>) on temperature (<code>temp</code>). (Bonus points: Notice anything that seems unusual about these two variables in this dataset? You can find out with <code>summary</code>, but it helps if you know a bit about what dewpoint temperature measures.) Save this model as the object <code>mod_1</code>.</li>
-<li>Based on this regression, does there seem to be a relationship between temperature and dewpoint temperature in Chicago? (Hint: Try using <code>summary()</code> on the model object to get more information about the model you fit.) What is the p-value for the coefficient for temperature?</li>
-<li>Plot temperature (x-axis) versus dewpoint temperature (y-axis) for Chicago. Add in the regression line from the model you fit.</li>
-<li>Use <code>plot()</code> on the model object to check if some of the assumptions for the regression model seem appropriate.</li>
-<li>Try fitting the regression as a GLM, using <code>glm()</code>. Are your coefficients different?</li>
-<li>Does <span class="math inline">\(PM_{10}\)</span> vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable, and then run <code>anova()</code> on that model, and R will compare it to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you’re fitting.</li>
-<li>Try using <code>glm()</code> to run a Poisson regression of respiratory deaths (<code>resp</code>) on temperature during summer days. Start by creating a subset with just summer days called <code>summer</code>. (Hint: Use the <code>month</code> variable to do this– just pull out the subset where the month is 6, 7, or 8, for June, July, and August.) Try to write out the regression equation for the model you’re fitting.</li>
-<li>The coefficient for the temperature variable in this model is our best estimate (based on this model) of the <strong>log relative risk</strong> for a one degree Celcius increase in temperature. What is the <strong>relative risk</strong> associated with a one degree Celsius increase?</li>
-</ul>
-<div id="example-r-code-4" class="section level4">
-<h4><span class="header-section-number">3.6.5.1</span> Example R code:</h4>
-<p>Install and load the <code>dlnm</code> package and then load the <code>chicagoNMMAPS</code> data. Change the name of the dataframe to <code>chic</code>, so it will be shorter to call for the rest of your work.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;dlnm&quot;)</span>
-<span class="kw">library</span>(dlnm)
-<span class="kw">data</span>(<span class="st">&quot;chicagoNMMAPS&quot;</span>)
-chic &lt;-<span class="st"> </span>chicagoNMMAPS</code></pre></div>
-<p>Fit a linear regression of <code>dptp</code> on <code>temp</code> and save as the object <code>mod_1</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
-mod_<span class="dv">1</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = dptp ~ temp, data = chic)
-## 
-## Coefficients:
-## (Intercept)         temp  
-##      24.025        1.621</code></pre>
-<p>Use <code>summary()</code> to check out a bit more about the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = dptp ~ temp, data = chic)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -24.3093  -3.7470   0.4687   4.0738  18.6518 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 24.024869   0.112933   212.7   &lt;2e-16 ***
-## temp         1.620650   0.007631   212.4   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 5.899 on 5112 degrees of freedom
-## Multiple R-squared:  0.8982, Adjusted R-squared:  0.8982 
-## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a 1.6 unit increase in dewpoint temperature. The p-value for the temperature coefficient is &lt;2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.</p>
-<p>Plot these two variables and add in the regression line from the model (note: I’ve used the <code>color</code> option to make the color of the points gray). Use the values from <code>coef</code> with a <code>geom_abline</code> to add the regression line for the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_<span class="dv">1</span>)
-<span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
-<p>Plot some plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
-<span class="kw">plot</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-236-1.png" width="576" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
-<p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
-
-<span class="kw">coef</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<pre><code>## (Intercept)        temp 
-##    24.02487     1.62065</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_1a)</code></pre></div>
-<pre><code>## (Intercept)        temp 
-##    24.02487     1.62065</code></pre>
-<p>The results from the two models are identical.</p>
-<p>Fit a model of <span class="math inline">\(PM_{10}\)</span> regressed on day of week, where day of week is a factor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(pm10 <span class="op">~</span><span class="st"> </span>dow, <span class="dt">data =</span> chic)
-<span class="kw">summary</span>(mod_<span class="dv">2</span>)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = pm10 ~ dow, data = chic)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -39.05 -12.55  -3.34   8.80 328.66 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   27.5217     0.7303  37.684  &lt; 2e-16 ***
-## dowMonday      6.1322     1.0340   5.931 3.22e-09 ***
-## dowTuesday     6.7954     1.0269   6.617 4.05e-11 ***
-## dowWednesday   8.4768     1.0262   8.261  &lt; 2e-16 ***
-## dowThursday    8.8047     1.0240   8.598  &lt; 2e-16 ***
-## dowFriday      9.4816     1.0262   9.240  &lt; 2e-16 ***
-## dowSaturday    3.6602     1.0269   3.564 0.000368 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.07 on 4856 degrees of freedom
-##   (251 observations deleted due to missingness)
-## Multiple R-squared:  0.02588,    Adjusted R-squared:  0.02467 
-## F-statistic:  21.5 on 6 and 4856 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Use the <code>anova()</code> command to compare this model to a model with only an intercept (i.e., one that only fits a global mean and uses that as the expected value for all of the observations).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod_<span class="dv">2</span>)</code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: pm10
-##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## dow          6   46924  7820.6    21.5 &lt; 2.2e-16 ***
-## Residuals 4856 1766407   363.8                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>The p-value for an ANOVA of the model with day-of-week coefficients versus the model that just has an intercept is &lt; 2.2e-16. This is well below 0.05, which suggests that day-of-week is associated with PM10 concentration, as a model that includes day-of-week does a much better job of explaining variation in PM10 than a model without it does. (Note, too, that the F value and Pr(&gt;F) for the <code>anova()</code> call are identical to the F-statistic information given in the <code>summary()</code> of the model object. This will always be true when you’re using <code>anova()</code> to compare a model to a model with just an intercept.)</p>
-<p>Use a boxplot to visually compare PM10 by day of week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-240-1.png" width="576" /></p>
-<p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
-<pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-1.png" width="576" /></p>
-<p>Create a subset called <code>summer</code> with just the summer days:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(month <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>)</code></pre></div>
-<p>Use <code>glm()</code> to fit a Poisson model of respiratory deaths regressed on temperature. Since you want to fit a Poisson model, use the option <code>family = poisson(link = &quot;log&quot;)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(resp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> summer,
-             <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
-<span class="kw">summary</span>(mod_<span class="dv">3</span>)</code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = resp ~ temp, family = poisson(link = &quot;log&quot;), data = summer)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -3.9755  -0.7162  -0.1807   0.6927   3.6555  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) 1.910317   0.058373  32.726   &lt;2e-16 ***
-## temp        0.006137   0.002581   2.378   0.0174 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for poisson family taken to be 1)
-## 
-##     Null deviance: 1499.4  on 1287  degrees of freedom
-## Residual deviance: 1493.8  on 1286  degrees of freedom
-## AIC: 6425.4
-## 
-## Number of Fisher Scoring iterations: 4</code></pre>
-<p>Use the fitted model coefficient to determine the relative risk for a one degree Celcius increase in temperature. First, remember that you can use the <code>coef()</code> function to read out the model coefficients. The second of these is the value for the temperature coefficient. That means that you can use indexing (<code>[2]</code>) to get just that value. That’s the log relative risk; take the exponent to get the relative risk.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_<span class="dv">3</span>)</code></pre></div>
-<pre><code>## (Intercept)        temp 
-## 1.910316958 0.006136743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_<span class="dv">3</span>)[<span class="dv">2</span>]</code></pre></div>
-<pre><code>##        temp 
-## 0.006136743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(mod_<span class="dv">3</span>)[<span class="dv">2</span>])</code></pre></div>
-<pre><code>##     temp 
-## 1.006156</code></pre>
 
 </div>
 </div>
