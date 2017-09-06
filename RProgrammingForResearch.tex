@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-08-30}
+\date{2017-09-06}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x3ed1400>
+## <bytecode: 0x37c7aa0>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -7149,7 +7149,338 @@ Check out the data a bit:
 ## 
 \end{verbatim}
 
-\subsection{Basic plots of the data}\label{basic-plots-of-the-data}
+\subsection{Exploring the data using logical
+statements}\label{exploring-the-data-using-logical-statements}
+
+Next, try checking out the data using logical statements and some of the
+\texttt{dplyr} code we covered last week, to help you answer the
+following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the range of time that players spent in the game?
+\item
+  Which player or players played the most time in this World Cup?
+\item
+  How many players are goalies in this dataset?
+\item
+  Create a new R object named \texttt{brazil\_players} that is limited
+  to the players in this dataset that are (1) on the Brazil team and (2)
+  not goalies.
+\end{itemize}
+
+If you have additional time, look over the ``Data Manipulation''
+cheatsheet available in RStudio's Help section. Make a list of questions
+you would like to figure out from this example data, and start to plan
+out how you might be able to answer those questions using functions from
+\texttt{dplyr}. Write the related code and see if it works.
+
+\subsubsection{Example R code:}\label{example-r-code-1}
+
+Use \texttt{range()} to find out the range of time these players played
+in the World Cup (remember that you can use the
+\texttt{dataframe\$column\_name} notation to pull a column from a
+dataframe).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{range}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   1 570
+\end{verbatim}
+
+To figure out who played the most time, there are a few approaches you
+can take. Here I'm showing two: (1) using \texttt{filter} from the
+\texttt{dplyr} package to filter down to rows where where the
+\texttt{Time} for that row equals \texttt{max(Time)} for the whole
+dataset; (2) using the \texttt{top\_n} function from \texttt{dplyr} to
+pick out the rows with the maximum value (\texttt{n\ =\ 1}) of the
+\texttt{Time} column (see the help file for \texttt{top\_n} if you are
+unfamiliar with this function).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Time }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(Time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Team   Position Time Shots Passes Tackles Saves
+## 1 Uruguay Midfielder  570     5    195      21     0
+## 2 Uruguay Midfielder  570     5    182      15     0
+## 3 Uruguay Goalkeeper  570     0     75       0    16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{top_n}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\NormalTok{, }\DataTypeTok{wt =}\NormalTok{ Time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Team   Position Time Shots Passes Tackles Saves
+## 1 Uruguay Midfielder  570     5    195      21     0
+## 2 Uruguay Midfielder  570     5    182      15     0
+## 3 Uruguay Goalkeeper  570     0     75       0    16
+\end{verbatim}
+
+\emph{Note}: You may have noticed that you lost the players names when
+you did this using the \texttt{dplyr} pipechain. That's because
+\texttt{dplyr} functions convert the data to a dataframe format that
+does not include rownames. If you want to keep players' names, you can
+use a function from the \texttt{tibble} package called
+\texttt{rownames\_to\_column} to move those names from the rownames of
+the data into a column in the dataframe. Use the \texttt{var} parameter
+of this function to specify what you want the new column to be named.
+For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tibble)}
+\NormalTok{worldcup }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rownames_to_column}\NormalTok{(}\DataTypeTok{var =} \StringTok{"Name"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Time }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(Time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Name    Team   Position Time Shots Passes Tackles Saves
+## 1 Arevalo Rios Uruguay Midfielder  570     5    195      21     0
+## 2 Maxi Pereira Uruguay Midfielder  570     5    182      15     0
+## 3      Muslera Uruguay Goalkeeper  570     0     75       0    16
+\end{verbatim}
+
+There are a few ways to figure out how many players are goalies in this
+dataset. One way is to use \texttt{filter} from \texttt{dplyr}, along
+with a logical statement, to filter the data to only players with the
+position of ``Goalkeeper'', and then pipe that filtered subset into the
+\texttt{nrow} function to count the number of rows in the filtered
+dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Position }\OperatorTok{==}\StringTok{ "Goalkeeper"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{nrow}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36
+\end{verbatim}
+
+Next, create a new R object named \texttt{brazil\_players} that is
+limited to the players in this dataset that are (1) on the Brazil team
+and (2) not goalies. You can use a logical statement to filter to rows
+that meet both these conditions by joing two logical statements in the
+\texttt{filter} function with an \texttt{\&}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{brazil_players <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Team }\OperatorTok{==}\StringTok{ "Brazil"} \OperatorTok{&}\StringTok{ }\NormalTok{Position }\OperatorTok{!=}\StringTok{ "Goalkeeper"}\NormalTok{) }
+\KeywordTok{head}\NormalTok{(brazil_players)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Team   Position Time Shots Passes Tackles Saves
+## 1 Brazil Midfielder   82     0     42       1     0
+## 2 Brazil   Defender  310    11    215       6     0
+## 3 Brazil Midfielder  140     5     57       6     0
+## 4 Brazil    Forward  418     9     89       4     0
+## 5 Brazil   Defender   33     0      6       4     0
+## 6 Brazil Midfielder  450     3    299      11     0
+\end{verbatim}
+
+\subsection{\texorpdfstring{Exploring the data using simple statistics
+and
+\texttt{summarize}}{Exploring the data using simple statistics and summarize}}\label{exploring-the-data-using-simple-statistics-and-summarize}
+
+Next, try checking out the data using some basic commands for simple
+statistics, like \texttt{mean()}, \texttt{range()}, \texttt{max()}, and
+\texttt{min()}, as well as the \texttt{summarize} and \texttt{group\_by}
+functions from the \texttt{dplyr} package. Try to answer the following
+questions:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the mean number of saves that players made?
+\item
+  What is the mean number of saves just among the goalkeepers?
+\item
+  Did players from any position other than goalkeeper make a save?
+\item
+  How many players were there in each position?
+\item
+  How many forwards were there on each team? Which team had the most
+  shots in total among all its forwards?
+\item
+  Which team(s) had the defender with the most tackles?
+\end{itemize}
+
+If you have extra time, continuing using the ``Data Wrangling''
+cheatsheet to come up with some other ideas for how you can explore this
+data, and write up and test code to do that.
+
+\subsubsection{Example R code:}\label{example-r-code-2}
+
+To calculate the mean number of saves among all the players, use the
+\texttt{mean} function, either by itself or within a \texttt{summarize}
+call:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Saves)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6672269
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_saves =} \KeywordTok{mean}\NormalTok{(Saves))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   mean_saves
+## 1  0.6672269
+\end{verbatim}
+
+There are a few ways to figure out the mean number of saves just among
+the goalkeepers. One way is to filter the dataset to only goalies and
+then use \texttt{summarize} to calculate the mean number of saves in
+this filtered subset of the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Position }\OperatorTok{==}\StringTok{ "Goalkeeper"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_saves =} \KeywordTok{mean}\NormalTok{(Saves))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   mean_saves
+## 1   11.02778
+\end{verbatim}
+
+The next question is if players from any position other than goalkeeper
+made a save. One way to figure this out is to group the data by position
+and then summarize the maximum number of saves. Based on this, it looks
+like there were not saves from players in any position except goalie:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Position) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{max_saves =} \KeywordTok{max}\NormalTok{(Saves))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##     Position max_saves
+##       <fctr>     <dbl>
+## 1   Defender         0
+## 2    Forward         0
+## 3 Goalkeeper        20
+## 4 Midfielder         0
+\end{verbatim}
+
+To figure out how many players were there in each position, you can can
+group the data by position and then use the \texttt{n} function from
+\texttt{dplyr} to count the number of observations in each group:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Position) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n_players =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##     Position n_players
+##       <fctr>     <int>
+## 1   Defender       188
+## 2    Forward       143
+## 3 Goalkeeper        36
+## 4 Midfielder       228
+\end{verbatim}
+
+For the next set of questions, you can filter the data to only forwards,
+then group by team to use \texttt{summarize} to count up the number of
+forwards on each team. You can also use the same \texttt{summarize} call
+to figure out the total number of shots by all forwards on each team. To
+figure out which team had the most shots in total among all its
+forwards, you can use the \texttt{arrange} function to re-order the data
+from the team with the most total shots to the least. It turns out that
+Uruguay had the most shots by forwards on its team, with a total of 46
+shots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Position }\OperatorTok{==}\StringTok{ "Forward"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Team) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n_forwards =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{total_forward_shots =} \KeywordTok{sum}\NormalTok{(Shots)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(total_forward_shots))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 32 x 3
+##           Team n_forwards total_forward_shots
+##         <fctr>      <int>               <int>
+##  1     Uruguay          5                  46
+##  2   Argentina          6                  45
+##  3     Germany          6                  41
+##  4 Netherlands          5                  34
+##  5       Spain          3                  33
+##  6       Ghana          5                  32
+##  7    Portugal          4                  28
+##  8    Paraguay          5                  25
+##  9      Brazil          4                  23
+## 10         USA          5                  21
+## # ... with 22 more rows
+\end{verbatim}
+
+To figure out which team(s) had the defender with the most tackles, you
+can filter to only defenders and then use the \texttt{top\_n} function
+to identify the players with the top number of tackles. It turns out
+these players were on the England, Germany, and Chile teams.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Position }\OperatorTok{==}\StringTok{ "Defender"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{top_n}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\NormalTok{, }\DataTypeTok{wt =}\NormalTok{ Tackles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Team Position Time Shots Passes Tackles Saves
+## 1 England Defender  357     3    173      17     0
+## 2 Germany Defender  540     0    360      17     0
+## 3   Chile Defender  306     6    178      17     0
+\end{verbatim}
+
+\subsection{Exploring the data using basic
+plots}\label{exploring-the-data-using-basic-plots}
 
 Use some basic plots to check out this data. Try the following:
 
@@ -7178,7 +7509,7 @@ Use some basic plots to check out this data. Try the following:
   of the graphs in this section?
 \end{itemize}
 
-\subsubsection{Example R code:}\label{example-r-code-1}
+\subsubsection{Example R code:}\label{example-r-code-3}
 
 Use histograms to explore the distribution of different variables. If
 you want to change the number of bins in the histogram, try playing
@@ -7199,7 +7530,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7208,7 +7539,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7217,7 +7548,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7226,7 +7557,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-214-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-4} \end{center}
 
 Create a scatterplot of \texttt{Time} versus \texttt{Passes}. To change
 the size of the points, use the \texttt{size} argument (use a number
@@ -7242,7 +7573,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7251,7 +7582,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7260,7 +7591,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7269,7 +7600,7 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-215-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-4} \end{center}
 
 Use the \texttt{ggpairs} function from the \texttt{GGally} package to
 plot scatterplots of all combinations of several numeric variables.
@@ -7282,7 +7613,7 @@ plot scatterplots of all combinations of several numeric variables.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-216-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-227-1} \end{center}
 
 To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \texttt{geom\_boxplot}:
@@ -7294,7 +7625,7 @@ To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-217-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-228-1} \end{center}
 
 The top four teams in this World Cup were Spain, the Netherlands,
 Germany, and Uruguay. Create a subset with just the data for these four
@@ -7326,7 +7657,7 @@ aesthetic:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-219-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-230-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7336,7 +7667,7 @@ aesthetic:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-219-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-230-2} \end{center}
 
 \subsubsection{If you have extra time:}\label{if-you-have-extra-time}
 
@@ -7366,11 +7697,11 @@ plots once you've created them):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-1.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-2.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-3.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-4.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-220-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-5.pdf}
 
 A few things to note in this example:
 
@@ -7396,309 +7727,6 @@ A few things to note in this example:
   loops, to save yourself time when you need to repeat something similar
   many times.
 \end{itemize}
-
-\subsection{Exploring the data using simple statistics and logical
-statements}\label{exploring-the-data-using-simple-statistics-and-logical-statements}
-
-Next, try checking out the data using some basic commands for simple
-statistics, like \texttt{mean()}, \texttt{range()}, \texttt{max()}, and
-\texttt{min()}. Use these, along with some logical statements, to help
-you answer the following questions:
-
-\begin{itemize}
-\tightlist
-\item
-  What is the range of time that players spent in the game? Who played
-  the most World Cup time in this World Cup? For the minimum of the
-  range of \texttt{Time}, how many players played this amount of time?
-\item
-  What is the mean number of saves that players made? What is the mean
-  number of saves just among the goalkeepers? How many of the players
-  are goalkeepers? Did any non-goalkeeper make a save?
-\end{itemize}
-
-\subsubsection{Example R code:}\label{example-r-code-2}
-
-Use \texttt{range()} to find out the range of time these players played
-in the World Cup.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{range}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Time)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]   1 570
-\end{verbatim}
-
-To figure out who played the most time, you need to subset out the rows
-of the dataset where the \texttt{Time} variable equals the maximum of
-the \texttt{Time} variable for the whole dataset. There are a few ways
-to do that. Here I'm showing two: (1) using logic within the
-``square-bracket indexing'', to pull out just rows where it is TRUE that
-the \texttt{Time} for that row equals \texttt{max(worldcup\$Time)} and
-(2) using \texttt{filter} from the \texttt{dplyr} package to filter down
-to rows where where it is TRUE that the \texttt{Time} for that row
-equals \texttt{max(Time)} for the whole dataset.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{max}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Time)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 570
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Time }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Time))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE FALSE FALSE FALSE FALSE FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup[worldcup}\OperatorTok{$}\NormalTok{Time }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Time), ]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                 Team   Position Time Shots Passes Tackles Saves to_plot
-## Arevalo Rios Uruguay Midfielder  570     5    195      21     0       0
-## Maxi Pereira Uruguay Midfielder  570     5    182      15     0       0
-## Muslera      Uruguay Goalkeeper  570     0     75       0    16      16
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Time }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(Time))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      Team   Position Time Shots Passes Tackles Saves to_plot
-## 1 Uruguay Midfielder  570     5    195      21     0       0
-## 2 Uruguay Midfielder  570     5    182      15     0       0
-## 3 Uruguay Goalkeeper  570     0     75       0    16      16
-\end{verbatim}
-
-\emph{Note}: You may have noticed that you lost the players names when
-you did this using the \texttt{dplyr} pipechain. That's because
-\texttt{dplyr} functions convert the data to a dataframe format that
-does not include rownames. If you want to keep players' names, use
-\texttt{mutate} to move those names from the rownames of the data into a
-column in the dataframe:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Name =} \KeywordTok{rownames}\NormalTok{(worldcup)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Time }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(Time))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      Team   Position Time Shots Passes Tackles Saves to_plot         Name
-## 1 Uruguay Midfielder  570     5    195      21     0       0 Arevalo Rios
-## 2 Uruguay Midfielder  570     5    182      15     0       0 Maxi Pereira
-## 3 Uruguay Goalkeeper  570     0     75       0    16      16      Muslera
-\end{verbatim}
-
-To calculate the mean number of saves among all the players, use the
-\texttt{mean} function, either by itself or within a \texttt{summarize}
-call:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{Saves)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.6672269
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_saves =} \KeywordTok{mean}\NormalTok{(Saves))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   mean_saves
-## 1  0.6672269
-\end{verbatim}
-
-For the next parts of the question, it will be convenient to have a
-logical vector for whether each player is a goalkeeper, so here's how
-you would create that:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{goalie <-}\StringTok{ }\NormalTok{worldcup}\OperatorTok{$}\NormalTok{Position }\OperatorTok{==}\StringTok{ "Goalkeeper"}
-\end{Highlighting}
-\end{Shaded}
-
-This new object, \texttt{goalie}, is a vector the same length as
-\texttt{worldcup\$Position}. Each element of \texttt{goalie} says
-whether it is TRUE or FALSE that \texttt{worldcup\$Position} is equal to
-``Goalkeeper'' at that spot on the \texttt{worldcup\$Position} vector.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(goalie)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE FALSE FALSE FALSE FALSE FALSE
-\end{verbatim}
-
-The \texttt{summary()} function will count up the total number of times
-that \texttt{goalie} is TRUE and FALSE.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(goalie)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    Mode   FALSE    TRUE 
-## logical     559      36
-\end{verbatim}
-
-There are a few ways to use this vector to figure out how many players
-were goalkeepers. First, you could use \texttt{summary} (which I just
-showed) or \texttt{table}, and just read how many times this vector has
-the value \texttt{TRUE}. Second, since R saves logical vectors with
-\texttt{TRUE} as 1 and \texttt{FALSE} as 0, you could just the
-\texttt{sum} function to add up the vector to find out how often it's
-\texttt{TRUE} (\texttt{sum} adds up every value in the vector).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(goalie)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## goalie
-## FALSE  TRUE 
-##   559    36
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(goalie)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 36
-\end{verbatim}
-
-You could also answer this question by using \texttt{summarize} from
-\texttt{dplyr}. You need to \texttt{group\_by} player position and then
-you can use the \texttt{n} function in \texttt{summarize} to count up
-the total number of observations in each group:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(Position) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n_players =} \KeywordTok{n}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 4 x 2
-##     Position n_players
-##       <fctr>     <int>
-## 1   Defender       188
-## 2    Forward       143
-## 3 Goalkeeper        36
-## 4 Midfielder       228
-\end{verbatim}
-
-Now, you can answer the questions about mean saves for goalies and max
-saves for non-goalies. First, try doing that using the \texttt{goalie}
-logical vector you created. If you put \texttt{goalie} in the square
-bracket indexing for the dataframe as the rows value (i.e., the index
-before the comma), R will subset out just the rows where \texttt{goalie}
-is equal to TRUE. If you put \texttt{!goalie} in the square bracket
-indexing as the rows value, R will just subset out the rows where
-\texttt{goalie} is equal to FALSE. You can use this index subsetting to
-figure out the mean number of saves per goalie and also whether any
-non-goalie made a save (by checking the maximum value or range of saves
-for non-goalies).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(worldcup[goalie, ])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                 Team   Position Time Shots Passes Tackles Saves to_plot
-## Barry    Ivory Coast Goalkeeper  270     0     23       0     8       8
-## Benaglio Switzerland Goalkeeper  270     0     75       0    11      11
-## Bravo          Chile Goalkeeper  360     0     58       0     4       4
-## Buffon         Italy Goalkeeper   45     0      4       0     0       0
-## Casillas       Spain Goalkeeper  540     0     67       0    11      11
-## Chaouchi     Algeria Goalkeeper   90     0     17       0     2       2
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(worldcup[goalie, }\StringTok{"Saves"}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 11.02778
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{range}\NormalTok{(worldcup[}\OperatorTok{!}\NormalTok{goalie, }\StringTok{"Saves"}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0 0
-\end{verbatim}
-
-You could also answer this quesiton using a \texttt{dplyr} pipe chain to
-summarize the data after grouping it by position:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(Position) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{number_players =} \KeywordTok{n}\NormalTok{(), }
-            \DataTypeTok{mean_saves =} \KeywordTok{mean}\NormalTok{(Saves),}
-            \DataTypeTok{max_saves =} \KeywordTok{max}\NormalTok{(Saves))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 4 x 4
-##     Position number_players mean_saves max_saves
-##       <fctr>          <int>      <dbl>     <dbl>
-## 1   Defender            188    0.00000         0
-## 2    Forward            143    0.00000         0
-## 3 Goalkeeper             36   11.02778        20
-## 4 Midfielder            228    0.00000         0
-\end{verbatim}
 
 \subsection{Using regression models to explore
 data}\label{using-regression-models-to-explore-data}
@@ -7760,7 +7788,7 @@ perform the following tasks:
   \textbf{relative risk} associated with a one degree Celsius increase?
 \end{itemize}
 
-\subsubsection{Example R code:}\label{example-r-code-3}
+\subsubsection{Example R code:}\label{example-r-code-4}
 
 Install and load the \texttt{dlnm} package and then load the
 \texttt{chicagoNMMAPS} data. Change the name of the dataframe to
@@ -8877,7 +8905,7 @@ of paper, and talking with your partner, decide how the two of you would
 design a plot to explore and present this relationship. How would you
 incorporate some of the principles of creating good graphs?
 
-\subsubsection{Example R code}\label{example-r-code-4}
+\subsubsection{Example R code}\label{example-r-code-5}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8930,7 +8958,7 @@ Perform the following tasks:
   example, change the x- and y-axis labels and add a title.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-5}
+\subsubsection{Example R code}\label{example-r-code-6}
 
 Install and load the \texttt{ggplot2} package:
 
@@ -9025,7 +9053,7 @@ Try the following tasks:
   \texttt{theme\_economist\_white()}, and \texttt{theme\_wsj()}.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-6}
+\subsubsection{Example R code}\label{example-r-code-7}
 
 As a reminder, here's the code to do a simple scatterplot ot Shots by
 Time for the \texttt{worldcup} data:
@@ -9403,7 +9431,7 @@ cheatsheet as you do your own analysis.
   \texttt{n\ \textless{}-\ d\ +\ geom\_bar(aes(fill\ =\ fl))}.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-7}
+\subsubsection{Example R code}\label{example-r-code-8}
 
 The code for opening the helpfiles for the example datasets is:
 
@@ -10399,11 +10427,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.27\\
+a & -0.37\\
 \hline
-b & -0.80\\
+b & 0.66\\
 \hline
-c & -0.07\\
+c & -0.90\\
 \hline
 \end{tabular}
 \end{table}
@@ -10918,10 +10946,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -1.1803122 2.1247037  3.267090
-## 2 2009-01-02  1.0294933 2.1391169  3.641377
-## 3 2009-01-03  0.6614934 0.7827257 -1.525181
+##         time          X          Y         Z
+## 1 2009-01-01  0.3441118  0.3756784 -4.048855
+## 2 2009-01-02  0.4727516  1.9196415  3.699352
+## 3 2009-01-03 -0.9251031 -2.1103770  1.456611
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10938,10 +10966,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -1.1803122 2.1247037  3.267090
-## 2 2009-01-02  1.0294933 2.1391169  3.641377
-## 3 2009-01-03  0.6614934 0.7827257 -1.525181
+##         time          X          Y         Z
+## 1 2009-01-01  0.3441118  0.3756784 -4.048855
+## 2 2009-01-02  0.4727516  1.9196415  3.699352
+## 3 2009-01-03 -0.9251031 -2.1103770  1.456611
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10958,11 +10986,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -1.1803122
-## 2 2009-01-02     X  1.0294933
-## 3 2009-01-03     X  0.6614934
-## 4 2009-01-04     X -0.3991284
-## 5 2009-01-05     X -0.8110664
+## 1 2009-01-01     X  0.3441118
+## 2 2009-01-02     X  0.4727516
+## 3 2009-01-03     X -0.9251031
+## 4 2009-01-04     X -0.4295051
+## 5 2009-01-05     X -1.3950081
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10977,11 +11005,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -1.1803122
-## 2 2009-01-02     X  1.0294933
-## 3 2009-01-03     X  0.6614934
-## 4 2009-01-04     X -0.3991284
-## 5 2009-01-05     X -0.8110664
+## 1 2009-01-01     X  0.3441118
+## 2 2009-01-02     X  0.4727516
+## 3 2009-01-03     X -0.9251031
+## 4 2009-01-04     X -0.4295051
+## 5 2009-01-05     X -1.3950081
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -11037,12 +11065,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 -1.1803122  2.1247037  3.267090
-## 2 2009-01-02  1.0294933  2.1391169  3.641377
-## 3 2009-01-03  0.6614934  0.7827257 -1.525181
-## 4 2009-01-04 -0.3991284 -1.0884367  1.677035
-## 5 2009-01-05 -0.8110664  1.6806324  8.009811
+##         time          X          Y          Z
+## 1 2009-01-01  0.3441118  0.3756784 -4.0488548
+## 2 2009-01-02  0.4727516  1.9196415  3.6993516
+## 3 2009-01-03 -0.9251031 -2.1103770  1.4566106
+## 4 2009-01-04 -0.4295051  3.8444052  0.4469946
+## 5 2009-01-05 -1.3950081  1.0469315 -0.7448642
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -11067,11 +11095,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N      mean        sd
-##   <chr> <int>     <dbl>     <dbl>
-## 1     X    10 0.1524775 0.8575218
-## 2     Y    10 0.8417743 1.3737278
-## 3     Z    10 0.9811134 5.6313682
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 -0.3529864 0.9629638
+## 2     Y    10  1.0359809 1.9560725
+## 3     Z    10 -0.9964682 2.8483184
 \end{verbatim}
 
 \begin{Shaded}
@@ -11090,7 +11118,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.15 (0.86) & 0.84 (1.37) & 0.98 (5.63)\\
+Mean (Std.dev.) & -0.35 (0.96) & 1.04 (1.96) & -1 (2.85)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11214,7 +11242,7 @@ Here are some of the packages you will need for this exercise:
   Use this new dataframe to plot deaths by date using \texttt{ggplot}.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-8}
+\subsubsection{Example R code}\label{example-r-code-9}
 
 Use \texttt{read\_csv} to read the mexico data (exposure and mortality)
 directly from GitHub into your R session. Call the dataframes
@@ -11386,7 +11414,7 @@ wrangling}\label{more-extensive-data-wrangling}
   cleaning process into just a few ``chaining'' calls?
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-9}
+\subsubsection{Example R code}\label{example-r-code-10}
 
 Read the data in using \texttt{read\_csv}. (Review question: Why can't
 you read it directly using \texttt{read.csv()}?)
@@ -13368,7 +13396,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-429-1} \end{center}
 
-\subsubsection{Example R code}\label{example-r-code-10}
+\subsubsection{Example R code}\label{example-r-code-11}
 
 Here is example code for the section above:
 
@@ -13508,7 +13536,7 @@ New York.
   run \texttt{print(a)} within your loop as the last step.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-11}
+\subsubsection{Example R code}\label{example-r-code-12}
 
 Here is example R code for creating state-specific plots using a loop:
 

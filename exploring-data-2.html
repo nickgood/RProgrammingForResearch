@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-08-30">
+<meta name="date" content="2017-09-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -221,9 +221,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.6</b> In-course exercise</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
-<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.6.2</b> Basic plots of the data</a></li>
-<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and logical statements</a></li>
-<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-logical-statements"><i class="fa fa-check"></i><b>3.6.2</b> Exploring the data using logical statements</a></li>
+<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-summarize"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and <code>summarize</code></a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots"><i class="fa fa-check"></i><b>3.6.4</b> Exploring the data using basic plots</a></li>
+<li class="chapter" data-level="3.6.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.5</b> Using regression models to explore data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
@@ -1083,7 +1084,7 @@ str_extract(string = [vector you want to check],
 <li>Try to write the code to create the plot below. This will include some code for cleaning the data and some code for plotting. There is an example answer below, but I’d like you to try to figure it out yourselves first.</li>
 </ul>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-429-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div id="example-r-code-10" class="section level4">
+<div id="example-r-code-11" class="section level4">
 <h4><span class="header-section-number">7.6.1.1</span> Example R code</h4>
 <p>Here is example code for the section above:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
@@ -1156,7 +1157,7 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 <ul>
 <li>Write a loop to create a plot like the one you just made for Colorado for four different states – Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
 </ul>
-<div id="example-r-code-11" class="section level4">
+<div id="example-r-code-12" class="section level4">
 <h4><span class="header-section-number">7.6.2.1</span> Example R code</h4>
 <p>Here is example R code for creating state-specific plots using a loop:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_fips &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;http://www2.census.gov/geo/docs/reference/state.txt&quot;</span>,

@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-08-30">
+<meta name="date" content="2017-09-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -221,9 +221,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#in-course-exercise-2"><i class="fa fa-check"></i><b>3.6</b> In-course exercise</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="exploring-data-1.html"><a href="exploring-data-1.html#loading-data-from-an-r-package"><i class="fa fa-check"></i><b>3.6.1</b> Loading data from an R package</a></li>
-<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#basic-plots-of-the-data"><i class="fa fa-check"></i><b>3.6.2</b> Basic plots of the data</a></li>
-<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-logical-statements"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and logical statements</a></li>
-<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.4</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-logical-statements"><i class="fa fa-check"></i><b>3.6.2</b> Exploring the data using logical statements</a></li>
+<li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-summarize"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and <code>summarize</code></a></li>
+<li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots"><i class="fa fa-check"></i><b>3.6.4</b> Exploring the data using basic plots</a></li>
+<li class="chapter" data-level="3.6.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>3.6.5</b> Using regression models to explore data</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
@@ -697,7 +698,7 @@ c &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </s
 <h3><span class="header-section-number">4.10.1</span> Designing a plot</h3>
 <p>For today’s exercise, you’ll be building a plot using the <code>worldcup</code> data from the <code>faraway</code> package. First, load in that data.</p>
 <p>Next, say you want to look at the relationship between the number of minutes that a player played in the 2010 World Cup (<code>Time</code>) and the number of shots the player took on goal (<code>Shots</code>). On a sheet of paper, and talking with your partner, decide how the two of you would design a plot to explore and present this relationship. How would you incorporate some of the principles of creating good graphs?</p>
-<div id="example-r-code-4" class="section level4">
+<div id="example-r-code-5" class="section level4">
 <h4><span class="header-section-number">4.10.1.1</span> Example R code</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(faraway)
 <span class="kw">data</span>(worldcup)
@@ -723,7 +724,7 @@ worldcup &lt;-<span class="st"> </span>worldcup <span class="op">%&gt;%</span>
 <li>For the <code>worldcup</code> data, plot a scatterplot of Time (on the x-axis) versus Shots.</li>
 <li>Add some ggplot elements to make this plot a bit more attractive. (For example, change the x- and y-axis labels and add a title.)</li>
 </ul>
-<div id="example-r-code-5" class="section level4">
+<div id="example-r-code-6" class="section level4">
 <h4><span class="header-section-number">4.10.2.1</span> Example R code</h4>
 <p>Install and load the <code>ggplot2</code> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;ggplot2&quot;)</span>
@@ -758,7 +759,7 @@ worldcup &lt;-<span class="st"> </span>worldcup <span class="op">%&gt;%</span>
 <li>Highlighting interesting data: Who had the most shots in the 2010 World Cup? Was he on a top-four team? Use <code>geom_text()</code> to label his point on the graph with his name.</li>
 <li>Increase data density: Try changing the theme, to come up with a graph with a bit less non-data ink. From the <code>ggthemes</code> package (you’ll need to install it if you don’t already have it), try some of the following themes: <code>theme_few()</code>, <code>theme_tufte()</code>, <code>theme_stata()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_economist_white()</code>, and <code>theme_wsj()</code>.</li>
 </ul>
-<div id="example-r-code-6" class="section level4">
+<div id="example-r-code-7" class="section level4">
 <h4><span class="header-section-number">4.10.3.1</span> Example R code</h4>
 <p>As a reminder, here’s the code to do a simple scatterplot ot Shots by Time for the <code>worldcup</code> data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Shots)) <span class="op">+</span>
@@ -916,7 +917,7 @@ shot_plot <span class="op">+</span><span class="st"> </span><span class="kw">the
 <li>Create the example datasets <code>a</code> through <code>l</code> and <code>s</code> through <code>t</code> using the code given on the cheatsheet.</li>
 <li>Pick at least one example to try out from each of the following sections: “Graphical Primitives”, “One Variable”, at least three subsections of “Two Variables”, “Three Variables”, “Scales”, “Faceting”, and “Position Adjustments”. As you try these, try to figure out any aesthetics that you aren’t familiar with (e.g., <code>ymin</code>, <code>ymax</code>). Also, use helpfiles for the geoms to look up parameters you aren’t familiar with (e.g., <code>stat</code> for <code>geom_area</code>). If you can’t figure out how to interpret a plot, check the helpfile for the associated geom. <strong>Note</strong>: For the <code>n</code> geom used in “scales”, it should be defined as <code>n &lt;- d + geom_bar(aes(fill = fl))</code>.</li>
 </ul>
-<div id="example-r-code-7" class="section level4">
+<div id="example-r-code-8" class="section level4">
 <h4><span class="header-section-number">4.10.4.1</span> Example R code</h4>
 <p>The code for opening the helpfiles for the example datasets is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?seals
