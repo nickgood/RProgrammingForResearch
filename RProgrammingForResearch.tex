@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-09-06}
+\date{2017-09-07}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## It [the effort of learning how to use R] is the price paid, just as the
-## dollars or euros for a commercial package would be. For that price, I've
-## learnt a great deal - and not only about R. And I shall remember it when I
-## next have to find a heavyweight solution for a big problem presented by a
-## small charitable client with an invisible budget. It's a huge,
-## awe-inspiring package - easier to perceive as such because the power is
-## not hidden beneath a cosmetic veneer.
-##    -- Felix Grant (in an article about free statistics software)
-##       Scientific Computing World (November 2004)
+## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
+## needed 10 times as much memory as your dataset. [...] R (and current
+## versions of S-PLUS) are more frugal than S-PLUS was back then.
+## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
+## current prices of R, to work out the break-even point at which it's better
+## to buy SAS! :-) Without making any calculations, I can't see how SAS can
+## compete with the price of 4G of RAM.
+##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
+##       R-SIG-Finance (December 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x3f2b028>
+## <bytecode: 0x4d6e780>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10064,11 +10064,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.84\\
+a & -0.89\\
 \hline
-b & 0.14\\
+b & -0.40\\
 \hline
-c & -0.07\\
+c & 0.05\\
 \hline
 \end{tabular}
 \end{table}
@@ -10583,10 +10583,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.5651842  4.198673 -1.858630
-## 2 2009-01-02  0.3937359 -1.622498  4.180060
-## 3 2009-01-03 -0.1794519  1.868321  1.723736
+##         time          X          Y           Z
+## 1 2009-01-01  1.2593235 -1.0414601  2.11411843
+## 2 2009-01-02  0.3987117  2.2078906  3.82456022
+## 3 2009-01-03 -0.8670468 -0.2343818 -0.06091776
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10603,10 +10603,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.5651842  4.198673 -1.858630
-## 2 2009-01-02  0.3937359 -1.622498  4.180060
-## 3 2009-01-03 -0.1794519  1.868321  1.723736
+##         time          X          Y           Z
+## 1 2009-01-01  1.2593235 -1.0414601  2.11411843
+## 2 2009-01-02  0.3987117  2.2078906  3.82456022
+## 3 2009-01-03 -0.8670468 -0.2343818 -0.06091776
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10623,11 +10623,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5651842
-## 2 2009-01-02     X  0.3937359
-## 3 2009-01-03     X -0.1794519
-## 4 2009-01-04     X  0.3867194
-## 5 2009-01-05     X -2.5153286
+## 1 2009-01-01     X  1.2593235
+## 2 2009-01-02     X  0.3987117
+## 3 2009-01-03     X -0.8670468
+## 4 2009-01-04     X -0.2569993
+## 5 2009-01-05     X -0.2075550
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10642,11 +10642,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5651842
-## 2 2009-01-02     X  0.3937359
-## 3 2009-01-03     X -0.1794519
-## 4 2009-01-04     X  0.3867194
-## 5 2009-01-05     X -2.5153286
+## 1 2009-01-01     X  1.2593235
+## 2 2009-01-02     X  0.3987117
+## 3 2009-01-03     X -0.8670468
+## 4 2009-01-04     X -0.2569993
+## 5 2009-01-05     X -0.2075550
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10702,12 +10702,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01  0.5651842  4.198673 -1.858630
-## 2 2009-01-02  0.3937359 -1.622498  4.180060
-## 3 2009-01-03 -0.1794519  1.868321  1.723736
-## 4 2009-01-04  0.3867194 -3.187045  4.539828
-## 5 2009-01-05 -2.5153286  1.441175 -1.701104
+##         time          X          Y           Z
+## 1 2009-01-01  1.2593235 -1.0414601  2.11411843
+## 2 2009-01-02  0.3987117  2.2078906  3.82456022
+## 3 2009-01-03 -0.8670468 -0.2343818 -0.06091776
+## 4 2009-01-04 -0.2569993  1.1485721 -1.22333871
+## 5 2009-01-05 -0.2075550 -2.0731990  8.34335184
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10732,11 +10732,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10 -0.04666202 0.9868222
-## 2     Y    10  0.34237748 2.4797756
-## 3     Z    10  0.61142462 4.5671349
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.3485287 0.6309553
+## 2     Y    10 -0.1941166 1.7133154
+## 3     Z    10  2.5247811 3.1402477
 \end{verbatim}
 
 \begin{Shaded}
@@ -10755,7 +10755,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.05 (0.99) & 0.34 (2.48) & 0.61 (4.57)\\
+Mean (Std.dev.) & 0.35 (0.63) & -0.19 (1.71) & 2.52 (3.14)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -13693,8 +13693,7 @@ vocabulary for the weekly quizzes.
 \item
   Grading policies for the course
 \item
-  Course requirements / policies for in-class quizzes and weekly journal
-  entries
+  Course requirements / policies for in-class quizzes
 \item
   Style rules for naming R objects
 \item
@@ -13716,24 +13715,47 @@ vocabulary for the weekly quizzes.
 \item
   \texttt{source()}
 \item
+  Computer directory structure
+\item
+  \texttt{getwd()}
+\item
   \texttt{setwd()}, including \texttt{setwd("\textasciitilde{}")},
   \texttt{setwd("..")}, \texttt{setwd("..\textbackslash{}..")}
 \item
-  \texttt{list.files()}, option \texttt{path\ =}
+  \texttt{list.files()}
 \item
-  functions in the \texttt{read.table()} family, including
-  \texttt{read.csv()} and \texttt{read.delim()}. What are defaults of
-  the \texttt{sep\ =} and \texttt{dec\ =} options for each? For all, the
-  options \texttt{header\ =}, \texttt{sep\ =}, \texttt{as.is\ =},
-  \texttt{na.strings\ =}, \texttt{nrows\ =}, \texttt{skip\ =}, and
-  \texttt{col.names\ =}.
+  \texttt{NA}
+\item
+  relative pathnames
+\item
+  absolute pathnames
+\item
+  delimited files (csv, tsv)
+\item
+  fixed width files
+\item
+  R script file (How would you make a new one? What file extension would
+  it have? Why is it important to use? How do you run code from a script
+  file in RStudio?)
+\item
+  What kinds of data can be read into R?
+\item
+  How to read flat files of data that are online directly into R
+\item
+  When you might want to save an R object as a \texttt{.RData} file and
+  when (and why) you might not want to
+\item
+  Reading in data from either a local or online flat file
+\item
+  \texttt{save()}, option \texttt{file\ =}
+\item
+  \texttt{load()}
+\item
+  \texttt{ls()}
 \item
   The tidyverse
 \item
   functions in the \texttt{read\_*} family (e.g., \texttt{read\_csv})
-\item
-  Advantages of the \texttt{read\_*} family of functions compared to
-  their base R analogues (the \texttt{read.table} functions)
 \item
   \texttt{paste()}, option \texttt{sep\ =}
 \item
@@ -13747,76 +13769,32 @@ vocabulary for the weekly quizzes.
 \item
   \texttt{class()}
 \item
+  Main types of vector classes in R: character, numeric, factor, date,
+  logical
+\item
   \texttt{str()}
 \item
-  \texttt{as.Date()}, option \texttt{format\ =}
-\item
   \texttt{lubridate} functions, include \texttt{ymd}, \texttt{ymd\_hm},
-  and \texttt{mdy}
-\item
-  \texttt{range()}
+  \texttt{mdy}, \texttt{wday}, and \texttt{mday}
 \item
   \texttt{dplyr} package
 \item
   \texttt{rename()}
 \item
+  \texttt{select()}
+\item
+  \texttt{slice()}
+\item
   \texttt{mutate()}
 \item
-  \texttt{arrange()}
+  \texttt{arrange()}, including with \texttt{desc()}
 \item
   \texttt{\%\textgreater{}\%}, advantages of piping
 \item
   \texttt{filter()}
 \item
-  Reading in data from either a local or online flat file
-\item
-  \texttt{save()}, option \texttt{file\ =}
-\item
-  \texttt{load()}
-\item
-  \texttt{rm()}
-\item
-  \texttt{ls()}
-\item
-  Main types of vector classes in R: character, numeric, factor, date,
-  logical
-\item
-  Which classes of vectors don't always look like numbers, but R assigns
-  an underlying numeric value to? (Hint: This include the logical class,
-  which R saves with an underlying number, with TRUE = 1 and FALSE = 0.)
-\item
-  Common abbreviations for telling R date formats (e.g., ``\%m'',
-  ``\%y'')
-\item
-  Common logical expressions to use in \texttt{filter()}
-\item
-  relative pathnames
-\item
-  absolute pathnames
-\item
-  delimited files
-\item
-  fixed width files
-\item
-  R script file (How would you make a new one? What file extension would
-  it have? Why is it important to use? How do you run code from a script
-  file in RStudio?)
-\item
-  What kinds of data can be read into R?
-\item
-  How to read flat files of data that are online directly into R if they
-  are on:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    A ``http:'' site
-  \item
-    A ``https:'' site
-  \end{itemize}
-\item
-  When you might want to save an R object as a \texttt{.RData} file and
-  when (and why) you might not want to
+  Common logical operators in R (\texttt{==}, \texttt{!=},
+  \texttt{\%in\%}, \texttt{is.na()}, \texttt{\&}, \texttt{\textbar{}})
 \end{itemize}
 
 \section{Week 3 (Quiz 3)}\label{week-3-quiz-3}

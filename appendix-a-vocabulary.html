@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-09-06">
+<meta name="date" content="2017-09-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -390,7 +390,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Nate Silver</li>
 <li>FiveThirtyEight</li>
 <li>Grading policies for the course</li>
-<li>Course requirements / policies for in-class quizzes and weekly journal entries</li>
+<li>Course requirements / policies for in-class quizzes</li>
 <li>Style rules for naming R objects</li>
 <li>Difference between R and RStudio</li>
 <li>Vectors</li>
@@ -402,49 +402,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">A.2</span> Week 2 (Quiz 2)</h2>
 <ul>
 <li><code>source()</code></li>
+<li>Computer directory structure</li>
+<li><code>getwd()</code></li>
 <li><code>setwd()</code>, including <code>setwd(&quot;~&quot;)</code>, <code>setwd(&quot;..&quot;)</code>, <code>setwd(&quot;..\..&quot;)</code></li>
-<li><code>list.files()</code>, option <code>path =</code></li>
-<li>functions in the <code>read.table()</code> family, including <code>read.csv()</code> and <code>read.delim()</code>. What are defaults of the <code>sep =</code> and <code>dec =</code> options for each? For all, the options <code>header =</code>, <code>sep =</code>, <code>as.is =</code>, <code>na.strings =</code>, <code>nrows =</code>, <code>skip =</code>, and <code>col.names =</code>.</li>
+<li><code>list.files()</code></li>
+<li><code>NA</code></li>
+<li>relative pathnames</li>
+<li>absolute pathnames</li>
+<li>delimited files (csv, tsv)</li>
+<li>fixed width files</li>
+<li>R script file (How would you make a new one? What file extension would it have? Why is it important to use? How do you run code from a script file in RStudio?)</li>
+<li>What kinds of data can be read into R?</li>
+<li>How to read flat files of data that are online directly into R</li>
+<li>When you might want to save an R object as a <code>.RData</code> file and when (and why) you might not want to</li>
+<li>Reading in data from either a local or online flat file</li>
+<li><code>save()</code>, option <code>file =</code></li>
+<li><code>load()</code></li>
+<li><code>ls()</code></li>
 <li>The tidyverse</li>
 <li>functions in the <code>read_*</code> family (e.g., <code>read_csv</code>)</li>
-<li>Advantages of the <code>read_*</code> family of functions compared to their base R analogues (the <code>read.table</code> functions)</li>
 <li><code>paste()</code>, option <code>sep =</code></li>
 <li><code>paste0()</code></li>
 <li><code>readxl</code> package and its <code>read_excel()</code> function</li>
 <li><code>haven</code> package and its <code>read_sas()</code> function</li>
 <li><code>$</code></li>
 <li><code>class()</code></li>
+<li>Main types of vector classes in R: character, numeric, factor, date, logical</li>
 <li><code>str()</code></li>
-<li><code>as.Date()</code>, option <code>format =</code></li>
-<li><code>lubridate</code> functions, include <code>ymd</code>, <code>ymd_hm</code>, and <code>mdy</code></li>
-<li><code>range()</code></li>
+<li><code>lubridate</code> functions, include <code>ymd</code>, <code>ymd_hm</code>, <code>mdy</code>, <code>wday</code>, and <code>mday</code></li>
 <li><code>dplyr</code> package</li>
 <li><code>rename()</code></li>
+<li><code>select()</code></li>
+<li><code>slice()</code></li>
 <li><code>mutate()</code></li>
-<li><code>arrange()</code></li>
+<li><code>arrange()</code>, including with <code>desc()</code></li>
 <li><code>%&gt;%</code>, advantages of piping</li>
 <li><code>filter()</code></li>
-<li>Reading in data from either a local or online flat file</li>
-<li><code>save()</code>, option <code>file =</code></li>
-<li><code>load()</code></li>
-<li><code>rm()</code></li>
-<li><code>ls()</code></li>
-<li>Main types of vector classes in R: character, numeric, factor, date, logical</li>
-<li>Which classes of vectors don’t always look like numbers, but R assigns an underlying numeric value to? (Hint: This include the logical class, which R saves with an underlying number, with TRUE = 1 and FALSE = 0.)</li>
-<li>Common abbreviations for telling R date formats (e.g., “%m”, “%y”)</li>
-<li>Common logical expressions to use in <code>filter()</code></li>
-<li>relative pathnames</li>
-<li>absolute pathnames</li>
-<li>delimited files</li>
-<li>fixed width files</li>
-<li>R script file (How would you make a new one? What file extension would it have? Why is it important to use? How do you run code from a script file in RStudio?)</li>
-<li>What kinds of data can be read into R?</li>
-<li>How to read flat files of data that are online directly into R if they are on:
-<ul>
-<li>A “http:” site</li>
-<li>A “https:” site</li>
-</ul></li>
-<li>When you might want to save an R object as a <code>.RData</code> file and when (and why) you might not want to</li>
+<li>Common logical operators in R (<code>==</code>, <code>!=</code>, <code>%in%</code>, <code>is.na()</code>, <code>&amp;</code>, <code>|</code>)</li>
 </ul>
 </div>
 <div id="week-3-quiz-3" class="section level2">
