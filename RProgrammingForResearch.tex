@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## It [the effort of learning how to use R] is the price paid, just as the
-## dollars or euros for a commercial package would be. For that price, I've
-## learnt a great deal - and not only about R. And I shall remember it when I
-## next have to find a heavyweight solution for a big problem presented by a
-## small charitable client with an invisible budget. It's a huge,
-## awe-inspiring package - easier to perceive as such because the power is
-## not hidden beneath a cosmetic veneer.
-##    -- Felix Grant (in an article about free statistics software)
-##       Scientific Computing World (November 2004)
+## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
+## needed 10 times as much memory as your dataset. [...] R (and current
+## versions of S-PLUS) are more frugal than S-PLUS was back then.
+## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
+## current prices of R, to work out the break-even point at which it's better
+## to buy SAS! :-) Without making any calculations, I can't see how SAS can
+## compete with the price of 4G of RAM.
+##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
+##       R-SIG-Finance (December 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x460b968>
+## <bytecode: 0x1c774c8>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -7485,11 +7485,29 @@ these players were on the England, Germany, and Chile teams.
 Use some basic plots to check out this data. Try the following:
 
 \begin{itemize}
+\tightlist
 \item
-  Plot scatterplots of different combinations of numeric variables
-  (e.g., \texttt{Time} vs. \texttt{Shots}). Try doing this using the
-  \texttt{geom\_point()} geom from \texttt{ggplot2}. Try using different
-  constant or mapped values with the \texttt{color} aesthetic.
+  Create a scatterplot of the \texttt{worldcup} data, where each point
+  is a player, the x-axis shows the amount of time the player played in
+  the World Cup, and the y-axis shows the number of passes the player
+  had. Try writing the code both with and withing ``piping in'' the data
+  you want to plot into the \texttt{ggplot} function.
+\item
+  Create the same scatterplot, but have each point in the scatterplot
+  show that player's position. Add ``rug plots'' to the margins.
+\item
+  Create a scatterplot of number of shots (x-axis) versus number of
+  tackles (y-axis) for \textbf{just} players on one of the four teams
+  that made the semi-finals (Spain, Netherlands, Germany, Uruguay). Use
+  color to show player's position and shape to show player's team.
+  (Hint: you will want to use some \texttt{dplyr} code to clean the data
+  before plotting to do this.)
+\item
+  Create a scatterplot of player time versus passes. Use color to show
+  whether the player was on one of the top 4 teams or not. (Hint: Again,
+  you'll want to use some \texttt{dplyr} code before plotting to do
+  this.) For an extra challenge, also try adding each player's name on
+  top of each point.
 \item
   Did you notice any interesting features of the data when you did any
   of the graphs in this section?
@@ -7497,17 +7515,13 @@ Use some basic plots to check out this data. Try the following:
 
 \subsubsection{Example R code:}\label{example-r-code-3}
 
-Create a scatterplot of \texttt{Time} versus \texttt{Passes}. To change
-the size of the points, use the \texttt{size} argument (use a number
-lower than 1 for smaller points, higher than 1 for larger points). Try
-changing the color and transparency of the points using the aesthetics
-\texttt{color} and \texttt{alpha}. Try using color to show each player's
-position by mapping \texttt{Position} to the \texttt{color} aesthetic.
+Create a scatterplot of \texttt{Time} versus \texttt{Passes}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\CommentTok{# Without piping}
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7515,64 +7529,206 @@ position by mapping \texttt{Position} to the \texttt{color} aesthetic.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{)}
+\CommentTok{# With piping}
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes)) }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-2} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-3} \end{center}
+Create the same scatterplot, but have each point in the scatterplot show
+that player's position.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes, }\DataTypeTok{color =}\NormalTok{ Position)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(worldcup,}
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes, }\DataTypeTok{color =}\NormalTok{ Position)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-225-4} \end{center}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-1.pdf}
+
+Create a scatterplot of number of shots (x-axis) versus number of
+tackles (y-axis) for \textbf{just} players on one of the four teams that
+made the semi-finals (Spain, Netherlands, Germany, Uruguay). Use color
+to show player's position and shape to show player's team. For an extra
+challenge, also try adding each player's name on top of each point.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tibble}\OperatorTok{::}\KeywordTok{rownames_to_column}\NormalTok{(}\DataTypeTok{var =} \StringTok{"Name"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Netherlands"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{, }\StringTok{"Uruguay"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Shots, }\DataTypeTok{y =}\NormalTok{ Tackles, }\DataTypeTok{color =}\NormalTok{ Position, }\DataTypeTok{shape =}\NormalTok{ Team)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Shots, }\DataTypeTok{y =}\NormalTok{ Tackles, }
+                          \DataTypeTok{color =}\NormalTok{ Position, }\DataTypeTok{label =}\NormalTok{ Name), }
+            \DataTypeTok{size =} \FloatTok{2.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-227-1.pdf}
+
+Create a scatterplot of player time versus passes. Use color to show
+whether the player was on one of the top 4 teams or not.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top_4 =}\NormalTok{ Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Netherlands"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{, }\StringTok{"Uruguay"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 \subsection{Exploring the data using basic plots
 \#2}\label{exploring-the-data-using-basic-plots-2}
 
-Use some basic plots to check out this data. Try the following:
+Go back to the code you used in the previous section to create a
+scatterplot of the \texttt{worldcup} data, where each point is a player,
+the x-axis shows the amount of time the player played in the World Cup,
+and the y-axis shows the number of passes the player had. Try the
+following modifications:
+
+\begin{itemize}
+\tightlist
+\item
+  Make all the points blue.
+\item
+  Google ``R colors'' to find a list of color names in R. Pick your
+  favorite and make all the points in the scatterplot that color.
+\item
+  Change the size of the points to make them smaller (hint: check out
+  the \texttt{size} aesthetic).
+\item
+  Make it so the color of the points shows the player's position and all
+  the points are slightly transparent.
+\item
+  Change the title of the x-axis to ``Time (minutes)'' and the y-axis to
+  ``Number of passes''.
+\item
+  Add the title ``World Cup statistics'' and the subtitle ``2010 World
+  Cup''.
+\end{itemize}
+
+\subsubsection{Example R code:}\label{example-r-code-4}
+
+Make all the points blue.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes),}
+             \DataTypeTok{color =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-229-1.pdf}
+
+Google ``R colors'' to find a list of color names in R. Pick your
+favorite and make all the points in the scatterplot that color.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the points "darkseagreen4"}
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes),}
+             \DataTypeTok{color =} \StringTok{"darkseagreen4"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-230-1.pdf}
+
+Change the size of the points to make them smaller (hint: check out the
+\texttt{size} aesthetic).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes),}
+             \DataTypeTok{size =} \FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-1.pdf}
+Make it so the color of the points shows the player's position and all
+the points are slightly transparent.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes),}
+             \DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-232-1.pdf}
+
+Change the title of the x-axis to ``Time (minutes)'' and the y-axis to
+``Number of passes''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Time (minutes)"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"Number of passes"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-233-1.pdf}
+
+Add the title ``World Cup statistics'' and the subtitle ``2010 World
+Cup''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(worldcup) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Passes)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"World Cup statistics"}\NormalTok{,}
+          \DataTypeTok{subtitle =} \StringTok{"2010 World Cup"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-234-1.pdf}
+
+\subsection{Exploring the data using basic plots
+\#3}\label{exploring-the-data-using-basic-plots-3}
+
+Try out creating some plots using the ``statistical'' geoms to check out
+this data. Try the following:
 
 \begin{itemize}
 \tightlist
 \item
   Plot histograms of all the numeric variables (\texttt{Time},
-  \texttt{Shot}, \texttt{Passes}, \texttt{Tackles}, \texttt{Saves}).
+  \texttt{Shot}, \texttt{Passes}, \texttt{Tackles}, \texttt{Saves}) in
+  the dataset.
 \item
-  Try customizing the number of bins used for the histogram plotted in
-  the previous step.
+  Try customizing the number of bins used for one of the histograms
+  plotted in the previous step.
 \item
   Try using constant values for some of the aesthetics (e.g., customize
   the color and the fill) of the histogram created in the previous step.
 \item
-  Go online and find out which teams were the top four teams in this
-  World Cup (i.e., first through fourth places). Create a
-  \texttt{top\_teams} subset with just these teams. Plot boxplots of
-  \texttt{Shots} and \texttt{Saves} by team for just these teams.
+  Create a boxplot of \texttt{Shots} by position.
 \item
-  In the previous section of the group exercise, you should have
-  identified that the four top teams in this tournament were Spain, the
-  Netherlands, Germany, and Uruguay. Create a histogram using data only
-  from these four citis for the amount of time each player played. Use
-  the color aesthetic of the histogram to show team.
+  Create a \texttt{top\_teams} subset with just the four teams that made
+  the semi-finals in the 2010 World Cup (Spain, the Netherlands,
+  Germany, and Uruguay). Plot boxplots of \texttt{Shots} and
+  \texttt{Saves} by team for just these teams.
 \item
-  Create boxplots of \texttt{Time}, \texttt{Shots}, \texttt{Passes} and
-  \texttt{Saves} by position.
+  Create a histogram using data only from the four top teams for the
+  amount of time each player played. Use the color aesthetic of the
+  histogram to show team.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-4}
+\subsubsection{Example R code}\label{example-r-code-5}
 
 Use histograms to explore the distribution of different variables. If
 you want to change the number of bins in the histogram, try playing
@@ -7592,7 +7748,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7601,7 +7757,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-2} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7610,7 +7766,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-3} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7619,7 +7775,7 @@ images to find links to listings of different R colors.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-226-4} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-4} \end{center}
 
 To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \texttt{geom\_boxplot}:
@@ -7631,7 +7787,7 @@ To create a boxplot of \texttt{Shots} by \texttt{Position}, you can use
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-227-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-236-1} \end{center}
 
 The top four teams in this World Cup were Spain, the Netherlands,
 Germany, and Uruguay. Create a subset with just the data for these four
@@ -7640,47 +7796,31 @@ teams:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{top_teams <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Netherlands"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{, }\StringTok{"Uruguay"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Team =} \KeywordTok{factor}\NormalTok{(Team))}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Netherlands"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{, }\StringTok{"Uruguay"}\NormalTok{)) }
 \end{Highlighting}
 \end{Shaded}
 
-This dataset will still have all the levels saved for the \texttt{Team}
-factor, even though it isn't using them all. You can re-set this by
-resetting \texttt{Team} as a factor, which is what I've done with the
-\texttt{mutate} line. When R creates a factor from a vector, its default
-is to only use as levels the values that show up in the vector.
-
 Now, you can plot the boxplots, mapping \texttt{Team} to the \texttt{x}
-aesthetic and \texttt{Shots} or \texttt{Saves} to the \texttt{y}
-aesthetic:
+aesthetic and \texttt{Shots} to the \texttt{y} aesthetic:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(top_teams, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Team, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Shots"}\NormalTok{)}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Shots per player in World Cup 2010"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-229-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-238-1} \end{center}
+
+Create a histogram using data only from the four top teams for the
+amount of time each player played. Use the color aesthetic of the
+histogram to show team.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(top_teams, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Team, }\DataTypeTok{y =}\NormalTok{ Saves)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Saves"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-229-2} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Netherlands"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{, }\StringTok{"Uruguay"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{fill =}\NormalTok{ Team)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ top_teams) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{fill =}\NormalTok{ Team))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7688,7 +7828,20 @@ aesthetic:
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-230-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-239-1.pdf}
+
+Note that you can also explore other values for \texttt{geom\_histogram}
+arguments. For example, you could change the binwidths to be 90 minutes
+(since games are 90 minutes).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ top_teams) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{fill =}\NormalTok{ Team), }\DataTypeTok{binwidth =} \DecValTok{90}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \subsubsection{If you have extra time:}\label{if-you-have-extra-time}
 
@@ -7718,11 +7871,11 @@ plots once you've created them):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-1.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-2.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-3.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-4.pdf}
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-231-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-5.pdf}
 
 A few things to note in this example:
 
@@ -8124,7 +8277,7 @@ series by using a thick red line.
 In the below graphs, the names of the players with the most shots and
 passes have been added to highlight these unusual points. \bigskip
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 One helpful way to annotate is with text, using \texttt{geom\_text()}.
 For this, you'll first need to create a dataframe with the hottest day
@@ -8151,7 +8304,7 @@ in the data:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-237-1} \end{center}
+\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-247-1} \end{center}
 
 With \texttt{geom\_text}, you'll often want to use position adjustment
 (the \texttt{position} parameter) to move the text so it won't be right
@@ -8165,7 +8318,7 @@ on top of the data points:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.5\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-238-1} \end{center}
+\begin{center}\includegraphics[width=0.5\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-248-1} \end{center}
 
 You can also use lines to highlight. For this, it is often useful to
 create a new dataframe with data for the reference. To add a line for
@@ -8192,7 +8345,7 @@ to ensure the line will be placed above the mortality data.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-240-1} \end{center}
+\begin{center}\includegraphics[width=0.7\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-250-1} \end{center}
 
 \section{Order}\label{order}
 
@@ -8204,7 +8357,7 @@ You can make the ranking of data clearer from a graph by using order to
 show rank. Often, factor or categorical variables are ordered by
 something that is not interesting, like alphabetical order.
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 You can re-order factor variables in a graph by resetting the factor
 using the \texttt{factor} function and changing the order that levels
@@ -8225,7 +8378,7 @@ Typically, in small multiples, all plots use the same x- and y-axes.
 This makes it easier to compare across plots, and it also allows you to
 save room by limiting axis annotation.
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-252-1.pdf}
 
 You can use the \texttt{facet} functions to create small multiples. This
 separates the graph into several small graphs, one for each level of a
@@ -8252,7 +8405,7 @@ when plotting height versus weight, you can call:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-253-1.pdf}
 
 The \texttt{facet\_grid} function can facet by one or two variables. One
 will be shown by rows, and one by columns:
@@ -8299,7 +8452,7 @@ Notice that the labels for the two graphs have now changed:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-257-1.pdf}
 
 To re-order the factor, and show the plot for ``Female'' first, you can
 use \texttt{factor} to change the order of the levels:
@@ -8321,7 +8474,7 @@ Now notice that the order of the plots has changed:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-249-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-259-1.pdf}
 
 \section{Advanced customization}\label{advanced-customization}
 
@@ -8355,7 +8508,7 @@ and position shown by color:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-251-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-261-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8368,7 +8521,7 @@ and position shown by color:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-252-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-262-1} \end{center}
 
 Parameters you might find useful in \texttt{scale} functions include:
 
@@ -8400,7 +8553,7 @@ the x-axis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-254-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-264-1} \end{center}
 
 And here's an example of changing the formating and name of the x-axis:
 
@@ -8413,7 +8566,7 @@ And here's an example of changing the formating and name of the x-axis:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-255-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-265-1} \end{center}
 
 You can also use the \texttt{scale} functions to transform an axis. For
 example, to show the Chicago plot with ``deaths'' on a log scale, you
@@ -8427,7 +8580,7 @@ can run:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-256-1} \end{center}
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-266-1} \end{center}
 
 For colors and fills, the conventions for the names of the
 \texttt{scale} functions can vary. For example, to adjust the color
@@ -8457,9 +8610,9 @@ colors.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-257-1}
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-257-2}
-\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-257-3}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-267-1}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-267-2}
+\includegraphics[width=0.32\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-267-3}
 
 Use the \texttt{palette} argument within a \texttt{scales} function to
 customize the palette:
@@ -8477,7 +8630,7 @@ customize the palette:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-258-1}
+\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-268-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8489,7 +8642,7 @@ customize the palette:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-259-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-269-1} \end{center}
 
 You can also set colors manually:
 
@@ -8503,7 +8656,7 @@ You can also set colors manually:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-260-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/unnamed-chunk-270-1} \end{center}
 
 \section{To find out more}\label{to-find-out-more}
 
@@ -8542,7 +8695,7 @@ of paper, and talking with your partner, decide how the two of you would
 design a plot to explore and present this relationship. How would you
 incorporate some of the principles of creating good graphs?
 
-\subsubsection{Example R code}\label{example-r-code-5}
+\subsubsection{Example R code}\label{example-r-code-6}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8595,7 +8748,7 @@ Perform the following tasks:
   example, change the x- and y-axis labels and add a title.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-6}
+\subsubsection{Example R code}\label{example-r-code-7}
 
 Install and load the \texttt{ggplot2} package:
 
@@ -8617,7 +8770,7 @@ Use the R base graphics to create a scatterplot of Time versus Shots:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-264-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-274-1.pdf}
 
 Use some of the plotting options to improve the graph's appearance:
 
@@ -8631,13 +8784,13 @@ Use some of the plotting options to improve the graph's appearance:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-275-1.pdf}
 
 \subsection{Fancier graphs}\label{fancier-graphs}
 
 In this section, we'll work on creating a plot like this:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-266-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-276-1.pdf}
 
 Try the following tasks:
 
@@ -8690,7 +8843,7 @@ Try the following tasks:
   \texttt{theme\_economist\_white()}, and \texttt{theme\_wsj()}.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-7}
+\subsubsection{Example R code}\label{example-r-code-8}
 
 As a reminder, here's the code to do a simple scatterplot ot Shots by
 Time for the \texttt{worldcup} data:
@@ -8702,7 +8855,7 @@ Time for the \texttt{worldcup} data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-267-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 To add a clearer x-axis label that the current one, use \texttt{xlab()}:
 
@@ -8714,7 +8867,7 @@ To add a clearer x-axis label that the current one, use \texttt{xlab()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-268-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 To make the points smaller, use the \texttt{size} option in
 \texttt{geom\_point()} (smaller than about 2 = smaller than default,
@@ -8728,7 +8881,7 @@ larger than about 2 = larger than default):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-269-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
 
 To make the points semi-transparent, use the \texttt{alpha} option in
 \texttt{geom\_point()} (closer to 0 = more tranparent, closer to 1 =
@@ -8742,7 +8895,7 @@ more opaque):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-270-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-280-1.pdf}
 
 To jitter the points some, use the \texttt{position\ =\ "jitter"} option
 in \texttt{geom\_point()}:
@@ -8756,7 +8909,7 @@ in \texttt{geom\_point()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-271-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-281-1.pdf}
 
 As an alternative, you could also jitter the points by using
 \texttt{geom\_jitter} rather than \texttt{geom\_point}:
@@ -8769,7 +8922,7 @@ As an alternative, you could also jitter the points by using
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-272-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-282-1.pdf}
 
 \begin{rmdnote}
 ``Jittering'' the points means adding some extra random noise in either
@@ -8813,7 +8966,7 @@ To color points by this variable, use \texttt{color\ =} in the
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-1.pdf}
 
 To create nicer labels for the legend for color, convert the
 \texttt{top\_four} column into the factor class, with the labels you
@@ -8843,7 +8996,7 @@ want to use in the figure legend:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-287-1.pdf}
 
 As a note, you can use the \texttt{scale\_color\_discrete()} function to
 put in a nicer legend title:
@@ -8859,7 +9012,7 @@ put in a nicer legend title:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-288-1.pdf}
 
 To create small multiples, use the \texttt{facet\_grid()} command:
 
@@ -8875,7 +9028,7 @@ To create small multiples, use the \texttt{facet\_grid()} command:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-289-1.pdf}
 
 To re-order the \texttt{Position} column of the dataframe, use the
 \texttt{levels} option of the \texttt{factor()} function. This re-sets
@@ -8915,7 +9068,7 @@ Then use the same code from before for your plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-282-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-292-1.pdf}
 
 You can use the \texttt{filter} function with a logical statement
 comparing \texttt{Shots} to the maximum value of \texttt{Shots}
@@ -8959,7 +9112,7 @@ to add some padding so the label wouldn't be right on top of the point.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-284-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-1.pdf}
 
 Try out different themes for the plot. First, I'll save everything we've
 done so far as the object \texttt{shot\_plot}, then I'll try adding
@@ -8983,7 +9136,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8991,7 +9144,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8999,7 +9152,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-3.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9007,7 +9160,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-4.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9015,7 +9168,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-5.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9023,7 +9176,7 @@ different themes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-6.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-6.pdf}
 
 \subsection{Data visualization
 cheatsheet}\label{data-visualization-cheatsheet}
@@ -9068,7 +9221,7 @@ cheatsheet as you do your own analysis.
   \texttt{n\ \textless{}-\ d\ +\ geom\_bar(aes(fill\ =\ fl))}.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-8}
+\subsubsection{Example R code}\label{example-r-code-9}
 
 The code for opening the helpfiles for the example datasets is:
 
@@ -10058,17 +10211,17 @@ amounts, use a vector with one element for each column.\strut
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-304}My new table}
+\caption{\label{tab:unnamed-chunk-314}My new table}
 \centering
 \begin{tabular}[t]{r|c}
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.51\\
+a & -0.38\\
 \hline
-b & -0.83\\
+b & -0.37\\
 \hline
-c & -0.93\\
+c & 0.48\\
 \hline
 \end{tabular}
 \end{table}
@@ -10583,10 +10736,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  1.0639469  1.6617292 -0.6031632
-## 2 2009-01-02 -0.6866780 -5.3274635 -1.1808457
-## 3 2009-01-03 -0.4872355 -0.9055266  2.5918915
+##         time          X         Y         Z
+## 1 2009-01-01 -0.5183770  1.701657 -2.336398
+## 2 2009-01-02  1.2736857 -1.827228 -5.688509
+## 3 2009-01-03  0.2979761 -1.936156 -6.073328
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10603,10 +10756,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  1.0639469  1.6617292 -0.6031632
-## 2 2009-01-02 -0.6866780 -5.3274635 -1.1808457
-## 3 2009-01-03 -0.4872355 -0.9055266  2.5918915
+##         time          X         Y         Z
+## 1 2009-01-01 -0.5183770  1.701657 -2.336398
+## 2 2009-01-02  1.2736857 -1.827228 -5.688509
+## 3 2009-01-03  0.2979761 -1.936156 -6.073328
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10623,11 +10776,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  1.0639469
-## 2 2009-01-02     X -0.6866780
-## 3 2009-01-03     X -0.4872355
-## 4 2009-01-04     X  0.2652775
-## 5 2009-01-05     X  0.5437655
+## 1 2009-01-01     X -0.5183770
+## 2 2009-01-02     X  1.2736857
+## 3 2009-01-03     X  0.2979761
+## 4 2009-01-04     X -0.7245207
+## 5 2009-01-05     X  0.6865292
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10642,11 +10795,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  1.0639469
-## 2 2009-01-02     X -0.6866780
-## 3 2009-01-03     X -0.4872355
-## 4 2009-01-04     X  0.2652775
-## 5 2009-01-05     X  0.5437655
+## 1 2009-01-01     X -0.5183770
+## 2 2009-01-02     X  1.2736857
+## 3 2009-01-03     X  0.2979761
+## 4 2009-01-04     X -0.7245207
+## 5 2009-01-05     X  0.6865292
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10689,7 +10842,7 @@ Notice how easy it is, now that the data is gathered, to use
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-326-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-336-1.pdf}
 
 If you have data in a ``long'' format and would like to spread it out,
 you can use \texttt{spread} to do that:
@@ -10702,12 +10855,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  1.0639469  1.6617292 -0.6031632
-## 2 2009-01-02 -0.6866780 -5.3274635 -1.1808457
-## 3 2009-01-03 -0.4872355 -0.9055266  2.5918915
-## 4 2009-01-04  0.2652775 -0.9413212 -8.6651990
-## 5 2009-01-05  0.5437655 -3.4713290  4.6339295
+##         time          X         Y            Z
+## 1 2009-01-01 -0.5183770  1.701657 -2.336397975
+## 2 2009-01-02  1.2736857 -1.827228 -5.688508988
+## 3 2009-01-03  0.2979761 -1.936156 -6.073328418
+## 4 2009-01-04 -0.7245207  1.367533 -0.003440791
+## 5 2009-01-05  0.6865292  0.840260  1.718168119
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10732,11 +10885,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10  0.03915981 0.9053426
-## 2     Y    10 -0.99742919 2.2168892
-## 3     Z    10  0.49176029 4.3801722
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.1856284 0.8394893
+## 2     Y    10 -0.4107855 1.7260467
+## 3     Z    10 -2.6774761 4.1084516
 \end{verbatim}
 
 \begin{Shaded}
@@ -10755,7 +10908,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.04 (0.91) & -1 (2.22) & 0.49 (4.38)\\
+Mean (Std.dev.) & 0.19 (0.84) & -0.41 (1.73) & -2.68 (4.11)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -10879,7 +11032,7 @@ Here are some of the packages you will need for this exercise:
   Use this new dataframe to plot deaths by date using \texttt{ggplot}.
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-9}
+\subsubsection{Example R code}\label{example-r-code-10}
 
 Use \texttt{read\_csv} to read the mexico data (exposure and mortality)
 directly from GitHub into your R session. Call the dataframes
@@ -10979,7 +11132,7 @@ Use this new dataframe to plot deaths by date using \texttt{ggplot}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-335-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-345-1.pdf}
 
 \subsection{More extensive data
 wrangling}\label{more-extensive-data-wrangling}
@@ -11051,7 +11204,7 @@ wrangling}\label{more-extensive-data-wrangling}
   cleaning process into just a few ``chaining'' calls?
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-10}
+\subsubsection{Example R code}\label{example-r-code-11}
 
 Read the data in using \texttt{read\_csv}. (Review question: Why can't
 you read it directly using \texttt{read.csv()}?)
@@ -11273,7 +11426,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-345-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11284,7 +11437,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-345-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-2.pdf}
 
 Try using the option \texttt{scales\ =\ "free\_y"} in the
 \texttt{facet\_wrap()} function (in the \texttt{gridExtra} package) and
@@ -11299,7 +11452,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-346-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-356-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11310,7 +11463,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-346-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-356-2.pdf}
 
 Put all of the steps of this cleaning process into just a few
 ``chaining'' calls. (Note: I'm using \texttt{sub} here instead of
@@ -11447,7 +11600,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
   yourselves first.
 \end{itemize}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-348-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-358-1.pdf}
 
 \chapter{Exploring data \#2}\label{exploring-data-2}
 
@@ -11869,7 +12022,7 @@ tools.
 
 Loops can be very useful for more complex repeated tasks. For example:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-369-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-379-1.pdf}
 
 Creating this graph requires that you:
 
@@ -12020,7 +12173,7 @@ Create the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-375-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-385-1.pdf}
 
 \section{Other control structures}\label{other-control-structures}
 
@@ -13031,9 +13184,9 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-416-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-426-1} \end{center}
 
-\subsubsection{Example R code}\label{example-r-code-11}
+\subsubsection{Example R code}\label{example-r-code-12}
 
 Here is example code for the section above:
 
@@ -13066,7 +13219,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-417-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-427-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -13159,7 +13312,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-421-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-431-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -13173,7 +13326,7 @@ New York.
   run \texttt{print(a)} within your loop as the last step.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-12}
+\subsubsection{Example R code}\label{example-r-code-13}
 
 Here is example R code for creating state-specific plots using a loop:
 
@@ -13281,7 +13434,7 @@ perform the following tasks:
   \textbf{relative risk} associated with a one degree Celsius increase?
 \end{itemize}
 
-\subsubsection{Example R code:}\label{example-r-code-13}
+\subsubsection{Example R code:}\label{example-r-code-14}
 
 Install and load the \texttt{dlnm} package and then load the
 \texttt{chicagoNMMAPS} data. Change the name of the dataframe to
@@ -13367,7 +13520,7 @@ points gray). Use the values from \texttt{coef} with a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-426-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-436-1.pdf}
 
 Plot some plots to check model assumptions for the model you fit using
 the \texttt{plot()} function on your model object:
@@ -13379,7 +13532,7 @@ the \texttt{plot()} function on your model object:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-427-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-437-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13496,7 +13649,7 @@ Use a boxplot to visually compare PM10 by day of week.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-431-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-441-1.pdf}
 
 Now try the same plot, but try using the \texttt{ylim\ =} option to
 change the limits on the y-axis for the graph, so you can get a better
@@ -13516,7 +13669,7 @@ include them all).
 ## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-432-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-442-1.pdf}
 
 Create a subset called \texttt{summer} with just the summer days:
 

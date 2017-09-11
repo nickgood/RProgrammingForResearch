@@ -225,6 +225,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6.3" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-simple-statistics-and-summarize"><i class="fa fa-check"></i><b>3.6.3</b> Exploring the data using simple statistics and <code>summarize</code></a></li>
 <li class="chapter" data-level="3.6.4" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots-1"><i class="fa fa-check"></i><b>3.6.4</b> Exploring the data using basic plots #1</a></li>
 <li class="chapter" data-level="3.6.5" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots-2"><i class="fa fa-check"></i><b>3.6.5</b> Exploring the data using basic plots #2</a></li>
+<li class="chapter" data-level="3.6.6" data-path="exploring-data-1.html"><a href="exploring-data-1.html#exploring-the-data-using-basic-plots-3"><i class="fa fa-check"></i><b>3.6.6</b> Exploring the data using basic plots #3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html"><i class="fa fa-check"></i><b>4</b> Reporting data results #1</a><ul>
@@ -1330,79 +1331,144 @@ worldcup <span class="op">%&gt;%</span>
 <h3><span class="header-section-number">3.6.4</span> Exploring the data using basic plots #1</h3>
 <p>Use some basic plots to check out this data. Try the following:</p>
 <ul>
-<li><p>Plot scatterplots of different combinations of numeric variables (e.g., <code>Time</code> vs. <code>Shots</code>). Try doing this using the <code>geom_point()</code> geom from <code>ggplot2</code>. Try using different constant or mapped values with the <code>color</code> aesthetic.</p></li>
-<li><p>Did you notice any interesting features of the data when you did any of the graphs in this section?</p></li>
+<li>Create a scatterplot of the <code>worldcup</code> data, where each point is a player, the x-axis shows the amount of time the player played in the World Cup, and the y-axis shows the number of passes the player had. Try writing the code both with and withing “piping in” the data you want to plot into the <code>ggplot</code> function.</li>
+<li>Create the same scatterplot, but have each point in the scatterplot show that player’s position. Add “rug plots” to the margins.</li>
+<li>Create a scatterplot of number of shots (x-axis) versus number of tackles (y-axis) for <strong>just</strong> players on one of the four teams that made the semi-finals (Spain, Netherlands, Germany, Uruguay). Use color to show player’s position and shape to show player’s team. (Hint: you will want to use some <code>dplyr</code> code to clean the data before plotting to do this.)</li>
+<li>Create a scatterplot of player time versus passes. Use color to show whether the player was on one of the top 4 teams or not. (Hint: Again, you’ll want to use some <code>dplyr</code> code before plotting to do this.) For an extra challenge, also try adding each player’s name on top of each point.</li>
+<li>Did you notice any interesting features of the data when you did any of the graphs in this section?</li>
 </ul>
 <div id="example-r-code-3" class="section level4">
 <h4><span class="header-section-number">3.6.4.1</span> Example R code:</h4>
-<p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>. To change the size of the points, use the <code>size</code> argument (use a number lower than 1 for smaller points, higher than 1 for larger points). Try changing the color and transparency of the points using the aesthetics <code>color</code> and <code>alpha</code>. Try using color to show each player’s position by mapping <code>Position</code> to the <code>color</code> aesthetic.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p>Create a scatterplot of <code>Time</code> versus <code>Passes</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Without piping</span>
+<span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes))</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># With piping</span>
+worldcup <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) </code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-2.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-3.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-225-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Create the same scatterplot, but have each point in the scatterplot show that player’s position.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup,
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> Position)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_rug</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
+<p>Create a scatterplot of number of shots (x-axis) versus number of tackles (y-axis) for <strong>just</strong> players on one of the four teams that made the semi-finals (Spain, Netherlands, Germany, Uruguay). Use color to show player’s position and shape to show player’s team. For an extra challenge, also try adding each player’s name on top of each point.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tibble<span class="op">::</span><span class="kw">rownames_to_column</span>(<span class="dt">var =</span> <span class="st">&quot;Name&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Shots, <span class="dt">y =</span> Tackles, <span class="dt">color =</span> Position, <span class="dt">shape =</span> Team)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Shots, <span class="dt">y =</span> Tackles, 
+                          <span class="dt">color =</span> Position, <span class="dt">label =</span> Name), 
+            <span class="dt">size =</span> <span class="fl">2.5</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p>Create a scatterplot of player time versus passes. Use color to show whether the player was on one of the top 4 teams or not.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">top_4 =</span> Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes, <span class="dt">color =</span> top_<span class="dv">4</span>))</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 </div>
 </div>
 <div id="exploring-the-data-using-basic-plots-2" class="section level3">
 <h3><span class="header-section-number">3.6.5</span> Exploring the data using basic plots #2</h3>
-<p>Use some basic plots to check out this data. Try the following:</p>
+<p>Go back to the code you used in the previous section to create a scatterplot of the <code>worldcup</code> data, where each point is a player, the x-axis shows the amount of time the player played in the World Cup, and the y-axis shows the number of passes the player had. Try the following modifications:</p>
 <ul>
-<li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>).</li>
-<li>Try customizing the number of bins used for the histogram plotted in the previous step.</li>
-<li>Try using constant values for some of the aesthetics (e.g., customize the color and the fill) of the histogram created in the previous step.</li>
-<li>Go online and find out which teams were the top four teams in this World Cup (i.e., first through fourth places). Create a <code>top_teams</code> subset with just these teams. Plot boxplots of <code>Shots</code> and <code>Saves</code> by team for just these teams.</li>
-<li>In the previous section of the group exercise, you should have identified that the four top teams in this tournament were Spain, the Netherlands, Germany, and Uruguay. Create a histogram using data only from these four citis for the amount of time each player played. Use the color aesthetic of the histogram to show team.</li>
-<li>Create boxplots of <code>Time</code>, <code>Shots</code>, <code>Passes</code> and <code>Saves</code> by position.</li>
+<li>Make all the points blue.</li>
+<li>Google “R colors” to find a list of color names in R. Pick your favorite and make all the points in the scatterplot that color.</li>
+<li>Change the size of the points to make them smaller (hint: check out the <code>size</code> aesthetic).</li>
+<li>Make it so the color of the points shows the player’s position and all the points are slightly transparent.</li>
+<li>Change the title of the x-axis to “Time (minutes)” and the y-axis to “Number of passes”.</li>
+<li>Add the title “World Cup statistics” and the subtitle “2010 World Cup”.</li>
 </ul>
 <div id="example-r-code-4" class="section level4">
-<h4><span class="header-section-number">3.6.5.1</span> Example R code</h4>
+<h4><span class="header-section-number">3.6.5.1</span> Example R code:</h4>
+<p>Make all the points blue.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes),
+             <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p>Google “R colors” to find a list of color names in R. Pick your favorite and make all the points in the scatterplot that color.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make the points &quot;darkseagreen4&quot;</span>
+<span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes),
+             <span class="dt">color =</span> <span class="st">&quot;darkseagreen4&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p>Change the size of the points to make them smaller (hint: check out the <code>size</code> aesthetic).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes),
+             <span class="dt">size =</span> <span class="fl">0.8</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-1.png" width="672" /> Make it so the color of the points shows the player’s position and all the points are slightly transparent.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes),
+             <span class="dt">alpha =</span> <span class="fl">0.3</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<p>Change the title of the x-axis to “Time (minutes)” and the y-axis to “Number of passes”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time (minutes)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Number of passes&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
+<p>Add the title “World Cup statistics” and the subtitle “2010 World Cup”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Passes)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;World Cup statistics&quot;</span>,
+          <span class="dt">subtitle =</span> <span class="st">&quot;2010 World Cup&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exploring-the-data-using-basic-plots-3" class="section level3">
+<h3><span class="header-section-number">3.6.6</span> Exploring the data using basic plots #3</h3>
+<p>Try out creating some plots using the “statistical” geoms to check out this data. Try the following:</p>
+<ul>
+<li>Plot histograms of all the numeric variables (<code>Time</code>, <code>Shot</code>, <code>Passes</code>, <code>Tackles</code>, <code>Saves</code>) in the dataset.</li>
+<li>Try customizing the number of bins used for one of the histograms plotted in the previous step.</li>
+<li>Try using constant values for some of the aesthetics (e.g., customize the color and the fill) of the histogram created in the previous step.</li>
+<li>Create a boxplot of <code>Shots</code> by position.</li>
+<li>Create a <code>top_teams</code> subset with just the four teams that made the semi-finals in the 2010 World Cup (Spain, the Netherlands, Germany, and Uruguay). Plot boxplots of <code>Shots</code> and <code>Saves</code> by team for just these teams.</li>
+<li>Create a histogram using data only from the four top teams for the amount of time each player played. Use the color aesthetic of the histogram to show team.</li>
+</ul>
+<div id="example-r-code-5" class="section level4">
+<h4><span class="header-section-number">3.6.6.1</span> Example R code</h4>
 <p>Use histograms to explore the distribution of different variables. If you want to change the number of bins in the histogram, try playing around with the <code>bins</code> and <code>binwidth</code> arguments. You can use the <code>bins</code> argument to say how many bins you want (e.g., <code>bins = 50</code>). You can use the <code>binwidth</code> argument to say how wide you want the bins to be (e.g., <code>binwidth = 10</code> if you wanted bins to be 10 units wide, in the units of the variable mapped to the <code>x</code> aesthetic. Try using <code>fill</code> and <code>color</code> to change the appearance of the plot. Google “R colors” and search the images to find links to listings of different R colors.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-235-1.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-2.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-235-2.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-3.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-235-3.png" width="480" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Time)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">50</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-226-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-235-4.png" width="480" style="display: block; margin: auto;" /></p>
 <p>To create a boxplot of <code>Shots</code> by <code>Position</code>, you can use <code>geom_boxplot</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(worldcup, <span class="kw">aes</span>(<span class="dt">x =</span> Position, <span class="dt">y =</span> Shots)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-227-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-236-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The top four teams in this World Cup were Spain, the Netherlands, Germany, and Uruguay. Create a subset with just the data for these four teams:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_teams &lt;-<span class="st"> </span>worldcup <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Team =</span> <span class="kw">factor</span>(Team))</code></pre></div>
-<p>This dataset will still have all the levels saved for the <code>Team</code> factor, even though it isn’t using them all. You can re-set this by resetting <code>Team</code> as a factor, which is what I’ve done with the <code>mutate</code> line. When R creates a factor from a vector, its default is to only use as levels the values that show up in the vector.</p>
-<p>Now, you can plot the boxplots, mapping <code>Team</code> to the <code>x</code> aesthetic and <code>Shots</code> or <code>Saves</code> to the <code>y</code> aesthetic:</p>
+<span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) </code></pre></div>
+<p>Now, you can plot the boxplots, mapping <code>Team</code> to the <code>x</code> aesthetic and <code>Shots</code> to the <code>y</code> aesthetic:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Shots)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-229-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(top_teams, <span class="kw">aes</span>(<span class="dt">x =</span> Team, <span class="dt">y =</span> Saves)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Saves&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-229-2.png" width="576" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">worldcup <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spain&quot;</span>, <span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">fill =</span> Team)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Shots per player in World Cup 2010&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-238-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Create a histogram using data only from the four top teams for the amount of time each player played. Use the color aesthetic of the histogram to show team.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> top_teams) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">fill =</span> Team))</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p>Note that you can also explore other values for <code>geom_histogram</code> arguments. For example, you could change the binwidths to be 90 minutes (since games are 90 minutes).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> top_teams) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">fill =</span> Team), <span class="dt">binwidth =</span> <span class="dv">90</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
 </div>
 <div id="if-you-have-extra-time" class="section level4">
-<h4><span class="header-section-number">3.6.5.2</span> If you have extra time:</h4>
+<h4><span class="header-section-number">3.6.6.2</span> If you have extra time:</h4>
 <p>If you wanted to do the same plot for several different variables, you could loop through your code (we’ll be covering more about loops in a few weeks). For example, you could create histograms for all of the numeric variables (if you do this in RStudio, you’ll need to use the arrows on the plot window to move through and see all the different plots once you’ve created them):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Create an object with the column names for all of the numeric variables
 my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)[<span class="dv">3</span><span class="op">:</span><span class="dv">7</span>]
@@ -1418,7 +1484,7 @@ my_vars &lt;-<span class="st"> </span><span class="kw">colnames</span>(worldcup)
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Histogram of&quot;</span>, var))
   <span class="kw">plot</span>(a)
 }</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-231-5.png" width="288" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-1.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-2.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-3.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-4.png" width="288" /><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-241-5.png" width="288" /></p>
 <p>A few things to note in this example:</p>
 <ul>
 <li>To map an element of the data to an aesthetic, it’s easiest if that element is saved in a column in the dataframe. Within this loop, I’m making an extra column called <code>to_plot</code>, where I’m copying the column of the variable I want to plot each time the loop runs. That way, I can always use <code>x = to_plot</code> in the aesthetic mapping for the ggplot object.</li>
