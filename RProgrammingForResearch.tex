@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x3eb6808>
+## <bytecode: 0x53d1cd8>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10217,11 +10217,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.74\\
+a & -1.27\\
 \hline
-b & -2.30\\
+b & -1.15\\
 \hline
-c & -0.47\\
+c & -0.05\\
 \hline
 \end{tabular}
 \end{table}
@@ -10736,10 +10736,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.6164986 -2.3355956 -2.434842
-## 2 2009-01-02 -1.9273795  1.3183057  1.930505
-## 3 2009-01-03  0.9432517 -0.3313544 -1.458929
+##         time          X         Y          Z
+## 1 2009-01-01  0.4541752 1.7189827  0.3287303
+## 2 2009-01-02  0.3104560 0.1844739  1.5408755
+## 3 2009-01-03 -1.2961803 0.6930461 -1.5702774
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10756,10 +10756,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.6164986 -2.3355956 -2.434842
-## 2 2009-01-02 -1.9273795  1.3183057  1.930505
-## 3 2009-01-03  0.9432517 -0.3313544 -1.458929
+##         time          X         Y          Z
+## 1 2009-01-01  0.4541752 1.7189827  0.3287303
+## 2 2009-01-02  0.3104560 0.1844739  1.5408755
+## 3 2009-01-03 -1.2961803 0.6930461 -1.5702774
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10776,11 +10776,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.6164986
-## 2 2009-01-02     X -1.9273795
-## 3 2009-01-03     X  0.9432517
-## 4 2009-01-04     X -0.0357842
-## 5 2009-01-05     X -0.0233504
+## 1 2009-01-01     X  0.4541752
+## 2 2009-01-02     X  0.3104560
+## 3 2009-01-03     X -1.2961803
+## 4 2009-01-04     X  0.6962647
+## 5 2009-01-05     X -0.6555235
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10795,11 +10795,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.6164986
-## 2 2009-01-02     X -1.9273795
-## 3 2009-01-03     X  0.9432517
-## 4 2009-01-04     X -0.0357842
-## 5 2009-01-05     X -0.0233504
+## 1 2009-01-01     X  0.4541752
+## 2 2009-01-02     X  0.3104560
+## 3 2009-01-03     X -1.2961803
+## 4 2009-01-04     X  0.6962647
+## 5 2009-01-05     X -0.6555235
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10855,12 +10855,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.6164986 -2.3355956 -2.4348421
-## 2 2009-01-02 -1.9273795  1.3183057  1.9305047
-## 3 2009-01-03  0.9432517 -0.3313544 -1.4589286
-## 4 2009-01-04 -0.0357842 -1.9502687  1.0219616
-## 5 2009-01-05 -0.0233504 -2.6835734  0.3193392
+##         time          X           Y          Z
+## 1 2009-01-01  0.4541752  1.71898268  0.3287303
+## 2 2009-01-02  0.3104560  0.18447392  1.5408755
+## 3 2009-01-03 -1.2961803  0.69304614 -1.5702774
+## 4 2009-01-04  0.6962647  0.73823026  1.2384301
+## 5 2009-01-05 -0.6555235 -0.01617984  3.8913826
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10885,11 +10885,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10 -0.04162072 0.8093818
-## 2     Y    10 -0.84988913 1.2521344
-## 3     Z    10 -1.84052226 3.8306980
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.1847636 0.9231572
+## 2     Y    10  0.3546615 0.8443725
+## 3     Z    10 -0.4640750 2.9122851
 \end{verbatim}
 
 \begin{Shaded}
@@ -10908,7 +10908,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.04 (0.81) & -0.85 (1.25) & -1.84 (3.83)\\
+Mean (Std.dev.) & 0.18 (0.92) & 0.35 (0.84) & -0.46 (2.91)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14365,7 +14365,7 @@ For Homework 2, recreate the R Markdown document that you can download
 from
 \href{https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework_2.docx}{here}.
 
-Here are some initial instructions and tips:
+Here are some initial tips:
 
 \begin{itemize}
 \tightlist
