@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x1c774c8>
+## <bytecode: 0x49d0bc0>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10217,11 +10217,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.38\\
+a & -1.70\\
 \hline
-b & -0.37\\
+b & -0.11\\
 \hline
-c & 0.48\\
+c & -0.41\\
 \hline
 \end{tabular}
 \end{table}
@@ -10736,10 +10736,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -0.5183770  1.701657 -2.336398
-## 2 2009-01-02  1.2736857 -1.827228 -5.688509
-## 3 2009-01-03  0.2979761 -1.936156 -6.073328
+##         time          X          Y         Z
+## 1 2009-01-01 -0.2956880  0.6045709 1.6059961
+## 2 2009-01-02  0.2007410  0.5192905 0.9363605
+## 3 2009-01-03 -0.3399884 -1.3846796 4.6937601
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10756,10 +10756,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y         Z
-## 1 2009-01-01 -0.5183770  1.701657 -2.336398
-## 2 2009-01-02  1.2736857 -1.827228 -5.688509
-## 3 2009-01-03  0.2979761 -1.936156 -6.073328
+##         time          X          Y         Z
+## 1 2009-01-01 -0.2956880  0.6045709 1.6059961
+## 2 2009-01-02  0.2007410  0.5192905 0.9363605
+## 3 2009-01-03 -0.3399884 -1.3846796 4.6937601
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10776,11 +10776,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.5183770
-## 2 2009-01-02     X  1.2736857
-## 3 2009-01-03     X  0.2979761
-## 4 2009-01-04     X -0.7245207
-## 5 2009-01-05     X  0.6865292
+## 1 2009-01-01     X -0.2956880
+## 2 2009-01-02     X  0.2007410
+## 3 2009-01-03     X -0.3399884
+## 4 2009-01-04     X -1.5381890
+## 5 2009-01-05     X  0.1173931
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10795,11 +10795,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.5183770
-## 2 2009-01-02     X  1.2736857
-## 3 2009-01-03     X  0.2979761
-## 4 2009-01-04     X -0.7245207
-## 5 2009-01-05     X  0.6865292
+## 1 2009-01-01     X -0.2956880
+## 2 2009-01-02     X  0.2007410
+## 3 2009-01-03     X -0.3399884
+## 4 2009-01-04     X -1.5381890
+## 5 2009-01-05     X  0.1173931
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10855,12 +10855,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y            Z
-## 1 2009-01-01 -0.5183770  1.701657 -2.336397975
-## 2 2009-01-02  1.2736857 -1.827228 -5.688508988
-## 3 2009-01-03  0.2979761 -1.936156 -6.073328418
-## 4 2009-01-04 -0.7245207  1.367533 -0.003440791
-## 5 2009-01-05  0.6865292  0.840260  1.718168119
+##         time          X          Y          Z
+## 1 2009-01-01 -0.2956880  0.6045709  1.6059961
+## 2 2009-01-02  0.2007410  0.5192905  0.9363605
+## 3 2009-01-03 -0.3399884 -1.3846796  4.6937601
+## 4 2009-01-04 -1.5381890  2.1385863 -3.1338406
+## 5 2009-01-05  0.1173931  0.7362154 -4.0608587
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10887,9 +10887,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.1856284 0.8394893
-## 2     Y    10 -0.4107855 1.7260467
-## 3     Z    10 -2.6774761 4.1084516
+## 1     X    10  0.2356328 0.9352046
+## 2     Y    10  0.4686315 1.6956063
+## 3     Z    10 -0.2277747 3.3166832
 \end{verbatim}
 
 \begin{Shaded}
@@ -10908,7 +10908,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.19 (0.84) & -0.41 (1.73) & -2.68 (4.11)\\
+Mean (Std.dev.) & 0.24 (0.94) & 0.47 (1.7) & -0.23 (3.32)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -13766,7 +13766,7 @@ risk.
 You will be responsible for knowing the following functions and
 vocabulary for the weekly quizzes.
 
-\section{Week 1 (Quiz 1)}\label{week-1-quiz-1}
+\section{Quiz 1}\label{quiz-1}
 
 \begin{itemize}
 \tightlist
@@ -13861,7 +13861,7 @@ vocabulary for the weekly quizzes.
   quiz
 \end{itemize}
 
-\section{Week 2 (Quiz 2)}\label{week-2-quiz-2}
+\section{Quiz 2}\label{quiz-2}
 
 \begin{itemize}
 \tightlist
@@ -13874,8 +13874,6 @@ vocabulary for the weekly quizzes.
 \item
   \texttt{setwd()}, including \texttt{setwd("\textasciitilde{}")},
   \texttt{setwd("..")}, \texttt{setwd("..\textbackslash{}..")}
-\item
-  \texttt{list.files()}
 \item
   \texttt{NA}
 \item
@@ -13950,7 +13948,7 @@ vocabulary for the weekly quizzes.
   \texttt{\%in\%}, \texttt{is.na()}, \texttt{\&}, \texttt{\textbar{}})
 \end{itemize}
 
-\section{Week 3 (Quiz 3)}\label{week-3-quiz-3}
+\section{Quiz 3}\label{quiz-3}
 
 \begin{itemize}
 \tightlist
@@ -14030,7 +14028,7 @@ vocabulary for the weekly quizzes.
   logistic model using \texttt{glm()}
 \end{itemize}
 
-\section{Week 4 (Quiz 4)}\label{week-4-quiz-4}
+\section{Quiz 4}\label{quiz-4}
 
 \begin{itemize}
 \tightlist
@@ -14077,7 +14075,7 @@ vocabulary for the weekly quizzes.
   paper), you can get one extra point on this quiz
 \end{itemize}
 
-\section{Week 5 (Quiz 5)}\label{week-5-quiz-5}
+\section{Quiz 5}\label{quiz-5}
 
 \begin{itemize}
 \tightlist
@@ -14115,7 +14113,7 @@ vocabulary for the weekly quizzes.
   RPubs
 \end{itemize}
 
-\section{Week 6 (Quiz 6)}\label{week-6-quiz-6}
+\section{Quiz 6}\label{quiz-6}
 
 \begin{itemize}
 \tightlist
@@ -14151,7 +14149,7 @@ vocabulary for the weekly quizzes.
   follow through these chained examples
 \end{itemize}
 
-\section{Week 7 (Quiz 7)}\label{week-7-quiz-7}
+\section{Quiz 7}\label{quiz-7}
 
 \begin{itemize}
 \tightlist
@@ -14170,7 +14168,7 @@ vocabulary for the weekly quizzes.
   \texttt{kable()} from the \texttt{knitr} package
 \end{itemize}
 
-\section{Week 8 (Quiz 8)}\label{week-8-quiz-8}
+\section{Quiz 8}\label{quiz-8}
 
 \begin{itemize}
 \tightlist
