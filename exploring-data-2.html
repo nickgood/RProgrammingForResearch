@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-09-11">
+<meta name="date" content="2017-09-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -242,8 +242,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
 <li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
 <li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
-<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
-<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
+<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#implementing-plot-guidelines-1"><i class="fa fa-check"></i><b>4.10.2</b> Implementing plot guidelines #1</a></li>
+<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#implementing-plot-guidelines-2"><i class="fa fa-check"></i><b>4.10.3</b> Implementing plot guidelines #2</a></li>
 <li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
 </ul></li>
 </ul></li>
@@ -521,7 +521,7 @@ my_df</code></pre></div>
 ##   208.9     2.3    84.5     4.2     0.7</code></pre>
 <p>However, you can use this same looping process for much more complex tasks that you can’t do as easily with <code>apply</code> or <code>dplyr</code> tools.</p>
 <p>Loops can be very useful for more complex repeated tasks. For example:</p>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-379-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-385-1.png" width="576" /></p>
 <p>Creating this graph requires that you:</p>
 <ul>
 <li>Create a subset limited to each of the four positions</li>
@@ -600,7 +600,7 @@ pos_est <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
                                  <span class="st">&quot;90 minute increase in minutes played&quot;</span>),
                            <span class="dt">limits =</span> <span class="kw">c</span>(<span class="fl">1.0</span>, <span class="kw">max</span>(pos_est<span class="op">$</span>rr_high))) <span class="op">+</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;lightgray&quot;</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-385-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-391-1.png" width="576" /></p>
 </div>
 <div id="other-control-structures" class="section level2">
 <h2><span class="header-section-number">7.3</span> Other control structures</h2>
@@ -1085,7 +1085,7 @@ str_extract(string = [vector you want to check],
 <li>Discuss which of the variables in this dataset could be used to merge the dataset with other appropriate data, either other datasets in the FARS raw data, or outside datasets.</li>
 <li>Try to write the code to create the plot below. This will include some code for cleaning the data and some code for plotting. There is an example answer below, but I’d like you to try to figure it out yourselves first.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-426-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-432-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div id="example-r-code-12" class="section level4">
 <h4><span class="header-section-number">7.6.1.1</span> Example R code</h4>
 <p>Here is example code for the section above:</p>
@@ -1113,7 +1113,7 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;# of fatal accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_few</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-427-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-433-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="using-a-loop-to-create-state-specific-plots" class="section level3">
@@ -1155,7 +1155,7 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 <ul>
 <li>Write the code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. The plot should look like the plot below.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-431-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-437-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Write a loop to create a plot like the one you just made for Colorado for four different states – Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
 </ul>
@@ -1260,11 +1260,11 @@ mod_<span class="dv">1</span></code></pre></div>
 <span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-436-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-442-1.png" width="672" /></p>
 <p>Plot some plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
 <span class="kw">plot</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-437-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-443-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
 <p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
@@ -1317,13 +1317,13 @@ mod_<span class="dv">1</span></code></pre></div>
 <p>Use a boxplot to visually compare PM10 by day of week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-441-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-447-1.png" width="576" /></p>
 <p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
 <pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-442-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-448-1.png" width="576" /></p>
 <p>Create a subset called <code>summer</code> with just the summer days:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(month <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>)</code></pre></div>

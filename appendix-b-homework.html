@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-09-11">
+<meta name="date" content="2017-09-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -242,8 +242,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
 <li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
 <li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
-<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
-<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
+<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#implementing-plot-guidelines-1"><i class="fa fa-check"></i><b>4.10.2</b> Implementing plot guidelines #1</a></li>
+<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#implementing-plot-guidelines-2"><i class="fa fa-check"></i><b>4.10.3</b> Implementing plot guidelines #2</a></li>
 <li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
 </ul></li>
 </ul></li>
@@ -356,7 +356,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Due date: Sept. 13</strong></p>
 <p>For your first homework assignment, you’ll be working through a few <a href="http://swirlstats.com/">swirl</a> lessons that are relevant to the material we’ve covered so far. Swirl is a platform that helps you learn R <strong>in</strong> R - you can complete the lessons right in your R console.</p>
 <p>Depending on your familiarity with R, you can either work through seven lessons of your choice in the <code>R Programming: The basics of programming in R</code> course (suggested lessons are listed further below) (<strong>Option #1</strong>), or you can work through seven lessons of your choice taken from any number of swirl’s available courses (<strong>Option #2</strong>) .</p>
-<p>For each lesson completed, please write a few sentences that cover: 1. A summary of the topic(s) covered in that lesson, and 2. The most interesting thing that you learned from that lesson.</p>
+<p>For each lesson completed, please write a few sentences that cover: 1. A summary of the topic(s) covered in that lesson, and 2. The most interesting thing that you learned from that lesson. Turn in a hardcopy of this (with your first and last name at the top) during class on the due date.</p>
 <p>To begin, you’ll first need to install the swirl package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;swirl&quot;</span>)</code></pre></div>
 <p>Load the swirl package, then call the <code>swirl()</code> function to enter the interactive platform in RStudio. The console will take you through a few prompts: you’ll give swirl a name to call you, and take a look at some commands that are useful in the swirl environment. Those commands are listed further below.</p>
@@ -418,7 +418,7 @@ After calling <code>swirl()</code>, you may be prompted to clear your workspace 
 <h2><span class="header-section-number">B.2</span> Homework #2</h2>
 <p><strong>Due date: Sept. 27</strong></p>
 <p>For Homework 2, recreate the R Markdown document that you can download from <a href="https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework_2.docx">here</a>.</p>
-<p>Here are some initial tips:</p>
+<p>Here are some initial instructions and tips:</p>
 <ul>
 <li>Your goal is to create an R Markdown document that you can compile to create a Word document that looks just like the example document we’ve linked above.</li>
 <li>You will turn in (by email) both the compiled Word document and the .Rmd original file.</li>
@@ -427,12 +427,14 @@ After calling <code>swirl()</code>, you may be prompted to clear your workspace 
 <li>The code chunks here have been hidden with the option <code>echo = FALSE</code>, but you should include your code in your final document.</li>
 <li>Set the chunk options <code>warning = FALSE</code> and <code>message = FALSE</code> to prevent warnings and messages from being printed out. You will get some messages and warnings in the code from things like missing values and from loading packages, but you want to hide all of those messages in your final document.</li>
 <li>For things like templates, colors, level of transparency, and point size, you will receive full credit if you create figures that are visually similar to the ones shown in the example document. In other words, if the example document shows some transparency in points, you will get full credit if you also include some transparency in the points in your plot, but you do not have to include the exact same value of <code>alpha</code>.</li>
+<li>Pay close attention to the typeface used in text of the original document. If something is shown in boldface or “typewriter” fontface in the original, make sure you’ve written your Rmarkdown code to have the same type.</li>
 <li>In R, there are often many different ways to achieve something. As long as your code <em>works</em>, it’s fine if you haven’t coded it exactly like we have in our version. However, your output should look identical to ours (or, in the case of color, transparency, point size, and themes, visually similar).</li>
 <li>You will not lose points if you cannot recreate the table in the document (although you should try to!).</li>
 <li>The last section, under the heading “Extra challenge– not graded”, is not graded. However, if you’d like an extra challenge, you’re welcome to try it out and include it in your final submission!</li>
 </ul>
 <p>If you need them, here are some further tips:</p>
 <ul>
+<li>You will learn Rmarkdown in Week 5 of the course. However, if you want to get started on this exercise before you learn how to use Rmarkdown, you can start by working on the regular R code to read in the data and create the figures shown in the document.</li>
 <li>Functions from the tidyverse (especially from <code>dplyr</code>, <code>readr</code>, and <code>ggplot</code> packages) will make your life much easier for this exercise. You can now install and load the <code>tidyverse</code> package to load them all at once.</li>
 <li>To rename column names with “special” characters in them, wrap the whole old column name in backticks. For example, to change a column name that has a dollar sign in it, you would use something like “rename(new_col_name = `old_col_name$`)”.</li>
 <li>To change the size of a figure in a report, use the “fig.width” and “fig.height” chunk options.</li>

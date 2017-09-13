@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-09-11}
+\date{2017-09-13}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## It [the effort of learning how to use R] is the price paid, just as the
-## dollars or euros for a commercial package would be. For that price, I've
-## learnt a great deal - and not only about R. And I shall remember it when I
-## next have to find a heavyweight solution for a big problem presented by a
-## small charitable client with an invisible budget. It's a huge,
-## awe-inspiring package - easier to perceive as such because the power is
-## not hidden beneath a cosmetic veneer.
-##    -- Felix Grant (in an article about free statistics software)
-##       Scientific Computing World (November 2004)
+## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
+## needed 10 times as much memory as your dataset. [...] R (and current
+## versions of S-PLUS) are more frugal than S-PLUS was back then.
+## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
+## current prices of R, to work out the break-even point at which it's better
+## to buy SAS! :-) Without making any calculations, I can't see how SAS can
+## compete with the price of 4G of RAM.
+##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
+##       R-SIG-Finance (December 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x53d1cd8>
+## <bytecode: 0x52df510>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -8686,7 +8686,10 @@ For more technical details about plotting in R:
 
 For today's exercise, you'll be building a plot using the
 \texttt{worldcup} data from the \texttt{faraway} package. First, load in
-that data.
+that data. The name of each player is in the rownames of this data. Use
+the \texttt{tibble::rownames\_to\_column()} function to move those
+rownames into a new column named \texttt{Player}. Also install and load
+the \texttt{ggplot2} and \texttt{ggthemes} packages.
 
 Next, say you want to look at the relationship between the number of
 minutes that a player played in the 2010 World Cup (\texttt{Time}) and
@@ -8696,6 +8699,10 @@ design a plot to explore and present this relationship. How would you
 incorporate some of the principles of creating good graphs?
 
 \subsubsection{Example R code}\label{example-r-code-6}
+
+For this section, the only code needed is code to load the required
+packages, load the data, and move the rownames to a column named
+\texttt{Player}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8720,35 +8727,16 @@ rownames. Therefore, start by converting the rownames to a column called
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(dplyr)}
 \NormalTok{worldcup <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Player =} \KeywordTok{rownames}\NormalTok{(worldcup))}
+\StringTok{  }\NormalTok{tibble}\OperatorTok{::}\KeywordTok{rownames_to_column}\NormalTok{(}\DataTypeTok{var =} \StringTok{"Player"}\NormalTok{)}
 \KeywordTok{head}\NormalTok{(worldcup, }\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      Team   Position Time Shots Passes Tackles Saves Player
-## 1 Algeria Midfielder   16     0      6       0     0 Abdoun
-## 2   Japan Midfielder  351     0    101      14     0    Abe
+##   Player    Team   Position Time Shots Passes Tackles Saves
+## 1 Abdoun Algeria Midfielder   16     0      6       0     0
+## 2    Abe   Japan Midfielder  351     0    101      14     0
 \end{verbatim}
-
-\subsection{Basic scatterplots with R base graphics and
-ggplot}\label{basic-scatterplots-with-r-base-graphics-and-ggplot}
-
-Perform the following tasks:
-
-\begin{itemize}
-\tightlist
-\item
-  Install and load the \texttt{ggplot2} and \texttt{ggthemes} packages.
-\item
-  For the \texttt{worldcup} data, plot a scatterplot of Time (on the
-  x-axis) versus Shots.
-\item
-  Add some ggplot elements to make this plot a bit more attractive. (For
-  example, change the x- and y-axis labels and add a title.)
-\end{itemize}
-
-\subsubsection{Example R code}\label{example-r-code-7}
 
 Install and load the \texttt{ggplot2} package:
 
@@ -8761,178 +8749,136 @@ Install and load the \texttt{ggplot2} package:
 \end{Highlighting}
 \end{Shaded}
 
-Use the R base graphics to create a scatterplot of Time versus Shots:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-274-1.pdf}
-
-Use some of the plotting options to improve the graph's appearance:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Minutes played"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Shots on goal"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Time played vs. shots taken}\CharTok{\textbackslash{}n}\StringTok{ World Cup 2010"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-275-1.pdf}
-
-\subsection{Fancier graphs}\label{fancier-graphs}
+\subsection{Implementing plot guidelines
+\#1}\label{implementing-plot-guidelines-1}
 
 In this section, we'll work on creating a plot like this:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-276-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-274-1.pdf}
 
-Try the following tasks:
+Do the following tasks:
 
 \begin{itemize}
 \tightlist
 \item
-  First, before you start coding, talk with your group members about how
+  Create a simple scatterplot of Time versus Shots for the World Cup
+  data. It should look like this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-275-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Next, before any more coding, talk with your group members about how
   this graph is different from the simple one you created with
   \texttt{ggplot} in the last section. Also discuss what you can figure
-  out from this new graph that was less clear from the simpler one you
-  created before.
-\item
-  Use the \texttt{xlab()} function to make a clearer title for the
-  x-axis. (You may have already written this code in the last section of
-  this exercise.)
+  out from this new graph that was less clear from a simpler scatterplot
+  of Time versus Shots for this data.
 \item
   Often, in graphs with a lot of points, it's hard to see some of the
   points, because they overlap other points. Three strategies to address
-  this are: (a) make the points smaller; (b) make the points somewhat
-  transparent; and (c) jitter the points. Try doing the first two with
-  the simple ggplot scatterplot you created in the previous section of
-  Shots by Time.
+  this are: (a) make the points smaller; and (b) make the points
+  somewhat transparent. Try doing these first two with the scatterplot
+  you're creating. At this point, the plot should look something like
+  this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-276-1.pdf}
+
+\begin{itemize}
+\tightlist
 \item
   Create a new column in the \texttt{worldcup} data called
   \texttt{top\_four} that specifies whether or not the \texttt{Team} for
   that observation was one of the top four teams in the tournament
   (Netherlands, Uruguay, Spain, and Germany). Make the colors of the
-  points correspond to whether the team was a top-four team.
-\item
-  Create small multiples. The relationship between time played and shots
-  taken is probably different by the players' positions. Use faceting to
-  create different graphs for each position.
-\item
-  Make order count: What order are the faceted graphs currently in?
-  Offensive players have more chances to take shots than defensive
-  players, so that might be a useful ordering for the facets. Re-order
-  the \texttt{Position} factor column to go from nearest your own goal
-  to nearest the opponents goal, and then re-plot the graph from the
-  previous step.
-\item
-  Highlighting interesting data: Who had the most shots in the 2010
-  World Cup? Was he on a top-four team? Use \texttt{geom\_text()} to
-  label his point on the graph with his name.
-\item
-  Increase data density: Try changing the theme, to come up with a graph
-  with a bit less non-data ink. From the \texttt{ggthemes} package
-  (you'll need to install it if you don't already have it), try some of
-  the following themes: \texttt{theme\_few()}, \texttt{theme\_tufte()},
-  \texttt{theme\_stata()}, \texttt{theme\_fivethirtyeight()},
-  \texttt{theme\_economist\_white()}, and \texttt{theme\_wsj()}.
+  points correspond to whether the team was a top-four team. At this
+  point, the plot should look something like this:
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-8}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Increase data density: Try changing the theme, to come up with a graph
+  with a bit less non-data ink. From the \texttt{ggthemes} package, try
+  some of the following themes: \texttt{theme\_few()},
+  \texttt{theme\_tufte()}, \texttt{theme\_stata()},
+  \texttt{theme\_fivethirtyeight()}, \texttt{theme\_economist\_white()},
+  and \texttt{theme\_wsj()}. Pick a theme that helps increase the
+  graph's data density. At this point, the plot should look something
+  like this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Use meaningful labels: Use the \texttt{labs()} function to make a
+  clearer title for the x-axis. (You may have already written this code
+  in the last section of this exercise.) In addition to setting the
+  x-axis title with the \texttt{labs} function, you can also set the
+  title for the color scale (use \texttt{color\ =} within the
+  \texttt{labs} function). You may want to make a line break in the
+  color title-- you can use the linebreak character
+  (\texttt{\textbackslash{}n}) inside the character string with the
+  title to do that. At this point, the plot should look something like
+  this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Provide useful references: The standard time for a soccer game is 90
+  minutes. In the World Cup, all teams play at least three games, and
+  then the top teams continue and play more games. Add a reference line
+  at 270 minutes (i.e., the amount of standard time played for the three
+  games that all teams play). At this point, the plot should look
+  something like this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-280-1.pdf}
+
+\subsubsection{Example R code}\label{example-r-code-7}
 
 As a reminder, here's the code to do a simple scatterplot ot Shots by
 Time for the \texttt{worldcup} data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-277-1.pdf}
-
-To add a clearer x-axis label that the current one, use \texttt{xlab()}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-278-1.pdf}
-
-To make the points smaller, use the \texttt{size} option in
-\texttt{geom\_point()} (smaller than about 2 = smaller than default,
-larger than about 2 = larger than default):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{1}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-279-1.pdf}
-
-To make the points semi-transparent, use the \texttt{alpha} option in
-\texttt{geom\_point()} (closer to 0 = more tranparent, closer to 1 =
-more opaque):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-280-1.pdf}
-
-To jitter the points some, use the \texttt{position\ =\ "jitter"} option
-in \texttt{geom\_point()}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots))}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-281-1.pdf}
 
-As an alternative, you could also jitter the points by using
-\texttt{geom\_jitter} rather than \texttt{geom\_point}:
+Next, try to make it clearer to see the points by making them smaller
+and somewhat transparent. This can be done with the \texttt{size} and
+\texttt{alpha} aesthetics for \texttt{geom\_points}. For the
+\texttt{size} aesthetic, a value smaller than about 2 = smaller than
+default, larger than about 2 = larger than default. For the
+\texttt{alpha} aesthetic, closer to 0 = more tranparent, closer to 1 =
+more opaque. As a reminder, in this case you are changing all of the
+points in the same way, so you will be setting those aesthetics to
+constant values. That means that you should specify the values
+\textbf{outside} of an \texttt{aes} call. This code could make these
+changes:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots),}
+                   \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-282-1.pdf}
-
-\begin{rmdnote}
-``Jittering'' the points means adding some extra random noise in either
-the x- or y-direction, or in both directions. This technique can be
-particularly useful when you are trying to plot points for which one
-dimension is categorical, rather than continuous. You can specify which
-direction (x and / or y) is jittered, as well as the amount of noise to
-add. To find out more, check out the helpfile for the
-\texttt{geom\_jitter} function.
-\end{rmdnote}
 
 To create a new column called \texttt{top\_four}, first create vector
 that lists those top four teams, then create a logical vector in the
@@ -8942,9 +8888,25 @@ four teams:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{worldcup <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top_four =}\NormalTok{ Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{,  }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top_4 =}\NormalTok{ Team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Spain"}\NormalTok{, }\StringTok{"Germany"}\NormalTok{,  }
                                 \StringTok{"Uruguay"}\NormalTok{, }\StringTok{"Netherlands"}\NormalTok{))}
-\KeywordTok{summary}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{top_four)}
+\KeywordTok{head}\NormalTok{(worldcup)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Team   Position Time Shots Passes Tackles Saves     Player top_4
+## 1  Algeria Midfielder   16     0      6       0     0     Abdoun FALSE
+## 2    Japan Midfielder  351     0    101      14     0        Abe FALSE
+## 3   France   Defender  180     0     91       6     0     Abidal FALSE
+## 4   France Midfielder  270     1    111       5     0 Abou Diaby FALSE
+## 5 Cameroon    Forward   46     2     16       0     0  Aboubakar FALSE
+## 6  Uruguay    Forward   72     0     15       0     0      Abreu  TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{top_}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8958,26 +8920,112 @@ To color points by this variable, use \texttt{color\ =} in the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{),}
+                   \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-284-1.pdf}
+
+To increase the data density, try out different themes for the plot.
+First, I'll save everything we've done so far as the object
+\texttt{shot\_plot}, then I'll try adding different themes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shot_plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{),}
+                   \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+
+\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_few}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-1.pdf}
 
-To create nicer labels for the legend for color, convert the
-\texttt{top\_four} column into the factor class, with the labels you
-want to use in the figure legend:
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_tufte}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_wsj}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_fivethirtyeight}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_stata}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_economist_white}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-285-6.pdf}
+
+The data density is increased with the \texttt{theme\_few()} theme, so
+I'll use that:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{),}
+             \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_few}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-286-1.pdf}
+
+To change the titles for some of the scales (the x-axis and color
+scale), you can use the \texttt{labs()} function. Note that you can use
+\texttt{\textbackslash{}n} to add a line break inside one of these
+titles (I've done that for the title for the color scale):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{),}
+             \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_few}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Time played in World Cup (minutes)"}\NormalTok{,}
+       \DataTypeTok{color =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ranking"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-287-1.pdf}
+
+As an extra note, if you want to create nicer labels for the legend for
+color, convert the \texttt{top\_four} column into the factor class, with
+the labels you want to use in the figure legend:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{worldcup <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top_four =} \KeywordTok{factor}\NormalTok{(top_four, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{),}
-                            \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Top 4"}\NormalTok{, }\StringTok{"Other"}\NormalTok{)))}
-\KeywordTok{summary}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{top_four)}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{top_4 =} \KeywordTok{factor}\NormalTok{(top_}\DecValTok{4}\NormalTok{, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{),}
+                        \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Top 4"}\NormalTok{, }\StringTok{"Other"}\NormalTok{)))}
+\KeywordTok{summary}\NormalTok{(worldcup}\OperatorTok{$}\NormalTok{top_}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8988,51 +9036,138 @@ want to use in the figure legend:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-287-1.pdf}
-
-As a note, you can use the \texttt{scale\_color\_discrete()} function to
-put in a nicer legend title:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ ranking"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-288-1.pdf}
-
-To create small multiples, use the \texttt{facet\_grid()} command:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ ranking"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{facet_grid}\NormalTok{(. }\OperatorTok{~}\StringTok{ }\NormalTok{Position)}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{),}
+             \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_few}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Time played in World Cup (minutes)"}\NormalTok{,}
+       \DataTypeTok{color =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ranking"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-289-1.pdf}
 
-To re-order the \texttt{Position} column of the dataframe, use the
-\texttt{levels} option of the \texttt{factor()} function. This re-sets
-how R saves the order of the levels of this factor.
+To add a reference line at 270 minutes of time, use the
+\texttt{geom\_vline()} function. You'll want to make it a light color
+(like light gray) and dashed or dotted (\texttt{linetype} of 2 or 3), so
+it won't be too prominent on the graph:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ worldcup) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{xintercept =} \DecValTok{270}\NormalTok{, }\DataTypeTok{color =} \StringTok{"lightgray"}\NormalTok{, }\DataTypeTok{linetype =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots, }\DataTypeTok{color =}\NormalTok{ top_}\DecValTok{4}\NormalTok{),}
+             \DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_few}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Time played in World Cup (minutes)"}\NormalTok{,}
+       \DataTypeTok{color =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ranking"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-290-1.pdf}
+
+\subsection{Implementing plot guidelines
+\#2}\label{implementing-plot-guidelines-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Highlighting interesting data: Who had the most shots in the 2010
+  World Cup? Was he on a top-four team? Use \texttt{geom\_text()} to
+  label his point on the graph with his name (try out some different
+  values of \texttt{hjust} and \texttt{vjust} in this function call to
+  get the label in a place you like). At this point, the plot should
+  look something like this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-291-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  For labeling the player with the top number of shots, instead of only
+  using the player's name, use the following format: ``{[}Player's
+  name{]}, {[}Player's team{]}''. (Hint: You may want to use
+  \texttt{mutate} to add a new column, where you used \texttt{paste0} to
+  paste together the player's name, \texttt{",\ "}, and the team name.)
+  At this point, the plot should look something like this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-292-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Create small multiples. The relationship between time played and shots
+  taken is probably different by the players' positions. Use faceting to
+  create different graphs for each position. At this point, the plot
+  should look something like this:
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-293-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Make order meaningful: What order are the faceted graphs currently in?
+  Offensive players have more chances to take shots than defensive
+  players, so that might be a useful ordering for the facets. Re-order
+  the \texttt{Position} factor column to go from nearest your own goal
+  to nearest the opponents goal, and then re-plot the graph from the
+  previous step.
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-1.pdf}
+
+\subsubsection{Example R code}\label{example-r-code-8}
+
+To add a text label with just the player with the most shots, you'll
+want to create a new dataframe with just the top player. You can use the
+\texttt{top\_n} function to do that (the \texttt{wt} option is
+specifying that we want the top player in terms of values in the
+\texttt{Shots} column):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{top_player <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{top_n}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\NormalTok{, }\DataTypeTok{wt =}\NormalTok{ Shots)}
+\end{Highlighting}
+\end{Shaded}
+
+Now you can use \texttt{geom\_text()} to label this player's point on
+the graph with his name. You may need to mess around with some of the
+options in \texttt{geom\_text()}, like \texttt{size}, \texttt{hjust},
+and \texttt{vjust} (\texttt{hjust} and \texttt{vjust} say where, in
+relation to the point location, to put the label), to get something
+you're happy with.
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-296-1.pdf}
+
+If you want to put both the player's name and his team, you can add a
+\texttt{mutate()} function when you create the new dataframe with just
+the top player, and then use this for the label:
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-297-1.pdf}
+
+To create small multiples, use the \texttt{facet\_wrap()} command
+(you'll probably want to use \texttt{ncol} to specify to use four
+columns):
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-298-1.pdf}
+
+To re-order the \texttt{Position} column of the dataframe, add a
+\texttt{mutate} statement before you pipe into the plotting code. Use
+the \texttt{levels} option of the \texttt{factor()} function-- whatever
+order you put the factors in for this argument will be the new order in
+which R saves the levels of this factor.
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-299-1.pdf}
+
+\begin{rmdnote}
+Note from this code example that you can use the \texttt{levels}
+function to find out the levels and their order for a factor-class
+vector.
+\end{rmdnote}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9047,136 +9182,6 @@ how R saves the order of the levels of this factor.
 \begin{verbatim}
 ## [1] "Goalkeeper" "Defender"   "Midfielder" "Forward"
 \end{verbatim}
-
-\begin{rmdnote}
-Note from this code example that you can use the \texttt{levels}
-function to find out the levels and their order for a factor-class
-vector.
-\end{rmdnote}
-
-Then use the same code from before for your plot:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ ranking"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{facet_grid}\NormalTok{(. }\OperatorTok{~}\StringTok{ }\NormalTok{Position)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-292-1.pdf}
-
-You can use the \texttt{filter} function with a logical statement
-comparing \texttt{Shots} to the maximum value of \texttt{Shots}
-(\texttt{max(Shots)}) to filter down to the row or rows of the player or
-players with the most shots:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{most_shots <-}\StringTok{ }\NormalTok{worldcup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Shots }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(Shots))}
-\NormalTok{most_shots}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    Team Position Time Shots Passes Tackles Saves Player top_four
-## 1 Ghana  Forward  501    27    151       1     0   Gyan    Other
-\end{verbatim}
-
-Use \texttt{geom\_text()} to label his point on the graph with his name.
-You may need to mess around with some of the options in
-\texttt{geom\_text()}, like \texttt{size}, \texttt{hjust}, and
-\texttt{vjust} (\texttt{hjust} and \texttt{vjust} say where, in relation
-to the point location, to put the label), to get something you're happy
-with. Also, I pasted on an extra space at the end of the player's name,
-to add some padding so the label wouldn't be right on top of the point.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ ranking"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{facet_grid}\NormalTok{(. }\OperatorTok{~}\StringTok{ }\NormalTok{Position) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ most_shots,}
-                  \KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{paste}\NormalTok{(Player, }\StringTok{" "}\NormalTok{)),}
-                  \DataTypeTok{colour =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{3}\NormalTok{,}
-                  \DataTypeTok{hjust =} \DecValTok{1}\NormalTok{, }\DataTypeTok{vjust =} \FloatTok{0.4}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-294-1.pdf}
-
-Try out different themes for the plot. First, I'll save everything we've
-done so far as the object \texttt{shot\_plot}, then I'll try adding
-different themes:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shot_plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(worldcup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Time, }\DataTypeTok{y =}\NormalTok{ Shots,}
-                     \DataTypeTok{color =}\NormalTok{ top_four)) }\OperatorTok{+}
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{position =} \StringTok{"jitter"}\NormalTok{,}
-                   \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)  }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time played in World Cup (minutes)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Team's final}\CharTok{\textbackslash{}n}\StringTok{ ranking"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{facet_grid}\NormalTok{(. }\OperatorTok{~}\StringTok{ }\NormalTok{Position) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ most_shots,}
-                  \KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{paste}\NormalTok{(Player, }\StringTok{" "}\NormalTok{)),}
-                  \DataTypeTok{colour =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{3}\NormalTok{,}
-                  \DataTypeTok{hjust =} \DecValTok{1}\NormalTok{, }\DataTypeTok{vjust =} \FloatTok{0.4}\NormalTok{)}
-
-\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_few}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_tufte}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-2.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_wsj}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-3.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_fivethirtyeight}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-4.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_stata}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-5.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{shot_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_economist_white}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-295-6.pdf}
 
 \subsection{Data visualization
 cheatsheet}\label{data-visualization-cheatsheet}
@@ -10211,17 +10216,17 @@ amounts, use a vector with one element for each column.\strut
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-314}My new table}
+\caption{\label{tab:unnamed-chunk-320}My new table}
 \centering
 \begin{tabular}[t]{r|c}
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.27\\
+a & -1.72\\
 \hline
-b & -1.15\\
+b & 0.73\\
 \hline
-c & -0.05\\
+c & 0.83\\
 \hline
 \end{tabular}
 \end{table}
@@ -10737,9 +10742,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X         Y          Z
-## 1 2009-01-01  0.4541752 1.7189827  0.3287303
-## 2 2009-01-02  0.3104560 0.1844739  1.5408755
-## 3 2009-01-03 -1.2961803 0.6930461 -1.5702774
+## 1 2009-01-01  0.5715005 -0.647138 -0.5506463
+## 2 2009-01-02 -0.9728254  3.338137  6.4510844
+## 3 2009-01-03 -0.1455284  2.814118  0.5421851
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10757,9 +10762,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X         Y          Z
-## 1 2009-01-01  0.4541752 1.7189827  0.3287303
-## 2 2009-01-02  0.3104560 0.1844739  1.5408755
-## 3 2009-01-03 -1.2961803 0.6930461 -1.5702774
+## 1 2009-01-01  0.5715005 -0.647138 -0.5506463
+## 2 2009-01-02 -0.9728254  3.338137  6.4510844
+## 3 2009-01-03 -0.1455284  2.814118  0.5421851
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10776,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.4541752
-## 2 2009-01-02     X  0.3104560
-## 3 2009-01-03     X -1.2961803
-## 4 2009-01-04     X  0.6962647
-## 5 2009-01-05     X -0.6555235
+## 1 2009-01-01     X  0.5715005
+## 2 2009-01-02     X -0.9728254
+## 3 2009-01-03     X -0.1455284
+## 4 2009-01-04     X  1.3148761
+## 5 2009-01-05     X -1.2291926
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10795,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.4541752
-## 2 2009-01-02     X  0.3104560
-## 3 2009-01-03     X -1.2961803
-## 4 2009-01-04     X  0.6962647
-## 5 2009-01-05     X -0.6555235
+## 1 2009-01-01     X  0.5715005
+## 2 2009-01-02     X -0.9728254
+## 3 2009-01-03     X -0.1455284
+## 4 2009-01-04     X  1.3148761
+## 5 2009-01-05     X -1.2291926
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10842,7 +10847,7 @@ Notice how easy it is, now that the data is gathered, to use
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-336-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-342-1.pdf}
 
 If you have data in a ``long'' format and would like to spread it out,
 you can use \texttt{spread} to do that:
@@ -10855,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y          Z
-## 1 2009-01-01  0.4541752  1.71898268  0.3287303
-## 2 2009-01-02  0.3104560  0.18447392  1.5408755
-## 3 2009-01-03 -1.2961803  0.69304614 -1.5702774
-## 4 2009-01-04  0.6962647  0.73823026  1.2384301
-## 5 2009-01-05 -0.6555235 -0.01617984  3.8913826
+##         time          X         Y          Z
+## 1 2009-01-01  0.5715005 -0.647138 -0.5506463
+## 2 2009-01-02 -0.9728254  3.338137  6.4510844
+## 3 2009-01-03 -0.1455284  2.814118  0.5421851
+## 4 2009-01-04  1.3148761  1.768503 -7.2886699
+## 5 2009-01-05 -1.2291926 -1.576244  4.7734721
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10887,9 +10892,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.1847636 0.9231572
-## 2     Y    10  0.3546615 0.8443725
-## 3     Z    10 -0.4640750 2.9122851
+## 1     X    10  0.2794906 0.9745759
+## 2     Y    10  1.4279500 2.1208249
+## 3     Z    10 -0.7123822 4.6154106
 \end{verbatim}
 
 \begin{Shaded}
@@ -10908,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.18 (0.92) & 0.35 (0.84) & -0.46 (2.91)\\
+Mean (Std.dev.) & 0.28 (0.97) & 1.43 (2.12) & -0.71 (4.62)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11132,7 +11137,7 @@ Use this new dataframe to plot deaths by date using \texttt{ggplot}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-345-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-351-1.pdf}
 
 \subsection{More extensive data
 wrangling}\label{more-extensive-data-wrangling}
@@ -11426,7 +11431,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-361-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11437,7 +11442,7 @@ by country:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-361-2.pdf}
 
 Try using the option \texttt{scales\ =\ "free\_y"} in the
 \texttt{facet\_wrap()} function (in the \texttt{gridExtra} package) and
@@ -11452,7 +11457,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-356-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-362-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11463,7 +11468,7 @@ see how that changes these graphs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-356-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-362-2.pdf}
 
 Put all of the steps of this cleaning process into just a few
 ``chaining'' calls. (Note: I'm using \texttt{sub} here instead of
@@ -11600,7 +11605,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
   yourselves first.
 \end{itemize}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-358-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-364-1.pdf}
 
 \chapter{Exploring data \#2}\label{exploring-data-2}
 
@@ -12022,7 +12027,7 @@ tools.
 
 Loops can be very useful for more complex repeated tasks. For example:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-379-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-385-1.pdf}
 
 Creating this graph requires that you:
 
@@ -12173,7 +12178,7 @@ Create the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-385-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-391-1.pdf}
 
 \section{Other control structures}\label{other-control-structures}
 
@@ -13184,7 +13189,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-426-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-432-1} \end{center}
 
 \subsubsection{Example R code}\label{example-r-code-12}
 
@@ -13219,7 +13224,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-427-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-433-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -13312,7 +13317,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-431-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-437-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -13520,7 +13525,7 @@ points gray). Use the values from \texttt{coef} with a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-436-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-442-1.pdf}
 
 Plot some plots to check model assumptions for the model you fit using
 the \texttt{plot()} function on your model object:
@@ -13532,7 +13537,7 @@ the \texttt{plot()} function on your model object:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-437-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-443-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13649,7 +13654,7 @@ Use a boxplot to visually compare PM10 by day of week.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-441-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-447-1.pdf}
 
 Now try the same plot, but try using the \texttt{ylim\ =} option to
 change the limits on the y-axis for the graph, so you can get a better
@@ -13669,7 +13674,7 @@ include them all).
 ## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-442-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-448-1.pdf}
 
 Create a subset called \texttt{summer} with just the summer days:
 
@@ -13957,17 +13962,9 @@ vocabulary for the weekly quizzes.
 \item
   \texttt{library()} (with and without an argument in the parentheses)
 \item
-  common addition for all these plotting functions: \texttt{ggtitle},
-  \texttt{xlab}, \texttt{ylab}, \texttt{xlim}, \texttt{ylim}
+  logical vectors, including running \texttt{sum} on a logical vector
 \item
-  \texttt{aes} function and common aesthetics, including \texttt{color},
-  \texttt{shape}, \texttt{x}, \texttt{y}, and \texttt{fill}
-\item
-  Some common geoms: \texttt{geom\_histogram}, \texttt{geom\_points},
-  \texttt{geom\_lines}, \texttt{geom\_boxplot()} (both for a single
-  numeric variable and for a numeric vector stratified by a factor)
-\item
-  \texttt{ggpairs()} from the \texttt{GGally} package
+  What the bang operator (\texttt{!}) does to a logical operator
 \item
   \texttt{range()}
 \item
@@ -13988,25 +13985,6 @@ vocabulary for the weekly quizzes.
   (numeric, factor, logical), dataframes, \texttt{lm} objects, and
   \texttt{glm} objects
 \item
-  \texttt{lm()}, \texttt{data=} option
-\item
-  \texttt{glm()}, options \texttt{data=}, \texttt{family=}
-\item
-  Functions to apply to a \texttt{lm} or \texttt{glm} object:
-  \texttt{summary()}, \texttt{coef()}, \texttt{residuals()},
-  \texttt{fitted()}, \texttt{plot()}, \texttt{abline()}
-\item
-  The following elements that you can pull from the \texttt{summary} of
-  a \texttt{lm} call: \texttt{summary(mod\_1)\$call},
-  \texttt{summary(mod\_1)\$coef}, \texttt{summary(mod\_1)\$r.squared},
-  \texttt{summary(mod\_1)\$cov.unscaled}
-\item
-  How to create a logical vector and how to use one to (1) index a data
-  frame and (2) count the number of times a certain condition is true in
-  a vector
-\item
-  What the bang operator (\texttt{!}) does to a logical operator
-\item
   What to do if you want to apply a summary statistic function to a
   vector with missing values (you do not need to know every option name
   for all the functions, just know that you would need to include an
@@ -14018,14 +13996,32 @@ vocabulary for the weekly quizzes.
   some functions, like \texttt{summary()}, will do different things
   depending on what type of object you call it on.
 \item
-  The basic structure of regression formulae in R (for example,
-  \texttt{y\ \textasciitilde{}\ x1\ +\ x2})
+  \texttt{summarize()}
 \item
-  Difference between using \texttt{lm()} and \texttt{glm()} to fit a
-  linear regression model
+  Special functions to use with \texttt{summarize()}: \texttt{n()},
+  \texttt{n\_distinct()}, \texttt{first()}, \texttt{last()}
 \item
-  Difference between the code you would use to fit a linear, Poisson, or
-  logistic model using \texttt{glm()}
+  Using \texttt{group\_by()} before using \texttt{summarize()}
+\item
+  The three basic elements of a \texttt{ggplot} plot: data, aesthetics,
+  and geoms
+\item
+  \texttt{aes} function and common aesthetics, including \texttt{color},
+  \texttt{shape}, \texttt{x}, \texttt{y}, \texttt{alpha}, \texttt{size},
+  and \texttt{fill}
+\item
+  Mapping an aesthetic to a column in the data versus setting it to a
+  constant value
+\item
+  Some common geoms: \texttt{geom\_histogram}, \texttt{geom\_points},
+  \texttt{geom\_lines}, \texttt{geom\_boxplot()}
+\item
+  The difference between ``statistical'' geoms (e.g.,
+  \texttt{geom\_boxplot}, \texttt{geom\_smooth}) and ``non-statistical''
+  (e.g., \texttt{geom\_point}, \texttt{geom\_line})
+\item
+  Common additions to \texttt{ggplot} objects: \texttt{ggtitle},
+  \texttt{labs}, \texttt{xlim}, \texttt{ylim}, \texttt{expand\_limits}
 \end{itemize}
 
 \section{Quiz 4}\label{quiz-4}
@@ -14202,7 +14198,9 @@ of swirl's available courses (\textbf{Option \#2}) .
 
 For each lesson completed, please write a few sentences that cover: 1. A
 summary of the topic(s) covered in that lesson, and 2. The most
-interesting thing that you learned from that lesson.
+interesting thing that you learned from that lesson. Turn in a hardcopy
+of this (with your first and last name at the top) during class on the
+due date.
 
 To begin, you'll first need to install the swirl package:
 
@@ -14365,7 +14363,7 @@ For Homework 2, recreate the R Markdown document that you can download
 from
 \href{https://github.com/geanders/RProgrammingForResearch/raw/master/Homework/Homework_2.docx}{here}.
 
-Here are some initial tips:
+Here are some initial instructions and tips:
 
 \begin{itemize}
 \tightlist
@@ -14403,6 +14401,11 @@ Here are some initial tips:
   points in your plot, but you do not have to include the exact same
   value of \texttt{alpha}.
 \item
+  Pay close attention to the typeface used in text of the original
+  document. If something is shown in boldface or ``typewriter'' fontface
+  in the original, make sure you've written your Rmarkdown code to have
+  the same type.
+\item
   In R, there are often many different ways to achieve something. As
   long as your code \emph{works}, it's fine if you haven't coded it
   exactly like we have in our version. However, your output should look
@@ -14421,6 +14424,11 @@ If you need them, here are some further tips:
 
 \begin{itemize}
 \tightlist
+\item
+  You will learn Rmarkdown in Week 5 of the course. However, if you want
+  to get started on this exercise before you learn how to use Rmarkdown,
+  you can start by working on the regular R code to read in the data and
+  create the figures shown in the document.
 \item
   Functions from the tidyverse (especially from \texttt{dplyr},
   \texttt{readr}, and \texttt{ggplot} packages) will make your life much

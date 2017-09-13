@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-09-11">
+<meta name="date" content="2017-09-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -242,8 +242,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.9" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#to-find-out-more"><i class="fa fa-check"></i><b>4.9</b> To find out more</a></li>
 <li class="chapter" data-level="4.10" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#in-course-exercise-3"><i class="fa fa-check"></i><b>4.10</b> In-course exercise</a><ul>
 <li class="chapter" data-level="4.10.1" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#designing-a-plot"><i class="fa fa-check"></i><b>4.10.1</b> Designing a plot</a></li>
-<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#basic-scatterplots-with-r-base-graphics-and-ggplot"><i class="fa fa-check"></i><b>4.10.2</b> Basic scatterplots with R base graphics and ggplot</a></li>
-<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#fancier-graphs"><i class="fa fa-check"></i><b>4.10.3</b> Fancier graphs</a></li>
+<li class="chapter" data-level="4.10.2" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#implementing-plot-guidelines-1"><i class="fa fa-check"></i><b>4.10.2</b> Implementing plot guidelines #1</a></li>
+<li class="chapter" data-level="4.10.3" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#implementing-plot-guidelines-2"><i class="fa fa-check"></i><b>4.10.3</b> Implementing plot guidelines #2</a></li>
 <li class="chapter" data-level="4.10.4" data-path="reporting-data-results-1.html"><a href="reporting-data-results-1.html#data-visualization-cheatsheet"><i class="fa fa-check"></i><b>4.10.4</b> Data visualization cheatsheet</a></li>
 </ul></li>
 </ul></li>
@@ -446,10 +446,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><code>data()</code> (with and without the name of a dataset as an option)</li>
 <li><code>library()</code> (with and without an argument in the parentheses)</li>
-<li>common addition for all these plotting functions: <code>ggtitle</code>, <code>xlab</code>, <code>ylab</code>, <code>xlim</code>, <code>ylim</code></li>
-<li><code>aes</code> function and common aesthetics, including <code>color</code>, <code>shape</code>, <code>x</code>, <code>y</code>, and <code>fill</code></li>
-<li>Some common geoms: <code>geom_histogram</code>, <code>geom_points</code>, <code>geom_lines</code>, <code>geom_boxplot()</code> (both for a single numeric variable and for a numeric vector stratified by a factor)</li>
-<li><code>ggpairs()</code> from the <code>GGally</code> package</li>
+<li>logical vectors, including running <code>sum</code> on a logical vector</li>
+<li>What the bang operator (<code>!</code>) does to a logical operator</li>
 <li><code>range()</code></li>
 <li><code>min()</code></li>
 <li><code>max()</code></li>
@@ -458,17 +456,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>table()</code></li>
 <li><code>cor()</code>, both for two variables in a dataframe, and to get the correlation matrix for several variables in a dataframe</li>
 <li><code>summary()</code>, as applied to: different classes of vectors (numeric, factor, logical), dataframes, <code>lm</code> objects, and <code>glm</code> objects</li>
-<li><code>lm()</code>, <code>data=</code> option</li>
-<li><code>glm()</code>, options <code>data=</code>, <code>family=</code></li>
-<li>Functions to apply to a <code>lm</code> or <code>glm</code> object: <code>summary()</code>, <code>coef()</code>, <code>residuals()</code>, <code>fitted()</code>, <code>plot()</code>, <code>abline()</code></li>
-<li>The following elements that you can pull from the <code>summary</code> of a <code>lm</code> call: <code>summary(mod_1)$call</code>, <code>summary(mod_1)$coef</code>, <code>summary(mod_1)$r.squared</code>, <code>summary(mod_1)$cov.unscaled</code></li>
-<li>How to create a logical vector and how to use one to (1) index a data frame and (2) count the number of times a certain condition is true in a vector</li>
-<li>What the bang operator (<code>!</code>) does to a logical operator</li>
 <li>What to do if you want to apply a summary statistic function to a vector with missing values (you do not need to know every option name for all the functions, just know that you would need to include an option like <code>na.rm=</code> or <code>use=</code>, and that you can use the help file for a function to figure out the option call for that function).</li>
 <li>The following about object-oriented programming: In R, it means that some functions, like <code>summary()</code>, will do different things depending on what type of object you call it on.</li>
-<li>The basic structure of regression formulae in R (for example, <code>y ~ x1 + x2</code>)</li>
-<li>Difference between using <code>lm()</code> and <code>glm()</code> to fit a linear regression model</li>
-<li>Difference between the code you would use to fit a linear, Poisson, or logistic model using <code>glm()</code></li>
+<li><code>summarize()</code></li>
+<li>Special functions to use with <code>summarize()</code>: <code>n()</code>, <code>n_distinct()</code>, <code>first()</code>, <code>last()</code></li>
+<li>Using <code>group_by()</code> before using <code>summarize()</code></li>
+<li>The three basic elements of a <code>ggplot</code> plot: data, aesthetics, and geoms</li>
+<li><code>aes</code> function and common aesthetics, including <code>color</code>, <code>shape</code>, <code>x</code>, <code>y</code>, <code>alpha</code>, <code>size</code>, and <code>fill</code></li>
+<li>Mapping an aesthetic to a column in the data versus setting it to a constant value</li>
+<li>Some common geoms: <code>geom_histogram</code>, <code>geom_points</code>, <code>geom_lines</code>, <code>geom_boxplot()</code></li>
+<li>The difference between “statistical” geoms (e.g., <code>geom_boxplot</code>, <code>geom_smooth</code>) and “non-statistical” (e.g., <code>geom_point</code>, <code>geom_line</code>)</li>
+<li>Common additions to <code>ggplot</code> objects: <code>ggtitle</code>, <code>labs</code>, <code>xlim</code>, <code>ylim</code>, <code>expand_limits</code></li>
 </ul>
 </div>
 <div id="quiz-4" class="section level2">
