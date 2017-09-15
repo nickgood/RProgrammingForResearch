@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-09-13}
+\date{2017-09-15}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x52df510>
+## <bytecode: 0x4826390>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.72\\
+a & 1.52\\
 \hline
-b & 0.73\\
+b & 0.14\\
 \hline
-c & 0.83\\
+c & -0.10\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y          Z
-## 1 2009-01-01  0.5715005 -0.647138 -0.5506463
-## 2 2009-01-02 -0.9728254  3.338137  6.4510844
-## 3 2009-01-03 -0.1455284  2.814118  0.5421851
+##         time          X          Y         Z
+## 1 2009-01-01  0.5440651 -1.3824385 -5.300298
+## 2 2009-01-02 -0.5500086  1.3988638  2.735915
+## 3 2009-01-03 -1.4526553  0.8863218 -5.855775
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y          Z
-## 1 2009-01-01  0.5715005 -0.647138 -0.5506463
-## 2 2009-01-02 -0.9728254  3.338137  6.4510844
-## 3 2009-01-03 -0.1455284  2.814118  0.5421851
+##         time          X          Y         Z
+## 1 2009-01-01  0.5440651 -1.3824385 -5.300298
+## 2 2009-01-02 -0.5500086  1.3988638  2.735915
+## 3 2009-01-03 -1.4526553  0.8863218 -5.855775
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5715005
-## 2 2009-01-02     X -0.9728254
-## 3 2009-01-03     X -0.1455284
-## 4 2009-01-04     X  1.3148761
-## 5 2009-01-05     X -1.2291926
+## 1 2009-01-01     X  0.5440651
+## 2 2009-01-02     X -0.5500086
+## 3 2009-01-03     X -1.4526553
+## 4 2009-01-04     X  1.4266802
+## 5 2009-01-05     X  0.3125991
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5715005
-## 2 2009-01-02     X -0.9728254
-## 3 2009-01-03     X -0.1455284
-## 4 2009-01-04     X  1.3148761
-## 5 2009-01-05     X -1.2291926
+## 1 2009-01-01     X  0.5440651
+## 2 2009-01-02     X -0.5500086
+## 3 2009-01-03     X -1.4526553
+## 4 2009-01-04     X  1.4266802
+## 5 2009-01-05     X  0.3125991
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X         Y          Z
-## 1 2009-01-01  0.5715005 -0.647138 -0.5506463
-## 2 2009-01-02 -0.9728254  3.338137  6.4510844
-## 3 2009-01-03 -0.1455284  2.814118  0.5421851
-## 4 2009-01-04  1.3148761  1.768503 -7.2886699
-## 5 2009-01-05 -1.2291926 -1.576244  4.7734721
+##         time          X          Y          Z
+## 1 2009-01-01  0.5440651 -1.3824385 -5.3002985
+## 2 2009-01-02 -0.5500086  1.3988638  2.7359155
+## 3 2009-01-03 -1.4526553  0.8863218 -5.8557752
+## 4 2009-01-04  1.4266802  0.1998932  0.3525404
+## 5 2009-01-05  0.3125991 -0.4761066 -0.2414396
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10892,9 +10892,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean        sd
 ##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10  0.2794906 0.9745759
-## 2     Y    10  1.4279500 2.1208249
-## 3     Z    10 -0.7123822 4.6154106
+## 1     X    10  0.2711709 0.8476039
+## 2     Y    10 -0.1568014 1.3397595
+## 3     Z    10  0.2012809 3.8809394
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.28 (0.97) & 1.43 (2.12) & -0.71 (4.62)\\
+Mean (Std.dev.) & 0.27 (0.85) & -0.16 (1.34) & 0.2 (3.88)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14438,7 +14438,7 @@ If you need them, here are some further tips:
   To rename column names with ``special'' characters in them, wrap the
   whole old column name in backticks. For example, to change a column
   name that has a dollar sign in it, you would use something like
-  ``rename(new\_col\_name = `old\_col\_name\$`)''.
+  ``\texttt{rename(new\_col\_name\ =\ \textasciigrave{}old\_col\_name\$\textasciigrave{}})''.
 \item
   To change the size of a figure in a report, use the ``fig.width'' and
   ``fig.height'' chunk options.
