@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-09-18}
+\date{2017-09-25}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x489ed20>
+## <bytecode: 0x488ce08>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.40\\
+a & -0.41\\
 \hline
-b & 0.65\\
+b & 0.63\\
 \hline
-c & -1.23\\
+c & 0.65\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X         Y         Z
-## 1 2009-01-01 0.2239087 -2.083484 -4.206218
-## 2 2009-01-02 0.6356867 -1.614303 -4.225886
-## 3 2009-01-03 0.9200759  2.034027 -9.428963
+##         time         X         Y           Z
+## 1 2009-01-01 -1.198634 -3.658063  -2.0570133
+## 2 2009-01-02 -0.242353 -2.265990 -10.2215770
+## 3 2009-01-03 -1.143558 -3.921012  -0.6497486
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time         X         Y         Z
-## 1 2009-01-01 0.2239087 -2.083484 -4.206218
-## 2 2009-01-02 0.6356867 -1.614303 -4.225886
-## 3 2009-01-03 0.9200759  2.034027 -9.428963
+##         time         X         Y           Z
+## 1 2009-01-01 -1.198634 -3.658063  -2.0570133
+## 2 2009-01-02 -0.242353 -2.265990 -10.2215770
+## 3 2009-01-03 -1.143558 -3.921012  -0.6497486
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.2239087
-## 2 2009-01-02     X  0.6356867
-## 3 2009-01-03     X  0.9200759
-## 4 2009-01-04     X -0.3175882
-## 5 2009-01-05     X  0.4894591
+## 1 2009-01-01     X -1.1986338
+## 2 2009-01-02     X -0.2423530
+## 3 2009-01-03     X -1.1435582
+## 4 2009-01-04     X  0.5113939
+## 5 2009-01-05     X -0.3939571
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.2239087
-## 2 2009-01-02     X  0.6356867
-## 3 2009-01-03     X  0.9200759
-## 4 2009-01-04     X -0.3175882
-## 5 2009-01-05     X  0.4894591
+## 1 2009-01-01     X -1.1986338
+## 2 2009-01-02     X -0.2423530
+## 3 2009-01-03     X -1.1435582
+## 4 2009-01-04     X  0.5113939
+## 5 2009-01-05     X -0.3939571
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01  0.2239087 -2.0834844 -4.2062183
-## 2 2009-01-02  0.6356867 -1.6143026 -4.2258857
-## 3 2009-01-03  0.9200759  2.0340275 -9.4289627
-## 4 2009-01-04 -0.3175882  0.5177839 -0.9294109
-## 5 2009-01-05  0.4894591  2.9885902  2.2043434
+##         time          X          Y           Z
+## 1 2009-01-01 -1.1986338 -3.6580633  -2.0570133
+## 2 2009-01-02 -0.2423530 -2.2659900 -10.2215770
+## 3 2009-01-03 -1.1435582 -3.9210124  -0.6497486
+## 4 2009-01-04  0.5113939  2.8405187  -2.9766156
+## 5 2009-01-05 -0.3939571  0.8014587  -0.1344863
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean       sd
-##   <chr> <int>       <dbl>    <dbl>
-## 1     X    10 -0.07306733 1.282783
-## 2     Y    10  0.17278070 2.004758
-## 3     Z    10 -1.54801595 4.748335
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 -0.5717778 0.8089771
+## 2     Y    10 -1.1191302 2.1329144
+## 3     Z    10 -1.8388105 3.5218283
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.07 (1.28) & 0.17 (2) & -1.55 (4.75)\\
+Mean (Std.dev.) & -0.57 (0.81) & -1.12 (2.13) & -1.84 (3.52)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11023,19 +11023,33 @@ Here are some of the packages you will need for this exercise:
 \begin{itemize}
 \tightlist
 \item
-  Use \texttt{read\_csv} to read the mexico data (exposure and
+  Use \texttt{read\_csv} to read the Mexico data (exposure and
   mortality) directly from GitHub into your R session. Call the
   dataframes \texttt{mex\_deaths} and \texttt{mex\_exp}.
 \item
+  Are there any values of the \texttt{day} column in
+  \texttt{mex\_deaths} that is not present in the \texttt{day} column of
+  \texttt{mex\_exp}? How about vice-versa? (Hint: There are a few ways
+  you could check this. One is to try filtering down to just rows in one
+  dataframe where the \texttt{day} values are not present in the
+  \texttt{day} values from the other dataframe. The \texttt{\%in\%}
+  logical vector may be useful.)
+\item
   Merge the two datasets together to create the dataframe
-  \texttt{mexico}. Exclude all columns except the outcome (deaths),
-  date, and mean temperature. Convert the date to a date class.
+  \texttt{mexico}. Exclude all columns except the outcome (deaths), day,
+  and mean temperature.
 \item
-  Try combining all the steps in the previous task into one ``chained''
-  command using the pipe operator, \texttt{\%\textgreater{}\%}.
+  Convert the day to a Date class.
 \item
-  Use this new dataframe to plot deaths by date using \texttt{ggplot}.
+  If you did not already, try combining all the steps in the previous
+  task into one ``chained'' pipeline of code using the pipe operator,
+  \texttt{\%\textgreater{}\%}.
+\item
+  Use this new dataframe to plot deaths by date in Mexico using
+  \texttt{ggplot2}. The final plot should look like this:
 \end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-348-1.pdf}
 
 \subsubsection{Example R code}\label{example-r-code-10}
 
@@ -11087,15 +11101,82 @@ directly from GitHub into your R session. Call the dataframes
 ## #   SO2 <dbl>, PM10 <dbl>, PM25 <dbl>
 \end{verbatim}
 
+Check if there are any values of the \texttt{day} column in
+\texttt{mex\_deaths} that are not present in the \texttt{day} column of
+\texttt{mex\_exp} and vice-versa.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mex_deaths }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{(day }\OperatorTok{%in%}\StringTok{ }\NormalTok{mex_exp}\OperatorTok{$}\NormalTok{day))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 0 x 2
+## # ... with 2 variables: day <chr>, deaths <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mex_exp }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{(day }\OperatorTok{%in%}\StringTok{ }\NormalTok{mex_deaths}\OperatorTok{$}\NormalTok{day))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 0 x 14
+## # ... with 14 variables: day <chr>, temp_min <dbl>, temp_max <dbl>,
+## #   temp_mean <dbl>, humidity <dbl>, wind <dbl>, NO <dbl>, NO2 <dbl>,
+## #   NOX <dbl>, O3 <dbl>, CO <dbl>, SO2 <dbl>, PM10 <dbl>, PM25 <dbl>
+\end{verbatim}
+
+One important note is that, when you're doing this check, you do
+\emph{not} want to overwrite your original dataframe, so be sure that
+you do not reassign this output to \texttt{mex\_deaths} or
+\texttt{mex\_exp}.
+
+An even quicker way to do check this is to create a logical vector that
+checks this and use \texttt{sum} to add up the values in the logical
+vector. If the sum is zero, that tells you that the logical check is
+never true, so there are no cases where there is a \texttt{day} value in
+one dataframe that is not also in the other dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\OperatorTok{!}\NormalTok{(mex_deaths}\OperatorTok{$}\NormalTok{day }\OperatorTok{%in%}\StringTok{ }\NormalTok{mex_exp}\OperatorTok{$}\NormalTok{day))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\OperatorTok{!}\NormalTok{(mex_exp}\OperatorTok{$}\NormalTok{day }\OperatorTok{%in%}\StringTok{ }\NormalTok{mex_deaths}\OperatorTok{$}\NormalTok{day))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
 Merge the two datasets together to create the dataframe \texttt{mexico}.
 Exclude all columns except the outcome (deaths), date, and mean
-temperature. Convert the date to a date class.
+temperature.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mexico <-}\StringTok{ }\KeywordTok{full_join}\NormalTok{(mex_deaths, mex_exp, }\DataTypeTok{by =} \StringTok{"day"}\NormalTok{) }
 \NormalTok{mexico <-}\StringTok{ }\KeywordTok{select}\NormalTok{(mexico, day, deaths, temp_mean)}
+\end{Highlighting}
+\end{Shaded}
 
+Convert the date to a date class.
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(lubridate) ## For parsing dates}
 \NormalTok{mexico <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(mexico, }\DataTypeTok{day =} \KeywordTok{mdy}\NormalTok{(day))}
 \end{Highlighting}
@@ -11125,19 +11206,29 @@ command:
 ## 6 2008-01-06    332 14.341667
 \end{verbatim}
 
+Note that, in this case, all the values of \texttt{day} in
+\texttt{mex\_deaths} have one and only one matching value in
+\texttt{mex\_exp}, and vice-versa. Because of this, we would have gotten
+the same \texttt{mexico} dataframe if we'd used \texttt{inner\_join},
+\texttt{left\_join} or \texttt{right\_join} instead of
+\texttt{full\_join}. The differences between these \texttt{*\_join}
+functions come into play when you have some values of your matching
+column that aren't in both of the dataframes you're joining.
+
 Use this new dataframe to plot deaths by date using \texttt{ggplot}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(mexico, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ day, }\DataTypeTok{y =}\NormalTok{ deaths)) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Date in 2008"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of deaths"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mexico) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ day, }\DataTypeTok{y =}\NormalTok{ deaths),}
+                   \DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Date in 2008"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"# of deaths"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Deaths by date"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{theme_few}\NormalTok{()}
+\StringTok{        }\KeywordTok{theme_few}\NormalTok{() }
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-351-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-355-1.pdf}
 
 \subsection{More extensive data
 wrangling}\label{more-extensive-data-wrangling}
@@ -11145,74 +11236,124 @@ wrangling}\label{more-extensive-data-wrangling}
 \begin{itemize}
 \tightlist
 \item
-  Read the ebola data directly from GitHub into your R session. Call the
+  Read the Ebola data directly from GitHub into your R session. Call the
   dataframe \texttt{ebola}.
 \item
   Use \texttt{dplyr} functions to create a tidy dataset. First, change
   it from ``wide'' data to ``long'' data. Name the new column with the
   key \texttt{variable} and the new column with the values
-  \texttt{count}.
-\item
-  Run the following code to create new columns named \texttt{type} and
-  \texttt{country} that split up the \texttt{variable} column into type
-  (``Cases'' or ``Deaths'') and country (``Guinea'', ``Liberia'', etc.).
-  (This type of code is moving towards using regular expressions to
-  clean up really messy data, which we'll talk about some in the third
-  section.)
+  \texttt{count}. The first few lines of the ``long'' version of the
+  dataset should look like this:
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{foo <-}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(ebola}\OperatorTok{$}\NormalTok{variable), }\DataTypeTok{split =} \StringTok{"_"}\NormalTok{)}
-\NormalTok{bar <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(foo), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{)}
-
-\NormalTok{ebola}\OperatorTok{$}\NormalTok{type <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(bar[ , }\DecValTok{1}\NormalTok{])}
-\NormalTok{ebola}\OperatorTok{$}\NormalTok{country <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(bar[ , }\DecValTok{2}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+## # A tibble: 6 x 4
+##         Date   Day     variable count
+##        <chr> <int>        <chr> <int>
+## 1   1/5/2015   289 Cases_Guinea  2776
+## 2   1/4/2015   288 Cases_Guinea  2775
+## 3   1/3/2015   287 Cases_Guinea  2769
+## 4   1/2/2015   286 Cases_Guinea    NA
+## 5 12/31/2014   284 Cases_Guinea  2730
+## 6 12/28/2014   281 Cases_Guinea  2706
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
 \item
-  Use \texttt{dplyr} functions and piping to remove \texttt{Day} and
-  \texttt{variable} (now that you've split it into \texttt{type} and
-  \texttt{country}) and to convert \texttt{Date} to a date class.
+  Convert the \texttt{Date} column to a Date class.
 \item
-  Use the \texttt{dplyr} function \texttt{spread()} to convert the data
-  so you have separate columns for the two variables of numbers of
-  \texttt{Cases} and \texttt{Deaths}.
+  Use the \texttt{separate} function to separate the \texttt{variable}
+  column into two columns, \texttt{type} (``Cases'' or ``Deaths'') and
+  \texttt{country} (``Guinea'', ``Liberia'', etc.). At this point, the
+  data should look like this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##         Date   Day  type country count
+##       <date> <int> <chr>   <chr> <int>
+## 1 2015-01-05   289 Cases  Guinea  2776
+## 2 2015-01-04   288 Cases  Guinea  2775
+## 3 2015-01-03   287 Cases  Guinea  2769
+## 4 2015-01-02   286 Cases  Guinea    NA
+## 5 2014-12-31   284 Cases  Guinea  2730
+## 6 2014-12-28   281 Cases  Guinea  2706
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
 \item
-  Remove any observations where counts of cases or deaths are missing
-  for that country.
+  Use the \texttt{spread} function to convert the data so you have
+  separate columns for the two variables of numbers of \texttt{Cases}
+  and \texttt{Deaths}. At this point, the dataframe should look like
+  this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##         Date   Day     country Cases Deaths
+##       <date> <int>       <chr> <int>  <int>
+## 1 2014-03-22     0      Guinea    49     29
+## 2 2014-03-22     0     Liberia    NA     NA
+## 3 2014-03-22     0        Mali    NA     NA
+## 4 2014-03-22     0     Nigeria    NA     NA
+## 5 2014-03-22     0     Senegal    NA     NA
+## 6 2014-03-22     0 SierraLeone    NA     NA
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
 \item
-  Challenge question (you can do the next step without doing this, but
-  your graphs won't be in order): Create a dataframe called
-  \texttt{case\_sum} that gives the total number of cases recorded for
-  each country. (Hint: Use the \texttt{dplyr} functions
-  \texttt{group\_by()} and \texttt{summarize()}.) Use \texttt{arrange()}
-  to re-order this dataset by the order of the number of cases, and then
-  use this arrangement to re-order the levels in \texttt{country} in
-  your main \texttt{ebola} dataset, so that your graphs in the next step
-  will be ordered from the country with the most ebola cases to the one
-  with the least.
+  Remove any observations where counts of both cases and deaths are
+  missing for that country on that date.
 \item
-  Now that your data is tidy, create one plot showing ebola cases by
-  date, faceted by country, and one showing ebola deaths by date, also
+  Now that your data is tidy, create one plot showing Ebola cases by
+  date, faceted by country, and one showing Ebola deaths by date, also
   faceted by country. Try using the option \texttt{scales\ =\ "free\_y"}
-  in the \texttt{facet\_wrap()} function (in the \texttt{gridExtra}
-  package) and see how that changes these graphs.
+  in the \texttt{facet\_wrap} function and see how that changes these
+  graphs. Discuss with your group the advantages and disadvantages of
+  using this option when creating these small multiple plots. The plots
+  should look something like this (if you're using the
+  \texttt{scales\ =\ "free\_y"} option):
+\end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-359-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-359-2.pdf}
+
+\begin{itemize}
+\tightlist
 \item
   Based on these plots, what would your next questions be about this
   data before you used it for an analysis?
 \item
-  Super-challenge question: Can you put all of the steps of this
-  cleaning process into just a few ``chaining'' calls?
+  Can you put all of the steps of this cleaning process into just a few
+  ``chained'' code pipelines using \texttt{\%\textgreater{}\%}?
+\item
+  If you have extra time (super-challenge!): There is a function called
+  \texttt{fct\_reorder} in the \texttt{forcats} package that can be used
+  to reorder the levels of a factor in a dataframe based on another
+  column in the same dataframe. This function can be very useful for
+  using a meaningful order when plotting. We'll cover the
+  \texttt{forcats} package in a later class, but today check out the
+  help file for \texttt{fct\_reorder} and see if you can figure out how
+  to use it to reorder the small multiple plots in order of the maximum
+  number of cases or deaths (for the two plots respectively) in each
+  country. You'll be able to do this by changing the code in
+  \texttt{facet\_wrap} from \texttt{\textasciitilde{}\ country} to
+  \texttt{\textasciitilde{}\ fct\_reorder(country,\ ...)}, but with the
+  \texttt{...} replaced with certain arguments. If you're getting stuck,
+  try running the examples in the \texttt{fct\_reorder} helpfile to get
+  a feel for how this function can be used when plotting. The plots will
+  look something like this:
 \end{itemize}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-360-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-360-2.pdf}
 
 \subsubsection{Example R code}\label{example-r-code-11}
 
-Read the data in using \texttt{read\_csv}. (Review question: Why can't
-you read it directly using \texttt{read.csv()}?)
+Read the data in using \texttt{read\_csv}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11246,7 +11387,8 @@ Change the data to long data using the \texttt{gather()} function from
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ebola <-}\StringTok{ }\KeywordTok{gather}\NormalTok{(ebola, variable, count, }\OperatorTok{-}\NormalTok{Date, }\OperatorTok{-}\NormalTok{Day)}
+\NormalTok{ebola <-}\StringTok{ }\NormalTok{ebola }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ variable, }\DataTypeTok{value =}\NormalTok{ count, }\OperatorTok{-}\NormalTok{Date, }\OperatorTok{-}\NormalTok{Day)}
 \KeywordTok{head}\NormalTok{(ebola)}
 \end{Highlighting}
 \end{Shaded}
@@ -11263,35 +11405,11 @@ Change the data to long data using the \texttt{gather()} function from
 ## 6 12/28/2014   281 Cases_Guinea  2706
 \end{verbatim}
 
-Split \texttt{variable} into \texttt{type} and \texttt{country}:
+Convert \texttt{Date} to a date class:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{foo <-}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(ebola}\OperatorTok{$}\NormalTok{variable), }\DataTypeTok{split =} \StringTok{"_"}\NormalTok{)}
-\NormalTok{ebola[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"type"}\NormalTok{, }\StringTok{"country"}\NormalTok{)] <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(foo), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{)}
-
-\KeywordTok{head}\NormalTok{(ebola)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 6 x 6
-##         Date   Day     variable count  type country
-##        <chr> <int>        <chr> <int> <chr>   <chr>
-## 1   1/5/2015   289 Cases_Guinea  2776 Cases  Guinea
-## 2   1/4/2015   288 Cases_Guinea  2775 Cases  Guinea
-## 3   1/3/2015   287 Cases_Guinea  2769 Cases  Guinea
-## 4   1/2/2015   286 Cases_Guinea    NA Cases  Guinea
-## 5 12/31/2014   284 Cases_Guinea  2730 Cases  Guinea
-## 6 12/28/2014   281 Cases_Guinea  2706 Cases  Guinea
-\end{verbatim}
-
-Use \texttt{dplyr} functions and piping to remove \texttt{Day} and
-\texttt{variable} and to convert \texttt{Date} to a date class:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ebola <-}\StringTok{ }\KeywordTok{select}\NormalTok{(ebola, }\OperatorTok{-}\NormalTok{Day, }\OperatorTok{-}\NormalTok{variable) }\OperatorTok{%>%}
+\NormalTok{ebola <-}\StringTok{ }\NormalTok{ebola }\OperatorTok{%>%}
 \StringTok{         }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Date =} \KeywordTok{mdy}\NormalTok{(Date))}
 \KeywordTok{head}\NormalTok{(ebola)}
 \end{Highlighting}
@@ -11299,14 +11417,37 @@ Use \texttt{dplyr} functions and piping to remove \texttt{Day} and
 
 \begin{verbatim}
 ## # A tibble: 6 x 4
-##         Date count  type country
-##       <date> <int> <chr>   <chr>
-## 1 2015-01-05  2776 Cases  Guinea
-## 2 2015-01-04  2775 Cases  Guinea
-## 3 2015-01-03  2769 Cases  Guinea
-## 4 2015-01-02    NA Cases  Guinea
-## 5 2014-12-31  2730 Cases  Guinea
-## 6 2014-12-28  2706 Cases  Guinea
+##         Date   Day     variable count
+##       <date> <int>        <chr> <int>
+## 1 2015-01-05   289 Cases_Guinea  2776
+## 2 2015-01-04   288 Cases_Guinea  2775
+## 3 2015-01-03   287 Cases_Guinea  2769
+## 4 2015-01-02   286 Cases_Guinea    NA
+## 5 2014-12-31   284 Cases_Guinea  2730
+## 6 2014-12-28   281 Cases_Guinea  2706
+\end{verbatim}
+
+Split \texttt{variable} into \texttt{type} and \texttt{country}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ebola <-}\StringTok{ }\NormalTok{ebola }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(variable, }\KeywordTok{c}\NormalTok{(}\StringTok{"type"}\NormalTok{, }\StringTok{"country"}\NormalTok{), }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{)}
+
+\KeywordTok{head}\NormalTok{(ebola)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##         Date   Day  type country count
+##       <date> <int> <chr>   <chr> <int>
+## 1 2015-01-05   289 Cases  Guinea  2776
+## 2 2015-01-04   288 Cases  Guinea  2775
+## 3 2015-01-03   287 Cases  Guinea  2769
+## 4 2015-01-02   286 Cases  Guinea    NA
+## 5 2014-12-31   284 Cases  Guinea  2730
+## 6 2014-12-28   281 Cases  Guinea  2706
 \end{verbatim}
 
 Convert the data so you have separate columns for the two variables of
@@ -11314,21 +11455,21 @@ numbers of \texttt{Cases} and \texttt{Deaths}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ebola <-}\StringTok{ }\KeywordTok{spread}\NormalTok{(ebola, type, count)}
+\NormalTok{ebola <-}\StringTok{ }\KeywordTok{spread}\NormalTok{(ebola, }\DataTypeTok{key =}\NormalTok{ type, }\DataTypeTok{value =}\NormalTok{ count)}
 \KeywordTok{head}\NormalTok{(ebola)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 4
-##         Date     country Cases Deaths
-##       <date>       <chr> <int>  <int>
-## 1 2014-03-22      Guinea    49     29
-## 2 2014-03-22     Liberia    NA     NA
-## 3 2014-03-22        Mali    NA     NA
-## 4 2014-03-22     Nigeria    NA     NA
-## 5 2014-03-22     Senegal    NA     NA
-## 6 2014-03-22 SierraLeone    NA     NA
+## # A tibble: 6 x 5
+##         Date   Day     country Cases Deaths
+##       <date> <int>       <chr> <int>  <int>
+## 1 2014-03-22     0      Guinea    49     29
+## 2 2014-03-22     0     Liberia    NA     NA
+## 3 2014-03-22     0        Mali    NA     NA
+## 4 2014-03-22     0     Nigeria    NA     NA
+## 5 2014-03-22     0     Senegal    NA     NA
+## 6 2014-03-22     0 SierraLeone    NA     NA
 \end{verbatim}
 
 Remove any observations where counts of cases or deaths are missing for
@@ -11342,80 +11483,15 @@ that country:
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 4
-##         Date country Cases Deaths
-##       <date>   <chr> <int>  <int>
-## 1 2014-03-22  Guinea    49     29
-## 2 2014-03-24  Guinea    86     59
-## 3 2014-03-25  Guinea    86     60
-## 4 2014-03-26  Guinea    86     62
-## 5 2014-03-27  Guinea   103     66
-## 6 2014-03-27 Liberia     8      6
-\end{verbatim}
-
-Create a dataframe called \texttt{case\_sum} that gives the total number
-of cases recorded for each country. Use \texttt{arrange()} to re-order
-this dataset by the order of the number of cases:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{case_sum <-}\StringTok{ }\KeywordTok{group_by}\NormalTok{(ebola, country) }\OperatorTok{%>%}
-\StringTok{            }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Cases =} \KeywordTok{sum}\NormalTok{(Cases, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
-\NormalTok{case_sum}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 8 x 2
-##        country  Cases
-##          <chr>  <int>
-## 1       Guinea  82099
-## 2      Liberia 191351
-## 3         Mali     42
-## 4      Nigeria    636
-## 5      Senegal     24
-## 6  SierraLeone 211169
-## 7        Spain     16
-## 8 UnitedStates     59
-\end{verbatim}
-
-Use this arrangement to re-order the levels in \texttt{country} in your
-main \texttt{ebola} dataset, so that your graphs in the next step will
-be ordered from the country with the most ebola cases to the one with
-the least:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{case_sum <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(case_sum, }\KeywordTok{desc}\NormalTok{(Cases))}
-\NormalTok{case_sum}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 8 x 2
-##        country  Cases
-##          <chr>  <int>
-## 1  SierraLeone 211169
-## 2      Liberia 191351
-## 3       Guinea  82099
-## 4      Nigeria    636
-## 5 UnitedStates     59
-## 6         Mali     42
-## 7      Senegal     24
-## 8        Spain     16
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ebola <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(ebola, }
-                \DataTypeTok{country =} \KeywordTok{factor}\NormalTok{(country, }\DataTypeTok{levels =}\NormalTok{ case_sum}\OperatorTok{$}\NormalTok{country))}
-\KeywordTok{levels}\NormalTok{(ebola}\OperatorTok{$}\NormalTok{country)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "SierraLeone"  "Liberia"      "Guinea"       "Nigeria"     
-## [5] "UnitedStates" "Mali"         "Senegal"      "Spain"
+## # A tibble: 6 x 5
+##         Date   Day country Cases Deaths
+##       <date> <int>   <chr> <int>  <int>
+## 1 2014-03-22     0  Guinea    49     29
+## 2 2014-03-24     2  Guinea    86     59
+## 3 2014-03-25     3  Guinea    86     60
+## 4 2014-03-26     4  Guinea    86     62
+## 5 2014-03-27     5  Guinea   103     66
+## 6 2014-03-27     5 Liberia     8      6
 \end{verbatim}
 
 Now that your data is tidy, create one plot showing ebola cases by date,
@@ -11427,22 +11503,22 @@ by country:
 \KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Cases)) }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{country, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{theme_few}\NormalTok{()}
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-361-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-367-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Deaths)) }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{country, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{theme_few}\NormalTok{()}
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-361-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-367-2.pdf}
 
 Try using the option \texttt{scales\ =\ "free\_y"} in the
 \texttt{facet\_wrap()} function (in the \texttt{gridExtra} package) and
@@ -11453,82 +11529,82 @@ see how that changes these graphs:
 \KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Cases)) }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{country, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{scales =} \StringTok{"free_y"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{theme_few}\NormalTok{()}
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-362-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-368-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Deaths)) }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
 \StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{country, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{scales =} \StringTok{"free_y"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{        }\KeywordTok{theme_few}\NormalTok{()}
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-362-2.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-368-2.pdf}
 
 Put all of the steps of this cleaning process into just a few
-``chaining'' calls. (Note: I'm using \texttt{sub} here instead of
-\texttt{strsplit} for the variable-splitting step, just to keep the code
-a bit cleaner. Again, this is using regular expressions, which we'll
-cover more later in the course.)
+``chaining'' calls.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ebola <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(ebola_url) }\OperatorTok{%>%}
 \StringTok{        }\KeywordTok{gather}\NormalTok{(variable, count, }\OperatorTok{-}\NormalTok{Date, }\OperatorTok{-}\NormalTok{Day) }\OperatorTok{%>%}
-\StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{type =} \KeywordTok{sub}\NormalTok{(}\StringTok{"_.*"}\NormalTok{, }\StringTok{""}\NormalTok{, variable),}
-               \DataTypeTok{country =} \KeywordTok{sub}\NormalTok{(}\StringTok{".*_"}\NormalTok{, }\StringTok{""}\NormalTok{, variable)) }\OperatorTok{%>%}
-\StringTok{        }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{Day, }\OperatorTok{-}\NormalTok{variable) }\OperatorTok{%>%}
 \StringTok{        }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Date =} \KeywordTok{mdy}\NormalTok{(Date)) }\OperatorTok{%>%}
+\StringTok{        }\KeywordTok{separate}\NormalTok{(variable, }\KeywordTok{c}\NormalTok{(}\StringTok{"type"}\NormalTok{, }\StringTok{"country"}\NormalTok{), }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{        }\KeywordTok{spread}\NormalTok{(type, count) }\OperatorTok{%>%}
 \StringTok{        }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Cases) }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Deaths))}
 
-\NormalTok{case_sum <-}\StringTok{ }\KeywordTok{group_by}\NormalTok{(ebola, country) }\OperatorTok{%>%}
-\StringTok{        }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Cases =} \KeywordTok{sum}\NormalTok{(Cases, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)) }\OperatorTok{%>%}
-\StringTok{        }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(Cases))}
-
-\NormalTok{ebola <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(ebola, }
-                \DataTypeTok{country =} \KeywordTok{factor}\NormalTok{(country, }\DataTypeTok{levels =}\NormalTok{ case_sum}\OperatorTok{$}\NormalTok{country))}
-
-\NormalTok{case_sum}
+\KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Cases)) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{country, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 8 x 2
-##        country  Cases
-##          <chr>  <int>
-## 1  SierraLeone 211169
-## 2      Liberia 191351
-## 3       Guinea  82099
-## 4      Nigeria    636
-## 5 UnitedStates     59
-## 6         Mali     42
-## 7      Senegal     24
-## 8        Spain     16
-\end{verbatim}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-369-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(ebola)}
+\KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Deaths)) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{country, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 6 x 4
-##         Date country Cases Deaths
-##       <date>  <fctr> <int>  <int>
-## 1 2014-03-22  Guinea    49     29
-## 2 2014-03-24  Guinea    86     59
-## 3 2014-03-25  Guinea    86     60
-## 4 2014-03-26  Guinea    86     62
-## 5 2014-03-27  Guinea   103     66
-## 6 2014-03-27 Liberia     8      6
-\end{verbatim}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-369-2.pdf}
+
+Use the \texttt{fct\_reorder} function inside the \texttt{facet\_wrap}
+function call to reorder the small-multiple graphs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(forcats)}
+\KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Cases)) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\KeywordTok{fct_reorder}\NormalTok{(country, Cases, }\DataTypeTok{fun =}\NormalTok{ max, }\DataTypeTok{.desc =} \OtherTok{TRUE}\NormalTok{),}
+                   \DataTypeTok{ncol =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-370-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ebola, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Date, }\DataTypeTok{y =}\NormalTok{ Deaths)) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\KeywordTok{fct_reorder}\NormalTok{(country, Deaths, }\DataTypeTok{fun =}\NormalTok{ max, }\DataTypeTok{.desc =} \OtherTok{TRUE}\NormalTok{),}
+                   \DataTypeTok{ncol =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-370-2.pdf}
 
 \subsection{\texorpdfstring{Tidying \texttt{VADeaths}
 data}{Tidying VADeaths data}}\label{tidying-vadeaths-data}
@@ -11605,7 +11681,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
   yourselves first.
 \end{itemize}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-364-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-371-1.pdf}
 
 \chapter{Exploring data \#2}\label{exploring-data-2}
 
@@ -12027,7 +12103,7 @@ tools.
 
 Loops can be very useful for more complex repeated tasks. For example:
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-385-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-392-1.pdf}
 
 Creating this graph requires that you:
 
@@ -12178,7 +12254,7 @@ Create the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-391-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-398-1.pdf}
 
 \section{Other control structures}\label{other-control-structures}
 
@@ -13189,7 +13265,7 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-432-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-439-1} \end{center}
 
 \subsubsection{Example R code}\label{example-r-code-12}
 
@@ -13224,7 +13300,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-433-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-440-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -13317,7 +13393,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-437-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-444-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -13525,7 +13601,7 @@ points gray). Use the values from \texttt{coef} with a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-442-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-449-1.pdf}
 
 Plot some plots to check model assumptions for the model you fit using
 the \texttt{plot()} function on your model object:
@@ -13537,7 +13613,7 @@ the \texttt{plot()} function on your model object:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-443-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-450-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13654,7 +13730,7 @@ Use a boxplot to visually compare PM10 by day of week.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-447-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-454-1.pdf}
 
 Now try the same plot, but try using the \texttt{ylim\ =} option to
 change the limits on the y-axis for the graph, so you can get a better
@@ -13674,7 +13750,7 @@ include them all).
 ## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-448-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-455-1.pdf}
 
 Create a subset called \texttt{summer} with just the summer days:
 
@@ -14136,12 +14212,6 @@ vocabulary for the weekly quizzes.
   \texttt{spread}
 \item
   The \texttt{*\_join} family of functions
-\item
-  \texttt{\%\textgreater{}\%}
-\item
-  Go through the examples from in-course exercises where we chained
-  together several functions to clean up a dataset and make sure you can
-  follow through these chained examples
 \end{itemize}
 
 \section{Quiz 7}\label{quiz-7}
