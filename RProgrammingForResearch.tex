@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x4440cd0>
+## <bytecode: 0x3ba5d38>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.42\\
+a & 0.50\\
 \hline
-b & -1.08\\
+b & 1.47\\
 \hline
-c & 1.63\\
+c & -1.42\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.1355155  1.6423723  2.3078589
-## 2 2009-01-02  1.0135525 -1.5758771  0.9389484
-## 3 2009-01-03 -1.0033974 -0.8424099 -1.9298147
+##         time          X          Y         Z
+## 1 2009-01-01 -1.2902138 -3.6158014 3.5868557
+## 2 2009-01-02  0.1087982 -0.6530379 0.3416033
+## 3 2009-01-03  1.2436582  1.4230327 0.6424467
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.1355155  1.6423723  2.3078589
-## 2 2009-01-02  1.0135525 -1.5758771  0.9389484
-## 3 2009-01-03 -1.0033974 -0.8424099 -1.9298147
+##         time          X          Y         Z
+## 1 2009-01-01 -1.2902138 -3.6158014 3.5868557
+## 2 2009-01-02  0.1087982 -0.6530379 0.3416033
+## 3 2009-01-03  1.2436582  1.4230327 0.6424467
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.1355155
-## 2 2009-01-02     X  1.0135525
-## 3 2009-01-03     X -1.0033974
-## 4 2009-01-04     X  0.5577747
-## 5 2009-01-05     X -0.8699960
+## 1 2009-01-01     X -1.2902138
+## 2 2009-01-02     X  0.1087982
+## 3 2009-01-03     X  1.2436582
+## 4 2009-01-04     X -0.5692577
+## 5 2009-01-05     X -0.6620742
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.1355155
-## 2 2009-01-02     X  1.0135525
-## 3 2009-01-03     X -1.0033974
-## 4 2009-01-04     X  0.5577747
-## 5 2009-01-05     X -0.8699960
+## 1 2009-01-01     X -1.2902138
+## 2 2009-01-02     X  0.1087982
+## 3 2009-01-03     X  1.2436582
+## 4 2009-01-04     X -0.5692577
+## 5 2009-01-05     X -0.6620742
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10861,11 +10861,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01 -0.1355155  1.6423723  2.3078589
-## 2 2009-01-02  1.0135525 -1.5758771  0.9389484
-## 3 2009-01-03 -1.0033974 -0.8424099 -1.9298147
-## 4 2009-01-04  0.5577747  0.2925052 -1.0684281
-## 5 2009-01-05 -0.8699960 -2.8489522  2.7643886
+## 1 2009-01-01 -1.2902138 -3.6158014  3.5868557
+## 2 2009-01-02  0.1087982 -0.6530379  0.3416033
+## 3 2009-01-03  1.2436582  1.4230327  0.6424467
+## 4 2009-01-04 -0.5692577  1.7157765  3.5303932
+## 5 2009-01-05 -0.6620742 -1.4385095 -0.7596912
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10  0.01376261 0.7493021
-## 2     Y    10 -0.21787895 1.8507881
-## 3     Z    10  1.39441326 2.4583540
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 -0.4237959 0.9382743
+## 2     Y    10 -0.2219268 1.8908496
+## 3     Z    10  1.5504238 2.0642539
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.01 (0.75) & -0.22 (1.85) & 1.39 (2.46)\\
+Mean (Std.dev.) & -0.42 (0.94) & -0.22 (1.89) & 1.55 (2.06)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14580,6 +14580,10 @@ Here are some initial tips:
 \item
   There is one formated table in the target document. Be sure that you
   render this as a formated table, not as raw R output.
+\item
+  You will be graded on whether the size of each figure is similar to
+  that in the example file. There is a tip in the ``Further tips''
+  section below about how to change figure size in the output.
 \end{itemize}
 
 If you need them, here are some further tips:
@@ -14589,8 +14593,7 @@ If you need them, here are some further tips:
 \item
   Functions from the tidyverse (especially from \texttt{dplyr},
   \texttt{readr}, and \texttt{ggplot} packages) will make your life much
-  easier for this exercise. You can now install and load the
-  \texttt{tidyverse} package to load them all at once.
+  easier for this exercise.
 \item
   To reference column names with ``special'' characters in them, like
   dollar signs or spaces, wrap the whole old column name in backticks.
@@ -14600,9 +14603,6 @@ If you need them, here are some further tips:
 \item
   To change the size of a figure in a report, use the ``fig.width'' and
   ``fig.height'' chunk options.
-\item
-  Don't forget that there are functions in the \texttt{scale} family
-  that allow you to use log-scale axes.
 \end{itemize}
 
 \section{Homework \#4}\label{homework-4}

@@ -458,13 +458,13 @@ After calling <code>swirl()</code>, you may be prompted to clear your workspace 
 <li>For things like templates, colors, level of transparency, and point size, you will receive full credit if you create figures that are visually similar to the ones shown in the example document. In other words, if the example document shows some transparency in points, you will get full credit if you also include some transparency in the points in your plot, but you do not have to include the exact same value of <code>alpha</code>.</li>
 <li>In R, there are often many different ways to achieve something. As long as your code <em>works</em>, it’s fine if you haven’t coded it exactly like we have in our version. However, your output should look identical to ours (or, in the case of color, transparency, point size, and themes, visually similar).</li>
 <li>There is one formated table in the target document. Be sure that you render this as a formated table, not as raw R output.</li>
+<li>You will be graded on whether the size of each figure is similar to that in the example file. There is a tip in the “Further tips” section below about how to change figure size in the output.</li>
 </ul>
 <p>If you need them, here are some further tips:</p>
 <ul>
-<li>Functions from the tidyverse (especially from <code>dplyr</code>, <code>readr</code>, and <code>ggplot</code> packages) will make your life much easier for this exercise. You can now install and load the <code>tidyverse</code> package to load them all at once.</li>
+<li>Functions from the tidyverse (especially from <code>dplyr</code>, <code>readr</code>, and <code>ggplot</code> packages) will make your life much easier for this exercise.</li>
 <li>To reference column names with “special” characters in them, like dollar signs or spaces, wrap the whole old column name in backticks. For example, to change a column name that has a dollar sign in it, you would use something like “rename(new_col_name = `old_col_name$`)”.</li>
 <li>To change the size of a figure in a report, use the “fig.width” and “fig.height” chunk options.</li>
-<li>Don’t forget that there are functions in the <code>scale</code> family that allow you to use log-scale axes.</li>
 </ul>
 </div>
 <div id="homework-4" class="section level2">
