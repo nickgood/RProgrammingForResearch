@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-09-27}
+\date{2017-10-01}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x2ededa8>
+## <bytecode: 0x4350760>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.07\\
+a & -0.86\\
 \hline
-b & 0.82\\
+b & 0.00\\
 \hline
-c & -1.59\\
+c & -0.30\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y         Z
-## 1 2009-01-01 -1.0691857  1.46294621 -4.428344
-## 2 2009-01-02 -1.6137853 -1.00783081 -6.701844
-## 3 2009-01-03 -0.6564598  0.09603358  3.023284
+##         time          X          Y         Z
+## 1 2009-01-01  0.1999755 -2.2147799 -4.207584
+## 2 2009-01-02 -1.2475159 -0.5470043 -3.243509
+## 3 2009-01-03  0.1839036  3.0112893  1.659427
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y         Z
-## 1 2009-01-01 -1.0691857  1.46294621 -4.428344
-## 2 2009-01-02 -1.6137853 -1.00783081 -6.701844
-## 3 2009-01-03 -0.6564598  0.09603358  3.023284
+##         time          X          Y         Z
+## 1 2009-01-01  0.1999755 -2.2147799 -4.207584
+## 2 2009-01-02 -1.2475159 -0.5470043 -3.243509
+## 3 2009-01-03  0.1839036  3.0112893  1.659427
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -1.0691857
-## 2 2009-01-02     X -1.6137853
-## 3 2009-01-03     X -0.6564598
-## 4 2009-01-04     X -1.3547161
-## 5 2009-01-05     X  0.3367218
+## 1 2009-01-01     X  0.1999755
+## 2 2009-01-02     X -1.2475159
+## 3 2009-01-03     X  0.1839036
+## 4 2009-01-04     X -1.0831329
+## 5 2009-01-05     X  0.8237758
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -1.0691857
-## 2 2009-01-02     X -1.6137853
-## 3 2009-01-03     X -0.6564598
-## 4 2009-01-04     X -1.3547161
-## 5 2009-01-05     X  0.3367218
+## 1 2009-01-01     X  0.1999755
+## 2 2009-01-02     X -1.2475159
+## 3 2009-01-03     X  0.1839036
+## 4 2009-01-04     X -1.0831329
+## 5 2009-01-05     X  0.8237758
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y         Z
-## 1 2009-01-01 -1.0691857  1.46294621 -4.428344
-## 2 2009-01-02 -1.6137853 -1.00783081 -6.701844
-## 3 2009-01-03 -0.6564598  0.09603358  3.023284
-## 4 2009-01-04 -1.3547161  0.94297713 -5.403504
-## 5 2009-01-05  0.3367218  0.23760901 -5.363749
+##         time          X          Y         Z
+## 1 2009-01-01  0.1999755 -2.2147799 -4.207584
+## 2 2009-01-02 -1.2475159 -0.5470043 -3.243509
+## 3 2009-01-03  0.1839036  3.0112893  1.659427
+## 4 2009-01-04 -1.0831329  2.7928869  7.868191
+## 5 2009-01-05  0.8237758  0.8384474  4.613504
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 -0.8439723 0.6564195
-## 2     Y    10  0.2715553 1.2856073
-## 3     Z    10 -1.7773181 3.6954904
+##   stock     N      mean        sd
+##   <chr> <int>     <dbl>     <dbl>
+## 1     X    10 0.1889251 0.9064266
+## 2     Y    10 0.3474059 1.9864320
+## 3     Z    10 0.6832065 4.1779004
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.84 (0.66) & 0.27 (1.29) & -1.78 (3.7)\\
+Mean (Std.dev.) & 0.19 (0.91) & 0.35 (1.99) & 0.68 (4.18)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14195,25 +14195,20 @@ vocabulary for the weekly quizzes.
 \item
   Five common problems with tidy data and how to resolve them (make sure
   you understand the examples shown, which you can find out more about
-  in the Hadley Wickham paper I reference)
+  in the Hadley Wickham paper I reference in the slides)
 \item
-  \texttt{select}
-\item
-  \texttt{filter}
-\item
-  \texttt{mutate}
-\item
-  \texttt{summarize}
-\item
-  \texttt{group\_by}
-\item
+  \texttt{group\_by} with \texttt{mutate}, \texttt{slice}, and
   \texttt{arrange}
 \item
-  \texttt{gather}
+  \texttt{lag} and \texttt{lead} with \texttt{mutate}
 \item
-  \texttt{spread}
+  \texttt{separate} and \texttt{unite}
 \item
-  The \texttt{*\_join} family of functions
+  \texttt{gather} and \texttt{spread}
+\item
+  The \texttt{*\_join} family of functions (\texttt{left\_join},
+  \texttt{right\_join}, \texttt{inner\_join}, \texttt{full\_join},
+  \texttt{anti\_join}, \texttt{semi\_join})
 \end{itemize}
 
 \section{Quiz 7}\label{quiz-7}
