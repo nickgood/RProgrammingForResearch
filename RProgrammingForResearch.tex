@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x4350760>
+## <bytecode: 0x41c7278>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.86\\
+a & 2.01\\
 \hline
-b & 0.00\\
+b & 0.71\\
 \hline
-c & -0.30\\
+c & -0.51\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.1999755 -2.2147799 -4.207584
-## 2 2009-01-02 -1.2475159 -0.5470043 -3.243509
-## 3 2009-01-03  0.1839036  3.0112893  1.659427
+##         time           X          Y           Z
+## 1 2009-01-01 -0.08561929 -1.1726912 -3.02142515
+## 2 2009-01-02  0.68469511  0.5373214  1.29517753
+## 3 2009-01-03  0.51622645  4.2928754  0.02610941
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.1999755 -2.2147799 -4.207584
-## 2 2009-01-02 -1.2475159 -0.5470043 -3.243509
-## 3 2009-01-03  0.1839036  3.0112893  1.659427
+##         time           X          Y           Z
+## 1 2009-01-01 -0.08561929 -1.1726912 -3.02142515
+## 2 2009-01-02  0.68469511  0.5373214  1.29517753
+## 3 2009-01-03  0.51622645  4.2928754  0.02610941
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10780,12 +10780,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X  0.1999755
-## 2 2009-01-02     X -1.2475159
-## 3 2009-01-03     X  0.1839036
-## 4 2009-01-04     X -1.0831329
-## 5 2009-01-05     X  0.8237758
+##         time stock       price
+## 1 2009-01-01     X -0.08561929
+## 2 2009-01-02     X  0.68469511
+## 3 2009-01-03     X  0.51622645
+## 4 2009-01-04     X -0.84548672
+## 5 2009-01-05     X -0.38683398
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10799,12 +10799,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X  0.1999755
-## 2 2009-01-02     X -1.2475159
-## 3 2009-01-03     X  0.1839036
-## 4 2009-01-04     X -1.0831329
-## 5 2009-01-05     X  0.8237758
+##         time stock       price
+## 1 2009-01-01     X -0.08561929
+## 2 2009-01-02     X  0.68469511
+## 3 2009-01-03     X  0.51622645
+## 4 2009-01-04     X -0.84548672
+## 5 2009-01-05     X -0.38683398
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.1999755 -2.2147799 -4.207584
-## 2 2009-01-02 -1.2475159 -0.5470043 -3.243509
-## 3 2009-01-03  0.1839036  3.0112893  1.659427
-## 4 2009-01-04 -1.0831329  2.7928869  7.868191
-## 5 2009-01-05  0.8237758  0.8384474  4.613504
+##         time           X          Y           Z
+## 1 2009-01-01 -0.08561929 -1.1726912 -3.02142515
+## 2 2009-01-02  0.68469511  0.5373214  1.29517753
+## 3 2009-01-03  0.51622645  4.2928754  0.02610941
+## 4 2009-01-04 -0.84548672  0.2522417 -0.58005070
+## 5 2009-01-05 -0.38683398  0.8820744 -5.35828597
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N      mean        sd
-##   <chr> <int>     <dbl>     <dbl>
-## 1     X    10 0.1889251 0.9064266
-## 2     Y    10 0.3474059 1.9864320
-## 3     Z    10 0.6832065 4.1779004
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10 -0.2765174 0.6307938
+## 2     Y    10 -0.0934539 1.9333159
+## 3     Z    10 -2.9642594 4.7422106
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.19 (0.91) & 0.35 (1.99) & 0.68 (4.18)\\
+Mean (Std.dev.) & -0.28 (0.63) & -0.09 (1.93) & -2.96 (4.74)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -13460,6 +13460,22 @@ Here is example R code for creating state-specific plots using a loop:
 \subsection{Using regression models to explore
 data}\label{using-regression-models-to-explore-data}
 
+For this exercise, you will need the following packages. If do not have
+them already, you will need to install them. For the \texttt{ggfortify}
+package, you need to install it from GitHub (uncomment and use the
+\texttt{install\_github} code given below):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(broom)}
+
+\KeywordTok{library}\NormalTok{(devtools)}
+\CommentTok{# install_github('sinhrks/ggfortify')}
+\KeywordTok{library}\NormalTok{(ggfortify)}
+\end{Highlighting}
+\end{Shaded}
+
 For this part of the exercise, you'll use a dataset on weather, air
 pollution, and mortality counts in Chicago, IL. This dataset is called
 \texttt{chicagoNMMAPS} and is part of the \texttt{dlnm} package. Change
@@ -13581,6 +13597,73 @@ Use \texttt{summary()} to check out a bit more about the model you fit.
 ## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
+Now try using functions from the \texttt{broom} package to pull the same
+information about the model, but in a ``tidy'' format. First, use
+\texttt{glance} to get some summary information about the model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glance}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   r.squared adj.r.squared    sigma statistic p.value df   logLik      AIC
+## 1 0.8982088     0.8981888 5.899475  45108.43       0  2 -16332.1 32670.21
+##        BIC deviance df.residual
+## 1 32689.82 177917.1        5112
+\end{verbatim}
+
+Next, use the \texttt{tidy} function to get model coefficients in a tidy
+format:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0
+\end{verbatim}
+
+Use the \texttt{tidy} function to add model output (e.g., predictions,
+residuals) to the original dataframe of observed temperatures and dew
+point temperatures:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{augment}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 9
+##     dptp       temp  .fitted   .se.fit   .resid         .hat   .sigma
+##    <dbl>      <dbl>    <dbl>     <dbl>    <dbl>        <dbl>    <dbl>
+## 1 31.500 -0.2777778 23.57469 0.1143915 7.925312 0.0003759766 5.899010
+## 2 29.875  0.5555556 24.92523 0.1100819 4.949770 0.0003481812 5.899646
+## 3 27.375  0.5555556 24.92523 0.1100819 2.449770 0.0003481812 5.899953
+## # ... with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
+\end{verbatim}
+
+Use the output from \texttt{augment} to create a plot of the original
+data, with the predicted values used to plot a fitted line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{augment}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ dptp)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ .fitted), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-453-1.pdf}
+
 There does seem to be an association between temperature and dewpoint
 temperature: a unit increase in temperature is associated with a 1.6
 unit increase in dewpoint temperature. The p-value for the temperature
@@ -13603,7 +13686,7 @@ points gray). Use the values from \texttt{coef} with a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-449-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-454-1.pdf}
 
 Plot some plots to check model assumptions for the model you fit using
 the \texttt{plot()} function on your model object:
@@ -13615,7 +13698,7 @@ the \texttt{plot()} function on your model object:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-450-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-455-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13732,7 +13815,7 @@ Use a boxplot to visually compare PM10 by day of week.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-454-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-459-1.pdf}
 
 Now try the same plot, but try using the \texttt{ylim\ =} option to
 change the limits on the y-axis for the graph, so you can get a better
@@ -13752,7 +13835,7 @@ include them all).
 ## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
 \end{verbatim}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-455-1.pdf}
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-460-1.pdf}
 
 Create a subset called \texttt{summer} with just the summer days:
 

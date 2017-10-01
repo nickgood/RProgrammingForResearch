@@ -1205,6 +1205,13 @@ state_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="
 </div>
 <div id="using-regression-models-to-explore-data" class="section level3">
 <h3><span class="header-section-number">7.6.3</span> Using regression models to explore data</h3>
+<p>For this exercise, you will need the following packages. If do not have them already, you will need to install them. For the <code>ggfortify</code> package, you need to install it from GitHub (uncomment and use the <code>install_github</code> code given below):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(broom)
+
+<span class="kw">library</span>(devtools)
+<span class="co"># install_github(&#39;sinhrks/ggfortify&#39;)</span>
+<span class="kw">library</span>(ggfortify)</code></pre></div>
 <p>For this part of the exercise, you’ll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called <code>chicagoNMMAPS</code> and is part of the <code>dlnm</code> package. Change the name of the dataframe to something shorter, like <code>chic</code>. Check out the data a bit to see what variables you have, and then perform the following tasks:</p>
 <ul>
 <li>Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature.</li>
@@ -1254,17 +1261,44 @@ mod_<span class="dv">1</span></code></pre></div>
 ## Residual standard error: 5.899 on 5112 degrees of freedom
 ## Multiple R-squared:  0.8982, Adjusted R-squared:  0.8982 
 ## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Now try using functions from the <code>broom</code> package to pull the same information about the model, but in a “tidy” format. First, use <code>glance</code> to get some summary information about the model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glance</span>(mod_<span class="dv">1</span>)</code></pre></div>
+<pre><code>##   r.squared adj.r.squared    sigma statistic p.value df   logLik      AIC
+## 1 0.8982088     0.8981888 5.899475  45108.43       0  2 -16332.1 32670.21
+##        BIC deviance df.residual
+## 1 32689.82 177917.1        5112</code></pre>
+<p>Next, use the <code>tidy</code> function to get model coefficients in a tidy format:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">1</span>)</code></pre></div>
+<pre><code>##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0</code></pre>
+<p>Use the <code>tidy</code> function to add model output (e.g., predictions, residuals) to the original dataframe of observed temperatures and dew point temperatures:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 9
+##     dptp       temp  .fitted   .se.fit   .resid         .hat   .sigma
+##    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1 31.500 -0.2777778 23.57469 0.1143915 7.925312 0.0003759766 5.899010
+## 2 29.875  0.5555556 24.92523 0.1100819 4.949770 0.0003481812 5.899646
+## 3 27.375  0.5555556 24.92523 0.1100819 2.449770 0.0003481812 5.899953
+## # ... with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+<p>Use the output from <code>augment</code> to create a plot of the original data, with the predicted values used to plot a fitted line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> .fitted), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-453-1.png" width="480" /></p>
 <p>There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a 1.6 unit increase in dewpoint temperature. The p-value for the temperature coefficient is &lt;2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.</p>
 <p>Plot these two variables and add in the regression line from the model (note: I’ve used the <code>color</code> option to make the color of the points gray). Use the values from <code>coef</code> with a <code>geom_abline</code> to add the regression line for the model you fit.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_<span class="dv">1</span>)
 <span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-449-1.png" width="672" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-454-1.png" width="672" /></p>
 <p>Plot some plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
 <span class="kw">plot</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-450-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
 <p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
@@ -1317,13 +1351,13 @@ mod_<span class="dv">1</span></code></pre></div>
 <p>Use a boxplot to visually compare PM10 by day of week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-454-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-459-1.png" width="576" /></p>
 <p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
 <pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-460-1.png" width="576" /></p>
 <p>Create a subset called <code>summer</code> with just the summer days:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(month <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>)</code></pre></div>
