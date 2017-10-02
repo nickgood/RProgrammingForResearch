@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-10-01}
+\date{2017-10-02}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x41c7278>
+## <bytecode: 0x42ffd80>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 2.01\\
+a & -1.43\\
 \hline
-b & 0.71\\
+b & 0.95\\
 \hline
-c & -0.51\\
+c & -0.97\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y           Z
-## 1 2009-01-01 -0.08561929 -1.1726912 -3.02142515
-## 2 2009-01-02  0.68469511  0.5373214  1.29517753
-## 3 2009-01-03  0.51622645  4.2928754  0.02610941
+##         time          X          Y         Z
+## 1 2009-01-01  0.5867770 0.07607449  3.380947
+## 2 2009-01-02  0.9828584 1.72913524 -7.232307
+## 3 2009-01-03 -1.5327947 1.39674068  8.649832
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y           Z
-## 1 2009-01-01 -0.08561929 -1.1726912 -3.02142515
-## 2 2009-01-02  0.68469511  0.5373214  1.29517753
-## 3 2009-01-03  0.51622645  4.2928754  0.02610941
+##         time          X          Y         Z
+## 1 2009-01-01  0.5867770 0.07607449  3.380947
+## 2 2009-01-02  0.9828584 1.72913524 -7.232307
+## 3 2009-01-03 -1.5327947 1.39674068  8.649832
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10780,12 +10780,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X -0.08561929
-## 2 2009-01-02     X  0.68469511
-## 3 2009-01-03     X  0.51622645
-## 4 2009-01-04     X -0.84548672
-## 5 2009-01-05     X -0.38683398
+##         time stock      price
+## 1 2009-01-01     X  0.5867770
+## 2 2009-01-02     X  0.9828584
+## 3 2009-01-03     X -1.5327947
+## 4 2009-01-04     X  1.7181519
+## 5 2009-01-05     X -0.9209012
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10799,12 +10799,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X -0.08561929
-## 2 2009-01-02     X  0.68469511
-## 3 2009-01-03     X  0.51622645
-## 4 2009-01-04     X -0.84548672
-## 5 2009-01-05     X -0.38683398
+##         time stock      price
+## 1 2009-01-01     X  0.5867770
+## 2 2009-01-02     X  0.9828584
+## 3 2009-01-03     X -1.5327947
+## 4 2009-01-04     X  1.7181519
+## 5 2009-01-05     X -0.9209012
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y           Z
-## 1 2009-01-01 -0.08561929 -1.1726912 -3.02142515
-## 2 2009-01-02  0.68469511  0.5373214  1.29517753
-## 3 2009-01-03  0.51622645  4.2928754  0.02610941
-## 4 2009-01-04 -0.84548672  0.2522417 -0.58005070
-## 5 2009-01-05 -0.38683398  0.8820744 -5.35828597
+##         time          X           Y         Z
+## 1 2009-01-01  0.5867770  0.07607449  3.380947
+## 2 2009-01-02  0.9828584  1.72913524 -7.232307
+## 3 2009-01-03 -1.5327947  1.39674068  8.649832
+## 4 2009-01-04  1.7181519 -0.16760066 -4.797661
+## 5 2009-01-05 -0.9209012 -0.13377060 -2.529436
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 -0.2765174 0.6307938
-## 2     Y    10 -0.0934539 1.9333159
-## 3     Z    10 -2.9642594 4.7422106
+##   stock     N        mean        sd
+##   <chr> <int>       <dbl>     <dbl>
+## 1     X    10 -0.07718312 0.9673994
+## 2     Y    10  0.65157007 1.7006071
+## 3     Z    10  0.11207326 4.7501075
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.28 (0.63) & -0.09 (1.93) & -2.96 (4.74)\\
+Mean (Std.dev.) & -0.08 (0.97) & 0.65 (1.7) & 0.11 (4.75)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -13221,6 +13221,496 @@ For more on these patterns, see:
 
 \section{In-course exercise}\label{in-course-exercise-6}
 
+\subsection{Using regression models to explore data
+\#1}\label{using-regression-models-to-explore-data-1}
+
+For this exercise, you will need the following packages. If do not have
+them already, you will need to install them. For the \texttt{ggfortify}
+package, you need to install it from GitHub (uncomment and use the
+\texttt{install\_github} code given below):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(broom)}
+
+\KeywordTok{library}\NormalTok{(devtools)}
+\CommentTok{# install_github('sinhrks/ggfortify')}
+\KeywordTok{library}\NormalTok{(ggfortify)}
+\end{Highlighting}
+\end{Shaded}
+
+For this part of the exercise, you'll use a dataset on weather, air
+pollution, and mortality counts in Chicago, IL. This dataset is called
+\texttt{chicagoNMMAPS} and is part of the \texttt{dlnm} package. Change
+the name of the dataframe to \texttt{chic} (this object name is shorter
+and will be easier to work with). Check out the data a bit to see what
+variables you have, and then perform the following tasks:
+
+\begin{itemize}
+\tightlist
+\item
+  Write out (on paper, not in R) the regression equation for regressing
+  dewpoint temperature on temperature.
+\item
+  Try fitting a linear regression of dew point temperature
+  (\texttt{dptp}) regressed on temperature (\texttt{temp}). Save this
+  model as the object \texttt{mod\_1}.
+\item
+  Based on this regression, does there seem to be a relationship between
+  temperature and dewpoint temperature in Chicago? (Hint: Try using
+  \texttt{glance} and \texttt{tidy} from the \texttt{broom} package on
+  the model object to get more information about the model you fit.)
+  What is the coefficient for temperature? What is the p-value for the
+  coefficient for temperature?
+\item
+  Plot temperature (x-axis) versus dewpoint temperature (y-axis) for
+  Chicago. Add in the regression line from the model you fit by using
+  the results from \texttt{augment}.
+\item
+  Use \texttt{autoplot} on the model object to generate some model
+  diagnostic plots (make sure you have the \texttt{ggfortify} package
+  loaded and installed).
+\item
+  Try fitting the regression as a GLM, using \texttt{glm()}. Are your
+  coefficients different?
+\end{itemize}
+
+\subsubsection{Example R code:}\label{example-r-code-12}
+
+The regression equation for the model you want to fit, regressing
+dewpoint temperature on temperature, is:
+
+\[
+Y_t \sim \beta_0 + \beta_1 X_t
+\]
+
+where \(Y_t\) is the dewpoint temperature on day \(t\), \(X_t\) is the
+temperature on day \(t\), and \(\beta_0\) and \(\beta_1\) are model
+coefficients.
+
+Install and load the \texttt{dlnm} package and then load the
+\texttt{chicagoNMMAPS} data. Change the name of the dataframe to
+\texttt{chic}, so it will be shorter to call for the rest of your work.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("dlnm")}
+\KeywordTok{library}\NormalTok{(dlnm)}
+\KeywordTok{data}\NormalTok{(}\StringTok{"chicagoNMMAPS"}\NormalTok{)}
+\NormalTok{chic <-}\StringTok{ }\NormalTok{chicagoNMMAPS}
+\end{Highlighting}
+\end{Shaded}
+
+Fit a linear regression of \texttt{dptp} on \texttt{temp} and save as
+the object \texttt{mod\_1}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(dptp }\OperatorTok{~}\StringTok{ }\NormalTok{temp, }\DataTypeTok{data =}\NormalTok{ chic)}
+\NormalTok{mod_}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dptp ~ temp, data = chic)
+## 
+## Coefficients:
+## (Intercept)         temp  
+##      24.025        1.621
+\end{verbatim}
+
+Use functions from the \texttt{broom} package to pull the same
+information about the model in a ``tidy'' format. To find out if the
+evidence for a linear association between temperature and dewpoint
+temperature, use the \texttt{tidy} function to get model coefficients in
+a tidy format:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0
+\end{verbatim}
+
+There does seem to be an association between temperature and dewpoint
+temperature: a unit increase in temperature is associated with a 1.6
+unit increase in dewpoint temperature. The p-value for the temperature
+coefficient is \textless{}2e-16. This is far below 0.05, which suggests
+we would be very unlikely to see such a strong association by chance if
+the null hypothesis, that the two variables are not associated, were
+true.
+
+You can also check overall model summaries using the \texttt{glance}
+function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glance}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   r.squared adj.r.squared    sigma statistic p.value df   logLik      AIC
+## 1 0.8982088     0.8981888 5.899475  45108.43       0  2 -16332.1 32670.21
+##        BIC deviance df.residual
+## 1 32689.82 177917.1        5112
+\end{verbatim}
+
+To create plots of the observations and the fit model, use the
+\texttt{augment} function to add model output (e.g., predictions,
+residuals) to the original dataframe of observed temperatures and dew
+point temperatures:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{augment}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 9
+##     dptp       temp  .fitted   .se.fit   .resid         .hat   .sigma
+##    <dbl>      <dbl>    <dbl>     <dbl>    <dbl>        <dbl>    <dbl>
+## 1 31.500 -0.2777778 23.57469 0.1143915 7.925312 0.0003759766 5.899010
+## 2 29.875  0.5555556 24.92523 0.1100819 4.949770 0.0003481812 5.899646
+## 3 27.375  0.5555556 24.92523 0.1100819 2.449770 0.0003481812 5.899953
+## # ... with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
+\end{verbatim}
+
+Plot these two variables and add in the fitted line from the model
+(note: I've used the \texttt{color} option to make the color of the
+points gray). Use the output from \texttt{augment} to create a plot of
+the original data, with the predicted values used to plot a fitted line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{augment}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ dptp)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{col =} \StringTok{"gray"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ .fitted), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-445-1.pdf}
+
+Plot some plots to check model assumptions for the model you fit using
+the \texttt{autoplot} function on your model object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{autoplot}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-446-1.pdf}
+
+Try fitting the model using \texttt{glm()}. Call it \texttt{mod\_1a}.
+Compare the coefficients for the two models. You can use the
+\texttt{tidy} function on an \texttt{lm} or \texttt{glm} object to pull
+out just the model coefficients and associated model results. Here, I've
+used a pipeline of code to create a tidy dataframe that merges these
+``tidy'' coefficient outputs (from the two models) into a single
+dataframe):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_1a <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(dptp }\OperatorTok{~}\StringTok{ }\NormalTok{temp, }\DataTypeTok{data =}\NormalTok{ chic)}
+
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(term, estimate) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{inner_join}\NormalTok{(mod_1a }\OperatorTok{%>%}\StringTok{ }\KeywordTok{tidy}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(term, estimate), }\DataTypeTok{by =} \StringTok{"term"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{estimate_lm_mod =}\NormalTok{ estimate.x,}
+         \DataTypeTok{estimate_glm_mod =}\NormalTok{ estimate.y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term estimate_lm_mod estimate_glm_mod
+## 1 (Intercept)        24.02487         24.02487
+## 2        temp         1.62065          1.62065
+\end{verbatim}
+
+The results from the two models are identical.
+
+As a note, you could have also just run \texttt{tidy} on each model
+object, without merging them together into a single dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_1a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0
+\end{verbatim}
+
+\subsection{Using regression models to explore data
+\#2}\label{using-regression-models-to-explore-data-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Does \(PM_{10}\) vary by day of the week? (Hint: The \texttt{dow}
+  variable is a factor that gives day of the week. You can do an ANOVA
+  analysis by fitting a linear model using this variable as the
+  independent variable. Some of the overall model summaries will compare
+  this model to an intercept-only model.) What day of the week is PM10
+  generally highest? (Check the model coefficients to figure this out.)
+  Try to write out (on paper) the regression equation for the model
+  you're fitting.
+\item
+  Try using \texttt{glm()} to run a Poisson regression of respiratory
+  deaths (\texttt{resp}) on temperature during summer days. Start by
+  creating a subset with just summer days called \texttt{summer}. (Hint:
+  Use the \texttt{month} function with the argument
+  \texttt{label\ =\ TRUE} from \texttt{lubridate} to do this-- just pull
+  out the subset where the month is 6, 7, or 8, for ``Jun'', ``Jul'',
+  and ``Aug''.) Try to write out the regression equation for the model
+  you're fitting.
+\item
+  The coefficient for the temperature variable in this model is our best
+  estimate (based on this model) of the \textbf{log relative risk} for a
+  one degree Celcius increase in temperature. What is the
+  \textbf{relative risk} associated with a one degree Celsius increase?
+\end{itemize}
+
+\subsubsection{Example R code:}\label{example-r-code-13}
+
+Fit a model of \(PM_{10}\) regressed on day of week, where day of week
+is a factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(pm10 }\OperatorTok{~}\StringTok{ }\NormalTok{dow, }\DataTypeTok{data =}\NormalTok{ chic)}
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           term  estimate std.error statistic       p.value
+## 1  (Intercept) 27.521671 0.7303211 37.684344 7.467602e-273
+## 2    dowMonday  6.132236 1.0339702  5.930767  3.224025e-09
+## 3   dowTuesday  6.795433 1.0268941  6.617462  4.048930e-11
+## 4 dowWednesday  8.476816 1.0261689  8.260644  1.850086e-16
+## 5  dowThursday  8.804654 1.0240148  8.598171  1.078208e-17
+## 6    dowFriday  9.481589 1.0261689  9.239794  3.609870e-20
+## 7  dowSaturday  3.660201 1.0268941  3.564342  3.682785e-04
+\end{verbatim}
+
+Use \texttt{glance} to check some of the overall summaries of this
+model. The \texttt{statistic} column here is the F statistic from test
+comparing this model to an intercept-only model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glance}\NormalTok{(mod_}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    r.squared adj.r.squared    sigma statistic      p.value df    logLik
+## 1 0.02587711     0.0246735 19.07243  21.49955 4.607646e-25  7 -21234.11
+##        AIC      BIC deviance df.residual
+## 1 42484.21 42536.13  1766407        4856
+\end{verbatim}
+
+As a note, you may have heard in previous statistics classes that you
+can use the \texttt{anova()} command to compare this model to a model
+with only an intercept (i.e., one that only fits a global mean and uses
+that as the expected value for all of the observations). Note that, in
+this case, the F value from \texttt{anova} for this model comparison is
+the same as the \texttt{statistic} you got in the overall summary
+statistics you get with \texttt{glance} in the previous code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(mod_}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: pm10
+##             Df  Sum Sq Mean Sq F value    Pr(>F)    
+## dow          6   46924  7820.6    21.5 < 2.2e-16 ***
+## Residuals 4856 1766407   363.8                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+The overall p-value from \texttt{anova} for with day-of-week
+coefficients versus the model that just has an intercept is \textless{}
+2.2e-16. This is well below 0.05, which suggests that day-of-week is
+associated with PM10 concentration, as a model that includes day-of-week
+does a much better job of explaining variation in PM10 than a model
+without it does.
+
+Use a boxplot to visually compare PM10 by day of week.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(chic, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dow, }\DataTypeTok{y =}\NormalTok{ pm10)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-452-1.pdf}
+
+Now try the same plot, but try using the \texttt{ylim\ =} option to
+change the limits on the y-axis for the graph, so you can get a better
+idea of the pattern by day of week (some of the extreme values are very
+high, which makes it hard to compare by eye when the y-axis extends to
+include them all).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(chic, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dow, }\DataTypeTok{y =}\NormalTok{ pm10)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
+\end{verbatim}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-453-1.pdf}
+
+Create a subset called \texttt{summer} with just the summer days:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+\NormalTok{summer <-}\StringTok{ }\NormalTok{chic }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{month =} \KeywordTok{month}\NormalTok{(date, }\DataTypeTok{label =} \OtherTok{TRUE}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Jun"}\NormalTok{, }\StringTok{"Jul"}\NormalTok{, }\StringTok{"Aug"}\NormalTok{))}
+\NormalTok{summer }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 14
+##         date  time  year month   doy       dow death   cvd  resp     temp
+##       <date> <int> <dbl> <ord> <int>    <fctr> <int> <int> <int>    <dbl>
+## 1 1987-06-01   152  1987   Jun   152    Monday   112    60     5 23.61111
+## 2 1987-06-02   153  1987   Jun   153   Tuesday   111    57     7 22.22222
+## 3 1987-06-03   154  1987   Jun   154 Wednesday   120    59     9 20.55556
+## # ... with 4 more variables: dptp <dbl>, rhum <dbl>, pm10 <dbl>, o3 <dbl>
+\end{verbatim}
+
+Use \texttt{glm()} to fit a Poisson model of respiratory deaths
+regressed on temperature. Since you want to fit a Poisson model, use the
+option \texttt{family\ =\ poisson(link\ =\ "log")}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(resp }\OperatorTok{~}\StringTok{ }\NormalTok{temp, }\DataTypeTok{data =}\NormalTok{ summer,}
+             \DataTypeTok{family =} \KeywordTok{poisson}\NormalTok{(}\DataTypeTok{link =} \StringTok{"log"}\NormalTok{))}
+\KeywordTok{glance}\NormalTok{(mod_}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   null.deviance df.null   logLik     AIC      BIC deviance df.residual
+## 1      1499.417    1287 -3210.68 6425.36 6435.682 1493.753        1286
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term    estimate   std.error statistic       p.value
+## 1 (Intercept) 1.910316958 0.058372529 32.726301 6.600945e-235
+## 2        temp 0.006136743 0.002580526  2.378098  1.740221e-02
+\end{verbatim}
+
+Use the fitted model coefficient to determine the relative risk for a
+one degree Celcius increase in temperature. First, remember that you can
+use the \texttt{tidy()} function to read out the model coefficients. The
+second of these is the value for the temperature coefficient. That means
+that you can use indexing (\texttt{{[}2{]}}) to get just that value.
+That's the log relative risk; take the exponent to get the relative
+risk.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(term }\OperatorTok{==}\StringTok{ "temp"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log_rr =} \KeywordTok{exp}\NormalTok{(estimate))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   term    estimate   std.error statistic    p.value   log_rr
+## 1 temp 0.006136743 0.002580526  2.378098 0.01740221 1.006156
+\end{verbatim}
+
+As a note, you can use the \texttt{conf.int} parameter in \texttt{tidy}
+to also pull confidence intervals:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{3}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term    estimate   std.error statistic       p.value    conf.low
+## 1 (Intercept) 1.910316958 0.058372529 32.726301 6.600945e-235 1.795647330
+## 2        temp 0.006136743 0.002580526  2.378098  1.740221e-02 0.001082325
+##    conf.high
+## 1 2.02446414
+## 2 0.01119783
+\end{verbatim}
+
+You could use this to get the confidence interval for relative risk
+(check out the \texttt{mutate\_at} function if you haven't seen it
+before):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{3}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(term, estimate, conf.low, conf.high) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(term }\OperatorTok{==}\StringTok{ "temp"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate_at}\NormalTok{(}\KeywordTok{vars}\NormalTok{(estimate}\OperatorTok{:}\NormalTok{conf.high), }\KeywordTok{funs}\NormalTok{(}\KeywordTok{exp}\NormalTok{(.)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   term estimate conf.low conf.high
+## 1 temp 1.006156 1.001083  1.011261
+\end{verbatim}
+
 \subsection{Exploring Fatality Analysis Reporting System (FARS)
 data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
 
@@ -13232,13 +13722,13 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   and explore the interactive visualization created by Max Galka using
   this public dataset on US fatal motor vehicle accidents.
 \item
-  Go to
-  \href{http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)}{FARS
-  web page} to find and download the data for this week's exercise. We
-  want to get the raw data on fatal accidents. Navigate this page to
-  figure out how you can get this raw data for the whole county for
-  2015. Download the 2015 data to your computer. What is the structure
-  of how this data is saved (e.g., directory structure, file structure)?
+  Go to \href{http://www.nhtsa.gov/FARS}{FARS web page}. We want to get
+  the raw data on fatal accidents. Navigate this page to figure out how
+  you can get this raw data for the whole county for 2015 (hint: you'll
+  need to access the raw data using FTP, and you may have more success
+  with some web browsers that others). Save 2015 ``National'' data (csv
+  format) to your computer. What is the structure of how this data is
+  saved (e.g., directory structure, file structure)?
 \item
   On the
   \href{http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)}{FARS
@@ -13267,9 +13757,9 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   yourselves first.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-439-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-459-1} \end{center}
 
-\subsubsection{Example R code}\label{example-r-code-12}
+\subsubsection{Example R code}\label{example-r-code-14}
 
 Here is example code for the section above:
 
@@ -13302,7 +13792,7 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-440-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-460-1} \end{center}
 
 \subsection{Using a loop to create state-specific
 plots}\label{using-a-loop-to-create-state-specific-plots}
@@ -13395,7 +13885,7 @@ New York.
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-444-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-464-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -13409,7 +13899,7 @@ New York.
   run \texttt{print(a)} within your loop as the last step.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-13}
+\subsubsection{Example R code}\label{example-r-code-15}
 
 Here is example R code for creating state-specific plots using a loop:
 
@@ -13456,473 +13946,6 @@ Here is example R code for creating state-specific plots using a loop:
 \KeywordTok{dev.off}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\subsection{Using regression models to explore
-data}\label{using-regression-models-to-explore-data}
-
-For this exercise, you will need the following packages. If do not have
-them already, you will need to install them. For the \texttt{ggfortify}
-package, you need to install it from GitHub (uncomment and use the
-\texttt{install\_github} code given below):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggplot2)}
-\KeywordTok{library}\NormalTok{(broom)}
-
-\KeywordTok{library}\NormalTok{(devtools)}
-\CommentTok{# install_github('sinhrks/ggfortify')}
-\KeywordTok{library}\NormalTok{(ggfortify)}
-\end{Highlighting}
-\end{Shaded}
-
-For this part of the exercise, you'll use a dataset on weather, air
-pollution, and mortality counts in Chicago, IL. This dataset is called
-\texttt{chicagoNMMAPS} and is part of the \texttt{dlnm} package. Change
-the name of the dataframe to something shorter, like \texttt{chic}.
-Check out the data a bit to see what variables you have, and then
-perform the following tasks:
-
-\begin{itemize}
-\tightlist
-\item
-  Write out (on paper, not in R) the regression equation for regressing
-  dewpoint temperature on temperature.
-\item
-  Try fitting a linear regression of dew point temperature
-  (\texttt{dptp}) on temperature (\texttt{temp}). (Bonus points: Notice
-  anything that seems unusual about these two variables in this dataset?
-  You can find out with \texttt{summary}, but it helps if you know a bit
-  about what dewpoint temperature measures.) Save this model as the
-  object \texttt{mod\_1}.
-\item
-  Based on this regression, does there seem to be a relationship between
-  temperature and dewpoint temperature in Chicago? (Hint: Try using
-  \texttt{summary()} on the model object to get more information about
-  the model you fit.) What is the p-value for the coefficient for
-  temperature?
-\item
-  Plot temperature (x-axis) versus dewpoint temperature (y-axis) for
-  Chicago. Add in the regression line from the model you fit.
-\item
-  Use \texttt{plot()} on the model object to check if some of the
-  assumptions for the regression model seem appropriate.
-\item
-  Try fitting the regression as a GLM, using \texttt{glm()}. Are your
-  coefficients different?
-\item
-  Does \(PM_{10}\) vary by day of the week? (Hint: The \texttt{dow}
-  variable is a factor that gives day of the week. You can do an ANOVA
-  analysis by fitting a linear model using this variable as the
-  independent variable, and then run \texttt{anova()} on that model, and
-  R will compare it to an intercept-only model.) What day of the week is
-  PM10 generally highest? (Check the model coefficients to figure this
-  out.) Try to write out (on paper) the regression equation for the
-  model you're fitting.
-\item
-  Try using \texttt{glm()} to run a Poisson regression of respiratory
-  deaths (\texttt{resp}) on temperature during summer days. Start by
-  creating a subset with just summer days called \texttt{summer}. (Hint:
-  Use the \texttt{month} variable to do this-- just pull out the subset
-  where the month is 6, 7, or 8, for June, July, and August.) Try to
-  write out the regression equation for the model you're fitting.
-\item
-  The coefficient for the temperature variable in this model is our best
-  estimate (based on this model) of the \textbf{log relative risk} for a
-  one degree Celcius increase in temperature. What is the
-  \textbf{relative risk} associated with a one degree Celsius increase?
-\end{itemize}
-
-\subsubsection{Example R code:}\label{example-r-code-14}
-
-Install and load the \texttt{dlnm} package and then load the
-\texttt{chicagoNMMAPS} data. Change the name of the dataframe to
-\texttt{chic}, so it will be shorter to call for the rest of your work.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# install.packages("dlnm")}
-\KeywordTok{library}\NormalTok{(dlnm)}
-\KeywordTok{data}\NormalTok{(}\StringTok{"chicagoNMMAPS"}\NormalTok{)}
-\NormalTok{chic <-}\StringTok{ }\NormalTok{chicagoNMMAPS}
-\end{Highlighting}
-\end{Shaded}
-
-Fit a linear regression of \texttt{dptp} on \texttt{temp} and save as
-the object \texttt{mod\_1}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mod_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(dptp }\OperatorTok{~}\StringTok{ }\NormalTok{temp, }\DataTypeTok{data =}\NormalTok{ chic)}
-\NormalTok{mod_}\DecValTok{1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = dptp ~ temp, data = chic)
-## 
-## Coefficients:
-## (Intercept)         temp  
-##      24.025        1.621
-\end{verbatim}
-
-Use \texttt{summary()} to check out a bit more about the model you fit.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = dptp ~ temp, data = chic)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -24.3093  -3.7470   0.4687   4.0738  18.6518 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 24.024869   0.112933   212.7   <2e-16 ***
-## temp         1.620650   0.007631   212.4   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.899 on 5112 degrees of freedom
-## Multiple R-squared:  0.8982, Adjusted R-squared:  0.8982 
-## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: < 2.2e-16
-\end{verbatim}
-
-Now try using functions from the \texttt{broom} package to pull the same
-information about the model, but in a ``tidy'' format. First, use
-\texttt{glance} to get some summary information about the model:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{glance}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   r.squared adj.r.squared    sigma statistic p.value df   logLik      AIC
-## 1 0.8982088     0.8981888 5.899475  45108.43       0  2 -16332.1 32670.21
-##        BIC deviance df.residual
-## 1 32689.82 177917.1        5112
-\end{verbatim}
-
-Next, use the \texttt{tidy} function to get model coefficients in a tidy
-format:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{tidy}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##          term estimate   std.error statistic p.value
-## 1 (Intercept) 24.02487 0.112933468  212.7347       0
-## 2        temp  1.62065 0.007630629  212.3875       0
-\end{verbatim}
-
-Use the \texttt{tidy} function to add model output (e.g., predictions,
-residuals) to the original dataframe of observed temperatures and dew
-point temperatures:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{augment}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 3 x 9
-##     dptp       temp  .fitted   .se.fit   .resid         .hat   .sigma
-##    <dbl>      <dbl>    <dbl>     <dbl>    <dbl>        <dbl>    <dbl>
-## 1 31.500 -0.2777778 23.57469 0.1143915 7.925312 0.0003759766 5.899010
-## 2 29.875  0.5555556 24.92523 0.1100819 4.949770 0.0003481812 5.899646
-## 3 27.375  0.5555556 24.92523 0.1100819 2.449770 0.0003481812 5.899953
-## # ... with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
-\end{verbatim}
-
-Use the output from \texttt{augment} to create a plot of the original
-data, with the predicted values used to plot a fitted line.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{augment}\NormalTok{(mod_}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ dptp)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ .fitted), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-453-1.pdf}
-
-There does seem to be an association between temperature and dewpoint
-temperature: a unit increase in temperature is associated with a 1.6
-unit increase in dewpoint temperature. The p-value for the temperature
-coefficient is \textless{}2e-16. This is far below 0.05, which suggests
-we would be very unlikely to see such a strong association by chance if
-the null hypothesis, that the two variables are not associated, were
-true.
-
-Plot these two variables and add in the regression line from the model
-(note: I've used the \texttt{color} option to make the color of the
-points gray). Use the values from \texttt{coef} with a
-\texttt{geom\_abline} to add the regression line for the model you fit.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mod_coefs <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
-\KeywordTok{ggplot}\NormalTok{(chic, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temp, }\DataTypeTok{y =}\NormalTok{ dptp)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{col =} \StringTok{"gray"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_abline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{intercept =}\NormalTok{ mod_coefs[}\DecValTok{1}\NormalTok{], }\DataTypeTok{slope =}\NormalTok{ mod_coefs[}\DecValTok{2}\NormalTok{]))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-454-1.pdf}
-
-Plot some plots to check model assumptions for the model you fit using
-the \texttt{plot()} function on your model object:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\CommentTok{# Set to four plots per panel -- 2 rows, 2 columns}
-\KeywordTok{plot}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-455-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\CommentTok{# Reset to one plot per panel}
-\end{Highlighting}
-\end{Shaded}
-
-Try fitting the model using \texttt{glm()}. Call it \texttt{mod\_1a}.
-Compare the coefficients for the two models. You can use the
-\texttt{coef()} function on an \texttt{lm} or \texttt{glm} object to
-pull out just the model coefficients.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mod_1a <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(dptp }\OperatorTok{~}\StringTok{ }\NormalTok{temp, }\DataTypeTok{data =}\NormalTok{ chic)}
-
-\KeywordTok{coef}\NormalTok{(mod_}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (Intercept)        temp 
-##    24.02487     1.62065
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{coef}\NormalTok{(mod_1a)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (Intercept)        temp 
-##    24.02487     1.62065
-\end{verbatim}
-
-The results from the two models are identical.
-
-Fit a model of \(PM_{10}\) regressed on day of week, where day of week
-is a factor.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mod_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(pm10 }\OperatorTok{~}\StringTok{ }\NormalTok{dow, }\DataTypeTok{data =}\NormalTok{ chic)}
-\KeywordTok{summary}\NormalTok{(mod_}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = pm10 ~ dow, data = chic)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -39.05 -12.55  -3.34   8.80 328.66 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   27.5217     0.7303  37.684  < 2e-16 ***
-## dowMonday      6.1322     1.0340   5.931 3.22e-09 ***
-## dowTuesday     6.7954     1.0269   6.617 4.05e-11 ***
-## dowWednesday   8.4768     1.0262   8.261  < 2e-16 ***
-## dowThursday    8.8047     1.0240   8.598  < 2e-16 ***
-## dowFriday      9.4816     1.0262   9.240  < 2e-16 ***
-## dowSaturday    3.6602     1.0269   3.564 0.000368 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 19.07 on 4856 degrees of freedom
-##   (251 observations deleted due to missingness)
-## Multiple R-squared:  0.02588,    Adjusted R-squared:  0.02467 
-## F-statistic:  21.5 on 6 and 4856 DF,  p-value: < 2.2e-16
-\end{verbatim}
-
-Use the \texttt{anova()} command to compare this model to a model with
-only an intercept (i.e., one that only fits a global mean and uses that
-as the expected value for all of the observations).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{anova}\NormalTok{(mod_}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Analysis of Variance Table
-## 
-## Response: pm10
-##             Df  Sum Sq Mean Sq F value    Pr(>F)    
-## dow          6   46924  7820.6    21.5 < 2.2e-16 ***
-## Residuals 4856 1766407   363.8                      
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-The p-value for an ANOVA of the model with day-of-week coefficients
-versus the model that just has an intercept is \textless{} 2.2e-16. This
-is well below 0.05, which suggests that day-of-week is associated with
-PM10 concentration, as a model that includes day-of-week does a much
-better job of explaining variation in PM10 than a model without it does.
-(Note, too, that the F value and Pr(\textgreater{}F) for the
-\texttt{anova()} call are identical to the F-statistic information given
-in the \texttt{summary()} of the model object. This will always be true
-when you're using \texttt{anova()} to compare a model to a model with
-just an intercept.)
-
-Use a boxplot to visually compare PM10 by day of week.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(chic, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dow, }\DataTypeTok{y =}\NormalTok{ pm10)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-459-1.pdf}
-
-Now try the same plot, but try using the \texttt{ylim\ =} option to
-change the limits on the y-axis for the graph, so you can get a better
-idea of the pattern by day of week (some of the extreme values are very
-high, which makes it hard to compare by eye when the y-axis extends to
-include them all).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(chic, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dow, }\DataTypeTok{y =}\NormalTok{ pm10)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{ylim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: Removed 292 rows containing non-finite values (stat_boxplot).
-\end{verbatim}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-460-1.pdf}
-
-Create a subset called \texttt{summer} with just the summer days:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{summer <-}\StringTok{ }\NormalTok{chic }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{%in%}\StringTok{ }\DecValTok{6}\OperatorTok{:}\DecValTok{8}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Use \texttt{glm()} to fit a Poisson model of respiratory deaths
-regressed on temperature. Since you want to fit a Poisson model, use the
-option \texttt{family\ =\ poisson(link\ =\ "log")}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mod_}\DecValTok{3}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(resp }\OperatorTok{~}\StringTok{ }\NormalTok{temp, }\DataTypeTok{data =}\NormalTok{ summer,}
-             \DataTypeTok{family =} \KeywordTok{poisson}\NormalTok{(}\DataTypeTok{link =} \StringTok{"log"}\NormalTok{))}
-\KeywordTok{summary}\NormalTok{(mod_}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = resp ~ temp, family = poisson(link = "log"), data = summer)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -3.9755  -0.7162  -0.1807   0.6927   3.6555  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)    
-## (Intercept) 1.910317   0.058373  32.726   <2e-16 ***
-## temp        0.006137   0.002581   2.378   0.0174 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for poisson family taken to be 1)
-## 
-##     Null deviance: 1499.4  on 1287  degrees of freedom
-## Residual deviance: 1493.8  on 1286  degrees of freedom
-## AIC: 6425.4
-## 
-## Number of Fisher Scoring iterations: 4
-\end{verbatim}
-
-Use the fitted model coefficient to determine the relative risk for a
-one degree Celcius increase in temperature. First, remember that you can
-use the \texttt{coef()} function to read out the model coefficients. The
-second of these is the value for the temperature coefficient. That means
-that you can use indexing (\texttt{{[}2{]}}) to get just that value.
-That's the log relative risk; take the exponent to get the relative
-risk.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{coef}\NormalTok{(mod_}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (Intercept)        temp 
-## 1.910316958 0.006136743
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{coef}\NormalTok{(mod_}\DecValTok{3}\NormalTok{)[}\DecValTok{2}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##        temp 
-## 0.006136743
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{exp}\NormalTok{(}\KeywordTok{coef}\NormalTok{(mod_}\DecValTok{3}\NormalTok{)[}\DecValTok{2}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     temp 
-## 1.006156
-\end{verbatim}
 
 \appendix
 

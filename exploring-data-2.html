@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-10-01">
+<meta name="date" content="2017-10-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -299,9 +299,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#functions"><i class="fa fa-check"></i><b>7.4</b> Functions</a></li>
 <li class="chapter" data-level="7.5" data-path="exploring-data-2.html"><a href="exploring-data-2.html#regular-expressions"><i class="fa fa-check"></i><b>7.5</b> Regular expressions</a></li>
 <li class="chapter" data-level="7.6" data-path="exploring-data-2.html"><a href="exploring-data-2.html#in-course-exercise-6"><i class="fa fa-check"></i><b>7.6</b> In-course exercise</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
-<li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.2</b> Using a loop to create state-specific plots</a></li>
-<li class="chapter" data-level="7.6.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data"><i class="fa fa-check"></i><b>7.6.3</b> Using regression models to explore data</a></li>
+<li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Using regression models to explore data #1</a></li>
+<li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data-2"><i class="fa fa-check"></i><b>7.6.2</b> Using regression models to explore data #2</a></li>
+<li class="chapter" data-level="7.6.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.3</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
+<li class="chapter" data-level="7.6.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.4</b> Using a loop to create state-specific plots</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -1074,20 +1075,209 @@ str_extract(string = [vector you want to check],
 </div>
 <div id="in-course-exercise-6" class="section level2">
 <h2><span class="header-section-number">7.6</span> In-course exercise</h2>
+<div id="using-regression-models-to-explore-data-1" class="section level3">
+<h3><span class="header-section-number">7.6.1</span> Using regression models to explore data #1</h3>
+<p>For this exercise, you will need the following packages. If do not have them already, you will need to install them. For the <code>ggfortify</code> package, you need to install it from GitHub (uncomment and use the <code>install_github</code> code given below):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(broom)
+
+<span class="kw">library</span>(devtools)
+<span class="co"># install_github(&#39;sinhrks/ggfortify&#39;)</span>
+<span class="kw">library</span>(ggfortify)</code></pre></div>
+<p>For this part of the exercise, you’ll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called <code>chicagoNMMAPS</code> and is part of the <code>dlnm</code> package. Change the name of the dataframe to <code>chic</code> (this object name is shorter and will be easier to work with). Check out the data a bit to see what variables you have, and then perform the following tasks:</p>
+<ul>
+<li>Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature.</li>
+<li>Try fitting a linear regression of dew point temperature (<code>dptp</code>) regressed on temperature (<code>temp</code>). Save this model as the object <code>mod_1</code>.</li>
+<li>Based on this regression, does there seem to be a relationship between temperature and dewpoint temperature in Chicago? (Hint: Try using <code>glance</code> and <code>tidy</code> from the <code>broom</code> package on the model object to get more information about the model you fit.) What is the coefficient for temperature? What is the p-value for the coefficient for temperature?</li>
+<li>Plot temperature (x-axis) versus dewpoint temperature (y-axis) for Chicago. Add in the regression line from the model you fit by using the results from <code>augment</code>.</li>
+<li>Use <code>autoplot</code> on the model object to generate some model diagnostic plots (make sure you have the <code>ggfortify</code> package loaded and installed).</li>
+<li>Try fitting the regression as a GLM, using <code>glm()</code>. Are your coefficients different?</li>
+</ul>
+<div id="example-r-code-12" class="section level4">
+<h4><span class="header-section-number">7.6.1.1</span> Example R code:</h4>
+<p>The regression equation for the model you want to fit, regressing dewpoint temperature on temperature, is:</p>
+<p><span class="math display">\[
+Y_t \sim \beta_0 + \beta_1 X_t
+\]</span></p>
+<p>where <span class="math inline">\(Y_t\)</span> is the dewpoint temperature on day <span class="math inline">\(t\)</span>, <span class="math inline">\(X_t\)</span> is the temperature on day <span class="math inline">\(t\)</span>, and <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are model coefficients.</p>
+<p>Install and load the <code>dlnm</code> package and then load the <code>chicagoNMMAPS</code> data. Change the name of the dataframe to <code>chic</code>, so it will be shorter to call for the rest of your work.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;dlnm&quot;)</span>
+<span class="kw">library</span>(dlnm)
+<span class="kw">data</span>(<span class="st">&quot;chicagoNMMAPS&quot;</span>)
+chic &lt;-<span class="st"> </span>chicagoNMMAPS</code></pre></div>
+<p>Fit a linear regression of <code>dptp</code> on <code>temp</code> and save as the object <code>mod_1</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
+mod_<span class="dv">1</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dptp ~ temp, data = chic)
+## 
+## Coefficients:
+## (Intercept)         temp  
+##      24.025        1.621</code></pre>
+<p>Use functions from the <code>broom</code> package to pull the same information about the model in a “tidy” format. To find out if the evidence for a linear association between temperature and dewpoint temperature, use the <code>tidy</code> function to get model coefficients in a tidy format:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">1</span>)</code></pre></div>
+<pre><code>##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0</code></pre>
+<p>There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a 1.6 unit increase in dewpoint temperature. The p-value for the temperature coefficient is &lt;2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.</p>
+<p>You can also check overall model summaries using the <code>glance</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glance</span>(mod_<span class="dv">1</span>)</code></pre></div>
+<pre><code>##   r.squared adj.r.squared    sigma statistic p.value df   logLik      AIC
+## 1 0.8982088     0.8981888 5.899475  45108.43       0  2 -16332.1 32670.21
+##        BIC deviance df.residual
+## 1 32689.82 177917.1        5112</code></pre>
+<p>To create plots of the observations and the fit model, use the <code>augment</code> function to add model output (e.g., predictions, residuals) to the original dataframe of observed temperatures and dew point temperatures:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 9
+##     dptp       temp  .fitted   .se.fit   .resid         .hat   .sigma
+##    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1 31.500 -0.2777778 23.57469 0.1143915 7.925312 0.0003759766 5.899010
+## 2 29.875  0.5555556 24.92523 0.1100819 4.949770 0.0003481812 5.899646
+## 3 27.375  0.5555556 24.92523 0.1100819 2.449770 0.0003481812 5.899953
+## # ... with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+<p>Plot these two variables and add in the fitted line from the model (note: I’ve used the <code>color</code> option to make the color of the points gray). Use the output from <code>augment</code> to create a plot of the original data, with the predicted values used to plot a fitted line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.8</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> .fitted), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_classic</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-445-1.png" width="480" /></p>
+<p>Plot some plots to check model assumptions for the model you fit using the <code>autoplot</code> function on your model object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(mod_<span class="dv">1</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-446-1.png" width="576" /></p>
+<p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>tidy</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients and associated model results. Here, I’ve used a pipeline of code to create a tidy dataframe that merges these “tidy” coefficient outputs (from the two models) into a single dataframe):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
+
+<span class="kw">tidy</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(term, estimate) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(mod_1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(term, estimate), <span class="dt">by =</span> <span class="st">&quot;term&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">estimate_lm_mod =</span> estimate.x,
+         <span class="dt">estimate_glm_mod =</span> estimate.y)</code></pre></div>
+<pre><code>##          term estimate_lm_mod estimate_glm_mod
+## 1 (Intercept)        24.02487         24.02487
+## 2        temp         1.62065          1.62065</code></pre>
+<p>The results from the two models are identical.</p>
+<p>As a note, you could have also just run <code>tidy</code> on each model object, without merging them together into a single dataframe:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">1</span>)</code></pre></div>
+<pre><code>##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_1a)</code></pre></div>
+<pre><code>##          term estimate   std.error statistic p.value
+## 1 (Intercept) 24.02487 0.112933468  212.7347       0
+## 2        temp  1.62065 0.007630629  212.3875       0</code></pre>
+</div>
+</div>
+<div id="using-regression-models-to-explore-data-2" class="section level3">
+<h3><span class="header-section-number">7.6.2</span> Using regression models to explore data #2</h3>
+<ul>
+<li>Does <span class="math inline">\(PM_{10}\)</span> vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable. Some of the overall model summaries will compare this model to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you’re fitting.</li>
+<li>Try using <code>glm()</code> to run a Poisson regression of respiratory deaths (<code>resp</code>) on temperature during summer days. Start by creating a subset with just summer days called <code>summer</code>. (Hint: Use the <code>month</code> function with the argument <code>label = TRUE</code> from <code>lubridate</code> to do this– just pull out the subset where the month is 6, 7, or 8, for “Jun”, “Jul”, and “Aug”.) Try to write out the regression equation for the model you’re fitting.</li>
+<li>The coefficient for the temperature variable in this model is our best estimate (based on this model) of the <strong>log relative risk</strong> for a one degree Celcius increase in temperature. What is the <strong>relative risk</strong> associated with a one degree Celsius increase?</li>
+</ul>
+<div id="example-r-code-13" class="section level4">
+<h4><span class="header-section-number">7.6.2.1</span> Example R code:</h4>
+<p>Fit a model of <span class="math inline">\(PM_{10}\)</span> regressed on day of week, where day of week is a factor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(pm10 <span class="op">~</span><span class="st"> </span>dow, <span class="dt">data =</span> chic)
+<span class="kw">tidy</span>(mod_<span class="dv">2</span>)</code></pre></div>
+<pre><code>##           term  estimate std.error statistic       p.value
+## 1  (Intercept) 27.521671 0.7303211 37.684344 7.467602e-273
+## 2    dowMonday  6.132236 1.0339702  5.930767  3.224025e-09
+## 3   dowTuesday  6.795433 1.0268941  6.617462  4.048930e-11
+## 4 dowWednesday  8.476816 1.0261689  8.260644  1.850086e-16
+## 5  dowThursday  8.804654 1.0240148  8.598171  1.078208e-17
+## 6    dowFriday  9.481589 1.0261689  9.239794  3.609870e-20
+## 7  dowSaturday  3.660201 1.0268941  3.564342  3.682785e-04</code></pre>
+<p>Use <code>glance</code> to check some of the overall summaries of this model. The <code>statistic</code> column here is the F statistic from test comparing this model to an intercept-only model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glance</span>(mod_<span class="dv">2</span>)</code></pre></div>
+<pre><code>##    r.squared adj.r.squared    sigma statistic      p.value df    logLik
+## 1 0.02587711     0.0246735 19.07243  21.49955 4.607646e-25  7 -21234.11
+##        AIC      BIC deviance df.residual
+## 1 42484.21 42536.13  1766407        4856</code></pre>
+<p>As a note, you may have heard in previous statistics classes that you can use the <code>anova()</code> command to compare this model to a model with only an intercept (i.e., one that only fits a global mean and uses that as the expected value for all of the observations). Note that, in this case, the F value from <code>anova</code> for this model comparison is the same as the <code>statistic</code> you got in the overall summary statistics you get with <code>glance</code> in the previous code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod_<span class="dv">2</span>)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: pm10
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## dow          6   46924  7820.6    21.5 &lt; 2.2e-16 ***
+## Residuals 4856 1766407   363.8                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The overall p-value from <code>anova</code> for with day-of-week coefficients versus the model that just has an intercept is &lt; 2.2e-16. This is well below 0.05, which suggests that day-of-week is associated with PM10 concentration, as a model that includes day-of-week does a much better job of explaining variation in PM10 than a model without it does.</p>
+<p>Use a boxplot to visually compare PM10 by day of week.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-452-1.png" width="576" /></p>
+<p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
+<pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-453-1.png" width="576" /></p>
+<p>Create a subset called <code>summer</code> with just the summer days:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
+summer &lt;-<span class="st"> </span>chic <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">month =</span> <span class="kw">month</span>(date, <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>))
+summer <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 14
+##         date  time  year month   doy       dow death   cvd  resp     temp
+##       &lt;date&gt; &lt;int&gt; &lt;dbl&gt; &lt;ord&gt; &lt;int&gt;    &lt;fctr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;
+## 1 1987-06-01   152  1987   Jun   152    Monday   112    60     5 23.61111
+## 2 1987-06-02   153  1987   Jun   153   Tuesday   111    57     7 22.22222
+## 3 1987-06-03   154  1987   Jun   154 Wednesday   120    59     9 20.55556
+## # ... with 4 more variables: dptp &lt;dbl&gt;, rhum &lt;dbl&gt;, pm10 &lt;dbl&gt;, o3 &lt;dbl&gt;</code></pre>
+<p>Use <code>glm()</code> to fit a Poisson model of respiratory deaths regressed on temperature. Since you want to fit a Poisson model, use the option <code>family = poisson(link = &quot;log&quot;)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(resp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> summer,
+             <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
+<span class="kw">glance</span>(mod_<span class="dv">3</span>)</code></pre></div>
+<pre><code>##   null.deviance df.null   logLik     AIC      BIC deviance df.residual
+## 1      1499.417    1287 -3210.68 6425.36 6435.682 1493.753        1286</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">3</span>)</code></pre></div>
+<pre><code>##          term    estimate   std.error statistic       p.value
+## 1 (Intercept) 1.910316958 0.058372529 32.726301 6.600945e-235
+## 2        temp 0.006136743 0.002580526  2.378098  1.740221e-02</code></pre>
+<p>Use the fitted model coefficient to determine the relative risk for a one degree Celcius increase in temperature. First, remember that you can use the <code>tidy()</code> function to read out the model coefficients. The second of these is the value for the temperature coefficient. That means that you can use indexing (<code>[2]</code>) to get just that value. That’s the log relative risk; take the exponent to get the relative risk.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;temp&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_rr =</span> <span class="kw">exp</span>(estimate))</code></pre></div>
+<pre><code>##   term    estimate   std.error statistic    p.value   log_rr
+## 1 temp 0.006136743 0.002580526  2.378098 0.01740221 1.006156</code></pre>
+<p>As a note, you can use the <code>conf.int</code> parameter in <code>tidy</code> to also pull confidence intervals:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">3</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##          term    estimate   std.error statistic       p.value    conf.low
+## 1 (Intercept) 1.910316958 0.058372529 32.726301 6.600945e-235 1.795647330
+## 2        temp 0.006136743 0.002580526  2.378098  1.740221e-02 0.001082325
+##    conf.high
+## 1 2.02446414
+## 2 0.01119783</code></pre>
+<p>You could use this to get the confidence interval for relative risk (check out the <code>mutate_at</code> function if you haven’t seen it before):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">3</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(term, estimate, conf.low, conf.high) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;temp&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(estimate<span class="op">:</span>conf.high), <span class="kw">funs</span>(<span class="kw">exp</span>(.)))</code></pre></div>
+<pre><code>##   term estimate conf.low conf.high
+## 1 temp 1.006156 1.001083  1.011261</code></pre>
+</div>
+</div>
 <div id="exploring-fatality-analysis-reporting-system-fars-data-1" class="section level3">
-<h3><span class="header-section-number">7.6.1</span> Exploring Fatality Analysis Reporting System (FARS) data</h3>
+<h3><span class="header-section-number">7.6.3</span> Exploring Fatality Analysis Reporting System (FARS) data</h3>
 <ul>
 <li>Visit <a href="http://metrocosm.com/10-years-of-traffic-accidents-mapped.html" class="uri">http://metrocosm.com/10-years-of-traffic-accidents-mapped.html</a> and explore the interactive visualization created by Max Galka using this public dataset on US fatal motor vehicle accidents.</li>
-<li>Go to <a href="http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)">FARS web page</a> to find and download the data for this week’s exercise. We want to get the raw data on fatal accidents. Navigate this page to figure out how you can get this raw data for the whole county for 2015. Download the 2015 data to your computer. What is the structure of how this data is saved (e.g., directory structure, file structure)?</li>
+<li>Go to <a href="http://www.nhtsa.gov/FARS">FARS web page</a>. We want to get the raw data on fatal accidents. Navigate this page to figure out how you can get this raw data for the whole county for 2015 (hint: you’ll need to access the raw data using FTP, and you may have more success with some web browsers that others). Save 2015 “National” data (csv format) to your computer. What is the structure of how this data is saved (e.g., directory structure, file structure)?</li>
 <li>On the <a href="http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)">FARS web page</a>, find the documentation describing this raw data. Look through both this documentation and the raw files you downloaded to figure out what information is included in the data.</li>
 <li>Read the <code>accident.csv</code> file for 2015 into R (this is one of the files you’ll get if you download the raw data for 2015). Use the documentation to figure out what each column represents.</li>
 <li>Discuss what steps you would need to take to create the following plot. To start, don’t write any code, just develop a plan. Talk about what the dataset should look like right before you create the plot and what functions you could use to get the data from its current format to that format. (Hint: Functions from the <code>lubridate</code> package will be very helpful, including <code>yday</code> and <code>wday</code>).</li>
 <li>Discuss which of the variables in this dataset could be used to merge the dataset with other appropriate data, either other datasets in the FARS raw data, or outside datasets.</li>
 <li>Try to write the code to create the plot below. This will include some code for cleaning the data and some code for plotting. There is an example answer below, but I’d like you to try to figure it out yourselves first.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-439-1.png" width="576" style="display: block; margin: auto;" /></p>
-<div id="example-r-code-12" class="section level4">
-<h4><span class="header-section-number">7.6.1.1</span> Example R code</h4>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-459-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="example-r-code-14" class="section level4">
+<h4><span class="header-section-number">7.6.3.1</span> Example R code</h4>
 <p>Here is example code for the section above:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(lubridate)
@@ -1113,11 +1303,11 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;# of fatal accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_few</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-440-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-460-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="using-a-loop-to-create-state-specific-plots" class="section level3">
-<h3><span class="header-section-number">7.6.2</span> Using a loop to create state-specific plots</h3>
+<h3><span class="header-section-number">7.6.4</span> Using a loop to create state-specific plots</h3>
 <p>Next, you will write a loop to write a four-page pdf file with state-specific plots for the states of Colorado, Texas, California, and New York.</p>
 <ul>
 <li>The data has a column called <code>STATE</code>, but it gives state as a one- or two-digit code, rather than by name. These codes are the state Federal Information Processing Standard (FIPS) codes. A dataset with state names and FIPS codes is available at <a href="http://www2.census.gov/geo/docs/reference/state.txt" class="uri">http://www2.census.gov/geo/docs/reference/state.txt</a>. Read that data into an R object called <code>state_fips</code> and clean it so the first few lines look like this:</li>
@@ -1155,12 +1345,12 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 <ul>
 <li>Write the code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. The plot should look like the plot below.</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-444-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-464-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Write a loop to create a plot like the one you just made for Colorado for four different states – Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
 </ul>
-<div id="example-r-code-13" class="section level4">
-<h4><span class="header-section-number">7.6.2.1</span> Example R code</h4>
+<div id="example-r-code-15" class="section level4">
+<h4><span class="header-section-number">7.6.4.1</span> Example R code</h4>
 <p>Here is example R code for creating state-specific plots using a loop:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_fips &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;http://www2.census.gov/geo/docs/reference/state.txt&quot;</span>,
                          <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>) <span class="op">%&gt;%</span>
@@ -1201,202 +1391,6 @@ state_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="
   <span class="kw">print</span>(a)
 }
 <span class="kw">dev.off</span>()</code></pre></div>
-</div>
-</div>
-<div id="using-regression-models-to-explore-data" class="section level3">
-<h3><span class="header-section-number">7.6.3</span> Using regression models to explore data</h3>
-<p>For this exercise, you will need the following packages. If do not have them already, you will need to install them. For the <code>ggfortify</code> package, you need to install it from GitHub (uncomment and use the <code>install_github</code> code given below):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(broom)
-
-<span class="kw">library</span>(devtools)
-<span class="co"># install_github(&#39;sinhrks/ggfortify&#39;)</span>
-<span class="kw">library</span>(ggfortify)</code></pre></div>
-<p>For this part of the exercise, you’ll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called <code>chicagoNMMAPS</code> and is part of the <code>dlnm</code> package. Change the name of the dataframe to something shorter, like <code>chic</code>. Check out the data a bit to see what variables you have, and then perform the following tasks:</p>
-<ul>
-<li>Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature.</li>
-<li>Try fitting a linear regression of dew point temperature (<code>dptp</code>) on temperature (<code>temp</code>). (Bonus points: Notice anything that seems unusual about these two variables in this dataset? You can find out with <code>summary</code>, but it helps if you know a bit about what dewpoint temperature measures.) Save this model as the object <code>mod_1</code>.</li>
-<li>Based on this regression, does there seem to be a relationship between temperature and dewpoint temperature in Chicago? (Hint: Try using <code>summary()</code> on the model object to get more information about the model you fit.) What is the p-value for the coefficient for temperature?</li>
-<li>Plot temperature (x-axis) versus dewpoint temperature (y-axis) for Chicago. Add in the regression line from the model you fit.</li>
-<li>Use <code>plot()</code> on the model object to check if some of the assumptions for the regression model seem appropriate.</li>
-<li>Try fitting the regression as a GLM, using <code>glm()</code>. Are your coefficients different?</li>
-<li>Does <span class="math inline">\(PM_{10}\)</span> vary by day of the week? (Hint: The <code>dow</code> variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable, and then run <code>anova()</code> on that model, and R will compare it to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you’re fitting.</li>
-<li>Try using <code>glm()</code> to run a Poisson regression of respiratory deaths (<code>resp</code>) on temperature during summer days. Start by creating a subset with just summer days called <code>summer</code>. (Hint: Use the <code>month</code> variable to do this– just pull out the subset where the month is 6, 7, or 8, for June, July, and August.) Try to write out the regression equation for the model you’re fitting.</li>
-<li>The coefficient for the temperature variable in this model is our best estimate (based on this model) of the <strong>log relative risk</strong> for a one degree Celcius increase in temperature. What is the <strong>relative risk</strong> associated with a one degree Celsius increase?</li>
-</ul>
-<div id="example-r-code-14" class="section level4">
-<h4><span class="header-section-number">7.6.3.1</span> Example R code:</h4>
-<p>Install and load the <code>dlnm</code> package and then load the <code>chicagoNMMAPS</code> data. Change the name of the dataframe to <code>chic</code>, so it will be shorter to call for the rest of your work.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;dlnm&quot;)</span>
-<span class="kw">library</span>(dlnm)
-<span class="kw">data</span>(<span class="st">&quot;chicagoNMMAPS&quot;</span>)
-chic &lt;-<span class="st"> </span>chicagoNMMAPS</code></pre></div>
-<p>Fit a linear regression of <code>dptp</code> on <code>temp</code> and save as the object <code>mod_1</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
-mod_<span class="dv">1</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = dptp ~ temp, data = chic)
-## 
-## Coefficients:
-## (Intercept)         temp  
-##      24.025        1.621</code></pre>
-<p>Use <code>summary()</code> to check out a bit more about the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = dptp ~ temp, data = chic)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -24.3093  -3.7470   0.4687   4.0738  18.6518 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 24.024869   0.112933   212.7   &lt;2e-16 ***
-## temp         1.620650   0.007631   212.4   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 5.899 on 5112 degrees of freedom
-## Multiple R-squared:  0.8982, Adjusted R-squared:  0.8982 
-## F-statistic: 4.511e+04 on 1 and 5112 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Now try using functions from the <code>broom</code> package to pull the same information about the model, but in a “tidy” format. First, use <code>glance</code> to get some summary information about the model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glance</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<pre><code>##   r.squared adj.r.squared    sigma statistic p.value df   logLik      AIC
-## 1 0.8982088     0.8981888 5.899475  45108.43       0  2 -16332.1 32670.21
-##        BIC deviance df.residual
-## 1 32689.82 177917.1        5112</code></pre>
-<p>Next, use the <code>tidy</code> function to get model coefficients in a tidy format:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<pre><code>##          term estimate   std.error statistic p.value
-## 1 (Intercept) 24.02487 0.112933468  212.7347       0
-## 2        temp  1.62065 0.007630629  212.3875       0</code></pre>
-<p>Use the <code>tidy</code> function to add model output (e.g., predictions, residuals) to the original dataframe of observed temperatures and dew point temperatures:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
-<pre><code>## # A tibble: 3 x 9
-##     dptp       temp  .fitted   .se.fit   .resid         .hat   .sigma
-##    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-## 1 31.500 -0.2777778 23.57469 0.1143915 7.925312 0.0003759766 5.899010
-## 2 29.875  0.5555556 24.92523 0.1100819 4.949770 0.0003481812 5.899646
-## 3 27.375  0.5555556 24.92523 0.1100819 2.449770 0.0003481812 5.899953
-## # ... with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
-<p>Use the output from <code>augment</code> to create a plot of the original data, with the predicted values used to plot a fitted line.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(mod_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> .fitted), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-453-1.png" width="480" /></p>
-<p>There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a 1.6 unit increase in dewpoint temperature. The p-value for the temperature coefficient is &lt;2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.</p>
-<p>Plot these two variables and add in the regression line from the model (note: I’ve used the <code>color</code> option to make the color of the points gray). Use the values from <code>coef</code> with a <code>geom_abline</code> to add the regression line for the model you fit.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_coefs &lt;-<span class="st"> </span><span class="kw">coef</span>(mod_<span class="dv">1</span>)
-<span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">y =</span> dptp)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> mod_coefs[<span class="dv">1</span>], <span class="dt">slope =</span> mod_coefs[<span class="dv">2</span>]))</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-454-1.png" width="672" /></p>
-<p>Plot some plots to check model assumptions for the model you fit using the <code>plot()</code> function on your model object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># Set to four plots per panel -- 2 rows, 2 columns</span>
-<span class="kw">plot</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># Reset to one plot per panel</span></code></pre></div>
-<p>Try fitting the model using <code>glm()</code>. Call it <code>mod_1a</code>. Compare the coefficients for the two models. You can use the <code>coef()</code> function on an <code>lm</code> or <code>glm</code> object to pull out just the model coefficients.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_1a &lt;-<span class="st"> </span><span class="kw">glm</span>(dptp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> chic)
-
-<span class="kw">coef</span>(mod_<span class="dv">1</span>)</code></pre></div>
-<pre><code>## (Intercept)        temp 
-##    24.02487     1.62065</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_1a)</code></pre></div>
-<pre><code>## (Intercept)        temp 
-##    24.02487     1.62065</code></pre>
-<p>The results from the two models are identical.</p>
-<p>Fit a model of <span class="math inline">\(PM_{10}\)</span> regressed on day of week, where day of week is a factor.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(pm10 <span class="op">~</span><span class="st"> </span>dow, <span class="dt">data =</span> chic)
-<span class="kw">summary</span>(mod_<span class="dv">2</span>)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = pm10 ~ dow, data = chic)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -39.05 -12.55  -3.34   8.80 328.66 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   27.5217     0.7303  37.684  &lt; 2e-16 ***
-## dowMonday      6.1322     1.0340   5.931 3.22e-09 ***
-## dowTuesday     6.7954     1.0269   6.617 4.05e-11 ***
-## dowWednesday   8.4768     1.0262   8.261  &lt; 2e-16 ***
-## dowThursday    8.8047     1.0240   8.598  &lt; 2e-16 ***
-## dowFriday      9.4816     1.0262   9.240  &lt; 2e-16 ***
-## dowSaturday    3.6602     1.0269   3.564 0.000368 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.07 on 4856 degrees of freedom
-##   (251 observations deleted due to missingness)
-## Multiple R-squared:  0.02588,    Adjusted R-squared:  0.02467 
-## F-statistic:  21.5 on 6 and 4856 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Use the <code>anova()</code> command to compare this model to a model with only an intercept (i.e., one that only fits a global mean and uses that as the expected value for all of the observations).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod_<span class="dv">2</span>)</code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: pm10
-##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## dow          6   46924  7820.6    21.5 &lt; 2.2e-16 ***
-## Residuals 4856 1766407   363.8                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>The p-value for an ANOVA of the model with day-of-week coefficients versus the model that just has an intercept is &lt; 2.2e-16. This is well below 0.05, which suggests that day-of-week is associated with PM10 concentration, as a model that includes day-of-week does a much better job of explaining variation in PM10 than a model without it does. (Note, too, that the F value and Pr(&gt;F) for the <code>anova()</code> call are identical to the F-statistic information given in the <code>summary()</code> of the model object. This will always be true when you’re using <code>anova()</code> to compare a model to a model with just an intercept.)</p>
-<p>Use a boxplot to visually compare PM10 by day of week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-459-1.png" width="576" /></p>
-<p>Now try the same plot, but try using the <code>ylim =</code> option to change the limits on the y-axis for the graph, so you can get a better idea of the pattern by day of week (some of the extreme values are very high, which makes it hard to compare by eye when the y-axis extends to include them all).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(chic, <span class="kw">aes</span>(<span class="dt">x =</span> dow, <span class="dt">y =</span> pm10)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</code></pre></div>
-<pre><code>## Warning: Removed 292 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-460-1.png" width="576" /></p>
-<p>Create a subset called <code>summer</code> with just the summer days:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summer &lt;-<span class="st"> </span>chic <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(month <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">8</span>)</code></pre></div>
-<p>Use <code>glm()</code> to fit a Poisson model of respiratory deaths regressed on temperature. Since you want to fit a Poisson model, use the option <code>family = poisson(link = &quot;log&quot;)</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(resp <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> summer,
-             <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
-<span class="kw">summary</span>(mod_<span class="dv">3</span>)</code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = resp ~ temp, family = poisson(link = &quot;log&quot;), data = summer)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -3.9755  -0.7162  -0.1807   0.6927   3.6555  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) 1.910317   0.058373  32.726   &lt;2e-16 ***
-## temp        0.006137   0.002581   2.378   0.0174 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for poisson family taken to be 1)
-## 
-##     Null deviance: 1499.4  on 1287  degrees of freedom
-## Residual deviance: 1493.8  on 1286  degrees of freedom
-## AIC: 6425.4
-## 
-## Number of Fisher Scoring iterations: 4</code></pre>
-<p>Use the fitted model coefficient to determine the relative risk for a one degree Celcius increase in temperature. First, remember that you can use the <code>coef()</code> function to read out the model coefficients. The second of these is the value for the temperature coefficient. That means that you can use indexing (<code>[2]</code>) to get just that value. That’s the log relative risk; take the exponent to get the relative risk.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_<span class="dv">3</span>)</code></pre></div>
-<pre><code>## (Intercept)        temp 
-## 1.910316958 0.006136743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod_<span class="dv">3</span>)[<span class="dv">2</span>]</code></pre></div>
-<pre><code>##        temp 
-## 0.006136743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(mod_<span class="dv">3</span>)[<span class="dv">2</span>])</code></pre></div>
-<pre><code>##     temp 
-## 1.006156</code></pre>
 
 </div>
 </div>
