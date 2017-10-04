@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x50ec390>
+## <bytecode: 0x402edd0>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 1.24\\
+a & -0.24\\
 \hline
-b & 1.74\\
+b & 0.35\\
 \hline
-c & 1.25\\
+c & 0.07\\
 \hline
 \end{tabular}
 \end{table}
@@ -10742,9 +10742,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.1049553  3.0127336 -4.671831
-## 2 2009-01-02 -0.5997944 -0.3763027 -1.851771
-## 3 2009-01-03 -0.6047167  2.9451509  7.737019
+## 1 2009-01-01 1.28260730 -1.3199903 -1.949264
+## 2 2009-01-02 0.07695762 -3.8703575  8.541657
+## 3 2009-01-03 0.77944614  0.4650015 -7.618674
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10762,9 +10762,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.1049553  3.0127336 -4.671831
-## 2 2009-01-02 -0.5997944 -0.3763027 -1.851771
-## 3 2009-01-03 -0.6047167  2.9451509  7.737019
+## 1 2009-01-01 1.28260730 -1.3199903 -1.949264
+## 2 2009-01-02 0.07695762 -3.8703575  8.541657
+## 3 2009-01-03 0.77944614  0.4650015 -7.618674
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10780,12 +10780,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X  0.1049553
-## 2 2009-01-02     X -0.5997944
-## 3 2009-01-03     X -0.6047167
-## 4 2009-01-04     X  1.1106183
-## 5 2009-01-05     X  1.4445577
+##         time stock       price
+## 1 2009-01-01     X  1.28260730
+## 2 2009-01-02     X  0.07695762
+## 3 2009-01-03     X  0.77944614
+## 4 2009-01-04     X -1.63777998
+## 5 2009-01-05     X  1.08048884
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10799,12 +10799,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X  0.1049553
-## 2 2009-01-02     X -0.5997944
-## 3 2009-01-03     X -0.6047167
-## 4 2009-01-04     X  1.1106183
-## 5 2009-01-05     X  1.4445577
+##         time stock       price
+## 1 2009-01-01     X  1.28260730
+## 2 2009-01-02     X  0.07695762
+## 3 2009-01-03     X  0.77944614
+## 4 2009-01-04     X -1.63777998
+## 5 2009-01-05     X  1.08048884
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01  0.1049553  3.0127336 -4.671831
-## 2 2009-01-02 -0.5997944 -0.3763027 -1.851771
-## 3 2009-01-03 -0.6047167  2.9451509  7.737019
-## 4 2009-01-04  1.1106183  1.9379046  1.563528
-## 5 2009-01-05  1.4445577 -1.8350508  8.391148
+##         time           X          Y         Z
+## 1 2009-01-01  1.28260730 -1.3199903 -1.949264
+## 2 2009-01-02  0.07695762 -3.8703575  8.541657
+## 3 2009-01-03  0.77944614  0.4650015 -7.618674
+## 4 2009-01-04 -1.63777998 -2.0426890 -6.662613
+## 5 2009-01-05  1.08048884 -0.6163751  2.245918
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N      mean        sd
-##   <chr> <int>     <dbl>     <dbl>
-## 1     X    10 0.2093704 0.9600857
-## 2     Y    10 0.6508357 2.5249447
-## 3     Z    10 2.1228166 4.6653409
+##   stock     N       mean       sd
+##   <chr> <int>      <dbl>    <dbl>
+## 1     X    10  0.1684357 1.071201
+## 2     Y    10 -0.6765352 1.661965
+## 3     Z    10 -1.1826218 4.919073
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.21 (0.96) & 0.65 (2.52) & 2.12 (4.67)\\
+Mean (Std.dev.) & 0.17 (1.07) & -0.68 (1.66) & -1.18 (4.92)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -13730,11 +13730,10 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data-1}
   format) to your computer. What is the structure of how this data is
   saved (e.g., directory structure, file structure)?
 \item
-  On the
-  \href{http://www.nhtsa.gov/Data/Fatality-Analysis-Reporting-System-(FARS)}{FARS
-  web page}, find the documentation describing this raw data. Look
-  through both this documentation and the raw files you downloaded to
-  figure out what information is included in the data.
+  On the \href{http://www.nhtsa.gov/FARS}{FARS web page}, find the
+  documentation describing this raw data. Look through both this
+  documentation and the raw files you downloaded to figure out what
+  information is included in the data.
 \item
   Read the \texttt{accident.csv} file for 2015 into R (this is one of
   the files you'll get if you download the raw data for 2015). Use the
