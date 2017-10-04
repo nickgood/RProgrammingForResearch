@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-10-02}
+\date{2017-10-04}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## It [the effort of learning how to use R] is the price paid, just as the
-## dollars or euros for a commercial package would be. For that price, I've
-## learnt a great deal - and not only about R. And I shall remember it when I
-## next have to find a heavyweight solution for a big problem presented by a
-## small charitable client with an invisible budget. It's a huge,
-## awe-inspiring package - easier to perceive as such because the power is
-## not hidden beneath a cosmetic veneer.
-##    -- Felix Grant (in an article about free statistics software)
-##       Scientific Computing World (November 2004)
+## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
+## needed 10 times as much memory as your dataset. [...] R (and current
+## versions of S-PLUS) are more frugal than S-PLUS was back then.
+## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
+## current prices of R, to work out the break-even point at which it's better
+## to buy SAS! :-) Without making any calculations, I can't see how SAS can
+## compete with the price of 4G of RAM.
+##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
+##       R-SIG-Finance (December 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x42ffd80>
+## <bytecode: 0x50ec390>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.43\\
+a & 1.24\\
 \hline
-b & 0.95\\
+b & 1.74\\
 \hline
-c & -0.97\\
+c & 1.25\\
 \hline
 \end{tabular}
 \end{table}
@@ -10742,9 +10742,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.5867770 0.07607449  3.380947
-## 2 2009-01-02  0.9828584 1.72913524 -7.232307
-## 3 2009-01-03 -1.5327947 1.39674068  8.649832
+## 1 2009-01-01  0.1049553  3.0127336 -4.671831
+## 2 2009-01-02 -0.5997944 -0.3763027 -1.851771
+## 3 2009-01-03 -0.6047167  2.9451509  7.737019
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10762,9 +10762,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.5867770 0.07607449  3.380947
-## 2 2009-01-02  0.9828584 1.72913524 -7.232307
-## 3 2009-01-03 -1.5327947 1.39674068  8.649832
+## 1 2009-01-01  0.1049553  3.0127336 -4.671831
+## 2 2009-01-02 -0.5997944 -0.3763027 -1.851771
+## 3 2009-01-03 -0.6047167  2.9451509  7.737019
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5867770
-## 2 2009-01-02     X  0.9828584
-## 3 2009-01-03     X -1.5327947
-## 4 2009-01-04     X  1.7181519
-## 5 2009-01-05     X -0.9209012
+## 1 2009-01-01     X  0.1049553
+## 2 2009-01-02     X -0.5997944
+## 3 2009-01-03     X -0.6047167
+## 4 2009-01-04     X  1.1106183
+## 5 2009-01-05     X  1.4445577
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.5867770
-## 2 2009-01-02     X  0.9828584
-## 3 2009-01-03     X -1.5327947
-## 4 2009-01-04     X  1.7181519
-## 5 2009-01-05     X -0.9209012
+## 1 2009-01-01     X  0.1049553
+## 2 2009-01-02     X -0.5997944
+## 3 2009-01-03     X -0.6047167
+## 4 2009-01-04     X  1.1106183
+## 5 2009-01-05     X  1.4445577
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X           Y         Z
-## 1 2009-01-01  0.5867770  0.07607449  3.380947
-## 2 2009-01-02  0.9828584  1.72913524 -7.232307
-## 3 2009-01-03 -1.5327947  1.39674068  8.649832
-## 4 2009-01-04  1.7181519 -0.16760066 -4.797661
-## 5 2009-01-05 -0.9209012 -0.13377060 -2.529436
+##         time          X          Y         Z
+## 1 2009-01-01  0.1049553  3.0127336 -4.671831
+## 2 2009-01-02 -0.5997944 -0.3763027 -1.851771
+## 3 2009-01-03 -0.6047167  2.9451509  7.737019
+## 4 2009-01-04  1.1106183  1.9379046  1.563528
+## 5 2009-01-05  1.4445577 -1.8350508  8.391148
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N        mean        sd
-##   <chr> <int>       <dbl>     <dbl>
-## 1     X    10 -0.07718312 0.9673994
-## 2     Y    10  0.65157007 1.7006071
-## 3     Z    10  0.11207326 4.7501075
+##   stock     N      mean        sd
+##   <chr> <int>     <dbl>     <dbl>
+## 1     X    10 0.2093704 0.9600857
+## 2     Y    10 0.6508357 2.5249447
+## 3     Z    10 2.1228166 4.6653409
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.08 (0.97) & 0.65 (1.7) & 0.11 (4.75)\\
+Mean (Std.dev.) & 0.21 (0.96) & 0.65 (2.52) & 2.12 (4.67)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -13792,25 +13792,28 @@ Here is example code for the section above:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-460-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/check12-1} \end{center}
 
-\subsection{Using a loop to create state-specific
-plots}\label{using-a-loop-to-create-state-specific-plots}
+\subsection{\texorpdfstring{Using a function and \texttt{purrr} to
+create state-specific
+plots}{Using a function and purrr to create state-specific plots}}\label{using-a-function-and-purrr-to-create-state-specific-plots}
 
-Next, you will write a loop to write a four-page pdf file with
-state-specific plots for the states of Colorado, Texas, California, and
-New York.
+Next, you will write a function to create state-specific plots from this
+data, then use it to create plots for the states of Colorado, Texas,
+California, and New York.
 
 \begin{itemize}
 \tightlist
 \item
-  The data has a column called \texttt{STATE}, but it gives state as a
-  one- or two-digit code, rather than by name. These codes are the state
-  Federal Information Processing Standard (FIPS) codes. A dataset with
-  state names and FIPS codes is available at
+  The FARS data includes a column called \texttt{STATE}, but it gives
+  state as a one- or two-digit code, rather than by name. These codes
+  are the state Federal Information Processing Standard (FIPS) codes. A
+  dataset with state names and FIPS codes is available at
   \url{http://www2.census.gov/geo/docs/reference/state.txt}. Read that
   data into an R object called \texttt{state\_fips} and clean it so the
-  first few lines look like this:
+  first few lines look like this (hint: to change the \texttt{state}
+  column to an integer class, you can use the function
+  \texttt{as.integer}):
 \end{itemize}
 
 \begin{verbatim}
@@ -13879,71 +13882,475 @@ New York.
 \begin{itemize}
 \tightlist
 \item
-  Write the code to create boxplots for Colorado of the distribution of
+  Summarize the data to get the total number of accidents in Colorado in
+  each month, separated by (1) daytime and nighttime and (2) related or
+  unrelated to drunk driving (in other words, in January, how many
+  daytime accidents were there that were unrelated to drunk driving? How
+  many nighttime accidents that were unrelated to drunk driving? etc.).
+  The summarized data should look like this:
+\end{itemize}
+
+\begin{verbatim}
+## # A tibble: 48 x 4
+## # Groups:   daytime, month [?]
+##    daytime month drunk_dr accidents
+##      <lgl> <dbl>    <lgl>     <int>
+##  1   FALSE     1    FALSE         9
+##  2   FALSE     1     TRUE         6
+##  3   FALSE     2    FALSE         6
+##  4   FALSE     2     TRUE         3
+##  5   FALSE     3    FALSE         5
+##  6   FALSE     3     TRUE        11
+##  7   FALSE     4    FALSE        11
+##  8   FALSE     4     TRUE        11
+##  9   FALSE     5    FALSE         9
+## 10   FALSE     5     TRUE         6
+## # ... with 38 more rows
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Write a function that inputs a dataframe (\texttt{df}) and outputs
+  this type of summary dataframe (like the one just created for
+  Colorado) for whatever data is in the input dataframe. Below are some
+  examples of how this function should work:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{colorado_data <-}\StringTok{ }\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ "Colorado"}\NormalTok{)}
+ 
+\NormalTok{colorado_summary <-}\StringTok{ }\KeywordTok{summarize_fars}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ colorado_data)}
+\KeywordTok{head}\NormalTok{(colorado_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+## # Groups:   daytime, month [3]
+##   daytime month drunk_dr accidents
+##     <lgl> <dbl>    <lgl>     <int>
+## 1   FALSE     1    FALSE         9
+## 2   FALSE     1     TRUE         6
+## 3   FALSE     2    FALSE         6
+## 4   FALSE     2     TRUE         3
+## 5   FALSE     3    FALSE         5
+## 6   FALSE     3     TRUE        11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Note also that you can pipe with the new function:}
+\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ "Texas"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize_fars}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tbl_df}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##   daytime month drunk_dr accidents
+##     <lgl> <dbl>    <lgl>     <int>
+## 1   FALSE     1    FALSE        77
+## 2   FALSE     1     TRUE        52
+## 3   FALSE     2    FALSE        74
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Once you've written the function, see if you can figure out what the
+  following code does. How does the new function fit in? (Note: We could
+  have achieved the same thing with basic \texttt{dplyr} code, but this
+  framework will allow you to ultimately do a lot more than you can with
+  \texttt{dplyr}.)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(purrr)}
+
+\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Texas"}\NormalTok{, }\StringTok{"California"}\NormalTok{, }\StringTok{"New York"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(state_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{nest}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{summary =} \KeywordTok{map}\NormalTok{(data, summarize_fars)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{data) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{unnest}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Write code to create boxplots for Colorado of the distribution of
   total accidents within each month. Create separate boxplots for
   daytime and nighttime accidents, and facet by whether the accident was
   related to drunk driving. The plot should look like the plot below.
 \end{itemize}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-464-1} \end{center}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/check9-1} \end{center}
 
 \begin{itemize}
 \tightlist
 \item
-  Write a loop to create a plot like the one you just made for Colorado
-  for four different states -- Colorado, Texas, California, and New
-  York. The code should write the plots out to a pdf, with one plot per
-  page of the pdf. (\emph{Hint}: To get a loop to print out a plot
-  created with ggplot, you must explicitly print the plot object. For
-  example, you could assign the plot to \texttt{a}, and then you would
-  run \texttt{print(a)} within your loop as the last step.)
+  Now write a function called \texttt{plot\_fars} to create a plot like
+  the one you just made for Colorado for any dataframe with the format
+  of \texttt{accident} (i.e., same number, types, and names of columns).
+  Test it on subsets of the data for several states (Colorado, Texas,
+  California, and New York). (\emph{Hint}: To get a function to print
+  out a plot created with ggplot, you will need to explicitly print the
+  output from your function. See the examples of using the function
+  below.)
 \end{itemize}
 
-\subsubsection{Example R code}\label{example-r-code-15}
-
-Here is example R code for creating state-specific plots using a loop:
+Here are some examples of what should happen when you run this function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{state_fips <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"http://www2.census.gov/geo/docs/reference/state.txt"}\NormalTok{,}
-                         \DataTypeTok{delim =} \StringTok{"|"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =}\NormalTok{ STATE,}
-         \DataTypeTok{state_name =}\NormalTok{ STATE_NAME) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(state, state_name) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state =} \KeywordTok{as.integer}\NormalTok{(state))}
+\NormalTok{co_plot <-}\StringTok{ }\KeywordTok{plot_fars}\NormalTok{(}\DataTypeTok{df =} \KeywordTok{filter}\NormalTok{(accident, state_name }\OperatorTok{==}\StringTok{ "Colorado"}\NormalTok{))}
+\KeywordTok{print}\NormalTok{(co_plot)}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{accident <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/accident.csv"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(STATE, DAY}\OperatorTok{:}\NormalTok{MINUTE, DRUNK_DR) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{state =}\NormalTok{ STATE, }
-         \DataTypeTok{drunk_dr =}\NormalTok{ DRUNK_DR) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{DAY_WEEK) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{unite}\NormalTok{(date, DAY}\OperatorTok{:}\NormalTok{MINUTE, }\DataTypeTok{sep =} \StringTok{"-"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{dmy_hm}\NormalTok{(date), }
-         \DataTypeTok{drunk_dr =}\NormalTok{ drunk_dr }\OperatorTok{>=}\StringTok{ }\DecValTok{1}\NormalTok{,}
-         \DataTypeTok{daytime =} \KeywordTok{hour}\NormalTok{(date) }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{7}\OperatorTok{:}\DecValTok{19}\NormalTok{),}
-         \DataTypeTok{month =} \KeywordTok{month}\NormalTok{(date)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(date)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{left_join}\NormalTok{(state_fips, }\DataTypeTok{by =} \StringTok{"state"}\NormalTok{)}
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-465-1} \end{center}
 
-\KeywordTok{pdf}\NormalTok{(}\StringTok{"StateFARSPlots.pdf"}\NormalTok{, }\DataTypeTok{height =} \FloatTok{3.5}\NormalTok{, }\DataTypeTok{width =} \DecValTok{7}\NormalTok{)}
-\NormalTok{state_list <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Texas"}\NormalTok{, }\StringTok{"California"}\NormalTok{, }\StringTok{"New York"}\NormalTok{)}
-\ControlFlowTok{for}\NormalTok{(which_state }\ControlFlowTok{in}\NormalTok{ state_list)\{}
-\NormalTok{  a <-accident }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ }\NormalTok{which_state) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr, }\DataTypeTok{labels =} 
-                               \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
-                                 \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
-           \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) }\OperatorTok{%>%}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ "Texas"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{plot_fars}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/unnamed-chunk-465-2} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Once you have written this function, what happens when you run the
+  following code?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(purrr)}
+
+\NormalTok{state_plots <-}\StringTok{ }\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Texas"}\NormalTok{, }\StringTok{"California"}\NormalTok{, }\StringTok{"New York"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(state_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{nest}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{plots =} \KeywordTok{map}\NormalTok{(data, plot_fars)) }
+
+\KeywordTok{class}\NormalTok{(state_plots[[}\StringTok{"plots"}\NormalTok{]])}
+\KeywordTok{class}\NormalTok{(state_plots[[}\StringTok{"plots"}\NormalTok{]][[}\DecValTok{1}\NormalTok{]])}
+\KeywordTok{print}\NormalTok{(state_plots[[}\StringTok{"plots"}\NormalTok{]][[}\DecValTok{1}\NormalTok{]])}\OperatorTok{$}\NormalTok{plot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Install the \texttt{cowplot} package (this is a \texttt{ggplot2}
+  extension) and then try running the following code. What happens when
+  you run this code?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_grid}\NormalTok{(}\DataTypeTok{plotlist =}\NormalTok{ state_plots[[}\StringTok{"plots"}\NormalTok{]], }
+          \DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{labels =} \StringTok{"AUTO"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Example R code}\label{example-r-code-15}
+
+Here is the code to read the dataset with state names and FIPS codes at
+\url{http://www2.census.gov/geo/docs/reference/state.txt} into an R
+object called \texttt{state\_fips} and clean it so the first few lines:
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   state state_name
+##   <int>      <chr>
+## 1     1    Alabama
+## 2     2     Alaska
+## 3     4    Arizona
+## 4     5   Arkansas
+## 5     6 California
+\end{verbatim}
+
+Note that you can read this file directly from the website using
+\texttt{read\_delim}.
+
+Read the 2015 FARS data into an R object named \texttt{accident}. Use
+all the date and time information to create a column named \texttt{date}
+with the date and time of the accident. Include information on whether
+the accident was related to drunk driving (FALSE if there were 0 drunk
+drivers, TRUE if there were one or more), and create columns that gives
+whether the accident was during the day (7 AM to 7 PM) or not as well as
+the month of the accident (for this last column, you can either retain
+it from the original data or recalculate it based on the new
+\texttt{date} variable). Filter out any values where the date-time does
+not render (i.e., \texttt{date} is a missing value). You can use the
+following code to do all this:
+
+\begin{verbatim}
+## # A tibble: 5 x 5
+##   state                date drunk_dr daytime month
+##   <int>              <dttm>    <lgl>   <lgl> <dbl>
+## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1
+## 2     1 2015-01-01 22:13:00    FALSE   FALSE     1
+## 3     1 2015-01-01 01:25:00     TRUE   FALSE     1
+## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1
+## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1
+\end{verbatim}
+
+A few notes:
+
+\begin{itemize}
+\tightlist
+\item
+  Notice that \texttt{select} is using the \texttt{:} operator to pick
+  several columns in a row.
+\item
+  Some of the column names in all caps are changed to lower case to make
+  them easier to work with.
+\item
+  The \texttt{DAY\_WEEK} column is in the middle of other date columns,
+  but if you remove it, you can use \texttt{unite} with \texttt{:} to
+  join together all the date-time columns and then use
+  \texttt{lubridate} to change this column into the right class.
+\item
+  A logical operator is used inside a \texttt{mutate} call to create a
+  column of whether the accident involved drunk driving (one or more
+  drunk drivers involved)
+\item
+  The \texttt{hour} function from \texttt{lubridate} is used to check if
+  the time of the accident falls in ``daytime'' or not
+\item
+  Some of the accidents are missing some date information. A
+  \texttt{filter} is used to filter that out.
+\end{itemize}
+
+Join the information from \texttt{state\_fips} into the
+\texttt{accident} dataframe. There may be a few locations in the
+\texttt{state\_fips} dataframe that are not included in the
+\texttt{accident} dataframe (e.g., Virgin Islands), so when you join
+keep all observations in \texttt{accident} but only the observations in
+\texttt{state\_fips} that match at least one row of \texttt{accident}.
+You can use the following code for this:
+
+\begin{verbatim}
+## # A tibble: 5 x 6
+##   state                date drunk_dr daytime month state_name
+##   <int>              <dttm>    <lgl>   <lgl> <dbl>      <chr>
+## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1    Alabama
+## 2     1 2015-01-01 22:13:00    FALSE   FALSE     1    Alabama
+## 3     1 2015-01-01 01:25:00     TRUE   FALSE     1    Alabama
+## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1    Alabama
+## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1    Alabama
+\end{verbatim}
+
+Summarize the data to get the total number of accidents, separated by
+(1) daytime and nighttime and (2) related or unrelated to drunk driving,
+in each month (in other words, in January, how many daytime accidents
+were there that were unrelated to drunk driving? How many nighttime
+accidents that were unrelated to drunk driving? etc.). You can do that
+with this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accident }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ "Colorado"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 48 x 4
+## # Groups:   daytime, month [?]
+##    daytime month drunk_dr accidents
+##      <lgl> <dbl>    <lgl>     <int>
+##  1   FALSE     1    FALSE         9
+##  2   FALSE     1     TRUE         6
+##  3   FALSE     2    FALSE         6
+##  4   FALSE     2     TRUE         3
+##  5   FALSE     3    FALSE         5
+##  6   FALSE     3     TRUE        11
+##  7   FALSE     4    FALSE        11
+##  8   FALSE     4     TRUE        11
+##  9   FALSE     5    FALSE         9
+## 10   FALSE     5     TRUE         6
+## # ... with 38 more rows
+\end{verbatim}
+
+As a note, you may want to create a table (for example, for a report)
+from the data at this stage. You could use \texttt{unite} then
+\texttt{spread} to do this pretty easily:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accident }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ "Colorado"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{)),}
+         \DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr, }
+                           \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Not drunk driving"}\NormalTok{, }\StringTok{"Drunk driving"}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{unite}\NormalTok{(category, daytime, drunk_dr, }\DataTypeTok{sep =} \StringTok{" / "}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ category, }\DataTypeTok{value =}\NormalTok{ accidents) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{r|r|r|r|r}
+\hline
+month & Daytime / Drunk driving & Daytime / Not drunk driving & Nighttime / Drunk driving & Nighttime / Not drunk driving\\
+\hline
+1 & 7 & 20 & 6 & 9\\
+\hline
+2 & 1 & 22 & 3 & 6\\
+\hline
+3 & 7 & 12 & 11 & 5\\
+\hline
+4 & 6 & 19 & 11 & 11\\
+\hline
+5 & 4 & 20 & 6 & 9\\
+\hline
+6 & 8 & 22 & 8 & 5\\
+\hline
+7 & 4 & 26 & 12 & 6\\
+\hline
+8 & 9 & 14 & 13 & 9\\
+\hline
+9 & 10 & 38 & 9 & 14\\
+\hline
+10 & 5 & 26 & 8 & 5\\
+\hline
+11 & 1 & 13 & 10 & 8\\
+\hline
+12 & 3 & 15 & 5 & 5\\
+\hline
+\end{tabular}
+
+Write a function that inputs a dataframe (\texttt{df}) and outputs this
+type of summary dataframe (like the one just created for Colorado). You
+can do that with the following code. Note that, because it inputs a
+dataframe and outputs a dataframe, you can include it in a pipeline.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{summarize_fars <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df)\{}
+\NormalTok{  df }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ daytime, }\DataTypeTok{y =}\NormalTok{ accidents, }\DataTypeTok{group =}\NormalTok{ daytime)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, which_state, }\StringTok{"in 2015"}\NormalTok{))}
-  \KeywordTok{print}\NormalTok{(a)}
+\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{())}
 \NormalTok{\}}
-\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Once you've written the function, see if you can figure out what the
+following code does. This code limits the data to data from four states
+and then applies the \texttt{summarize\_fars} function that you just
+wrote to the subset of data from each state. Finally, since we
+\texttt{nest} to do that, the pipeline includes some lines to
+\texttt{unnest} the data to get back to an unnested data frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(purrr)}
+
+\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Texas"}\NormalTok{, }\StringTok{"California"}\NormalTok{, }\StringTok{"New York"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(state_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{nest}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{summary =} \KeywordTok{map}\NormalTok{(data, summarize_fars)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{data) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{unnest}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+Write code to create boxplots for Colorado of the distribution of total
+accidents within each month. Create separate boxplots for daytime and
+nighttime accidents, and facet by whether the accident was related to
+drunk driving. You can do that with this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accident }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{==}\StringTok{ "Colorado"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{drunk_dr =} \KeywordTok{factor}\NormalTok{(drunk_dr, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Unrelated to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{,}
+                                                \StringTok{"Related to}\CharTok{\textbackslash{}n}\StringTok{drunk driving"}\NormalTok{)),}
+         \DataTypeTok{daytime =} \KeywordTok{factor}\NormalTok{(daytime, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Nighttime"}\NormalTok{, }\StringTok{"Daytime"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(daytime, month, drunk_dr) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{accidents =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ daytime, }\DataTypeTok{y =}\NormalTok{ accidents, }\DataTypeTok{group =}\NormalTok{ daytime)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{drunk_dr, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Time of day"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of monthly accidents"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Fatal accidents in"}\NormalTok{, }\StringTok{"Colorado"}\NormalTok{, }\StringTok{"in 2015"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/check3-1} \end{center}
+
+Now write a function called \texttt{plot\_fars} to create a plot like
+the one you just made for Colorado for any dataframe with the format of
+\texttt{accident} (i.e., same number, types, and names of columns). Test
+it on subsets of the data for several states (Colorado, Texas,
+California, and New York). (\emph{Hint}: To get a function to print out
+a plot created with ggplot, you must explicitly print the plot object.
+For example, you could assign the plot to \texttt{fars\_plot}, and then
+you would run \texttt{print(fars\_plot)} within your loop as the last
+step.)
+
+Notice how similar this function is to the code you wrote in the
+previous step.
+
+Once you have written this function, what happens when you run the
+following code? The following code applies this function to the subset
+of data from each of four states. The output (\texttt{state\_plots}) is
+a nested dataframe, where the new \texttt{plots} column is a list of
+\texttt{ggplot} objects. If you run \texttt{print} on this list, it will
+print each of these plots out separately (use the arrow buttons in the
+``Plots'' Pane in RStudio to browse through these plots).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(purrr)}
+
+\NormalTok{state_plots <-}\StringTok{ }\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(state_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Texas"}\NormalTok{, }\StringTok{"California"}\NormalTok{, }\StringTok{"New York"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(state_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{nest}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{plots =} \KeywordTok{map}\NormalTok{(data, plot_fars)) }
+
+\NormalTok{state_plots}
+\KeywordTok{class}\NormalTok{(state_plots)}
+\KeywordTok{class}\NormalTok{(state_plots[[}\StringTok{"plots"}\NormalTok{]])}
+\KeywordTok{class}\NormalTok{(state_plots[[}\StringTok{"plots"}\NormalTok{]][[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{state_plots[[}\StringTok{"plots"}\NormalTok{]][[}\DecValTok{1}\NormalTok{]]}\OperatorTok{$}\NormalTok{plot}
+\end{Highlighting}
+\end{Shaded}
+
+Install the \texttt{cowplot} package (this is a \texttt{ggplot2}
+extension) and then try running the following code. What happens? The
+\texttt{plot\_grid} function, if you input a list with \texttt{ggplot}
+objects using the \texttt{plotlist} argument, will print all the plots
+out on the same page.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(cowplot)}
+\KeywordTok{plot_grid}\NormalTok{(}\DataTypeTok{plotlist =}\NormalTok{ state_plots[[}\StringTok{"plots"}\NormalTok{]], }
+          \DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{labels =} \StringTok{"AUTO"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

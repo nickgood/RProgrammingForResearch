@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-10-02">
+<meta name="date" content="2017-10-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -302,7 +302,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.1" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data-1"><i class="fa fa-check"></i><b>7.6.1</b> Using regression models to explore data #1</a></li>
 <li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data-2"><i class="fa fa-check"></i><b>7.6.2</b> Using regression models to explore data #2</a></li>
 <li class="chapter" data-level="7.6.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.3</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
-<li class="chapter" data-level="7.6.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-loop-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.4</b> Using a loop to create state-specific plots</a></li>
+<li class="chapter" data-level="7.6.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-function-and-purrr-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.4</b> Using a function and <code>purrr</code> to create state-specific plots</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -1303,14 +1303,14 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;# of fatal accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_few</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-460-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="RProgrammingForResearch_files/figure-html/check12-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="using-a-loop-to-create-state-specific-plots" class="section level3">
-<h3><span class="header-section-number">7.6.4</span> Using a loop to create state-specific plots</h3>
-<p>Next, you will write a loop to write a four-page pdf file with state-specific plots for the states of Colorado, Texas, California, and New York.</p>
+<div id="using-a-function-and-purrr-to-create-state-specific-plots" class="section level3">
+<h3><span class="header-section-number">7.6.4</span> Using a function and <code>purrr</code> to create state-specific plots</h3>
+<p>Next, you will write a function to create state-specific plots from this data, then use it to create plots for the states of Colorado, Texas, California, and New York.</p>
 <ul>
-<li>The data has a column called <code>STATE</code>, but it gives state as a one- or two-digit code, rather than by name. These codes are the state Federal Information Processing Standard (FIPS) codes. A dataset with state names and FIPS codes is available at <a href="http://www2.census.gov/geo/docs/reference/state.txt" class="uri">http://www2.census.gov/geo/docs/reference/state.txt</a>. Read that data into an R object called <code>state_fips</code> and clean it so the first few lines look like this:</li>
+<li>The FARS data includes a column called <code>STATE</code>, but it gives state as a one- or two-digit code, rather than by name. These codes are the state Federal Information Processing Standard (FIPS) codes. A dataset with state names and FIPS codes is available at <a href="http://www2.census.gov/geo/docs/reference/state.txt" class="uri">http://www2.census.gov/geo/docs/reference/state.txt</a>. Read that data into an R object called <code>state_fips</code> and clean it so the first few lines look like this (hint: to change the <code>state</code> column to an integer class, you can use the function <code>as.integer</code>):</li>
 </ul>
 <pre><code>## # A tibble: 5 x 2
 ##   state state_name
@@ -1343,54 +1343,318 @@ accident <span class="op">%&gt;%</span><span class="st"> </span>
 ## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1    Alabama
 ## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1    Alabama</code></pre>
 <ul>
-<li>Write the code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. The plot should look like the plot below.</li>
+<li>Summarize the data to get the total number of accidents in Colorado in each month, separated by (1) daytime and nighttime and (2) related or unrelated to drunk driving (in other words, in January, how many daytime accidents were there that were unrelated to drunk driving? How many nighttime accidents that were unrelated to drunk driving? etc.). The summarized data should look like this:</li>
 </ul>
-<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-464-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre><code>## # A tibble: 48 x 4
+## # Groups:   daytime, month [?]
+##    daytime month drunk_dr accidents
+##      &lt;lgl&gt; &lt;dbl&gt;    &lt;lgl&gt;     &lt;int&gt;
+##  1   FALSE     1    FALSE         9
+##  2   FALSE     1     TRUE         6
+##  3   FALSE     2    FALSE         6
+##  4   FALSE     2     TRUE         3
+##  5   FALSE     3    FALSE         5
+##  6   FALSE     3     TRUE        11
+##  7   FALSE     4    FALSE        11
+##  8   FALSE     4     TRUE        11
+##  9   FALSE     5    FALSE         9
+## 10   FALSE     5     TRUE         6
+## # ... with 38 more rows</code></pre>
 <ul>
-<li>Write a loop to create a plot like the one you just made for Colorado for four different states – Colorado, Texas, California, and New York. The code should write the plots out to a pdf, with one plot per page of the pdf. (<em>Hint</em>: To get a loop to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>a</code>, and then you would run <code>print(a)</code> within your loop as the last step.)</li>
+<li>Write a function that inputs a dataframe (<code>df</code>) and outputs this type of summary dataframe (like the one just created for Colorado) for whatever data is in the input dataframe. Below are some examples of how this function should work:</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colorado_data &lt;-<span class="st"> </span>accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> &quot;Colorado&quot;</span>)
+ 
+colorado_summary &lt;-<span class="st"> </span><span class="kw">summarize_fars</span>(<span class="dt">df =</span> colorado_data)
+<span class="kw">head</span>(colorado_summary)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+## # Groups:   daytime, month [3]
+##   daytime month drunk_dr accidents
+##     &lt;lgl&gt; &lt;dbl&gt;    &lt;lgl&gt;     &lt;int&gt;
+## 1   FALSE     1    FALSE         9
+## 2   FALSE     1     TRUE         6
+## 3   FALSE     2    FALSE         6
+## 4   FALSE     2     TRUE         3
+## 5   FALSE     3    FALSE         5
+## 6   FALSE     3     TRUE        11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note also that you can pipe with the new function:</span>
+accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> &quot;Texas&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize_fars</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tbl_df</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   daytime month drunk_dr accidents
+##     &lt;lgl&gt; &lt;dbl&gt;    &lt;lgl&gt;     &lt;int&gt;
+## 1   FALSE     1    FALSE        77
+## 2   FALSE     1     TRUE        52
+## 3   FALSE     2    FALSE        74</code></pre>
+<ul>
+<li>Once you’ve written the function, see if you can figure out what the following code does. How does the new function fit in? (Note: We could have achieved the same thing with basic <code>dplyr</code> code, but this framework will allow you to ultimately do a lot more than you can with <code>dplyr</code>.)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(purrr)
+
+accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(state_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">summary =</span> <span class="kw">map</span>(data, summarize_fars)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>data) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unnest</span>() </code></pre></div>
+<ul>
+<li>Write code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. The plot should look like the plot below.</li>
+</ul>
+<p><img src="RProgrammingForResearch_files/figure-html/check9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Now write a function called <code>plot_fars</code> to create a plot like the one you just made for Colorado for any dataframe with the format of <code>accident</code> (i.e., same number, types, and names of columns). Test it on subsets of the data for several states (Colorado, Texas, California, and New York). (<em>Hint</em>: To get a function to print out a plot created with ggplot, you will need to explicitly print the output from your function. See the examples of using the function below.)</li>
+</ul>
+<p>Here are some examples of what should happen when you run this function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">co_plot &lt;-<span class="st"> </span><span class="kw">plot_fars</span>(<span class="dt">df =</span> <span class="kw">filter</span>(accident, state_name <span class="op">==</span><span class="st"> &quot;Colorado&quot;</span>))
+<span class="kw">print</span>(co_plot)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-465-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> &quot;Texas&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">plot_fars</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">print</span>()</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/unnamed-chunk-465-2.png" width="576" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Once you have written this function, what happens when you run the following code?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(purrr)
+
+state_plots &lt;-<span class="st"> </span>accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(state_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">plots =</span> <span class="kw">map</span>(data, plot_fars)) 
+
+<span class="kw">class</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]])
+<span class="kw">class</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</span>]])
+<span class="kw">print</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</span>]])<span class="op">$</span>plot</code></pre></div>
+<ul>
+<li>Install the <code>cowplot</code> package (this is a <code>ggplot2</code> extension) and then try running the following code. What happens when you run this code?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> state_plots[[<span class="st">&quot;plots&quot;</span>]], 
+          <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
 <div id="example-r-code-15" class="section level4">
 <h4><span class="header-section-number">7.6.4.1</span> Example R code</h4>
-<p>Here is example R code for creating state-specific plots using a loop:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_fips &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;http://www2.census.gov/geo/docs/reference/state.txt&quot;</span>,
-                         <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">state =</span> STATE,
-         <span class="dt">state_name =</span> STATE_NAME) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(state, state_name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">state =</span> <span class="kw">as.integer</span>(state))
-
-accident &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/accident.csv&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(STATE, DAY<span class="op">:</span>MINUTE, DRUNK_DR) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">state =</span> STATE, 
-         <span class="dt">drunk_dr =</span> DRUNK_DR) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>DAY_WEEK) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(date, DAY<span class="op">:</span>MINUTE, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">dmy_hm</span>(date), 
-         <span class="dt">drunk_dr =</span> drunk_dr <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>,
-         <span class="dt">daytime =</span> <span class="kw">hour</span>(date) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span><span class="op">:</span><span class="dv">19</span>),
-         <span class="dt">month =</span> <span class="kw">month</span>(date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">left_join</span>(state_fips, <span class="dt">by =</span> <span class="st">&quot;state&quot;</span>)
-
-<span class="kw">pdf</span>(<span class="st">&quot;StateFARSPlots.pdf&quot;</span>, <span class="dt">height =</span> <span class="fl">3.5</span>, <span class="dt">width =</span> <span class="dv">7</span>)
-state_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)
-<span class="cf">for</span>(which_state <span class="cf">in</span> state_list){
-  a &lt;-accident <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> </span>which_state) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">drunk_dr =</span> <span class="kw">factor</span>(drunk_dr, <span class="dt">labels =</span> 
-                               <span class="kw">c</span>(<span class="st">&quot;Unrelated to</span><span class="ch">\n</span><span class="st">drunk driving&quot;</span>,
-                                 <span class="st">&quot;Related to</span><span class="ch">\n</span><span class="st">drunk driving&quot;</span>)),
-           <span class="dt">daytime =</span> <span class="kw">factor</span>(daytime, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Nighttime&quot;</span>, <span class="st">&quot;Daytime&quot;</span>))) <span class="op">%&gt;%</span>
+<p>Here is the code to read the dataset with state names and FIPS codes at <a href="http://www2.census.gov/geo/docs/reference/state.txt" class="uri">http://www2.census.gov/geo/docs/reference/state.txt</a> into an R object called <code>state_fips</code> and clean it so the first few lines:</p>
+<pre><code>## # A tibble: 5 x 2
+##   state state_name
+##   &lt;int&gt;      &lt;chr&gt;
+## 1     1    Alabama
+## 2     2     Alaska
+## 3     4    Arizona
+## 4     5   Arkansas
+## 5     6 California</code></pre>
+<p>Note that you can read this file directly from the website using <code>read_delim</code>.</p>
+<p>Read the 2015 FARS data into an R object named <code>accident</code>. Use all the date and time information to create a column named <code>date</code> with the date and time of the accident. Include information on whether the accident was related to drunk driving (FALSE if there were 0 drunk drivers, TRUE if there were one or more), and create columns that gives whether the accident was during the day (7 AM to 7 PM) or not as well as the month of the accident (for this last column, you can either retain it from the original data or recalculate it based on the new <code>date</code> variable). Filter out any values where the date-time does not render (i.e., <code>date</code> is a missing value). You can use the following code to do all this:</p>
+<pre><code>## # A tibble: 5 x 5
+##   state                date drunk_dr daytime month
+##   &lt;int&gt;              &lt;dttm&gt;    &lt;lgl&gt;   &lt;lgl&gt; &lt;dbl&gt;
+## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1
+## 2     1 2015-01-01 22:13:00    FALSE   FALSE     1
+## 3     1 2015-01-01 01:25:00     TRUE   FALSE     1
+## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1
+## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1</code></pre>
+<p>A few notes:</p>
+<ul>
+<li>Notice that <code>select</code> is using the <code>:</code> operator to pick several columns in a row.</li>
+<li>Some of the column names in all caps are changed to lower case to make them easier to work with.</li>
+<li>The <code>DAY_WEEK</code> column is in the middle of other date columns, but if you remove it, you can use <code>unite</code> with <code>:</code> to join together all the date-time columns and then use <code>lubridate</code> to change this column into the right class.</li>
+<li>A logical operator is used inside a <code>mutate</code> call to create a column of whether the accident involved drunk driving (one or more drunk drivers involved)</li>
+<li>The <code>hour</code> function from <code>lubridate</code> is used to check if the time of the accident falls in “daytime” or not</li>
+<li>Some of the accidents are missing some date information. A <code>filter</code> is used to filter that out.</li>
+</ul>
+<p>Join the information from <code>state_fips</code> into the <code>accident</code> dataframe. There may be a few locations in the <code>state_fips</code> dataframe that are not included in the <code>accident</code> dataframe (e.g., Virgin Islands), so when you join keep all observations in <code>accident</code> but only the observations in <code>state_fips</code> that match at least one row of <code>accident</code>. You can use the following code for this:</p>
+<pre><code>## # A tibble: 5 x 6
+##   state                date drunk_dr daytime month state_name
+##   &lt;int&gt;              &lt;dttm&gt;    &lt;lgl&gt;   &lt;lgl&gt; &lt;dbl&gt;      &lt;chr&gt;
+## 1     1 2015-01-01 02:40:00     TRUE   FALSE     1    Alabama
+## 2     1 2015-01-01 22:13:00    FALSE   FALSE     1    Alabama
+## 3     1 2015-01-01 01:25:00     TRUE   FALSE     1    Alabama
+## 4     1 2015-01-04 00:57:00     TRUE   FALSE     1    Alabama
+## 5     1 2015-01-07 07:09:00    FALSE    TRUE     1    Alabama</code></pre>
+<p>Summarize the data to get the total number of accidents, separated by (1) daytime and nighttime and (2) related or unrelated to drunk driving, in each month (in other words, in January, how many daytime accidents were there that were unrelated to drunk driving? How many nighttime accidents that were unrelated to drunk driving? etc.). You can do that with this code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> &quot;Colorado&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(daytime, month, drunk_dr) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 48 x 4
+## # Groups:   daytime, month [?]
+##    daytime month drunk_dr accidents
+##      &lt;lgl&gt; &lt;dbl&gt;    &lt;lgl&gt;     &lt;int&gt;
+##  1   FALSE     1    FALSE         9
+##  2   FALSE     1     TRUE         6
+##  3   FALSE     2    FALSE         6
+##  4   FALSE     2     TRUE         3
+##  5   FALSE     3    FALSE         5
+##  6   FALSE     3     TRUE        11
+##  7   FALSE     4    FALSE        11
+##  8   FALSE     4     TRUE        11
+##  9   FALSE     5    FALSE         9
+## 10   FALSE     5     TRUE         6
+## # ... with 38 more rows</code></pre>
+<p>As a note, you may want to create a table (for example, for a report) from the data at this stage. You could use <code>unite</code> then <code>spread</code> to do this pretty easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> &quot;Colorado&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">daytime =</span> <span class="kw">factor</span>(daytime, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Nighttime&quot;</span>, <span class="st">&quot;Daytime&quot;</span>)),
+         <span class="dt">drunk_dr =</span> <span class="kw">factor</span>(drunk_dr, 
+                           <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Not drunk driving&quot;</span>, <span class="st">&quot;Drunk driving&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(daytime, month, drunk_dr) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(category, daytime, drunk_dr, <span class="dt">sep =</span> <span class="st">&quot; / &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> category, <span class="dt">value =</span> accidents) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">month</th>
+<th align="right">Daytime / Drunk driving</th>
+<th align="right">Daytime / Not drunk driving</th>
+<th align="right">Nighttime / Drunk driving</th>
+<th align="right">Nighttime / Not drunk driving</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">20</td>
+<td align="right">6</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">22</td>
+<td align="right">3</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">12</td>
+<td align="right">11</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">19</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">20</td>
+<td align="right">6</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">8</td>
+<td align="right">22</td>
+<td align="right">8</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">4</td>
+<td align="right">26</td>
+<td align="right">12</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">14</td>
+<td align="right">13</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">10</td>
+<td align="right">38</td>
+<td align="right">9</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">26</td>
+<td align="right">8</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">3</td>
+<td align="right">15</td>
+<td align="right">5</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p>Write a function that inputs a dataframe (<code>df</code>) and outputs this type of summary dataframe (like the one just created for Colorado). You can do that with the following code. Note that, because it inputs a dataframe and outputs a dataframe, you can include it in a pipeline.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summarize_fars &lt;-<span class="st"> </span><span class="cf">function</span>(df){
+  df <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">group_by</span>(daytime, month, drunk_dr) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> daytime, <span class="dt">y =</span> accidents, <span class="dt">group =</span> daytime)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>drunk_dr, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Time of day&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of monthly accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Fatal accidents in&quot;</span>, which_state, <span class="st">&quot;in 2015&quot;</span>))
-  <span class="kw">print</span>(a)
-}
-<span class="kw">dev.off</span>()</code></pre></div>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>())
+}</code></pre></div>
+<p>Once you’ve written the function, see if you can figure out what the following code does. This code limits the data to data from four states and then applies the <code>summarize_fars</code> function that you just wrote to the subset of data from each state. Finally, since we <code>nest</code> to do that, the pipeline includes some lines to <code>unnest</code> the data to get back to an unnested data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(purrr)
+
+accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(state_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">summary =</span> <span class="kw">map</span>(data, summarize_fars)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>data) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unnest</span>() </code></pre></div>
+<p>Write code to create boxplots for Colorado of the distribution of total accidents within each month. Create separate boxplots for daytime and nighttime accidents, and facet by whether the accident was related to drunk driving. You can do that with this code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">==</span><span class="st"> &quot;Colorado&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">drunk_dr =</span> <span class="kw">factor</span>(drunk_dr, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Unrelated to</span><span class="ch">\n</span><span class="st">drunk driving&quot;</span>,
+                                                <span class="st">&quot;Related to</span><span class="ch">\n</span><span class="st">drunk driving&quot;</span>)),
+         <span class="dt">daytime =</span> <span class="kw">factor</span>(daytime, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Nighttime&quot;</span>, <span class="st">&quot;Daytime&quot;</span>))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(daytime, month, drunk_dr) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">accidents =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> daytime, <span class="dt">y =</span> accidents, <span class="dt">group =</span> daytime)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>drunk_dr, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time of day&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;# of monthly accidents&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">paste</span>(<span class="st">&quot;Fatal accidents in&quot;</span>, <span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;in 2015&quot;</span>))</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/check3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Now write a function called <code>plot_fars</code> to create a plot like the one you just made for Colorado for any dataframe with the format of <code>accident</code> (i.e., same number, types, and names of columns). Test it on subsets of the data for several states (Colorado, Texas, California, and New York). (<em>Hint</em>: To get a function to print out a plot created with ggplot, you must explicitly print the plot object. For example, you could assign the plot to <code>fars_plot</code>, and then you would run <code>print(fars_plot)</code> within your loop as the last step.)</p>
+<p>Notice how similar this function is to the code you wrote in the previous step.</p>
+<p>Once you have written this function, what happens when you run the following code? The following code applies this function to the subset of data from each of four states. The output (<code>state_plots</code>) is a nested dataframe, where the new <code>plots</code> column is a list of <code>ggplot</code> objects. If you run <code>print</code> on this list, it will print each of these plots out separately (use the arrow buttons in the “Plots” Pane in RStudio to browse through these plots).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(purrr)
+
+state_plots &lt;-<span class="st"> </span>accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(state_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">plots =</span> <span class="kw">map</span>(data, plot_fars)) 
+
+state_plots
+<span class="kw">class</span>(state_plots)
+<span class="kw">class</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]])
+<span class="kw">class</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</span>]])
+state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</span>]]<span class="op">$</span>plot</code></pre></div>
+<p>Install the <code>cowplot</code> package (this is a <code>ggplot2</code> extension) and then try running the following code. What happens? The <code>plot_grid</code> function, if you input a list with <code>ggplot</code> objects using the <code>plotlist</code> argument, will print all the plots out on the same page.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cowplot)
+<span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> state_plots[[<span class="st">&quot;plots&quot;</span>]], 
+          <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
 
 </div>
 </div>
