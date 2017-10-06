@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-10-04}
+\date{2017-10-06}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x402edd0>
+## <bytecode: 0x4e35e38>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.24\\
+a & -0.20\\
 \hline
-b & 0.35\\
+b & -1.10\\
 \hline
-c & 0.07\\
+c & -0.47\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 1.28260730 -1.3199903 -1.949264
-## 2 2009-01-02 0.07695762 -3.8703575  8.541657
-## 3 2009-01-03 0.77944614  0.4650015 -7.618674
+##         time          X         Y         Z
+## 1 2009-01-01 -0.4959968 -3.341761 -7.839670
+## 2 2009-01-02  1.2527799 -1.487045  2.057410
+## 3 2009-01-03  1.1201489  1.641700  2.133711
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y         Z
-## 1 2009-01-01 1.28260730 -1.3199903 -1.949264
-## 2 2009-01-02 0.07695762 -3.8703575  8.541657
-## 3 2009-01-03 0.77944614  0.4650015 -7.618674
+##         time          X         Y         Z
+## 1 2009-01-01 -0.4959968 -3.341761 -7.839670
+## 2 2009-01-02  1.2527799 -1.487045  2.057410
+## 3 2009-01-03  1.1201489  1.641700  2.133711
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10780,12 +10780,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  1.28260730
-## 2 2009-01-02     X  0.07695762
-## 3 2009-01-03     X  0.77944614
-## 4 2009-01-04     X -1.63777998
-## 5 2009-01-05     X  1.08048884
+##         time stock      price
+## 1 2009-01-01     X -0.4959968
+## 2 2009-01-02     X  1.2527799
+## 3 2009-01-03     X  1.1201489
+## 4 2009-01-04     X  0.2982698
+## 5 2009-01-05     X  0.1555280
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10799,12 +10799,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock       price
-## 1 2009-01-01     X  1.28260730
-## 2 2009-01-02     X  0.07695762
-## 3 2009-01-03     X  0.77944614
-## 4 2009-01-04     X -1.63777998
-## 5 2009-01-05     X  1.08048884
+##         time stock      price
+## 1 2009-01-01     X -0.4959968
+## 2 2009-01-02     X  1.2527799
+## 3 2009-01-03     X  1.1201489
+## 4 2009-01-04     X  0.2982698
+## 5 2009-01-05     X  0.1555280
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time           X          Y         Z
-## 1 2009-01-01  1.28260730 -1.3199903 -1.949264
-## 2 2009-01-02  0.07695762 -3.8703575  8.541657
-## 3 2009-01-03  0.77944614  0.4650015 -7.618674
-## 4 2009-01-04 -1.63777998 -2.0426890 -6.662613
-## 5 2009-01-05  1.08048884 -0.6163751  2.245918
+##         time          X         Y          Z
+## 1 2009-01-01 -0.4959968 -3.341761 -7.8396699
+## 2 2009-01-02  1.2527799 -1.487045  2.0574102
+## 3 2009-01-03  1.1201489  1.641700  2.1337110
+## 4 2009-01-04  0.2982698 -4.381424  2.0656170
+## 5 2009-01-05  0.1555280 -2.035237 -0.1452868
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10892,9 +10892,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean       sd
 ##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10  0.1684357 1.071201
-## 2     Y    10 -0.6765352 1.661965
-## 3     Z    10 -1.1826218 4.919073
+## 1     X    10  0.2755750 0.631667
+## 2     Y    10 -1.4033031 2.432660
+## 3     Z    10 -0.1074043 4.351165
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.17 (1.07) & -0.68 (1.66) & -1.18 (4.92)\\
+Mean (Std.dev.) & 0.28 (0.63) & -1.4 (2.43) & -0.11 (4.35)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -11659,8 +11659,9 @@ data}\label{exploring-fatality-analysis-reporting-system-fars-data}
 \item
   On the \href{http://www.nhtsa.gov/FARS}{FARS web page}, find the
   documentation describing this raw data. Look through both this
-  documentation and the raw files you downloaded to figure out what
-  information is included in the data.
+  documentation (\emph{Fatality Analysis Reporting System (FARS)
+  Analytical User's Manual 1975-2016}) and the raw files you downloaded
+  to figure out what information is included in the data.
 \item
   Read the \texttt{accident.csv} file for 2015 into R (this is one of
   the files you'll get if you download the raw data for 2015). Use the
