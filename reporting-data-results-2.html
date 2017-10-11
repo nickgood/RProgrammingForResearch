@@ -447,7 +447,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##   0.3954661  -0.1292252</code></pre>
+##    1.445401   -0.113331</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -497,7 +497,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -1.15055713  0.64012281 -0.06279129
+## [1]  0.638217 -0.107407 -1.058962
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -507,7 +507,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] -0.1910752
+## [1] -0.1760505
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -517,14 +517,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] -1.150557
+## [1] 0.638217
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##                   a                   b                   c 
-##                 &quot;1&quot; &quot;-1.15055713166306&quot;                 &quot;a&quot;</code></pre>
+##                 &quot;1&quot; &quot;0.638217048067695&quot;                 &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
@@ -1146,7 +1146,23 @@ state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</sp
 ## 4   Arkansas   472      25.84746
 ## 5 California  2925      24.54701</code></pre>
 <ul>
-<li><p>Create the following state-level choropleths of number of fatal accidents in 2015 in each state and of the percent of fatal accidents linked to drunk driving in each state. The quickest way to do this is with the <code>choroplethr</code> package.</p></li>
+<li>Create the following state-level choropleths of number of fatal accidents in 2015 in each state and of the percent of fatal accidents linked to drunk driving in each state. The quickest way to do this is with the <code>choroplethr</code> package.</li>
+</ul>
+<pre><code>## Loading required package: acs</code></pre>
+<pre><code>## Loading required package: XML</code></pre>
+<pre><code>## 
+## Attaching package: &#39;acs&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:gridExtra&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     apply</code></pre>
+<p><img src="RProgrammingForResearch_files/figure-html/ccu-1.png" width="672" /><img src="RProgrammingForResearch_files/figure-html/ccu-2.png" width="672" /></p>
+<ul>
 <li><p>Now, you will be using the latitude and longitude of each accident to plot accident locations within a state. Check if the columns for latitude and longitude need more cleaning (spoiler alert— they do). Filter out any values that could not reasonably be within the 50 U.S. states and D.C.</p></li>
 <li><p>Map the locations of fatal accidents in Texas in 2015 on top of a Google Map base map that shows major roads. An example map is shown below. (<em>Hint:</em> Use the <code>get_map</code> and <code>ggmap</code> functions for this part.)</p></li>
 </ul>
