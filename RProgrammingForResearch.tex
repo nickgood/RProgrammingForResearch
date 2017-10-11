@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x4611130>
+## <bytecode: 0x424f408>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -1.16\\
+a & -0.28\\
 \hline
-b & 2.46\\
+b & -0.27\\
 \hline
-c & 1.26\\
+c & -0.60\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10741,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.2774908  0.5865124  0.2111124
-## 2 2009-01-02 -0.5220485 -0.2873294  2.3256645
-## 3 2009-01-03  1.6239527 -4.1125067 -4.9010464
+##         time          X          Y         Z
+## 1 2009-01-01  0.3124190 -0.8445518 -4.003528
+## 2 2009-01-02 -0.3395849 -3.6898143 -7.213263
+## 3 2009-01-03 -2.4308506  0.7704768  3.547879
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10761,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.2774908  0.5865124  0.2111124
-## 2 2009-01-02 -0.5220485 -0.2873294  2.3256645
-## 3 2009-01-03  1.6239527 -4.1125067 -4.9010464
+##         time          X          Y         Z
+## 1 2009-01-01  0.3124190 -0.8445518 -4.003528
+## 2 2009-01-02 -0.3395849 -3.6898143 -7.213263
+## 3 2009-01-03 -2.4308506  0.7704768  3.547879
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.2774908
-## 2 2009-01-02     X -0.5220485
-## 3 2009-01-03     X  1.6239527
-## 4 2009-01-04     X -2.2569537
-## 5 2009-01-05     X  1.8519150
+## 1 2009-01-01     X  0.3124190
+## 2 2009-01-02     X -0.3395849
+## 3 2009-01-03     X -2.4308506
+## 4 2009-01-04     X  0.1417780
+## 5 2009-01-05     X -1.5553404
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X -0.2774908
-## 2 2009-01-02     X -0.5220485
-## 3 2009-01-03     X  1.6239527
-## 4 2009-01-04     X -2.2569537
-## 5 2009-01-05     X  1.8519150
+## 1 2009-01-01     X  0.3124190
+## 2 2009-01-02     X -0.3395849
+## 3 2009-01-03     X -2.4308506
+## 4 2009-01-04     X  0.1417780
+## 5 2009-01-05     X -1.5553404
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10861,11 +10861,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01 -0.2774908  0.5865124  0.2111124
-## 2 2009-01-02 -0.5220485 -0.2873294  2.3256645
-## 3 2009-01-03  1.6239527 -4.1125067 -4.9010464
-## 4 2009-01-04 -2.2569537 -1.3512733  1.3704039
-## 5 2009-01-05  1.8519150  1.8321802  2.8342647
+## 1 2009-01-01  0.3124190 -0.8445518 -4.0035280
+## 2 2009-01-02 -0.3395849 -3.6898143 -7.2132630
+## 3 2009-01-03 -2.4308506  0.7704768  3.5478790
+## 4 2009-01-04  0.1417780 -2.4073559 -0.1990461
+## 5 2009-01-05 -1.5553404 -2.1932933 -2.0121053
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10892,9 +10892,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean       sd
 ##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10  0.0426786 1.144418
-## 2     Y    10 -0.3432197 2.100992
-## 3     Z    10  1.1033323 2.816073
+## 1     X    10 -0.3882778 1.196776
+## 2     Y    10 -0.8313080 1.934606
+## 3     Z    10  0.1911159 4.829882
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & 0.04 (1.14) & -0.34 (2.1) & 1.1 (2.82)\\
+Mean (Std.dev.) & -0.39 (1.2) & -0.83 (1.93) & 0.19 (4.83)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14581,7 +14581,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-## -0.23375406  0.03985721
+##  0.21396209 -0.06903234
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -14694,7 +14694,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.4239998  0.1974400 -1.0649733
+## [1] -0.18678173  0.05469337  1.32509996
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -14713,7 +14713,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.430511
+## [1] 0.3976705
 ## 
 ## $c
 ## [1] NA
@@ -14734,7 +14734,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.4239998
+## [1] -0.1867817
 ## 
 ## $c
 ## [1] "a"
@@ -14751,7 +14751,7 @@ it returns a vector rather than a list:
 
 \begin{verbatim}
 ##                    a                    b                    c 
-##                  "1" "-0.423999776828285"                  "a"
+##                  "1" "-0.186781728949142"                  "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -15052,6 +15052,8 @@ state-by-state populations as of 2012, you could use:
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{RProgrammingForResearch_files/figure-latex/cbl-1.pdf}
+
 You can find out more about the \texttt{df\_pop\_state} data if you type
 \texttt{?df\_pop\_state}. Notice that, for the data frame, the location
 is given in a column called \texttt{region} and the population size to
@@ -15062,6 +15064,13 @@ plot is in a column called \texttt{value}.
 \KeywordTok{head}\NormalTok{(df_pop_state, }\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+##    region   value
+## 1 alabama 4777326
+## 2  alaska  711139
+## 3 arizona 6410979
+\end{verbatim}
 
 You could use this function to create any state-level choropleth you
 wanted, as long as you could create a data frame with a column for
@@ -15078,6 +15087,13 @@ example, county or zip code):
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+##   region  value
+## 1   1001  54590
+## 2   1003 183226
+## 3   1005  27469
+\end{verbatim}
+
 You can plot choropleths at this level, as well:
 
 \begin{Shaded}
@@ -15092,6 +15108,8 @@ You can plot choropleths at this level, as well:
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{RProgrammingForResearch_files/figure-latex/cbp-1.pdf}
+
 You can even do this for countries of the world:
 
 \begin{Shaded}
@@ -15101,6 +15119,8 @@ You can even do this for countries of the world:
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{RProgrammingForResearch_files/figure-latex/cbq-1.pdf}
+
 You can zoom into states or counties. For example, to plot population by
 county in Colorado, you could run:
 
@@ -15109,6 +15129,8 @@ county in Colorado, you could run:
 \KeywordTok{county_choropleth}\NormalTok{(df_pop_county, }\DataTypeTok{state_zoom =} \StringTok{"colorado"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{RProgrammingForResearch_files/figure-latex/cbr-1.pdf}
 
 You can also use this package to map different tables from the US
 Census' American Community Survey.
@@ -16010,37 +16032,6 @@ Next, you'll try out some mapping with this FARS data.
   with the \texttt{choroplethr} package.
 \end{itemize}
 
-\begin{verbatim}
-## Loading required package: acs
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: XML
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'acs'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:gridExtra':
-## 
-##     combine
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:dplyr':
-## 
-##     combine
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:base':
-## 
-##     apply
-\end{verbatim}
-
 \includegraphics{RProgrammingForResearch_files/figure-latex/ccu-1.pdf}
 \includegraphics{RProgrammingForResearch_files/figure-latex/ccu-2.pdf}
 
@@ -16092,7 +16083,21 @@ Next, you'll try out some mapping with this FARS data.
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/ccz-1} \end{center}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accident }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{map_fatal_accidents}\NormalTok{(}\DataTypeTok{which_state =} \StringTok{"Colorado"}\NormalTok{, }\DataTypeTok{drunk_dr =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/cda-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_fatal_accidents}\NormalTok{(accident, }\DataTypeTok{which_state =} \StringTok{"Texas"}\NormalTok{,}
+                    \DataTypeTok{drunk_dr =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/cdb-1} \end{center}
 

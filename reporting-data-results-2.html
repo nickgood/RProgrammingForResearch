@@ -447,7 +447,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##    1.445401   -0.113331</code></pre>
+##  0.72265019 -0.07990925</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -497,7 +497,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1]  0.638217 -0.107407 -1.058962
+## [1] 0.487709 1.510717 2.287225
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -507,7 +507,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] -0.1760505
+## [1] 1.42855
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -517,14 +517,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] 0.638217
+## [1] 0.487709
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>##                   a                   b                   c 
-##                 &quot;1&quot; &quot;0.638217048067695&quot;                 &quot;a&quot;</code></pre>
+##                 &quot;1&quot; &quot;0.487708984481198&quot;                 &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
@@ -648,20 +648,32 @@ us_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(df_pop_state)
 map_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">state_choropleth</span>(df_pop_state)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_<span class="dv">3</span> </code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/cbl-1.png" width="768" /></p>
 <p>You can find out more about the <code>df_pop_state</code> data if you type <code>?df_pop_state</code>. Notice that, for the data frame, the location is given in a column called <code>region</code> and the population size to plot is in a column called <code>value</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df_pop_state, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    region   value
+## 1 alabama 4777326
+## 2  alaska  711139
+## 3 arizona 6410979</code></pre>
 <p>You could use this function to create any state-level choropleth you wanted, as long as you could create a data frame with a column for states called <code>region</code> and a column with the value you want to show called <code>value</code>.</p>
 <p>You can run similar functions at different spatial resolutions (for example, county or zip code):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(df_pop_county)
 <span class="kw">head</span>(df_pop_county, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   region  value
+## 1   1001  54590
+## 2   1003 183226
+## 3   1005  27469</code></pre>
 <p>You can plot choropleths at this level, as well:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">county_choropleth</span>(df_pop_county)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map_<span class="dv">4</span></code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/cbp-1.png" width="768" /></p>
 <p>You can even do this for countries of the world:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(df_pop_country)
 <span class="kw">country_choropleth</span>(df_pop_country)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/cbq-1.png" width="768" /></p>
 <p>You can zoom into states or counties. For example, to plot population by county in Colorado, you could run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">county_choropleth</span>(df_pop_county, <span class="dt">state_zoom =</span> <span class="st">&quot;colorado&quot;</span>)</code></pre></div>
+<p><img src="RProgrammingForResearch_files/figure-html/cbr-1.png" width="576" /></p>
 <p>You can also use this package to map different tables from the US Census’ American Community Survey.</p>
 <p>The package includes the <code>choroplethr_acs()</code> function to do this, with an option for which level of map you want (<code>map =</code>, choices are “state”, “country”, and “zip”). If you want to map at the state level, for example, use <code>state_choroplethr_acs()</code> (other options are county level and zip code level).</p>
 <p>These functions pull recent Census data directly from the US Census using its API, so they require you to get an API key, which you can get <a href="http://api.census.gov/data/key_signup.html">here</a>. </p>
@@ -1148,19 +1160,6 @@ state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</sp
 <ul>
 <li>Create the following state-level choropleths of number of fatal accidents in 2015 in each state and of the percent of fatal accidents linked to drunk driving in each state. The quickest way to do this is with the <code>choroplethr</code> package.</li>
 </ul>
-<pre><code>## Loading required package: acs</code></pre>
-<pre><code>## Loading required package: XML</code></pre>
-<pre><code>## 
-## Attaching package: &#39;acs&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:gridExtra&#39;:
-## 
-##     combine</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     combine</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     apply</code></pre>
 <p><img src="RProgrammingForResearch_files/figure-html/ccu-1.png" width="672" /><img src="RProgrammingForResearch_files/figure-html/ccu-2.png" width="672" /></p>
 <ul>
 <li><p>Now, you will be using the latitude and longitude of each accident to plot accident locations within a state. Check if the columns for latitude and longitude need more cleaning (spoiler alert— they do). Filter out any values that could not reasonably be within the 50 U.S. states and D.C.</p></li>
@@ -1175,7 +1174,11 @@ state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">map_fatal_accidents</span>(<span class="dt">which_state =</span> <span class="st">&quot;Texas&quot;</span>) </code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/ccz-1.png" width="412.8" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">map_fatal_accidents</span>(<span class="dt">which_state =</span> <span class="st">&quot;Colorado&quot;</span>, <span class="dt">drunk_dr =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/cda-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_fatal_accidents</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;Texas&quot;</span>,
+                    <span class="dt">drunk_dr =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/cdb-1.png" width="825.6" style="display: block; margin: auto;" /></p>
 
 </div>
