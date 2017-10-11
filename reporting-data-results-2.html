@@ -447,7 +447,7 @@ bar</code></pre></div>
 <pre><code>## [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;fitted.values&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mod[[<span class="st">&quot;coefficients&quot;</span>]]</code></pre></div>
 <pre><code>## (Intercept)     c(1:10) 
-##  0.49229736 -0.02903807</code></pre>
+##   0.3954661  -0.1292252</code></pre>
 </div>
 </div>
 <div id="apply-functions" class="section level2">
@@ -497,7 +497,7 @@ bar</code></pre></div>
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.002113241 -0.528752901  0.200085432
+## [1] -1.15055713  0.64012281 -0.06279129
 ## 
 ## $c
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
@@ -507,7 +507,7 @@ bar</code></pre></div>
 ## [1] 3
 ## 
 ## $b
-## [1] -0.1102602
+## [1] -0.1910752
 ## 
 ## $c
 ## [1] NA</code></pre>
@@ -517,14 +517,14 @@ bar</code></pre></div>
 ## [1] 1
 ## 
 ## $b
-## [1] -0.002113241
+## [1] -1.150557
 ## 
 ## $c
 ## [1] &quot;a&quot;</code></pre>
 <p>The <code>sapply()</code> function also applies a function over a list, but it returns a vector rather than a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(ex, <span class="dt">FUN =</span> head, <span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>##                      a                      b                      c 
-##                    &quot;1&quot; &quot;-0.00211324123572671&quot;                    &quot;a&quot;</code></pre>
+<pre><code>##                   a                   b                   c 
+##                 &quot;1&quot; &quot;-1.15055713166306&quot;                 &quot;a&quot;</code></pre>
 <p>In practice, I do use <code>apply()</code> some, but I can often find a way to do similar things to other <code>apply</code> family functions using the tools in <code>dplyr</code>. </p>
 <p>You should know that <code>apply</code> family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and “tidyverse” functions are usually comparable in speed. </p>
 <p>I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. </p>
@@ -896,7 +896,8 @@ state_plots &lt;-<span class="st"> </span>accident <span class="op">%&gt;%</span
 <ul>
 <li>Install the <code>cowplot</code> package (this is a <code>ggplot2</code> extension) and then try running the following code. What happens when you run this code?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> state_plots[[<span class="st">&quot;plots&quot;</span>]], 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cowplot)
+<span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> state_plots[[<span class="st">&quot;plots&quot;</span>]], 
           <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
 <div id="example-r-code-16" class="section level4">
 <h4><span class="header-section-number">8.7.1.1</span> Example R code</h4>
@@ -1105,15 +1106,16 @@ state_plots &lt;-<span class="st"> </span>accident <span class="op">%&gt;%</span
 <span class="st">  </span><span class="kw">filter</span>(state_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Colorado&quot;</span>, <span class="st">&quot;Texas&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;New York&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(state_name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">plots =</span> <span class="kw">map</span>(data, plot_fars)) 
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">plots =</span> <span class="kw">map</span>(data, plot_fars)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(state_name, plots)
 
-state_plots
 <span class="kw">class</span>(state_plots)
 <span class="kw">class</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]])
 <span class="kw">class</span>(state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</span>]])
 state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</span>]]<span class="op">$</span>plot</code></pre></div>
 <p>Install the <code>cowplot</code> package (this is a <code>ggplot2</code> extension) and then try running the following code. What happens? The <code>plot_grid</code> function, if you input a list with <code>ggplot</code> objects using the <code>plotlist</code> argument, will print all the plots out on the same page.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cowplot)
+<span class="kw">library</span>(gtable)
 <span class="kw">plot_grid</span>(<span class="dt">plotlist =</span> state_plots[[<span class="st">&quot;plots&quot;</span>]], 
           <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
 </div>
@@ -1152,7 +1154,10 @@ state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</sp
 <ul>
 <li>Create a function that will take three inputs: <code>datafr</code>, a data frame like <code>accident</code> with fatal accident data; <code>which_state</code>, a state name; and <code>drunk_dr</code>, a logical value (TRUE / FALSE) specifying whether to create separate maps for accidents that were and were not linked to drunk driving. This function should output a map (or two maps if <code>drunk_dr</code> is set to TRUE) with points for all fatal accidents in the state. Use <code>map_data</code> and create the map yourself, rather than using <code>choroplethr</code> for this question. Examples of calling this function are shown below.</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_fatal_accidents</span>(accident, <span class="dt">which_state =</span> <span class="st">&quot;Colorado&quot;</span>)</code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/ccy-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accident <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">map_fatal_accidents</span>(<span class="dt">which_state =</span> <span class="st">&quot;Texas&quot;</span>) </code></pre></div>
 <p><img src="RProgrammingForResearch_files/figure-html/ccz-1.png" width="412.8" style="display: block; margin: auto;" /></p>
 <p><img src="RProgrammingForResearch_files/figure-html/cda-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p><img src="RProgrammingForResearch_files/figure-html/cdb-1.png" width="825.6" style="display: block; margin: auto;" /></p>
