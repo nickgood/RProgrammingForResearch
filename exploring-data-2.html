@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R Programming for Research</title>
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.5.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-10-06">
+<meta name="date" content="2017-10-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="entering-and-cleaning-data-2.html">
-<link rel="next" href="appendix-a-vocabulary.html">
+<link rel="next" href="reporting-data-results-2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -303,6 +303,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.2" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-regression-models-to-explore-data-2"><i class="fa fa-check"></i><b>7.6.2</b> Using regression models to explore data #2</a></li>
 <li class="chapter" data-level="7.6.3" data-path="exploring-data-2.html"><a href="exploring-data-2.html#exploring-fatality-analysis-reporting-system-fars-data-1"><i class="fa fa-check"></i><b>7.6.3</b> Exploring Fatality Analysis Reporting System (FARS) data</a></li>
 <li class="chapter" data-level="7.6.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-function-and-purrr-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.4</b> Using a function and <code>purrr</code> to create state-specific plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html"><i class="fa fa-check"></i><b>8</b> Reporting data results #2</a><ul>
+<li class="chapter" data-level="8.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices-and-lists"><i class="fa fa-check"></i><b>8.1</b> Matrices and lists</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices"><i class="fa fa-check"></i><b>8.1.1</b> Matrices</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#lists"><i class="fa fa-check"></i><b>8.1.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#apply-functions"><i class="fa fa-check"></i><b>8.2</b> <code>apply</code> functions</a></li>
+<li class="chapter" data-level="8.3" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#point-maps"><i class="fa fa-check"></i><b>8.3</b> Point maps</a></li>
+<li class="chapter" data-level="8.4" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#choropleth-maps"><i class="fa fa-check"></i><b>8.4</b> Choropleth maps</a></li>
+<li class="chapter" data-level="8.5" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#google-maps-api"><i class="fa fa-check"></i><b>8.5</b> Google Maps API</a></li>
+<li class="chapter" data-level="8.6" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#string-operations"><i class="fa fa-check"></i><b>8.6</b> String operations</a></li>
+<li class="chapter" data-level="8.7" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#in-course-exercise-7"><i class="fa fa-check"></i><b>8.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#using-a-function-and-purrr-to-create-state-specific-plots-1"><i class="fa fa-check"></i><b>8.7.1</b> Using a function and <code>purrr</code> to create state-specific plots</a></li>
+<li class="chapter" data-level="8.7.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#first-steps-in-mapping"><i class="fa fa-check"></i><b>8.7.2</b> First steps in mapping</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
@@ -1269,7 +1284,7 @@ summer <span class="op">%&gt;%</span><span class="st"> </span>
 <ul>
 <li>Visit <a href="http://metrocosm.com/10-years-of-traffic-accidents-mapped.html" class="uri">http://metrocosm.com/10-years-of-traffic-accidents-mapped.html</a> and explore the interactive visualization created by Max Galka using this public dataset on US fatal motor vehicle accidents.</li>
 <li>Go to <a href="http://www.nhtsa.gov/FARS">FARS web page</a>. We want to get the raw data on fatal accidents. Navigate this page to figure out how you can get this raw data for the whole county for 2015 (hint: you’ll need to access the raw data using FTP, and you may have more success with some web browsers that others). Save 2015 “National” data (csv format) to your computer. What is the structure of how this data is saved (e.g., directory structure, file structure)?</li>
-<li>On the <a href="http://www.nhtsa.gov/FARS">FARS web page</a>, find the documentation describing this raw data. Look through both this documentation and the raw files you downloaded to figure out what information is included in the data.</li>
+<li>On the <a href="http://www.nhtsa.gov/FARS">FARS web page</a>, find the documentation describing this raw data. (The relevant documentation file is called <em>Fatality Analysis Reporting System (FARS) Analytical User’s Manual 1975-2015</em>) Look through both this documentation and the raw files you downloaded to figure out what information is included in the data.</li>
 <li>Read the <code>accident.csv</code> file for 2015 into R (this is one of the files you’ll get if you download the raw data for 2015). Use the documentation to figure out what each column represents.</li>
 <li>Discuss what steps you would need to take to create the following plot. To start, don’t write any code, just develop a plan. Talk about what the dataset should look like right before you create the plot and what functions you could use to get the data from its current format to that format. (Hint: Functions from the <code>lubridate</code> package will be very helpful, including <code>yday</code> and <code>wday</code>).</li>
 <li>Discuss which of the variables in this dataset could be used to merge the dataset with other appropriate data, either other datasets in the FARS raw data, or outside datasets.</li>
@@ -1660,16 +1675,13 @@ state_plots[[<span class="st">&quot;plots&quot;</span>]][[<span class="dv">1</sp
 </div>
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
 <a href="entering-and-cleaning-data-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-a-vocabulary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reporting-data-results-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

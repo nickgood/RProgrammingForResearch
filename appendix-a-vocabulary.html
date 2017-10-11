@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R Programming for Research</title>
   <meta name="description" content="This is a bookdown version of the course notes for R Programming for Research, Colorado State University, Fall 2016.">
-  <meta name="generator" content="bookdown 0.5.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="R Programming for Research" />
   <meta property="og:type" content="book" />
@@ -25,14 +25,14 @@
 <meta name="author" content="Brooke Anderson and Rachel Severson">
 
 
-<meta name="date" content="2017-10-06">
+<meta name="date" content="2017-10-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="exploring-data-2.html">
+<link rel="prev" href="reporting-data-results-2.html">
 <link rel="next" href="appendix-b-homework.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -305,6 +305,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.4" data-path="exploring-data-2.html"><a href="exploring-data-2.html#using-a-function-and-purrr-to-create-state-specific-plots"><i class="fa fa-check"></i><b>7.6.4</b> Using a function and <code>purrr</code> to create state-specific plots</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html"><i class="fa fa-check"></i><b>8</b> Reporting data results #2</a><ul>
+<li class="chapter" data-level="8.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices-and-lists"><i class="fa fa-check"></i><b>8.1</b> Matrices and lists</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#matrices"><i class="fa fa-check"></i><b>8.1.1</b> Matrices</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#lists"><i class="fa fa-check"></i><b>8.1.2</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#apply-functions"><i class="fa fa-check"></i><b>8.2</b> <code>apply</code> functions</a></li>
+<li class="chapter" data-level="8.3" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#point-maps"><i class="fa fa-check"></i><b>8.3</b> Point maps</a></li>
+<li class="chapter" data-level="8.4" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#choropleth-maps"><i class="fa fa-check"></i><b>8.4</b> Choropleth maps</a></li>
+<li class="chapter" data-level="8.5" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#google-maps-api"><i class="fa fa-check"></i><b>8.5</b> Google Maps API</a></li>
+<li class="chapter" data-level="8.6" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#string-operations"><i class="fa fa-check"></i><b>8.6</b> String operations</a></li>
+<li class="chapter" data-level="8.7" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#in-course-exercise-7"><i class="fa fa-check"></i><b>8.7</b> In-course exercise</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#using-a-function-and-purrr-to-create-state-specific-plots-1"><i class="fa fa-check"></i><b>8.7.1</b> Using a function and <code>purrr</code> to create state-specific plots</a></li>
+<li class="chapter" data-level="8.7.2" data-path="reporting-data-results-2.html"><a href="reporting-data-results-2.html#first-steps-in-mapping"><i class="fa fa-check"></i><b>8.7.2</b> First steps in mapping</a></li>
+</ul></li>
+</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html"><i class="fa fa-check"></i><b>A</b> Appendix A: Vocabulary</a><ul>
 <li class="chapter" data-level="A.1" data-path="appendix-a-vocabulary.html"><a href="appendix-a-vocabulary.html#quiz-1"><i class="fa fa-check"></i><b>A.1</b> Quiz 1</a></li>
@@ -524,12 +539,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="quiz-7" class="section level2">
 <h2><span class="header-section-number">A.7</span> Quiz 7</h2>
 <ul>
-<li><code>for</code> loops</li>
+<li>lists</li>
+<li>indexing from lists (<code>[[</code> and <code>$</code>)</li>
+<li>exploring lists (<code>class</code>, <code>names</code>, <code>str</code> functions)</li>
+<li><code>nest</code> and <code>unnest</code> (from <code>purrr</code> package)</li>
+<li><code>map</code> family of functions</li>
 <li>basics of writing a function</li>
-<li>figuring out the output of a loop based on its code</li>
-<li>figuring the the output of a function based on its code</li>
-<li>parentheses around a full assignment statement (e.g., <code>(ex &lt;- 1)</code>)</li>
+<li>Regression modeling with <code>lm</code>, <code>glm</code></li>
+<li>Writing a formula with <code>~</code> syntax</li>
+<li>Using functions from <code>broom</code> to tidy model output (<code>augment</code>, <code>tidy</code>, <code>glance</code>)</li>
+<li><code>autoplot</code></li>
 <li><code>kable()</code> from the <code>knitr</code> package</li>
+<li>How many objects a function can input. How many objects a function can output.</li>
+<li><code>if</code> / <code>else if</code> / <code>else</code> structures inside functions</li>
+<li>Idea of error checking (e.g., with <code>assertive</code> package)</li>
 </ul>
 </div>
 <div id="quiz-8" class="section level2">
@@ -547,7 +570,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="exploring-data-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reporting-data-results-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendix-b-homework.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
