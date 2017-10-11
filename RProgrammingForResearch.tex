@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
-## needed 10 times as much memory as your dataset. [...] R (and current
-## versions of S-PLUS) are more frugal than S-PLUS was back then.
-## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
-## current prices of R, to work out the break-even point at which it's better
-## to buy SAS! :-) Without making any calculations, I can't see how SAS can
-## compete with the price of 4G of RAM.
-##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
-##       R-SIG-Finance (December 2004)
+## It [the effort of learning how to use R] is the price paid, just as the
+## dollars or euros for a commercial package would be. For that price, I've
+## learnt a great deal - and not only about R. And I shall remember it when I
+## next have to find a heavyweight solution for a big problem presented by a
+## small charitable client with an invisible budget. It's a huge,
+## awe-inspiring package - easier to perceive as such because the power is
+## not hidden beneath a cosmetic veneer.
+##    -- Felix Grant (in an article about free statistics software)
+##       Scientific Computing World (November 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x5a9f058>
+## <bytecode: 0x4b2b580>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & 0.23\\
+a & -0.81\\
 \hline
-b & -0.02\\
+b & -0.46\\
 \hline
-c & -0.61\\
+c & -1.20\\
 \hline
 \end{tabular}
 \end{table}
@@ -10742,9 +10742,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01 -0.8129862 -0.8492141 -3.539748
-## 2 2009-01-02 -0.6373101 -0.8944557  4.890425
-## 3 2009-01-03 -1.0954423  0.3146694  3.299190
+## 1 2009-01-01  1.5386272 0.58343702 -2.199889
+## 2 2009-01-02 -0.1305991 0.00127273 -5.137493
+## 3 2009-01-03 -0.2588606 0.44652971 -0.832267
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10762,9 +10762,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01 -0.8129862 -0.8492141 -3.539748
-## 2 2009-01-02 -0.6373101 -0.8944557  4.890425
-## 3 2009-01-03 -1.0954423  0.3146694  3.299190
+## 1 2009-01-01  1.5386272 0.58343702 -2.199889
+## 2 2009-01-02 -0.1305991 0.00127273 -5.137493
+## 3 2009-01-03 -0.2588606 0.44652971 -0.832267
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10780,12 +10780,12 @@ data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -0.8129862
-## 2 2009-01-02     X -0.6373101
-## 3 2009-01-03     X -1.0954423
-## 4 2009-01-04     X  0.3147957
-## 5 2009-01-05     X -0.6009170
+##         time stock       price
+## 1 2009-01-01     X  1.53862715
+## 2 2009-01-02     X -0.13059905
+## 3 2009-01-03     X -0.25886061
+## 4 2009-01-04     X  0.01033917
+## 5 2009-01-05     X  0.61308640
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10799,12 +10799,12 @@ price of that stock that day (\texttt{price}):
 \end{Shaded}
 
 \begin{verbatim}
-##         time stock      price
-## 1 2009-01-01     X -0.8129862
-## 2 2009-01-02     X -0.6373101
-## 3 2009-01-03     X -1.0954423
-## 4 2009-01-04     X  0.3147957
-## 5 2009-01-05     X -0.6009170
+##         time stock       price
+## 1 2009-01-01     X  1.53862715
+## 2 2009-01-02     X -0.13059905
+## 3 2009-01-03     X -0.25886061
+## 4 2009-01-04     X  0.01033917
+## 5 2009-01-05     X  0.61308640
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10860,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X          Y          Z
-## 1 2009-01-01 -0.8129862 -0.8492141 -3.5397484
-## 2 2009-01-02 -0.6373101 -0.8944557  4.8904254
-## 3 2009-01-03 -1.0954423  0.3146694  3.2991903
-## 4 2009-01-04  0.3147957 -3.2039232 -0.3944089
-## 5 2009-01-05 -0.6009170 -0.2134611  1.9871792
+##         time           X           Y          Z
+## 1 2009-01-01  1.53862715  0.58343702 -2.1998891
+## 2 2009-01-02 -0.13059905  0.00127273 -5.1374933
+## 3 2009-01-03 -0.25886061  0.44652971 -0.8322670
+## 4 2009-01-04  0.01033917 -0.82079681  6.8501721
+## 5 2009-01-05  0.61308640  5.18674121 -0.5684776
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10890,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean        sd
-##   <chr> <int>      <dbl>     <dbl>
-## 1     X    10 -0.4576449 0.6498679
-## 2     Y    10 -0.7687204 1.9602306
-## 3     Z    10  1.4284800 2.5864440
+##   stock     N      mean        sd
+##   <chr> <int>     <dbl>     <dbl>
+## 1     X    10 0.1905602 0.9301024
+## 2     Y    10 0.8121508 1.7596538
+## 3     Z    10 0.3227720 4.5075488
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.46 (0.65) & -0.77 (1.96) & 1.43 (2.59)\\
+Mean (Std.dev.) & 0.19 (0.93) & 0.81 (1.76) & 0.32 (4.51)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14581,7 +14581,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  0.79858486 -0.08877585
+## -0.24829246  0.00546036
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -14694,7 +14694,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.5569173 -0.4798707  0.1041555
+## [1] 0.7523604 2.0829033 0.1475395
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -14713,7 +14713,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.3108775
+## [1] 0.9942678
 ## 
 ## $c
 ## [1] NA
@@ -14734,7 +14734,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.5569173
+## [1] 0.7523604
 ## 
 ## $c
 ## [1] "a"
@@ -14751,7 +14751,7 @@ it returns a vector rather than a list:
 
 \begin{verbatim}
 ##                   a                   b                   c 
-##                 "1" "-0.55691734836513"                 "a"
+##                 "1" "0.752360416935085"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
