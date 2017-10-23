@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-10-11}
+\date{2017-10-23}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x424f408>
+## <bytecode: 0x3274a18>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -10222,11 +10222,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.28\\
+a & 0.67\\
 \hline
-b & -0.27\\
+b & 2.28\\
 \hline
-c & -0.60\\
+c & -1.42\\
 \hline
 \end{tabular}
 \end{table}
@@ -10742,9 +10742,9 @@ Here is some simulated wide data:
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.3124190 -0.8445518 -4.003528
-## 2 2009-01-02 -0.3395849 -3.6898143 -7.213263
-## 3 2009-01-03 -2.4308506  0.7704768  3.547879
+## 1 2009-01-01 -1.5161668  0.5913352 -5.232873
+## 2 2009-01-02 -1.0597685 -0.4583710  2.940820
+## 3 2009-01-03  0.1322864  0.7664058  3.115566
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10762,9 +10762,9 @@ include it as a variable in modeling.
 
 \begin{verbatim}
 ##         time          X          Y         Z
-## 1 2009-01-01  0.3124190 -0.8445518 -4.003528
-## 2 2009-01-02 -0.3395849 -3.6898143 -7.213263
-## 3 2009-01-03 -2.4308506  0.7704768  3.547879
+## 1 2009-01-01 -1.5161668  0.5913352 -5.232873
+## 2 2009-01-02 -1.0597685 -0.4583710  2.940820
+## 3 2009-01-03  0.1322864  0.7664058  3.115566
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10781,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.3124190
-## 2 2009-01-02     X -0.3395849
-## 3 2009-01-03     X -2.4308506
-## 4 2009-01-04     X  0.1417780
-## 5 2009-01-05     X -1.5553404
+## 1 2009-01-01     X -1.5161668
+## 2 2009-01-02     X -1.0597685
+## 3 2009-01-03     X  0.1322864
+## 4 2009-01-04     X  1.8171182
+## 5 2009-01-05     X -0.6517707
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10800,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.3124190
-## 2 2009-01-02     X -0.3395849
-## 3 2009-01-03     X -2.4308506
-## 4 2009-01-04     X  0.1417780
-## 5 2009-01-05     X -1.5553404
+## 1 2009-01-01     X -1.5161668
+## 2 2009-01-02     X -1.0597685
+## 3 2009-01-03     X  0.1322864
+## 4 2009-01-04     X  1.8171182
+## 5 2009-01-05     X -0.6517707
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10861,11 +10861,11 @@ you can use \texttt{spread} to do that:
 
 \begin{verbatim}
 ##         time          X          Y          Z
-## 1 2009-01-01  0.3124190 -0.8445518 -4.0035280
-## 2 2009-01-02 -0.3395849 -3.6898143 -7.2132630
-## 3 2009-01-03 -2.4308506  0.7704768  3.5478790
-## 4 2009-01-04  0.1417780 -2.4073559 -0.1990461
-## 5 2009-01-05 -1.5553404 -2.1932933 -2.0121053
+## 1 2009-01-01 -1.5161668  0.5913352 -5.2328735
+## 2 2009-01-02 -1.0597685 -0.4583710  2.9408203
+## 3 2009-01-03  0.1322864  0.7664058  3.1155655
+## 4 2009-01-04  1.8171182  0.3999801 -0.8400069
+## 5 2009-01-05 -0.6517707  5.4278919 -4.0448158
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10892,9 +10892,9 @@ to rearrange the final summary to create an attractive table.
 ## # A tibble: 3 x 4
 ##   stock     N       mean       sd
 ##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.3882778 1.196776
-## 2     Y    10 -0.8313080 1.934606
-## 3     Z    10  0.1911159 4.829882
+## 1     X    10  0.1789118 1.525880
+## 2     Y    10  1.0244037 2.743895
+## 3     Z    10 -1.8795066 3.141487
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10913,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.39 (1.2) & -0.83 (1.93) & 0.19 (4.83)\\
+Mean (Std.dev.) & 0.18 (1.53) & 1.02 (2.74) & -1.88 (3.14)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14581,7 +14581,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  0.21396209 -0.06903234
+## -0.29942176  0.03364693
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -14694,7 +14694,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.18678173  0.05469337  1.32509996
+## [1]  0.7415992  0.3354647 -0.5220497
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -14713,7 +14713,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] 0.3976705
+## [1] 0.1850047
 ## 
 ## $c
 ## [1] NA
@@ -14734,7 +14734,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.1867817
+## [1] 0.7415992
 ## 
 ## $c
 ## [1] "a"
@@ -14750,8 +14750,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                    a                    b                    c 
-##                  "1" "-0.186781728949142"                  "a"
+##                   a                   b                   c 
+##                 "1" "0.741599153871897"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
@@ -15250,8 +15250,6 @@ labels and titles.)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{RProgrammingForResearch_files/figure-latex/ccb-1.pdf}
-
 As with the maps from \texttt{ggplot2}, you can add points to these
 maps:
 
@@ -15286,8 +15284,6 @@ maps:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/ccg-1} \end{center}
-
 You can also use the Google Maps API, through the \texttt{geocode}
 function, to get the latitude and longitude of specific locations.
 Basically, if the string would give you the right location if you typed
@@ -15301,11 +15297,6 @@ For example, you can get the location of CSU:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##         lon      lat
-## 1 -105.0865 40.57344
-\end{verbatim}
-
 You can also get a location by address:
 
 \begin{Shaded}
@@ -15313,11 +15304,6 @@ You can also get a location by address:
 \KeywordTok{geocode}\NormalTok{(}\StringTok{"1 First St NE, Washington, DC"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##         lon      lat
-## 1 -77.00465 38.89051
-\end{verbatim}
 
 You can get distances, too, using the \texttt{mapdist} function with two
 locations. This will give you distance and also time.
@@ -15329,11 +15315,6 @@ locations. This will give you distance and also time.
 \StringTok{  }\KeywordTok{select}\NormalTok{(from, miles, hours)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##              from    miles    hours
-## 1 Fort Collins CO 1670.784 24.68139
-\end{verbatim}
 
 \section{String operations}\label{string-operations}
 
@@ -16047,12 +16028,6 @@ Next, you'll try out some mapping with this FARS data.
   Google Map base map that shows major roads. An example map is shown
   below. (\emph{Hint:} Use the \texttt{get\_map} and \texttt{ggmap}
   functions for this part.)
-\end{itemize}
-
-\includegraphics{RProgrammingForResearch_files/figure-latex/ccw-1.pdf}
-
-\begin{itemize}
-\tightlist
 \item
   Create a function that will take three inputs: \texttt{datafr}, a data
   frame like \texttt{accident} with fatal accident data;
@@ -16100,6 +16075,1439 @@ Next, you'll try out some mapping with this FARS data.
 \end{Shaded}
 
 \begin{center}\includegraphics{RProgrammingForResearch_files/figure-latex/cdb-1} \end{center}
+
+\part{Part IV: Advanced}\label{part-part-iv-advanced}
+
+\chapter{Entering and cleaning data
+\#3}\label{entering-and-cleaning-data-3}
+
+\href{https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week10.pdf}{Download}
+a pdf of the lecture slides covering this topic.
+
+\section{Cleaning very messy data}\label{cleaning-very-messy-data}
+
+\subsection{Example of messy data}\label{example-of-messy-data}
+
+One version of Atlantic basin hurricane tracks is available here:
+\url{http://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2015-070616.txt}.
+The data is not in a classic delimited format:
+
+\begin{center}\includegraphics[width=\textwidth]{figures/hurrtrackformat} \end{center}
+
+This data is formatted in the following way:
+
+\begin{itemize}
+\tightlist
+\item
+  Data for many storms are included in one file.
+\item
+  Data for a storm starts with a shorter line, with values for the storm
+  ID, name, and number of observations for the storm. These values are
+  comma separated.
+\item
+  Observations for each storm are longer lines. There are multiple
+  observations for each storm, where each observation gives values like
+  the location and maximum winds for the storm at that time.
+\end{itemize}
+
+\subsection{Strategy for messy data}\label{strategy-for-messy-data}
+
+Because the hurricane tracking data is not nicely formatted, you can't
+use \texttt{read\_csv} or similar functions to read it in. Here is a
+strategy for reading in very messy data:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Read in all lines individually.
+\item
+  Use regular expressions to split each line into the elements you'd
+  like to use to fill columns.
+\item
+  Write functions, loops, or \texttt{apply} calls to process lines and
+  use the contents to fill a data frame.
+\item
+  Once you have the data in a data frame, do any remaining cleaning to
+  create a data frame that is easy to use to answer research questions.
+\end{enumerate}
+
+\subsection{\texorpdfstring{\texttt{readLines}
+function}{readLines function}}\label{readlines-function}
+
+The \texttt{readLines} function allows you to read a text file in one
+line at a time. You can then write code and functions to parse the file
+one line at a time, to turn it into a dataframe you can use.
+
+The \texttt{readLines} function will read in lines from a text file
+directly, without trying to separate into columns. You can use the
+\texttt{n} argument to specify the number of lines to read it.
+
+For example, to read in three lines from the hurricane tracking data,
+you can run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks_url <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"http://www.nhc.noaa.gov/data/hurdat/"}\NormalTok{,}
+                     \StringTok{"hurdat2-1851-2016-041117.txt"}\NormalTok{)}
+\NormalTok{hurr_tracks <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(tracks_url, }\DataTypeTok{n =} \DecValTok{3}\NormalTok{)}
+\NormalTok{hurr_tracks}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "AL011851,            UNNAMED,     14,"                                                                                   
+## [2] "18510625, 0000,  , HU, 28.0N,  94.8W,  80, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999,"
+## [3] "18510625, 0600,  , HU, 28.0N,  95.4W,  80, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999, -999,"
+\end{verbatim}
+
+The data has been read in as a vector, rather than a dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(hurr_tracks)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(hurr_tracks)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_tracks[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "AL011851,            UNNAMED,     14,"
+\end{verbatim}
+
+\subsection{Regular expressions for
+cleaning}\label{regular-expressions-for-cleaning}
+
+You can use regular expressions to break each line up. For example, you
+can use \texttt{str\_split} from the \texttt{stringr} package to break
+the first line of the hurricane track data into its three separate
+components:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(stringr)}
+\KeywordTok{str_split}\NormalTok{(hurr_tracks[}\DecValTok{1}\NormalTok{], }\DataTypeTok{pattern =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "AL011851"            "            UNNAMED" "     14"            
+## [4] ""
+\end{verbatim}
+
+You can use this to create a list where each element of the list has the
+split-up version of a line of the original data. First, read in all of
+the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks_url <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"http://www.nhc.noaa.gov/data/hurdat/"}\NormalTok{,}
+                     \StringTok{"hurdat2-1851-2016-041117.txt"}\NormalTok{)}
+\NormalTok{hurr_tracks <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(tracks_url)}
+\KeywordTok{length}\NormalTok{(hurr_tracks)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 51521
+\end{verbatim}
+
+\subsection{Working with lists}\label{working-with-lists}
+
+Next, use \texttt{lapply} with \texttt{str\_split} to split each line of
+the data at the commas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_tracks <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(hurr_tracks, str_split,}
+                      \DataTypeTok{pattern =} \StringTok{","}\NormalTok{,}
+                      \DataTypeTok{simplify =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{hurr_tracks[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] "AL011851" "            UNNAMED" "     14" ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_tracks[[}\DecValTok{2}\NormalTok{]][}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "18510625" " 0000"
+\end{verbatim}
+
+Next, you want to split this list into two lists, one with the shorter
+``meta-data'' lines and one with the longer ``observation'' lines. You
+can use \texttt{sapply} to create a vector with the length of each line.
+You will later use this to identify which lines are short or long.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_lengths <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(hurr_tracks, length)}
+\NormalTok{hurr_lengths[}\DecValTok{1}\OperatorTok{:}\DecValTok{17}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  4 21 21 21 21 21 21 21 21 21 21 21 21 21 21  4 21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(hurr_lengths)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  4 21
+\end{verbatim}
+
+You can use bracket indexing to split the \texttt{hurr\_tracks} into two
+lists: one with the shorter lines that start each observation
+(\texttt{hurr\_meta}) and one with the storm observations
+(\texttt{hurr\_obs}). Use bracket indexing with the
+\texttt{hurr\_lengths} vector you just created to make that split.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_meta <-}\StringTok{ }\NormalTok{hurr_tracks[hurr_lengths }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{]}
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_tracks[hurr_lengths }\OperatorTok{==}\StringTok{ }\DecValTok{21}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_meta[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] "AL011851" "            UNNAMED" "     14" ""  
+## 
+## [[2]]
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] "AL021851" "            UNNAMED" "      1" ""  
+## 
+## [[3]]
+##      [,1]       [,2]                  [,3]      [,4]
+## [1,] "AL031851" "            UNNAMED" "      1" ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##      [,1]       [,2]    [,3] [,4]  [,5]     [,6]      [,7]   [,8]   
+## [1,] "18510625" " 0000" "  " " HU" " 28.0N" "  94.8W" "  80" " -999"
+##      [,9]    [,10]   [,11]   [,12]   [,13]   [,14]   [,15]   [,16]  
+## [1,] " -999" " -999" " -999" " -999" " -999" " -999" " -999" " -999"
+##      [,17]   [,18]   [,19]   [,20]   [,21]
+## [1,] " -999" " -999" " -999" " -999" ""   
+## 
+## [[2]]
+##      [,1]       [,2]    [,3] [,4]  [,5]     [,6]      [,7]   [,8]   
+## [1,] "18510625" " 0600" "  " " HU" " 28.0N" "  95.4W" "  80" " -999"
+##      [,9]    [,10]   [,11]   [,12]   [,13]   [,14]   [,15]   [,16]  
+## [1,] " -999" " -999" " -999" " -999" " -999" " -999" " -999" " -999"
+##      [,17]   [,18]   [,19]   [,20]   [,21]
+## [1,] " -999" " -999" " -999" " -999" ""
+\end{verbatim}
+
+\subsection{Converting to dataframes}\label{converting-to-dataframes}
+
+Now, you can use \texttt{bind\_rows} from \texttt{dplyr} to change the
+list of metadata into a dataframe. (You first need to use
+\texttt{as\_tibble} with \texttt{lapply} to convert all elements of the
+list from matrices to dataframes.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{hurr_meta <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(hurr_meta, tibble}\OperatorTok{::}\NormalTok{as_tibble)}
+\NormalTok{hurr_meta <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(hurr_meta)}
+\NormalTok{hurr_meta }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##         V1                  V2      V3    V4
+##      <chr>               <chr>   <chr> <chr>
+## 1 AL011851             UNNAMED      14      
+## 2 AL021851             UNNAMED       1      
+## 3 AL031851             UNNAMED       1
+\end{verbatim}
+
+You can clean up the data a bit more.
+
+\begin{itemize}
+\tightlist
+\item
+  First, the fourth column doesn't have any non-missing values, so you
+  can get rid of it:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(hurr_meta}\OperatorTok{$}\NormalTok{V4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Second, the second and third columns include a lot of leading
+  whitespace:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_meta}\OperatorTok{$}\NormalTok{V2[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "            UNNAMED" "            UNNAMED"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Last, we want to name the columns.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_meta <-}\StringTok{ }\NormalTok{hurr_meta }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{V4) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{storm_id =}\NormalTok{ V1, }\DataTypeTok{storm_name =}\NormalTok{ V2, }\DataTypeTok{n_obs =}\NormalTok{ V3) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{storm_name =} \KeywordTok{str_trim}\NormalTok{(storm_name),}
+                \DataTypeTok{n_obs =} \KeywordTok{as.numeric}\NormalTok{(n_obs))}
+\NormalTok{hurr_meta }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   storm_id storm_name n_obs
+##      <chr>      <chr> <dbl>
+## 1 AL011851    UNNAMED    14
+## 2 AL021851    UNNAMED     1
+## 3 AL031851    UNNAMED     1
+\end{verbatim}
+
+Now you can apply the same idea to the hurricane observations. First,
+we'll want to add storm identifiers to that data. The ``meta'' data
+includes storm ids and the number of observations per storm. We can take
+advantage of that to make a \texttt{storm\_id} vector that will line up
+with the storm observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{storm_id <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(hurr_meta}\OperatorTok{$}\NormalTok{storm_id, }\DataTypeTok{times =}\NormalTok{ hurr_meta}\OperatorTok{$}\NormalTok{n_obs)}
+\KeywordTok{head}\NormalTok{(storm_id, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "AL011851" "AL011851" "AL011851"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(storm_id)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 49691
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(hurr_obs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 49691
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(hurr_obs, tibble}\OperatorTok{::}\NormalTok{as_tibble)}
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{bind_rows}\NormalTok{(hurr_obs) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{storm_id =}\NormalTok{ storm_id)}
+\NormalTok{hurr_obs }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(V1, V2, V5, V6, storm_id) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+##         V1    V2     V5      V6 storm_id
+##      <chr> <chr>  <chr>   <chr>    <chr>
+## 1 18510625  0000  28.0N   94.8W AL011851
+## 2 18510625  0600  28.0N   95.4W AL011851
+## 3 18510625  1200  28.0N   96.0W AL011851
+\end{verbatim}
+
+To finish, you just need to clean up the data. Now that the data is in a
+dataframe, this process is inline with what you've been doing with
+\texttt{dplyr} and related packages.
+
+The ``README'' file for the hurricane tracking data is useful at this
+point:
+
+\url{http://www.nhc.noaa.gov/data/hurdat/hurdat2-format-atlantic.pdf}
+
+First, say you only want some of the columns for a study you are doing.
+You can use \texttt{select} to clean up the dataframe by limiting it to
+columns you need.
+
+If you only need date, time, storm status, location (latitude and
+longitude), maximum sustained winds, and minimum pressure, then you can
+run:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(V1, V2, V4}\OperatorTok{:}\NormalTok{V8, storm_id) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{rename}\NormalTok{(}\DataTypeTok{date =}\NormalTok{ V1, }\DataTypeTok{time =}\NormalTok{ V2, }\DataTypeTok{status =}\NormalTok{ V4, }\DataTypeTok{latitude =}\NormalTok{ V5, }
+                \DataTypeTok{longitude =}\NormalTok{ V6, }\DataTypeTok{wind =}\NormalTok{ V7, }\DataTypeTok{pressure =}\NormalTok{ V8)}
+\NormalTok{hurr_obs }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(date, time, status, latitude, longitude)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+##       date  time status latitude longitude
+##      <chr> <chr>  <chr>    <chr>     <chr>
+## 1 18510625  0000     HU    28.0N     94.8W
+## 2 18510625  0600     HU    28.0N     95.4W
+## 3 18510625  1200     HU    28.0N     96.0W
+\end{verbatim}
+
+Next, the first two columns give the date and time. You can
+\texttt{unite} these and then convert them to a Date-time class.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyr)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{unite}\NormalTok{(date_time, date, time) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{date_time =} \KeywordTok{ymd_hm}\NormalTok{(date_time))}
+\NormalTok{hurr_obs }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(date_time, status, latitude, longitude)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##             date_time status latitude longitude
+##                <dttm>  <chr>    <chr>     <chr>
+## 1 1851-06-25 00:00:00     HU    28.0N     94.8W
+## 2 1851-06-25 06:00:00     HU    28.0N     95.4W
+## 3 1851-06-25 12:00:00     HU    28.0N     96.0W
+\end{verbatim}
+
+Next, you can change \texttt{status} to a factor and give the levels
+more meaningful names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{status)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] " HU" " TS" " EX" " TD" " LO" " DB" " SD" " SS" " WV"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{storm_levels <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"TD"}\NormalTok{, }\StringTok{"TS"}\NormalTok{, }\StringTok{"HU"}\NormalTok{, }\StringTok{"EX"}\NormalTok{, }
+                  \StringTok{"SD"}\NormalTok{, }\StringTok{"SS"}\NormalTok{, }\StringTok{"LO"}\NormalTok{, }\StringTok{"WV"}\NormalTok{, }\StringTok{"DB"}\NormalTok{)}
+\NormalTok{storm_labels <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Tropical depression"}\NormalTok{, }\StringTok{"Tropical storm"}\NormalTok{,}
+                  \StringTok{"Hurricane"}\NormalTok{, }\StringTok{"Extratropical cyclone"}\NormalTok{,}
+                  \StringTok{"Subtropical depression"}\NormalTok{,}
+                  \StringTok{"Subtropical storm"}\NormalTok{, }\StringTok{"Other low"}\NormalTok{,}
+                  \StringTok{"Tropical wave"}\NormalTok{, }\StringTok{"Disturbance"}\NormalTok{)}
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{status =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{str_trim}\NormalTok{(status), }
+                                \DataTypeTok{levels =}\NormalTok{ storm_levels, }
+                                \DataTypeTok{labels =}\NormalTok{ storm_labels))}
+\end{Highlighting}
+\end{Shaded}
+
+Now, you can clean up the latitude and longitude. Ultimately, we'll want
+numeric values for those so we can use them for mapping. You can use
+regular expressions to separate the numeric and non-numeric parts of
+these columns. For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{str_extract}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{latitude, }\StringTok{"[A-Z]"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "N" "N" "N" "N" "N" "N"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{str_extract}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{latitude, }\StringTok{"[^A-Z]+"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] " 28.0" " 28.0" " 28.0" " 28.1" " 28.2" " 28.2"
+\end{verbatim}
+
+Use this idea to split the numeric latitude from the direction of that
+latitude:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lat_dir =} \KeywordTok{str_extract}\NormalTok{(latitude, }\StringTok{"[A-Z]"}\NormalTok{),}
+                \DataTypeTok{latitude =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{str_extract}\NormalTok{(latitude, }\StringTok{"[^A-Z]+"}\NormalTok{)),}
+                \DataTypeTok{lon_dir =} \KeywordTok{str_extract}\NormalTok{(longitude, }\StringTok{"[A-Z]"}\NormalTok{),}
+                \DataTypeTok{longitude =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{str_extract}\NormalTok{(longitude, }\StringTok{"[^A-Z]+"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+Now these elements are in separate columns:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(latitude, lat_dir, longitude, lon_dir) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 4
+##   latitude lat_dir longitude lon_dir
+##      <dbl>   <chr>     <dbl>   <chr>
+## 1       28       N      94.8       W
+## 2       28       N      95.4       W
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{lat_dir)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "N"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{lon_dir)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "W" "E"
+\end{verbatim}
+
+If we're looking at US impacts, we probably only need observations from
+the western hemisphere, so let's filter out other values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(lon_dir }\OperatorTok{==}\StringTok{ "W"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, clean up the wind column:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{wind)[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "  80" "  70" "  60" "  50" "  40"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{wind =} \KeywordTok{ifelse}\NormalTok{(wind }\OperatorTok{==}\StringTok{ " -99"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\KeywordTok{as.numeric}\NormalTok{(wind)))}
+\end{Highlighting}
+\end{Shaded}
+
+Check the cleaned measurements:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(hurr_obs, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ wind)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk26-1} \end{center}
+
+Clean and check air pressure measurements in the same way:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{unique}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{pressure))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] " -999" "  961" "  924" "  938" "  950" "  997"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pressure =} \KeywordTok{ifelse}\NormalTok{(pressure }\OperatorTok{==}\StringTok{ " -999"}\NormalTok{, }\OtherTok{NA}\NormalTok{,}
+                                  \KeywordTok{as.numeric}\NormalTok{(pressure)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(hurr_obs, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ pressure)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk28-1} \end{center}
+
+Check some of the very low pressure measurements:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{arrange}\NormalTok{(pressure) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(date_time, wind, pressure) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##             date_time  wind pressure
+##                <dttm> <dbl>    <dbl>
+## 1 2005-10-19 12:00:00   160      882
+## 2 1988-09-14 00:00:00   160      888
+## 3 1988-09-14 06:00:00   155      889
+## 4 1935-09-03 00:00:00   160      892
+## 5 1935-09-03 02:00:00   160      892
+\end{verbatim}
+
+\subsection{Exploring the hurricane tracking
+data}\label{exploring-the-hurricane-tracking-data}
+
+Explore pressure versus wind speed, by storm status:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(hurr_obs, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ pressure, }\DataTypeTok{y =}\NormalTok{ wind,}
+                     \DataTypeTok{color =}\NormalTok{ status)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.4}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk30-1} \end{center}
+
+Next, we want to map storms by decade. Add hurricane decade:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{decade =} \KeywordTok{substring}\NormalTok{(}\KeywordTok{year}\NormalTok{(date_time), }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+                \DataTypeTok{decade =} \KeywordTok{paste0}\NormalTok{(decade, }\StringTok{"0s"}\NormalTok{))}
+\KeywordTok{unique}\NormalTok{(hurr_obs}\OperatorTok{$}\NormalTok{decade)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "1850s" "1860s" "1870s" "1880s" "1890s" "1900s" "1910s" "1920s"
+##  [9] "1930s" "1940s" "1950s" "1960s" "1970s" "1980s" "1990s" "2000s"
+## [17] "2010s"
+\end{verbatim}
+
+Add logical for whether the storm was ever category 5:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{group_by}\NormalTok{(storm_id) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cat_5 =} \KeywordTok{max}\NormalTok{(wind) }\OperatorTok{>=}\StringTok{ }\DecValTok{137}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+To map the hurricane tracks, you need a base map to add the tracks to.
+Pull data to map hurricane-prone states:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{east_states <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"florida"}\NormalTok{, }\StringTok{"georgia"}\NormalTok{, }\StringTok{"south carolina"}\NormalTok{, }
+                 \StringTok{"north carolina"}\NormalTok{, }\StringTok{"virginia"}\NormalTok{, }\StringTok{"maryland"}\NormalTok{,}
+                 \StringTok{"delaware"}\NormalTok{, }\StringTok{"new jersey"}\NormalTok{, }\StringTok{"new york"}\NormalTok{, }
+                 \StringTok{"connecticut"}\NormalTok{, }\StringTok{"massachusetts"}\NormalTok{, }
+                 \StringTok{"rhode island"}\NormalTok{, }\StringTok{"vermont"}\NormalTok{, }\StringTok{"new hampshire"}\NormalTok{,}
+                 \StringTok{"maine"}\NormalTok{, }\StringTok{"pennsylvania"}\NormalTok{, }\StringTok{"west virginia"}\NormalTok{,}
+                 \StringTok{"tennessee"}\NormalTok{, }\StringTok{"kentucky"}\NormalTok{, }\StringTok{"alabama"}\NormalTok{,}
+                 \StringTok{"arkansas"}\NormalTok{, }\StringTok{"texas"}\NormalTok{, }\StringTok{"mississippi"}\NormalTok{,}
+                 \StringTok{"louisiana"}\NormalTok{)}
+\NormalTok{east_us <-}\StringTok{ }\KeywordTok{map_data}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\DataTypeTok{region =}\NormalTok{ east_states)}
+\end{Highlighting}
+\end{Shaded}
+
+Plot tracks over a map of hurricane-prone states. Add thicker lines for
+storms that were category 5 at least once in their history.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(east_us, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group =}\NormalTok{ group)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"cornsilk"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"cornsilk"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_void}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{108}\NormalTok{, }\OperatorTok{-}\DecValTok{65}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{48}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_path}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ hurr_obs, }
+            \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{-}\NormalTok{longitude, }\DataTypeTok{y =}\NormalTok{ latitude,}
+                \DataTypeTok{group =}\NormalTok{ storm_id),}
+            \DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_path}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{filter}\NormalTok{(hurr_obs, cat_}\DecValTok{5}\NormalTok{), }
+            \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{-}\NormalTok{longitude, }\DataTypeTok{y =}\NormalTok{ latitude,}
+                \DataTypeTok{group =}\NormalTok{ storm_id),}
+            \DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{decade)}
+\end{Highlighting}
+\end{Shaded}
+
+Check trends in maximum wind recorded in any observation each year:
+
+\begin{center}\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk35-1} \end{center}
+
+Maximum wind observed each year:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{storm_year =} \KeywordTok{year}\NormalTok{(date_time)) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{group_by}\NormalTok{(storm_year) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{highest_wind =} \KeywordTok{max}\NormalTok{(wind, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ storm_year, }\DataTypeTok{y =}\NormalTok{ highest_wind)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{span =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk36-1} \end{center}
+
+There is an R package named \texttt{gender} that predicts whether a name
+is male or female based on historical data:
+
+\href{https://cran.r-project.org/web/packages/gender/vignettes/predicting-gender.html}{Vignette
+for \texttt{gender} package}
+
+This package uses one of several databases of names (here, we'll use
+Social Security Administration data), inputs a year or range of years,
+and outputs whether a name in that year was more likely female or male.
+
+We can apply a function from this package across all the named storms to
+see how male / female proportions changed over time.
+
+First, install the package (as well as \texttt{genderdata}, which is
+required to use the package). Once you do, you can use \texttt{gender}
+to determine the most common gender associated with a name in a given
+year or range of years:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("gender")}
+\CommentTok{# install.packages("genderdata", type = "source",}
+\CommentTok{#                 repos = "http://packages.ropensci.org")}
+\KeywordTok{library}\NormalTok{(gender)}
+\KeywordTok{gender}\NormalTok{(}\StringTok{"KATRINA"}\NormalTok{, }\DataTypeTok{years =} \DecValTok{2005}\NormalTok{)[ , }\KeywordTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{, }\StringTok{"gender"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+To apply this function across all our storms, it helps if we write a
+small function that ``wraps'' the \texttt{gender} function and outputs
+exactly (and only) what we want, in the format we want:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{get_gender <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(storm_name, storm_year)\{}
+\NormalTok{  storm_gender <-}\StringTok{ }\KeywordTok{gender}\NormalTok{(}\DataTypeTok{names =}\NormalTok{ storm_name,}
+                         \DataTypeTok{years =}\NormalTok{ storm_year,}
+                         \DataTypeTok{method =} \StringTok{"ssa"}\NormalTok{)}\OperatorTok{$}\NormalTok{gender}
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(storm_gender) }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) storm_gender <-}\StringTok{ }\OtherTok{NA}
+  \KeywordTok{return}\NormalTok{(storm_gender)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can use \texttt{mapply} with this wrapper function to apply it
+across all our named storms:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_genders <-}\StringTok{ }\NormalTok{hurr_meta }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(storm_name }\OperatorTok{!=}\StringTok{ "UNNAMED"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{storm_year =} \KeywordTok{substring}\NormalTok{(storm_id, }\DecValTok{5}\NormalTok{, }\DecValTok{8}\NormalTok{),}
+                \DataTypeTok{storm_year =} \KeywordTok{as.numeric}\NormalTok{(storm_year)) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\DecValTok{1880} \OperatorTok{<=}\StringTok{ }\NormalTok{storm_year }\OperatorTok{&}\StringTok{ }\NormalTok{storm_year }\OperatorTok{<=}\StringTok{ }\DecValTok{2012}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(storm_name, storm_year, storm_id) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{storm_gender =} \KeywordTok{mapply}\NormalTok{(get_gender, }
+                                      \DataTypeTok{storm_name =}\NormalTok{ storm_name,}
+                                      \DataTypeTok{storm_year =} \KeywordTok{as.numeric}\NormalTok{(storm_year)))}
+\end{Highlighting}
+\end{Shaded}
+
+Now, plot a bar chart with the number of male, female, and unclear
+storms each year:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_genders }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{group_by}\NormalTok{(storm_year, storm_gender) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ storm_year, }\DataTypeTok{y =}\NormalTok{ n, }\DataTypeTok{fill =}\NormalTok{ storm_gender)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_x_reverse}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"# of storms"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, you can write a function to plot the track for a specific storm.
+You'll want to be able to call the function by storm name and year, so
+join in the storm names from the \texttt{hurr\_meta} dataset. We'll
+exclude any ``UNNAMED'' storms.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurr_obs <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{left_join}\NormalTok{(hurr_meta, }\DataTypeTok{by =} \StringTok{"storm_id"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(storm_name }\OperatorTok{!=}\StringTok{ "UNNAMED"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{storm_year =} \KeywordTok{year}\NormalTok{(date_time))}
+\end{Highlighting}
+\end{Shaded}
+
+Next, write a function to plot the track for a single storm. Use color
+to show storm status and size to show wind speed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map_track <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(storm, year, }\DataTypeTok{map_data =}\NormalTok{ east_us,}
+                      \DataTypeTok{hurr_data =}\NormalTok{ hurr_obs)\{}
+\NormalTok{  to_plot <-}\StringTok{ }\NormalTok{hurr_obs }\OperatorTok{%>%}
+\StringTok{    }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(storm_name }\OperatorTok{==}\StringTok{ }\KeywordTok{toupper}\NormalTok{(storm) }\OperatorTok{&}\StringTok{ }\NormalTok{storm_year }\OperatorTok{==}\StringTok{ }\NormalTok{year)}
+\NormalTok{  out <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(east_us, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat,}
+                             \DataTypeTok{group =}\NormalTok{ group)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"cornsilk"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme_void}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{xlim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{108}\NormalTok{, }\OperatorTok{-}\DecValTok{65}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{48}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_path}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ to_plot,}
+              \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{-}\NormalTok{longitude, }\DataTypeTok{y =}\NormalTok{ latitude,}
+                  \DataTypeTok{group =} \OtherTok{NULL}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ to_plot,}
+              \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{-}\NormalTok{longitude, }\DataTypeTok{y =}\NormalTok{ latitude,}
+                  \DataTypeTok{group =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{color =}\NormalTok{ status,}
+                  \DataTypeTok{size =}\NormalTok{ wind), }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+  \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_track}\NormalTok{(}\DataTypeTok{storm =} \StringTok{"Katrina"}\NormalTok{, }\DataTypeTok{year =} \StringTok{"2005"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk44-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_track}\NormalTok{(}\DataTypeTok{storm =} \StringTok{"Camille"}\NormalTok{, }\DataTypeTok{year =} \StringTok{"1969"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk45-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{map_track}\NormalTok{(}\DataTypeTok{storm =} \StringTok{"Hazel"}\NormalTok{, }\DataTypeTok{year =} \StringTok{"1954"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=\textwidth]{RProgrammingForResearch_files/figure-latex/ch10chunk46-1} \end{center}
+
+You can also write code with \texttt{readLines} that will read, check,
+and clean each line, one line at a time.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{con  <-}\StringTok{ }\KeywordTok{file}\NormalTok{(}\StringTok{"~/my_file.txt"}\NormalTok{, }\DataTypeTok{open =} \StringTok{"r"}\NormalTok{)}
+\ControlFlowTok{while}\NormalTok{ (}\KeywordTok{length}\NormalTok{(single_line <-}\StringTok{ }
+\StringTok{              }\KeywordTok{readLines}\NormalTok{(con, }\DataTypeTok{n =} \DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{warn =} \OtherTok{FALSE}\NormalTok{)) }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+    
+\NormalTok{  ## Code to check and clean each line and }
+\NormalTok{  ## then add it to "cleaned" data frame.}
+\NormalTok{  ## Run operations on `single_line`.}
+
+\NormalTok{  \} }
+\KeywordTok{close}\NormalTok{(con)}
+\end{Highlighting}
+\end{Shaded}
+
+This can be particularly useful if you're cleaning a very big file,
+especially if there are many lines you don't want to keep.
+
+\section{Pulling online data}\label{pulling-online-data}
+
+\subsection{APIs}\label{apis}
+
+API: ``Application Program Interface''
+
+An API provides the rules for software applications to interact. In the
+case of open data APIs, they provide the rules you need to know to write
+R code to request and pull data from the organization's web server into
+your R session.
+
+Often, an API can help you avoid downloading all available data, and
+instead only download the subset you need.
+
+Strategy for using APIs from R:
+
+\begin{itemize}
+\tightlist
+\item
+  Figure out the API rules for HTTP requests
+\item
+  Write R code to create a request in the proper format
+\item
+  Send the request using GET or POST HTTP methods
+\item
+  Once you get back data from the request, parse it into an
+  easier-to-use format if necessary
+\end{itemize}
+
+Start by reading any documentation available for the API. This will
+often give information on what data is available and how to put together
+requests.
+
+\begin{center}\includegraphics[width=1.1\textwidth]{figures/NASA_API_documentation} \end{center}
+
+Source: \url{https://api.nasa.gov/api.html\#EONET}
+
+Many organizations will require you to get an API key and use this key
+in each of your API requests. This key allows the organization to
+control API access, including enforcing rate limits per user. API rate
+limits restrict how often you can request data (e.g., an hourly limit of
+1,000 requests per user for NASA APIs).
+
+You should keep this key private. In particular, make sure you do not
+include it in code that is posted to GitHub.
+
+\subsection{\texorpdfstring{Example-- \texttt{riem}
+package}{Example-- riem package}}\label{example-riem-package}
+
+The \texttt{riem} package, developed by Maelle Salmon and an ROpenSci
+package, is an excellent and straightforward example of how you can use
+R to pull open data through a web API.
+
+This package allows you to pull weather data from airports around the
+world directly from the \href{https://mesonet.agron.iastate.edu}{Iowa
+Environmental Mesonet}.
+
+To get a certain set of weather data from the Iowa Environmental
+Mesonet, you can send an HTTP request specifying a base URL,
+``\url{https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py/}'', as
+well as some parameters describing the subset of dataset you want (e.g.,
+date ranges, weather variables, output format).
+
+Once you know the rules for the names and possible values of these
+parameters (more on that below), you can submit an HTTP GET request
+using the \texttt{GET} function from the \texttt{httr} package.
+
+\begin{center}\includegraphics[width=\textwidth]{figures/mesonet_example} \end{center}
+
+\url{https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=DEN\&data=sknt\&year1=2016\&month1=6\&day1=1\&year2=2016\&month2=6\&day2=30\&tz=America\%2FDenver\&format=comma\&latlon=no\&direct=no\&report_type=1\&report_type=2}
+
+When you are making an HTTP request using the \texttt{GET} or
+\texttt{POST} functions from the \texttt{httr} package, you can include
+the key-value pairs for any query parameters as a list object in the
+\texttt{query} argurment of the function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(httr)}
+\NormalTok{meso_url <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"https://mesonet.agron.iastate.edu/"}\NormalTok{,}
+                   \StringTok{"cgi-bin/request/asos.py/"}\NormalTok{)}
+\NormalTok{denver <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\DataTypeTok{url =}\NormalTok{ meso_url,}
+              \DataTypeTok{query =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{station =} \StringTok{"DEN"}\NormalTok{, }\DataTypeTok{data =} \StringTok{"sped"}\NormalTok{,}
+                           \DataTypeTok{year1 =} \StringTok{"2016"}\NormalTok{, }\DataTypeTok{month1 =} \StringTok{"6"}\NormalTok{,}
+                           \DataTypeTok{day1 =} \StringTok{"1"}\NormalTok{, }\DataTypeTok{year2 =} \StringTok{"2016"}\NormalTok{,}
+                           \DataTypeTok{month2 =} \StringTok{"6"}\NormalTok{, }\DataTypeTok{day2 =} \StringTok{"30"}\NormalTok{,}
+                           \DataTypeTok{tz =} \StringTok{"America/Denver"}\NormalTok{,}
+                           \DataTypeTok{format =} \StringTok{"comma"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+You can then use \texttt{content} from \texttt{httr} to retrieve the
+contents of the HTTP request. For this particular web data, the
+requested data is a comma-separated file, so you can convert it to a
+dataframe with \texttt{read\_csv}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{denver }\OperatorTok{%>%}\StringTok{ }\KeywordTok{content}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(}\DataTypeTok{skip =} \DecValTok{5}\NormalTok{, }\DataTypeTok{na =} \StringTok{"M"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   station               valid  sped
+##     <chr>              <dttm> <dbl>
+## 1     DEN 2016-06-01 00:00:00   9.2
+## 2     DEN 2016-06-01 00:05:00   9.2
+## 3     DEN 2016-06-01 00:10:00   6.9
+\end{verbatim}
+
+\section{Example R API wrappers}\label{example-r-api-wrappers}
+
+\subsection{rOpenSci}\label{ropensci}
+
+rOpenSci (\url{https://ropensci.org}):
+
+\begin{quote}
+``At rOpenSci we are creating packages that allow access to data
+repositories through the R statistical programming environment that is
+already a familiar part of the workflow of many scientists. Our tools
+not only facilitate drawing data into an environment where it can
+readily be manipulated, but also one in which those analyses and methods
+can be easily shared, replicated, and extended by other researchers.''
+\end{quote}
+
+rOpenSci collects a number of packages for tapping into open data for
+research: \url{https://ropensci.org/packages}
+
+Some examples (all descriptions from rOpenSci):
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{AntWeb}: Access data from the world's largest ant database
+\item
+  \texttt{chromer}: Interact with the chromosome counts database (CCDB)
+\item
+  \texttt{gender}: Encodes gender based on names and dates of birth
+\item
+  \texttt{musemeta}: R Client for Scraping Museum Metadata, including
+  The Metropolitan Museum of Art, the Canadian Science \& Technology
+  Museum Corporation, the National Gallery of Art, and the Getty Museum,
+  and more to come.
+\item
+  \texttt{rusda}: Interface to some USDA databases
+\item
+  \texttt{webchem}: Retrieve chemical information from many sources.
+  Currently includes: Chemical Identifier Resolver, ChemSpider, PubChem,
+  and Chemical Translation Service.
+\end{itemize}
+
+For example, here is the description for the \texttt{rnoaa} package:
+
+\begin{quote}
+``Access climate data from NOAA, including temperature and
+precipitation, as well as sea ice cover data, and extreme weather
+events''
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Buoy data from the National Buoy Data Center
+\item
+  Historical Observing Metadata Repository (HOMR))--- climate station
+  metadata
+\item
+  National Climatic Data Center weather station data
+\item
+  Sea ice data
+\item
+  International Best Track Archive for Climate Stewardship (IBTrACS)---
+  tropical cyclone tracking data
+\item
+  Severe Weather Data Inventory (SWDI)
+\end{itemize}
+
+\subsection{\texorpdfstring{\texttt{countyweather}}{countyweather}}\label{countyweather}
+
+The \texttt{countyweather} package wraps the \texttt{rnoaa} package to
+let you pull and aggregate weather at the county level in the U.S. For
+example, you can pull all data from Miami during Hurricane Andrew:
+
+\includegraphics[width=\textwidth]{figures/countyweather2}
+
+When you pull the data for a county, the package also maps the
+contributing weather stations:
+
+\includegraphics[width=\textwidth]{figures/countyweather1}
+
+\subsection{USGS-R Packages}\label{usgs-r-packages}
+
+USGS has a very nice collection of R packages that wrap USGS open data
+APIs: \url{https://owi.usgs.gov/R/}
+
+\begin{quote}
+``USGS-R is a community of support for users of the R scientific
+programming language. USGS-R resources include R training materials, R
+tools for the retrieval and analysis of USGS data, and support for a
+growing group of USGS-R developers.''
+\end{quote}
+
+USGS R packages include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dataRetrieval}: Obtain water quality sample data, streamflow
+  data, and metadata directly from either the USGS or EPA
+\item
+  \texttt{EGRET}: Analysis of long-term changes in water quality and
+  streamflow, including the water-quality method Weighted Regressions on
+  Time, Discharge, and Season (WRTDS)
+\item
+  \texttt{laketemps}: Lake temperature data package for Global Lake
+  Temperature Collaboration Project
+\item
+  \texttt{lakeattributes}: Common useful lake attribute data
+\item
+  \texttt{soilmoisturetools}: Tools for soil moisture data retrieval and
+  visualization
+\end{itemize}
+
+\subsection{U.S. Census packages}\label{u.s.-census-packages}
+
+A number of R packages help you access and use data from the U.S.
+Census:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{tigris}: Download and use Census TIGER/Line shapefiles in R
+\item
+  \texttt{acs}: Download, manipulate, and present American Community
+  Survey and Decennial data from the US Census
+\item
+  \texttt{USABoundaries}: Historical and contemporary boundaries of the
+  United States of America
+\item
+  \texttt{idbr}: R interface to the US Census Bureau International Data
+  Base API
+\end{itemize}
+
+For example, the \texttt{tigris} package allows you to pull spatial data
+for:
+
+\begin{itemize}
+\tightlist
+\item
+  Location boundaries
+
+  \begin{itemize}
+  \tightlist
+  \item
+    States
+  \item
+    Counties
+  \item
+    Blocks
+  \item
+    Tracks
+  \item
+    School districts
+  \item
+    Congressional districts
+  \end{itemize}
+\item
+  Roads
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Primary roads
+  \item
+    Primary and secondary roads
+  \end{itemize}
+\item
+  Water
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Area-water
+  \item
+    Linear-water
+  \item
+    Coastline
+  \end{itemize}
+\item
+  Other
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Landmarks
+  \item
+    Military
+  \end{itemize}
+\end{itemize}
+
+Example from: Kyle Walker. 2016. ``tigris: An R Package to Access and
+Work with Geographic Data from the US Census Bureau''. The R Journal.
+
+\begin{center}\includegraphics[width=0.6\textwidth]{figures/tigris_example} \end{center}
+
+\subsection{Other R API wrappers}\label{other-r-api-wrappers}
+
+Here are some examples of other R packages that faciliate use of an API
+for open data:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{twitteR}: Twitter
+\item
+  \texttt{Quandl}: Quandl (financial data)
+\item
+  \texttt{RGoogleAnalytics}: Google Analytics
+\item
+  \texttt{WDI}, \texttt{wbstats}: World Bank
+\item
+  \texttt{GuardianR}, \texttt{rdian}: The Guardian Media Group
+\item
+  \texttt{blsAPI}: Bureau of Labor Statistics
+\item
+  \texttt{rtimes}: New York Times
+\end{itemize}
+
+\subsection{R and APIs}\label{r-and-apis}
+
+Find out more about writing API packages with this vignette for the httr
+package:
+\url{https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html}.
+
+This document includes advice on error handling within R code that
+accesses data through an open API.
+
+\section{Parsing webpages}\label{parsing-webpages}
+
+You can also use R to pull and clean web-based data that is not
+accessible through a web API or as an online flat file.
+
+In this case, the strategy is:
+
+\begin{itemize}
+\tightlist
+\item
+  Pull in the full web page file (often in HTML or XML)
+\item
+  Parse or clean the file within R (e.g., with regular expressions)
+\end{itemize}
+
+\subsection{\texorpdfstring{\texttt{rvest}}{rvest}}\label{rvest}
+
+The \texttt{rvest} package should be the first thing you try if you need
+to pull and parse data from a webpage that is not a flat file.
+
+This package allows you to read an HTML or XML file and pull out a
+certain element. Here is a very simple example of this parsing (this and
+later examples are from \texttt{rvest} documentation):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rvest)}
+\KeywordTok{read_html}\NormalTok{(}\StringTok{"<html><title>Hi<title></html>"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## {xml_document}
+## <html>
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset= ...
+\end{verbatim}
+
+If you have an HTML or XML page you want to pull data from, you'll first
+need to read the page:
+
+\includegraphics[width=\textwidth]{figures/moviereviewpage}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rvest)}
+\NormalTok{lego_movie <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(}\StringTok{"http://www.imdb.com/title/tt1490017/"}\NormalTok{)}
+\NormalTok{lego_movie}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## {xml_document}
+## <html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset= ...
+## [2] <body id="styleguide-v2" class="fixed">\n<script>\n    if (typeof ue ...
+\end{verbatim}
+
+Then you can use \texttt{html\_nodes} and \texttt{html\_text} to pull
+and parse just the elements you want:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rating_node <-}\StringTok{ }\NormalTok{lego_movie }\OperatorTok{%>%}\StringTok{ }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{"strong span"}\NormalTok{) }
+\NormalTok{rating_node}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## {xml_nodeset (1)}
+## [1] <span itemprop="ratingValue">7.8</span>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rating <-}\StringTok{ }\NormalTok{rating_node }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{html_text}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{()}
+\NormalTok{rating}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.8
+\end{verbatim}
+
+You can pull and parse tables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lego_movie }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{"table"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ `}\DataTypeTok{[[}\StringTok{`}\NormalTok{(}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{html_table}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(X2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{2}\OperatorTok{:}\DecValTok{8}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 1
+##                X2
+##             <chr>
+## 1     Will Arnett
+## 2 Elizabeth Banks
+## 3     Craig Berry
+## 4     Alison Brie
+## 5   David Burrows
+## 6 Anthony Daniels
+## 7     Charlie Day
+\end{verbatim}
+
+The only tricky part of this is figuring out which CSS selector you can
+use to pull a specific element of a webpage.
+
+You can use ``Selectorgadget'' to help with this. Read the vignette for
+that tool here:
+\url{ftp://cran.r-project.org/pub/R/web/packages/rvest/vignettes/selectorgadget.html}
+
+\subsection{Scraping multiple pages}\label{scraping-multiple-pages}
+
+{[}Need to update this-- Kitchen has changed their website{]}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cities <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"denver"}\NormalTok{, }\StringTok{"boulder"}\NormalTok{, }\StringTok{"fort-collins"}\NormalTok{)}
+
+\NormalTok{kitchen_addresses <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(cities))\{}
+\NormalTok{  restaurant_url <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"http://thekitchenbistros.com/the-kitchen-"}\NormalTok{,}
+\NormalTok{                           cities[i])}
+\NormalTok{  restaurant_page <-}\StringTok{ }\KeywordTok{read_html}\NormalTok{(restaurant_url)}
+\NormalTok{  address <-}\StringTok{ }\NormalTok{restaurant_page }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{html_nodes}\NormalTok{(}\StringTok{"p:nth-child(2)"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{html_text}\NormalTok{()}
+\NormalTok{  kitchen_addresses[i] <-}\StringTok{ }\NormalTok{address[}\DecValTok{1}\NormalTok{]}
+\NormalTok{\}}
+\NormalTok{kitchen_addresses}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggmap)}
+\KeywordTok{library}\NormalTok{(stringr)}
+\NormalTok{kitchen_latlons <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(kitchen_addresses)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(cities))\{}
+\NormalTok{  city_map <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}\StringTok{"-"}\NormalTok{, }\StringTok{" "}\NormalTok{, cities[i]),}
+                            \StringTok{"colorado"}\NormalTok{),}
+                      \DataTypeTok{zoom =} \DecValTok{14}\NormalTok{, }
+                      \DataTypeTok{maptype =} \StringTok{"roadmap"}\NormalTok{)}
+\NormalTok{  city_map <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(city_map) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ kitchen_latlons[i, ],}
+               \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat),}
+               \DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{4}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.4}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme_void}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The Kitchen in"}\NormalTok{,}
+                  \KeywordTok{str_to_title}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}\StringTok{"-"}\NormalTok{, }\StringTok{" "}\NormalTok{, cities[i]))))}
+  \KeywordTok{print}\NormalTok{(city_map)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \appendix
 
@@ -16483,12 +17891,6 @@ vocabulary for the weekly quizzes.
   exploring lists (\texttt{class}, \texttt{names}, \texttt{str}
   functions)
 \item
-  \texttt{nest} and \texttt{unnest} (from \texttt{purrr} package)
-\item
-  \texttt{map} family of functions
-\item
-  basics of writing a function
-\item
   Regression modeling with \texttt{lm}, \texttt{glm}
 \item
   Writing a formula with \texttt{\textasciitilde{}} syntax
@@ -16514,11 +17916,24 @@ vocabulary for the weekly quizzes.
 \begin{itemize}
 \tightlist
 \item
-  \texttt{apply} family of functions
+  Regular expressions (the concept and which package you would use)
 \item
-  \texttt{matrix} objects, including how to subset
+  \texttt{nest} and \texttt{unnest} (from \texttt{purrr} package)
 \item
-  \texttt{list} objects, including how to subset
+  \texttt{map} family of functions
+\item
+  basics of writing a function
+\item
+  Mapping using \texttt{ggplot2} framework with dataframes of
+  geographical data (in the slides, ``Point maps'')
+\item
+  Choropleths, \texttt{choroplethr}
+\item
+  \texttt{map\_data}
+\item
+  \texttt{get\_map}
+\item
+  \texttt{ggmap}
 \end{itemize}
 
 \chapter{Appendix B: Homework}\label{appendix-b-homework}
