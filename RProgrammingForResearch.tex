@@ -198,7 +198,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Colorado State University, ERHS 535}
 \author{Brooke Anderson and Rachel Severson}
-\date{2017-10-23}
+\date{2017-10-30}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -721,15 +721,15 @@ worst thing about R is that\ldots{} it was developed by statisticians.''
 
 \begin{verbatim}
 ## 
-## It [the effort of learning how to use R] is the price paid, just as the
-## dollars or euros for a commercial package would be. For that price, I've
-## learnt a great deal - and not only about R. And I shall remember it when I
-## next have to find a heavyweight solution for a big problem presented by a
-## small charitable client with an invisible budget. It's a huge,
-## awe-inspiring package - easier to perceive as such because the power is
-## not hidden beneath a cosmetic veneer.
-##    -- Felix Grant (in an article about free statistics software)
-##       Scientific Computing World (November 2004)
+## Patrick Burns: In the old days with S-PLUS, the rule of thumb was that you
+## needed 10 times as much memory as your dataset. [...] R (and current
+## versions of S-PLUS) are more frugal than S-PLUS was back then.
+## Ajay Shah: Hmm, so it'd be interesting to apply current prices of RAM and
+## current prices of R, to work out the break-even point at which it's better
+## to buy SAS! :-) Without making any calculations, I can't see how SAS can
+## compete with the price of 4G of RAM.
+##    -- Patrick Burns and Ajay Shah (on whether to use R, S-PLUS or SAS)
+##       R-SIG-Finance (December 2004)
 \end{verbatim}
 
 R is open-source software. Many other popular statistical programming
@@ -1318,7 +1318,7 @@ lack of parentheses):
 ##     numString <- lapply(valueSplit, mapphone)
 ##     return(paste0(numString, collapse = ""))
 ## }
-## <bytecode: 0x241eb88>
+## <bytecode: 0x1f90938>
 ## <environment: namespace:phonenumber>
 \end{verbatim}
 
@@ -4267,9 +4267,9 @@ weekday of each show:
 ##         date show_day             guest_name
 ##       <date>    <ord>                  <chr>
 ## 1 2003-04-28      Mon        Dr Sanjay Gupta
-## 2 2004-01-13     Tues        Catherine Weitz
-## 3 2004-06-15     Tues         Hassan Ibrahim
-## 4 2005-09-06     Tues        Dr. Marc Siegel
+## 2 2004-01-13      Tue        Catherine Weitz
+## 3 2004-06-15      Tue         Hassan Ibrahim
+## 4 2005-09-06      Tue        Dr. Marc Siegel
 ## 5 2006-02-13      Mon Astronaut Mike Mullane
 \end{verbatim}
 
@@ -4346,15 +4346,25 @@ files that you just pulled in your current working directory:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "accident.csv"             "App-1"                   
-##  [3] "App-2"                    "country_timeseries.csv"  
-##  [5] "daily_show_guests.csv"    "deaths-weather.csv"      
-##  [7] "example_choropleth.Rdata" "fars_colorado.RData"     
-##  [9] "icd-10.xls"               "ICU_Data_Code_Sheet.pdf" 
-## [11] "icu.sas7bdat"             "ld_genetics.txt"         
-## [13] "measles_data"             "mexico_deaths.csv"       
-## [15] "mexico_exposure.csv"      "serial_map_data.csv"     
-## [17] "serial_phone_data.csv"    "titanic.csv"
+##  [1] "accident.csv"                                               
+##  [2] "App-1"                                                      
+##  [3] "App-2"                                                      
+##  [4] "country_timeseries.csv"                                     
+##  [5] "daily_show_guests.csv"                                      
+##  [6] "deaths-weather.csv"                                         
+##  [7] "DRUG_CLASS_I_Mean_Cmax_Trough_Efficacy_R_DATA_ANALYSIS.xlsx"
+##  [8] "example_choropleth.Rdata"                                   
+##  [9] "fars_colorado.RData"                                        
+## [10] "icd-10.xls"                                                 
+## [11] "ICU_Data_Code_Sheet.pdf"                                    
+## [12] "icu.sas7bdat"                                               
+## [13] "ld_genetics.txt"                                            
+## [14] "measles_data"                                               
+## [15] "mexico_deaths.csv"                                          
+## [16] "mexico_exposure.csv"                                        
+## [17] "serial_map_data.csv"                                        
+## [18] "serial_phone_data.csv"                                      
+## [19] "titanic.csv"
 \end{verbatim}
 
 Try the following tasks:
@@ -10222,11 +10232,11 @@ amounts, use a vector with one element for each column.\strut
 \hline
 First 3 letters & First 3 numbers\\
 \hline
-a & -0.08\\
+a & 0.12\\
 \hline
-b & 0.21\\
+b & -1.71\\
 \hline
-c & -1.22\\
+c & 0.57\\
 \hline
 \end{tabular}
 \end{table}
@@ -10741,10 +10751,10 @@ Here is some simulated wide data:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X            Y          Z
-## 1 2009-01-01  0.6137257 -0.003297591 -0.7618280
-## 2 2009-01-02  1.4454543 -2.465378827  0.9780084
-## 3 2009-01-03 -0.9833537  1.329706088 -0.8884501
+##         time         X         Y         Z
+## 1 2009-01-01 0.6456976 -1.574663 4.1479342
+## 2 2009-01-02 0.6715660 -1.792715 2.6860185
+## 3 2009-01-03 0.3604283 -1.412074 0.4184335
 \end{verbatim}
 
 In the \texttt{wide\_stocks} dataset, there are separate columns for
@@ -10761,10 +10771,10 @@ include it as a variable in modeling.
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X            Y          Z
-## 1 2009-01-01  0.6137257 -0.003297591 -0.7618280
-## 2 2009-01-02  1.4454543 -2.465378827  0.9780084
-## 3 2009-01-03 -0.9833537  1.329706088 -0.8884501
+##         time         X         Y         Z
+## 1 2009-01-01 0.6456976 -1.574663 4.1479342
+## 2 2009-01-02 0.6715660 -1.792715 2.6860185
+## 3 2009-01-03 0.3604283 -1.412074 0.4184335
 \end{verbatim}
 
 If you want to convert the dataframe to have all stock values in a
@@ -10781,11 +10791,11 @@ data:
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.6137257
-## 2 2009-01-02     X  1.4454543
-## 3 2009-01-03     X -0.9833537
-## 4 2009-01-04     X -0.4064493
-## 5 2009-01-05     X  1.1177005
+## 1 2009-01-01     X  0.6456976
+## 2 2009-01-02     X  0.6715660
+## 3 2009-01-03     X  0.3604283
+## 4 2009-01-04     X -1.3305825
+## 5 2009-01-05     X  0.7583644
 \end{verbatim}
 
 In this ``long'' dataframe, there is now one column that gives the
@@ -10800,11 +10810,11 @@ price of that stock that day (\texttt{price}):
 
 \begin{verbatim}
 ##         time stock      price
-## 1 2009-01-01     X  0.6137257
-## 2 2009-01-02     X  1.4454543
-## 3 2009-01-03     X -0.9833537
-## 4 2009-01-04     X -0.4064493
-## 5 2009-01-05     X  1.1177005
+## 1 2009-01-01     X  0.6456976
+## 2 2009-01-02     X  0.6715660
+## 3 2009-01-03     X  0.3604283
+## 4 2009-01-04     X -1.3305825
+## 5 2009-01-05     X  0.7583644
 \end{verbatim}
 
 The format for a \texttt{gather} call is:
@@ -10860,12 +10870,12 @@ you can use \texttt{spread} to do that:
 \end{Shaded}
 
 \begin{verbatim}
-##         time          X            Y          Z
-## 1 2009-01-01  0.6137257 -0.003297591 -0.7618280
-## 2 2009-01-02  1.4454543 -2.465378827  0.9780084
-## 3 2009-01-03 -0.9833537  1.329706088 -0.8884501
-## 4 2009-01-04 -0.4064493 -0.684206673  4.8128341
-## 5 2009-01-05  1.1177005  2.205255003 -1.4628702
+##         time          X          Y           Z
+## 1 2009-01-01  0.6456976 -1.5746633  4.14793420
+## 2 2009-01-02  0.6715660 -1.7927154  2.68601846
+## 3 2009-01-03  0.3604283 -1.4120735  0.41843347
+## 4 2009-01-04 -1.3305825  0.8575071 -4.04033018
+## 5 2009-01-05  0.7583644  1.8679026  0.08272114
 \end{verbatim}
 
 Notice that this reverses the action of \texttt{gather}.
@@ -10890,11 +10900,11 @@ to rearrange the final summary to create an attractive table.
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##   stock     N       mean       sd
-##   <chr> <int>      <dbl>    <dbl>
-## 1     X    10 -0.1964905 1.072154
-## 2     Y    10  0.3555737 1.712791
-## 3     Z    10  0.5309378 3.407738
+##   stock     N       mean        sd
+##   <chr> <int>      <dbl>     <dbl>
+## 1     X    10  0.1551273 0.7015699
+## 2     Y    10 -0.2495555 1.1922613
+## 3     Z    10 -0.3708605 5.8252043
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10923,7 @@ to rearrange the final summary to create an attractive table.
 \hline
 Statistic & X & Y & Z\\
 \hline
-Mean (Std.dev.) & -0.2 (1.07) & 0.36 (1.71) & 0.53 (3.41)\\
+Mean (Std.dev.) & 0.16 (0.7) & -0.25 (1.19) & -0.37 (5.83)\\
 \hline
 N & 10 & 10 & 10\\
 \hline
@@ -14581,7 +14591,7 @@ a regression is often stored as a list:
 
 \begin{verbatim}
 ## (Intercept)     c(1:10) 
-##  0.02275340 -0.07189512
+##  -1.0815296   0.1685352
 \end{verbatim}
 
 \section{\texorpdfstring{\texttt{apply}
@@ -14694,7 +14704,7 @@ a data frame, where the columns all have to have the same length).
 ## [1] 1 2 3 4 5
 ## 
 ## $b
-## [1] -0.058514703  0.009759075 -0.531025962
+## [1]  0.6047553  0.7071947 -0.7776459
 ## 
 ## $c
 ## [1] "a" "b" "c" "d"
@@ -14713,7 +14723,7 @@ This call will calculate the mean of each function:
 ## [1] 3
 ## 
 ## $b
-## [1] -0.1932605
+## [1] 0.1781014
 ## 
 ## $c
 ## [1] NA
@@ -14734,7 +14744,7 @@ get the first value of each element, you can run:
 ## [1] 1
 ## 
 ## $b
-## [1] -0.0585147
+## [1] 0.6047553
 ## 
 ## $c
 ## [1] "a"
@@ -14750,8 +14760,8 @@ it returns a vector rather than a list:
 \end{Shaded}
 
 \begin{verbatim}
-##                     a                     b                     c 
-##                   "1" "-0.0585147029768548"                   "a"
+##                   a                   b                   c 
+##                 "1" "0.604755333420346"                 "a"
 \end{verbatim}
 
 In practice, I do use \texttt{apply()} some, but I can often find a way
