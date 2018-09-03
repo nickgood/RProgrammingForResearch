@@ -76,8 +76,7 @@ Here is the syntax for `map`:
 
 ```{r cal, eval = FALSE}
 ## Generic code
-apply([matrix], MARGIN = [margin (1: rows, 2: columns)],
-      FUN =  [function])
+map(.x = [list, vector, or dataframe], .f = [function], ...)
 ```
 
 I'll use the `worldcup` data as an example:
@@ -90,29 +89,27 @@ head(ex)
 Take the mean of all columns:
 
 ```{r can}
-apply(ex, MARGIN = 2, mean)
+map(ex, mean)
 ```
 
-Take the sum of all rows:
+Take the sum of all columns and return a dataframe:
 
 ```{r cao}
-head(apply(ex, MARGIN = 1, sum), 4)
+map_df(ex, sum)
 ```
 
-You can use your own function with any of the `apply` functions. For example, if you wanted to calculate a value for each player that is a weighted mean of some of their statistics, you could run:
+You can use your own function with any of the `map` functions. For example, if you wanted to calculate a value for each category that is a weighted mean, you could run:
 
 ```{r cap}
-weighted_mean <- function(soccer_stats,
-                          weights = c(0.40, 0.01,
-                                      0.25, 1.5)){
-  out <- sum(weights * soccer_stats)
+weighted_mean <- function(soccer_stats, weight = runif(595, 0, 1)){
+  out <- mean(soccer_stats * weight)
   return(out)
 }
 
-head(apply(ex, MARGIN = 1, weighted_mean), 4)
+map(ex, weighted_mean)
 ```
 
-The `lapply()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length).
+The `map()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length).
 
 ```{r caq}
 (ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
@@ -121,19 +118,19 @@ The `lapply()` function will apply a function across a list. The different eleme
 This call will calculate the mean of each function:
 
 ```{r car, warning = FALSE}
-lapply(ex, FUN = mean)
+map(.x = ex, .f = mean)
 ```
 
-You can include arguments for the function that you specify with `FUN`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
+You can include arguments for the function that you specify with `.f`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
 
 ```{r cas, warning = FALSE}
-lapply(ex, FUN = head, n = 1)
+map(ex, .f = head, n = 1)
 ```
 
-The `sapply()` function also applies a function over a list, but it returns a vector rather than a list:
+The `map_chr()` function also applies a function over a list, but it returns a character vector rather than a list:
 
 ```{r cat}
-sapply(ex, FUN = head, n = 1)
+map_chr(ex, .f = head, n = 1)
 ```
 
 In practice, I do use `apply()` some, but I can often find a way to do similar things to other `apply` family functions using the tools in `dplyr`. \bigskip
