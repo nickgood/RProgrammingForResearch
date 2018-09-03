@@ -115,7 +115,7 @@ The `map()` function will apply a function across a list. The different elements
 (ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
 ```
 
-This call will calculate the mean of each function:
+This call will calculate the mean of each element:
 
 ```{r car, warning = FALSE}
 map(.x = ex, .f = mean)
