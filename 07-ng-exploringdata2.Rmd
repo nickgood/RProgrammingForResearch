@@ -104,6 +104,8 @@ my_mod <- glm(rnorm(10) ~ c(1:10))
 is.list(my_mod)
 ```
 
+The `names` function returns the name of each element in the list:
+
 ```{r cak}
 head(names(my_mod), 3)
 my_mod[["coefficients"]]
