@@ -109,7 +109,7 @@ weighted_mean <- function(soccer_stats, weight = runif(595, 0, 1)){
 map(ex, weighted_mean)
 ```
 
-The `map()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length).
+The `map()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length). First let's create a list to work with:
 
 ```{r caq}
 (ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
