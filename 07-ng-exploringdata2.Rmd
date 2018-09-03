@@ -13,6 +13,8 @@ library(gridExtra)
 library(purrr)
 ```
 
+---
+
 ## Lists
 
 In this section, we'll talk about the `purrr` package, which contains functions that allow you to map a function to all values in a vector, matrix, or list. \bigskip
@@ -63,6 +65,8 @@ a_list <- list(list("a", "b"), list(1, 2))
 
 str(a_list)
 ```
+
+---
 
 ## `purrr` functions
 
