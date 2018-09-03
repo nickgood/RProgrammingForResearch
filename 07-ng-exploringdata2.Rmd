@@ -1,0 +1,433 @@
+# Exploring data #2-ng
+
+[Download](https://github.com/geanders/RProgrammingForResearch/raw/master/slides/CourseNotes_Week7.pdf) a pdf of the lecture slides covering this topic.
+
+```{r echo = FALSE, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(faraway)
+data(worldcup)
+library(ggthemes)
+library(stringr)
+library(gridExtra)
+```
+
+## Matrices and lists
+
+In this section, we'll talk about the `purrr` package, which contains functions that allow you to map functions to all values in a vector, matrix, or list. \bigskip
+
+First, you need to know about two more object types in R:
+
+- `matrix`
+- `list`
+
+### Matrices
+
+A matrix is like a data frame, but all the values in all columns must be of the same class (e.g., numeric, character). 
+
+R uses matrices a lot for its underlying math (e.g., for the linear algebra operations required for fitting regression models). R can do matrix operations quite quickly.
+
+You can create a matrix with the `matrix` function. Input a vector with the values to fill the matrix and `ncol` to set the number of columns:
+
+```{r cab}
+foo <- matrix(1:10, ncol = 5)
+foo
+```
+
+By default, the matrix will fill up by column. You can fill it by row with the `byrow` function: 
+
+```{r cac}
+foo <- matrix(1:10, ncol = 5, byrow = TRUE)
+foo
+```
+
+In certain situations, you might want to work with a matrix instead of a data frame (for example, in cases where you were concerned about speed -- a matrix is more memory efficient than the corresponding data frame). If you want to convert a data frame to a matrix, you can use the `as.matrix` function: 
+
+```{r cad}
+foo <- data.frame(col_1 = 1:2, col_2 = 3:4,
+                  col_3 = 5:6, col_4 = 7:8,
+                  col_5 = 9:10)
+(foo <- as.matrix(foo))
+```
+
+You can index matrices with square brackets, just like data frames: 
+
+```{r cae}
+foo[1, 1:2]
+```
+
+You cannot, however, use `dplyr` functions with matrices: 
+
+```{r caf, eval = FALSE}
+foo %>% filter(col_1 == 1)
+```
+```
+Error in UseMethod("filter_") : 
+  no applicable method for 'filter_' applied to
+  an object of class "c('matrix', 'integer',
+  'numeric')"
+```
+
+All elements in a matrix must have the same class. \bigskip
+
+The matrix will default to make all values the most general class of any of the values, in any column. For example, if we replaced one numeric value with the character "a", everything would turn into a character:
+
+```{r cag}
+foo[1, 1] <- "a"
+foo
+```
+
+### Lists
+
+A list has different elements, just like a data frame has different columns. However, the different elements of a list can have different lengths (unlike the columns of a data frame). The different elements can also have different classes.
+
+```{r cah}
+bar <- list(some_letters = letters[1:3],
+            some_numbers = 1:5, 
+            some_logical_values = c(TRUE, FALSE))
+bar
+```
+
+To index an element from a list, use double square brackets. You can use bracket indexing either with numbers (which element in the list?) or with names. You can also index lists with the `$` operator.
+
+```{r cai}
+bar[[1]]
+bar[["some_numbers"]]
+bar$some_logical_values
+```
+
+Lists can be used to contain data with an unusual structure and / or lots of different components. For example, the information from fitting a regression is often stored as a list:
+
+```{r caj}
+my_mod <- glm(rnorm(10) ~ c(1:10))
+is.list(my_mod)
+```
+
+```{r cak}
+head(names(my_mod), 3)
+my_mod[["coefficients"]]
+```
+
+## `apply` functions
+
+There is a whole family of `apply` functions, as part of base R. These include:
+
+- `apply`: Apply a function over all the rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix
+- `lapply`: Apply a function over elements of a list.
+- `sapply`: Like `lapply`, but returns a vector instead of a list.
+
+Here is the syntax for `apply`: 
+
+```{r cal, eval = FALSE}
+## Generic code
+apply([matrix], MARGIN = [margin (1: rows, 2: columns)],
+      FUN =  [function])
+```
+
+I'll use the `worldcup` data as an example:
+
+```{r cam}
+ex <- worldcup[ , c("Shots", "Passes", "Tackles", "Saves")]
+head(ex)
+```
+
+Take the mean of all columns:
+
+```{r can}
+apply(ex, MARGIN = 2, mean)
+```
+
+Take the sum of all rows:
+
+```{r cao}
+head(apply(ex, MARGIN = 1, sum), 4)
+```
+
+You can use your own function with any of the `apply` functions. For example, if you wanted to calculate a value for each player that is a weighted mean of some of their statistics, you could run:
+
+```{r cap}
+weighted_mean <- function(soccer_stats,
+                          weights = c(0.40, 0.01,
+                                      0.25, 1.5)){
+  out <- sum(weights * soccer_stats)
+  return(out)
+}
+
+head(apply(ex, MARGIN = 1, weighted_mean), 4)
+```
+
+The `lapply()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length).
+
+```{r caq}
+(ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
+```
+
+This call will calculate the mean of each function:
+
+```{r car, warning = FALSE}
+lapply(ex, FUN = mean)
+```
+
+You can include arguments for the function that you specify with `FUN`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
+
+```{r cas, warning = FALSE}
+lapply(ex, FUN = head, n = 1)
+```
+
+The `sapply()` function also applies a function over a list, but it returns a vector rather than a list:
+
+```{r cat}
+sapply(ex, FUN = head, n = 1)
+```
+
+In practice, I do use `apply()` some, but I can often find a way to do similar things to other `apply` family functions using the tools in `dplyr`. \bigskip
+
+You should know that `apply` family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and "tidyverse" functions are usually comparable in speed. \bigskip
+
+I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. \bigskip
+
+## Functions
+
+As you move to larger projects, you will find yourself using the same code a lot. \bigskip
+
+Examples include: 
+
+- Reading in data from a specific type of equipment (air pollution monitor, accelerometer)
+- Running a specific type of analysis
+- Creating a specific type of plot or map
+
+\bigskip 
+
+If you find yourself cutting and pasting a lot, convert the code to a function.
+
+Advantages of writing functions include: 
+
+- Coding is more efficient
+- Easier to change your code (if you've cut and paste code and you want to change something, you have to change it everywhere - this is an easy way to accidentally create bugs in your code)
+- Easier to share code with others
+
+You can name a function anything you want (although try to avoid names of preexisting-existing functions). You then define any inputs (arguments; separate multiple arguments with commas) and put the code to run in braces:
+
+```{r, eval = FALSE}
+## Note: this code will not run
+[function name] <- function([any arguments]){
+        [code to run]
+}
+```
+
+Here is an example of a very basic function. This function takes a number as input and adds 1 to that number. 
+
+```{r}
+add_one <- function(number){
+        out <- number + 1
+        return(out)
+}
+
+add_one(number = 3)
+add_one(number = -1)
+```
+
+- Functions can input any type of R object (for example, vectors, data frames, even other functions and ggplot objects)
+- Similarly, functions can output any type of R object
+- When defining a function, you can set default values for some of the parameters
+- You can explicitly specify the value to return from the function
+- There are ways to check for errors in the arguments a user inputs to the function
+
+For example, the following function inputs a data frame (`datafr`) and a one-element vector (`child_id`) and returns only rows in the data frame where it's `id` column matches `child_id`. It includes a default value for `datafr`, but not for `child_id`. 
+
+```{r}
+subset_nepali <- function(datafr = nepali, child_id){
+  datafr <- datafr %>%
+    filter(id == child_id)
+  return(datafr)
+}
+```
+
+If an argument is not given for a parameter with a default, the function will run using the default value for that parameter. For example:
+
+```{r}
+subset_nepali(child_id = "120011")
+```
+
+
+If an argument is not given for a parameter without a default, the function call will result in an error. For example:
+
+```{r error = TRUE}
+subset_nepali(datafr = nepali)
+```
+
+By default, the function will return the last defined object, although the choice of using `return` can affect printing behavior when you run the function. For example, I could have written the `subset_nepali` function like this: 
+
+```{r}
+subset_nepali <- function(datafr = nepali, child_id){
+  datafr <- datafr %>%
+    filter(id == child_id)
+}
+```
+
+In this case, the output will not automatically print out when you call the function without assigning it to an R object:
+
+```{r}
+subset_nepali(child_id = "120011")
+```
+
+However, the output can be assigned to an R object in the same way as when the function was defined without `return`:
+
+```{r}
+first_childs_data <- subset_nepali(child_id = "120011")
+first_childs_data
+```
+
+The `return` function can also be used to return an object other than the last defined object (although doesn't tend to be something you need to do very often). For example, if you did not use `return` in the following code, it will output "Test output":
+
+```{r}
+subset_nepali <- function(datafr = nepali, child_id){
+  datafr <- datafr %>%
+    filter(id == child_id)
+  a <- "Test output"
+}
+(subset_nepali(child_id = "120011"))
+```
+
+Conversely, you can use `return` to output `datafr`, even though it's not the last object defined:
+
+```{r}
+subset_nepali <- function(datafr = nepali, child_id){
+  datafr <- datafr %>%
+    filter(id == child_id)
+  a <- "Test output"
+  return(datafr)
+}
+subset_nepali(child_id = "120011")
+```
+
+You can use `stop` to stop execution of the function and give the user an error message. For example, the `subset_nepali` function will fail if the user inputs a data frame that does not have a column named "id":
+
+```{r eval = FALSE}
+subset_nepali(datafr = data.frame(wt = rnorm(10)),
+              child_id = "12011")
+```
+```
+ Error: comparison (1) is possible only for 
+ atomic and list types 
+```
+
+You can rewrite the function to stop if the input `datafr` does not have a column named "id":
+
+```{r eval = FALSE}
+subset_nepali <- function(datafr = nepali, child_id){
+  if(!("id" %in% colnames(datafr))){
+    stop("`datafr` must include a column named `id`")
+  }
+  datafr <- datafr %>%
+    filter(id == child_id)
+  return(datafr)
+}
+subset_nepali(datafr = data.frame(wt = rnorm(10)),
+              child_id = "12011")
+```
+
+```
+Error in subset_nepali(datafr = data.frame(wt = rnorm(10)),
+child_id = "12011") : 
+  `datafr` must include a column named `id`
+```
+
+The `stop` function is particularly important if the function would keep running with the wrong input, but would result in the wrong output. \bigskip
+
+You can also output warnings and messages using the functions `warning` and `message`.
+## Other control structures
+
+### if / else loops 
+
+There are other control structures you can use in your R code. Two that you will commonly use within R functions are `if` and `ifelse` statements. \bigskip
+
+An `if` statement tells R that, **if** a certain condition is true, **do** run some code. For example, if you wanted to print out only odd numbers between 1 and 5, one way to do that is with an `if` statement: (Note: the `%%` operator in R returns the remainder of the first value (i) divided by the second value (2).) 
+
+```{r}
+for(i in 1:5){
+  if(i %% 2 == 1){
+    print(i)
+  }
+}
+```
+
+The `if` statement runs some code if a condition is true, but does nothing if it is false. If you'd like different code to run depending on whether the condition is true or false, you can us an if / else or an if / else if / else statement. 
+
+```{r}
+for(i in 1:5){
+  if(i %% 2 == 1){
+    print(i)
+  } else {
+    print(paste(i, "is even"))
+  }
+}
+```
+
+What would this code do? \bigskip 
+
+```{r eval = FALSE}
+for(i in 1:100){
+  if(i %% 3 == 0 & i %% 5 == 0){
+    print("FizzBuzz")
+  } else if(i %% 3 == 0){
+    print("Fizz")
+  } else if(i %% 5 == 0){
+    print("Buzz")
+  } else {
+    print(i)
+  }
+}
+```
+
+If / else statements are extremely useful in functions. \bigskip
+
+In R, the `if` statement evaluates everything in the parentheses and, if that evaluates to `TRUE`, runs everything in the braces. This means that you can trigger code in an `if` statement with a single-value logical vector: 
+
+```{r}
+weekend <- TRUE
+if(weekend){
+  print("It's the weekend!")
+}
+```
+
+This functionality can be useful with parameters you choose to include when writing your own functions (e.g., `print = TRUE`).
+
+### Some other control structures
+
+The control structures you are most likely to use in data analysis with R are "for" loops and "if / else" statements. However, there are a few other control structures you may occasionally find useful: 
+
+- `next`
+- `break`
+- `while`
+
+You can use the `next` structure to skip to the next round of a loop when a certain condition is met. For example, we could have used this code to print out odd numbers between 1 and 5:
+
+```{r}
+for(i in 1:5){
+  if(i %% 2 == 0){
+    next
+  }
+  print(i)
+}
+```
+
+You can use `break` to break out of a loop if a certain condition is met. For example, the final code will break out of the loop once `i` is over 3, so it will only print the numbers 1 through 3:
+
+```{r}
+for(i in 1:5){
+  if(i > 3){
+    break
+  }
+  print(i)
+}
+```
+
+```{r}
+my_sum <- 1
+while(my_sum < 10){
+  my_sum <- my_sum * 2
+  print(my_sum)
+}
+```
+
