@@ -97,12 +97,12 @@ You can name a function anything you want (although try to avoid names of preexi
 }
 ```
 
-Here is an example of a very basic function. This function takes a number as input and adds 1 to that number. 
+Here is an example of a very basic function. This function takes a number as input and adds 1 to that number.
 
 ```{r}
 add_one <- function(number){
-        out <- number + 1
-        return(out)
+  out <- number + 1
+  return(out)
 }
 
 add_one(number = 3)
@@ -120,7 +120,7 @@ For example, the following function inputs a data frame (`datafr`) and a one-ele
 ```{r}
 subset_nepali <- function(datafr = nepali, child_id){
   datafr <- datafr %>%
-    filter(id == child_id)
+            filter(id == child_id)
   return(datafr)
 }
 ```
@@ -138,12 +138,12 @@ If an argument is not given for a parameter without a default, the function call
 subset_nepali(datafr = nepali)
 ```
 
-By default, the function will return the last defined object, although the choice of using `return` can affect printing behavior when you run the function. For example, I could have written the `subset_nepali` function like this: 
+By default, the function will return the last defined object, although the choice of using `return` can affect printing behavior when you run the function. For example, I could have written the `subset_nepali` function like this:
 
 ```{r}
 subset_nepali <- function(datafr = nepali, child_id){
   datafr <- datafr %>%
-    filter(id == child_id)
+            filter(id == child_id)
 }
 ```
 
@@ -165,7 +165,7 @@ The `return` function can also be used to return an object other than the last d
 ```{r}
 subset_nepali <- function(datafr = nepali, child_id){
   datafr <- datafr %>%
-    filter(id == child_id)
+            filter(id == child_id)
   a <- "Test output"
 }
 (subset_nepali(child_id = "120011"))
@@ -176,7 +176,7 @@ Conversely, you can use `return` to output `datafr`, even though it's not the la
 ```{r}
 subset_nepali <- function(datafr = nepali, child_id){
   datafr <- datafr %>%
-    filter(id == child_id)
+            filter(id == child_id)
   a <- "Test output"
   return(datafr)
 }
@@ -219,6 +219,8 @@ The `stop` function is particularly important if the function would keep running
 
 You can also output warnings and messages using the functions `warning` and `message`.
 ## Other control structures
+
+---
 
 ### if / else loops 
 
@@ -277,7 +279,7 @@ This functionality can be useful with parameters you choose to include when writ
 
 ### Some other control structures
 
-The control structures you are most likely to use in data analysis with R are "for" loops and "if / else" statements. However, there are a few other control structures you may occasionally find useful: 
+The control structure you are most likely to use in data analysis with R is the  "if / else" statement. However, there are a few other control structures you may occasionally find useful: 
 
 - `next`
 - `break`
@@ -286,7 +288,9 @@ The control structures you are most likely to use in data analysis with R are "f
 You can use the `next` structure to skip to the next round of a loop when a certain condition is met. For example, we could have used this code to print out odd numbers between 1 and 5:
 
 ```{r}
-for(i in 1:5){
+i <- 0
+while(i < 5){
+  i <- 1 + i
   if(i %% 2 == 0){
     next
   }
@@ -294,22 +298,16 @@ for(i in 1:5){
 }
 ```
 
-You can use `break` to break out of a loop if a certain condition is met. For example, the final code will break out of the loop once `i` is over 3, so it will only print the numbers 1 through 3:
+You can use `break` to break out of a loop if a certain condition is met. For example, the final code will break out of the loop once `i` is over 2, so it will only print the numbers 1 through 3:
 
 ```{r}
-for(i in 1:5){
-  if(i > 3){
+i <- 0
+while(i <= 5){
+  if(i > 2){
     break
   }
+  i <- 1 + i
   print(i)
-}
-```
-
-```{r}
-my_sum <- 1
-while(my_sum < 10){
-  my_sum <- my_sum * 2
-  print(my_sum)
 }
 ```
 
