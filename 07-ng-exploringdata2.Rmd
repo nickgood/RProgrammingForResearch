@@ -97,6 +97,12 @@ bar[["some_numbers"]]
 bar$some_logical_values
 ```
 
+To access a specific value within a list element we can index the element e.g.:
+
+```{r caii}
+bar[[1]][[2]]
+```
+
 Lists can be used to contain data with an unusual structure and / or lots of different components. For example, the information from fitting a regression is often stored as a list:
 
 ```{r caj}
