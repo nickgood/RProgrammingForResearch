@@ -10,6 +10,7 @@ data(worldcup)
 library(ggthemes)
 library(stringr)
 library(gridExtra)
+library(purrr)
 ```
 
 ## Matrices and lists
@@ -107,6 +108,16 @@ is.list(my_mod)
 head(names(my_mod), 3)
 my_mod[["coefficients"]]
 ```
+
+A list can even contain other lists! We can use the `str` function to see the structure of a list:
+
+```{r cakk}
+a_list <- list(list("a", "b"), list(1, 2))
+
+str(a_list)
+```
+
+
 
 ## `apply` functions
 
