@@ -133,11 +133,15 @@ The `map_chr()` function also applies a function over a list, but it returns a c
 map_chr(ex, .f = head, n = 1)
 ```
 
-In practice, I do use `apply()` some, but I can often find a way to do similar things to other `apply` family functions using the tools in `dplyr`. \bigskip
+```{block, type = 'rmdnote'}
+You can use the `apply` functions in base R to achieve some of the same functionality as the `map` functions. However, the `map` functions work better alongside other `tidyverse` functions. The `apply` functions are useful if you are working with matrices.
+```
 
-You should know that `apply` family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and "tidyverse" functions are usually comparable in speed. \bigskip
+```{block, type = 'rmdwarning'}
+You can also use `for` loops in R, but it is much more elegant and efficient to use the `map` functions instead.
+```
 
-I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. \bigskip
+---
 
 ## Functions
 
