@@ -396,22 +396,23 @@ You can also use `for` loops in R, but it is much more elegant and efficient to 
 
 ### Using regression models to explore data #1
 
-For this exercise, you will need the following packages. If do not have them already, you will need to install them. For the `ggfortify` package, you need to install it from GitHub (uncomment and use the `install_github` code given below):
+For this exercise, you will need the following packages. If do not have them already, you will need to install them.
 
 ```{r}
 library(ggplot2)
 library(broom)
-library(devtools)
-# install_github('sinhrks/ggfortify')
 library(ggfortify)
 ```
 
 For this part of the exercise, you'll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called `chicagoNMMAPS` and is part of the `dlnm` package. Change the name of the dataframe to  `chic` (this object name is shorter and will be easier to work with). Check out the data a bit to see what variables you have, and then perform the following tasks:
 
-- Write out (on paper, not in R) the regression equation for regressing dewpoint temperature on temperature. 
-- Try fitting a linear regression of dew point temperature (`dptp`) regressed on temperature (`temp`). Save this model as the object `mod_1`. 
-- Based on this regression, does there seem to be a relationship between temperature and dewpoint temperature in Chicago? (Hint: Try using `glance` and `tidy` from the `broom` package on the model object to get more information about the model you fit.) What is the coefficient for temperature? What is the p-value for the coefficient for temperature?
-- Plot temperature (x-axis) versus dewpoint temperature (y-axis) for Chicago. Add in the regression line from the model you fit by using the results from `augment`.
+- Write out (on paper, not in R) the regression equation for regressing death on dew point temperature.
+- Try fitting a linear regression of death (`death`) regressed on dew point temperature (`dptp`).
+- Gather the variables `cvd`, `resp`, `temp`, `dptp`, `rhum`, `pm10`, and `o3` into a longer dataframe. Given the gathered columns the names `var` and `val`. How many row does the new dataframe contain?
+- Write a function to regress `death` against `val`, the function should accept a dataframe as the argument.
+- Regress death against each of the 7 `var` variables. Hint: First group the data, then use the `nest()` function to create a list of 7 dataframes one for each variable. Then use `mutate` and `map()` to create a new variable.
+- Based on this regression, does there seem to be a relationship between death and dewpoint temperature in Chicago? (Hint: Try using `glance` and `tidy` from the `broom` package on the model object to get more information about the model you fit.) What is the coefficient for dew point temperature? What is the p-value for the coefficient for dew point temperature?
+- Plot dew point temperature (x-axis) versus death (y-axis) for Chicago. Add in the regression line from the model you fit by using the results from `augment`.
 - Use `autoplot` on the model object to generate some model diagnostic plots (make sure you have the `ggfortify` package loaded and installed).
 - Try fitting the regression as a GLM, using `glm()`. Are your coefficients different?
 
@@ -425,85 +426,116 @@ $$
 
 where $Y_t$ is the dewpoint temperature on day $t$, $X_t$ is the temperature on day $t$, and $\beta_0$ and $\beta_1$ are model coefficients. 
 
-Install and load the `dlnm` package and then load the `chicagoNMMAPS` data. Change the name of the dataframe to `chic`, so it will be shorter to call for the rest of your work. 
+Install and load the `dlnm` package and then load the `chicagoNMMAPS` data. Change the name of the dataframe to `chic`, so it will be shorter to call for the rest of your work.
+
 ```{r, message = FALSE, warning = FALSE}
 # install.packages("dlnm")
 library(dlnm)
-data("chicagoNMMAPS")
+chic <- data("chicagoNMMAPS")
 chic <- chicagoNMMAPS
 ```
 
-Fit a linear regression of `dptp` on `temp` and save as the object `mod_1`:
+```{r}
+chic_long <- chic %>%
+             gather("var", "val", 8:14)
+
+nrow(chic_long)
+```
+
+Write the regresssion function:
 
 ```{r}
-mod_1 <- lm(dptp ~ temp, data = chic)
-mod_1
+model_lm <- function(df) {
+  lm(death ~ val, data = df)
+}
 ```
+
+Fit models:
+
+```{r}
+lm_models <- chic_long %>%
+             group_by(var) %>%
+             nest() %>%
+             mutate(mod = map(data, model_lm))
+```
+
+Check for a relationship between `death` and `dptp`:
 
 Use functions from the `broom` package to pull the same information about the model in a "tidy" format. To find out if the evidence for a linear association between temperature and dewpoint temperature, use the `tidy` function to get model coefficients in a tidy format:
 
 ```{r}
-tidy(mod_1)
+lm_estimates <- lm_models %>%
+                mutate(tidy_lm = mod %>% map(tidy),
+                       estimates_lm = tidy_lm %>% map("estimate")) %>%
+                select(var, estimates_lm) %>%
+                filter(var == "dptp")
 ```
-
-There does seem to be an association between temperature and dewpoint temperature: a unit increase in temperature is associated with a `r round(coef(mod_1)[2], 1)` unit increase in dewpoint temperature. The p-value for the temperature coefficient is <2e-16. This is far below 0.05, which suggests we would be very unlikely to see such a strong association by chance if the null hypothesis, that the two variables are not associated, were true.
 
 You can also check overall model summaries using the `glance` function: 
 
 ```{r}
-glance(mod_1)
+details_glance <- lm_models %>%
+                  mutate(glance_lm = mod %>% map(glance),
+                         p_value = glance_lm %>% map_dbl("p.value")) %>%
+                  select(var, p_value) %>%
+                  filter(var == "dptp")
 ```
-
 
 To create plots of the observations and the fit model, use the `augment` function to add model output (e.g., predictions, residuals) to the original dataframe of observed temperatures and dew point temperatures:
 
 ```{r warning = FALSE, message = FALSE}
-augment(mod_1) %>% 
-  slice(1:3)
+details_augment <- lm_models %>%
+                   mutate(augment_lm = mod %>% map(augment),
+                          res = augment_lm %>% map(".resid"))
 ```
 
-Plot these two variables and add in the fitted line from the model (note: I've used the `color` option to make the color of the points gray). Use the output from `augment` to create a plot of the original data, with the predicted values used to plot a fitted line. 
+Plot these two variables and add in the fitted line from the model (note: I've used the `color` option to make the color of the points gray). Use the output from `augment` to create a plot of the original data, with the predicted values used to plot a fitted line.
 
 ```{r warning = FALSE, message = FALSE, fig.width = 5, fig.height = 4}
-augment(mod_1) %>% 
-  ggplot(aes(x = temp, y = dptp)) + 
-  geom_point(size = 0.8, alpha = 0.5, col = "gray") + 
-  geom_line(aes(x = temp, y = .fitted), color = "red", size = 2) + 
-  theme_classic()
+  details_augment$augment_lm[[which(details_augment$var == "dptp")]]  %>% 
+  ggplot(aes(x = val, y = death)) +
+  geom_point(size = 0.8, alpha = 0.5, col = "gray") +
+  geom_line(aes(x = val, y = .fitted), color = "red", size = 2) +
+  theme_classic() +
+  xlab("Dew Point Temperature oC")
 ```
 
 Plot some plots to check model assumptions for the model you fit using the `autoplot` function on your model object:
 
-```{r, fig.width = 6, fig.height = 6}
-autoplot(mod_1)
+```{r, fig.width = 8, fig.height = 8}
+autoplot(lm_models$mod[[which(lm_models$var == "dptp")]]) +
+  theme_bw()
 ```
 
-Try fitting the model using `glm()`. Call it `mod_1a`. Compare the coefficients for the two models. You can use the `tidy` function on an `lm` or `glm` object to pull out just the model coefficients and associated model results. Here, I've used a pipeline of code to create a tidy dataframe that merges these "tidy" coefficient outputs (from the two models) into a single dataframe):
+Try fitting models using `glm()`. Call it `mod_glm`. Compare the coefficients for the two models. You can use the `tidy` function on an `lm` or `glm` object to pull out just the model coefficients and associated model results. Here, I've used a pipeline of code to create a tidy dataframe that merges these "tidy" coefficient outputs (from the two models) into a single dataframe):
 
 ```{r}
-mod_1a <- glm(dptp ~ temp, data = chic)
+mod_glm <- function(df){
+  glm(death ~ val, data = df)
+}
+```
 
-tidy(mod_1) %>% 
-  select(term, estimate) %>% 
-  inner_join(mod_1a %>% tidy() %>% select(term, estimate), by = "term") %>% 
-  rename(estimate_lm_mod = estimate.x,
-         estimate_glm_mod = estimate.y)
+```{r}
+compare_models <- chic_long %>%
+                  group_by(var) %>%
+                  nest() %>%
+                  mutate(mod = map(data, mod_glm),
+                        tidy_lm = mod %>% map(tidy),
+                        estimate_glm = tidy_lm %>% map("estimate")) %>%
+                  select(var, estimate_glm) %>%
+                  filter(var == "dptp") %>%
+                  inner_join(lm_estimates, by = "var")
 ```
 
 The results from the two models are identical.
-
-As a note, you could have also just run `tidy` on each model object, without merging them together into a single dataframe: 
-
-```{r}
-tidy(mod_1)
-tidy(mod_1a)
-```
 
 ### Using regression models to explore data #2
 
 - Does $PM_{10}$ vary by day of the week? (Hint: The `dow` variable is a factor that gives day of the week. You can do an ANOVA analysis by fitting a linear model using this variable as the independent variable. Some of the overall model summaries will compare this model to an intercept-only model.) What day of the week is PM10 generally highest? (Check the model coefficients to figure this out.) Try to write out (on paper) the regression equation for the model you're fitting.
 - Try using `glm()` to run a Poisson regression of respiratory deaths (`resp`) on temperature during summer days. Start by creating a subset with just summer days called `summer`. (Hint: Use the `month` function with the argument `label = TRUE` from `lubridate` to do this-- just pull out the subset where the month is 6, 7, or 8, for "Jun", "Jul", and "Aug".) Try to write out the regression equation for the model you're fitting.
 - The coefficient for the temperature variable in this model is our best estimate (based on this model) of the **log relative risk** for a one degree Celcius increase in temperature. What is the **relative risk** associated with a one degree Celsius increase?
+
+---
 
 #### Example R code:
 
