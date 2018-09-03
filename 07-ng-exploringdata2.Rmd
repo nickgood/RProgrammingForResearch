@@ -64,17 +64,15 @@ a_list <- list(list("a", "b"), list(1, 2))
 str(a_list)
 ```
 
-
-
 ## `purrr` functions
 
-There is a whole family of `map` functions, within the `purrr` package. These include:
+We often want to perform the same function on every element of a list (i.e. loop across every element). There is a whole family of `map` functions, within the `purrr` package designed to help us do this for example:
 
-- `apply`: Apply a function over all the rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix
-- `lapply`: Apply a function over elements of a list.
-- `sapply`: Like `lapply`, but returns a vector instead of a list.
+- `map`: Apply a function over each element of a list or column in a dataframe.
+- `map_df`: Like `map` but returns a dataframe.
+- `map_dbl`: Like `map`, but returns a numeric vector instead of a list.
 
-Here is the syntax for `apply`: 
+Here is the syntax for `map`:
 
 ```{r cal, eval = FALSE}
 ## Generic code
