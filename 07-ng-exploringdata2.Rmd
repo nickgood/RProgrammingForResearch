@@ -68,85 +68,6 @@ str(a_list)
 
 ---
 
-## `purrr` functions
-
-We often want to perform the same function on every element of a list (i.e. loop across every element). There is a whole family of `map` functions, within the `purrr` package designed to help us do this for example:
-
-- `map`: Apply a function over each element of a list or column in a dataframe.
-- `map_df`: Like `map` but returns a dataframe.
-- `map_dbl`: Like `map`, but returns a numeric vector instead of a list.
-
-Here is the syntax for `map`:
-
-```{r cal, eval = FALSE}
-## Generic code
-map(.x = [list, vector, or dataframe], .f = [function], ...)
-```
-
-I'll use the `worldcup` data as an example:
-
-```{r cam}
-ex <- worldcup[ , c("Shots", "Passes", "Tackles", "Saves")]
-head(ex)
-```
-
-Take the mean of all columns:
-
-```{r can}
-map(ex, mean)
-```
-
-Take the sum of all columns and return a dataframe:
-
-```{r cao}
-map_df(ex, sum)
-```
-
-You can use your own function with any of the `map` functions. For example, if you wanted to calculate a value for each category that is a weighted mean, you could run:
-
-```{r cap}
-weighted_mean <- function(soccer_stats, weight = runif(595, 0, 1)){
-  out <- mean(soccer_stats * weight)
-  return(out)
-}
-
-map(ex, weighted_mean)
-```
-
-The `map()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length). First let's create a list to work with:
-
-```{r caq}
-(ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
-```
-
-This call will calculate the mean of each element:
-
-```{r car, warning = FALSE}
-map(.x = ex, .f = mean)
-```
-
-You can include arguments for the function that you specify with `.f`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
-
-```{r cas, warning = FALSE}
-map(ex, .f = head, n = 1)
-```
-
-The `map_chr()` function also applies a function over a list, but it returns a character vector rather than a list:
-
-```{r cat}
-map_chr(ex, .f = head, n = 1)
-```
-
-```{block, type = 'rmdnote'}
-You can use the `apply` functions in base R to achieve some of the same functionality as the `map` functions. However, the `map` functions work better alongside other `tidyverse` functions. The `apply` functions are useful if you are working with matrices.
-```
-
-```{block, type = 'rmdwarning'}
-You can also use `for` loops in R, but it is much more elegant and efficient to use the `map` functions instead.
-```
-
----
-
 ## Functions
 
 As you move to larger projects, you will find yourself using the same code a lot. \bigskip
@@ -391,4 +312,85 @@ while(my_sum < 10){
   print(my_sum)
 }
 ```
+
+---
+
+## `purrr` functions
+
+We often want to perform the same function on every element of a list (i.e. loop across every element). There is a whole family of `map` functions, within the `purrr` package designed to help us do this for example:
+
+- `map`: Apply a function over each element of a list or column in a dataframe.
+- `map_df`: Like `map` but returns a dataframe.
+- `map_dbl`: Like `map`, but returns a numeric vector instead of a list.
+
+Here is the syntax for `map`:
+
+```{r cal, eval = FALSE}
+## Generic code
+map(.x = [list, vector, or dataframe], .f = [function], ...)
+```
+
+I'll use the `worldcup` data as an example:
+
+```{r cam}
+ex <- worldcup[ , c("Shots", "Passes", "Tackles", "Saves")]
+head(ex)
+```
+
+Take the mean of all columns:
+
+```{r can}
+map(ex, mean)
+```
+
+Take the sum of all columns and return a dataframe:
+
+```{r cao}
+map_df(ex, sum)
+```
+
+You can use your own function with any of the `map` functions. For example, if you wanted to calculate a value for each category that is a weighted mean, you could run:
+
+```{r cap}
+weighted_mean <- function(soccer_stats, weight = runif(595, 0, 1)){
+  out <- mean(soccer_stats * weight)
+  return(out)
+}
+
+map(ex, weighted_mean)
+```
+
+The `map()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length). First let's create a list to work with:
+
+```{r caq}
+(ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
+```
+
+This call will calculate the mean of each element:
+
+```{r car, warning = FALSE}
+map(.x = ex, .f = mean)
+```
+
+You can include arguments for the function that you specify with `.f`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
+
+```{r cas, warning = FALSE}
+map(ex, .f = head, n = 1)
+```
+
+The `map_chr()` function also applies a function over a list, but it returns a character vector rather than a list:
+
+```{r cat}
+map_chr(ex, .f = head, n = 1)
+```
+
+```{block, type = 'rmdnote'}
+You can use the `apply` functions in base R to achieve some of the same functionality as the `map` functions. However, the `map` functions work better alongside other `tidyverse` functions. The `apply` functions are useful if you are working with matrices.
+```
+
+```{block, type = 'rmdwarning'}
+You can also use `for` loops in R, but it is much more elegant and efficient to use the `map` functions instead.
+```
+
+---
 
