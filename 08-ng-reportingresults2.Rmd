@@ -15,16 +15,7 @@ library(titanic)
 data(titanic_train)
 ```
 
-## Matrices and lists
-
-In this section, we'll talk about the `apply` family of functions, which allow you to apply a function to all values in a vector, matrix, or list. \bigskip
-
-First, you need to know about two more object types in R:
-
-- `matrix`
-- `list`
-
-### Matrices
+## Matrices
 
 A matrix is like a data frame, but all the values in all columns must be of the same class (e.g., numeric, character). 
 
