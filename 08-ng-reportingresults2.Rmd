@@ -746,6 +746,7 @@ state_fips <- read_delim("http://www2.census.gov/geo/docs/reference/state.txt",
          state_name = STATE_NAME) %>%
   select(state, state_name) %>%
   mutate(state = as.integer(state))
+
 state_fips %>% slice(1:5)
 ```
 
@@ -763,14 +764,16 @@ accident <- read_csv("data/accident.csv") %>%
          daytime = hour(date) %in% c(7:19),
          month = month(date)) %>%
   filter(!is.na(date))
+
 accident %>% slice(1:5)
 ```
 
-- Join the information from `state_fips` into the `accident` dataframe. There may be a few locations in the `state_fips` dataframe that are not included in the `accident` dataframe (e.g., Virgin Islands), so when you join keep all observations in `accident` but only the observations in `state_fips` that match at least one row of `accident`. The first few rows of the joined dataset should look like this: 
+- Join the information from `state_fips` into the `accident` dataframe. There may be a few locations in the `state_fips` dataframe that are not included in the `accident` dataframe (e.g., Virgin Islands), so when you join keep all observations in `accident` but only the observations in `state_fips` that match at least one row of `accident`. The first few rows of the joined dataset should look like this:
 
 ```{r echo = FALSE}
 accident <- accident %>%
   left_join(state_fips, by = "state")
+
 accident %>% slice(1:5)
 ```
 
@@ -783,7 +786,7 @@ accident %>%
   summarize(accidents = n())
 ```
 
-- Write a function that inputs a dataframe (`df`) and outputs this type of summary dataframe (like the one just created for Colorado) for whatever data is in the input dataframe. Below are some examples of how this function should work: 
+- Write a function that inputs a dataframe (`df`) and outputs this type of summary dataframe (like the one just created for Colorado) for whatever data is in the input dataframe. Below are some examples of how this function should work:
 
 ```{r echo = FALSE}
 summarize_fars <- function(df){
@@ -817,7 +820,7 @@ accident %>%
   filter(state_name %in% c("Colorado", "Texas", "California", "New York")) %>% 
   group_by(state_name) %>%
   nest() %>% 
-  mutate(summary = map(data, summarize_fars)) %>% 
+  mutate(summary = purrr::map(data, summarize_fars)) %>% 
   select(-data) %>% 
   unnest() 
 ```
@@ -879,7 +882,7 @@ state_plots <- accident %>%
   filter(state_name %in% c("Colorado", "Texas", "California", "New York")) %>% 
   group_by(state_name) %>%
   nest() %>% 
-  mutate(plots = map(data, plot_fars)) 
+  mutate(plots = purrr::map(data, plot_fars)) 
 
 class(state_plots[["plots"]])
 class(state_plots[["plots"]][[1]])
@@ -990,7 +993,7 @@ accident %>%
   filter(state_name %in% c("Colorado", "Texas", "California", "New York")) %>% 
   group_by(state_name) %>%
   nest() %>% 
-  mutate(summary = map(data, summarize_fars)) %>% 
+  mutate(summary = purrr::map(data, summarize_fars)) %>% 
   select(-data) %>% 
   unnest() 
 ```
@@ -1042,7 +1045,7 @@ state_plots <- accident %>%
   filter(state_name %in% c("Colorado", "Texas", "California", "New York")) %>% 
   group_by(state_name) %>%
   nest() %>% 
-  mutate(plots = map(data, plot_fars)) %>% 
+  mutate(plots = purrr::map(data, plot_fars)) %>% 
   select(state_name, plots)
 
 class(state_plots)
