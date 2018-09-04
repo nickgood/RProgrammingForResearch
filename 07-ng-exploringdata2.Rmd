@@ -323,7 +323,7 @@ We often want to perform the same function on every element of a list (i.e. loop
 
 - `map`: Apply a function over each element of a list or column in a dataframe.
 - `map_df`: Like `map` but returns a dataframe.
-- `map_dbl`: Like `map`, but returns a numeric vector instead of a list.
+- `map_dbl`: Like `map`, but returns a numeric vector.
 
 Here is the syntax for `map`:
 
