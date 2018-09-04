@@ -160,6 +160,10 @@ first_childs_data <- subset_nepali(child_id = "120011")
 first_childs_data
 ```
 
+```{block, type = 'rmdwarning'}
+R is very "good" at running functions! It will look for (scope) the variables in your function in various places (environments). So your functions may run even when you don't expect them to, potentially with unexpected results!
+```
+
 The `return` function can also be used to return an object other than the last defined object (although doesn't tend to be something you need to do very often). For example, if you did not use `return` in the following code, it will output "Test output":
 
 ```{r}
@@ -315,7 +319,7 @@ while(i <= 5){
 
 ## `purrr` functions
 
-We often want to perform the same function on every element of a list (i.e. loop across every element). There is a whole family of `map` functions, within the `purrr` package designed to help us do this for example:
+We often want to perform the same function on every element of a list (i.e. loop across every element). There is a whole family of `map` functions, within the `purrr` package designed to help us do this. For example:
 
 - `map`: Apply a function over each element of a list or column in a dataframe.
 - `map_df`: Like `map` but returns a dataframe.
