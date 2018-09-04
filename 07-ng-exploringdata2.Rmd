@@ -465,19 +465,19 @@ Use functions from the `broom` package to pull the same information about the mo
 
 ```{r}
 lm_estimates <- lm_models %>%
-                mutate(tidy_lm = mod %>% map(tidy),
-                       estimates_lm = tidy_lm %>% map("estimate")) %>%
-                select(var, estimates_lm) %>%
-                filter(var == "dptp")
+                mutate(tidy_lm = mod %>% map(tidy)) %>%
+                unnest(tidy_lm) %>%
+                rename(estimate_lm = "estimate") %>%
+                select(var, term, estimate_lm)
 ```
 
 You can also check overall model summaries using the `glance` function: 
 
 ```{r}
 details_glance <- lm_models %>%
-                  mutate(glance_lm = mod %>% map(glance),
-                         p_value = glance_lm %>% map_dbl("p.value")) %>%
-                  select(var, p_value) %>%
+                  mutate(glance_lm = mod %>% map(glance)) %>%
+                  unnest(glance_lm) %>%
+                  select(var, p.value) %>%
                   filter(var == "dptp")
 ```
 
@@ -485,19 +485,20 @@ To create plots of the observations and the fit model, use the `augment` functio
 
 ```{r warning = FALSE, message = FALSE}
 details_augment <- lm_models %>%
-                   mutate(augment_lm = mod %>% map(augment),
-                          res = augment_lm %>% map(".resid"))
+                   mutate(augment_lm = mod %>% map(augment)) %>%
+                   unnest(augment_lm) %>%
+                   filter(var == "dptp")
 ```
 
 Plot these two variables and add in the fitted line from the model (note: I've used the `color` option to make the color of the points gray). Use the output from `augment` to create a plot of the original data, with the predicted values used to plot a fitted line.
 
 ```{r warning = FALSE, message = FALSE, fig.width = 5, fig.height = 4}
-  details_augment$augment_lm[[which(details_augment$var == "dptp")]]  %>% 
-  ggplot(aes(x = val, y = death)) +
+  details_augment %>%
+  rename(dptp = "val") %>%
+  ggplot(aes(x = dptp, y = death)) +
   geom_point(size = 0.8, alpha = 0.5, col = "gray") +
-  geom_line(aes(x = val, y = .fitted), color = "red", size = 2) +
-  theme_classic() +
-  xlab("Dew Point Temperature oC")
+  geom_line(aes(x = dptp, y = .fitted), color = "red", size = 2) +
+  theme_classic()
 ```
 
 Plot some plots to check model assumptions for the model you fit using the `autoplot` function on your model object:
@@ -520,11 +521,11 @@ compare_models <- chic_long %>%
                   group_by(var) %>%
                   nest() %>%
                   mutate(mod = map(data, mod_glm),
-                        tidy_lm = mod %>% map(tidy),
-                        estimate_glm = tidy_lm %>% map("estimate")) %>%
-                  select(var, estimate_glm) %>%
-                  filter(var == "dptp") %>%
-                  inner_join(lm_estimates, by = "var")
+                         tidy_lm = mod %>% map(tidy)) %>%
+                  unnest(tidy_lm) %>%
+                  rename(estimate_glm = "estimate") %>%
+                  select(var, term, estimate_glm) %>%
+                  inner_join(lm_estimates, by = c("var", "term"))
 ```
 
 The results from the two models are identical.
