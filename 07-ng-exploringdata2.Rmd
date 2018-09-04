@@ -329,7 +329,7 @@ Here is the syntax for `map`:
 
 ```{r cal, eval = FALSE}
 ## Generic code
-map(.x = [list, vector, or dataframe], .f = [function], ...)
+purrr::map(.x = [list, vector, or dataframe], .f = [function], ...)
 ```
 
 I'll use the `worldcup` data as an example:
@@ -342,13 +342,13 @@ head(ex)
 Take the mean of all columns:
 
 ```{r can}
-map(ex, mean)
+purrr::map(ex, mean)
 ```
 
 Take the sum of all columns and return a dataframe:
 
 ```{r cao}
-map_df(ex, sum)
+purrr::map_df(ex, sum)
 ```
 
 You can use your own function with any of the `map` functions. For example, if you wanted to calculate a value for each category that is a weighted mean, you could run:
@@ -359,7 +359,7 @@ weighted_mean <- function(soccer_stats, weight = runif(595, 0, 1)){
   return(out)
 }
 
-map(ex, weighted_mean)
+purrr::map(ex, weighted_mean)
 ```
 
 The `map()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length). First let's create a list to work with:
@@ -371,19 +371,19 @@ The `map()` function will apply a function across a list. The different elements
 This call will calculate the mean of each element:
 
 ```{r car, warning = FALSE}
-map(.x = ex, .f = mean)
+purrr::map(.x = ex, .f = mean)
 ```
 
 You can include arguments for the function that you specify with `.f`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
 
 ```{r cas, warning = FALSE}
-map(ex, .f = head, n = 1)
+purrr::map(ex, .f = head, n = 1)
 ```
 
 The `map_chr()` function also applies a function over a list, but it returns a character vector rather than a list:
 
 ```{r cat}
-map_chr(ex, .f = head, n = 1)
+purrr::map_chr(ex, .f = head, n = 1)
 ```
 
 ```{block, type = 'rmdnote'}
@@ -393,6 +393,20 @@ You can use the `apply` functions in base R to achieve some of the same function
 ```{block, type = 'rmdwarning'}
 You can also use `for` loops in R, but it is much more elegant and efficient to use the `map` functions instead.
 ```
+
+---
+
+### But what about nested loops etc.?
+
+Sometimes you'll want to supply more than one argument to a function in parallel. The `purrr` package provides the `pmap` function to achieve this. You can provide a list of arguments to `pmap` and it will run through them in parallel. The "conventional" `for` loop method would look something like this:
+
+```{r, eval = FALSE}
+for(i in seq(1, length(x), by = 1)){
+  out[[i]] <- f(x[[i]], y[[i]], z[[i]])
+}
+```
+
+
 
 ---
 
