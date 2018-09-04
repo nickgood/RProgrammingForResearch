@@ -15,6 +15,8 @@ library(titanic)
 data(titanic_train)
 ```
 
+---
+
 ## Matrices
 
 A matrix is like a data frame, but all the values in all columns must be of the same class (e.g., numeric, character). 
@@ -71,114 +73,7 @@ foo[1, 1] <- "a"
 foo
 ```
 
-### Lists
-
-A list has different elements, just like a data frame has different columns. However, the different elements of a list can have different lengths (unlike the columns of a data frame). The different elements can also have different classes.
-
-```{r cah}
-bar <- list(some_letters = letters[1:3],
-            some_numbers = 1:5, 
-            some_logical_values = c(TRUE, FALSE))
-bar
-```
-
-To index an element from a list, use double square brackets. You can use bracket indexing either with numbers (which element in the list?) or with names. You can also index lists with the `$` operator.
-
-```{r cai}
-bar[[1]]
-bar[["some_numbers"]]
-bar$some_logical_values
-```
-
-Lists can be used to contain data with an unusual structure and / or lots of different components. For example, the information from fitting a regression is often stored as a list:
-
-```{r caj}
-my_mod <- glm(rnorm(10) ~ c(1:10))
-is.list(my_mod)
-```
-
-```{r cak}
-head(names(my_mod), 3)
-my_mod[["coefficients"]]
-```
-
-## `apply` functions
-
-There is a whole family of `apply` functions, as part of base R. These include:
-
-- `apply`: Apply a function over all the rows (`MARGIN = 1`) or columns (`MARGIN = 2`) of a matrix
-- `lapply`: Apply a function over elements of a list.
-- `sapply`: Like `lapply`, but returns a vector instead of a list.
-
-Here is the syntax for `apply`: 
-
-```{r cal, eval = FALSE}
-## Generic code
-apply([matrix], MARGIN = [margin (1: rows, 2: columns)],
-      FUN =  [function])
-```
-
-I'll use the `worldcup` data as an example:
-
-```{r cam}
-ex <- worldcup[ , c("Shots", "Passes", "Tackles", "Saves")]
-head(ex)
-```
-
-Take the mean of all columns:
-
-```{r can}
-apply(ex, MARGIN = 2, mean)
-```
-
-Take the sum of all rows:
-
-```{r cao}
-head(apply(ex, MARGIN = 1, sum), 4)
-```
-
-You can use your own function with any of the `apply` functions. For example, if you wanted to calculate a value for each player that is a weighted mean of some of their statistics, you could run:
-
-```{r cap}
-weighted_mean <- function(soccer_stats,
-                          weights = c(0.40, 0.01,
-                                      0.25, 1.5)){
-  out <- sum(weights * soccer_stats)
-  return(out)
-}
-
-head(apply(ex, MARGIN = 1, weighted_mean), 4)
-```
-
-The `lapply()` function will apply a function across a list. The different elements of the list do not have to be the same length (unlike a data frame, where the columns all have to have the same length).
-
-```{r caq}
-(ex <- list(a = c(1:5), b = rnorm(3), c = letters[1:4]))
-```
-
-This call will calculate the mean of each function:
-
-```{r car, warning = FALSE}
-lapply(ex, FUN = mean)
-```
-
-You can include arguments for the function that you specify with `FUN`, and they'll be passed to that function. For example, to get the first value of each element, you can run:
-
-```{r cas, warning = FALSE}
-lapply(ex, FUN = head, n = 1)
-```
-
-The `sapply()` function also applies a function over a list, but it returns a vector rather than a list:
-
-```{r cat}
-sapply(ex, FUN = head, n = 1)
-```
-
-In practice, I do use `apply()` some, but I can often find a way to do similar things to other `apply` family functions using the tools in `dplyr`. \bigskip
-
-You should know that `apply` family functions take advantage of the matrix structure in R. This can be one of the fastest ways to run code in R. It is usually a lot faster than doing the same things with loops. However, unless you are working with large data sets, you may not notice a difference, and "tidyverse" functions are usually comparable in speed. \bigskip
-
-I would recommend using whichever method makes the most sense to you until you run into an analysis that takes a noticeable amount of time to run, and then you might want to work a bit more to optimize your code. \bigskip
+---
 
 ## Point maps
 
