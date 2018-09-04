@@ -396,7 +396,29 @@ You can also use `for` loops in R, but it is much more elegant and efficient to 
 
 ---
 
-### But what about nested loops etc.?
+### But, but, but what about nested loops etc.?
+
+The trick with `purrr` is to nest your dataset rather than nest multiple loops. There is no need for all this complexity:
+
+```{r, eval = FALSE}
+for(i in 1:seq_along(x)){
+  for(j in 1:seq_along(y)){
+    for(k in 1:seq_along(z)){
+      f(x[i],y[j],z[k],...)
+    }
+  }
+}
+```
+
+Instead we can use `nest()` to create a tidy easy to follow sequence of steps:
+
+```{r, eval = FALSE}
+input %>%
+group_by(x, y, z) %>%
+nest() %>%
+mutate(result = map(data, .f)) %>%
+unnest()
+```
 
 Sometimes you'll want to supply more than one argument to a function in parallel. The `purrr` package provides the `pmap` function to achieve this. You can provide a list of arguments to `pmap` and it will run through them in parallel. The "conventional" `for` loop method would look something like this:
 
@@ -406,7 +428,39 @@ for(i in seq(1, length(x), by = 1)){
 }
 ```
 
+With `purrr::pmap()` we can reduce the complexity of our code, limiting the potential for us to make mistake and making mistakes easier to spot. Let's start by defining a function with multiple arugument:
 
+```{r}
+fantasy_points <- function(Position, Time, Shots, Passes, Tackles, Saves){
+    
+  if(Position == "Goalkeeper"){
+    Points = Time * 1 + Shots * 3 + Passes * 2 + Tackles * 5 + Saves * 10
+  }else if(Position == "Defender"){
+    Points = Time * 1 + Shots * 2 + Passes * 1 + Tackles * 5 + Saves * 0
+  }else if(Position == "Midfielder"){
+    Points = Time * 1 + Shots * 1 + Passes * 1 + Tackles * 4 + Saves * 0
+  }else if(Position == "Forward"){
+    Points = Time * 1 + Shots * 1 + Passes * 2 + Tackles * 3 + Saves * 0
+  } else{
+    Points = -999
+  }
+  return(Points)
+}
+```
+
+We can select the function arguments from the dataset:
+
+```{r}
+params <- worldcup %>%
+          select(Position, Time, Shots, Passes, Tackles, Saves) %>%
+          mutate(Position = as.character(Position))
+```
+
+And then add a column to the dataset with the function output:
+
+```{r}
+params$Points <- params %>% purrr::pmap(fantasy_points)
+```
 
 ---
 
