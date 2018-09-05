@@ -164,7 +164,7 @@ first_childs_data
 R is very "good" at running functions! It will look for (scope) the variables in your function in various places (environments). So your functions may run even when you don't expect them to, potentially, with unexpected results!
 ```
 
-The `return` function can also be used to return an object other than the last defined object (although doesn't tend to be something you need to do very often). For example, if you did not use `return` in the following code, it will output "Test output":
+The `return` function can also be used to return an object other than the last defined object (although this doesn't tend to be something you need to do very often). If you did not use `return` in the following code, it will output "Test output":
 
 ```{r}
 subset_nepali <- function(datafr = nepali, child_id){
