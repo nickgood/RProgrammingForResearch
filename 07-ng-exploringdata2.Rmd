@@ -226,7 +226,7 @@ You can also output warnings and messages using the functions `warning` and `mes
 
 ---
 
-### if / else loops 
+### if / else statements
 
 There are other control structures you can use in your R code. Two that you will commonly use within R functions are `if` and `ifelse` statements. \bigskip
 
