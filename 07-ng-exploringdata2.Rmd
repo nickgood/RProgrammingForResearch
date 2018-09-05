@@ -466,6 +466,8 @@ params$Points <- params %>% purrr::pmap(fantasy_points)
 
 ## In-course exercise
 
+---
+
 ### Using regression models to explore data #1
 
 For this exercise, you will need the following packages. If do not have them already, you will need to install them.
@@ -476,27 +478,27 @@ library(broom)
 library(ggfortify)
 ```
 
-For this part of the exercise, you'll use a dataset on weather, air pollution, and mortality counts in Chicago, IL. This dataset is called `chicagoNMMAPS` and is part of the `dlnm` package. Change the name of the dataframe to  `chic` (this object name is shorter and will be easier to work with). Check out the data a bit to see what variables you have, and then perform the following tasks:
-
 - Write out (on paper, not in R) the regression equation for regressing death on dew point temperature.
 - Try fitting a linear regression of death (`death`) regressed on dew point temperature (`dptp`).
-- Gather the variables `cvd`, `resp`, `temp`, `dptp`, `rhum`, `pm10`, and `o3` into a longer dataframe. Given the gathered columns the names `var` and `val`. How many row does the new dataframe contain?
+- Gather the variables `cvd`, `resp`, `temp`, `dptp`, `rhum`, `pm10`, and `o3` into a longer dataframe. Give the gathered columns the names `var` and `val`. How many rows does the new dataframe contain?
 - Write a function to regress `death` against `val`, the function should accept a dataframe as the argument.
 - Regress death against each of the 7 `var` variables. Hint: First group the data, then use the `nest()` function to create a list of 7 dataframes one for each variable. Then use `mutate` and `map()` to create a new variable.
-- Based on this regression, does there seem to be a relationship between death and dewpoint temperature in Chicago? (Hint: Try using `glance` and `tidy` from the `broom` package on the model object to get more information about the model you fit.) What is the coefficient for dew point temperature? What is the p-value for the coefficient for dew point temperature?
+- Based on this regression, does there seem to be a relationship between death and dewpoint temperature in Chicago? (Hint: Try using `glance` and `tidy` from the `broom` package on the model object to get more information about the model you fit.) What is the coefficient and intercept for death - dew point temperature? Model? What is the p-value for the coefficient for dew point temperature?
 - Plot dew point temperature (x-axis) versus death (y-axis) for Chicago. Add in the regression line from the model you fit by using the results from `augment`.
 - Use `autoplot` on the model object to generate some model diagnostic plots (make sure you have the `ggfortify` package loaded and installed).
-- Try fitting the regression as a GLM, using `glm()`. Are your coefficients different?
+- Try fitting the regression as a GLM, using `glm()`. Are your coefficients different? Hint: You will need to create a new model function for the `glm`
+
+---
 
 #### Example R code:
 
-The regression equation for the model you want to fit, regressing dewpoint temperature on temperature, is: 
+The regression equation for the model you want to fit, regressing death on dew point temperature, is: 
 
 $$
 Y_t \sim \beta_0 + \beta_1 X_t
 $$
 
-where $Y_t$ is the dewpoint temperature on day $t$, $X_t$ is the temperature on day $t$, and $\beta_0$ and $\beta_1$ are model coefficients. 
+where $Y_t$ is death on day $t$, $X_t$ is the dew point temperature on day $t$, and $\beta_0$ and $\beta_1$ are model coefficients. 
 
 Install and load the `dlnm` package and then load the `chicagoNMMAPS` data. Change the name of the dataframe to `chic`, so it will be shorter to call for the rest of your work.
 
@@ -506,6 +508,8 @@ library(dlnm)
 chic <- data("chicagoNMMAPS")
 chic <- chicagoNMMAPS
 ```
+
+Gather the variables into a longer dataframe:
 
 ```{r}
 chic_long <- chic %>%
@@ -540,10 +544,11 @@ lm_estimates <- lm_models %>%
                 mutate(tidy_lm = mod %>% map(tidy)) %>%
                 unnest(tidy_lm) %>%
                 rename(estimate_lm = "estimate") %>%
-                select(var, term, estimate_lm)
+                select(var, term, estimate_lm) %>%
+                filter(var == "dptp")
 ```
 
-You can also check overall model summaries using the `glance` function: 
+You can check overall model summaries using the `glance` function. The `glance` function can return the p-value:
 
 ```{r}
 details_glance <- lm_models %>%
@@ -573,7 +578,7 @@ Plot these two variables and add in the fitted line from the model (note: I've u
   theme_classic()
 ```
 
-Plot some plots to check model assumptions for the model you fit using the `autoplot` function on your model object:
+Make some plots to check model assumptions for the models you fit using the `autoplot` function on your model object, e.g.:
 
 ```{r, fig.width = 8, fig.height = 8}
 autoplot(lm_models$mod[[which(lm_models$var == "dptp")]]) +
