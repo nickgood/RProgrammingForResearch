@@ -81,7 +81,7 @@ Guideline 1: **Aim for high data density.** \bigskip
 
 The two graphs below show the same information. Compare the amount of ink used in the left plot to the amount used in the right plot to see how graphs with the same information can have very different data densities. \bigskip
 
-```{r, echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 4, fig.width = 10}
 a <- ggplot(worldcup, aes(Position)) + 
         geom_bar() + coord_flip() + 
         ylab("Number of players") + 
@@ -105,7 +105,7 @@ Guideline 1: **Aim for high data density.** \bigskip
 
 The two graphs below show another example of very different data densities in two plots showing the same information: \bigskip
 
-```{r, echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 4, fig.width = 10}
 a <- ggplot(chic_july, aes(x = date, y = death)) + 
         geom_area(fill = "black") + 
         xlab("Day in July 1995") + 
@@ -145,7 +145,7 @@ The following slides show some examples of the effects of using different themes
 
 ```{r}
 chic_plot <- ggplot(chic_july, aes(x = date, y = death))  +
-        geom_point(color = "red")
+             geom_point(color = "red")
 ```
 
 Next, we can see how the graph looks with the default theme and with other themes.
@@ -154,7 +154,7 @@ Next, we can see how the graph looks with the default theme and with other theme
 
 The left graph shows the graph with the default theme, while the right shows the effect of adding the black-and-white theme that comes with `ggplot2` as `theme_bw`:
 
-```{r, fig.height = 3, fig.width = 8}
+```{r, fig.height = 4, fig.width = 10}
 a <- chic_plot
 b <- chic_plot + theme_bw()
 
@@ -165,7 +165,7 @@ grid.arrange(a, b, ncol = 2)
 
 Stephen Few theme: 
 
-```{r, fig.height = 3, fig.width = 8}
+```{r, fig.height = 4, fig.width = 10}
 a <- chic_plot
 b <- chic_plot + theme_few()
 
@@ -176,7 +176,7 @@ grid.arrange(a, b, ncol = 2)
 
 Edward Tufte theme: 
 
-```{r, fig.height = 3, fig.width = 8}
+```{r, fig.height = 4, fig.width = 10}
 a <- chic_plot
 b <- chic_plot +
      theme_tufte()
@@ -188,7 +188,7 @@ grid.arrange(a, b, ncol = 2)
 
 You can even use themes to add some questionable choices for different elements. For example, `ggthemes` includes an Excel theme: 
 
-```{r, fig.height = 3, fig.width = 8}
+```{r, fig.height = 4, fig.width = 10}
 a <- chic_plot
 b <- chic_plot +
      theme_excel()
@@ -203,7 +203,7 @@ Guideline 2: **Use clear, meaningful labels.** \bigskip
 
 Graph defaults often use abbreviations for axis labels and other labeling. Further, text labels can sometimes be aligned in a way that makes them hard to read. The plots below give an example of the same information shown without (left) and with (right) clear, meaningful labels. \bigskip
 
-```{r, echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 4, fig.width = 10}
 ex <- worldcup
 ex$Position <- factor(ex$Position, 
                       levels = c("Defender",
@@ -245,7 +245,7 @@ Guideline 3: **Provide useful references.** \bigskip
 
 Data is easier to interpret when you add references. For example, if you show what it typical, it helps viewers interpret how unusual outliers are. The graph below on the right has added shading showing the range of daily deaths in July in Chicago for 1990--1994 and 1996--2000, to clarify how unusual July 1995 was. \bigskip
 
-```{r, echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 4, fig.width = 10}
 chic_july <- subset(chic, month == 7 & year == 1995)
 chic_july_ref <- filter(chic, month == 7 & 
                         year %in% c(1990:1994,
@@ -352,7 +352,7 @@ Guideline 3: **Highlight interesting aspects.** \bigskip
 
 Consider adding elements to highlight noteworthy elements of the data. For example, in the graph on the right, the days of a major heat wave have been highlighted with a red line. \bigskip
 
-```{r, echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 4, fig.width = 10}
 chic_july <- subset(chic, month == 7 & year == 1995)
 chic_july_ref <- filter(chic, month == 7 & 
                         year %in% c(1990:1994,
