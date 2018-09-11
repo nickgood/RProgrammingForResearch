@@ -1,12 +1,14 @@
 ---
-title: "Reporting data results #1"
-output: 
+title: 'Reporting data results #1'
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
   beamer_presentation:
-    theme: "metropolis"
+    theme: AnnArbor
 fontsize: 10pt
 ---
 
-```{r echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(knitr)
 ```
 
@@ -42,9 +44,8 @@ The guidelines are:
 
 For the examples, I'll use `dplyr` for data cleaning and, for plotting, the packages `ggplot2`, `gridExtra`, and `ggthemes`.
 
-```{r message = FALSE}
+```{r, message = FALSE}
 library(dplyr)
-
 library(ggplot2)
 library(gridExtra)
 library(ggthemes)
@@ -54,7 +55,7 @@ library(ggthemes)
 
 You can load the data for today's examples with the following code: 
 
-```{r message = FALSE}
+```{r, message = FALSE}
 library(faraway)
 data(nepali)
 data(worldcup)
@@ -63,7 +64,7 @@ library(dlnm)
 data(chicagoNMMAPS)
 chic <- chicagoNMMAPS
 chic_july <- chic %>%
-  filter(month == 7 & year == 1995)
+            filter(month == 7 & year == 1995)
 ```
 
 ## High data density
@@ -80,7 +81,7 @@ Guideline 1: **Aim for high data density.** \bigskip
 
 The two graphs below show the same information. Compare the amount of ink used in the left plot to the amount used in the right plot to see how graphs with the same information can have very different data densities. \bigskip
 
-```{r echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 3, fig.width = 8}
 a <- ggplot(worldcup, aes(Position)) + 
         geom_bar() + coord_flip() + 
         ylab("Number of players") + 
@@ -94,6 +95,7 @@ b <- ggplot(ex, aes(x = n, y = Position)) +
         theme_few() + 
         xlim(0, 250) + 
         ggtitle("2. Higher data density")
+
 grid.arrange(a, b, ncol = 2)
 ```
 
@@ -103,7 +105,7 @@ Guideline 1: **Aim for high data density.** \bigskip
 
 The two graphs below show another example of very different data densities in two plots showing the same information: \bigskip
 
-```{r echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 3, fig.width = 8}
 a <- ggplot(chic_july, aes(x = date, y = death)) + 
         geom_area(fill = "black") + 
         xlab("Day in July 1995") + 
@@ -155,6 +157,7 @@ The left graph shows the graph with the default theme, while the right shows the
 ```{r, fig.height = 3, fig.width = 8}
 a <- chic_plot
 b <- chic_plot + theme_bw()
+
 grid.arrange(a, b, ncol = 2)
 ```
 
@@ -165,6 +168,7 @@ Stephen Few theme:
 ```{r, fig.height = 3, fig.width = 8}
 a <- chic_plot
 b <- chic_plot + theme_few()
+
 grid.arrange(a, b, ncol = 2)
 ```
 
@@ -174,7 +178,9 @@ Edward Tufte theme:
 
 ```{r, fig.height = 3, fig.width = 8}
 a <- chic_plot
-b <- chic_plot + theme_tufte()
+b <- chic_plot +
+     theme_tufte()
+
 grid.arrange(a, b, ncol = 2)
 ```
 
@@ -184,7 +190,9 @@ You can even use themes to add some questionable choices for different elements.
 
 ```{r, fig.height = 3, fig.width = 8}
 a <- chic_plot
-b <- chic_plot + theme_excel()
+b <- chic_plot +
+     theme_excel()
+
 grid.arrange(a, b, ncol = 2)
 ```
 
@@ -195,7 +203,7 @@ Guideline 2: **Use clear, meaningful labels.** \bigskip
 
 Graph defaults often use abbreviations for axis labels and other labeling. Further, text labels can sometimes be aligned in a way that makes them hard to read. The plots below give an example of the same information shown without (left) and with (right) clear, meaningful labels. \bigskip
 
-```{r echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 3, fig.width = 8}
 ex <- worldcup
 ex$Position <- factor(ex$Position, 
                       levels = c("Defender",
@@ -237,7 +245,7 @@ Guideline 3: **Provide useful references.** \bigskip
 
 Data is easier to interpret when you add references. For example, if you show what it typical, it helps viewers interpret how unusual outliers are. The graph below on the right has added shading showing the range of daily deaths in July in Chicago for 1990--1994 and 1996--2000, to clarify how unusual July 1995 was. \bigskip
 
-```{r echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 3, fig.width = 8}
 chic_july <- subset(chic, month == 7 & year == 1995)
 chic_july_ref <- filter(chic, month == 7 & 
                         year %in% c(1990:1994,
@@ -280,8 +288,9 @@ Guideline 3: **Provide useful references.** \bigskip
 
 Another useful way to add references is to add a linear or smooth fit to the data, to help clarify trends in the data. \bigskip
 
-```{r echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
+```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
 ex <- subset(worldcup, Position == "Forward")
+
 a <- ggplot(ex, aes(x = Passes, y = Shots)) + 
         geom_point(size = 1.5) + 
         theme_few()  + 
@@ -300,7 +309,7 @@ grid.arrange(a, b, ncol = 2)
 
 You can use the function `geom_smooth` to add a smooth or linear reference line:
 
-```{r fig.width = 3, fig.height = 3, out.width = "0.4\\textwidth", fig.align = "center"}
+```{r, fig.width = 3, fig.height = 3, fig.align = "center"}
 ggplot(worldcup, aes(x = Passes, y = Shots)) + 
   geom_point() + theme_few() + 
   geom_smooth(method = "lm")
@@ -343,7 +352,7 @@ Guideline 3: **Highlight interesting aspects.** \bigskip
 
 Consider adding elements to highlight noteworthy elements of the data. For example, in the graph on the right, the days of a major heat wave have been highlighted with a red line. \bigskip
 
-```{r echo = FALSE, fig.height = 3, fig.width = 8}
+```{r, echo = FALSE, fig.height = 3, fig.width = 8}
 chic_july <- subset(chic, month == 7 & year == 1995)
 chic_july_ref <- filter(chic, month == 7 & 
                         year %in% c(1990:1994,
@@ -396,7 +405,7 @@ Guideline 3: **Highlight interesting aspects.** \bigskip
 
 In the below graphs, the names of the players with the most shots and passes have been added to highlight these unusual points. \bigskip
 
-```{r echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
+```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 4}
 ex <- subset(worldcup, Position == "Forward")
 a <- ggplot(ex, aes(x = Passes, y = Shots)) + 
         geom_point(size = 1.5, alpha = 0.5) + 
@@ -430,12 +439,13 @@ One helpful way to annotate is with text, using `geom_text()`. For this, you'll 
 ```{r}
 hottest_day <- chic_july %>%
   filter(temp == max(temp))
+
 hottest_day[ , 1:6]
 ```
 
 ## Highlighting
 
-```{r fig.height = 3, fig.width = 4, out.width = "0.7\\textwidth", fig.align = "center"}
+```{r, fig.height = 3, fig.width = 4, fig.align = "center"}
 chic_plot + geom_text(data = hottest_day, 
                       label = "Max",
                       size = 3)
@@ -445,7 +455,7 @@ chic_plot + geom_text(data = hottest_day,
 
 With `geom_text`, you'll often want to use position adjustment (the `position` parameter) to move the text so it won't be right on top of the data points: 
 
-```{r fig.height = 3, fig.width = 4, out.width = "0.5\\textwidth", fig.align = "center", message = FALSE}
+```{r, fig.height = 3, fig.width = 4, fig.align = "center", message = FALSE}
 chic_plot + geom_text(data = hottest_day, 
                       label = "Max",
                       size = 3, hjust = 0, vjust = -1)
@@ -469,7 +479,7 @@ b <- chic_plot +
 
 -----
 
-```{r fig.height = 3, fig.width = 4, out.width = "0.7\\textwidth", fig.align = "center"}
+```{r, fig.height = 3, fig.width = 4, fig.align = "center"}
 b
 ```
 
@@ -483,7 +493,7 @@ You can make the ranking of data clearer from a graph by using order to show ran
 
 Guideline 4: **Make order meaningful.** \bigskip
 
-```{r echo = FALSE, fig.width = 8, fig.height = 5}
+```{r, echo = FALSE, fig.width = 8, fig.height = 5}
 ex <- group_by(worldcup, Team) %>%
         summarise(mean_time = mean(Time))
 
@@ -518,7 +528,7 @@ Typically, in small multiples, all plots with use the same x- and y-axes. This m
 
 ------
 
-```{r echo = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
+```{r, echo = FALSE, message = FALSE, fig.height = 6, fig.width = 8}
 ex <- subset(worldcup, Position %in% c("Forward",
                                        "Midfielder"))
 ex2 <- group_by(ex, Team) %>%
@@ -547,7 +557,7 @@ The `facet` functions are:
 
 For example, to create small multiples by sex for the Nepali dataset, when plotting height versus weight, you can call:
 
-```{r warning = FALSE, fig.width = 8, fig.height = 3}
+```{r, warning = FALSE, fig.width = 8, fig.height = 3}
 ggplot(nepali, aes(ht, wt)) + 
         geom_point() + 
         facet_grid(. ~ sex)
@@ -557,14 +567,14 @@ ggplot(nepali, aes(ht, wt)) +
 
 The `facet_grid` function can facet by one or two variables. One will be shown by rows, and one by columns:
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 ## Generic code
 facet_grid([factor for rows] ~ [factor for columns])
 ```
 
 The `facet_wrap()` function can only facet by one variable, but it can "wrap" the small graphs for that variable, so the don't all have to be in one row or column:
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 ## Generic code
 facet_wrap(~ [factor for faceting], ncol = [# of columns])
 ```
@@ -584,7 +594,7 @@ nepali <- nepali %>%
 
 Notice that the labels for the two graphs have now changed:
 
-```{r warning = FALSE, fig.width = 8, fig.height = 3}
+```{r, warning = FALSE, fig.width = 8, fig.height = 3}
 ggplot(nepali, aes(ht, wt)) + 
         geom_point() + 
         facet_wrap(~ sex, ncol = 2)
@@ -603,7 +613,7 @@ nepali <- nepali %>%
 
 Now notice that the order of the plots has changed:
 
-```{r warning = FALSE, fig.width = 8, fig.height = 3}
+```{r, warning = FALSE, fig.width = 8, fig.height = 3}
 ggplot(nepali, aes(ht, wt)) + 
         geom_point() + 
         facet_grid(. ~ sex)
@@ -619,7 +629,7 @@ We'll now take a break to do Section 4.10.3 of the In-Course Exercise.
 
 There are a number of different functions for adjusting scales. These follow the following convention: 
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 ## Generic code
 scale_[aesthetic]_[vector type]
 ```
@@ -632,7 +642,7 @@ You can use a `scale` function for an axis to change things like the axis label 
 
 For example, here is the default for plotting time versus passes for the `worldcup` dataset, with the number of shots taken shown by size and position shown by color:
 
-```{r fig.width = 7, fig.height = 4, out.width = "0.8\\textwidth", fig.align = "center"}
+```{r, fig.width = 7, fig.height = 4, fig.align = "center"}
 ggplot(worldcup, aes(x = Time, y = Passes,
                      color = Position, size = Shots)) + 
   geom_point(alpha = 0.5)
@@ -640,7 +650,7 @@ ggplot(worldcup, aes(x = Time, y = Passes,
 
 ## Scales
 
-```{r fig.width = 7, fig.height = 4, out.width = "0.8\\textwidth", fig.align = "center"}
+```{r, fig.width = 7, fig.height = 4, fig.align = "center"}
 ggplot(worldcup, aes(x = Time, y = Passes,
                      color = Position, size = Shots)) + 
   geom_point(alpha = 0.5) + 
@@ -653,7 +663,7 @@ ggplot(worldcup, aes(x = Time, y = Passes,
 
 Parameters you might find useful in `scale` functions include: 
 
-```{r echo = FALSE}
+```{r, echo = FALSE}
 scale_params <- data.frame(param = c("name",
                                      "breaks",
                                      "minor_breaks",
@@ -671,7 +681,7 @@ knitr::kable(scale_params, col.names = c("Parameter", "Description"))
 
 For dates, you can use `scale` functions like `scale_x_date` and `scale_x_datetime`. For example, here's a plot of deaths in Chicago in July 1995 using default values for the x-axis: 
 
-```{r fig.width = 5, fig.height = 2, out.width = "0.9\\textwidth", fig.align = "center"}
+```{r, fig.width = 5, fig.height = 2, fig.align = "center"}
 ggplot(chic_july, aes(x = date, y = death)) + 
   geom_line() 
 ```
@@ -680,7 +690,7 @@ ggplot(chic_july, aes(x = date, y = death)) +
 
 And here's an example of changing the formatting and name of the x-axis:
 
-```{r fig.width = 5, fig.height = 2, out.width = "0.9\\textwidth", fig.align = "center"}
+```{r, fig.width = 5, fig.height = 2, fig.align = "center"}
 ggplot(chic_july, aes(x = date, y = death)) + 
   geom_line() + 
   scale_x_date(name = "Date in July 1995",
@@ -691,7 +701,7 @@ ggplot(chic_july, aes(x = date, y = death)) +
 
 You can also use the `scale` functions to transform an axis. For example, to show the Chicago plot with "deaths" on a log scale, you can run:
 
-```{r fig.width = 5, fig.height = 2, out.width = "0.9\\textwidth", fig.align = "center"}
+```{r, fig.width = 5, fig.height = 2, fig.align = "center"}
 ggplot(chic_july, aes(x = date, y = death)) + 
   geom_line() +
   scale_y_log10()
@@ -713,7 +723,7 @@ Scale functions from `brewer` allow you to set colors using different palettes. 
 
 The Brewer palettes fall into three categories: sequential, divergent, and qualitative. You should use sequential or divergent for continuous data and qualitative for categorical data. Use `display.brewer.pal` to show the palette for a given number of colors.
 
-```{r out.width = "0.32\\textwidth", fig.show='hold', fig.height = 3, fig.width = 4}
+```{r, fig.show='hold', fig.height = 3, fig.width = 4}
 library(RColorBrewer)
 display.brewer.pal(name = "Set1", n = 8)
 display.brewer.pal(name = "PRGn", n = 8)
@@ -725,7 +735,7 @@ display.brewer.pal(name = "PuBuGn", n = 8)
 
 Use the `palette` argument within a `scales` function to customize the palette:
 
-```{r fig.width = 8, fig.height = 2, out.width = "\\textwidth"}
+```{r, fig.width = 8, fig.height = 2}
 a <- ggplot(data.frame(x = 1:5, y = rnorm(5),
                        group = letters[1:5]),
             aes(x = x, y = y, color = group)) + 
@@ -738,7 +748,7 @@ grid.arrange(a, b, c, ncol = 3)
 
 ## Scales
 
-```{r fig.width = 7, fig.height = 4, out.width = "0.8\\textwidth", fig.align = "center"}
+```{r, fig.width = 7, fig.height = 4, fig.align = "center"}
 ggplot(worldcup, aes(x = Time, y = Passes,
                      color = Position, size = Shots)) + 
   geom_point(alpha = 0.5) + 
@@ -750,7 +760,7 @@ ggplot(worldcup, aes(x = Time, y = Passes,
 
 You can also set colors manually:
 
-```{r fig.width = 7, fig.height = 4, out.width = "0.8\\textwidth", fig.align = "center"}
+```{r, fig.width = 7, fig.height = 4, fig.align = "center"}
 ggplot(worldcup, aes(x = Time, y = Passes,
                      color = Position, size = Shots)) + 
   geom_point(alpha = 0.5) + 
